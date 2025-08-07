@@ -14,9 +14,9 @@ export default function HeroSecction({ data = [], apps = [], indicators = [] }) 
     // Colores que van a rotar para las palabras con asterisco
     const colors = ['text-neutral-dark', 'text-constrast'];
 
- 
 
- 
+
+
 
     // Componente para renderizar texto con colores cambiantes (sin typing)
     const TextWithColors = ({ text, className = '' }) => {
@@ -24,15 +24,15 @@ export default function HeroSecction({ data = [], apps = [], indicators = [] }) 
 
         // Dividir por coma para mantener la funcionalidad original
         const lines = text.split(',');
-        
+
         return (
             <div className={`${className} flex flex-col`}>
                 {lines.map((line, lineIndex) => {
                     const parts = line.trim().split(/(\*[^*]+\*)/g); // Separa las partes con asterisco
-                    
+
                     return (
-                        <motion.span 
-                            key={lineIndex} 
+                        <motion.span
+                            key={lineIndex}
                             className="block"
                             initial={{ opacity: 0, y: 10 }}
                             animate={{ opacity: 1, y: 0 }}
@@ -45,14 +45,14 @@ export default function HeroSecction({ data = [], apps = [], indicators = [] }) 
                                             key={`${lineIndex}-${partIndex}-${colorIndex}`}
                                             className={`${colors[colorIndex]} font-bold relative`}
                                             initial={{ opacity: 0.7, scale: 0.98 }}
-                                            animate={{ 
-                                                opacity: 1, 
+                                            animate={{
+                                                opacity: 1,
                                                 scale: 1,
-                                                transition: { 
-                                                    duration: 0.6, 
+                                                transition: {
+                                                    duration: 0.6,
                                                     ease: "easeInOut",
                                                     type: "spring",
-                                                    stiffness: 150 
+                                                    stiffness: 150
                                                 }
                                             }}
                                             whileHover={{
@@ -60,14 +60,14 @@ export default function HeroSecction({ data = [], apps = [], indicators = [] }) 
                                                 transition: { duration: 0.2 }
                                             }}
                                             style={{
-                                                textShadow: 
-                                                    colorIndex === 1 ? "0 0 20px rgba(126, 90, 251, 0.4), 0 0 40px rgba(126, 90, 251, 0.2)" : 
-                                                    colorIndex === 2 ? "0 0 15px rgba(187, 255, 82, 0.4), 0 0 30px rgba(187, 255, 82, 0.2)" : 
-                                                    "0 2px 4px rgba(12, 12, 12, 0.1)",
-                                                filter: 
-                                                    colorIndex === 1 ? "drop-shadow(0 0 15px rgba(126, 90, 251, 0.3))" : 
-                                                    colorIndex === 2 ? "drop-shadow(0 0 10px rgba(149, 255, 0,0.1))" : 
-                                                    "none"
+                                                textShadow:
+                                                    colorIndex === 1 ? "0 0 20px rgba(126, 90, 251, 0.4), 0 0 40px rgba(126, 90, 251, 0.2)" :
+                                                        colorIndex === 2 ? "0 0 15px rgba(187, 255, 82, 0.4), 0 0 30px rgba(187, 255, 82, 0.2)" :
+                                                            "0 2px 4px rgba(12, 12, 12, 0.1)",
+                                                filter:
+                                                    colorIndex === 1 ? "drop-shadow(0 0 15px rgba(126, 90, 251, 0.3))" :
+                                                        colorIndex === 2 ? "drop-shadow(0 0 10px rgba(149, 255, 0,0.1))" :
+                                                            "none"
                                             }}
                                         >
                                             {part.slice(1, -1)}
@@ -148,8 +148,8 @@ export default function HeroSecction({ data = [], apps = [], indicators = [] }) 
 
     // Variantes para el texto principal con loop
     const textLoopVariants = {
-        hidden: { 
-            opacity: 0, 
+        hidden: {
+            opacity: 0,
             x: -50,
             scale: 0.95
         },
@@ -175,8 +175,8 @@ export default function HeroSecction({ data = [], apps = [], indicators = [] }) 
 
     // Variantes para apps con loop en desktop
     const appsLoopVariants = {
-        hidden: { 
-            opacity: 0, 
+        hidden: {
+            opacity: 0,
             y: 30,
             scale: 0.8
         },
@@ -236,13 +236,13 @@ export default function HeroSecction({ data = [], apps = [], indicators = [] }) 
     };
 
     const handleOperationStart = (operationData) => {
-     
+
         // Aquí puedes manejar los datos de la operación como necesites
         // Por defecto redirigirá a mi.cambiafx.pe/login
         window.location.href = 'https://mi.cambiafx.pe/login';
     };
     return (
-        <motion.section 
+        <motion.section
             className="bg-primary z-0 py-10 md:py-20 font-title relative overflow-hidden"
             initial="hidden"
             whileInView="visible"
@@ -251,7 +251,7 @@ export default function HeroSecction({ data = [], apps = [], indicators = [] }) 
         >
 
             {/* Overlay SVG en el fondo */}
-            <motion.div 
+            <motion.div
                 className="absolute w-full h-full inset-0 -z-10"
                 initial={{ opacity: 0, scale: 1.1 }}
                 animate={{ opacity: 1, scale: 1 }}
@@ -271,7 +271,7 @@ export default function HeroSecction({ data = [], apps = [], indicators = [] }) 
             {/* Contenido principal */}
             <div className="relative z-10 mx-auto px-[5%] flex flex-col lg:flex-row gap-10 items-center">
                 {/* Izquierda: Texto principal con loop */}
-                <motion.div 
+                <motion.div
                     className='order-1 lg:order-0 lg:w-7/12'
                     variants={itemVariants}
                 >
@@ -282,8 +282,8 @@ export default function HeroSecction({ data = [], apps = [], indicators = [] }) 
                         initial="hidden"
                         animate="visible"
                         exit="exit"
-                        whileHover={{ 
-                            scale: 1.02, 
+                        whileHover={{
+                            scale: 1.02,
                             color: '#7c3aed',
                             transition: { duration: 0.3 }
                         }}
@@ -300,7 +300,7 @@ export default function HeroSecction({ data = [], apps = [], indicators = [] }) 
                         transition={{ delay: 0.2 }}
                     >
                         {/* Texto con colores cambiantes para palabras con asterisco */}
-                        <TextWithColors 
+                        <TextWithColors
                             text={data?.title}
                         />
                     </motion.h1>
@@ -315,7 +315,7 @@ export default function HeroSecction({ data = [], apps = [], indicators = [] }) 
                     >
                         {data?.description || ""}
                     </motion.p>
-                    <motion.div 
+                    <motion.div
                         className='flex flex-col lg:flex-row gap-12 h-[300px] lg:mt-20 relative'
                         variants={itemVariants}
                         transition={{ delay: 0.6 }}
@@ -326,8 +326,8 @@ export default function HeroSecction({ data = [], apps = [], indicators = [] }) 
                             className="hidden lg:block w-auto h-[400px] absolute top-4"
                             onError={(e) => (e.target.src = "/api/cover/thumbnail/null")}
                             variants={imageVariants}
-                            whileHover={{ 
-                                scale: 1.02, 
+                            whileHover={{
+                                scale: 1.02,
                                 y: -5,
                                 boxShadow: "0 20px 40px 0 rgba(31, 38, 135, 0.15)",
                                 transition: { duration: 0.4, ease: "easeOut" }
@@ -336,7 +336,7 @@ export default function HeroSecction({ data = [], apps = [], indicators = [] }) 
                         <div className='lg:w-4/12 relative'>
                             {/* ... */}
                         </div>
-                        <motion.div 
+                        <motion.div
                             className="w-full lg:w-8/12 flex flex-col items-start gap-4 mb-8"
                             variants={itemVariants}
                             transition={{ delay: 0.8 }}
@@ -345,7 +345,7 @@ export default function HeroSecction({ data = [], apps = [], indicators = [] }) 
                                 variants={itemVariants}
                                 transition={{ delay: 0.9 }}
                             >
-                                <motion.span 
+                                <motion.span
                                     key={`app-title-${loopKey}`}
                                     className="text-lg font-medium"
                                     variants={textLoopVariants}
@@ -356,9 +356,9 @@ export default function HeroSecction({ data = [], apps = [], indicators = [] }) 
                                 >
                                     ¡Descarga nuestra app!
                                 </motion.span>
-                                
+
                                 {/* Desktop version - Con loop */}
-                                <motion.div 
+                                <motion.div
                                     key={`apps-desktop-${loopKey}`}
                                     className="hidden lg:flex gap-4 mt-4"
                                     variants={appsLoopVariants}
@@ -374,10 +374,10 @@ export default function HeroSecction({ data = [], apps = [], indicators = [] }) 
                                             target="_blank"
                                             rel="noopener noreferrer"
                                             initial={{ opacity: 0, scale: 0.6, y: 30, rotate: -10 }}
-                                            animate={{ 
-                                                opacity: 1, 
-                                                scale: 1, 
-                                                y: 0, 
+                                            animate={{
+                                                opacity: 1,
+                                                scale: 1,
+                                                y: 0,
                                                 rotate: 0,
                                                 transition: {
                                                     delay: 1 + index * 0.15,
@@ -387,8 +387,8 @@ export default function HeroSecction({ data = [], apps = [], indicators = [] }) 
                                                     damping: 12
                                                 }
                                             }}
-                                            whileHover={{ 
-                                                scale: 1.12, 
+                                            whileHover={{
+                                                scale: 1.12,
                                                 y: -8,
                                                 rotate: 5,
                                                 boxShadow: "0 15px 35px rgba(0,0,0,0.2)",
@@ -411,14 +411,14 @@ export default function HeroSecction({ data = [], apps = [], indicators = [] }) 
                                 </motion.div>
 
                                 {/* Mobile version - Swiper horizontal */}
-                                <motion.div 
+                                <motion.div
                                     className="flex lg:hidden mt-4 w-full"
                                     initial={{ opacity: 0, y: 20 }}
                                     animate={{ opacity: 1, y: 0 }}
                                     transition={{ delay: 1.1, duration: 0.6 }}
                                 >
                                     <div className="relative w-full">
-                                        <div 
+                                        <div
                                             className="flex gap-4 overflow-x-auto pb-2 px-1 scrollbar-hide"
                                             style={{
                                                 scrollbarWidth: 'none',
@@ -435,14 +435,14 @@ export default function HeroSecction({ data = [], apps = [], indicators = [] }) 
                                                     className="flex-shrink-0"
                                                     initial={{ opacity: 0, scale: 0.8, x: 50 }}
                                                     animate={{ opacity: 1, scale: 1, x: 0 }}
-                                                    transition={{ 
-                                                        delay: 1.2 + index * 0.1, 
+                                                    transition={{
+                                                        delay: 1.2 + index * 0.1,
                                                         duration: 0.5,
                                                         type: "spring",
                                                         stiffness: 200
                                                     }}
-                                                    whileHover={{ 
-                                                        scale: 1.05, 
+                                                    whileHover={{
+                                                        scale: 1.05,
                                                         y: -2,
                                                         transition: { duration: 0.2 }
                                                     }}
@@ -465,8 +465,8 @@ export default function HeroSecction({ data = [], apps = [], indicators = [] }) 
                                                 </motion.a>
                                             ))}
                                         </div>
-                                        
-                                     
+
+
                                     </div>
                                 </motion.div>
                             </motion.div>
@@ -485,10 +485,10 @@ export default function HeroSecction({ data = [], apps = [], indicators = [] }) 
                                             key={`${indicator?.name}-${index}-${loopKey}`}
                                             className="flex flex-col items-start"
                                             initial={{ opacity: 0, y: 40, scale: 0.8, rotate: -5 }}
-                                            animate={{ 
-                                                opacity: 1, 
-                                                y: 0, 
-                                                scale: 1, 
+                                            animate={{
+                                                opacity: 1,
+                                                y: 0,
+                                                scale: 1,
                                                 rotate: 0,
                                                 transition: {
                                                     delay: 1.4 + index * 0.2,
@@ -498,19 +498,19 @@ export default function HeroSecction({ data = [], apps = [], indicators = [] }) 
                                                     damping: 15
                                                 }
                                             }}
-                                            whileHover={{ 
-                                                scale: 1.08, 
+                                            whileHover={{
+                                                scale: 1.08,
                                                 y: -4,
-                                              
+
                                                 borderRadius: '16px',
                                                 padding: '12px',
-                                              
+
                                                 transition: { duration: 0.3 }
                                             }}
                                         >
-                                            <motion.span 
+                                            <motion.span
                                                 className="text-[52px] leading-[3rem] font-semibold text-neutral-dark"
-                                                whileHover={{ 
+                                                whileHover={{
                                                     scale: 1.15,
                                                     color: '#7E5AFB',
                                                     textShadow: "0 0 20px rgba(126, 90, 251, 0.3)"
@@ -519,7 +519,7 @@ export default function HeroSecction({ data = [], apps = [], indicators = [] }) 
                                             >
                                                 <TextWithHighlight text={indicator?.name} color='bg-constrast' counter />
                                             </motion.span>
-                                            <motion.span 
+                                            <motion.span
                                                 className="text-sm font-medium text-neutral-dark"
                                                 initial={{ opacity: 0 }}
                                                 animate={{ opacity: 1 }}
@@ -530,6 +530,14 @@ export default function HeroSecction({ data = [], apps = [], indicators = [] }) 
                                         </motion.div>
                                     ))}
                             </motion.div>
+                            <div className="min-w-max mt-6  text-[10px] lg:text-sm font-medium text-neutral-light flex items-center gap-1">
+                                Registrados en la SBS
+                                <svg className='w-4 h-4 lg:w-6 lg:h-6 fill-secondary' width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M16.8825 15L17.5527 18.2099C17.9833 20.2723 18.1986 21.3035 17.7563 21.7923C17.3141 22.281 16.546 21.8606 15.0099 21.0198L12.7364 19.7753C12.3734 19.5766 12.1919 19.4773 12 19.4773C11.8081 19.4773 11.6266 19.5766 11.2636 19.7753L8.99008 21.0198C7.45397 21.8606 6.68592 22.281 6.24365 21.7923C5.80139 21.3035 6.01669 20.2723 6.44731 18.2099L7.11752 15" stroke="#212121" strokeWidth="1.5" strokeLinejoin="round" />
+                                    <path d="M4.5 9.5C4.5 13.6421 7.85786 17 12 17C16.1421 17 19.5 13.6421 19.5 9.5C19.5 5.35786 16.1421 2 12 2C7.85786 2 4.5 5.35786 4.5 9.5Z" stroke="#212121" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                                    <path d="M9 10.1667C9 10.1667 9.75 10.1667 10.5 11.5C10.5 11.5 12.8824 8.16667 15 7.5" stroke="#212121" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                                </svg>
+                            </div>
                         </motion.div>
                     </motion.div>
 
@@ -539,7 +547,7 @@ export default function HeroSecction({ data = [], apps = [], indicators = [] }) 
                     className='flex order-0  lg:order-1 justify-end lg:w-5/12'
                     variants={itemVariants}
                     transition={{ delay: 1.8 }}
-                    whileHover={{ 
+                    whileHover={{
                         scale: 1.02,
                         transition: { duration: 0.3 }
                     }}
