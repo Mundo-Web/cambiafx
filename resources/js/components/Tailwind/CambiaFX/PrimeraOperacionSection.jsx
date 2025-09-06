@@ -168,7 +168,7 @@ export default function PrimeraOperacionSection({ banner }) {
 
                             <div>
                                 <div className="text-white text-xl  leading-tight">Transferencias Interbancarias </div>
-                                <div className="text-[#C6FF6B] text-xl font-semibold leading-tight">24 hrs hábiles</div>
+                                <div className="text-[#C6FF6B] text-xl font-semibold leading-tight">Entre 2 y 24 hrs hábiles</div>
                             </div>
                         </div>
                         <div className="flex items-center gap-2 mt-2 md:mt-0">

@@ -82,7 +82,10 @@ use App\Http\Controllers\MyAccountController;
 use App\Http\Controllers\PlanController;
 use App\Http\Controllers\PopupController;
 use App\Http\Controllers\ServiceController;
+use App\Http\Controllers\SliderController;
+use App\Http\Controllers\SocialController;
 use App\Http\Controllers\SolutionController;
+use App\Http\Controllers\LegalPolicyController;
 use App\Http\Controllers\PurchaseOptionController;
 use App\Http\Controllers\SuccessStoryController;
 use App\Http\Controllers\SupplyController;
@@ -117,8 +120,6 @@ Route::post('/set-current-lang', function (Request $request) {
 Route::get('/casos-de-exito/{slug}', [DetailSuccessStoryController::class, 'reactView'])->name('DetalleCasoExito.jsx');
 Route::get('/casos-de-exito', [SuccessStoryController::class, 'reactView'])->name('CasosDeExito.jsx');
 Route::get('/infoproductos', [InfoproductController::class, 'reactView'])->name('Infoproductos.jsx');
-
-
 
 Route::get('/', [HomeController::class, 'reactView'])->name('Home.jsx');
 Route::get('/empresas', [HomeEmpresaController::class, 'reactView'])->name('HomeEmpresa.jsx');
@@ -155,6 +156,13 @@ Route::get('/formula/{formula}', [FormulaController::class, 'reactView'])->name(
 Route::get('/thanks', [ThankController::class, 'reactView'])->name('Thanks.jsx');
 Route::get('/loginvua', [LoginVuaController::class, 'reactView'])->name('LoginVua.jsx');
 Route::get('/popup', [PopupController::class, 'reactView'])->name('Popup.jsx');
+
+
+Route::get('/legal/politicas-de-privacidad', [LegalPolicyController::class, 'reactView'])->name('LegalPolicy.jsx');
+Route::get('/legal/terminos-y-condiciones', [LegalPolicyController::class, 'reactView'])->name('LegalPolicy.jsx');
+
+
+
 
 Route::get('/login', [AuthController::class, 'loginView'])->name('Login.jsx');
 Route::get('/register', [AuthController::class, 'registerView'])->name('Register.jsx');

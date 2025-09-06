@@ -1,23 +1,20 @@
 import React, { useEffect, useRef, useState } from "react";
-import ReactModal from "react-modal";
 import { motion, AnimatePresence } from "framer-motion";
 
 import Tippy from "@tippyjs/react";
 import HtmlContent from "../../Utils/HtmlContent";
 import GeneralRest from "../../actions/GeneralRest";
-import { Send, X } from "lucide-react";
+import { Send } from "lucide-react";
 import { useTranslation } from "../../hooks/useTranslation";
 import Swal from "sweetalert2";
 import SubscriptionsRest from "../../Actions/SubscriptionsRest";
 import Global from "../../Utils/Global";
 
-ReactModal.setAppElement("#app");
+
 
 const Footer = ({ terms, footerLinks = [] }) => {
     const { t } = useTranslation();
-    const [modalOpen, setModalOpen] = useState(false);
-    const openModal = (index) => setModalOpen(index);
-    const closeModal = () => setModalOpen(false);
+
     const generalRest = new GeneralRest();                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  
 
     // Configurar notificaciones para GeneralRest (principalmente para consistencia)
@@ -113,12 +110,7 @@ const Footer = ({ terms, footerLinks = [] }) => {
     const generalsData = aboutuses?.generals || [];
     const sedesData = aboutuses?.sedes || [];
     
-    const policyItems = {
-        privacy_policy: t("public.footer.privacity", "Políticas de privacidad"),
-        terms_conditions: t("public.form.terms", "Términos y condiciones"),
-        // 'delivery_policy': 'Políticas de envío',
-        exchange_policy: t("public.footer.change", "Políticas de cambio"),
-    };
+
 
     const cleanText = (text) => {
         if (text === null || text === undefined) return "";
@@ -579,8 +571,8 @@ const Footer = ({ terms, footerLinks = [] }) => {
                             <h3 className="text-lg lg:text-xl font-medium mb-2 lg:mb-4">
                                 Legal
                             </h3>
-                            <a onClick={() => openModal(0)} className="cursor-pointer hover:text-secondary transition-colors">Política de Privacidad</a>
-                            <a onClick={() => openModal(1)} className="cursor-pointer hover:text-secondary transition-colors">Términos y Condiciones</a>
+                            <a href="/legal/politicas-de-privacidad" className="cursor-pointer hover:text-secondary transition-colors">Política de Privacidad</a>
+                            <a href="/legal/terminos-y-condiciones" className="cursor-pointer hover:text-secondary transition-colors">Términos y Condiciones</a>
                             <a href="/libro-de-reclamaciones" className="cursor-pointer hover:text-secondary transition-colors">Libro de Reclamaciones</a>
                             <div className="mt-4">
                                 <p className="font-medium">Registrada en la SBS</p>
@@ -713,33 +705,6 @@ const Footer = ({ terms, footerLinks = [] }) => {
                         </div>
                     </div>
                 </div>
-
-                {/* Modal para Términos y Condiciones */}
-                {Object.keys(policyItems).map((key, index) => {
-                    const title = policyItems[key];
-                    const content =
-                        generals.find((x) => x.correlative == key)?.description ?? 
-                        generalsData.find((x) => x.correlative == key)?.description ?? "";
-                    return (
-                        <ReactModal
-                            key={index}
-                            isOpen={modalOpen === index}
-                            onRequestClose={closeModal}
-                            contentLabel={title}
-                            className="fixed top-[5%] left-1/2 -translate-x-1/2 bg-white p-4 lg:p-6 rounded-2xl lg:rounded-3xl shadow-lg w-[95%] max-w-4xl max-h-[90vh] mb-10 overflow-y-auto scrollbar-hide"
-                            overlayClassName="fixed inset-0 bg-neutral-dark bg-opacity-50 z-50 overflow-auto scrollbar-hide"
-                        >
-                            <button
-                                onClick={closeModal}
-                                className="float-right text-red-500 hover:text-red-700 transition-all duration-300"
-                            >
-                                <X className="w-6 h-6 lg:w-8 lg:h-8" strokeWidth="3px" />
-                            </button>
-                            <h2 className="text-xl lg:text-2xl font-bold mb-4 pr-8">{title}</h2>
-                            <HtmlContent className="prose prose-sm lg:prose" html={content} />
-                        </ReactModal>
-                    );
-                })}
             </footer>
         </>
     );
