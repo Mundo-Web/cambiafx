@@ -14,6 +14,7 @@ use App\Models\Service;
 use App\Models\Slider;
 use App\Models\Social;
 use App\Helpers\SimpleImageProcessor;
+use App\Models\User;
 use Exception;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
@@ -171,7 +172,7 @@ class BasicController extends Controller
 
     // Only fetch user permissions if authenticated
     if (Auth::check()) {
-      $user = Auth::user();
+      $user = User::find(Auth::id());
       $user->getAllPermissions();
       $properties['session'] = $user;
     }
