@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { ArrowRight, MessageCircle, Phone, ExternalLink, Globe, Mail, Link as LinkIcon } from "lucide-react";
 import GeneralRest from "../../actions/GeneralRest";
+import General from "../../Utils/General";
 
 const WhatsAppButton = ({ 
     children = "Reserva una consulta",
@@ -17,8 +18,8 @@ const WhatsAppButton = ({
     ...props 
 }) => {
     const [whatsappData, setWhatsappData] = useState({
-        phone: null,
-        message: null
+        phone: General.get('whatsapp_phone'),
+        message: General.get('whatsapp_message')
     });
     const [aboutuses, setAboutuses] = useState(null);
 
@@ -84,41 +85,42 @@ const WhatsAppButton = ({
 
   
 
+    console.log(General.get('whatsapp_phone'))
     const aboutusData = aboutuses?.aboutus || [];
     const generalsData = aboutuses?.generals || [];
-    useEffect(() => {
-        const fetchWhatsAppData = async () => {
-            try {
-                const generalRest = new GeneralRest();
-                generalRest.enableNotifications = false;
+    // useEffect(() => {
+    //     const fetchWhatsAppData = async () => {
+    //         try {
+    //             const generalRest = new GeneralRest();
+    //             generalRest.enableNotifications = false;
                 
-                const data = await generalRest.getAboutuses();
+    //             const data = await generalRest.getAboutuses();
                    
 
-                if (data) {
-                    const phoneData = data?.generals?.find(item => 
-                        item.correlative === 'whatsapp_phone'
-                    );
-                    const messageData =data?.generals?.find(item => 
-                        item.correlative === 'whatsapp_message'
-                    );
+    //             if (data) {
+    //                 const phoneData = data?.generals?.find(item => 
+    //                     item.correlative === 'whatsapp_phone'
+    //                 );
+    //                 const messageData =data?.generals?.find(item => 
+    //                     item.correlative === 'whatsapp_message'
+    //                 );
 
-                    setWhatsappData({
-                        phone: phoneData?.description || null,
-                        message: messageData?.description || "Hola, me gustaría reservar una consulta."
-                    });
-                }
-            } catch (error) {
-                // Valores por defecto en caso de error
-                setWhatsappData({
-                    phone: null,
-                    message: "Hola, me gustaría reservar una consulta."
-                });
-            }
-        };
+    //                 setWhatsappData({
+    //                     phone: phoneData?.description || null,
+    //                     message: messageData?.description || "Hola, me gustaría reservar una consulta."
+    //                 });
+    //             }
+    //         } catch (error) {
+    //             // Valores por defecto en caso de error
+    //             setWhatsappData({
+    //                 phone: null,
+    //                 message: "Hola, me gustaría reservar una consulta."
+    //             });
+    //         }
+    //     };
 
-        fetchWhatsAppData();
-    }, []);
+    //     fetchWhatsAppData();
+    // }, [null]);
 
     // Función helper para determinar el ícono apropiado
     const getIcon = () => {
