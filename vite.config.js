@@ -45,43 +45,8 @@ export default defineConfig({
                     if (assetInfo.name == "app-C6GHMxSp.css") return "app.css";
                     return assetInfo.name;
                 },
-                // Code splitting para mejorar el rendimiento
-                manualChunks: (id) => {
-                    // Separar vendors en chunks más pequeños
-                    if (id.includes('node_modules')) {
-                        // React y librerías relacionadas
-                        if (id.includes('react') || id.includes('react-dom')) {
-                            return 'react-vendor';
-                        }
-                        // Framer Motion
-                        if (id.includes('framer-motion')) {
-                            return 'framer-vendor';
-                        }
-                        // Swiper
-                        if (id.includes('swiper')) {
-                            return 'swiper-vendor';
-                        }
-                        // Otras librerías grandes
-                        if (id.includes('lucide-react') || id.includes('react-modal')) {
-                            return 'ui-vendor';
-                        }
-                        // Todo lo demás de node_modules
-                        return 'vendor';
-                    }
-                },
             },
         },
-        // Optimizaciones adicionales
-        minify: 'terser',
-        terserOptions: {
-            compress: {
-                drop_console: true, // Eliminar console.log en producción
-                drop_debugger: true,
-            },
-        },
-        cssMinify: true,
-        reportCompressedSize: false, // Desactivar para builds más rápidos
-        chunkSizeWarningLimit: 1000,
     },
     optimizeDeps: {
         include: ["translate"],

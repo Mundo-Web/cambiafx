@@ -8,7 +8,7 @@
 <head>
     @viteReactRefresh
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="csrf_token" content="{{ csrf_token() }}">
     
@@ -32,23 +32,10 @@
     
     <link rel="shortcut icon" href="/assets/img/favicon.png" type="image/png">
 
-    <!-- Preload de recursos críticos -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
-    <link rel="dns-prefetch" href="https://translate.google.com">
-    
-    <!-- Preload de fuentes críticas -->
-    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap">
-    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&display=swap">
-
     <link href="/lte/assets/css/icons.min.css" rel="stylesheet" type="text/css" />
 
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" media="print" onload="this.media='all'">
-    <noscript><link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"></noscript>
-    
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" media="print" onload="this.media='all'">
-    <noscript><link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet"></noscript>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
     <link
         href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
@@ -56,8 +43,7 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
         integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" media="print" onload="this.media='all'" />
-    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" /></noscript>
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
 
@@ -74,18 +60,16 @@
             }, 'google_translate_element');
         }
     </script>
-    <script src="https://translate.google.com/translate_a/element.js?cb=loadGoogleTranslate" defer></script>
+    <script src="https://translate.google.com/translate_a/element.js?cb=loadGoogleTranslate"></script>
 
     <style>
         * {
             box-sizing: border-box;
         }
-        /* Evitar FOUC (Flash of Unstyled Content) */
-        html { visibility: visible; opacity: 1; }
     </style>
 
     @if ($component == 'Checkout.jsx')
-        <script type="application/javascript" src="https://checkout.culqi.com/js/v4" defer></script>
+        <script type="application/javascript" src="https://checkout.culqi.com/js/v4"></script>
     @elseif ($component == 'MyAccount.jsx')
         <link href="/lte/assets/libs/dxdatagrid/css/dx.light.compact.css?v=06d3ebc8-645c-4d80-a600-c9652743c425"
             rel="stylesheet" type="text/css" id="dg-default-stylesheet" />
