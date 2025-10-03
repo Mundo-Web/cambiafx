@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState, lazy, Suspense } from "react";
 import { createRoot } from "react-dom/client";
 import Base from "./Components/Tailwind/Base";
 import CreateReactScript from "./Utils/CreateReactScript";
@@ -7,49 +7,29 @@ import Header from "./components/Tailwind/Header";
 
 import Footer from "./components/Tailwind/Footer";
 import { CarritoContext, CarritoProvider } from "./context/CarritoContext";
-import ItemsRest from "./actions/ItemRest";
-import { Swiper, SwiperSlide } from "swiper/react";
-import SwiperCore from 'swiper';
-// Import Swiper styles
-import "swiper/css";
-import "swiper/css/navigation";
-
-// import required modules
-import { Navigation } from "swiper/modules";
-import HealthSection from "./components/Home/HealthSection";
-import TratamientoSection from "./components/Home/TratamientoSection";
-import TestimonioSection from "./components/Home/TestimonioSection";
-import AcercaDe from "./components/Home/AcercaDe";
-import TextWithHighlight from "./Utils/TextWithHighlight";
 import ReactModal from "react-modal";
-import { X } from "lucide-react";
-import ModalAppointment from "./components/Appointment/ModalAppointment";
-import PopupManager from "./components/PopupManager/PopupManager";
-
 import { motion } from "framer-motion";
-import { ScrollAnimation } from "./animations/ScrollAnimation";
-import { scrollEffects } from "./animations/animationVariantsSccroll";
-import { PersistentScrollAnimation } from "./animations/PersistentScrollAnimation";
-import BlurText from "./Utils/BlurText";
 import { useTranslation } from "./hooks/useTranslation";
-import SliderInteractive from "./components/Tailwind/Sliders/SliderInteractive";
-import AppStoreBanner from "./components/Apps/AppStoreBanner";
-import AppStoreLinks from "./components/Apps/AppStoreLinks";
-import AppDebugInfo from "./components/Apps/AppDebugInfo";
-import CarruselBrands from "./components/Tailwind/Carrusel/CarruselBrands";
-import HomeSeccionNosotros from "./components/Tailwind/CambioGerencia/HomeSeccionNosotros";
-import HomeSeccionImpacto from "./components/Tailwind/CambioGerencia/HomeSeccionImpacto";
-import HomeSeccionServicios from "./components/Tailwind/CambioGerencia/HomeSeccionServicios";
-import HomeSeccionTestimonios from "./components/Tailwind/CambioGerencia/HomeSeccionTestimonios";
-import HomeSeccionBlog from "./components/Tailwind/CambioGerencia/HomeSeccionBlog";
-import HeroSecction from "./components/Tailwind/CambiaFX/HeroSecction";
-import PrimeraOperacionSection from "./components/Tailwind/CambiaFX/PrimeraOperacionSection";
-import FuncionSection from "./components/Tailwind/CambiaFX/FuncionSection";
-import CuponesSection from "./components/Tailwind/CambiaFX/CuponesSection";
-import PilaresSection from "./components/Tailwind/CambiaFX/PilaresSection";
-import EmpresasSection from "./components/Tailwind/CambiaFX/EmpresasSection";
-import BlogSection from "./components/Tailwind/CambiaFX/BlogSection";
-import CintilloSection from "./components/Tailwind/CambiaFX/CintilloSection";
+
+// Lazy loading de componentes para mejorar performance
+const AppStoreBanner = lazy(() => import("./components/Apps/AppStoreBanner"));
+const HeroSecction = lazy(() => import("./components/Tailwind/CambiaFX/HeroSecction"));
+const PrimeraOperacionSection = lazy(() => import("./components/Tailwind/CambiaFX/PrimeraOperacionSection"));
+const FuncionSection = lazy(() => import("./components/Tailwind/CambiaFX/FuncionSection"));
+const CuponesSection = lazy(() => import("./components/Tailwind/CambiaFX/CuponesSection"));
+const PilaresSection = lazy(() => import("./components/Tailwind/CambiaFX/PilaresSection"));
+const EmpresasSection = lazy(() => import("./components/Tailwind/CambiaFX/EmpresasSection"));
+const BlogSection = lazy(() => import("./components/Tailwind/CambiaFX/BlogSection"));
+const CintilloSection = lazy(() => import("./components/Tailwind/CambiaFX/CintilloSection"));
+const PopupManager = lazy(() => import("./components/PopupManager/PopupManager"));
+const ModalAppointment = lazy(() => import("./components/Appointment/ModalAppointment"));
+
+// Loading fallback component
+const LoadingFallback = () => (
+    <div className="flex items-center justify-center min-h-[200px]">
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary"></div>
+    </div>
+);
 
 
 
@@ -203,114 +183,126 @@ const Home = ({
 
     return (
         <div>
-            {/* Debug Info <AppDebugInfo apps={apps} />*/}
-            
-            
             {/* App Store Banner - Enlaces a tiendas de aplicaciones */}
-            <AppStoreBanner apps={apps} />
+            <Suspense fallback={null}>
+                <AppStoreBanner apps={apps} />
+            </Suspense>
             
             <Header showSlogan={showSlogan} />
 
-            <CintilloSection />
+            <Suspense fallback={null}>
+                <CintilloSection />
+            </Suspense>
 
             {/* SECCIÓN CAMBIO FX */}
-            <motion.div
-                className="animate-section"
-                initial={{ opacity: 0, y: 40 }}
-                animate={sectionsReady ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.2 }}
-                transition={{ duration: 0.7 }}
-            >
-                <HeroSecction data={landingInicio} apps={apps} indicators={indicadoresInicio} />
-            </motion.div>
-
-            {/* SLIDER  <SliderInteractive ... /> */}
+            <Suspense fallback={<LoadingFallback />}>
+                <motion.div
+                    className="animate-section"
+                    initial={{ opacity: 0, y: 40 }}
+                    animate={sectionsReady ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, amount: 0.2 }}
+                    transition={{ duration: 0.7 }}
+                >
+                    <HeroSecction data={landingInicio} apps={apps} indicators={indicadoresInicio} />
+                </motion.div>
+            </Suspense>
 
             {/* SECCIÓN HAZ TU PRIMERA OPERACION - DISEÑO FIEL */}
-            <motion.div
-                className="animate-section"
-                initial={{ opacity: 0, y: 40 }}
-                animate={sectionsReady ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.2 }}
-                transition={{ duration: 0.7, delay: 0.1 }}
-            >
-                <PrimeraOperacionSection banner={banner_operacion} />
-            </motion.div>
-            <motion.div
-                className="animate-section"
-                initial={{ opacity: 0, y: 40 }}
-                animate={sectionsReady ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.2 }}
-                transition={{ duration: 0.7, delay: 0.2 }}
-            >
-                <FuncionSection data={landingPasos} pasos={pasos} />
-            </motion.div>
-            <motion.div
-                className="animate-section"
-                initial={{ opacity: 0, y: 40 }}
-                animate={sectionsReady ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.2 }}
-                transition={{ duration: 0.7, delay: 0.3 }}
-            >
-                <CuponesSection data={landingCupones} cupones={cupones} indicators={indicadoresCupones} />
-            </motion.div>
-            <motion.div
-                className="animate-section"
-                initial={{ opacity: 0, y: 40 }}
-                animate={sectionsReady ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.2 }}
-                transition={{ duration: 0.7, delay: 0.4 }}
-            >
-                <PilaresSection data={landingPilares} core_values={core_values} />
-            </motion.div>
-            <motion.div
-                className="animate-section"
-                initial={{ opacity: 0, y: 40 }}
-                animate={sectionsReady ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.2 }}
-                transition={{ duration: 0.7, delay: 0.5 }}
-            >
-                <EmpresasSection banner_slider={banner_slider} />
-            </motion.div>
-            <motion.div
-                className="animate-section"
-                initial={{ opacity: 0, y: 40 }}
-                animate={sectionsReady ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.2 }}
-                transition={{ duration: 0.7, delay: 0.6 }}
-            >
-                <BlogSection data={landingBlog} posts={posts} />
-            </motion.div>
+            <Suspense fallback={<LoadingFallback />}>
+                <motion.div
+                    className="animate-section"
+                    initial={{ opacity: 0, y: 40 }}
+                    animate={sectionsReady ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, amount: 0.2 }}
+                    transition={{ duration: 0.7, delay: 0.1 }}
+                >
+                    <PrimeraOperacionSection banner={banner_operacion} />
+                </motion.div>
+            </Suspense>
 
-            {/*
-            <CarruselBrands items={brands} data={{ title: "15,000+ empresas, desde pequeñas startups hasta nombres conocidos..." }} />
+            <Suspense fallback={<LoadingFallback />}>
+                <motion.div
+                    className="animate-section"
+                    initial={{ opacity: 0, y: 40 }}
+                    animate={sectionsReady ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, amount: 0.2 }}
+                    transition={{ duration: 0.7, delay: 0.2 }}
+                >
+                    <FuncionSection data={landingPasos} pasos={pasos} />
+                </motion.div>
+            </Suspense>
 
-            <HomeSeccionNosotros data={landingNosotros} strengths={strengths} />
-            <HomeSeccionServicios data={landingServicios} allServices={allServices} />
-            <HomeSeccionImpacto data={landingImpacto} indicators={indicators} />
-            <HomeSeccionTestimonios data={landingTestimonios} testimonios={testimonios} />
-            <HomeSeccionBlog data={landingBlog} posts={posts} /> */}
+            <Suspense fallback={<LoadingFallback />}>
+                <motion.div
+                    className="animate-section"
+                    initial={{ opacity: 0, y: 40 }}
+                    animate={sectionsReady ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, amount: 0.2 }}
+                    transition={{ duration: 0.7, delay: 0.3 }}
+                >
+                    <CuponesSection data={landingCupones} cupones={cupones} indicators={indicadoresCupones} />
+                </motion.div>
+            </Suspense>
+
+            <Suspense fallback={<LoadingFallback />}>
+                <motion.div
+                    className="animate-section"
+                    initial={{ opacity: 0, y: 40 }}
+                    animate={sectionsReady ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, amount: 0.2 }}
+                    transition={{ duration: 0.7, delay: 0.4 }}
+                >
+                    <PilaresSection data={landingPilares} core_values={core_values} />
+                </motion.div>
+            </Suspense>
+
+            <Suspense fallback={<LoadingFallback />}>
+                <motion.div
+                    className="animate-section"
+                    initial={{ opacity: 0, y: 40 }}
+                    animate={sectionsReady ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, amount: 0.2 }}
+                    transition={{ duration: 0.7, delay: 0.5 }}
+                >
+                    <EmpresasSection banner_slider={banner_slider} />
+                </motion.div>
+            </Suspense>
+
+            <Suspense fallback={<LoadingFallback />}>
+                <motion.div
+                    className="animate-section"
+                    initial={{ opacity: 0, y: 40 }}
+                    animate={sectionsReady ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, amount: 0.2 }}
+                    transition={{ duration: 0.7, delay: 0.6 }}
+                >
+                    <BlogSection data={landingBlog} posts={posts} />
+                </motion.div>
+            </Suspense>
 
             <Footer />
 
             {/* Sistema de Popups Programables */}
-            <PopupManager />
-
+            <Suspense fallback={null}>
+                <PopupManager />
+            </Suspense>
 
             {/* Modal */}
-            <ModalAppointment
-                linkWhatsApp={linkWhatsApp}
-                randomImage={randomImage}
-                isOpen={isModalOpen}
-                onClose={() => setIsModalOpen(false)}
-            />
+            <Suspense fallback={null}>
+                <ModalAppointment
+                    linkWhatsApp={linkWhatsApp}
+                    randomImage={randomImage}
+                    isOpen={isModalOpen}
+                    onClose={() => setIsModalOpen(false)}
+                />
+            </Suspense>
         </div>
     );
 };

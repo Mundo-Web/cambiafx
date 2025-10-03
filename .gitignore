@@ -26,3 +26,62 @@ composer.lock
 /storage/app/images
 /storage/app/videos
 /storage/app/public
+
+# Cache y sesiones (evitar subir archivos temporales)
+/storage/framework/sessions/*
+!/storage/framework/sessions/.gitignore
+/storage/framework/cache/*
+!/storage/framework/cache/.gitignore
+/storage/framework/views/*
+!/storage/framework/views/.gitignore
+/storage/logs/*
+!/storage/logs/.gitignore
+
+# Archivos grandes y binarios
+*.zip
+*.tar.gz
+*.rar
+*.7z
+*.dmg
+*.iso
+*.mp4
+*.avi
+*.mov
+*.wmv
+*.flv
+*.mkv
+*.pdf
+*.psd
+*.ai
+*.sketch
+
+# Archivos de backup
+*.bak
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+
+# Build artifacts
+/public/build
+/public/mix-manifest.json
+/public/hot
+
+# Node modules y cache
+.npm
+.yarn-integrity
+yarn-error.log
+
+# Composer cache
+/vendor/bin
+
+# PHPUnit
+.phpunit.cache
+phpunit.xml.cache
+coverage
+
+# Laravel específicos
+/bootstrap/cache/*.php
+!/bootstrap/cache/.gitignore
+
