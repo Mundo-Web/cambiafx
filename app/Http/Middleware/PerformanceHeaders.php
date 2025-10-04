@@ -59,7 +59,7 @@ class PerformanceHeaders
             "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com https://unpkg.com https://www.gstatic.com https://embed.tawk.to",
             "img-src 'self' data: https: http: blob:",
             "font-src 'self' data: https://fonts.gstatic.com https://cdnjs.cloudflare.com https://embed.tawk.to",
-            "connect-src 'self' https://apiluna.cambiafx.pe https://translate.googleapis.com https://translate-pa.googleapis.com https://va.tawk.to wss://embed.tawk.to https://embed.tawk.to https://www.google-analytics.com https://analytics.tiktok.com https://googleads.g.doubleclick.net https://www.google.com https://www.facebook.com",
+            "connect-src 'self' https://apiluna.cambiafx.pe https://translate.googleapis.com https://translate-pa.googleapis.com https://va.tawk.to wss://embed.tawk.to wss://*.tawk.to https://embed.tawk.to https://www.google-analytics.com https://analytics.tiktok.com https://googleads.g.doubleclick.net https://www.google.com https://www.facebook.com https://cdn.jsdelivr.net",
             "frame-src 'self' https://checkout.culqi.com https://translate.google.com",
             "object-src 'none'",
             "base-uri 'self'",
