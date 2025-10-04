@@ -1312,6 +1312,7 @@ const ExchangeCard = ({
                 <div className="absolute right-4 top-8 z-10">
                     <button
                         onClick={handleSwap}
+                        aria-label='Conversor'
                         className="bg-constrast text-white p-3 rounded-xl shadow-lg transition-all duration-200 hover:bg-neutral-dark"
                     >
                         <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">

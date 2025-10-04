@@ -211,6 +211,7 @@ const PilaresSection = ({data,core_values=[]}) => {
                         <div className="absolute -right-0 top-1/2 transform -translate-y-1/2 z-30 flex flex-col gap-4">
                             <button 
                                 onClick={() => handleManualControl('up')}
+                                aria-label='Up button'
                                 className="bg-white/20 hover:bg-white/30 backdrop-blur-sm rounded-full p-3 transition-all duration-300 group"
                             >
                                 <svg className="w-5 h-5 text-white group-hover:text-[#BBFF52] transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -219,6 +220,7 @@ const PilaresSection = ({data,core_values=[]}) => {
                             </button>
                             <button 
                                 onClick={() => handleManualControl('down')}
+                                aria-label='Down button'
                                 className="bg-white/20 hover:bg-white/30 backdrop-blur-sm rounded-full p-3 transition-all duration-300 group"
                             >
                                 <svg className="w-5 h-5 text-white group-hover:text-[#BBFF52] transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">

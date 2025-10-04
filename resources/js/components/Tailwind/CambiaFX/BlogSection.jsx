@@ -212,7 +212,7 @@ const BlogSection = ({ data, posts = [] }) => {
                     >
                       <MotionOptimizedImage
                         src={buildPostSrc(card.image)}
-                        alt={card.name}
+                        alt={`Imagen de ${card.name}`}
                         widths={blogImageWidths}
                         sizes="(max-width: 1024px) 90vw, 540px"
                         className="object-cover w-full h-full"
@@ -317,8 +317,9 @@ const BlogSection = ({ data, posts = [] }) => {
                           src={buildPostSrc(card.image)}
                           widths={blogImageWidths}
                           sizes="(max-width: 768px) 484px, (max-width: 1024px) 768px, 1024px"
-                          alt={card.name}
+                          alt={`Imagen de ${card.name} - mobile`}
                           loading="lazy"
+
                           className="object-cover w-full h-full"
                         />
                         {/* Overlay para info */}
@@ -363,6 +364,7 @@ const BlogSection = ({ data, posts = [] }) => {
             <div className="flex justify-end">
                  <motion.a 
                  href="/blog"
+                 aria-label="Ir a la sección de blog"
                    className="ml-4 w-14 h-14 rounded-full bg-[#FCF7E7] flex items-center justify-center shadow-lg hover:scale-110 transition-transform duration-300"
                    whileHover={{ 
                      scale: 1.15, 
