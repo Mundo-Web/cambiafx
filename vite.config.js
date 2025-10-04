@@ -45,8 +45,23 @@ export default defineConfig({
                     if (assetInfo.name == "app-C6GHMxSp.css") return "app.css";
                     return assetInfo.name;
                 },
+                manualChunks: {
+                    'vendor-react': ['react', 'react-dom', '@inertiajs/react'],
+                    'vendor-motion': ['framer-motion'],
+                    'vendor-ui': ['swiper', 'sweetalert2', 'tippy.js'],
+                },
             },
         },
+        minify: 'terser',
+        terserOptions: {
+            compress: {
+                drop_console: true,
+                drop_debugger: true,
+            },
+        },
+        cssCodeSplit: true,
+        reportCompressedSize: false,
+        chunkSizeWarningLimit: 600,
     },
     optimizeDeps: {
         include: ["translate"],

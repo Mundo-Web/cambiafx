@@ -65,7 +65,7 @@ export default function PrimeraOperacionSection({ banner }) {
                         className="hidden lg:block absolute bottom-0 right-16 "
                        
                     >
-                        <img src="/assets/cambiafx/operation-overlay.png" alt="Teléfono móvil" className=" h-[170px] w-auto z-10 relative" />
+                        <img src="/assets/cambiafx/operation-overlay.png" alt="Teléfono móvil" width="170" height="170" className=" h-[170px] w-auto z-10 relative" />
                     </motion.div>
                     {/* Teléfono */}
                     <motion.div

@@ -1,0 +1,1 @@
+import{j as o}from"./vendor-motion-BF899qie.js";import"./vendor-react-DSMqgrUD.js";const s=({className:s="max-w-md",width:l,color:r="#F7C2C6"})=>o.jsx("div",{className:`h-2 bg-[#EFEAE5] ${s} rounded-full mx-auto`,children:o.jsx("hr",{className:"h-full rounded-full",style:{backgroundColor:r,width:l,transition:"all .25s"}})});export{s as P};

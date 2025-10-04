@@ -37,7 +37,7 @@ const CuponesSection = ({ data, cupones, indicators = [] }) => {
             <section className="relative bg-secondary overflow-hidden font-title px-2 md:px-0 w-full">
                 {/* Fondo decorativo */}
                 <div className="hidden lg:block absolute top-0 -right-10 translate-x-[10%] w-full h-full z-0 pointer-events-none">
-                    <img src="/assets/cambiafx/cupon-overlay.png" alt="Fondo" className=" h-full object-cover pb-16" />
+                    <img src="/assets/cambiafx/cupon-overlay.png" alt="Fondo" width="1200" height="800" className=" h-full object-cover pb-16" />
                 </div>
                 
                 {/* DESKTOP VERSION - Mantener exactamente igual */}

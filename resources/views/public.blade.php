@@ -36,19 +36,18 @@
     <link rel="apple-touch-icon" href="/icon-192x192.png">
     
     <link rel="shortcut icon" href="/assets/img/favicon.png" type="image/png">
-
-    <link href="/lte/assets/css/icons.min.css" rel="stylesheet" type="text/css" />
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+        <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" media="print" media="print" onload="this.media='all'" onload="this.media='all'">
+    <noscript><link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet"></noscript>
 
     <link
         href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
-        rel="stylesheet">
+        rel="stylesheet" media="print" onload="this.media='all'">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
         integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
+        crossorigin="anonymous" referrerpolicy="no-referrer" media="print" onload="this.media='all'" />
 
-    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
 
     <!--CAMBIO GERENCIA-->
     <link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
@@ -76,8 +75,8 @@
     @vite(['resources/css/app.css', 'resources/js/' . Route::currentRouteName()])
     @inertiaHead
 
-    <link href="/lte/assets/libs/quill/quill.snow.css" rel="stylesheet" type="text/css" />
-    <link href="/lte/assets/libs/quill/quill.bubble.css" rel="stylesheet" type="text/css" />
+    <link href="/lte/assets/libs/quill/quill.snow.css" rel="stylesheet" type="text/css" media="print" onload="this.media='all'" />
+    <link href="/lte/assets/libs/quill/quill.bubble.css" rel="stylesheet" type="text/css" media="print" onload="this.media='all'" />
     <style>
         .ql-editor blockquote {
             border-left: 4px solid #f8b62c;

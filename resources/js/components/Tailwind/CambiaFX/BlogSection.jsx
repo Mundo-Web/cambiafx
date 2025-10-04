@@ -99,13 +99,17 @@ const BlogSection = ({data,posts}) => {
        viewport={{ once: true }}
        transition={{ duration: 1, delay: 0.3 }}
      >
-                <img  src="/assets/cambiafx/blog-overlay.png" 
+                <img  
+                    src="/assets/cambiafx/blog-overlay.png" 
                     alt="Fondo" 
-                    className="h-full object-cover pt-16"
+                    width="1200" 
+                    height="800" 
+                    className="h-full object-cover"
                     style={{
                         maskImage: 'linear-gradient(to left, transparent, black 300px)',
                         WebkitMaskImage: 'linear-gradient(to left, transparent, black 300px)'
-                    }} />
+                    }} 
+                />
             </motion.div>
 
       <motion.div 

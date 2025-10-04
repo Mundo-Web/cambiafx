@@ -1,0 +1,1 @@
+import{j as s}from"./vendor-motion-BF899qie.js";import"./vendor-react-DSMqgrUD.js";const e=({className:e,html:o,properties:r})=>s.jsx("div",{className:e,dangerouslySetInnerHTML:{__html:o},...r});export{e as H};
