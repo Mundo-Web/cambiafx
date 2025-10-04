@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { Suspense, lazy, useEffect, useState } from "react";
 import { createRoot } from "react-dom/client";
 import Base from "./Components/Tailwind/Base";
 import CreateReactScript from "./Utils/CreateReactScript";
@@ -6,55 +6,41 @@ import CreateReactScript from "./Utils/CreateReactScript";
 import Header from "./components/Tailwind/Header";
 
 import Footer from "./components/Tailwind/Footer";
-import { CarritoContext, CarritoProvider } from "./context/CarritoContext";
-import ItemsRest from "./actions/ItemRest";
-import { Swiper, SwiperSlide } from "swiper/react";
-import SwiperCore from 'swiper';
-// Import Swiper styles
-import "swiper/css";
-import "swiper/css/navigation";
-
-// import required modules
-import { Navigation } from "swiper/modules";
-import HealthSection from "./components/Home/HealthSection";
-import TratamientoSection from "./components/Home/TratamientoSection";
-import TestimonioSection from "./components/Home/TestimonioSection";
-import AcercaDe from "./components/Home/AcercaDe";
-import TextWithHighlight from "./Utils/TextWithHighlight";
-import ReactModal from "react-modal";
-import { X } from "lucide-react";
-import ModalAppointment from "./components/Appointment/ModalAppointment";
-import PopupManager from "./components/PopupManager/PopupManager";
-
+import { CarritoProvider } from "./context/CarritoContext";
 import { motion } from "framer-motion";
-import { ScrollAnimation } from "./animations/ScrollAnimation";
-import { scrollEffects } from "./animations/animationVariantsSccroll";
-import { PersistentScrollAnimation } from "./animations/PersistentScrollAnimation";
-import BlurText from "./Utils/BlurText";
 import { useTranslation } from "./hooks/useTranslation";
-import SliderInteractive from "./components/Tailwind/Sliders/SliderInteractive";
 import AppStoreBanner from "./components/Apps/AppStoreBanner";
-import AppStoreLinks from "./components/Apps/AppStoreLinks";
-import AppDebugInfo from "./components/Apps/AppDebugInfo";
-import CarruselBrands from "./components/Tailwind/Carrusel/CarruselBrands";
-import HomeSeccionNosotros from "./components/Tailwind/CambioGerencia/HomeSeccionNosotros";
-import HomeSeccionImpacto from "./components/Tailwind/CambioGerencia/HomeSeccionImpacto";
-import HomeSeccionServicios from "./components/Tailwind/CambioGerencia/HomeSeccionServicios";
-import HomeSeccionTestimonios from "./components/Tailwind/CambioGerencia/HomeSeccionTestimonios";
-import HomeSeccionBlog from "./components/Tailwind/CambioGerencia/HomeSeccionBlog";
 import HeroSecction from "./components/Tailwind/CambiaFX/HeroSecction";
-import PrimeraOperacionSection from "./components/Tailwind/CambiaFX/PrimeraOperacionSection";
-import FuncionSection from "./components/Tailwind/CambiaFX/FuncionSection";
-import CuponesSection from "./components/Tailwind/CambiaFX/CuponesSection";
-import PilaresSection from "./components/Tailwind/CambiaFX/PilaresSection";
-import EmpresasSection from "./components/Tailwind/CambiaFX/EmpresasSection";
-import BlogSection from "./components/Tailwind/CambiaFX/BlogSection";
 import CintilloSection from "./components/Tailwind/CambiaFX/CintilloSection";
 
+const PrimeraOperacionSection = lazy(() =>
+    import("./components/Tailwind/CambiaFX/PrimeraOperacionSection")
+);
+const FuncionSection = lazy(() =>
+    import("./components/Tailwind/CambiaFX/FuncionSection")
+);
+const CuponesSection = lazy(() =>
+    import("./components/Tailwind/CambiaFX/CuponesSection")
+);
+const PilaresSection = lazy(() =>
+    import("./components/Tailwind/CambiaFX/PilaresSection")
+);
+const EmpresasSection = lazy(() =>
+    import("./components/Tailwind/CambiaFX/EmpresasSection")
+);
+const BlogSection = lazy(() =>
+    import("./components/Tailwind/CambiaFX/BlogSection")
+);
+const LazyModalAppointment = lazy(() =>
+    import("./components/Appointment/ModalAppointment")
+);
+const LazyPopupManager = lazy(() =>
+    import("./components/PopupManager/PopupManager")
+);
 
-
-
-ReactModal.setAppElement("#app");
+const SectionFallback = () => (
+    <div className="min-h-[240px] w-full rounded-3xl bg-neutral-100/40 animate-pulse" aria-hidden />
+);
 
 const Home = ({
     linkWhatsApp,
@@ -79,10 +65,11 @@ const Home = ({
     banner_operacion = {},
     banner_slider = [],
 }) => {
-    const { t, loading, error } = useTranslation();
+    const { t } = useTranslation();
 
     // Estado para controlar cuando las secciones están listas para animar
     const [sectionsReady, setSectionsReady] = useState(false);
+    const [shouldRenderPopupManager, setShouldRenderPopupManager] = useState(false);
 
     // Efecto para marcar las secciones como listas después del primer render
     useEffect(() => {
@@ -92,6 +79,40 @@ const Home = ({
         }, 100);
         
         return () => clearTimeout(timer);
+    }, []);
+
+    useEffect(() => {
+        if (typeof window === "undefined") {
+            return;
+        }
+
+        const schedule = () => setShouldRenderPopupManager(true);
+
+        if ("requestIdleCallback" in window) {
+            const idleId = window.requestIdleCallback(schedule, { timeout: 4000 });
+            return () => window.cancelIdleCallback && window.cancelIdleCallback(idleId);
+        }
+
+        const timeoutId = window.setTimeout(schedule, 3000);
+        return () => window.clearTimeout(timeoutId);
+    }, []);
+
+    useEffect(() => {
+        if (typeof window === "undefined") {
+            return;
+        }
+
+        const handleOpenModal = () => setIsModalOpen(true);
+
+        window.addEventListener("open-appointment-modal", handleOpenModal);
+        window.openAppointmentModal = handleOpenModal;
+
+        return () => {
+            window.removeEventListener("open-appointment-modal", handleOpenModal);
+            if (window.openAppointmentModal === handleOpenModal) {
+                delete window.openAppointmentModal;
+            }
+        };
     }, []);
 
  
@@ -124,80 +145,7 @@ const Home = ({
         (item) => item.correlative === "page_home_blog"
     );
 
-    const videoRef = useRef(null);
-    const [isPlaying, setIsPlaying] = useState(false);
-
-    const handlePlay = () => {
-        if (videoRef.current) {
-            videoRef.current.play();
-            setIsPlaying(true);
-        }
-    };
-    const handleEnded = () => {
-        setIsPlaying(false); // Mostrar el botón otra vez
-    };
-
     const [isModalOpen, setIsModalOpen] = useState(false);
-
-
-    const [allowSync, setAllowSync] = useState(false);
-    const [slidesPerView, setSlidesPerView] = useState(4);
-    const topSwiperRef = useRef(null);
-    const bottomSwiperRef = useRef(null);
-
-    // Función para determinar el número de slides por vista según el ancho de la pantalla
-    const getCurrentSlidesPerView = () => {
-        const width = window.innerWidth;
-        if (width >= 1450) return 5;
-        if (width >= 1150) return 4;
-        if (width >= 950) return 3;
-        if (width >= 650) return 2;
-        return 1;
-    };
-
-    useEffect(() => {
-        const handleResize = () => {
-            const newSlidesPerView = getCurrentSlidesPerView();
-            if (newSlidesPerView !== slidesPerView) {
-                setSlidesPerView(newSlidesPerView);
-            }
-        };
-
-        // Establecer el valor inicial
-        setSlidesPerView(getCurrentSlidesPerView());
-
-        window.addEventListener('resize', handleResize);
-        return () => window.removeEventListener('resize', handleResize);
-    }, [slidesPerView]);
-
-    // Función para sincronizar los carruseles
-    const syncSwipers = (sourceSwiper, targetSwiper) => {
-        if (!allowSync || !sourceSwiper || !targetSwiper) return;
-
-        const totalSlides = sourceSwiper.slides.length;
-        const activeIndex = sourceSwiper.activeIndex;
-        const currentSlidesPerView = sourceSwiper.params.slidesPerView;
-
-        // Calculamos la posición correspondiente en el otro carrusel
-        let targetIndex = totalSlides - activeIndex - currentSlidesPerView;
-
-        // Aseguramos que el índice esté dentro de los límites
-        targetIndex = Math.max(0, Math.min(targetIndex, totalSlides - currentSlidesPerView));
-
-        // Movemos el carrusel objetivo sin disparar eventos
-        setAllowSync(false);
-        targetSwiper.slideTo(targetIndex, sourceSwiper.params.speed, false);
-        setTimeout(() => {
-            setAllowSync(true);
-        }, sourceSwiper.params.speed + 50);
-    };
-
-    const handleImageError = (e) => {
-        e.target.onerror = null;
-        e.target.src = "/api/cover/thumbnail/null";
-    };
-
-    const swiperRef = useRef(null);
 
 
 
@@ -236,7 +184,9 @@ const Home = ({
                 viewport={{ once: true, amount: 0.2 }}
                 transition={{ duration: 0.7, delay: 0.1 }}
             >
-                <PrimeraOperacionSection banner={banner_operacion} />
+                <Suspense fallback={<SectionFallback />}>
+                    <PrimeraOperacionSection banner={banner_operacion} />
+                </Suspense>
             </motion.div>
             <motion.div
                 className="animate-section"
@@ -246,7 +196,9 @@ const Home = ({
                 viewport={{ once: true, amount: 0.2 }}
                 transition={{ duration: 0.7, delay: 0.2 }}
             >
-                <FuncionSection data={landingPasos} pasos={pasos} />
+                <Suspense fallback={<SectionFallback />}>
+                    <FuncionSection data={landingPasos} pasos={pasos} />
+                </Suspense>
             </motion.div>
             <motion.div
                 className="animate-section"
@@ -256,7 +208,9 @@ const Home = ({
                 viewport={{ once: true, amount: 0.2 }}
                 transition={{ duration: 0.7, delay: 0.3 }}
             >
-                <CuponesSection data={landingCupones} cupones={cupones} indicators={indicadoresCupones} />
+                <Suspense fallback={<SectionFallback />}>
+                    <CuponesSection data={landingCupones} cupones={cupones} indicators={indicadoresCupones} />
+                </Suspense>
             </motion.div>
             <motion.div
                 className="animate-section"
@@ -266,7 +220,9 @@ const Home = ({
                 viewport={{ once: true, amount: 0.2 }}
                 transition={{ duration: 0.7, delay: 0.4 }}
             >
-                <PilaresSection data={landingPilares} core_values={core_values} />
+                <Suspense fallback={<SectionFallback />}>
+                    <PilaresSection data={landingPilares} core_values={core_values} />
+                </Suspense>
             </motion.div>
             <motion.div
                 className="animate-section"
@@ -276,7 +232,9 @@ const Home = ({
                 viewport={{ once: true, amount: 0.2 }}
                 transition={{ duration: 0.7, delay: 0.5 }}
             >
-                <EmpresasSection banner_slider={banner_slider} />
+                <Suspense fallback={<SectionFallback />}>
+                    <EmpresasSection banner_slider={banner_slider} />
+                </Suspense>
             </motion.div>
             <motion.div
                 className="animate-section"
@@ -286,7 +244,9 @@ const Home = ({
                 viewport={{ once: true, amount: 0.2 }}
                 transition={{ duration: 0.7, delay: 0.6 }}
             >
-                <BlogSection data={landingBlog} posts={posts} />
+                <Suspense fallback={<SectionFallback />}>
+                    <BlogSection data={landingBlog} posts={posts} />
+                </Suspense>
             </motion.div>
 
             {/*
@@ -301,16 +261,23 @@ const Home = ({
             <Footer />
 
             {/* Sistema de Popups Programables */}
-            <PopupManager />
-
+            {shouldRenderPopupManager && (
+                <Suspense fallback={null}>
+                    <LazyPopupManager />
+                </Suspense>
+            )}
 
             {/* Modal */}
-            <ModalAppointment
-                linkWhatsApp={linkWhatsApp}
-                randomImage={randomImage}
-                isOpen={isModalOpen}
-                onClose={() => setIsModalOpen(false)}
-            />
+            {isModalOpen && (
+                <Suspense fallback={null}>
+                    <LazyModalAppointment
+                        linkWhatsApp={linkWhatsApp}
+                        randomImage={randomImage}
+                        isOpen={isModalOpen}
+                        onClose={() => setIsModalOpen(false)}
+                    />
+                </Suspense>
+            )}
         </div>
     );
 };

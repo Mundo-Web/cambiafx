@@ -1,5 +1,6 @@
 @php
     $component = Route::currentRouteName();
+    $isHome = $component === 'Home.jsx';
 @endphp
 
 <!DOCTYPE html>
@@ -11,7 +12,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="csrf_token" content="{{ csrf_token() }}">
-    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
     <!-- SEO Meta Tags -->
     @include('components.seo-meta-tags', [
         'title' => $seoTitle ?? null,
@@ -33,8 +36,6 @@
     <link rel="shortcut icon" href="/assets/img/favicon.png" type="image/png">
 
     <link href="/lte/assets/css/icons.min.css" rel="stylesheet" type="text/css" />
-
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
     <link
@@ -50,18 +51,6 @@
     <!--CAMBIO GERENCIA-->
     <link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     
-    <!-- Añadido para traducir -->
-    <script>
-        function loadGoogleTranslate() {
-            new google.translate.TranslateElement({
-                pageLanguage: 'es',
-                includedLanguages: 'es,en',
-                autoDisplay: false
-            }, 'google_translate_element');
-        }
-    </script>
-    <script src="https://translate.google.com/translate_a/element.js?cb=loadGoogleTranslate"></script>
-
     <style>
         * {
             box-sizing: border-box;
@@ -97,34 +86,6 @@
         }
     </style>
 
-    <!-- Meta Pixel Code -->
-    <script>
-        ! function(f, b, e, v, n, t, s) {
-            if (f.fbq) return;
-            n = f.fbq = function() {
-                n.callMethod ?
-                    n.callMethod.apply(n, arguments) : n.queue.push(arguments)
-            };
-            if (!f._fbq) f._fbq = n;
-            n.push = n;
-            n.loaded = !0;
-            n.version = '2.0';
-            n.queue = [];
-            t = b.createElement(e);
-            t.async = !0;
-            t.src = v;
-            s = b.getElementsByTagName(e)[0];
-            s.parentNode.insertBefore(t, s)
-        }(window, document, 'script',
-            'https://connect.facebook.net/en_US/fbevents.js');
-        fbq('init', '1098274404490481');
-        fbq('track', 'PageView');
-    </script>
-    <noscript>
-        <img height="1" width="1" style="display:none"
-            src="https://www.facebook.com/tr?id=1098274404490481&ev=PageView&noscript=1" />
-    </noscript>
-    <!-- End Meta Pixel Code -->
     <link rel="stylesheet" href="/assets/fonts/aspekta/font-face.css" />
 </head>
 
@@ -146,12 +107,15 @@
 <body class="font-poppins">
     @inertia
 
-    <script src="/lte/assets/js/vendor.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/flowbite@2.4.1/dist/flowbite.min.js"></script>
-    <script src="/lte/assets/libs/moment/min/moment.min.js"></script>
-    <script src="/lte/assets/libs/moment/moment-timezone.js"></script>
-    <script src="/lte/assets/libs/moment/locale/es.js"></script>
-    <script src="/lte/assets/libs/quill/quill.min.js"></script>
+    <script src="/lte/assets/js/vendor.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/flowbite@2.4.1/dist/flowbite.min.js" defer></script>
+
+    @unless ($isHome)
+        <script src="/lte/assets/libs/moment/min/moment.min.js" defer></script>
+        <script src="/lte/assets/libs/moment/moment-timezone.js" defer></script>
+        <script src="/lte/assets/libs/moment/locale/es.js" defer></script>
+        <script src="/lte/assets/libs/quill/quill.min.js" defer></script>
+    @endunless
 
     @if ($component == 'MyAccount.jsx')
         <script src="/lte/assets/libs/dxdatagrid/js/dx.all.js"></script>
@@ -159,7 +123,7 @@
         <script src="/lte/assets/libs/dxdatagrid/js/localization/dx.messages.en.js"></script>
     @endif
 
-    <script src="/lte/assets/libs/tippy.js/tippy.all.min.js"></script>
+    <script src="/lte/assets/libs/tippy.js/tippy.all.min.js" defer></script>
 
     <script>
         document.addEventListener('click', function(event) {
@@ -177,20 +141,81 @@
         });
     </script>
 
-    <!--Start of Tawk.to Script-->
-    <script type="text/javascript">
-        var Tawk_API=Tawk_API||{};
-        Tawk_LoadStart=new Date();
-        (function(){
-        var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
-        s1.async=true;
-        s1.src='https://embed.tawk.to/5c3563c212db2461b16b4a9b/default';
-        s1.charset='UTF-8';
-        s1.setAttribute('crossorigin','*');
-        s0.parentNode.insertBefore(s1,s0);
+    <script>
+        window.loadGoogleTranslate = function() {
+            if (typeof google === 'undefined' || !google.translate) {
+                return;
+            }
+
+            new google.translate.TranslateElement({
+                pageLanguage: 'es',
+                includedLanguages: 'es,en',
+                autoDisplay: false
+            }, 'google_translate_element');
+        };
+
+        (function() {
+            const schedule = (callback, timeout = 4000) => {
+                if ('requestIdleCallback' in window) {
+                    requestIdleCallback(callback, { timeout });
+                } else {
+                    setTimeout(callback, timeout);
+                }
+            };
+
+            schedule(() => {
+                const translateScript = document.createElement('script');
+                translateScript.src = 'https://translate.google.com/translate_a/element.js?cb=loadGoogleTranslate';
+                translateScript.async = true;
+                translateScript.defer = true;
+                document.body.appendChild(translateScript);
+            });
+
+            schedule(() => {
+                if (window.fbq) {
+                    window.fbq('track', 'PageView');
+                    return;
+                }
+
+                !function(f, b, e, v, n, t, s) {
+                    if (f.fbq) return;
+                    n = f.fbq = function() {
+                        n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments);
+                    };
+                    if (!f._fbq) f._fbq = n;
+                    n.push = n;
+                    n.loaded = true;
+                    n.version = '2.0';
+                    n.queue = [];
+                    t = b.createElement(e);
+                    t.async = true;
+                    t.src = v;
+                    s = b.getElementsByTagName(e)[0];
+                    s.parentNode.insertBefore(t, s);
+                }(window, document, 'script', 'https://connect.facebook.net/en_US/fbevents.js');
+
+                window.fbq('init', '1098274404490481');
+                window.fbq('track', 'PageView');
+            }, 1500);
+
+            schedule(() => {
+                window.Tawk_API = window.Tawk_API || {};
+                window.Tawk_LoadStart = new Date();
+
+                const tawkScript = document.createElement('script');
+                tawkScript.async = true;
+                tawkScript.src = 'https://embed.tawk.to/5c3563c212db2461b16b4a9b/default';
+                tawkScript.charset = 'UTF-8';
+                tawkScript.setAttribute('crossorigin', '*');
+                document.body.appendChild(tawkScript);
+            }, 2500);
         })();
     </script>
-    <!--End of Tawk.to Script-->
+
+    <noscript>
+        <img height="1" width="1" style="display:none"
+            src="https://www.facebook.com/tr?id=1098274404490481&ev=PageView&noscript=1" />
+    </noscript>
 
     <!-- PWA Service Worker Registration -->
     <script>
