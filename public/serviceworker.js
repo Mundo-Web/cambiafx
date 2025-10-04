@@ -1,22 +1,11 @@
 var staticCacheName = "pwa-v" + new Date().getTime();
-var filesToCache = [
-    // Deshabilitado temporalmente para evitar errores de cache
-    // Los archivos se cargarán bajo demanda
-];
+var filesToCache = [];
 
 // Cache on install
 self.addEventListener("install", event => {
     this.skipWaiting();
-    event.waitUntil(
-        caches.open(staticCacheName)
-            .then(cache => {
-                // Solo cachear si hay archivos en la lista
-                if (filesToCache.length > 0) {
-                    return cache.addAll(filesToCache);
-                }
-                return Promise.resolve();
-            })
-    )
+    // No cachear nada en install para evitar errores
+    event.waitUntil(Promise.resolve());
 });
 
 // Clear cache on activate

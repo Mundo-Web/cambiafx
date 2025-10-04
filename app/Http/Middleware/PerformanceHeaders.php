@@ -55,11 +55,11 @@ class PerformanceHeaders
         // Content Security Policy - SOLO EN PRODUCCIÓN
         $csp = implode('; ', [
             "default-src 'self'",
-            "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://checkout.culqi.com https://translate.google.com https://translate.googleapis.com https://translate-pa.googleapis.com https://connect.facebook.net https://embed.tawk.to https://va.tawk.to https://cdn.jsdelivr.net https://www.gstatic.com https://www.google-analytics.com https://analytics.tiktok.com https://googleads.g.doubleclick.net https://www.google.com",
+            "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://checkout.culqi.com https://translate.google.com https://translate.googleapis.com https://translate-pa.googleapis.com https://connect.facebook.net https://www.facebook.com https://embed.tawk.to https://va.tawk.to https://cdn.jsdelivr.net https://www.gstatic.com https://www.google-analytics.com https://analytics.tiktok.com https://googleads.g.doubleclick.net https://www.google.com",
             "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com https://unpkg.com https://www.gstatic.com https://embed.tawk.to",
             "img-src 'self' data: https: http: blob:",
             "font-src 'self' data: https://fonts.gstatic.com https://cdnjs.cloudflare.com https://embed.tawk.to",
-            "connect-src 'self' https://apiluna.cambiafx.pe https://translate.googleapis.com https://translate-pa.googleapis.com https://va.tawk.to wss://embed.tawk.to https://embed.tawk.to https://www.google-analytics.com https://analytics.tiktok.com https://googleads.g.doubleclick.net https://www.google.com",
+            "connect-src 'self' https://apiluna.cambiafx.pe https://translate.googleapis.com https://translate-pa.googleapis.com https://va.tawk.to wss://embed.tawk.to https://embed.tawk.to https://www.google-analytics.com https://analytics.tiktok.com https://googleads.g.doubleclick.net https://www.google.com https://www.facebook.com",
             "frame-src 'self' https://checkout.culqi.com https://translate.google.com",
             "object-src 'none'",
             "base-uri 'self'",
