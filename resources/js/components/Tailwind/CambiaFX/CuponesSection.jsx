@@ -1,8 +1,12 @@
 import TextWithHighlight from "../../../Utils/TextWithHighlight";
 import { motion } from 'framer-motion';
+import OptimizedImage from '../../Common/OptimizedImage';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay } from 'swiper/modules';
 import 'swiper/css';
+
+const motionCreate = typeof motion.create === 'function' ? motion.create : motion;
+const MotionOptimizedImage = motionCreate(OptimizedImage);
 
 // Estilos CSS personalizados para el slider
 const swiperStyles = `
@@ -31,13 +35,24 @@ const CuponesSection = ({ data, cupones, indicators = [] }) => {
         const [year, month, day] = dateOnly.split('-');
         return `${day}/${month}/${year}`;
     };
+    const couponImageSrc = data?.image ? `/api/landing_home/media/${data.image}` : '/api/cover/thumbnail/null';
     return (
         <>
             <style>{swiperStyles}</style>
             <section className="relative bg-secondary overflow-hidden font-title px-2 md:px-0 w-full">
                 {/* Fondo decorativo */}
-                <div className="hidden lg:block absolute top-0 -right-10 translate-x-[10%] w-full h-full z-0 pointer-events-none">
-                    <img src="/assets/cambiafx/cupon-overlay.png" alt="Fondo" width="1200" height="800" className=" h-full object-cover pb-16" />
+                <div
+                    className="hidden lg:block absolute top-0 -right-10 translate-x-[10%] w-full h-full z-0 pointer-events-none"
+                    aria-hidden="true"
+                >
+                    <div
+                        className="w-full h-full pb-16"
+                        style={{
+                            background: 'radial-gradient(ellipse at right, rgba(199, 183, 255, 0.55), rgba(255, 253, 249, 0.1) 60%, transparent 85%)',
+                            maskImage: 'linear-gradient(to left, transparent, rgba(0,0,0,0.45) 25%, rgba(0,0,0,0.85) 65%)',
+                            WebkitMaskImage: 'linear-gradient(to left, transparent, rgba(0,0,0,0.45) 25%, rgba(0,0,0,0.85) 65%)'
+                        }}
+                    />
                 </div>
                 
                 {/* DESKTOP VERSION - Mantener exactamente igual */}
@@ -182,10 +197,12 @@ const CuponesSection = ({ data, cupones, indicators = [] }) => {
                         transition={{ duration: 0.7 }}
                     >
                         <div className="relative">
-                            <motion.img 
-                                src={`/api/landing_home/media/${data?.image}`} 
-                                alt={data?.title} 
-                                className="h-[700px] w-auto object-cover z-10" 
+                            <MotionOptimizedImage
+                                src={couponImageSrc}
+                                alt={data?.title || 'Cupones CambiaFX'}
+                                widths={[360, 540, 720, 960, 1200]}
+                                sizes="(max-width: 1280px) 60vw, 480px"
+                                className="h-[700px] w-auto object-cover z-10"
                                 onError={(e) => (e.target.src = "/api/cover/thumbnail/null")}
                                 initial={{ opacity: 0, scale: 0.95 }}
                                 whileInView={{ opacity: 1, scale: 1 }}
@@ -405,10 +422,12 @@ const CuponesSection = ({ data, cupones, indicators = [] }) => {
                         transition={{ duration: 0.7 }}
                     >
                         <div className="relative">
-                            <motion.img 
-                                src={`/api/landing_home/media/${data?.image}`} 
-                                alt={data?.title} 
-                                className="h-[500px] w-auto object-cover z-10" 
+                            <MotionOptimizedImage
+                                src={couponImageSrc}
+                                alt={data?.title || 'Cupones CambiaFX'}
+                                widths={[240, 360, 480, 640, 820]}
+                                sizes="(max-width: 768px) 85vw, 420px"
+                                className="h-[500px] w-auto object-cover z-10"
                                 onError={(e) => (e.target.src = "/api/cover/thumbnail/null")}
                                 initial={{ opacity: 0, scale: 0.95 }}
                                 whileInView={{ opacity: 1, scale: 1 }}

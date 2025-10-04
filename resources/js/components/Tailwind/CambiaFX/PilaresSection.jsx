@@ -143,14 +143,16 @@ const PilaresSection = ({data,core_values=[]}) => {
             <style>{swiperStyles}</style>
             <section className="bg-neutral-dark px-2 md:px-0 w-full relative overflow-hidden font-title">
             {/* Banda decorativa diagonal */}
-            <div className="absolute bottom-0 right-0 w-full h-full z-0 pointer-events-none">
-                <img 
-                    src="/assets/cambiafx/pilares-overlay.png" 
-                    alt="Fondo" 
-                    className="h-full object-cover pt-16"
+            <div
+                className="absolute bottom-0 right-0 w-full h-full z-0 pointer-events-none"
+                aria-hidden="true"
+            >
+                <div
+                    className="h-full pt-16"
                     style={{
-                        maskImage: 'linear-gradient(to left, transparent, black 300px)',
-                        WebkitMaskImage: 'linear-gradient(to left, transparent, black 300px)'
+                        background: 'radial-gradient(ellipse at bottom right, rgba(124, 58, 237, 0.28), rgba(17, 24, 39, 0.35) 40%, transparent 75%)',
+                        maskImage: 'linear-gradient(to left, transparent, rgba(0,0,0,0.45) 25%, rgba(0,0,0,0.95) 65%)',
+                        WebkitMaskImage: 'linear-gradient(to left, transparent, rgba(0,0,0,0.45) 25%, rgba(0,0,0,0.95) 65%)'
                     }}
                 />
             </div>

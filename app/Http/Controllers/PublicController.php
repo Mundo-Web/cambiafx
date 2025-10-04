@@ -70,23 +70,97 @@ class PublicController extends Controller
             }
             $content = Storage::get($route);
             if (!$content) throw new Exception('Imagen no encontrado');
-            
-            // Handle responsive image resizing via ?w= parameter
-            $width = $request->query('w');
-            if ($width && is_numeric($width) && class_exists('Intervention\Image\ImageManager')) {
-                try {
-                    $image = \Intervention\Image\Drivers\Gd\Driver::class;
-                    $manager = new \Intervention\Image\ImageManager($image);
-                    $img = $manager->read($content);
-                    $img->scale(width: (int)$width);
-                    $content = (string)$img->encode();
-                } catch (\Throwable $e) {
-                    // If image processing fails, return original content
+
+            $mimeType = Storage::mimeType($route) ?: null;
+            if (!$mimeType || $mimeType === 'application/octet-stream') {
+                $finfo = function_exists('finfo_open') ? finfo_open(FILEINFO_MIME_TYPE) : false;
+                if ($finfo) {
+                    $detected = finfo_buffer($finfo, $content) ?: null;
+                    if ($detected) {
+                        $mimeType = $detected;
+                    }
+                    finfo_close($finfo);
                 }
             }
-            
+            if (!$mimeType) {
+                $mimeType = 'application/octet-stream';
+            }
+            $targetWidth = $request->query('w');
+
+            if ($targetWidth && is_numeric($targetWidth)) {
+                $targetWidth = (int) $targetWidth;
+
+                try {
+                    $imageResource = @imagecreatefromstring($content);
+                    if ($imageResource !== false) {
+                        $originalWidth = imagesx($imageResource) ?: 0;
+                        $originalHeight = imagesy($imageResource) ?: 0;
+
+                        if ($originalWidth > 0 && $originalHeight > 0 && $originalWidth > $targetWidth) {
+                            $ratio = $targetWidth / $originalWidth;
+                            $calculatedHeight = (int) max(1, round($originalHeight * $ratio));
+
+                            $resized = function_exists('imagescale')
+                                ? imagescale($imageResource, $targetWidth, $calculatedHeight, IMG_BICUBIC)
+                                : null;
+
+                            if ($resized === false || $resized === null) {
+                                $resized = imagecreatetruecolor($targetWidth, $calculatedHeight);
+                                if ($resized !== false && $resized !== null) {
+                                    imagealphablending($resized, false);
+                                    imagesavealpha($resized, true);
+                                    imagecopyresampled(
+                                        $resized,
+                                        $imageResource,
+                                        0,
+                                        0,
+                                        0,
+                                        0,
+                                        $targetWidth,
+                                        $calculatedHeight,
+                                        $originalWidth,
+                                        $originalHeight
+                                    );
+                                }
+                            }
+
+                            if ($resized !== false && $resized !== null) {
+                                ob_start();
+
+                                if (str_contains($mimeType, 'png') && function_exists('imagepng')) {
+                                    imagealphablending($resized, false);
+                                    imagesavealpha($resized, true);
+                                    imagepng($resized, null, 6);
+                                    $mimeType = 'image/png';
+                                } elseif (str_contains($mimeType, 'gif') && function_exists('imagegif')) {
+                                    imagegif($resized);
+                                    $mimeType = 'image/gif';
+                                } elseif (function_exists('imagewebp')) {
+                                    imagealphablending($resized, true);
+                                    imagesavealpha($resized, true);
+                                    imagewebp($resized, null, 82);
+                                    $mimeType = 'image/webp';
+                                } else {
+                                    imagejpeg($resized, null, 82);
+                                    $mimeType = 'image/jpeg';
+                                }
+
+                                $content = ob_get_clean() ?: $content;
+                                imagedestroy($resized);
+                            }
+
+                            imagedestroy($imageResource);
+                        } elseif ($imageResource !== false) {
+                            imagedestroy($imageResource);
+                        }
+                    }
+                } catch (\Throwable $e) {
+                    // Fallback silently to original content if resizing fails
+                }
+            }
+
             return response($content, 200, [
-                'Content-Type' => 'application/octet-stream',
+                'Content-Type' => $mimeType,
                 'Cache-Control' => 'public, max-age=31536000, immutable'
             ]);
         } catch (\Throwable $th) {

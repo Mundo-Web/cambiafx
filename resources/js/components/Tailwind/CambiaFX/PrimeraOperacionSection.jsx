@@ -2,10 +2,15 @@ import React, { useState, useEffect } from 'react'
 import { motion } from 'framer-motion';
 import TextWithHighlight from '../../../Utils/TextWithHighlight'
 import WhatsAppButton from '../../Shared/WhatsAppButton';
+import OptimizedImage from '../../Common/OptimizedImage';
+
+const motionCreate = typeof motion.create === 'function' ? motion.create : motion;
+const MotionOptimizedImage = motionCreate(OptimizedImage);
 
 export default function PrimeraOperacionSection({ banner }) {
     const [paymentMethods10min, setPaymentMethods10min] = useState([]);
     const [paymentMethods24h, setPaymentMethods24h] = useState([]);
+    const bannerImageSrc = banner?.image ? `/api/banners/media/${banner.image}` : '/api/cover/thumbnail/null';
 
     useEffect(() => {
         // Cargar métodos de pago de 10 min
@@ -62,22 +67,29 @@ export default function PrimeraOperacionSection({ banner }) {
                         </motion.p>
                     </motion.div>
                     <motion.div
-                        className="hidden lg:block absolute bottom-0 right-16 "
-                       
+                        className="hidden lg:block absolute bottom-0 right-16"
+                        aria-hidden="true"
                     >
-                        <img src="/assets/cambiafx/operation-overlay.png" alt="Teléfono móvil" width="170" height="170" className=" h-[170px] w-auto z-10 relative" />
+                        <div
+                            className="h-[170px] w-[170px] rounded-full"
+                            style={{
+                                background: 'radial-gradient(circle at center, rgba(126, 90, 251, 0.5), rgba(126, 90, 251, 0.15) 60%, transparent 90%)',
+                                boxShadow: '0 20px 45px rgba(15, 23, 42, 0.15)'
+                            }}
+                        />
                     </motion.div>
                     {/* Teléfono */}
                     <motion.div
                         className=" absolute bottom-0 flex-1 left-1/3 translate-x-1/2 z-50"
-                       
                     >
-                        <img src={`/api/banners/media/${banner?.image}`} alt="Teléfono móvil"
+                        <MotionOptimizedImage
+                            src={bannerImageSrc}
+                            alt="Teléfono móvil"
+                            widths={[240, 320, 420, 520]}
+                            sizes="(max-width: 1024px) 45vw, 260px"
                             className="w-[200px] md:w-[200px] lg:w-[250px] h-auto z-10 relative"
-                            onError={(e) =>
-                                (e.target.src =
-                                    "/api/cover/thumbnail/null")
-                            } />
+                            onError={(e) => (e.target.src = "/api/cover/thumbnail/null")}
+                        />
                     </motion.div>
                     {/* Botón promo */}
                     <motion.div
@@ -87,9 +99,16 @@ export default function PrimeraOperacionSection({ banner }) {
                         viewport={{ once: true, amount: 0.2 }}
                         transition={{ duration: 0.7, delay: 0.6 }}
                     >
-                    <WhatsAppButton buttonData={banner?.button_link}>    <motion.button
-                            className="bg-constrast uppercase  text-white px-6 py-4 rounded-full font-medium text-sm flex items-center gap-3 transition-all duration-300 shadow-lg"
-                            whileHover={{ scale: 1.07, backgroundColor: '#1A1A1A', boxShadow: '0 8px 32px 0 rgba(31, 38, 135, 0.2)' }}
+                        <WhatsAppButton
+                            buttonData={banner?.button_link}
+                            className="bg-constrast uppercase text-white px-6 py-4 rounded-full font-medium text-sm flex items-center gap-3 transition-all duration-300 shadow-lg"
+                            motionProps={{
+                                whileHover: {
+                                    scale: 1.07,
+                                    backgroundColor: '#1A1A1A',
+                                    boxShadow: '0 8px 32px 0 rgba(31, 38, 135, 0.2)'
+                                }
+                            }}
                         >
                             {banner?.button_text || "¡Quiero cambiar!"}
                             <svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -103,7 +122,7 @@ export default function PrimeraOperacionSection({ banner }) {
                                     </clipPath>
                                 </defs>
                             </svg>
-                        </motion.button></WhatsAppButton>
+                        </WhatsAppButton>
                     </motion.div>
                 </motion.div>
                )}

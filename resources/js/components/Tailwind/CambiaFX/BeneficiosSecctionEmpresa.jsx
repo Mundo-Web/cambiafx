@@ -134,7 +134,7 @@ export default function BeneficiosSecctionEmpresa({data, beneficios = []}) {
                 </div>
             </div>
 
-            <style jsx>{`
+            <style>{`
                 .swiper-pagination-bullet {
                     width: 12px !important;
                     height: 12px !important;

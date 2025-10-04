@@ -520,7 +520,7 @@ const BlogArticle = ({ article, posts, landing, banner_operacion,banner }) => {
                             insertComponent={<BannerArticle banner={banner} />}
                         />
 
-                        <style jsx>{`
+                        <style>{`
                             .blog-article-content,
                             .blog-article-content-part {
                                 line-height: 1.8;

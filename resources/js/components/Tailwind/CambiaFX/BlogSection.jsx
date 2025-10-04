@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import OptimizedImage from "../../Common/OptimizedImage";
 import TextWithHighlight from "../../../Utils/TextWithHighlight";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Navigation, Autoplay } from "swiper/modules";
@@ -33,10 +34,19 @@ const blogCards = [
   },
 ];
 
-const BlogSection = ({data,posts}) => {
+const BlogSection = ({ data, posts = [] }) => {
   const [expanded, setExpanded] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
   const [swiperInitialized, setSwiperInitialized] = useState(false);
+  const buildPostSrc = (image) => image ? `/api/posts/media/${image}` : '/api/cover/thumbnail/null';
+  const blogImageWidths = [320, 480, 640, 768, 1024];
+  const postCount = posts.length;
+  const shouldLoop = postCount > 2;
+  const mobileSlides = shouldLoop
+    ? posts
+    : postCount > 0
+      ? [...posts, ...posts].slice(0, Math.max(postCount, 2))
+      : [];
 
   // Detectar si es móvil o desktop
   useEffect(() => {
@@ -99,17 +109,15 @@ const BlogSection = ({data,posts}) => {
        viewport={{ once: true }}
        transition={{ duration: 1, delay: 0.3 }}
      >
-                <img  
-                    src="/assets/cambiafx/blog-overlay.png" 
-                    alt="Fondo" 
-                    width="1200" 
-                    height="800" 
-                    className="h-full object-cover"
-                    style={{
-                        maskImage: 'linear-gradient(to left, transparent, black 300px)',
-                        WebkitMaskImage: 'linear-gradient(to left, transparent, black 300px)'
-                    }} 
-                />
+        <div
+          className="h-full"
+          aria-hidden="true"
+          style={{
+            background: 'radial-gradient(circle at left, rgba(255,255,255,0.45), rgba(199,183,255,0.25) 45%, transparent 80%)',
+            maskImage: 'linear-gradient(to left, transparent, rgba(0,0,0,0.4) 20%, rgba(0,0,0,0.85) 65%)',
+            WebkitMaskImage: 'linear-gradient(to left, transparent, rgba(0,0,0,0.4) 20%, rgba(0,0,0,0.85) 65%)'
+          }}
+        />
             </motion.div>
 
       <motion.div 
@@ -202,9 +210,11 @@ const BlogSection = ({data,posts}) => {
                       }}
                       transition={{ duration: 0.3 }}
                     >
-                      <motion.img
-                        src={`/api/posts/media/${card.image}`}
+                      <MotionOptimizedImage
+                        src={buildPostSrc(card.image)}
                         alt={card.name}
+                        widths={blogImageWidths}
+                        sizes="(max-width: 1024px) 90vw, 540px"
                         className="object-cover w-full h-full"
                         animate={{ 
                           scale: isExpanded ? 1 : 1.05,
@@ -266,17 +276,15 @@ const BlogSection = ({data,posts}) => {
             <div className="md:hidden w-full">
               <Swiper
                 modules={[Pagination, Navigation, Autoplay]}
-                loop={true}
-              
-             
+                loop={shouldLoop}
                 spaceBetween={16}
                 slidesPerView={1.2}
                 centeredSlides={false}
              
-                autoplay={{
+                autoplay={postCount > 1 ? {
                   delay: 3000,
                   disableOnInteraction: false,
-                }}
+                } : false}
                 pagination={{
                   clickable: true,
                   dynamicBullets: true,
@@ -285,7 +293,7 @@ const BlogSection = ({data,posts}) => {
                 className="blog-swiper w-full"
               >
                 {/* Asegurar que hay suficientes slides para el loop */}
-                {(posts.length >= 2 ? posts : [...posts, ...posts, ...posts]).map((card, idx) => (
+                {mobileSlides.map((card, idx) => (
                   <SwiperSlide key={`slide-${idx}`} className="w-full h-[400px]">
                     <motion.a
                       href={`/blog/${card.slug}`}
@@ -305,9 +313,9 @@ const BlogSection = ({data,posts}) => {
                       viewport={{ once: true }}
                     >
                       <div className="rounded-[28px] overflow-hidden shadow-lg w-full h-full relative">
-                        <img
-                          src={`/api/posts/media/${card.image}`}
-                          srcSet={`/api/posts/media/${card.image}?w=484 484w, /api/posts/media/${card.image}?w=768 768w, /api/posts/media/${card.image}?w=1024 1024w`}
+                        <OptimizedImage
+                          src={buildPostSrc(card.image)}
+                          widths={blogImageWidths}
                           sizes="(max-width: 768px) 484px, (max-width: 1024px) 768px, 1024px"
                           alt={card.name}
                           loading="lazy"
@@ -380,7 +388,7 @@ const BlogSection = ({data,posts}) => {
             </div>
          </motion.div>
       {/* CSS personalizado para Swiper */}
-      <style jsx global>{`
+      <style>{`
         .blog-swiper {
           padding: 20px 0 40px 0;
           width: 100%;
@@ -416,5 +424,8 @@ const BlogSection = ({data,posts}) => {
     </motion.section>
   );
 };
+
+const motionCreate = typeof motion.create === 'function' ? motion.create : motion;
+const MotionOptimizedImage = motionCreate(OptimizedImage);
 
 export default BlogSection;

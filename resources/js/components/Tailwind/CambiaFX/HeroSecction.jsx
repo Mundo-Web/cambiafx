@@ -1,8 +1,12 @@
 
 import React, { useState, useEffect } from 'react'
 import { motion } from 'framer-motion';
+import OptimizedImage from '../../Common/OptimizedImage';
 import TextWithHighlight from '../../../Utils/TextWithHighlight';
 import ExchangeCard from './ExchangeCard';
+
+const motionCreate = typeof motion.create === 'function' ? motion.create : motion;
+const MotionOptimizedImage = motionCreate(OptimizedImage);
 
 export default function HeroSecction({ data = [], apps = [], indicators = [] }) {
     const [operationType, setOperationType] = useState('venta'); // 'compra' o 'venta'
@@ -13,6 +17,9 @@ export default function HeroSecction({ data = [], apps = [], indicators = [] }) 
 
     // Colores que van a rotar para las palabras con asterisco
     const colors = ['text-neutral-dark', 'text-constrast'];
+    const heroImageId = typeof data?.image === 'string' ? data.image.trim() : data?.image;
+    const heroImageSrc = heroImageId ? `/api/landing_home/media/${heroImageId}` : '/api/cover/thumbnail/null';
+    const appCardImageWidths = [160, 240, 320, 420];
 
 
 
@@ -320,13 +327,16 @@ export default function HeroSecction({ data = [], apps = [], indicators = [] }) 
                         variants={itemVariants}
                         transition={{ delay: 0.6 }}
                     >
-                        <motion.img
-                            src={`/api/landing_home/media/${data?.image}`}
-                            alt={data?.title}
-                            width="600"
-                            height="400"
+                        <MotionOptimizedImage
+                            src={heroImageSrc}
+                            alt={data?.title || 'Hero CambiaFX'}
+                            widths={[360, 480, 640, 768, 960, 1200, 1440]}
+                            sizes="(max-width: 1024px) 70vw, 520px"
                             loading="eager"
-                            fetchpriority="high"
+                            fetchPriority="high"
+                            decoding="async"
+                            width={600}
+                            height={400}
                             className="hidden lg:block w-auto h-[400px] absolute top-4"
                             onError={(e) => (e.target.src = "/api/cover/thumbnail/null")}
                             variants={imageVariants}
@@ -400,11 +410,13 @@ export default function HeroSecction({ data = [], apps = [], indicators = [] }) 
                                             }}
                                             whileTap={{ scale: 0.95, rotate: -2 }}
                                         >
-                                            <motion.img
-                                                src={`/api/app/media/${app?.image}`}
-                                                alt={app?.name}
-                                                width="135"
-                                                height="48"
+                                            <MotionOptimizedImage
+                                                src={app?.image ? `/api/app/media/${app.image}` : '/api/cover/thumbnail/null'}
+                                                alt={app?.name || 'Descargar app CambiaFX'}
+                                                widths={appCardImageWidths}
+                                                sizes="(max-width: 1280px) 40vw, 220px"
+                                                width={135}
+                                                height={48}
                                                 className="h-12 w-auto filter drop-shadow-lg"
                                                 onError={(e) => (e.target.src = "/api/cover/thumbnail/null")}
                                                 whileHover={{
@@ -461,11 +473,13 @@ export default function HeroSecction({ data = [], apps = [], indicators = [] }) 
                                                             y: -2
                                                         }}
                                                     >
-                                                        <motion.img
-                                                            src={`/api/app/media/${app?.image}`}
-                                                            alt={app?.name}
-                                                            width="157"
-                                                            height="56"
+                                                        <MotionOptimizedImage
+                                                            src={app?.image ? `/api/app/media/${app.image}` : '/api/cover/thumbnail/null'}
+                                                            alt={app?.name || 'Descargar app CambiaFX'}
+                                                            widths={appCardImageWidths}
+                                                            sizes="(max-width: 768px) 70vw, 280px"
+                                                            width={157}
+                                                            height={56}
                                                             className="h-14 w-auto"
                                                             onError={(e) => (e.target.src = "/api/cover/thumbnail/null")}
                                                         />

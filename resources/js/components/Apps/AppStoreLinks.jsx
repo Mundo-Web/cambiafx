@@ -125,7 +125,7 @@ const AppStoreLinks = ({ apps = [] }) => {
                 </div>
             </div>
 
-            <style jsx>{`
+            <style>{`
                 .app-store-banner {
                     position: fixed;
                     bottom: 20px;

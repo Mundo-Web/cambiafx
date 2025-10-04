@@ -133,7 +133,7 @@ const PWABanner = () => {
                 </div>
             </div>
 
-            <style jsx>{`
+            <style>{`
                 .pwa-banner {
                     position: fixed;
                     top: 0;

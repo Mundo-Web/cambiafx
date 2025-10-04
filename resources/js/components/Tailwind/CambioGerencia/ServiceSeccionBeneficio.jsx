@@ -139,7 +139,7 @@ const ServiceSeccionBeneficio = ({ service }) => {
                     </div>
                 )}            </div>
 
-            {/* Estilos personalizados para el swiper */}            <style jsx>{`
+            {/* Estilos personalizados para el swiper */}            <style>{`
                 .swiper-slide {
                     transition: all 0.3s ease;
                     opacity: 0.7;

@@ -15,6 +15,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preconnect" href="https://flagcdn.com">
+    <link rel="preconnect" href="https://apiluna.cambiafx.pe">
+    <link rel="preconnect" href="https://translate-pa.googleapis.com">
     <link rel="preload" as="font" type="font/woff2" href="/build/GeneralSans-Semibold.woff2" crossorigin>
     <link rel="preload" as="font" type="font/woff2" href="/build/GeneralSans-Regular.woff2" crossorigin>
 
@@ -31,13 +33,14 @@
     <!-- PWA Configuration -->
     <link rel="manifest" href="/manifest.json">
     <meta name="theme-color" content="#007bff">
+    <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="default">
     <meta name="apple-mobile-web-app-title" content="CambiaFX">
     <link rel="apple-touch-icon" href="/icon-192x192.png">
     
     <link rel="shortcut icon" href="/assets/img/favicon.png" type="image/png">
-        <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" media="print" media="print" onload="this.media='all'" onload="this.media='all'">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" media="print" onload="this.media='all'">
     <noscript><link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet"></noscript>
 
     <link
@@ -93,7 +96,8 @@
         }
     </style>
 
-    <link rel="stylesheet" href="/assets/fonts/aspekta/font-face.css" />
+    <link rel="stylesheet" href="/assets/fonts/aspekta/font-face.css" media="print" onload="this.media='all'" />
+    <noscript><link rel="stylesheet" href="/assets/fonts/aspekta/font-face.css"></noscript>
 </head>
 
 <style>

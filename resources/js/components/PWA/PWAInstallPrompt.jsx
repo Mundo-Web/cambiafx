@@ -181,7 +181,7 @@ const PWAInstallPrompt = () => {
                 </div>
             </div>
             
-            <style jsx>{`
+            <style>{`
                 .pwa-install-prompt {
                     position: fixed;
                     top: 0;

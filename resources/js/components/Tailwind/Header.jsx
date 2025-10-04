@@ -340,7 +340,7 @@ const Header = ({
                         <div className="flex items-center gap-2 relative max-w-max">
 
 
-                            <img src="/assets/cambiafx/cintillo.webp" alt="Cintillo Icon" width="84" height="800" loading="lazy" className="w-10 z-[999]  absolute top-0 -left-10 transform scale-y-[-1] rotate-90" />
+                            <img src="/assets/cambiafx/cintillo.webp" alt="Cintillo Icon" className="w-10 z-[999]  absolute top-0 -left-10 transform scale-y-[-1] rotate-90" />
                             <div className="overflow-hidden whitespace-nowrap w-full relative"
                             
                             

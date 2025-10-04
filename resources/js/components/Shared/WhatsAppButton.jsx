@@ -4,19 +4,23 @@ import { ArrowRight, MessageCircle, Phone, ExternalLink, Globe, Mail, Link as Li
 import GeneralRest from "../../actions/GeneralRest";
 import General from "../../Utils/General";
 
-const WhatsAppButton = ({ 
+const WhatsAppButton = React.forwardRef(({
     children = "Reserva una consulta",
     variant = "primary", // primary, secondary, minimal
     size = "medium", // small, medium, large
-    showIcon = true,
+    showIcon = false,
     className = "",
     customMessage = null, // Mensaje personalizado para WhatsApp
     customPhone = null,   // Teléfono personalizado para WhatsApp
     customLink = null,    // Enlace personalizado (anula WhatsApp y abre este enlace)
     buttonData = null,    // Datos del banner que pueden contener link o mensaje
     customIcon = null,    // Ícono personalizado: 'whatsapp', 'external', 'mail', 'link', 'globe' o componente React
-    ...props 
-}) => {
+    motionProps = {},
+    disableDefaultAction = false,
+    type = "button",
+    onClick,
+    ...rest
+}, ref) => {
     const [whatsappData, setWhatsappData] = useState({
         phone: General.get('whatsapp_phone'),
         message: General.get('whatsapp_message')
@@ -85,7 +89,7 @@ const WhatsAppButton = ({
 
   
 
-    console.log(General.get('whatsapp_phone'))
+    
     const aboutusData = aboutuses?.aboutus || [];
     const generalsData = aboutuses?.generals || [];
     // useEffect(() => {
@@ -167,7 +171,15 @@ const WhatsAppButton = ({
         return <MessageCircle className="w-4 h-4 mr-2" />;
     };
 
-    const handleClick = () => {
+    const handleClick = (event) => {
+        if (typeof onClick === "function") {
+            onClick(event);
+        }
+
+        if (event?.defaultPrevented || disableDefaultAction) {
+            return;
+        }
+
         const actionData = getActionData();
         
         // Detectar tipos especiales de enlaces
@@ -235,36 +247,29 @@ const WhatsAppButton = ({
         }
     };
 
-   
+    const combinedClassName = [getSizeClasses(), getVariantClasses(), className].filter(Boolean).join(' ');
+    const icon = getIcon();
 
     return (
-        <button
+        <motion.button
+            ref={ref}
+            type={type}
             onClick={handleClick}
-       
-            className={`
-                
-                ${getSizeClasses()} 
-                ${getVariantClasses()} 
-                ${className}
-            `}
-            {...props}
+            className={combinedClassName}
+            {...rest}
+            {...motionProps}
         >
-     
+            {icon}
             {children}
-        </button>
+        </motion.button>
     );
-};
+});
+
+WhatsAppButton.displayName = "WhatsAppButton";
 
 // Componente especializado para botón con flecha (para mantener compatibilidad)
-export const WhatsAppButtonWithArrow = ({ children = "Reserva una consulta", ...props }) => {
-    return (
-        <WhatsAppButton {...props}>
-          
-                {children}
-               
-          
-        </WhatsAppButton>
-    );
-};
+export const WhatsAppButtonWithArrow = ({ children = "Reserva una consulta", ...props }) => (
+    <WhatsAppButton {...props}>{children}</WhatsAppButton>
+);
 
 export default WhatsAppButton;

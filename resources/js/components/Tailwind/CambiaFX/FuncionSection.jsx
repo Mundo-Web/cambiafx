@@ -200,7 +200,7 @@ const FuncionSection = ({ data, pasos }) => {
             </div>
 
             {/* CSS para ocultar scrollbar en mobile */}
-            <style jsx>{`
+            <style>{`
                 .scrollbar-hide {
                     -ms-overflow-style: none;
                     scrollbar-width: none;
