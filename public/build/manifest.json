@@ -3919,7 +3919,7 @@
     ]
   },
   "resources/js/components/Adminto/Modal.jsx": {
-    "file": "assets/Modal-DbsfOB1G.js",
+    "file": "assets/Modal-R0mlbj13.js",
     "name": "Modal",
     "src": "resources/js/components/Adminto/Modal.jsx",
     "isEntry": true,
@@ -3963,7 +3963,7 @@
     ]
   },
   "resources/js/components/Adminto/form/CheckboxFormGroup.jsx": {
-    "file": "assets/CheckboxFormGroup-R0mlbj13.js",
+    "file": "assets/CheckboxFormGroup-DbsfOB1G.js",
     "name": "CheckboxFormGroup",
     "src": "resources/js/components/Adminto/form/CheckboxFormGroup.jsx",
     "isEntry": true,
@@ -3993,7 +3993,7 @@
     ]
   },
   "resources/js/components/Adminto/form/InputFormGroup.jsx": {
-    "file": "assets/InputFormGroup-DbsfOB1G.js",
+    "file": "assets/InputFormGroup-R0mlbj13.js",
     "name": "InputFormGroup",
     "src": "resources/js/components/Adminto/form/InputFormGroup.jsx",
     "isEntry": true,
@@ -4045,7 +4045,7 @@
     ]
   },
   "resources/js/components/Adminto/form/SelectFormGroup.jsx": {
-    "file": "assets/SelectFormGroup-DbsfOB1G.js",
+    "file": "assets/SelectFormGroup-R0mlbj13.js",
     "name": "SelectFormGroup",
     "src": "resources/js/components/Adminto/form/SelectFormGroup.jsx",
     "isEntry": true,
@@ -4065,7 +4065,7 @@
     ]
   },
   "resources/js/components/Adminto/form/TextareaFormGroup.jsx": {
-    "file": "assets/TextareaFormGroup-R0mlbj13.js",
+    "file": "assets/TextareaFormGroup-DbsfOB1G.js",
     "name": "TextareaFormGroup",
     "src": "resources/js/components/Adminto/form/TextareaFormGroup.jsx",
     "isEntry": true,
@@ -4212,7 +4212,7 @@
     ]
   },
   "resources/js/components/Blog/Results.jsx": {
-    "file": "assets/Results-PVmEhm9R.js",
+    "file": "assets/Results-BlDmdEBy.js",
     "name": "Results",
     "src": "resources/js/components/Blog/Results.jsx",
     "isEntry": true,
@@ -4304,7 +4304,7 @@
     ]
   },
   "resources/js/components/Courses/Results.jsx": {
-    "file": "assets/Results-BlDmdEBy.js",
+    "file": "assets/Results-PVmEhm9R.js",
     "name": "Results",
     "src": "resources/js/components/Courses/Results.jsx",
     "isEntry": true,
@@ -4371,7 +4371,7 @@
     ]
   },
   "resources/js/components/DataGrid.jsx": {
-    "file": "assets/DataGrid-R0mlbj13.js",
+    "file": "assets/DataGrid-DbsfOB1G.js",
     "name": "DataGrid",
     "src": "resources/js/components/DataGrid.jsx",
     "isEntry": true,
@@ -4639,7 +4639,7 @@
     ]
   },
   "resources/js/components/Modal.jsx": {
-    "file": "assets/Modal-R0mlbj13.js",
+    "file": "assets/Modal-DbsfOB1G.js",
     "name": "Modal",
     "src": "resources/js/components/Modal.jsx",
     "isEntry": true,
@@ -4690,10 +4690,10 @@
     ]
   },
   "resources/js/components/PopupManager/PopupManager.jsx": {
-    "file": "assets/PopupManager-R0mlbj13.js",
+    "file": "assets/PopupManager-BxB-M2-Z.js",
     "name": "PopupManager",
     "src": "resources/js/components/PopupManager/PopupManager.jsx",
-    "isEntry": true,
+    "isDynamicEntry": true,
     "imports": [
       "_vendor-motion-BF899qie.js",
       "_vendor-react-DSMqgrUD.js"
@@ -4785,7 +4785,7 @@
     ]
   },
   "resources/js/components/Table.jsx": {
-    "file": "assets/Table-R0mlbj13.js",
+    "file": "assets/Table-DbsfOB1G.js",
     "name": "Table",
     "src": "resources/js/components/Table.jsx",
     "isEntry": true,
@@ -4860,19 +4860,24 @@
     ]
   },
   "resources/js/components/Tailwind/CambiaFX/BlogSection.jsx": {
-    "file": "assets/BlogSection-B5OuL8OH.js",
+    "file": "assets/BlogSection-u-TRybew.js",
     "name": "BlogSection",
     "src": "resources/js/components/Tailwind/CambiaFX/BlogSection.jsx",
-    "isEntry": true,
+    "isDynamicEntry": true,
     "imports": [
       "_vendor-motion-BF899qie.js",
       "_vendor-react-DSMqgrUD.js",
       "_OptimizedImage-DOMYzMut.js",
+      "_TextWithHighlight-1VRx6Ylc.js",
       "resources/js/components/Tailwind/CambioGerencia/HomeSeccionBlog.jsx",
+      "_navigation-DKJ3rP_v.js",
+      "_pagination-CQC6WU0S.js",
+      "_autoplay-2WOX6t6Y.js",
       "resources/js/components/About/Strengths.jsx",
       "resources/js/components/Tailwind/Carrusel/CarruselBrands.jsx",
       "resources/js/components/Home/Supplies.jsx",
-      "_vendor-ui-B88T9Gd_.js"
+      "_vendor-ui-B88T9Gd_.js",
+      "_classes-to-selector-CNIsTJyW.js"
     ],
     "css": [
       "swiper.css"
@@ -5350,7 +5355,7 @@
     ]
   },
   "resources/js/components/Tailwind/DataGrid.jsx": {
-    "file": "assets/DataGrid-DbsfOB1G.js",
+    "file": "assets/DataGrid-R0mlbj13.js",
     "name": "DataGrid",
     "src": "resources/js/components/Tailwind/DataGrid.jsx",
     "isEntry": true,
@@ -5581,7 +5586,7 @@
     ]
   },
   "resources/js/components/Tailwind/Table.jsx": {
-    "file": "assets/Table-DbsfOB1G.js",
+    "file": "assets/Table-R0mlbj13.js",
     "name": "Table",
     "src": "resources/js/components/Tailwind/Table.jsx",
     "isEntry": true,
@@ -5700,10 +5705,10 @@
     ]
   },
   "resources/js/components/Test/Email.jsx": {
-    "file": "assets/Email-BrDCnQNh.js",
+    "file": "assets/Email-B3LqMkQN.js",
     "name": "Email",
     "src": "resources/js/components/Test/Email.jsx",
-    "isEntry": true,
+    "isDynamicEntry": true,
     "imports": [
       "_vendor-motion-BF899qie.js",
       "_vendor-react-DSMqgrUD.js",
@@ -5713,20 +5718,22 @@
     ]
   },
   "resources/js/components/Test/Fragrance.jsx": {
-    "file": "assets/Fragrance-R0mlbj13.js",
+    "file": "assets/Fragrance-BlGI6Azp.js",
     "name": "Fragrance",
     "src": "resources/js/components/Test/Fragrance.jsx",
-    "isEntry": true,
+    "isDynamicEntry": true,
     "imports": [
       "_vendor-motion-BF899qie.js",
-      "_vendor-react-DSMqgrUD.js"
+      "_tippy-react.esm-DdMbg7ke.js",
+      "_vendor-react-DSMqgrUD.js",
+      "_vendor-ui-B88T9Gd_.js"
     ]
   },
   "resources/js/components/Test/HairGoals.jsx": {
-    "file": "assets/HairGoals-R0mlbj13.js",
+    "file": "assets/HairGoals-DsGvy7eQ.js",
     "name": "HairGoals",
     "src": "resources/js/components/Test/HairGoals.jsx",
-    "isEntry": true,
+    "isDynamicEntry": true,
     "imports": [
       "_vendor-motion-BF899qie.js",
       "_vendor-react-DSMqgrUD.js"
@@ -5745,20 +5752,20 @@
     ]
   },
   "resources/js/components/Test/Main.jsx": {
-    "file": "assets/Main-R0mlbj13.js",
+    "file": "assets/Main-BIol6s6j.js",
     "name": "Main",
     "src": "resources/js/components/Test/Main.jsx",
-    "isEntry": true,
+    "isDynamicEntry": true,
     "imports": [
       "_vendor-motion-BF899qie.js",
       "_vendor-react-DSMqgrUD.js"
     ]
   },
   "resources/js/components/Test/ScalpType.jsx": {
-    "file": "assets/ScalpType-DSiByEvr.js",
+    "file": "assets/ScalpType-DCYKU4wn.js",
     "name": "ScalpType",
     "src": "resources/js/components/Test/ScalpType.jsx",
-    "isEntry": true,
+    "isDynamicEntry": true,
     "imports": [
       "_vendor-motion-BF899qie.js",
       "_vendor-react-DSMqgrUD.js",
@@ -5864,7 +5871,7 @@
     "isEntry": true
   },
   "resources/js/components/form/CheckboxFormGroup.jsx": {
-    "file": "assets/CheckboxFormGroup-DbsfOB1G.js",
+    "file": "assets/CheckboxFormGroup-R0mlbj13.js",
     "name": "CheckboxFormGroup",
     "src": "resources/js/components/form/CheckboxFormGroup.jsx",
     "isEntry": true,
@@ -5874,7 +5881,7 @@
     ]
   },
   "resources/js/components/form/InputFormGroup.jsx": {
-    "file": "assets/InputFormGroup-R0mlbj13.js",
+    "file": "assets/InputFormGroup-DbsfOB1G.js",
     "name": "InputFormGroup",
     "src": "resources/js/components/form/InputFormGroup.jsx",
     "isEntry": true,
@@ -5915,7 +5922,7 @@
     ]
   },
   "resources/js/components/form/SelectFormGroup.jsx": {
-    "file": "assets/SelectFormGroup-R0mlbj13.js",
+    "file": "assets/SelectFormGroup-DbsfOB1G.js",
     "name": "SelectFormGroup",
     "src": "resources/js/components/form/SelectFormGroup.jsx",
     "isEntry": true,
@@ -5925,7 +5932,7 @@
     ]
   },
   "resources/js/components/form/TextareaFormGroup.jsx": {
-    "file": "assets/TextareaFormGroup-DbsfOB1G.js",
+    "file": "assets/TextareaFormGroup-R0mlbj13.js",
     "name": "TextareaFormGroup",
     "src": "resources/js/components/form/TextareaFormGroup.jsx",
     "isEntry": true,
