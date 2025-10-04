@@ -14,6 +14,8 @@
     <meta name="csrf_token" content="{{ csrf_token() }}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" as="font" type="font/woff2" href="/build/GeneralSans-Semibold.woff2" crossorigin>
+    <link rel="preload" as="font" type="font/woff2" href="/build/GeneralSans-Regular.woff2" crossorigin>
 
     <!-- SEO Meta Tags -->
     @include('components.seo-meta-tags', [
@@ -50,6 +52,11 @@
 
     <!--CAMBIO GERENCIA-->
     <link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    
+    @if ($component === 'Home.jsx')
+        <!-- Preload LCP image for hero section -->
+        <link rel="preload" fetchpriority="high" as="image" href="/api/landing_home/media/{{ $landingInicio->image ?? '' }}" type="image/webp">
+    @endif
     
     <style>
         * {

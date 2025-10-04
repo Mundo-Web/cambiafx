@@ -38,8 +38,12 @@ const LazyPopupManager = lazy(() =>
     import("./components/PopupManager/PopupManager")
 );
 
-const SectionFallback = () => (
-    <div className="min-h-[240px] w-full rounded-3xl bg-neutral-100/40 animate-pulse" aria-hidden />
+const SectionFallback = ({ minHeight = "400px" }) => (
+    <div 
+        className="w-full rounded-3xl bg-neutral-100/40 animate-pulse" 
+        style={{ minHeight }} 
+        aria-hidden 
+    />
 );
 
 const Home = ({
@@ -184,7 +188,7 @@ const Home = ({
                 viewport={{ once: true, amount: 0.2 }}
                 transition={{ duration: 0.7, delay: 0.1 }}
             >
-                <Suspense fallback={<SectionFallback />}>
+                <Suspense fallback={<SectionFallback minHeight="500px" />}>
                     <PrimeraOperacionSection banner={banner_operacion} />
                 </Suspense>
             </motion.div>
@@ -196,7 +200,7 @@ const Home = ({
                 viewport={{ once: true, amount: 0.2 }}
                 transition={{ duration: 0.7, delay: 0.2 }}
             >
-                <Suspense fallback={<SectionFallback />}>
+                <Suspense fallback={<SectionFallback minHeight="600px" />}>
                     <FuncionSection data={landingPasos} pasos={pasos} />
                 </Suspense>
             </motion.div>
@@ -208,7 +212,7 @@ const Home = ({
                 viewport={{ once: true, amount: 0.2 }}
                 transition={{ duration: 0.7, delay: 0.3 }}
             >
-                <Suspense fallback={<SectionFallback />}>
+                <Suspense fallback={<SectionFallback minHeight="700px" />}>
                     <CuponesSection data={landingCupones} cupones={cupones} indicators={indicadoresCupones} />
                 </Suspense>
             </motion.div>
@@ -220,7 +224,7 @@ const Home = ({
                 viewport={{ once: true, amount: 0.2 }}
                 transition={{ duration: 0.7, delay: 0.4 }}
             >
-                <Suspense fallback={<SectionFallback />}>
+                <Suspense fallback={<SectionFallback minHeight="550px" />}>
                     <PilaresSection data={landingPilares} core_values={core_values} />
                 </Suspense>
             </motion.div>
@@ -232,7 +236,7 @@ const Home = ({
                 viewport={{ once: true, amount: 0.2 }}
                 transition={{ duration: 0.7, delay: 0.5 }}
             >
-                <Suspense fallback={<SectionFallback />}>
+                <Suspense fallback={<SectionFallback minHeight="650px" />}>
                     <EmpresasSection banner_slider={banner_slider} />
                 </Suspense>
             </motion.div>
@@ -244,7 +248,7 @@ const Home = ({
                 viewport={{ once: true, amount: 0.2 }}
                 transition={{ duration: 0.7, delay: 0.6 }}
             >
-                <Suspense fallback={<SectionFallback />}>
+                <Suspense fallback={<SectionFallback minHeight="500px" />}>
                     <BlogSection data={landingBlog} posts={posts} />
                 </Suspense>
             </motion.div>

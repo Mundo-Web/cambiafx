@@ -323,6 +323,10 @@ export default function HeroSecction({ data = [], apps = [], indicators = [] }) 
                         <motion.img
                             src={`/api/landing_home/media/${data?.image}`}
                             alt={data?.title}
+                            width="600"
+                            height="400"
+                            loading="eager"
+                            fetchpriority="high"
                             className="hidden lg:block w-auto h-[400px] absolute top-4"
                             onError={(e) => (e.target.src = "/api/cover/thumbnail/null")}
                             variants={imageVariants}
@@ -399,6 +403,8 @@ export default function HeroSecction({ data = [], apps = [], indicators = [] }) 
                                             <motion.img
                                                 src={`/api/app/media/${app?.image}`}
                                                 alt={app?.name}
+                                                width="135"
+                                                height="48"
                                                 className="h-12 w-auto filter drop-shadow-lg"
                                                 onError={(e) => (e.target.src = "/api/cover/thumbnail/null")}
                                                 whileHover={{
@@ -458,6 +464,8 @@ export default function HeroSecction({ data = [], apps = [], indicators = [] }) 
                                                         <motion.img
                                                             src={`/api/app/media/${app?.image}`}
                                                             alt={app?.name}
+                                                            width="157"
+                                                            height="56"
                                                             className="h-14 w-auto"
                                                             onError={(e) => (e.target.src = "/api/cover/thumbnail/null")}
                                                         />
