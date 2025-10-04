@@ -53,25 +53,51 @@
     
     <link rel="shortcut icon" href="/assets/img/favicon.png" type="image/png">
 
+    <!-- Resource Hints para mejorar performance -->
+    <!-- DNS-Prefetch para dominios externos -->
+    <link rel="dns-prefetch" href="//fonts.googleapis.com">
+    <link rel="dns-prefetch" href="//fonts.gstatic.com">
+    <link rel="dns-prefetch" href="//cdn.jsdelivr.net">
+    <link rel="dns-prefetch" href="//unpkg.com">
+    <link rel="dns-prefetch" href="//cdnjs.cloudflare.com">
+    <link rel="dns-prefetch" href="//translate.google.com">
+    <link rel="dns-prefetch" href="//checkout.culqi.com">
+    <link rel="dns-prefetch" href="//connect.facebook.net">
+    <link rel="dns-prefetch" href="//embed.tawk.to">
+    
+    <!-- Preconnect para recursos críticos -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    <!-- Preload de fuentes críticas -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" as="style">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&display=swap" as="style">
+    
+    <!-- Preload de imagen LCP (Hero) - Ajusta la ruta según tu imagen principal -->
+    @if(Route::currentRouteName() === 'Home.jsx')
+    <link rel="preload" as="image" href="/assets/img/hero-banner.webp" fetchpriority="high">
+    @endif
+
     <link href="/lte/assets/css/icons.min.css" rel="stylesheet" type="text/css" />
 
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" media="print" onload="this.media='all'">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" media="print" onload="this.media='all'">
 
+    <!-- Fuentes optimizadas con font-display: swap -->
     <link
-        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600;1,700&display=swap"
         rel="stylesheet">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
         integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
+        crossorigin="anonymous" referrerpolicy="no-referrer" media="print" onload="this.media='all'" />
 
-    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
 
     <!--CAMBIO GERENCIA-->
-    <link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     
-    <!-- Añadido para traducir -->
+    <!-- Añadido para traducir - Defer para no bloquear render -->
     <script>
         function loadGoogleTranslate() {
             new google.translate.TranslateElement({
@@ -81,11 +107,26 @@
             }, 'google_translate_element');
         }
     </script>
-    <script src="https://translate.google.com/translate_a/element.js?cb=loadGoogleTranslate"></script>
+    <script defer src="https://translate.google.com/translate_a/element.js?cb=loadGoogleTranslate"></script>
 
     <style>
         * {
             box-sizing: border-box;
+        }
+        
+        /* Critical CSS para evitar CLS */
+        img, picture, video {
+            max-width: 100%;
+            height: auto;
+        }
+        
+        /* Aspect ratio para evitar layout shift */
+        .aspect-ratio-16-9 {
+            aspect-ratio: 16 / 9;
+        }
+        
+        .aspect-ratio-1-1 {
+            aspect-ratio: 1 / 1;
         }
     </style>
 

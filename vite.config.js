@@ -45,10 +45,54 @@ export default defineConfig({
                     if (assetInfo.name == "app-C6GHMxSp.css") return "app.css";
                     return assetInfo.name;
                 },
-                manualChunks: {
-                    'vendor-react': ['react', 'react-dom', '@inertiajs/react'],
-                    'vendor-motion': ['framer-motion'],
-                    'vendor-ui': ['swiper', 'sweetalert2', 'tippy.js'],
+                manualChunks: (id) => {
+                    // React core y dependencies críticas
+                    if (id.includes('node_modules/react') || 
+                        id.includes('node_modules/react-dom') || 
+                        id.includes('node_modules/@inertiajs')) {
+                        return 'vendor-react';
+                    }
+                    
+                    // Animaciones (framer-motion, motion)
+                    if (id.includes('node_modules/framer-motion') || 
+                        id.includes('node_modules/motion')) {
+                        return 'vendor-motion';
+                    }
+                    
+                    // UI Libraries (swiper, sweetalert2, tippy)
+                    if (id.includes('node_modules/swiper') || 
+                        id.includes('node_modules/sweetalert2') || 
+                        id.includes('node_modules/tippy.js') ||
+                        id.includes('node_modules/@tippyjs')) {
+                        return 'vendor-ui';
+                    }
+                    
+                    // Chart.js y dependencias de gráficos
+                    if (id.includes('node_modules/chart.js')) {
+                        return 'vendor-charts';
+                    }
+                    
+                    // Google Maps
+                    if (id.includes('node_modules/@react-google-maps')) {
+                        return 'vendor-maps';
+                    }
+                    
+                    // Utilidades (moment, jquery, etc.)
+                    if (id.includes('node_modules/moment') || 
+                        id.includes('node_modules/jquery')) {
+                        return 'vendor-utils';
+                    }
+                    
+                    // Icons
+                    if (id.includes('node_modules/react-icons') ||
+                        id.includes('node_modules/lucide-react')) {
+                        return 'vendor-icons';
+                    }
+                    
+                    // Resto de node_modules
+                    if (id.includes('node_modules')) {
+                        return 'vendor-other';
+                    }
                 },
             },
         },
@@ -57,11 +101,22 @@ export default defineConfig({
             compress: {
                 drop_console: true,
                 drop_debugger: true,
+                pure_funcs: ['console.log', 'console.info', 'console.debug'],
+                passes: 2,
+            },
+            mangle: {
+                safari10: true,
+            },
+            format: {
+                comments: false,
             },
         },
         cssCodeSplit: true,
+        cssMinify: true,
         reportCompressedSize: false,
-        chunkSizeWarningLimit: 600,
+        chunkSizeWarningLimit: 500,
+        sourcemap: false, // Disable sourcemaps in production for smaller bundles
+        assetsInlineLimit: 4096, // Inline assets smaller than 4kb
     },
     optimizeDeps: {
         include: ["translate"],
