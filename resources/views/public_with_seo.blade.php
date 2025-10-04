@@ -217,10 +217,10 @@
             window.addEventListener('load', function() {
                 navigator.serviceWorker.register('/serviceworker.js')
                     .then(function(registration) {
-                        console.log('PWA: Service Worker registered successfully:', registration.scope);
+                        //console.log('PWA: Service Worker registered successfully:', registration.scope);
                     })
                     .catch(function(error) {
-                        console.log('PWA: Service Worker registration failed:', error);
+                        //console.log('PWA: Service Worker registration failed:', error);
                     });
             });
         }

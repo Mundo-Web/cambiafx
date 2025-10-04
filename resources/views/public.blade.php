@@ -56,11 +56,7 @@
     <!--CAMBIO GERENCIA-->
     <link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     
-    @if ($component === 'Home.jsx')
-        <!-- Preload LCP image for hero section -->
-        <link rel="preload" fetchpriority="high" as="image" href="/api/landing_home/media/{{ $landingInicio->image ?? '' }}" type="image/webp">
-    @endif
-    
+  
     <style>
         * {
             box-sizing: border-box;
@@ -233,10 +229,10 @@
             window.addEventListener('load', function() {
                 navigator.serviceWorker.register('/serviceworker.js')
                     .then(function(registration) {
-                        console.log('PWA: Service Worker registered successfully:', registration.scope);
+                        //console.log('PWA: Service Worker registered successfully:', registration.scope);
                     })
                     .catch(function(error) {
-                        console.log('PWA: Service Worker registration failed:', error);
+                        //console.log('PWA: Service Worker registration failed:', error);
                     });
             });
         }
