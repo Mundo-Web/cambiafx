@@ -1,0 +1,187 @@
+# Configuración de Apache para Performance
+# Copiar al .htaccess o incluir en configuración de VirtualHost
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    
+    # Redirigir a HTTPS (producción)
+    # RewriteCond %{HTTPS} off
+    # RewriteRule ^(.*)$ https://%{HTTP_HOST}/$1 [R=301,L]
+    
+    # Laravel routes
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^(.*)$ index.php/$1 [L]
+</IfModule>
+
+# =============================================
+# COMPRESIÓN GZIP/BROTLI
+# =============================================
+
+<IfModule mod_deflate.c>
+    # Habilitar compresión para tipos de archivo
+    AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css text/javascript
+    AddOutputFilterByType DEFLATE application/javascript application/json application/xml
+    AddOutputFilterByType DEFLATE application/rss+xml application/atom+xml
+    AddOutputFilterByType DEFLATE image/svg+xml
+    
+    # Comprimir todo excepto imágenes ya comprimidas
+    SetOutputFilter DEFLATE
+    SetEnvIfNoCase Request_URI \.(?:gif|jpe?g|png|webp|avif|ico)$ no-gzip
+    
+    # Navegadores legacy
+    BrowserMatch ^Mozilla/4 gzip-only-text/html
+    BrowserMatch ^Mozilla/4\.0[678] no-gzip
+    BrowserMatch \bMSIE !no-gzip !gzip-only-text/html
+</IfModule>
+
+# Brotli (si está disponible - preferente sobre Gzip)
+<IfModule mod_brotli.c>
+    AddOutputFilterByType BROTLI_COMPRESS text/html text/plain text/xml text/css text/javascript
+    AddOutputFilterByType BROTLI_COMPRESS application/javascript application/json application/xml
+    AddOutputFilterByType BROTLI_COMPRESS application/rss+xml application/atom+xml
+    AddOutputFilterByType BROTLI_COMPRESS image/svg+xml
+</IfModule>
+
+# =============================================
+# CACHE CONTROL
+# =============================================
+
+<IfModule mod_expires.c>
+    ExpiresActive On
+    ExpiresDefault "access plus 1 week"
+    
+    # HTML dinámico - sin cache
+    ExpiresByType text/html "access plus 0 seconds"
+    
+    # Datos
+    ExpiresByType application/json "access plus 0 seconds"
+    ExpiresByType application/xml "access plus 0 seconds"
+    ExpiresByType text/xml "access plus 0 seconds"
+    
+    # Feed
+    ExpiresByType application/rss+xml "access plus 1 hour"
+    ExpiresByType application/atom+xml "access plus 1 hour"
+    
+    # CSS y JavaScript (versionados por Vite)
+    ExpiresByType text/css "access plus 1 year"
+    ExpiresByType application/javascript "access plus 1 year"
+    ExpiresByType text/javascript "access plus 1 year"
+    
+    # Favicon y manifest
+    ExpiresByType image/x-icon "access plus 1 year"
+    ExpiresByType application/manifest+json "access plus 1 week"
+    
+    # Fuentes
+    ExpiresByType font/woff "access plus 1 year"
+    ExpiresByType font/woff2 "access plus 1 year"
+    ExpiresByType font/ttf "access plus 1 year"
+    ExpiresByType font/eot "access plus 1 year"
+    ExpiresByType font/otf "access plus 1 year"
+    ExpiresByType application/font-woff "access plus 1 year"
+    ExpiresByType application/font-woff2 "access plus 1 year"
+    
+    # Imágenes
+    ExpiresByType image/jpg "access plus 1 year"
+    ExpiresByType image/jpeg "access plus 1 year"
+    ExpiresByType image/png "access plus 1 year"
+    ExpiresByType image/gif "access plus 1 year"
+    ExpiresByType image/webp "access plus 1 year"
+    ExpiresByType image/avif "access plus 1 year"
+    ExpiresByType image/svg+xml "access plus 1 year"
+</IfModule>
+
+<IfModule mod_headers.c>
+    # Vary: Accept-Encoding para compresión
+    Header append Vary Accept-Encoding
+    
+    # Cache-Control para assets versionados (Vite agrega hash)
+    <FilesMatch "\.(css|js|woff|woff2|ttf|eot|otf|webp|avif|jpg|jpeg|png|gif|svg|ico)$">
+        Header set Cache-Control "public, max-age=31536000, immutable"
+    </FilesMatch>
+    
+    # HTML dinámico
+    <FilesMatch "\.(html|htm|php)$">
+        Header set Cache-Control "no-cache, must-revalidate"
+    </FilesMatch>
+    
+    # Preload/Preconnect hints
+    Header add Link "<https://fonts.googleapis.com>; rel=preconnect; crossorigin"
+    Header add Link "<https://fonts.gstatic.com>; rel=preconnect; crossorigin"
+    
+    # Security Headers
+    Header set X-Content-Type-Options "nosniff"
+    Header set X-Frame-Options "SAMEORIGIN"
+    Header set X-XSS-Protection "1; mode=block"
+    Header set Referrer-Policy "strict-origin-when-cross-origin"
+    
+    # HSTS (solo en HTTPS)
+    # Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
+</IfModule>
+
+# =============================================
+# MIME TYPES
+# =============================================
+
+<IfModule mod_mime.c>
+    # WebP
+    AddType image/webp .webp
+    
+    # AVIF
+    AddType image/avif .avif
+    
+    # Fuentes
+    AddType font/woff .woff
+    AddType font/woff2 .woff2
+    AddType font/ttf .ttf
+    AddType font/eot .eot
+    AddType font/otf .otf
+    
+    # Manifest
+    AddType application/manifest+json .webmanifest
+    AddType application/json .json
+</IfModule>
+
+# =============================================
+# ETags (para validación de cache)
+# =============================================
+
+<IfModule mod_headers.c>
+    # Mantener ETags para validación condicional
+    FileETag MTime Size
+</IfModule>
+
+# =============================================
+# OPTIMIZACIÓN DE RECURSOS
+# =============================================
+
+# Prevenir acceso directo a archivos sensibles
+<FilesMatch "^\.">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+
+# Deshabilitar directory listing
+Options -Indexes
+
+# Prevenir hotlinking de imágenes (opcional)
+# <IfModule mod_rewrite.c>
+#     RewriteCond %{HTTP_REFERER} !^$
+#     RewriteCond %{HTTP_REFERER} !^https?://(.+\.)?cambiafx\.pe [NC]
+#     RewriteRule \.(jpe?g|png|gif|webp|avif)$ - [F,NC]
+# </IfModule>
+
+# =============================================
+# HTTP/2 Server Push (si está habilitado)
+# =============================================
+
+<IfModule mod_http2.c>
+    # Protocolo HTTP/2
+    Protocols h2 h2c http/1.1
+    
+    # Server Push para recursos críticos (ajustar según necesidad)
+    # <FilesMatch "\.html$">
+    #     Header add Link "</build/assets/app.css>; rel=preload; as=style"
+    #     Header add Link "</build/assets/app.js>; rel=preload; as=script"
+    # </FilesMatch>
+</IfModule>

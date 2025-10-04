@@ -3,7 +3,10 @@
     "type": "module",
     "scripts": {
         "dev": "vite",
-        "build": "vite build"
+        "build": "vite build",
+        "audit:lighthouse": "lighthouse https://cambiafx.pe --output=html --output-path=./reports/lighthouse-desktop.html --preset=desktop --chrome-flags='--headless'",
+        "audit:lighthouse-mobile": "lighthouse https://cambiafx.pe --output=html --output-path=./reports/lighthouse-mobile.html --preset=mobile --chrome-flags='--headless'",
+        "test:performance": "npm run build && echo 'Build completado. Ejecuta npm run audit:lighthouse para auditoría'"
     },
     "devDependencies": {
         "@vitejs/plugin-react": "^4.3.1",
@@ -47,6 +50,7 @@
         "sweetalert2": "^11.11.1",
         "swiper": "^11.1.14",
         "swiper-react": "^1.0.0",
-        "translate": "^3.0.1"
+        "translate": "^3.0.1",
+        "web-vitals": "^3.5.0"
     }
 }

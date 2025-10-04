@@ -116,7 +116,14 @@
 </style>
 
 <body class="font-poppins">
-    @inertia
+    <!-- Skip to main content link for accessibility -->
+    <a href="#main-content" class="skip-to-main">
+        Saltar al contenido principal
+    </a>
+    
+    <div id="main-content" tabindex="-1">
+        @inertia
+    </div>
 
     <script src="https://cdn.jsdelivr.net/npm/flowbite@2.4.1/dist/flowbite.min.js" defer></script>
 

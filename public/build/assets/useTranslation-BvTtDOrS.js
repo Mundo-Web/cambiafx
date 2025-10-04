@@ -1,1 +1,0 @@
-import{r}from"./vendor-react-DSMqgrUD.js";import{a as t}from"./Filter-B_D2BHfB.js";const o=()=>{const{translations:o,loading:n,error:e}=r.useContext(t);return{t:(r,t="")=>n||e?t:((r,t,o="")=>{var n;const e=t.split(".");if(1===e.length)return r[t]||o;const s=e.slice(0,-1).join("."),i=e.slice(-1)[0];return(null==(n=r[s])?void 0:n[i])||o})(o,r,t),loading:n,error:e}};export{o as u};

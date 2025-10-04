@@ -1,9 +1,9 @@
 import {
-  require_jsx_runtime
-} from "./chunk-2VOY7YPP.js";
-import {
   require_react_dom
 } from "./chunk-4U62DV5B.js";
+import {
+  require_jsx_runtime
+} from "./chunk-2VOY7YPP.js";
 import {
   require_react
 } from "./chunk-ANIZBZPA.js";

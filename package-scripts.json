@@ -1,0 +1,42 @@
+{
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    
+    "build:production": "vite build --mode production && npm run analyze",
+    "analyze": "vite-bundle-visualizer",
+    
+    "audit:lighthouse": "lighthouse https://cambiafx.pe --output=html --output-path=./reports/lighthouse-desktop.html --preset=desktop --chrome-flags='--headless'",
+    "audit:lighthouse-mobile": "lighthouse https://cambiafx.pe --output=html --output-path=./reports/lighthouse-mobile.html --preset=mobile --chrome-flags='--headless'",
+    "audit:accessibility": "pa11y https://cambiafx.pe --reporter html > ./reports/accessibility.html",
+    "audit:full": "npm run audit:lighthouse && npm run audit:lighthouse-mobile && npm run audit:accessibility",
+    
+    "extract-critical": "node extract-critical-css.js",
+    
+    "test:performance": "npm run build && npm run audit:lighthouse",
+    "test:webvitals": "echo 'Verificar en: https://pagespeed.web.dev/analysis?url=https://cambiafx.pe'",
+    
+    "optimize:images": "echo 'Optimizar imágenes manualmente o con herramientas como imagemin'",
+    
+    "validate:html": "html-validate 'public/**/*.html'",
+    "validate:css": "stylelint 'resources/**/*.css'",
+    
+    "check:unused-css": "purgecss --config purgecss.config.js",
+    
+    "measure:bundle": "npm run build && ls -lh public/build/assets/"
+  },
+  "devDependencies": {
+    "critical": "^6.0.0",
+    "lighthouse": "^11.0.0",
+    "pa11y": "^7.0.0",
+    "pa11y-ci": "^3.0.1",
+    "vite-bundle-visualizer": "^1.0.0",
+    "rollup-plugin-visualizer": "^5.12.0",
+    "purgecss": "^5.0.0",
+    "@fullhuman/postcss-purgecss": "^5.0.0",
+    "html-validate": "^8.0.0",
+    "stylelint": "^15.0.0",
+    "web-vitals": "^3.5.0"
+  }
+}

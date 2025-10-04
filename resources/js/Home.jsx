@@ -9,6 +9,7 @@ import Footer from "./components/Tailwind/Footer";
 import { CarritoProvider } from "./context/CarritoContext";
 import { motion } from "framer-motion";
 import { useTranslation } from "./hooks/useTranslation";
+import { reportWebVitals } from "./Utils/webVitals";
 import AppStoreBanner from "./components/Apps/AppStoreBanner";
 import HeroSecction from "./components/Tailwind/CambiaFX/HeroSecction";
 import CintilloSection from "./components/Tailwind/CambiaFX/CintilloSection";
@@ -117,6 +118,13 @@ const Home = ({
                 delete window.openAppointmentModal;
             }
         };
+    }, []);
+
+    // Monitoreo de Web Vitals en producción
+    useEffect(() => {
+        if (process.env.NODE_ENV === 'production' || window.location.hostname !== 'localhost') {
+            reportWebVitals();
+        }
     }, []);
 
  
