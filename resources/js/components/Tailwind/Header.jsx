@@ -340,7 +340,7 @@ const Header = ({
                         <div className="flex items-center gap-2 relative max-w-max">
 
 
-                            <img src="/assets/cambiafx/cintillo.webp" alt="Cintillo Icon" className="w-10 z-[999]  absolute top-0 -left-10 transform scale-y-[-1] rotate-90" />
+                            <img src="/assets/cambiafx/cintillo.webp" alt="Cintillo Icon" width="84" height="800" loading="lazy" className="w-10 z-[999]  absolute top-0 -left-10 transform scale-y-[-1] rotate-90" />
                             <div className="overflow-hidden whitespace-nowrap w-full relative"
                             
                             
@@ -428,6 +428,7 @@ const Header = ({
                                     }}
                                     src="/assets/img/logo.svg"
                                     alt={Global.APP_NAME}
+                                    fetchpriority="high"
                                     className="object-cover object-top h-12 max-h-12 w-auto sm:h-12 sm:max-h-12 transition-all duration-300"
                                 />
                             </a>

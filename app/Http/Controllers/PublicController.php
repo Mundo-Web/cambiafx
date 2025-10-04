@@ -70,8 +70,24 @@ class PublicController extends Controller
             }
             $content = Storage::get($route);
             if (!$content) throw new Exception('Imagen no encontrado');
+            
+            // Handle responsive image resizing via ?w= parameter
+            $width = $request->query('w');
+            if ($width && is_numeric($width) && class_exists('Intervention\Image\ImageManager')) {
+                try {
+                    $image = \Intervention\Image\Drivers\Gd\Driver::class;
+                    $manager = new \Intervention\Image\ImageManager($image);
+                    $img = $manager->read($content);
+                    $img->scale(width: (int)$width);
+                    $content = (string)$img->encode();
+                } catch (\Throwable $e) {
+                    // If image processing fails, return original content
+                }
+            }
+            
             return response($content, 200, [
-                'Content-Type' => 'application/octet-stream'
+                'Content-Type' => 'application/octet-stream',
+                'Cache-Control' => 'public, max-age=31536000, immutable'
             ]);
         } catch (\Throwable $th) {
 

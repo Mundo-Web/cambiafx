@@ -307,7 +307,10 @@ const BlogSection = ({data,posts}) => {
                       <div className="rounded-[28px] overflow-hidden shadow-lg w-full h-full relative">
                         <img
                           src={`/api/posts/media/${card.image}`}
+                          srcSet={`/api/posts/media/${card.image}?w=484 484w, /api/posts/media/${card.image}?w=768 768w, /api/posts/media/${card.image}?w=1024 1024w`}
+                          sizes="(max-width: 768px) 484px, (max-width: 1024px) 768px, 1024px"
                           alt={card.name}
+                          loading="lazy"
                           className="object-cover w-full h-full"
                         />
                         {/* Overlay para info */}

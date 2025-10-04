@@ -14,6 +14,7 @@
     <meta name="csrf_token" content="{{ csrf_token() }}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://flagcdn.com">
     <link rel="preload" as="font" type="font/woff2" href="/build/GeneralSans-Semibold.woff2" crossorigin>
     <link rel="preload" as="font" type="font/woff2" href="/build/GeneralSans-Regular.woff2" crossorigin>
 
@@ -113,7 +114,6 @@
 <body class="font-poppins">
     @inertia
 
-    <script src="/lte/assets/js/vendor.min.js" defer></script>
     <script src="https://cdn.jsdelivr.net/npm/flowbite@2.4.1/dist/flowbite.min.js" defer></script>
 
     @unless ($isHome)
