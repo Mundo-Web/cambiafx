@@ -3092,7 +3092,7 @@
     ]
   },
   "resources/js/components/Adminto/DataGrid.jsx": {
-    "file": "assets/DataGrid-AaVmw4Eh.js",
+    "file": "assets/DataGrid-S8UCtBAb.js",
     "name": "DataGrid",
     "src": "resources/js/components/Adminto/DataGrid.jsx",
     "isEntry": true,
@@ -3102,7 +3102,7 @@
     ]
   },
   "resources/js/components/Adminto/Dx/DxBox.jsx": {
-    "file": "assets/DxBox-C3R_vulD.js",
+    "file": "assets/DxBox-S8UCtBAb.js",
     "name": "DxBox",
     "src": "resources/js/components/Adminto/Dx/DxBox.jsx",
     "isEntry": true,
@@ -3211,7 +3211,7 @@
     ]
   },
   "resources/js/components/Adminto/form/InputFormGroup.jsx": {
-    "file": "assets/InputFormGroup-C3R_vulD.js",
+    "file": "assets/InputFormGroup-S8UCtBAb.js",
     "name": "InputFormGroup",
     "src": "resources/js/components/Adminto/form/InputFormGroup.jsx",
     "isEntry": true,
@@ -3241,7 +3241,7 @@
     ]
   },
   "resources/js/components/Adminto/form/SelectAPIFormGroup.jsx": {
-    "file": "assets/SelectAPIFormGroup-C3R_vulD.js",
+    "file": "assets/SelectAPIFormGroup-S8UCtBAb.js",
     "name": "SelectAPIFormGroup",
     "src": "resources/js/components/Adminto/form/SelectAPIFormGroup.jsx",
     "isEntry": true,
@@ -3261,7 +3261,7 @@
     ]
   },
   "resources/js/components/Adminto/form/SelectFormGroup.jsx": {
-    "file": "assets/SelectFormGroup-C3R_vulD.js",
+    "file": "assets/SelectFormGroup-S8UCtBAb.js",
     "name": "SelectFormGroup",
     "src": "resources/js/components/Adminto/form/SelectFormGroup.jsx",
     "isEntry": true,
@@ -3301,7 +3301,7 @@
     ]
   },
   "resources/js/components/Adminto/form/TippyButton.jsx": {
-    "file": "assets/TippyButton-D0FwlElT.js",
+    "file": "assets/TippyButton-DCJ3jJ0s.js",
     "name": "TippyButton",
     "src": "resources/js/components/Adminto/form/TippyButton.jsx",
     "isEntry": true,
@@ -3428,7 +3428,7 @@
     ]
   },
   "resources/js/components/Blog/Results.jsx": {
-    "file": "assets/Results-D0dKBUXH.js",
+    "file": "assets/Results-CZwVqPmu.js",
     "name": "Results",
     "src": "resources/js/components/Blog/Results.jsx",
     "isEntry": true,
@@ -3517,7 +3517,7 @@
     ]
   },
   "resources/js/components/Courses/Results.jsx": {
-    "file": "assets/Results-CZwVqPmu.js",
+    "file": "assets/Results-D0dKBUXH.js",
     "name": "Results",
     "src": "resources/js/components/Courses/Results.jsx",
     "isEntry": true,
@@ -3846,10 +3846,10 @@
     ]
   },
   "resources/js/components/PopupManager/PopupManager.jsx": {
-    "file": "assets/PopupManager-CsIT0vDj.js",
+    "file": "assets/PopupManager-C3R_vulD.js",
     "name": "PopupManager",
     "src": "resources/js/components/PopupManager/PopupManager.jsx",
-    "isDynamicEntry": true,
+    "isEntry": true,
     "imports": [
       "_vendor-react-CPrmKqY1.js",
       "_vendor-other-C_PV_E3D.js"
@@ -4002,13 +4002,14 @@
     ]
   },
   "resources/js/components/Tailwind/CambiaFX/BlogSection.jsx": {
-    "file": "assets/BlogSection-CQ1V03fg.js",
+    "file": "assets/BlogSection-jS6LKoIf.js",
     "name": "BlogSection",
     "src": "resources/js/components/Tailwind/CambiaFX/BlogSection.jsx",
-    "isEntry": true,
+    "isDynamicEntry": true,
     "imports": [
       "_vendor-react-CPrmKqY1.js",
       "_OptimizedImage-DTo-EmoL.js",
+      "_TextWithHighlight-ImRsH-8O.js",
       "_vendor-ui-C_W9Xu_X.js",
       "_vendor-motion-Dd2Y39Mq.js",
       "_vendor-other-C_PV_E3D.js"
@@ -4051,19 +4052,19 @@
     ]
   },
   "resources/js/components/Tailwind/CambiaFX/EmpresasSection.jsx": {
-    "file": "assets/EmpresasSection-CP_tC1cQ.js",
+    "file": "assets/EmpresasSection-CtVHCxUm.js",
     "name": "EmpresasSection",
     "src": "resources/js/components/Tailwind/CambiaFX/EmpresasSection.jsx",
-    "isDynamicEntry": true,
+    "isEntry": true,
     "imports": [
       "_vendor-react-CPrmKqY1.js",
       "resources/js/components/Tailwind/CambiaFX/BannerFxEmpresas.jsx",
-      "_vendor-motion-Dd2Y39Mq.js",
       "_vendor-other-C_PV_E3D.js",
       "resources/js/components/Tailwind/Welcome/BenefitsSection.jsx",
       "_vendor-ui-C_W9Xu_X.js",
       "_vendor-utils-CcnrHwuG.js",
       "_General-CSnTKUjB.js",
+      "_vendor-motion-Dd2Y39Mq.js",
       "_vendor-icons-CSdnOqCW.js"
     ]
   },
@@ -4085,12 +4086,14 @@
     ]
   },
   "resources/js/components/Tailwind/CambiaFX/FuncionSection.jsx": {
-    "file": "assets/FuncionSection-C3R_vulD.js",
+    "file": "assets/FuncionSection-QEMLZVxC.js",
     "name": "FuncionSection",
     "src": "resources/js/components/Tailwind/CambiaFX/FuncionSection.jsx",
-    "isEntry": true,
+    "isDynamicEntry": true,
     "imports": [
       "_vendor-react-CPrmKqY1.js",
+      "_TextWithHighlight-ImRsH-8O.js",
+      "_vendor-motion-Dd2Y39Mq.js",
       "_vendor-other-C_PV_E3D.js"
     ]
   },
@@ -4181,12 +4184,13 @@
     ]
   },
   "resources/js/components/Tailwind/CambiaFX/PrimeraOperacionSection.jsx": {
-    "file": "assets/PrimeraOperacionSection-CvOicP-C.js",
+    "file": "assets/PrimeraOperacionSection-B4TlCRsN.js",
     "name": "PrimeraOperacionSection",
     "src": "resources/js/components/Tailwind/CambiaFX/PrimeraOperacionSection.jsx",
-    "isEntry": true,
+    "isDynamicEntry": true,
     "imports": [
       "_vendor-react-CPrmKqY1.js",
+      "_TextWithHighlight-ImRsH-8O.js",
       "resources/js/components/Tailwind/CambiaFX/BannerFxEmpresas.jsx",
       "_OptimizedImage-DTo-EmoL.js",
       "_vendor-motion-Dd2Y39Mq.js",
@@ -4423,7 +4427,7 @@
     ]
   },
   "resources/js/components/Tailwind/DataGrid.jsx": {
-    "file": "assets/DataGrid-S8UCtBAb.js",
+    "file": "assets/DataGrid-AaVmw4Eh.js",
     "name": "DataGrid",
     "src": "resources/js/components/Tailwind/DataGrid.jsx",
     "isEntry": true,
@@ -4889,7 +4893,7 @@
     ]
   },
   "resources/js/components/dx/DxBox.jsx": {
-    "file": "assets/DxBox-S8UCtBAb.js",
+    "file": "assets/DxBox-C3R_vulD.js",
     "name": "DxBox",
     "src": "resources/js/components/dx/DxBox.jsx",
     "isEntry": true,
@@ -4915,7 +4919,7 @@
     ]
   },
   "resources/js/components/form/InputFormGroup.jsx": {
-    "file": "assets/InputFormGroup-S8UCtBAb.js",
+    "file": "assets/InputFormGroup-C3R_vulD.js",
     "name": "InputFormGroup",
     "src": "resources/js/components/form/InputFormGroup.jsx",
     "isEntry": true,
@@ -4945,7 +4949,7 @@
     ]
   },
   "resources/js/components/form/SelectAPIFormGroup.jsx": {
-    "file": "assets/SelectAPIFormGroup-S8UCtBAb.js",
+    "file": "assets/SelectAPIFormGroup-C3R_vulD.js",
     "name": "SelectAPIFormGroup",
     "src": "resources/js/components/form/SelectAPIFormGroup.jsx",
     "isEntry": true,
@@ -4955,7 +4959,7 @@
     ]
   },
   "resources/js/components/form/SelectFormGroup.jsx": {
-    "file": "assets/SelectFormGroup-S8UCtBAb.js",
+    "file": "assets/SelectFormGroup-C3R_vulD.js",
     "name": "SelectFormGroup",
     "src": "resources/js/components/form/SelectFormGroup.jsx",
     "isEntry": true,
@@ -4975,7 +4979,7 @@
     ]
   },
   "resources/js/components/form/TippyButton.jsx": {
-    "file": "assets/TippyButton-DCJ3jJ0s.js",
+    "file": "assets/TippyButton-D0FwlElT.js",
     "name": "TippyButton",
     "src": "resources/js/components/form/TippyButton.jsx",
     "isEntry": true,
