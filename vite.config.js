@@ -37,6 +37,7 @@ export default defineConfig({
             "@Utils": path.resolve(__dirname, "resources/js/Utils"),
             "@Rest": path.resolve(__dirname, "resources/js/Actions"),
         },
+        dedupe: ['react', 'react-dom', 'scheduler'], // Evitar duplicados de React
     },
     build: {
         rollupOptions: {
@@ -45,61 +46,8 @@ export default defineConfig({
                     if (assetInfo.name == "app-C6GHMxSp.css") return "app.css";
                     return assetInfo.name;
                 },
-                manualChunks: (id) => {
-                    // React core (debe ser el primer chunk para evitar dependencias circulares)
-                    if (id.includes('node_modules/react/') || 
-                        id.includes('node_modules/react-dom/') || 
-                        id.includes('node_modules/scheduler/')) {
-                        return 'vendor-react';
-                    }
-                    
-                    // Inertia.js (depende de React)
-                    if (id.includes('node_modules/@inertiajs/')) {
-                        return 'vendor-inertia';
-                    }
-                    
-                    // Animaciones (framer-motion, motion)
-                    if (id.includes('node_modules/framer-motion') || 
-                        id.includes('node_modules/motion')) {
-                        return 'vendor-motion';
-                    }
-                    
-                    // UI Libraries (swiper, sweetalert2, tippy)
-                    if (id.includes('node_modules/swiper') || 
-                        id.includes('node_modules/sweetalert2') || 
-                        id.includes('node_modules/tippy.js') ||
-                        id.includes('node_modules/@tippyjs')) {
-                        return 'vendor-ui';
-                    }
-                    
-                    // Chart.js y dependencias de gráficos
-                    if (id.includes('node_modules/chart.js')) {
-                        return 'vendor-charts';
-                    }
-                    
-                    // Google Maps
-                    if (id.includes('node_modules/@react-google-maps')) {
-                        return 'vendor-maps';
-                    }
-                    
-                    // Icons (react-icons, lucide-react)
-                    if (id.includes('node_modules/react-icons') ||
-                        id.includes('node_modules/lucide-react')) {
-                        return 'vendor-icons';
-                    }
-                    
-                    // Utilidades (moment, jquery, sode-extend-react, etc.)
-                    if (id.includes('node_modules/moment') || 
-                        id.includes('node_modules/jquery') ||
-                        id.includes('node_modules/sode-extend-react')) {
-                        return 'vendor-utils';
-                    }
-                    
-                    // Resto de node_modules
-                    if (id.includes('node_modules/')) {
-                        return 'vendor-other';
-                    }
-                },
+                // Desactivar manualChunks para evitar dependencias circulares
+                // Vite manejará los chunks automáticamente
             },
         },
         minify: 'terser',
