@@ -27,7 +27,7 @@ const InfoProductoCard = ({ name, summary, image, collaborator, info_date }) => 
                         <span className="block text-neutral">{fecha}</span>
                     </div>
                 </div>
-                <button className="mt-6 w-full bg-constrast text-white font-semibold py-3 rounded-xl transition-colors">
+                <button aria-label="más información" className="mt-6 w-full bg-constrast text-white font-semibold py-3 rounded-xl transition-colors">
                     Más información
                 </button>
             </div>

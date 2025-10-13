@@ -25,7 +25,7 @@ const ScalpType = ({ test, setTest, values }) => {
           {
             values.map((value, index) => {
               return <figure key={index} className="flex flex-col gap-4 text-4xl transition-all group">
-                <button className="w-28 py-2 rounded border border-[#9577B9] text-[#9577B9] hover:border-[#C5B8D4] hover:bg-[#C5B8D4] hover:text-white font-bold text-base" onClick={() => onTypeClicked(value.id)}>
+                <button aria-label={`Seleccionar tipo de cuero cabelludo: ${value.description}`} className="w-28 py-2 rounded border border-[#9577B9] text-[#9577B9] hover:border-[#C5B8D4] hover:bg-[#C5B8D4] hover:text-white font-bold text-base" onClick={() => onTypeClicked(value.id)}>
                   {value.description}
                 </button>
                 <img
@@ -36,7 +36,7 @@ const ScalpType = ({ test, setTest, values }) => {
             })
           }
         </div>
-        <p className="text-sm mb-4">Conoce tu tipo de cuero cabelludo <button className="underline" onClick={() => setModalOpen(true)}>aquí </button></p>
+        <p className="text-sm mb-4">Conoce tu tipo de cuero cabelludo <button aria-label="abrir modal" className="underline" onClick={() => setModalOpen(true)}>aquí </button></p>
       </div>
     </section>
     <ReactModal isOpen={modalOpen}

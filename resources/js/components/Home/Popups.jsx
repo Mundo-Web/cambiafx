@@ -75,7 +75,7 @@ const Popups = ({ popups }) => {
         {currentPopups.map((popup, index) => (
           <SwiperSlide key={index} className="flex items-center justify-center h-max relative">
             <Tippy content="Cerrar popup">
-            <button className="absolute top-4 right-4 mdi mdi-close text-2xl text-white z-10" onClick={() => setIsOpen(false)} style={{
+            <button aria-label="cerrar popup" className="absolute top-4 right-4 mdi mdi-close text-2xl text-white z-10" onClick={() => setIsOpen(false)} style={{
               textShadow: '0 0 10px rgba(0,0,0,.5)'
             }}></button>
             </Tippy>

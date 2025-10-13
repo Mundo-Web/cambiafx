@@ -95,9 +95,9 @@ const SelectProduct = ({ goToNextPage, items = [], bundles = [] }) => {
                 <h2 className="self-center px-4 py-3">{item.name}</h2>
               </label>
               <div className="flex gap-5 justify-between items-center self-center py-1 text-sm bg-transparent rounded-lg border border-[#808080] w-[70%] px-4 font-bold">
-                <button type="button" className="disabled:cursor-not-allowed" onClick={() => onMinusClicked(item)} disabled={quantity <= 0}>-</button>
+                <button type="button" aria-label="minusbtn" className="disabled:cursor-not-allowed" onClick={() => onMinusClicked(item)} disabled={quantity <= 0}>-</button>
                 <span>{quantity}</span>
-                <button type="button" className="disabled:cursor-not-allowed" onClick={() => onPlusClicked(item)}>+</button>
+                <button type="button" aria-label="plusbtn" className="disabled:cursor-not-allowed" onClick={() => onPlusClicked(item)}>+</button>
               </div>
             </div>
           })
@@ -131,7 +131,7 @@ const SelectProduct = ({ goToNextPage, items = [], bundles = [] }) => {
     </div>
 
     <div className="flex flex-wrap items-center justify-center gap-2 mx-auto md:mx-[12.5%] mt-5 sm:mt-10">
-      <button onClick={goToNextPage} className='bg-[#C5B8D4] text-white text-sm px-16 py-3 tracking-widest rounded mt-4 disabled:cursor-not-allowed leadin' disabled={totalQuantity == 0}>SIGUIENTE</button>
+      <button aria-label="siguiente" onClick={goToNextPage} className='bg-[#C5B8D4] text-white text-sm px-16 py-3 tracking-widest rounded mt-4 disabled:cursor-not-allowed leadin' disabled={totalQuantity == 0}>SIGUIENTE</button>
     </div>
 
   </form>

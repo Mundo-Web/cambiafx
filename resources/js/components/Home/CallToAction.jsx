@@ -16,7 +16,7 @@ const CallToAction = () => {
         <img className="h-auto items-center" src="/assets/img/calltoaction/banner.png" alt="" data-aos="fade-left" />
       </div>
     </div>
-    <button data-aos="fade-up" href='/plans' className='bg-[#8998DA] text-white text-sm px-4 py-3 rounded border border-white w-max mx-auto md:mx-[12.5%]'>TE CONTAMOS MÁS AQUÍ</button>
+    <button aria-label="más información" data-aos="fade-up" href='/plans' className='bg-[#8998DA] text-white text-sm px-4 py-3 rounded border border-white w-max mx-auto md:mx-[12.5%]'>TE CONTAMOS MÁS AQUÍ</button>
   </section>
 }
 

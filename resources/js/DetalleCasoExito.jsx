@@ -301,7 +301,8 @@ const DetalleCasoExito = ({
                 {/* Botón de ver más detalles */}
                 <div className="flex justify-start mt-4">
                   {/*FUNCION PARA ABRIR MAS DETALLES ID: EMPRESA-INFO incio en hidden ademas cambiar el texto de ver mas informacion a ver menos*/}
-                  <button onClick={() => {
+                  <button
+                   onClick={() => {
                     const empresaInfo = document.getElementById("empresa-info");
                     const button = document.getElementById("toggle-empresa-info");
                     empresaInfo.classList.toggle("hidden");
@@ -310,7 +311,11 @@ const DetalleCasoExito = ({
                     } else {
                       button.textContent = "Ver menos información";
                     }
-                  }} id="toggle-empresa-info" className="text-sm uppercase underline text-accent font-semibold">Ver más información</button>
+                  }} 
+                  id="toggle-empresa-info"
+                   className="text-sm uppercase underline text-accent font-semibold" 
+                   aria-label="ver más información"
+                   >Ver más información</button>
                 </div>
               </div>
               {/* Tarjeta de información de la empresa */}

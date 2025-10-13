@@ -1385,7 +1385,7 @@ const ExchangeCard = ({
                                     {/* Icono de información del cupón aplicado */}
                                     {couponInfo && (
                                         <div className="relative group">
-                                            <button className="py-4 px-3 rounded-xl bg-constrast/10 border-2 border-constrast/30 hover:bg-constrast/20 transition-all duration-200">
+                                            <button aria-label="informacion del cupon" className="py-4 px-3 rounded-xl bg-constrast/10 border-2 border-constrast/30 hover:bg-constrast/20 transition-all duration-200">
                                                 <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                     <circle cx="8" cy="8" r="7" stroke="currentColor" strokeWidth="1.5" />
                                                     <path d="M8 12V8M8 5.5H8.01" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
@@ -1642,7 +1642,7 @@ const ExchangeCard = ({
                                             </button>
                                         ) : invalidCoupon ? (
                                             // Cupón inválido: Mostrar estado de error
-                                            <button className="py-4 px-4 rounded-xl bg-red-600  text-white transition-all duration-200">
+                                            <button aria-label="cupón inválido" className="py-4 px-4 rounded-xl bg-red-600  text-white transition-all duration-200">
                                                 <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                     <circle cx="8" cy="8" r="7" stroke="currentColor" strokeWidth="1.5" />
                                                     <path d="M8 5v3M8 11h.01" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
@@ -1685,7 +1685,7 @@ const ExchangeCard = ({
                                             </button>
                                         ) : (
                                             // Después de validar: Muestra detalles del cupón en hover
-                                            <button className="py-4 px-4 rounded-xl bg-green-600 text-white transition-all duration-200">
+                                            <button aria-label="cupón válido" className="py-4 px-4 rounded-xl bg-green-600 text-white transition-all duration-200">
                                                 <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                     <path d="M8 1L10.5 6L16 6.75L12 10.5L13 16L8 13L3 16L4 10.5L0 6.75L5.5 6L8 1Z" fill="currentColor" />
                                                 </svg>

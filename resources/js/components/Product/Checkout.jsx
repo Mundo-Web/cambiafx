@@ -510,7 +510,7 @@ const Checkout = ({ formula, publicKey, selectedPlan, bundles, planes, session }
                     </a>.
                   </p>
                 </div>
-                {/* <button className="mt-6 w-full rounded-md bg-pink-400 py-3 text-white hover:bg-pink-500" onClick={onCulqiOpen}>
+                {/* <button aria-label="realizar pedido" className="mt-6 w-full rounded-md bg-pink-400 py-3 text-white hover:bg-pink-500" onClick={onCulqiOpen}>
                   <i className='mdi mdi-lock me-1'></i>
                   Realizar el pedido S/ {Number2Currency(totalPrice)}
                 </button> */}
@@ -616,12 +616,12 @@ const Checkout = ({ formula, publicKey, selectedPlan, bundles, planes, session }
                         onKeyDown={onCouponKeyDown}
                         disabled={loading}
                       />
-                      <button className="rounded-r-md bg-[#C5B8D4] px-4 py-2 text-sm text-white" type='button' onClick={onCouponApply} disabled={loading}>
+                      <button aria-label="aplicar cupón" className="rounded-r-md bg-[#C5B8D4] px-4 py-2 text-sm text-white" type='button' onClick={onCouponApply} disabled={loading}>
                         Aplicar
                       </button>
                     </div>
                   }
-                  <button type='submit' className="mt-6 w-full rounded-md bg-[#C5B8D4] py-3 text-white disabled:cursor-not-allowed" disabled={loading}>
+                  <button aria-label="realizar pedido" type='submit' className="mt-6 w-full rounded-md bg-[#C5B8D4] py-3 text-white disabled:cursor-not-allowed" disabled={loading}>
                     <i className='mdi mdi-lock me-1'></i>
                     Pagar Ahora
                     <small className='ms-1'>(S/ {Number2Currency(totalPrice - bundleDiscount - planDiscount - couponDiscount)})</small>

@@ -665,25 +665,25 @@ const Services = ({ brands }) => {
                 {/* Pestañas de navegación */}
                 <ul className="nav nav-tabs nav-justified" id="serviceModalTabs" role="tablist">
                     <li className="nav-item" role="presentation">
-                        <button className="nav-link active" id="basic-tab" data-bs-toggle="tab" data-bs-target="#basic-tab-pane" type="button" role="tab">
+                        <button aria-label="información básica" className="nav-link active" id="basic-tab" data-bs-toggle="tab" data-bs-target="#basic-tab-pane" type="button" role="tab">
                             <i className="fas fa-info-circle me-1"></i>
                             Información Básica
                         </button>
                     </li>
                   {/*  <li className="nav-item" role="presentation">
-                        <button className="nav-link" id="approach-tab" data-bs-toggle="tab" data-bs-target="#approach-tab-pane" type="button" role="tab">
+                        <button aria-label="enfoque" className="nav-link" id="approach-tab" data-bs-toggle="tab" data-bs-target="#approach-tab-pane" type="button" role="tab">
                             <i className="fas fa-bullseye me-1"></i>
                             Enfoque
                         </button>
                     </li> */}
                     <li className="nav-item" role="presentation">
-                        <button className="nav-link" id="benefits-tab" data-bs-toggle="tab" data-bs-target="#benefits-tab-pane" type="button" role="tab">
+                        <button aria-label="beneficios" className="nav-link" id="benefits-tab" data-bs-toggle="tab" data-bs-target="#benefits-tab-pane" type="button" role="tab">
                             <i className="fas fa-star me-1"></i>
                             Beneficios
                         </button>
                     </li>
                  {/*   <li className="nav-item" role="presentation">
-                        <button className="nav-link" id="methodology-tab" data-bs-toggle="tab" data-bs-target="#methodology-tab-pane" type="button" role="tab">
+                        <button aria-label="metodología" className="nav-link" id="methodology-tab" data-bs-toggle="tab" data-bs-target="#methodology-tab-pane" type="button" role="tab">
                             <i className="fas fa-tasks me-1"></i>
                             Metodología
                         </button>

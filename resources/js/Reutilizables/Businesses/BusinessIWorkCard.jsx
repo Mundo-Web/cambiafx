@@ -32,19 +32,19 @@ const BusinessIWorkCard = ({ uuid, name, APP_PROTOCOL, owner, my_services, APP_D
       {
         my_services.length == 1
           ? <Tippy>
-            <button className="btn btn-xs btn-white" onClick={() => beforeRedirect(my_services[0])}>
+            <button aria-label={`Seleccionar servicio: ${my_services[0].name}`} className="btn btn-xs btn-white" onClick={() => beforeRedirect(my_services[0])}>
               {my_services[0].name} {
                 !my_services[0].invitation_accepted && <i className="text-muted" style={{ fontSize: 'small' }}>Pendiente</i>
               }
             </button>
           </Tippy>
           : <div style={{ position: 'relative' }}>
-            <button className="btn btn-xs btn-light dropdown-toggle" type="button" id="dropdown-services-button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <button aria-label="ver servicios" className="btn btn-xs btn-light dropdown-toggle" type="button" id="dropdown-services-button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               Ver servicios <i className="mdi mdi-chevron-down"></i>
             </button>
             <div className="dropdown-menu" aria-labelledby="dropdown-services-button">
               {my_services.map((service, i) => {
-                return <button key={`service-${i}`} className="dropdown-item" target="_blank" onClick={() => beforeRedirect(service)}>
+                return <button aria-label={`Seleccionar servicio: ${service.name}`} key={`service-${i}`} className="dropdown-item" target="_blank" onClick={() => beforeRedirect(service)}>
                   {service.name} {
                     !service.invitation_accepted && <i className="text-muted" style={{ fontSize: 'small' }}>Pendiente</i>
                   }

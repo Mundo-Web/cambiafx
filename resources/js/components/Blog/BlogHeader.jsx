@@ -138,7 +138,7 @@ const BlogHeader = ({ categories, postRecent, landing }) => {
                                 <p className="font-title text-white text-base leading-relaxed line-clamp-3" >
 {postRecent[0]?.summary}
                                 </p>
-                                <button className="inline-flex items-center gap-2 bg-constrast p-3 rounded-full text-white text-sm font-medium tracking-[8%] uppercase  hover:gap-3 transition-all duration-300">
+                                <button aria-label="leer más" className="inline-flex items-center gap-2 bg-constrast p-3 rounded-full text-white text-sm font-medium tracking-[8%] uppercase  hover:gap-3 transition-all duration-300">
                                    LEER MÁS
                                 </button>
                             </div>
@@ -179,7 +179,7 @@ const BlogHeader = ({ categories, postRecent, landing }) => {
                                         <p className="font-title text-white text-base leading-relaxed line-clamp-3" dangerouslySetInnerHTML={{ __html: postRecent[1]?.summary }}>
 
                                         </p>
-                                       <button className="inline-flex items-center gap-2 bg-constrast p-3  rounded-full text-white text-sm font-medium tracking-[8%] uppercase  hover:gap-3 transition-all duration-300">
+                                       <button aria-label="leer más" className="inline-flex items-center gap-2 bg-constrast p-3  rounded-full text-white text-sm font-medium tracking-[8%] uppercase  hover:gap-3 transition-all duration-300">
                                            LEER MÁS
                                          
                                         </button>
@@ -224,7 +224,7 @@ const BlogHeader = ({ categories, postRecent, landing }) => {
                                         <p className="font-title text-white text-base leading-relaxed line-clamp-3" dangerouslySetInnerHTML={{ __html: postRecent[2]?.summary }}>
 
                                         </p>
-                                       <button className="inline-flex items-center gap-2 bg-constrast p-3 text-sm font-medium tracking-[8%] uppercase rounded-full text-white  hover:gap-3 transition-all duration-300">
+                                       <button aria-label="leer más" className="inline-flex items-center gap-2 bg-constrast p-3 text-sm font-medium tracking-[8%] uppercase rounded-full text-white  hover:gap-3 transition-all duration-300">
                                            LEER MÁS
                                         </button>
                                     </div>

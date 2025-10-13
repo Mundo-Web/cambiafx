@@ -25,14 +25,14 @@ const Main = ({ test, setTest, setFirstTime, userFormulasCount }) => {
         En  menos de dos minutos, creemos juntos una fórmula única para el cuidado de tu cabello.
       </p>
       <div className="flex flex-wrap items-center justify-center gap-2 mx-auto md:mx-[12.5%]">
-        <button className='bg-[#C5B8D4] text-white text-sm px-8 py-3 rounded border border-white w-max  text-nowrap' onClick={() => onStartTestClicked(false)}>{
+        <button aria-label="iniciar test" className='bg-[#C5B8D4] text-white text-sm px-8 py-3 rounded border border-white w-max  text-nowrap' onClick={() => onStartTestClicked(false)}>{
           test.has_started
             ? 'CONTINUAR TEST'
             : '¡EMPIEZA AHORA!'
         }</button>
         {
           test.has_started &&
-          <button className='bg-white text-[#9577B9] text-sm px-8 py-3 rounded border border-white w-max text-nowrap' onClick={() => onStartTestClicked(true)}>REINICIAR TEST</button>
+          <button aria-label="reiniciar test" className='bg-white text-[#9577B9] text-sm px-8 py-3 rounded border border-white w-max text-nowrap' onClick={() => onStartTestClicked(true)}>REINICIAR TEST</button>
         }
 
         {

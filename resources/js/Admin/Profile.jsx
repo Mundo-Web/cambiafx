@@ -93,7 +93,7 @@ const Profile = (props) => {
           <InputFormGroup eRef={nameRef} label='Nombres' value={session.name} required />
           <InputFormGroup eRef={lastnameRef} label='Apellidos' value={session.lastname} required />
           <div className='text-center'>
-            <button className='btn btn-primary btn-block' type='submit'>
+            <button aria-label="actualizar perfil" className='btn btn-primary btn-block' type='submit'>
               <i className='fa fa-save'></i> Actualizar
             </button>
           </div>

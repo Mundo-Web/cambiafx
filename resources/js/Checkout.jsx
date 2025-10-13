@@ -717,10 +717,7 @@ const Checkout = ({ publicKey, session }) => {
                                         .
                                     </p>
                                 </div>
-                                {/* <button className="mt-6 w-full rounded-md bg-pink-400 py-3 text-white hover:bg-pink-500" onClick={onCulqiOpen}>
-                  <i className='mdi mdi-lock me-1'></i>
-                  Realizar el pedido S/ {Number2Currency(totalPrice)}
-                </button> */}
+                               
                             </div>
                             <div className="lg:col-span-2 relative">
                                 <div className="block sticky top-4">

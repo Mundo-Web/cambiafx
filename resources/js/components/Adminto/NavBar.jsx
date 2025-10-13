@@ -214,7 +214,7 @@ const NavBar = ({ session = {}, title = "Pagina", languagesSystem }) => {
 
             <ul className="list-unstyled topnav-menu topnav-menu-left mb-0">
                 <li>
-                    <button className="button-menu-mobile disable-btn waves-effect">
+                    <button aria-label="menu" className="button-menu-mobile disable-btn waves-effect">
                         <i className="fe-menu"></i>
                     </button>
                 </li>

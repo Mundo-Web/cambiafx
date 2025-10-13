@@ -33,7 +33,7 @@ const Filter = ({ filter, setFilter }) => {
           }))}
         />
       </label>
-      <button className="col-span-1 md:col-span-1 lg:col-span-2 px-6 py-4 text-base uppercase rounded-3xl bg-slate-100 text-slate-900 flex items-center justify-center transition-all" onClick={() => setFilter(old => ({
+      <button aria-label="ordenar por precio" className="col-span-1 md:col-span-1 lg:col-span-2 px-6 py-4 text-base uppercase rounded-3xl bg-slate-100 text-slate-900 flex items-center justify-center transition-all" onClick={() => setFilter(old => ({
         ...old,
         sortOrder: old.sortOrder == 'desc' ? 'asc' : 'desc'
       }))}>

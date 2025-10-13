@@ -14,7 +14,7 @@ const HowItWorks = () => {
           Hechos a tu medida.<br />
           <span className="font-bold">¿Cómo funciona?</span>
         </h1>
-        <button href='/test' className='bg-[#C5B8D4] text-white text-sm px-4 py-3 rounded my-4'>HAZ EL TEST Y CREA TU FÓRMULA</button>
+        <button aria-label="haz el test y crea tu fórmula" href='/test' className='bg-[#C5B8D4] text-white text-sm px-4 py-3 rounded my-4'>HAZ EL TEST Y CREA TU FÓRMULA</button>
       </div>
       <div className="flex gap-[5%] mt-[5%]">
         <article className="w-1/3 relative" data-aos='fade-up-right'>

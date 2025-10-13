@@ -68,7 +68,7 @@ const Account = ({ session }) => {
                   <h4 className='mt-0'>Actualizar correo de usuario</h4>
                   <InputFormGroup eRef={emailRef} label='Correo de usuario' type='email' value={session.email} required />
                   <PasswordFormGroup eRef={confirmPasswordRef} label='Contraseña de confirmacion' type='password' value={null} required />
-                  <button className='btn btn-primary btn-block' type='submit'>
+                  <button aria-label="actualizar correo" className='btn btn-primary btn-block' type='submit'>
                     <i className='fa fa-save'></i> Actualizar
                   </button>
                 </form>
@@ -78,7 +78,7 @@ const Account = ({ session }) => {
                   <PasswordFormGroup eRef={lastPasswordRef} label='Contraseña anterior' type='password' value={null} required />
                   <PasswordFormGroup eRef={newPasswordRef} label='Contraseña nueva' type='password' value={null} required />
                   <PasswordFormGroup eRef={repeatPasswordRef} label='Repita la contraseña nueva' type='password' value={null} required />
-                  <button className='btn btn-primary btn-block' type='submit'>
+                  <button aria-label="actualizar contraseña" className='btn btn-primary btn-block' type='submit'>
                     <i className='fa fa-save'></i> Actualizar
                   </button>
                 </form>

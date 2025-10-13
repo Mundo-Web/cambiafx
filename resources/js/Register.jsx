@@ -198,7 +198,7 @@ const Register = ({ PUBLIC_RSA_KEY, RECAPTCHA_SITE_KEY }) => {
                   </div>
                   <ReCAPTCHA className='m-auto mb-3' sitekey={RECAPTCHA_SITE_KEY} onChange={setCaptchaValue} style={{ display: "block", width: 'max-content' }} />
                   <div className="mb-0 text-center d-grid">
-                    <button className="btn btn-pink rounded-pill w-max mx-auto px-4" type="submit" disabled={loading} style={{ backgroundColor: '#A191B8', borderColor: '#A191B8' }}>
+                    <button aria-label="registrarse" className="btn btn-pink rounded-pill w-max mx-auto px-4" type="submit" disabled={loading} style={{ backgroundColor: '#A191B8', borderColor: '#A191B8' }}>
                       {loading ? <>
                         <i className='fa fa-spinner fa-spin'></i> VERIFICANDO
                       </> : '¡SER VUÁ LOVER!'}

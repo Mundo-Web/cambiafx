@@ -15,7 +15,7 @@ const Formulas = ({ items }) => {
           formulas.length == 0 && <div className='mx-auto text-center'>
             <h1 className='text-2xl font-bold mb-4'>Ups!</h1>
             <p className='text-sm mb-4'>Al parecer no tienes formulas</p>
-            <button href="/test" className='rounded-full px-3 py-2 text-white bg-[#A191B8] text-sm'>CREA TU FÓRMULA</button>
+            <button aria-label="crear fórmula" href="/test" className='rounded-full px-3 py-2 text-white bg-[#A191B8] text-sm'>CREA TU FÓRMULA</button>
           </div>
         }
         {

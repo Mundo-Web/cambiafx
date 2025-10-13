@@ -47,7 +47,7 @@ const Highlights2 = () => {
           </tr>
         </tbody>
       </table>
-      <button className='bg-[rgba(197,184,212,.50)] text-white text-sm px-4 py-3 rounded border border-white'>TE CONTAMOS MÁS AQUÍ</button>
+      <button aria-label="más información" className='bg-[rgba(197,184,212,.50)] text-white text-sm px-4 py-3 rounded border border-white'>TE CONTAMOS MÁS AQUÍ</button>
     </div>
   </div>
 }

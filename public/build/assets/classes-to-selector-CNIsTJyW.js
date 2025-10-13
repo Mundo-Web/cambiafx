@@ -1,1 +1,0 @@
-import{c as e,d as a}from"./vendor-ui-B88T9Gd_.js";function r(r,t,c,s){return r.params.createElements&&Object.keys(s).forEach(n=>{if(!c[n]&&!0===c.auto){let o=e(r.el,`.${s[n]}`)[0];o||(o=a("div",s[n]),o.className=s[n],r.el.append(o)),c[n]=o,t[n]=o}}),c}function t(e){return void 0===e&&(e=""),`.${e.trim().replace(/([\.:!+\/])/g,"\\$1").replace(/ /g,".")}`}export{r as a,t as c};

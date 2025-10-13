@@ -73,7 +73,7 @@ const TestResult = ({ user_formula, hair_goals, supplies }) => {
           </div>
         </div>
         <div className='text-center'>
-          <button href={`/formula/${user_formula.id}`} className='bg-[#C5B8D4] text-white text-sm px-16 py-3 rounded mt-4 tracking-widest'>COMPRAR</button>
+          <button aria-label="comprar" href={`/formula/${user_formula.id}`} className='bg-[#C5B8D4] text-white text-sm px-16 py-3 rounded mt-4 tracking-widest'>COMPRAR</button>
         </div>
         <div className='p-[5%] py-[15%] md:py-[10%] lg:py-[5%] text-start '>
           <div className="max-w-3xl mx-auto">
@@ -87,7 +87,7 @@ const TestResult = ({ user_formula, hair_goals, supplies }) => {
               }
             </div>
             <div className='text-center'>
-              <button href={`/formula/${user_formula.id}`} className='bg-[#C5B8D4] text-white text-sm px-16 py-3 rounded mt-4 tracking-widest'>COMPRAR</button>
+              <button aria-label="comprar" href={`/formula/${user_formula.id}`} className='bg-[#C5B8D4] text-white text-sm px-16 py-3 rounded mt-4 tracking-widest'>COMPRAR</button>
             </div>
           </div>
         </div>

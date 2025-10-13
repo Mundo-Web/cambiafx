@@ -26,7 +26,7 @@ const HairType = ({ test, setTest, values }) => {
             })
           }
         </div>
-        <p className="text-sm mb-4">Conoce tu tipo de cabello <button className="underline" onClick={() => setModalOpen(true)}>aquí </button></p>
+        <p className="text-sm mb-4">Conoce tu tipo de cabello <button aria-label="abrir modal" className="underline" onClick={() => setModalOpen(true)}>aquí </button></p>
       </div>
     </section>
     <ReactModal isOpen={modalOpen}

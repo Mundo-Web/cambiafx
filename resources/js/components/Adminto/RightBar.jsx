@@ -147,7 +147,7 @@ const RigthBar = () => {
             </div>
 
             <div className="d-grid mt-4">
-              <button className="btn btn-primary" id="resetBtn">Restablecer</button>
+              <button aria-label="restablecer" className="btn btn-primary" id="resetBtn">Restablecer</button>
               {/* <a href="https://1.envato.market/admintoadmin" className="btn btn-danger mt-3"
                 target="_blank"><i className="mdi mdi-basket me-1"></i> Purchase Now</a> */}
             </div>

@@ -209,7 +209,7 @@ const Information = ({ session }) => {
               defaultValue={session.address_reference} />
           </div>
         </div>
-        <button className='bg-[#A191B8] text-sm text-white px-4 py-2 rounded-full'>
+        <button aria-label="guardar información" className='bg-[#A191B8] text-sm text-white px-4 py-2 rounded-full'>
           <i className='fa fa-save me-2'></i>
           GUARDAR INFORMACIÓN
         </button>

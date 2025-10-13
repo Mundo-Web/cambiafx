@@ -51,7 +51,7 @@ const Plans = ({ renewals }) => {
                   })
                 }
               </ul>
-              <button href='/test' className='bg-[#8998DA] text-white text-sm px-8 py-3 rounded border border-white mx-auto block'>QUIERO SUSCRIBIRME</button>
+              <button href='/test' className='bg-[#8998DA] text-white text-sm px-8 py-3 rounded border border-white mx-auto block' aria-label="quiero suscribirme">QUIERO SUSCRIBIRME</button>
             </div>
             <div className='col-span-1 lg:col-span-3 relative'>
               <div className='relative'>

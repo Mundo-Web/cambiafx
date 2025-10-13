@@ -1258,7 +1258,7 @@ const Generals = ({ generals }) => {
 
                 </div>
 
-                <button type="submit" className="btn btn-primary mt-3">
+                <button aria-label="guardar" type="submit" className="btn btn-primary mt-3">
                     Guardar
                 </button>
             </form>

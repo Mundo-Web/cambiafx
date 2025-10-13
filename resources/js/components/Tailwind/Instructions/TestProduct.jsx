@@ -111,7 +111,7 @@ const TestProduct = ({ producto }) => {
                         </p>
 
                         <div className="flex items-center justify-center gap-4 mt-6">
-                            <button className="relative w-full md:w-[332px] h-[59px] md:text-[17.02px]  2xl:text-[13.59px] leading-[13.59px] bg-[#FC58BE] text-white  rounded-[6px] border-[1.81px] border-[#FC58BE]  flex items-center gap-4 justify-center">
+                            <button aria-label="añadir al carrito" className="relative w-full md:w-[332px] h-[59px] md:text-[17.02px]  2xl:text-[13.59px] leading-[13.59px] bg-[#FC58BE] text-white  rounded-[6px] border-[1.81px] border-[#FC58BE]  flex items-center gap-4 justify-center">
                                 <span className="">Añadir al carrito</span>
                                 <svg
                                     xmlns="http://www.w3.org/2000/svg"

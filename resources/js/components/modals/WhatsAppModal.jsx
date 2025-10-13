@@ -142,12 +142,12 @@ const WhatsAppModal = ({ status: whatsappStatus, setStatus }) => {
                 <div className="input-group mt-2">
                   <input ref={phoneRef} type="text" className="form-control form-control-sm" placeholder="Numero receptor" />
                   <Tippy content="Enviar mensaje ping">
-                    <button className="btn btn-sm input-group-text btn-dark waves-effect waves-light" type="button" onClick={onPingClicked}>Ping</button>
+                    <button aria-label="enviar mensaje ping" className="btn btn-sm input-group-text btn-dark waves-effect waves-light" type="button" onClick={onPingClicked}>Ping</button>
                   </Tippy>
                 </div>
               </div>
             }
-            {whatsappStatus == 'ready' && <button type="button" className="btn btn-danger my-2" onClick={onCloseClicked}>Cerrar sesion</button>}
+            {whatsappStatus == 'ready' && <button type="button" aria-label="close session" className="btn btn-danger my-2" onClick={onCloseClicked}>Cerrar sesion</button>}
           </div>
         </div>
       </div>

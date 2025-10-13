@@ -1,1 +1,0 @@
-import{j as o}from"./vendor-motion-BF899qie.js";import"./vendor-react-DSMqgrUD.js";import{L as r}from"./Filter-B_D2BHfB.js";const s=({children:s,footerLinks:e,session:n,socials:t,terms:i,showSlogan:d=!0,showFooter:c=!0,gradientStart:a="#c4b8d3",gradientEnd:m="#f1d7c1",menuGradientEnd:j="#dbc8c9"})=>o.jsx(r,{children:o.jsxs("section",{children:[" ",s]})});export{s as B};

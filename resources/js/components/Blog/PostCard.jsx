@@ -72,7 +72,7 @@ const PostCard = ({
                     <p className={`font-title line-clamp-2 text-neutral-light text-lg leading-relaxed ${classDescription}`} dangerouslySetInnerHTML={{ __html: summary }}>
 
                     </p>
-                   <button className={`inline-flex items-center gap-2 bg-constrast p-3 rounded-full text-white text-sm font-medium tracking-[8%] uppercase  hover:gap-3 transition-all duration-300 ${classBtn}`}>
+                   <button aria-label="leer más" className={`inline-flex items-center gap-2 bg-constrast p-3 rounded-full text-white text-sm font-medium tracking-[8%] uppercase  hover:gap-3 transition-all duration-300 ${classBtn}`}>
                                    LEER MÁS
                                 </button>
                 </div>

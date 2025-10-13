@@ -16,7 +16,7 @@ const Modal = ({ modalRef, title = 'Modal', isStatic = false, size = 'md', child
           !hideFooter && <div className='modal-footer'>
             <button className='btn btn-sm btn-danger pull-left' type='button'
               data-bs-dismiss='modal'>{btnCancelText ?? 'Cerrar'}</button>
-            {!hideButtonSubmit && <button className='btn btn-sm btn-success pull-right' type='submit'>{btnSubmitText ?? 'Aceptar'}</button>}
+            {!hideButtonSubmit && <button aria-label="aceptar" className='btn btn-sm btn-success pull-right' type='submit'>{btnSubmitText ?? 'Aceptar'}</button>}
           </div>
         }
       </div>
