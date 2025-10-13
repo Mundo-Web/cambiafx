@@ -39,6 +39,7 @@ const Main = ({ test, setTest, setFirstTime, userFormulasCount }) => {
           userFormulasCount > 0 &&
           <button
             href='/my-account'
+            aria-label="Ver mis fórmulas creadas"
             className='bg-white text-[#9577B9] text-sm px-8 py-3 rounded border border-white w-max text-nowrap'>
             MIS FÓRMULAS
             <i className="ms-1 mdi mdi-arrow-top-right"></i>

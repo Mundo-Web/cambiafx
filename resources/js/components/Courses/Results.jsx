@@ -68,6 +68,7 @@ export default function Results({ categories, filter, setFilter }) {
         <div className="flex flex-col w-full">
           <button
             onClick={() => setShowCategories(!showCategories)}
+            aria-label={showCategories ? "Ocultar categorías" : "Mostrar categorías"}
             className="flex justify-between items-center p-4 w-full text-base uppercase rounded-3xl bg-slate-100 text-gray-900"
           >
             <span>Categorías</span>

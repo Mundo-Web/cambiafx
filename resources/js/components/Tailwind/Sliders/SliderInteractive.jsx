@@ -351,6 +351,7 @@ const SliderInteractive = ({ items, data, current="sliders" }) => {
                     >
                         <button
                             onClick={prevSlide}
+                            aria-label="Ir al producto anterior"
                             className="bg-secondary rounded-r-lg text-white w-12 h-12 flex items-center justify-center transition-colors duration-300"
                         >
                             <ChevronLeft width={"1rem"} />
@@ -361,6 +362,7 @@ const SliderInteractive = ({ items, data, current="sliders" }) => {
                     >
                         <button
                             onClick={nextSlide}
+                            aria-label="Ir al producto siguiente"
                             className="bg-secondary rounded-l-lg text-white w-12 h-12 flex items-center justify-center transition-colors duration-300"
                         >
                             <ChevronRight width={"1rem"} />

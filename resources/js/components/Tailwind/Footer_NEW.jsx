@@ -686,6 +686,7 @@ const Footer = ({ terms, footerLinks = [] }) => {
                         >
                             <button
                                 onClick={closeModal}
+                                aria-label="Cerrar modal de información"
                                 className="float-right text-red-500 hover:text-red-700 transition-all duration-300"
                             >
                                 <X className="w-6 h-6 lg:w-8 lg:h-8" strokeWidth="3px" />

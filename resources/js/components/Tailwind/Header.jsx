@@ -806,6 +806,7 @@ const Header = ({
                                                                 setIsOpen(false);
                                                             }
                                                         }}
+                                                        aria-label={`Navegar a ${item.label}`}
                                                         className={`w-full group relative overflow-hidden flex items-center p-4 rounded-xl transition-all duration-300 ${isActive(item.path) || activeMegaMenu === item.path
                                                             ? "bg-accent text-white border-2 border-accent shadow-lg"
                                                             : "bg-gray-50 hover:bg-gradient-to-r hover:from-gray-100 hover:to-blue-50 text-gray-700 hover:text-primary border-2 border-transparent"

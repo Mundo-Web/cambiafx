@@ -45,6 +45,7 @@ const ProductFilter = ({ products, categories, anuncio }) => {
                     <nav className="relative mb-8 w-full md:text-[18.67px] 2xl:text-[23.67px] leading-[26.52px] text-[#000000]  ">
                         <button
                             onClick={() => setOpenMenu(!openMenu)}
+                            aria-label={openMenu ? "Cerrar menú de categorías" : "Abrir menú de categorías"}
                             className="font-bold text-[#000000] text-[23.67px] leading-[26.52px] flex justify-center items-center underline "
                         >
                             <img

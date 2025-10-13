@@ -123,6 +123,7 @@ const TopSaleSection = ({ producto }) => {
                                             onClick={() =>
                                                 setSelectedColor(color.name)
                                             }
+                                            aria-label={`Seleccionar color ${color.name}`}
                                             className={`rounded-full p-1 border ${
                                                 selectedColor === color.name
                                                     ? "border-[#222222]"
@@ -146,6 +147,7 @@ const TopSaleSection = ({ producto }) => {
                                     onClick={() =>
                                         setIsModalTalla(!isModalTalla)
                                     }
+                                    aria-label="Abrir guía de tallas"
                                     className="inline-flex md:gap-2 2xl:gap-0 items-center justify-center w-[180.45px] 2xl:w-[187.45px] h-[34.02px] font-medium text-[12.05px] 2xl:text-[15.57px] leading-[15.95px] bg-[#5F48B7] text-white rounded-[8.51px]"
                                 >
                                     <svg
@@ -198,6 +200,7 @@ const TopSaleSection = ({ producto }) => {
                                 <div className=" flex h-[40.94px] text-[#000000]  bg-[#EFEDF8] items-center justify-around  rounded-[5.44px] ">
                                     <button
                                         onClick={() => changeQuantity(-1)}
+                                        aria-label="Disminuir cantidad"
                                         className="w-8 h-8 text-[17.84px] text-[#444444]"
                                     >
                                         -
@@ -207,6 +210,7 @@ const TopSaleSection = ({ producto }) => {
                                     </span>
                                     <button
                                         onClick={() => changeQuantity(1)}
+                                        aria-label="Aumentar cantidad"
                                         className="w-8 h-8 text-[17.84px] text-[#444444]"
                                     >
                                         +
@@ -233,6 +237,7 @@ const TopSaleSection = ({ producto }) => {
                                             : null,
                                 })
                             }
+                            aria-label="Añadir producto al carrito"
                             className="mt-4 relative w-full sm:w-[332px] lg:w-full h-[59px] lg:h-[35.88px] 2xl:h-[39.88px] text-[17.02px] lg:text-[12.59px]  2xl:text-[13.59px] leading-[13.59px] bg-[#FC58BE] text-white rounded-[6px]  lg:rounded-[2.72px] border-[1.81px] border-[#FC58BE]  flex items-center justify-center"
                         >
                             <span className="">Añadir al carrito</span>
@@ -263,6 +268,7 @@ const TopSaleSection = ({ producto }) => {
                         <button
                             className="absolute z-50 top-4 right-4 text-3xl text-[#9577B9]"
                             onClick={() => setIsModalTalla(false)}
+                            aria-label="Cerrar guía de tallas"
                         >
                             ×
                         </button>

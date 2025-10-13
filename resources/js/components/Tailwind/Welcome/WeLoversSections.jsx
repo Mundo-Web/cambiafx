@@ -128,6 +128,7 @@ const WeLoversSection = ({ we_lovers }) => {
                         {we_lovers.map((_, index) => (
                             <button
                                 key={index}
+                                aria-label={`Ir al video ${index + 1}`}
                                 className={`w-[10.5px] h-[10.5px] rounded-full transition-all duration-300 ${
                                     index === activeIndex
                                         ? "bg-white opacity-100"

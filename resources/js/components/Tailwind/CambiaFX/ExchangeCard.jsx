@@ -1129,6 +1129,7 @@ const ExchangeCard = ({
             <div className="flex gap-2 mb-4 tracking-wider bg-white rounded-2xl p-2 !font-paragraph">
                 <button
                     onClick={() => handleOperationTypeChange('compra')}
+                    aria-label="Seleccionar operación de compra de dólares"
                     className={`flex-1 py-3 rounded-xl font-medium transition-all duration-200 relative ${operationType === 'compra'
                         ? 'bg-constrast text-white shadow-lg shadow-constrast/25'
                         : 'bg-white text-neutral-dark hover:bg-neutral hover:shadow-md'
@@ -1204,6 +1205,7 @@ const ExchangeCard = ({
                 </button>
                 <button
                     onClick={() => handleOperationTypeChange('venta')}
+                    aria-label="Seleccionar operación de venta de dólares"
                     className={`flex-1 py-3 rounded-xl font-medium transition-all duration-200 relative ${operationType === 'venta'
                         ? 'bg-constrast text-white shadow-lg shadow-constrast/25'
                         : 'bg-white text-neutral-dark hover:bg-neutral hover:shadow-md'
@@ -1361,6 +1363,7 @@ const ExchangeCard = ({
                                         onClick={() => {
                                             setShowCouponInput(true);
                                         }}
+                                        aria-label="Usar cupón promocional"
                                         className="flex-1 justify-center flex gap-3 items-center py-4 px-4 rounded-xl font-medium text-sm transition-all duration-200 border-2 group relative text-neutral-dark hover:bg-neutral hover:shadow-md border-transparent hover:border-secondary/30"
                                         title="Ingresa tu cupón promocional para obtener una tasa preferencial"
                                     >
@@ -1606,6 +1609,7 @@ const ExchangeCard = ({
                                                     calculateExchange('O');
                                                 }
                                             }}
+                                            aria-label="Cerrar campo de cupón"
                                             className="absolute right-3 top-1/2 transform -translate-y-1/2 text-neutral-light/60 hover:text-neutral-dark transition-colors p-1 hover:bg-neutral/50 rounded-lg"
                                         >
                                             <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -1620,6 +1624,7 @@ const ExchangeCard = ({
                                             // Durante la consulta: Mostrar loading
                                             <button
                                                 disabled
+                                                aria-label="Consultando cupones disponibles"
                                                 className="py-4 px-4 rounded-xl bg-constrast text-white transition-all duration-200 cursor-wait"
                                                 title="Consultando cupones disponibles..."
                                             >
@@ -1666,6 +1671,7 @@ const ExchangeCard = ({
                                             // Antes de validar: Consultar cupones disponibles
                                             <button
                                                 onClick={handleConsultCoupons}
+                                                aria-label="Validar cupón ingresado"
                                                 className="py-3 px-3 rounded-xl bg-constrast hover:bg-neutral-dark text-white transition-all duration-200 group"
                                                 title="Consultar cupones disponibles"
                                             >
@@ -1865,6 +1871,7 @@ const ExchangeCard = ({
             {/* Start Operation Button */}
             <button
                 onClick={handleOperationStart}
+                aria-label="Iniciar operación de cambio de moneda"
                 className="mt-3 py-4 rounded-full bg-neutral-dark text-white font-semibold tracking-wider text-sm w-full hover:bg-constrast transition-all duration-200"
             >
                 INICIAR OPERACIÓN
@@ -1913,6 +1920,7 @@ const ExchangeCard = ({
                             </p>
                             <button
                                 onClick={() => setShowCouponModal(false)}
+                                aria-label="Cerrar modal de información del cupón"
                                 className="w-full py-4 bg-gradient-to-r from-constrast to-constrast/90 text-primary rounded-2xl font-bold text-sm hover:shadow-lg hover:shadow-constrast/30 transition-all duration-300 font-title tracking-wide"
                             >
                                 Entendido

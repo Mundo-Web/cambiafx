@@ -90,8 +90,8 @@
             
             <!-- Botones de operación -->
             <div class="text-center mb-4">
-                <button class="btn btn-cf-compra btn-dark">COMPRA</button>
-                <button class="btn btn-cf-venta btn-secondary">VENTA</button>
+                <button class="btn btn-cf-compra btn-dark" aria-label="Seleccionar operación de compra">COMPRA</button>
+                <button class="btn btn-cf-venta btn-secondary" aria-label="Seleccionar operación de venta">VENTA</button>
             </div>
             
             <!-- Mostrar tasas actuales -->
@@ -115,7 +115,7 @@
             </div>
             
             <!-- Botón de intercambio -->
-            <button class="btn btn-change">
+            <button class="btn btn-change" aria-label="Intercambiar monedas">
                 <i class="fas fa-exchange-alt"></i> ⇄
             </button>
             
@@ -138,7 +138,7 @@
             </div>
             
             <!-- Botón de continuar -->
-            <button class="btn btn-login btn-success">
+            <button class="btn btn-login btn-success" aria-label="Continuar con esta operación">
                 Continuar con esta Operación
             </button>
             

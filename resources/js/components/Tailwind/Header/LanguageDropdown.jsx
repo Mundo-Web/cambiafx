@@ -27,6 +27,7 @@ const LanguageDropdown = ({ languagesSystem, selectLanguage, onUseLanguage }) =>
     <div className="relative inline-flex font-Urbanist_Bold" ref={dropdownRef}>
       <button 
         className="inline-flex justify-center items-center group" 
+        aria-label="Seleccionar idioma"
         aria-haspopup="true"
         onClick={toggleDropdown} 
         aria-expanded={open}
@@ -77,6 +78,7 @@ const LanguageDropdown = ({ languagesSystem, selectLanguage, onUseLanguage }) =>
                   className={`font-medium text-sm 2xl:text-base flex items-center py-1 px-3 w-full text-left ${
                     selectLanguage?.id === language.id ? 'text-[#3E2F4D] font-bold' : ''
                   }`}
+                  aria-label={`Cambiar a ${language.name}`}
                   onClick={() => {
                     onUseLanguage(language);
                     setOpen(false);

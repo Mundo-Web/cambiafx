@@ -77,6 +77,7 @@ const SelectForm = ({
             <button
                 className={`w-full relative text-start  px-6 py-2 border border-[#5F48B7] focus:ring-0 focus:outline-0 2xl:text-[19.37px]   transition-all duration-300 font-semibold text-[#5F48B7] ${className}`}
                 onClick={() => setIsOpen(!isOpen)}
+                aria-label={label || placeholder || "Seleccionar opción"}
                 aria-haspopup="listbox"
                 aria-expanded={isOpen}
                 disabled={disabled}

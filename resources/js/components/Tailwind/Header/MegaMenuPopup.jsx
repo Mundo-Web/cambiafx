@@ -39,6 +39,7 @@ const MegaMenuPopup = ({ info, isOpen, onClose, data }) => {
             <div className="flex justify-end mb-1 absolute right-5">
               <button
                 onClick={onClose}
+                aria-label="Cerrar menú"
                 className="p-2 text-constrast border border-constrast hover:text-constrast  rounded-lg transition-colors"
               >
                 <X className="h-5 w-5" />

@@ -50,6 +50,7 @@ const HairGoals = ({ test, setTest, values }) => {
           selectedGoals.length >= 3 &&
           <div className="text-end">
             <button
+              aria-label="Continuar al siguiente paso"
               className='h-10 px-4 bg-[#9577B9] text-white rounded-full transition-all'
               onClick={onNextClicked}
             >

@@ -89,6 +89,7 @@ const NotSureSection = ({ producto }) => {
                                     quantity,
                                 })
                             }
+                            aria-label="Añadir producto al carrito"
                             className="mt-4 relative w-full sm:w-[332px] lg:w-full h-[59px] lg:h-[35.88px] 2xl:h-[39.88px] text-[17.02px] lg:text-[12.59px]  2xl:text-[13.59px] leading-[13.59px] bg-[#FC58BE] text-white rounded-[6px]  lg:rounded-[2.72px] border-[1.81px] border-[#FC58BE]  flex items-center justify-center"
                         >
                             <span className="">Añadir al carrito</span>
