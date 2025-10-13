@@ -46,12 +46,16 @@ export default defineConfig({
                     return assetInfo.name;
                 },
                 manualChunks: (id) => {
-                    // React core y dependencies críticas (incluir scheduler)
-                    if (id.includes('node_modules/react') || 
-                        id.includes('node_modules/react-dom') || 
-                        id.includes('node_modules/scheduler') ||
-                        id.includes('node_modules/@inertiajs')) {
+                    // React core (debe ser el primer chunk para evitar dependencias circulares)
+                    if (id.includes('node_modules/react/') || 
+                        id.includes('node_modules/react-dom/') || 
+                        id.includes('node_modules/scheduler/')) {
                         return 'vendor-react';
+                    }
+                    
+                    // Inertia.js (depende de React)
+                    if (id.includes('node_modules/@inertiajs/')) {
+                        return 'vendor-inertia';
                     }
                     
                     // Animaciones (framer-motion, motion)
@@ -78,20 +82,21 @@ export default defineConfig({
                         return 'vendor-maps';
                     }
                     
-                    // Utilidades (moment, jquery, etc.)
-                    if (id.includes('node_modules/moment') || 
-                        id.includes('node_modules/jquery')) {
-                        return 'vendor-utils';
-                    }
-                    
-                    // Icons
+                    // Icons (react-icons, lucide-react)
                     if (id.includes('node_modules/react-icons') ||
                         id.includes('node_modules/lucide-react')) {
                         return 'vendor-icons';
                     }
                     
+                    // Utilidades (moment, jquery, sode-extend-react, etc.)
+                    if (id.includes('node_modules/moment') || 
+                        id.includes('node_modules/jquery') ||
+                        id.includes('node_modules/sode-extend-react')) {
+                        return 'vendor-utils';
+                    }
+                    
                     // Resto de node_modules
-                    if (id.includes('node_modules')) {
+                    if (id.includes('node_modules/')) {
                         return 'vendor-other';
                     }
                 },

@@ -1,1 +1,0 @@
-import"./vendor-react-CPrmKqY1.js";import"./Detail-BP4s6BZA.js";import"./vendor-other-C_PV_E3D.js";import"./BenefitsSection-B8RMFMlS.js";import"./Menu-DwjLWf7w.js";import"./BannerFxEmpresas-B0oQ2g1G.js";import"./vendor-ui-C_W9Xu_X.js";import"./vendor-utils-CcnrHwuG.js";import"./General-CSnTKUjB.js";import"./vendor-motion-Dd2Y39Mq.js";import"./vendor-icons-CSdnOqCW.js";
