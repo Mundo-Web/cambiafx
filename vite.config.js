@@ -46,9 +46,10 @@ export default defineConfig({
                     return assetInfo.name;
                 },
                 manualChunks: (id) => {
-                    // React core y dependencies críticas
+                    // React core y dependencies críticas (incluir scheduler)
                     if (id.includes('node_modules/react') || 
                         id.includes('node_modules/react-dom') || 
+                        id.includes('node_modules/scheduler') ||
                         id.includes('node_modules/@inertiajs')) {
                         return 'vendor-react';
                     }

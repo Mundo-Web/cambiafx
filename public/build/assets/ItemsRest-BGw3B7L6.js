@@ -1,0 +1,1 @@
+var e=Object.defineProperty,s=(s,r,t)=>(((s,r,t)=>{r in s?e(s,r,{enumerable:!0,configurable:!0,writable:!0,value:t}):s[r]=t})(s,"symbol"!=typeof r?r+"":r,t),t);import{B as r}from"./BlogHeader-BKHHBV6_.js";class t extends r{constructor(){super(...arguments),s(this,"path","admin/items"),s(this,"hasFiles",!0)}}export{t as I};

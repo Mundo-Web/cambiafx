@@ -1,1 +1,0 @@
-import"./vendor-react-DzBtACbq.js";import{P as n}from"./vendor-other-WBSfFINJ.js";n.string.isRequired,n.string,n.number,n.number,n.bool,n.string,n.oneOf(["cover","contain","fill","none","scale-down"]),n.bool,n.func,n.func,n.string,n.string;

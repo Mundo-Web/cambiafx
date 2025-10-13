@@ -1,0 +1,1 @@
+import{j as l}from"./vendor-react-CPrmKqY1.js";const s=({className:s="max-w-md",width:a,color:o="#F7C2C6"})=>l.jsx("div",{className:`h-2 bg-[#EFEAE5] ${s} rounded-full mx-auto`,children:l.jsx("hr",{className:"h-full rounded-full",style:{backgroundColor:o,width:a,transition:"all .25s"}})});export{s as P};

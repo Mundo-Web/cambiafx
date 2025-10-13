@@ -1,1 +1,0 @@
-var e=Object.defineProperty;import{B as r}from"./BlogHeader-0RmPnmor.js";class s extends r{constructor(){var r;super(...arguments),((r,s,a)=>{s in r?e(r,s,{enumerable:!0,configurable:!0,writable:!0,value:a}):r[s]=a})(this,"symbol"!=typeof(r="path")?r+"":r,"messages")}}export{s as M};

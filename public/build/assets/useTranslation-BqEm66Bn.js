@@ -1,1 +1,0 @@
-import{r}from"./vendor-react-DzBtACbq.js";import{a as o}from"./Menu-BYTscszv.js";const t=()=>{const{translations:t,loading:n,error:s}=r.useContext(o);return{t:(r,o="")=>n||s?o:((r,o,t="")=>{var n;const s=o.split(".");if(1===s.length)return r[o]||t;const e=s.slice(0,-1).join("."),i=s.slice(-1)[0];return(null==(n=r[e])?void 0:n[i])||t})(t,r,o),loading:n,error:s}};export{t as u};
