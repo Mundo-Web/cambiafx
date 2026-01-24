@@ -92,6 +92,7 @@ use App\Http\Controllers\SupplyController;
 use App\Http\Controllers\TestController;
 use App\Http\Controllers\TestResultController;
 use App\Http\Controllers\ThankController;
+use App\Http\Controllers\DescargameController;
 use GrahamCampbell\ResultType\Success;
 use Illuminate\Http\Request;
 
@@ -122,6 +123,7 @@ Route::get('/casos-de-exito', [SuccessStoryController::class, 'reactView'])->nam
 Route::get('/infoproductos', [InfoproductController::class, 'reactView'])->name('Infoproductos.jsx');
 
 Route::get('/', [HomeController::class, 'reactView'])->name('Home.jsx');
+Route::get('/descargame', [DescargameController::class, 'redirect'])->name('descargame');
 Route::get('/empresas', [HomeEmpresaController::class, 'reactView'])->name('HomeEmpresa.jsx');
 Route::get('/test-exchange', [HomeController::class, 'reactView'])->name('TestExchangeCard.jsx');
 Route::get('/test-exchange-card', [HomeController::class, 'reactView'])->name('TestExchangeCard.jsx');
