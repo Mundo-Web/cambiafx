@@ -46,10 +46,10 @@ class BlogPublishedNotification extends Notification implements ShouldQueue
         $template = \App\Models\General::where('correlative', 'blog_published_email')->first();
         $body = $template
             ? \App\Helpers\Text::replaceData($template->description, [
-                'imagen' => url(Storage::url("images/post/".$this->blog->image ?? '')),
+                'imagen' => url("/api/posts/media/".$this->blog->image ?? ''),
                 'titulo' => $this->blog->name,
                 'descripcion' => mb_substr(strip_tags($this->blog->description), 0, 180) . (mb_strlen(strip_tags($this->blog->description)) > 180 ? '...' : ''),
-                'url' =>  url('/post/' . $this->blog->slug),
+                'url' =>  url('/blog/' . $this->blog->slug),
                 'name'         => $notifiable->description ?? '',
                 'year'         => date('Y'),
                 'fecha_publicacion' => $this->blog->created_at
