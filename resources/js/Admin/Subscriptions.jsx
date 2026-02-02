@@ -74,16 +74,19 @@ const Subscriptions = () => {
           caption: 'Estado',
           dataType: 'boolean',
           cellTemplate: (container, { data }) => {
-            switch (data.status) {
-              case 1:
-                ReactAppend(container, <span className='badge bg-success rounded-pill'>Activo</span>)
-                break
-              case 0:
-                ReactAppend(container, <span className='badge bg-danger rounded-pill'>Inactivo</span>)
-                break
-              default:
-                ReactAppend(container, <span className='badge bg-dark rounded-pill'>Eliminado</span>)
-                break
+            // Primero verificar si es null o undefined (eliminado)
+            if (data.status === null || data.status === undefined) {
+              ReactAppend(container, <span className='badge bg-dark rounded-pill'>Eliminado</span>)
+              return
+            }
+
+            // Convertir a número para comparación robusta (maneja "1", 1, "0", 0, true, false)
+            const statusNum = Number(data.status)
+
+            if (statusNum === 1) {
+              ReactAppend(container, <span className='badge bg-success rounded-pill'>Activo</span>)
+            } else {
+              ReactAppend(container, <span className='badge bg-danger rounded-pill'>Inactivo</span>)
             }
           }
         },
