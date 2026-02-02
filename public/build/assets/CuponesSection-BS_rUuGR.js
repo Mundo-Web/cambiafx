@@ -1,1 +1,0 @@
-import"./RequirementCard-BRHcaFA5.js";import"./WebVitalsMonitor-CIEr9-is.js";import{O as o}from"./OptimizedImage-uw97VKTS.js";import"./HomeSeccionBlog-B7rYBVyt.js";/* empty css               */import{m as r}from"./proxy-CCJoq4u5.js";("function"==typeof r.create?r.create:r)(o);
