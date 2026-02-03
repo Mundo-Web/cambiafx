@@ -1823,7 +1823,7 @@
     ]
   },
   "resources/js/Admin/Posts.jsx": {
-    "file": "assets/Posts-BFwqCyJz.js",
+    "file": "assets/Posts-LSToqB1A.js",
     "name": "Posts",
     "src": "resources/js/Admin/Posts.jsx",
     "isEntry": true,
@@ -4382,7 +4382,7 @@
     ]
   },
   "resources/js/components/Adminto/Modal.jsx": {
-    "file": "assets/Modal-D_2wSl83.js",
+    "file": "assets/Modal-CiLs9KOM.js",
     "name": "Modal",
     "src": "resources/js/components/Adminto/Modal.jsx",
     "isEntry": true,
@@ -4430,7 +4430,7 @@
     ]
   },
   "resources/js/components/Adminto/form/CheckboxFormGroup.jsx": {
-    "file": "assets/CheckboxFormGroup-D_2wSl83.js",
+    "file": "assets/CheckboxFormGroup-CiLs9KOM.js",
     "name": "CheckboxFormGroup",
     "src": "resources/js/components/Adminto/form/CheckboxFormGroup.jsx",
     "isEntry": true,
@@ -4460,7 +4460,7 @@
     ]
   },
   "resources/js/components/Adminto/form/InputFormGroup.jsx": {
-    "file": "assets/InputFormGroup-D_2wSl83.js",
+    "file": "assets/InputFormGroup-CiLs9KOM.js",
     "name": "InputFormGroup",
     "src": "resources/js/components/Adminto/form/InputFormGroup.jsx",
     "isEntry": true,
@@ -4470,7 +4470,7 @@
     ]
   },
   "resources/js/components/Adminto/form/PasswordFormGroup.jsx": {
-    "file": "assets/PasswordFormGroup-D_2wSl83.js",
+    "file": "assets/PasswordFormGroup-CiLs9KOM.js",
     "name": "PasswordFormGroup",
     "src": "resources/js/components/Adminto/form/PasswordFormGroup.jsx",
     "isEntry": true,
@@ -4480,7 +4480,7 @@
     ]
   },
   "resources/js/components/Adminto/form/QuillFormGroup.jsx": {
-    "file": "assets/QuillFormGroup-D_2wSl83.js",
+    "file": "assets/QuillFormGroup-CiLs9KOM.js",
     "name": "QuillFormGroup",
     "src": "resources/js/components/Adminto/form/QuillFormGroup.jsx",
     "isEntry": true,
@@ -4514,7 +4514,7 @@
     ]
   },
   "resources/js/components/Adminto/form/SelectFormGroup.jsx": {
-    "file": "assets/SelectFormGroup-D_2wSl83.js",
+    "file": "assets/SelectFormGroup-CiLs9KOM.js",
     "name": "SelectFormGroup",
     "src": "resources/js/components/Adminto/form/SelectFormGroup.jsx",
     "isEntry": true,
@@ -4555,7 +4555,7 @@
     ]
   },
   "resources/js/components/Adminto/form/TippyButton.jsx": {
-    "file": "assets/TippyButton-BrF3PdQ1.js",
+    "file": "assets/TippyButton-DG2hJtPH.js",
     "name": "TippyButton",
     "src": "resources/js/components/Adminto/form/TippyButton.jsx",
     "isEntry": true,
@@ -5114,7 +5114,7 @@
     ]
   },
   "resources/js/components/Modal.jsx": {
-    "file": "assets/Modal-CiLs9KOM.js",
+    "file": "assets/Modal-D_2wSl83.js",
     "name": "Modal",
     "src": "resources/js/components/Modal.jsx",
     "isEntry": true,
@@ -5422,33 +5422,22 @@
     ]
   },
   "resources/js/components/Tailwind/CambiaFX/EmpresasSection.jsx": {
-    "file": "assets/EmpresasSection-BG2oAUIv.js",
+    "file": "assets/EmpresasSection-qCJYvplV.js",
     "name": "EmpresasSection",
     "src": "resources/js/components/Tailwind/CambiaFX/EmpresasSection.jsx",
-    "isDynamicEntry": true,
+    "isEntry": true,
     "imports": [
       "resources/js/Admin/components/RequirementCard.jsx",
       "resources/js/components/WebVitalsMonitor.jsx",
       "resources/js/components/Tailwind/CambiaFX/BannerFxEmpresas.jsx",
-      "_proxy-CCJoq4u5.js",
-      "_Header-BlBE6duK.js",
       "_main-BK7KYfUi.js",
       "____vite-browser-external_commonjs-proxy-CGejAyr8.js",
       "resources/js/components/Blog/Results.jsx",
       "_General-CSnTKUjB.js",
+      "_proxy-CCJoq4u5.js",
       "_message-circle-D7aVxfAJ.js",
       "_createLucideIcon-C1llfSNW.js",
-      "_phone-0gBB7l7y.js",
-      "resources/js/components/Tailwind/DetailProduct/Detail.jsx",
-      "_useTranslation-Bwe3926h.js",
-      "resources/js/components/Blog/Filter.jsx",
-      "_axios-COzaZAiy.js",
-      "_CreateReactScript-C5WOo4o1.js",
-      "_index.esm-5NFqnzAw.js"
-    ],
-    "css": [
-      "swiper.css",
-      "tippy.css"
+      "_phone-0gBB7l7y.js"
     ]
   },
   "resources/js/components/Tailwind/CambiaFX/ExchangeCard.jsx": {
@@ -6277,10 +6266,10 @@
     ]
   },
   "resources/js/components/Test/Main.jsx": {
-    "file": "assets/Main-D_2wSl83.js",
+    "file": "assets/Main-C0sSWOgL.js",
     "name": "Main",
     "src": "resources/js/components/Test/Main.jsx",
-    "isEntry": true,
+    "isDynamicEntry": true,
     "imports": [
       "resources/js/Admin/components/RequirementCard.jsx",
       "resources/js/components/WebVitalsMonitor.jsx"
@@ -6404,7 +6393,7 @@
     "isEntry": true
   },
   "resources/js/components/form/CheckboxFormGroup.jsx": {
-    "file": "assets/CheckboxFormGroup-CiLs9KOM.js",
+    "file": "assets/CheckboxFormGroup-D_2wSl83.js",
     "name": "CheckboxFormGroup",
     "src": "resources/js/components/form/CheckboxFormGroup.jsx",
     "isEntry": true,
@@ -6414,7 +6403,7 @@
     ]
   },
   "resources/js/components/form/InputFormGroup.jsx": {
-    "file": "assets/InputFormGroup-CiLs9KOM.js",
+    "file": "assets/InputFormGroup-D_2wSl83.js",
     "name": "InputFormGroup",
     "src": "resources/js/components/form/InputFormGroup.jsx",
     "isEntry": true,
@@ -6424,7 +6413,7 @@
     ]
   },
   "resources/js/components/form/PasswordFormGroup.jsx": {
-    "file": "assets/PasswordFormGroup-CiLs9KOM.js",
+    "file": "assets/PasswordFormGroup-D_2wSl83.js",
     "name": "PasswordFormGroup",
     "src": "resources/js/components/form/PasswordFormGroup.jsx",
     "isEntry": true,
@@ -6434,7 +6423,7 @@
     ]
   },
   "resources/js/components/form/QuillFormGroup.jsx": {
-    "file": "assets/QuillFormGroup-CiLs9KOM.js",
+    "file": "assets/QuillFormGroup-D_2wSl83.js",
     "name": "QuillFormGroup",
     "src": "resources/js/components/form/QuillFormGroup.jsx",
     "isEntry": true,
@@ -6456,7 +6445,7 @@
     ]
   },
   "resources/js/components/form/SelectFormGroup.jsx": {
-    "file": "assets/SelectFormGroup-CiLs9KOM.js",
+    "file": "assets/SelectFormGroup-D_2wSl83.js",
     "name": "SelectFormGroup",
     "src": "resources/js/components/form/SelectFormGroup.jsx",
     "isEntry": true,
@@ -6476,7 +6465,7 @@
     ]
   },
   "resources/js/components/form/TippyButton.jsx": {
-    "file": "assets/TippyButton-DG2hJtPH.js",
+    "file": "assets/TippyButton-BrF3PdQ1.js",
     "name": "TippyButton",
     "src": "resources/js/components/form/TippyButton.jsx",
     "isEntry": true,

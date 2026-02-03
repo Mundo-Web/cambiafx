@@ -70,8 +70,8 @@ const Posts = ({ }) => {
       description: descriptionRef.current.value,
       tags: $(tagsRef.current).val(),
       post_date: postDateRef.current.value,
-      seo_title: seoTitleRef.current.value,
-      seo_description: seoDescriptionRef.current.value,
+      seo_title: seoTitleRef.current.value || nameRef.current.value,
+      seo_description: seoDescriptionRef.current.value || html2string(descriptionRef.current.value).substring(0, 155),
       seo_keywords: seoKeywordsRef.current.value,
     }
 
