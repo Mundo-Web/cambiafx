@@ -130,7 +130,7 @@ Route::get('/test-exchange-card', [HomeController::class, 'reactView'])->name('T
 Route::get('/nosotros', [AboutController::class, 'reactView'])->name('About.jsx');
 Route::get('/contacto', [ContactController::class, 'reactView'])->name('Contacto.jsx');
 Route::get('/offices', [FacilityController::class, 'reactView'])->name('InstalacionesPage.jsx');
-Route::get('/services', [ServiceController::class, 'reactView'])->name('ServiciosPage.jsx');
+Route::get('/servicios', [ServiceController::class, 'reactView'])->name('ServiciosPage.jsx');
 Route::get('/catalog', [CatalogController::class, 'reactView'])->name('CatalogProducts.jsx');
 Route::get('/instructions', [InstructionController::class, 'reactView'])->name('Instructions.jsx');
 Route::get('/quiz', [CatalogController::class, 'reactView'])->name('Quiz.jsx');
@@ -233,6 +233,8 @@ Route::middleware(['can:Admin', 'auth'])->prefix('admin')->group(function () {
     Route::get('/translations', [AdminTranslationController::class, 'reactView'])->name('Admin/Translations.jsx');
     Route::get('/strengths', [AdminStrengthController::class, 'reactView'])->name('Admin/Strengths.jsx');
     Route::get('/core_values', [AdminCoreValueController::class, 'reactView'])->name('Admin/CoreValues.jsx');
+    Route::post('/generals/sitemap', [AdminGeneralController::class, 'generateSitemap'])->name('Admin/Generals/Sitemap');
+    Route::post('/generals/robot', [AdminGeneralController::class, 'generateRobots'])->name('Admin/Generals/Robot');
     Route::get('/generals', [AdminGeneralController::class, 'reactView'])->name('Admin/Generals.jsx');
     Route::get('/users', [AdminUserController::class, 'reactView'])->name('Admin/Users.jsx');
 

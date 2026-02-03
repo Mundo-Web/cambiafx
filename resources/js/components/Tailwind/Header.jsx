@@ -441,13 +441,13 @@ const Header = ({
                             <nav className="flex gap-2">
                                 {[
                                     "/nosotros",
-                                    "/services",
+                                    "/servicios",
                                     "/contacto",
                                     "/blog",
                                 ].map((path) => {
                                     const text = {
                                         "/nosotros": t("public.header.home", "Nosotros"),
-                                        "/services": t(
+                                        "/servicios": t(
                                             "public.header.services",
                                             "Servicios"
                                         ), "/contacto": t(
@@ -770,14 +770,14 @@ const Header = ({
                                 
                                 
                                             { path: "/nosotros", color: "bg-white" },
-                                            { path: "/services", color: "bg-white" },
+                                            { path: "/servicios", color: "bg-white" },
                                             { path: "/contacto", color: "bg-white" },
                                             { path: "/blog", color: "bg-white" },
                                           
                                         ].map((item, index) => {
                                             const text = {
                                                 "/nosotros": t("public.header.home", "Nosotros"),
-                                                "/services": t("public.header.services", "Servicios"),
+                                                "/servicios": t("public.header.services", "Servicios"),
                                                 "/contacto": t("public.header.contact", "Contacto"),
                                                 "/blog": t("public.header.options", "Blog"),
                                             }[item.path];

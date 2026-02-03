@@ -24,7 +24,10 @@ class Post extends Model
         'post_date',
         'featured',
         'status',
-        'lang_id'
+        'lang_id',
+        'seo_title',
+        'seo_description',
+        'seo_keywords'
     ];
 
     protected $casts = [

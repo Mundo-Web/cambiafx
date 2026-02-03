@@ -203,15 +203,15 @@ class BasicController extends Controller
 
     $reactViewProperties = $this->setReactViewProperties($request);
     if (\is_array($reactViewProperties)) {
-      foreach ($this->setReactViewProperties($request) as $key => $value) {
-        $properties[$key] = $value;
-      }
+      $properties = array_merge($properties, $reactViewProperties);
     } else {
       return $reactViewProperties;
     }
+
     return Inertia::render($this->reactView, $properties)
       ->rootView($this->reactRootView)
-      ->withViewData('data', $this->reactData ?? []);
+      ->withViewData('data', $this->reactData ?? [])
+      ->withViewData($properties);
   }
 
   public function paginate(Request $request): HttpResponse|ResponseFactory

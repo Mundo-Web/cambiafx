@@ -197,6 +197,14 @@ const Generals = ({ generals }) => {
         }));
     };
 
+    const handleGenerateSitemap = async () => {
+        await generalsRest.generateSitemap();
+    };
+
+    const handleGenerateRobot = async () => {
+        await generalsRest.generateRobots();
+    };
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
@@ -469,6 +477,16 @@ const Generals = ({ generals }) => {
                             role="tab"
                         >
                             Ubicación
+                        </button>
+                    </li>
+                    <li className="nav-item" role="presentation">
+                        <button
+                            className={`nav-link ${activeTab === "robots" ? "active" : ""}`}
+                            onClick={() => setActiveTab("robots")}
+                            type="button"
+                            role="tab"
+                        >
+                            Robot y Sitemap
                         </button>
                     </li>
                     {Global.APP_CORRELATIVE === "cambioDev" && (
@@ -1183,6 +1201,43 @@ const Generals = ({ generals }) => {
                         </small>
                     </div>
 
+
+                    <div className={`tab-pane fade ${activeTab === "robots" ? "show active" : ""}`} role="tabpanel">
+                        <div className="row">
+                            <div className="col-md-6">
+                                <div className="card h-100">
+                                    <div className="card-body">
+                                        <h5 className="card-title mb-3">Sitemap</h5>
+                                        <p className="card-text mb-4">Genera el archivo <code>sitemap.xml</code> con las rutas configuradas (incluyendo servicios, blog, empresas, etc.).</p>
+                                        <div className="d-flex gap-2">
+                                            <button type="button" className="btn btn-primary w-100" onClick={handleGenerateSitemap}>
+                                                <i className="fa fa-refresh me-2"></i> Generar
+                                            </button>
+                                            <a href="/sitemap.xml" target="_blank" className="btn btn-outline-secondary w-100">
+                                                <i className="fa fa-eye me-2"></i> Ver
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="col-md-6">
+                                <div className="card h-100">
+                                    <div className="card-body">
+                                        <h5 className="card-title mb-3">Robots.txt</h5>
+                                        <p className="card-text mb-4">Genera el archivo <code>robots.txt</code> básico permitiendo la indexación y referenciando al sitemap.</p>
+                                        <div className="d-flex gap-2">
+                                            <button type="button" className="btn btn-primary w-100" onClick={handleGenerateRobot}>
+                                                <i className="fa fa-refresh me-2"></i> Generar
+                                            </button>
+                                            <a href="/robots.txt" target="_blank" className="btn btn-outline-secondary w-100">
+                                                <i className="fa fa-eye me-2"></i> Ver
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
                     <div
                         className={`tab-pane fade ${activeTab === "email" ? "show active" : ""}`}

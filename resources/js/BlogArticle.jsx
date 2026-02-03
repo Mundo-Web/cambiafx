@@ -443,6 +443,22 @@ const BlogArticle = ({ article, posts, landing, banner_operacion,banner }) => {
                                 Tiempo de lectura: ~{Math.max(1, Math.ceil(article.description.split(' ').length / 200))} min
                             </motion.span>
                         </motion.div>
+
+                        {article.tags && article.tags.length > 0 && (
+                            <motion.div 
+                                className="flex flex-wrap gap-2 mt-4 hidden"
+                                variants={fadeInUp}
+                            >
+                                {article.tags.map((tag, index) => (
+                                    <span 
+                                        key={index}
+                                        className="px-3 py-1 bg-gray-100 text-gray-600 rounded-full text-sm font-medium"
+                                    >
+                                        #{tag.name}
+                                    </span>
+                                ))}
+                            </motion.div>
+                        )}
                     </motion.div>
 
                     <motion.div 
