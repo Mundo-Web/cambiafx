@@ -543,8 +543,8 @@ const BlogArticle = ({ article, posts, landing, banner_operacion,banner }) => {
                                 font-size: 1.125rem;
                             }
                             
-                            .blog-article-content :global(h1),
-                            .blog-article-content-part :global(h1) {
+                            .blog-article-content h1,
+                            .blog-article-content-part h1 {
                                 font-size: 2.5rem;
                                 font-weight: 700;
                                 color: #003049;
@@ -553,8 +553,8 @@ const BlogArticle = ({ article, posts, landing, banner_operacion,banner }) => {
                                 line-height: 1.2;
                             }
                             
-                            .blog-article-content :global(h2),
-                            .blog-article-content-part :global(h2) {
+                            .blog-article-content h2,
+                            .blog-article-content-part h2 {
                                 font-size: 2rem;
                                 font-weight: 600;
                                 color: #003049;
@@ -563,8 +563,8 @@ const BlogArticle = ({ article, posts, landing, banner_operacion,banner }) => {
                                 line-height: 1.3;
                             }
                             
-                            .blog-article-content :global(h3),
-                            .blog-article-content-part :global(h3) {
+                            .blog-article-content h3,
+                            .blog-article-content-part h3 {
                                 font-size: 1.75rem;
                                 font-weight: 600;
                                 color: #003049;
@@ -573,8 +573,8 @@ const BlogArticle = ({ article, posts, landing, banner_operacion,banner }) => {
                                 line-height: 1.4;
                             }
                             
-                            .blog-article-content :global(h4),
-                            .blog-article-content-part :global(h4) {
+                            .blog-article-content h4,
+                            .blog-article-content-part h4 {
                                 font-size: 1.5rem;
                                 font-weight: 500;
                                 color: #003049;
@@ -583,8 +583,8 @@ const BlogArticle = ({ article, posts, landing, banner_operacion,banner }) => {
                                 line-height: 1.4;
                             }
                             
-                            .blog-article-content :global(h5),
-                            .blog-article-content-part :global(h5) {
+                            .blog-article-content h5,
+                            .blog-article-content-part h5 {
                                 font-size: 1.25rem;
                                 font-weight: 500;
                                 color: #003049;
@@ -593,8 +593,8 @@ const BlogArticle = ({ article, posts, landing, banner_operacion,banner }) => {
                                 line-height: 1.5;
                             }
                             
-                            .blog-article-content :global(h6),
-                            .blog-article-content-part :global(h6) {
+                            .blog-article-content h6,
+                            .blog-article-content-part h6 {
                                 font-size: 1.125rem;
                                 font-weight: 500;
                                 color: #003049;
@@ -603,41 +603,41 @@ const BlogArticle = ({ article, posts, landing, banner_operacion,banner }) => {
                                 line-height: 1.5;
                             }
                             
-                            .blog-article-content :global(p),
-                            .blog-article-content-part :global(p) {
+                            .blog-article-content p,
+                            .blog-article-content-part p {
                                 margin-bottom: 1.5rem;
                                 color: #001520;
                                 line-height: 1.8;
                                 font-size: 1.125rem;
                             }
                             
-                            .blog-article-content :global(ul), 
-                            .blog-article-content :global(ol),
-                            .blog-article-content-part :global(ul), 
-                            .blog-article-content-part :global(ol) {
+                            .blog-article-content ul, 
+                            .blog-article-content ol,
+                            .blog-article-content-part ul, 
+                            .blog-article-content-part ol {
                                 margin-bottom: 1.5rem;
                                 padding-left: 2rem;
                                 color: #001520;
                             }
                             
-                            .blog-article-content :global(li),
-                            .blog-article-content-part :global(li) {
+                            .blog-article-content li,
+                            .blog-article-content-part li {
                                 margin-bottom: 0.75rem;
                                 line-height: 1.7;
                             }
                             
-                            .blog-article-content :global(ul li),
-                            .blog-article-content-part :global(ul li) {
-                                list-style-type: disc;
+                            .blog-article-content ul li,
+                            .blog-article-content-part ul li {
+                                list-style-type: disc !important;
                             }
                             
-                            .blog-article-content :global(ol li),
-                            .blog-article-content-part :global(ol li) {
-                                list-style-type: decimal;
+                            .blog-article-content ol li,
+                            .blog-article-content-part ol li {
+                                list-style-type: decimal !important;
                             }
                             
-                            .blog-article-content :global(blockquote),
-                            .blog-article-content-part :global(blockquote) {
+                            .blog-article-content blockquote,
+                            .blog-article-content-part blockquote {
                                 border-left: 4px solid #D62828;
                                 background-color: #F2F2F2;
                                 padding: 1.5rem 2rem;
@@ -647,29 +647,29 @@ const BlogArticle = ({ article, posts, landing, banner_operacion,banner }) => {
                                 border-radius: 0 8px 8px 0;
                             }
                             
-                            .blog-article-content :global(blockquote p),
-                            .blog-article-content-part :global(blockquote p) {
+                            .blog-article-content blockquote p,
+                            .blog-article-content-part blockquote p {
                                 margin-bottom: 0;
                                 font-size: 1.25rem;
                                 font-weight: 500;
                             }
                             
-                            .blog-article-content :global(a),
-                            .blog-article-content-part :global(a) {
+                            .blog-article-content a,
+                            .blog-article-content-part a {
                                 color: #D62828;
                                 text-decoration: underline;
                                 font-weight: 500;
                                 transition: color 0.2s ease;
                             }
                             
-                            .blog-article-content :global(a:hover),
-                            .blog-article-content-part :global(a:hover) {
+                            .blog-article-content a:hover,
+                            .blog-article-content-part a:hover {
                                 color: #F77F00;
                                 text-decoration: none;
                             }
                             
-                            .blog-article-content :global(img),
-                            .blog-article-content-part :global(img) {
+                            .blog-article-content img,
+                            .blog-article-content-part img {
                              
                                 height: auto !important;
                                 margin-left: auto !important;
@@ -686,8 +686,8 @@ const BlogArticle = ({ article, posts, landing, banner_operacion,banner }) => {
                             
                             /* Para pantallas grandes, centrar la imagen cuando excede el contenedor */
                             @media (min-width: 1280px) {
-                                .blog-article-content :global(img),
-                                .blog-article-content-part :global(img) {
+                                .blog-article-content img,
+                                .blog-article-content-part img {
                                    
                                    
                                     margin-left: calc(-40rem + 50%) !important;
@@ -695,23 +695,23 @@ const BlogArticle = ({ article, posts, landing, banner_operacion,banner }) => {
                                 }
                             }
                             
-                            .blog-article-content :global(strong), 
-                            .blog-article-content :global(b),
-                            .blog-article-content-part :global(strong), 
-                            .blog-article-content-part :global(b) {
+                            .blog-article-content strong, 
+                            .blog-article-content b,
+                            .blog-article-content-part strong, 
+                            .blog-article-content-part b {
                                 font-weight: 700;
                                 color: #003049;
                             }
                             
-                            .blog-article-content :global(em), 
-                            .blog-article-content :global(i),
-                            .blog-article-content-part :global(em), 
-                            .blog-article-content-part :global(i) {
+                            .blog-article-content em, 
+                            .blog-article-content i,
+                            .blog-article-content-part em, 
+                            .blog-article-content-part i {
                                 font-style: italic;
                             }
                             
-                            .blog-article-content :global(code),
-                            .blog-article-content-part :global(code) {
+                            .blog-article-content code,
+                            .blog-article-content-part code {
                                 background-color: #F2F2F2;
                                 color: #D62828;
                                 padding: 0.25rem 0.5rem;
@@ -720,8 +720,8 @@ const BlogArticle = ({ article, posts, landing, banner_operacion,banner }) => {
                                 font-family: 'Courier New', monospace;
                             }
                             
-                            .blog-article-content :global(pre),
-                            .blog-article-content-part :global(pre) {
+                            .blog-article-content pre,
+                            .blog-article-content-part pre {
                                 background-color: #001520;
                                 color: #F2F2F2;
                                 padding: 1.5rem;
@@ -731,8 +731,8 @@ const BlogArticle = ({ article, posts, landing, banner_operacion,banner }) => {
                                 line-height: 1.6;
                             }
                             
-                            .blog-article-content :global(pre code),
-                            .blog-article-content-part :global(pre code) {
+                            .blog-article-content pre code,
+                            .blog-article-content-part pre code {
                                 background-color: transparent;
                                 color: inherit;
                                 padding: 0;
@@ -740,8 +740,8 @@ const BlogArticle = ({ article, posts, landing, banner_operacion,banner }) => {
                                 font-size: 0.875rem;
                             }
                             
-                            .blog-article-content :global(table),
-                            .blog-article-content-part :global(table) {
+                            .blog-article-content table,
+                            .blog-article-content-part table {
                                 width: 100%;
                                 border-collapse: collapse;
                                 margin: 2rem 0;
@@ -750,29 +750,29 @@ const BlogArticle = ({ article, posts, landing, banner_operacion,banner }) => {
                                 overflow: hidden;
                             }
                             
-                            .blog-article-content :global(th),
-                            .blog-article-content :global(td),
-                            .blog-article-content-part :global(th),
-                            .blog-article-content-part :global(td) {
+                            .blog-article-content th,
+                            .blog-article-content td,
+                            .blog-article-content-part th,
+                            .blog-article-content-part td {
                                 padding: 1rem;
                                 text-align: left;
                                 border-bottom: 1px solid #F2F2F2;
                             }
                             
-                            .blog-article-content :global(th),
-                            .blog-article-content-part :global(th) {
+                            .blog-article-content th,
+                            .blog-article-content-part th {
                                 background-color: #003049;
                                 color: white;
                                 font-weight: 600;
                             }
                             
-                            .blog-article-content :global(tr:nth-child(even)),
-                            .blog-article-content-part :global(tr:nth-child(even)) {
+                            .blog-article-content tr:nth-child(even),
+                            .blog-article-content-part tr:nth-child(even) {
                                 background-color: #F2F2F2;
                             }
                             
-                            .blog-article-content :global(hr),
-                            .blog-article-content-part :global(hr) {
+                            .blog-article-content hr,
+                            .blog-article-content-part hr {
                                 border: none;
                                 border-top: 2px solid #F2F2F2;
                                 margin: 3rem 0;
@@ -785,51 +785,51 @@ const BlogArticle = ({ article, posts, landing, banner_operacion,banner }) => {
                                     font-size: 1rem;
                                 }
                                 
-                                .blog-article-content :global(h1),
-                                .blog-article-content-part :global(h1) {
+                                .blog-article-content h1,
+                                .blog-article-content-part h1 {
                                     font-size: 2rem;
                                 }
                                 
-                                .blog-article-content :global(h2),
-                                .blog-article-content-part :global(h2) {
+                                .blog-article-content h2,
+                                .blog-article-content-part h2 {
                                     font-size: 1.75rem;
                                 }
                                 
-                                .blog-article-content :global(h3),
-                                .blog-article-content-part :global(h3) {
+                                .blog-article-content h3,
+                                .blog-article-content-part h3 {
                                     font-size: 1.5rem;
                                 }
                                 
-                                .blog-article-content :global(h4),
-                                .blog-article-content-part :global(h4) {
+                                .blog-article-content h4,
+                                .blog-article-content-part h4 {
                                     font-size: 1.25rem;
                                 }
                                 
-                                .blog-article-content :global(p),
-                                .blog-article-content-part :global(p) {
+                                .blog-article-content p,
+                                .blog-article-content-part p {
                                     font-size: 1rem;
                                 }
                                 
-                                .blog-article-content :global(blockquote),
-                                .blog-article-content-part :global(blockquote) {
+                                .blog-article-content blockquote,
+                                .blog-article-content-part blockquote {
                                     padding: 1rem 1.5rem;
                                     margin: 1.5rem 0;
                                 }
                                 
-                                .blog-article-content :global(blockquote p),
-                                .blog-article-content-part :global(blockquote p) {
+                                .blog-article-content blockquote p,
+                                .blog-article-content-part blockquote p {
                                     font-size: 1.125rem;
                                 }
                                 
-                                .blog-article-content :global(ul), 
-                                .blog-article-content :global(ol),
-                                .blog-article-content-part :global(ul), 
-                                .blog-article-content-part :global(ol) {
+                                .blog-article-content ul, 
+                                .blog-article-content ol,
+                                .blog-article-content-part ul, 
+                                .blog-article-content-part ol {
                                     padding-left: 1.5rem;
                                 }
                                 
-                                .blog-article-content :global(img),
-                                .blog-article-content-part :global(img) {
+                                .blog-article-content img,
+                                .blog-article-content-part img {
                                     margin-top: 1.5rem;
                                     margin-bottom: 1.5rem;
                                 }
