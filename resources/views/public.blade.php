@@ -1,6 +1,6 @@
 @php
-    $component = Route::currentRouteName();
-    $isHome = $component === 'Home.jsx';
+$component = Route::currentRouteName();
+$isHome = $component === 'Home.jsx';
 @endphp
 
 <!DOCTYPE html>
@@ -22,14 +22,14 @@
 
     <!-- SEO Meta Tags -->
     @include('components.seo-meta-tags', [
-        'title' => $seoTitle ?? null,
-        'description' => $seoDescription ?? null,
-        'keywords' => $seoKeywords ?? null,
-        'image' => $seoImage ?? null,
-        'url' => $seoUrl ?? null,
-        'schemaType' => $schemaType ?? 'Organization'
+    'title' => $seoTitle ?? null,
+    'description' => $seoDescription ?? null,
+    'keywords' => $seoKeywords ?? null,
+    'image' => $seoImage ?? null,
+    'url' => $seoUrl ?? null,
+    'schemaType' => $schemaType ?? 'Organization'
     ])
-    
+
     <!-- PWA Configuration -->
     <link rel="manifest" href="/manifest.json">
     <meta name="theme-color" content="#007bff">
@@ -38,7 +38,7 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="default">
     <meta name="apple-mobile-web-app-title" content="CambiaFX">
     <link rel="apple-touch-icon" href="/icon-192x192.png">
-    
+
     <link rel="shortcut icon" href="/assets/img/favicon.png" type="image/png">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" media="print" onload="this.media='all'">
     <noscript><link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet"></noscript>
@@ -55,8 +55,8 @@
 
     <!--CAMBIO GERENCIA-->
     <link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-    
-  
+
+
     <style>
         * {
             box-sizing: border-box;
@@ -64,12 +64,12 @@
     </style>
 
     @if ($component == 'Checkout.jsx')
-        <script type="application/javascript" src="https://checkout.culqi.com/js/v4"></script>
+    <script type="application/javascript" src="https://checkout.culqi.com/js/v4"></script>
     @elseif ($component == 'MyAccount.jsx')
-        <link href="/lte/assets/libs/dxdatagrid/css/dx.light.compact.css?v=06d3ebc8-645c-4d80-a600-c9652743c425"
-            rel="stylesheet" type="text/css" id="dg-default-stylesheet" />
-        <link href="/lte/assets/libs/dxdatagrid/css/dx.dark.compact.css?v=06d3ebc8-645c-4d80-a600-c9652743c425"
-            rel="stylesheet" type="text/css" id="dg-dark-stylesheet" disabled="disabled" />
+    <link href="/lte/assets/libs/dxdatagrid/css/dx.light.compact.css?v=06d3ebc8-645c-4d80-a600-c9652743c425"
+        rel="stylesheet" type="text/css" id="dg-default-stylesheet" />
+    <link href="/lte/assets/libs/dxdatagrid/css/dx.dark.compact.css?v=06d3ebc8-645c-4d80-a600-c9652743c425"
+        rel="stylesheet" type="text/css" id="dg-dark-stylesheet" disabled="disabled" />
     @endif
 
     @vite(['resources/css/app.css', 'resources/js/' . Route::currentRouteName()])
@@ -117,16 +117,16 @@
     <script src="https://cdn.jsdelivr.net/npm/flowbite@2.4.1/dist/flowbite.min.js" defer></script>
 
     @unless ($isHome)
-        <script src="/lte/assets/libs/moment/min/moment.min.js" defer></script>
-        <script src="/lte/assets/libs/moment/moment-timezone.js" defer></script>
-        <script src="/lte/assets/libs/moment/locale/es.js" defer></script>
-        <script src="/lte/assets/libs/quill/quill.min.js" defer></script>
+    <script src="/lte/assets/libs/moment/min/moment.min.js" defer></script>
+    <script src="/lte/assets/libs/moment/moment-timezone.js" defer></script>
+    <script src="/lte/assets/libs/moment/locale/es.js" defer></script>
+    <script src="/lte/assets/libs/quill/quill.min.js" defer></script>
     @endunless
 
     @if ($component == 'MyAccount.jsx')
-        <script src="/lte/assets/libs/dxdatagrid/js/dx.all.js"></script>
-        <script src="/lte/assets/libs/dxdatagrid/js/localization/dx.messages.es.js"></script>
-        <script src="/lte/assets/libs/dxdatagrid/js/localization/dx.messages.en.js"></script>
+    <script src="/lte/assets/libs/dxdatagrid/js/dx.all.js"></script>
+    <script src="/lte/assets/libs/dxdatagrid/js/localization/dx.messages.es.js"></script>
+    <script src="/lte/assets/libs/dxdatagrid/js/localization/dx.messages.en.js"></script>
     @endif
 
     <script src="/lte/assets/libs/tippy.js/tippy.all.min.js" defer></script>
@@ -200,7 +200,7 @@
                     s.parentNode.insertBefore(t, s);
                 }(window, document, 'script', 'https://connect.facebook.net/en_US/fbevents.js');
 
-                window.fbq('init', '1098274404490481');
+                // window.fbq('init', '1098274404490481');
                 window.fbq('track', 'PageView');
             }, 1500);
 
@@ -219,8 +219,8 @@
     </script>
 
     <noscript>
-        <img height="1" width="1" style="display:none"
-            src="https://www.facebook.com/tr?id=1098274404490481&ev=PageView&noscript=1" />
+        <!--img height="1" width="1" style="display:none"
+            src="https://www.facebook.com/tr?id=1098274404490481&ev=PageView&noscript=1" /-->
     </noscript>
 
     <!-- PWA Service Worker Registration -->

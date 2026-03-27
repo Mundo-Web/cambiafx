@@ -1,11 +1,11 @@
 @php
-    $component = Route::currentRouteName();
-    // Obtener datos SEO de la tabla generals
-    $seoData = App\Helpers\SeoHelper::getSeoData();
-    $basicMeta = App\Helpers\SeoHelper::getBasicMetaTags($seoTitle ?? null, $seoDescription ?? null, $seoKeywords ?? null);
-    $openGraphTags = App\Helpers\SeoHelper::getOpenGraphTags($seoTitle ?? null, $seoDescription ?? null, $seoImage ?? null, $seoUrl ?? null);
-    $twitterCardTags = App\Helpers\SeoHelper::getTwitterCardTags($seoTitle ?? null, $seoDescription ?? null, $seoImage ?? null);
-    $jsonLD = App\Helpers\SeoHelper::getJsonLD();
+$component = Route::currentRouteName();
+// Obtener datos SEO de la tabla generals
+$seoData = App\Helpers\SeoHelper::getSeoData();
+$basicMeta = App\Helpers\SeoHelper::getBasicMetaTags($seoTitle ?? null, $seoDescription ?? null, $seoKeywords ?? null);
+$openGraphTags = App\Helpers\SeoHelper::getOpenGraphTags($seoTitle ?? null, $seoDescription ?? null, $seoImage ?? null, $seoUrl ?? null);
+$twitterCardTags = App\Helpers\SeoHelper::getTwitterCardTags($seoTitle ?? null, $seoDescription ?? null, $seoImage ?? null);
+$jsonLD = App\Helpers\SeoHelper::getJsonLD();
 @endphp
 
 <!DOCTYPE html>
@@ -16,7 +16,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    
+
     <!-- SEO Meta Tags -->
     <title>{{ $basicMeta['title'] }}</title>
     <meta name="description" content="{{ $basicMeta['description'] }}" />
@@ -24,25 +24,25 @@
     <meta name="author" content="{{ $seoData['company_name'] ?? 'CambiaFX' }}" />
     <meta name="robots" content="index, follow" />
     <meta name="csrf_token" content="{{ csrf_token() }}">
-    
+
     <!-- Open Graph Meta Tags para redes sociales -->
     @foreach($openGraphTags as $property => $content)
-        <meta property="{{ $property }}" content="{{ $content }}" />
+    <meta property="{{ $property }}" content="{{ $content }}" />
     @endforeach
-    
+
     <!-- Twitter Card Meta Tags -->
     @foreach($twitterCardTags as $name => $content)
-        <meta name="{{ $name }}" content="{{ $content }}" />
+    <meta name="{{ $name }}" content="{{ $content }}" />
     @endforeach
-    
+
     <!-- Canonical URL -->
     <link rel="canonical" href="{{ url()->current() }}" />
-    
+
     <!-- Schema.org JSON-LD -->
     <script type="application/ld+json">
         {!! json_encode($jsonLD, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT) !!}
     </script>
-    
+
     <!-- PWA Configuration -->
     <link rel="manifest" href="/manifest.json">
     <meta name="theme-color" content="#007bff">
@@ -50,7 +50,7 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="default">
     <meta name="apple-mobile-web-app-title" content="CambiaFX">
     <link rel="apple-touch-icon" href="/icon-192x192.png">
-    
+
     <link rel="shortcut icon" href="/assets/img/favicon.png" type="image/png">
 
     <!-- Resource Hints para mejorar performance -->
@@ -64,15 +64,15 @@
     <link rel="dns-prefetch" href="//checkout.culqi.com">
     <link rel="dns-prefetch" href="//connect.facebook.net">
     <link rel="dns-prefetch" href="//embed.tawk.to">
-    
+
     <!-- Preconnect para recursos críticos -->
     <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    
+
     <!-- Preload de fuentes críticas -->
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" as="style">
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&display=swap" as="style">
-    
+
     <!-- Preload de imagen LCP (Hero) - Ajusta la ruta según tu imagen principal -->
     @if(Route::currentRouteName() === 'Home.jsx')
     <link rel="preload" as="image" href="/assets/img/hero-banner.webp" fetchpriority="high">
@@ -96,7 +96,7 @@
 
     <!--CAMBIO GERENCIA-->
     <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    
+
     <!-- Añadido para traducir - Defer para no bloquear render -->
     <script>
         function loadGoogleTranslate() {
@@ -113,30 +113,30 @@
         * {
             box-sizing: border-box;
         }
-        
+
         /* Critical CSS para evitar CLS */
         img, picture, video {
             max-width: 100%;
             height: auto;
         }
-        
+
         /* Aspect ratio para evitar layout shift */
         .aspect-ratio-16-9 {
             aspect-ratio: 16 / 9;
         }
-        
+
         .aspect-ratio-1-1 {
             aspect-ratio: 1 / 1;
         }
     </style>
 
     @if ($component == 'Checkout.jsx')
-        <script type="application/javascript" src="https://checkout.culqi.com/js/v4"></script>
+    <script type="application/javascript" src="https://checkout.culqi.com/js/v4"></script>
     @elseif ($component == 'MyAccount.jsx')
-        <link href="/lte/assets/libs/dxdatagrid/css/dx.light.compact.css?v=06d3ebc8-645c-4d80-a600-c9652743c425"
-            rel="stylesheet" type="text/css" id="dg-default-stylesheet" />
-        <link href="/lte/assets/libs/dxdatagrid/css/dx.dark.compact.css?v=06d3ebc8-645c-4d80-a600-c9652743c425"
-            rel="stylesheet" type="text/css" id="dg-dark-stylesheet" disabled="disabled" />
+    <link href="/lte/assets/libs/dxdatagrid/css/dx.light.compact.css?v=06d3ebc8-645c-4d80-a600-c9652743c425"
+        rel="stylesheet" type="text/css" id="dg-default-stylesheet" />
+    <link href="/lte/assets/libs/dxdatagrid/css/dx.dark.compact.css?v=06d3ebc8-645c-4d80-a600-c9652743c425"
+        rel="stylesheet" type="text/css" id="dg-dark-stylesheet" disabled="disabled" />
     @endif
 
     @vite(['resources/css/app.css', 'resources/js/' . Route::currentRouteName()])
@@ -179,12 +179,12 @@
             s.parentNode.insertBefore(t, s)
         }(window, document, 'script',
             'https://connect.facebook.net/en_US/fbevents.js');
-        fbq('init', '1098274404490481');
+        // fbq('init', '1098274404490481');
         fbq('track', 'PageView');
     </script>
     <noscript>
-        <img height="1" width="1" style="display:none"
-            src="https://www.facebook.com/tr?id=1098274404490481&ev=PageView&noscript=1" />
+        <!--img height="1" width="1" style="display:none"
+            src="https://www.facebook.com/tr?id=1098274404490481&ev=PageView&noscript=1" /-->
     </noscript>
     <!-- End Meta Pixel Code -->
     <link rel="stylesheet" href="/assets/fonts/aspekta/font-face.css" />
@@ -214,9 +214,9 @@
     <script src="/lte/assets/libs/quill/quill.min.js"></script>
 
     @if ($component == 'MyAccount.jsx')
-        <script src="/lte/assets/libs/dxdatagrid/js/dx.all.js"></script>
-        <script src="/lte/assets/libs/dxdatagrid/js/localization/dx.messages.es.js"></script>
-        <script src="/lte/assets/libs/dxdatagrid/js/localization/dx.messages.en.js"></script>
+    <script src="/lte/assets/libs/dxdatagrid/js/dx.all.js"></script>
+    <script src="/lte/assets/libs/dxdatagrid/js/localization/dx.messages.es.js"></script>
+    <script src="/lte/assets/libs/dxdatagrid/js/localization/dx.messages.en.js"></script>
     @endif
 
     <script src="/lte/assets/libs/tippy.js/tippy.all.min.js"></script>

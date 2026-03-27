@@ -4382,7 +4382,7 @@
     ]
   },
   "resources/js/components/Adminto/Modal.jsx": {
-    "file": "assets/Modal-CiLs9KOM.js",
+    "file": "assets/Modal-D_2wSl83.js",
     "name": "Modal",
     "src": "resources/js/components/Adminto/Modal.jsx",
     "isEntry": true,
@@ -4460,7 +4460,7 @@
     ]
   },
   "resources/js/components/Adminto/form/InputFormGroup.jsx": {
-    "file": "assets/InputFormGroup-D_2wSl83.js",
+    "file": "assets/InputFormGroup-CiLs9KOM.js",
     "name": "InputFormGroup",
     "src": "resources/js/components/Adminto/form/InputFormGroup.jsx",
     "isEntry": true,
@@ -4470,7 +4470,7 @@
     ]
   },
   "resources/js/components/Adminto/form/PasswordFormGroup.jsx": {
-    "file": "assets/PasswordFormGroup-D_2wSl83.js",
+    "file": "assets/PasswordFormGroup-CiLs9KOM.js",
     "name": "PasswordFormGroup",
     "src": "resources/js/components/Adminto/form/PasswordFormGroup.jsx",
     "isEntry": true,
@@ -4480,7 +4480,7 @@
     ]
   },
   "resources/js/components/Adminto/form/QuillFormGroup.jsx": {
-    "file": "assets/QuillFormGroup-D_2wSl83.js",
+    "file": "assets/QuillFormGroup-CiLs9KOM.js",
     "name": "QuillFormGroup",
     "src": "resources/js/components/Adminto/form/QuillFormGroup.jsx",
     "isEntry": true,
@@ -4514,7 +4514,7 @@
     ]
   },
   "resources/js/components/Adminto/form/SelectFormGroup.jsx": {
-    "file": "assets/SelectFormGroup-CiLs9KOM.js",
+    "file": "assets/SelectFormGroup-D_2wSl83.js",
     "name": "SelectFormGroup",
     "src": "resources/js/components/Adminto/form/SelectFormGroup.jsx",
     "isEntry": true,
@@ -4853,7 +4853,7 @@
     ]
   },
   "resources/js/components/DataGrid.jsx": {
-    "file": "assets/DataGrid-CiLs9KOM.js",
+    "file": "assets/DataGrid-D_2wSl83.js",
     "name": "DataGrid",
     "src": "resources/js/components/DataGrid.jsx",
     "isEntry": true,
@@ -5114,7 +5114,7 @@
     ]
   },
   "resources/js/components/Modal.jsx": {
-    "file": "assets/Modal-D_2wSl83.js",
+    "file": "assets/Modal-CiLs9KOM.js",
     "name": "Modal",
     "src": "resources/js/components/Modal.jsx",
     "isEntry": true,
@@ -5264,7 +5264,7 @@
     ]
   },
   "resources/js/components/Table.jsx": {
-    "file": "assets/Table-CiLs9KOM.js",
+    "file": "assets/Table-D_2wSl83.js",
     "name": "Table",
     "src": "resources/js/components/Table.jsx",
     "isEntry": true,
@@ -5554,20 +5554,15 @@
     ]
   },
   "resources/js/components/Tailwind/CambiaFX/PilaresSection.jsx": {
-    "file": "assets/PilaresSection-DPe6nngy.js",
+    "file": "assets/PilaresSection-B71kvFY3.js",
     "name": "PilaresSection",
     "src": "resources/js/components/Tailwind/CambiaFX/PilaresSection.jsx",
-    "isDynamicEntry": true,
+    "isEntry": true,
     "imports": [
       "resources/js/Admin/components/RequirementCard.jsx",
       "resources/js/components/WebVitalsMonitor.jsx",
-      "_TextWithHighlight-pwvdifVY.js",
       "resources/js/components/Tailwind/CambioGerencia/HomeSeccionBlog.jsx",
-      "_pagination-B971jxu5.js",
-      "_autoplay-DRA4dglM.js",
-      "resources/js/components/About/Strengths.jsx",
-      "_proxy-CCJoq4u5.js",
-      "_classes-to-selector-Dyew1EeA.js"
+      "resources/js/components/About/Strengths.jsx"
     ],
     "css": [
       "swiper.css"
@@ -5866,7 +5861,7 @@
     ]
   },
   "resources/js/components/Tailwind/DataGrid.jsx": {
-    "file": "assets/DataGrid-D_2wSl83.js",
+    "file": "assets/DataGrid-CiLs9KOM.js",
     "name": "DataGrid",
     "src": "resources/js/components/Tailwind/DataGrid.jsx",
     "isEntry": true,
@@ -6106,7 +6101,7 @@
     ]
   },
   "resources/js/components/Tailwind/Table.jsx": {
-    "file": "assets/Table-D_2wSl83.js",
+    "file": "assets/Table-CiLs9KOM.js",
     "name": "Table",
     "src": "resources/js/components/Tailwind/Table.jsx",
     "isEntry": true,
@@ -6408,7 +6403,7 @@
     ]
   },
   "resources/js/components/form/InputFormGroup.jsx": {
-    "file": "assets/InputFormGroup-CiLs9KOM.js",
+    "file": "assets/InputFormGroup-D_2wSl83.js",
     "name": "InputFormGroup",
     "src": "resources/js/components/form/InputFormGroup.jsx",
     "isEntry": true,
@@ -6418,7 +6413,7 @@
     ]
   },
   "resources/js/components/form/PasswordFormGroup.jsx": {
-    "file": "assets/PasswordFormGroup-CiLs9KOM.js",
+    "file": "assets/PasswordFormGroup-D_2wSl83.js",
     "name": "PasswordFormGroup",
     "src": "resources/js/components/form/PasswordFormGroup.jsx",
     "isEntry": true,
@@ -6428,7 +6423,7 @@
     ]
   },
   "resources/js/components/form/QuillFormGroup.jsx": {
-    "file": "assets/QuillFormGroup-CiLs9KOM.js",
+    "file": "assets/QuillFormGroup-D_2wSl83.js",
     "name": "QuillFormGroup",
     "src": "resources/js/components/form/QuillFormGroup.jsx",
     "isEntry": true,
@@ -6450,7 +6445,7 @@
     ]
   },
   "resources/js/components/form/SelectFormGroup.jsx": {
-    "file": "assets/SelectFormGroup-D_2wSl83.js",
+    "file": "assets/SelectFormGroup-CiLs9KOM.js",
     "name": "SelectFormGroup",
     "src": "resources/js/components/form/SelectFormGroup.jsx",
     "isEntry": true,
