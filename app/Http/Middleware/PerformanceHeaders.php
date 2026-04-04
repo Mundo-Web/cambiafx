@@ -60,7 +60,7 @@ class PerformanceHeaders
             "img-src 'self' data: https: http: blob:",
             "font-src 'self' data: https://fonts.gstatic.com https://cdnjs.cloudflare.com https://embed.tawk.to",
             "connect-src 'self' https://apiluna.cambiafx.pe https://sgtm.cambiafx.pe https://translate.googleapis.com https://translate-pa.googleapis.com https://va.tawk.to wss://embed.tawk.to wss://*.tawk.to https://embed.tawk.to https://www.google-analytics.com https://www.googletagmanager.com https://analytics.google.com https://analytics-ipv6.tiktokw.us https://analytics.tiktok.com https://googleads.g.doubleclick.net https://www.google.com https://www.facebook.com https://cdn.jsdelivr.net https://cdn.tiny.cloud",
-            "frame-src 'self' https://checkout.culqi.com https://translate.google.com https://www.googletagmanager.com",
+            "frame-src 'self' https://checkout.culqi.com https://translate.google.com https://www.googletagmanager.com https://sgtm.cambiafx.pe",
             "object-src 'none'",
             "base-uri 'self'",
             "form-action 'self'",
