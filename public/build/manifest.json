@@ -3270,7 +3270,7 @@
     ]
   },
   "resources/js/Home.jsx": {
-    "file": "assets/Home-BnDa3A-V.js",
+    "file": "assets/Home-DjNhdVs2.js",
     "name": "Home",
     "src": "resources/js/Home.jsx",
     "isEntry": true,
@@ -4480,7 +4480,7 @@
     ]
   },
   "resources/js/components/Adminto/form/QuillFormGroup.jsx": {
-    "file": "assets/QuillFormGroup-CiLs9KOM.js",
+    "file": "assets/QuillFormGroup-D_2wSl83.js",
     "name": "QuillFormGroup",
     "src": "resources/js/components/Adminto/form/QuillFormGroup.jsx",
     "isEntry": true,
@@ -4490,7 +4490,7 @@
     ]
   },
   "resources/js/components/Adminto/form/SelectAPIFormGroup.jsx": {
-    "file": "assets/SelectAPIFormGroup-D3e5Xhcw.js",
+    "file": "assets/SelectAPIFormGroup-Ck1YULYb.js",
     "name": "SelectAPIFormGroup",
     "src": "resources/js/components/Adminto/form/SelectAPIFormGroup.jsx",
     "isEntry": true,
@@ -4534,7 +4534,7 @@
     ]
   },
   "resources/js/components/Adminto/form/TextareaFormGroup.jsx": {
-    "file": "assets/TextareaFormGroup-CiLs9KOM.js",
+    "file": "assets/TextareaFormGroup-D_2wSl83.js",
     "name": "TextareaFormGroup",
     "src": "resources/js/components/Adminto/form/TextareaFormGroup.jsx",
     "isEntry": true,
@@ -4853,7 +4853,7 @@
     ]
   },
   "resources/js/components/DataGrid.jsx": {
-    "file": "assets/DataGrid-D_2wSl83.js",
+    "file": "assets/DataGrid-CiLs9KOM.js",
     "name": "DataGrid",
     "src": "resources/js/components/DataGrid.jsx",
     "isEntry": true,
@@ -5861,7 +5861,7 @@
     ]
   },
   "resources/js/components/Tailwind/DataGrid.jsx": {
-    "file": "assets/DataGrid-CiLs9KOM.js",
+    "file": "assets/DataGrid-D_2wSl83.js",
     "name": "DataGrid",
     "src": "resources/js/components/Tailwind/DataGrid.jsx",
     "isEntry": true,
@@ -6219,10 +6219,10 @@
     ]
   },
   "resources/js/components/Test/Email.jsx": {
-    "file": "assets/Email-Uyyqx8IC.js",
+    "file": "assets/Email-BzhstCMy.js",
     "name": "Email",
     "src": "resources/js/components/Test/Email.jsx",
-    "isEntry": true,
+    "isDynamicEntry": true,
     "imports": [
       "resources/js/Admin/components/RequirementCard.jsx",
       "resources/js/components/WebVitalsMonitor.jsx",
@@ -6253,10 +6253,10 @@
     ]
   },
   "resources/js/components/Test/HairType.jsx": {
-    "file": "assets/HairType-b6KT03AQ.js",
+    "file": "assets/HairType-Q0VjiSqJ.js",
     "name": "HairType",
     "src": "resources/js/components/Test/HairType.jsx",
-    "isDynamicEntry": true,
+    "isEntry": true,
     "imports": [
       "resources/js/Admin/components/RequirementCard.jsx",
       "resources/js/components/WebVitalsMonitor.jsx",
@@ -6423,7 +6423,7 @@
     ]
   },
   "resources/js/components/form/QuillFormGroup.jsx": {
-    "file": "assets/QuillFormGroup-D_2wSl83.js",
+    "file": "assets/QuillFormGroup-CiLs9KOM.js",
     "name": "QuillFormGroup",
     "src": "resources/js/components/form/QuillFormGroup.jsx",
     "isEntry": true,
@@ -6433,7 +6433,7 @@
     ]
   },
   "resources/js/components/form/SelectAPIFormGroup.jsx": {
-    "file": "assets/SelectAPIFormGroup-Ck1YULYb.js",
+    "file": "assets/SelectAPIFormGroup-D3e5Xhcw.js",
     "name": "SelectAPIFormGroup",
     "src": "resources/js/components/form/SelectAPIFormGroup.jsx",
     "isEntry": true,
@@ -6455,7 +6455,7 @@
     ]
   },
   "resources/js/components/form/TextareaFormGroup.jsx": {
-    "file": "assets/TextareaFormGroup-D_2wSl83.js",
+    "file": "assets/TextareaFormGroup-CiLs9KOM.js",
     "name": "TextareaFormGroup",
     "src": "resources/js/components/form/TextareaFormGroup.jsx",
     "isEntry": true,
