@@ -55,12 +55,12 @@ class PerformanceHeaders
         // Content Security Policy - SOLO EN PRODUCCIÓN
         $csp = implode('; ', [
             "default-src 'self'",
-            "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://checkout.culqi.com https://translate.google.com https://translate.googleapis.com https://translate-pa.googleapis.com https://connect.facebook.net https://www.facebook.com https://embed.tawk.to https://va.tawk.to https://cdn.jsdelivr.net https://www.gstatic.com https://www.google-analytics.com https://analytics.tiktok.com https://googleads.g.doubleclick.net https://www.google.com https://cdn.tiny.cloud",
+            "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://checkout.culqi.com https://translate.google.com https://translate.googleapis.com https://translate-pa.googleapis.com https://connect.facebook.net https://www.facebook.com https://embed.tawk.to https://va.tawk.to https://cdn.jsdelivr.net https://www.gstatic.com https://www.google-analytics.com https://www.googletagmanager.com https://analytics.google.com https://analytics.tiktok.com https://googleads.g.doubleclick.net https://www.google.com https://cdn.tiny.cloud",
             "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com https://unpkg.com https://www.gstatic.com https://embed.tawk.to https://cdn.tiny.cloud",
             "img-src 'self' data: https: http: blob:",
             "font-src 'self' data: https://fonts.gstatic.com https://cdnjs.cloudflare.com https://embed.tawk.to",
-            "connect-src 'self' https://apiluna.cambiafx.pe https://translate.googleapis.com https://translate-pa.googleapis.com https://va.tawk.to wss://embed.tawk.to wss://*.tawk.to https://embed.tawk.to https://www.google-analytics.com https://analytics.google.com https://analytics.tiktok.com https://googleads.g.doubleclick.net https://www.google.com https://www.facebook.com https://cdn.jsdelivr.net https://cdn.tiny.cloud",
-            "frame-src 'self' https://checkout.culqi.com https://translate.google.com",
+            "connect-src 'self' https://apiluna.cambiafx.pe https://translate.googleapis.com https://translate-pa.googleapis.com https://va.tawk.to wss://embed.tawk.to wss://*.tawk.to https://embed.tawk.to https://www.google-analytics.com https://www.googletagmanager.com https://analytics.google.com https://analytics.tiktok.com https://googleads.g.doubleclick.net https://www.google.com https://www.facebook.com https://cdn.jsdelivr.net https://cdn.tiny.cloud",
+            "frame-src 'self' https://checkout.culqi.com https://translate.google.com https://www.googletagmanager.com",
             "object-src 'none'",
             "base-uri 'self'",
             "form-action 'self'",
