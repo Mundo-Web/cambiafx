@@ -78,7 +78,9 @@ class SeoHelper
         
         $title = $title ?? $seoData['seo_title'] ?? 'CambiaFX - Casa de Cambio Online';
         $description = $description ?? $seoData['seo_description'] ?? 'Casa de cambio online con las mejores tasas de cambio. Compra y vende dólares de forma rápida, segura y al mejor tipo de cambio usando bancos peruanos.';
-        $image = $image ?? $seoData['company_logo'] ?? '/assets/img/icon.png';
+        
+        // Prioridad de imagen: Específica > og_image_default > company_logo > icon.png
+        $image = $image ?? $seoData['og_image_default'] ?? $seoData['company_logo'] ?? '/assets/img/icon.png';
         $url = $url ?? $seoData['company_url'] ?? url()->current();
         
         return [
@@ -100,7 +102,9 @@ class SeoHelper
         
         $title = $title ?? $seoData['seo_title'] ?? 'CambiaFX - Casa de Cambio Online';
         $description = $description ?? $seoData['seo_description'] ?? 'Casa de cambio online con las mejores tasas de cambio. Compra y vende dólares de forma rápida, segura y al mejor tipo de cambio usando bancos peruanos.';
-        $image = $image ?? $seoData['company_logo'] ?? '/assets/img/icon.png';
+        
+        // Prioridad de imagen: Específica > twitter_image_default > og_image_default > company_logo > icon.png
+        $image = $image ?? $seoData['twitter_image_default'] ?? $seoData['og_image_default'] ?? $seoData['company_logo'] ?? '/assets/img/icon.png';
         $twitterSite = $seoData['twitter_site'] ?? '@cambiafx';
         
         return [
