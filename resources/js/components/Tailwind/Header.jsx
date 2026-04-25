@@ -9,7 +9,9 @@ import { useTranslation } from "../../hooks/useTranslation";
 import { LanguageContext } from "../../context/LanguageContext";
 import LanguageDropdown from "./Header/LanguageDropdown";
 import MegaMenuPopup from "./Header/MegaMenuPopup";
-import WhatsAppButton, { WhatsAppButtonWithArrow } from "../Shared/WhatsAppButton";
+import WhatsAppButton, {
+    WhatsAppButtonWithArrow,
+} from "../Shared/WhatsAppButton";
 import Global from "../../Utils/Global";
 
 const generalRest = new GeneralRest();
@@ -165,7 +167,7 @@ const Header = ({
                 acc +
                 item.variations.reduce(
                     (sum, v) => sum + item.final_price * v.quantity,
-                    0
+                    0,
                 )
             );
         }
@@ -203,25 +205,31 @@ const Header = ({
 
     const TikTok = socials.find((social) => social.description === "TikTok");
     const WhatsApp = socials.find(
-        (social) => social.description === "WhatsApp"
+        (social) => social.description === "WhatsApp",
     );
     const Instagram = socials.find(
-        (social) => social.description === "Instagram"
+        (social) => social.description === "Instagram",
     );
     const Facebook = socials.find(
-        (social) => social.description === "Facebook"
+        (social) => social.description === "Facebook",
     );
     const LinkedIn = socials.find(
-        (social) => social.description === "LinkedIn"
+        (social) => social.description === "LinkedIn",
     );
     const YouTube = socials.find((social) => social.description === "YouTube");
 
     const [activeLink, setActiveLink] = useState("/");
 
-    const ContactNumber = generals.find((general) => general.correlative === "phone_contact");
-    const ContactEmail = generals.find((general) => general.correlative === "email_contact");
+    const ContactNumber = generals.find(
+        (general) => general.correlative === "phone_contact",
+    );
+    const ContactEmail = generals.find(
+        (general) => general.correlative === "email_contact",
+    );
 
-    const Cintillo = generals.find((general) => general.correlative === "cintillo");
+    const Cintillo = generals.find(
+        (general) => general.correlative === "cintillo",
+    );
 
     useEffect(() => {
         const currentPath = window.location.pathname;
@@ -238,7 +246,7 @@ const Header = ({
 
     const { currentLanguage, changeLanguage } = useContext(LanguageContext);
     const [selectLanguage, setSelectLanguage] = useState(
-        currentLanguage || languagesSystem[0]
+        currentLanguage || languagesSystem[0],
     );
 
     useEffect(() => {
@@ -266,7 +274,7 @@ const Header = ({
                 setSelectLanguage(langData);
                 window.location.reload(); // ⚠️ Opcional temporal para forzar actualización
             } else {
-              //
+                //
             }
         } catch (error) {
             console.error("Error de red:", error);
@@ -279,23 +287,22 @@ const Header = ({
         return cookie ? decodeURIComponent(cookie[1]) : null;
     };
 
-
     const [activeMegaMenu, setActiveMegaMenu] = useState(null);
 
     useEffect(() => {
         if (activeMegaMenu) {
-            document.body.style.overflow = 'hidden';
+            document.body.style.overflow = "hidden";
             // Opcional: también podrías querer prevenir el scroll del touch en móviles
-            document.body.style.touchAction = 'none';
+            document.body.style.touchAction = "none";
         } else {
-            document.body.style.overflow = '';
-            document.body.style.touchAction = '';
+            document.body.style.overflow = "";
+            document.body.style.touchAction = "";
         }
 
         return () => {
-            document.body.style.overflow = '';
-            document.body.style.touchAction = '';
-        }
+            document.body.style.overflow = "";
+            document.body.style.touchAction = "";
+        };
     }, [activeMegaMenu]);
 
     const toggleMegaMenu = (path) => {
@@ -320,12 +327,14 @@ const Header = ({
                 </span>
             ) : (
                 <span key={index}>{part}</span>
-            )
+            ),
         );
     };
     return (
         <>
-            <div className={`w-full max-w-full relative font-paragraph ${backgroundHeight} z-[9999]`}>
+            <div
+                className={`w-full max-w-full relative font-paragraph ${backgroundHeight} z-[9999]`}
+            >
                 {/* CINTILLO INICIO */}
                 <div className="bg-accent relative  overflow-hidden text-white text-xs md:text-sm py-2 md:py-3">
                     <div className="absolute top-0 -left-4 flex justify-end w-full h-full   lg:z-[9999] pointer-events-none">
@@ -334,25 +343,22 @@ const Header = ({
                             alt="overlay Image"
                             className="h-full  object-cover rounded-xl "
                         />
-                        
                     </div>
                     <div className="px-[5%] mx-auto  flex flex-row items-center justify-center ">
                         <div className="flex items-center gap-2 relative max-w-max">
-
-
-                            <img src="/assets/cambiafx/cintillo.webp" alt="Cintillo Icon" className="w-10 z-[999]  absolute top-0 -left-10 transform scale-y-[-1] rotate-90" />
-                            <div className="overflow-hidden whitespace-nowrap w-full relative"
-                            
-                            
-                            >
+                            <img
+                                src="/assets/cambiafx/cintillo.webp"
+                                alt="Cintillo Icon"
+                                className="w-10 z-[999]  absolute top-0 -left-10 transform scale-y-[-1] rotate-90"
+                            />
+                            <div className="overflow-hidden whitespace-nowrap w-full relative">
                                 {/*agregar overlay que este transparente y finalize en bg-accent */}
 
-                                <div 
-                                    className="absolute w-10 h-full z-[999] bg-gradient-to-l from-transparent to-accent"
-                                  
-                                ></div>
+                                <div className="absolute w-10 h-full z-[999] bg-gradient-to-l from-transparent to-accent"></div>
                                 <div className="relative">
-                                    <motion.span
+                                    <motion.p
+                                        aria-label="Promocion activa"
+                                        role="marquee"
                                         animate={{ x: [0, "-100%"] }}
                                         transition={{
                                             x: {
@@ -364,9 +370,11 @@ const Header = ({
                                         }}
                                         className="font-bold text-sm absolute whitespace-nowrap"
                                     >
-                                        {renderHighlightedText(Cintillo?.description)}
-                                    </motion.span>
-                                    <motion.span
+                                        {renderHighlightedText(
+                                            Cintillo?.description,
+                                        )}
+                                    </motion.p>
+                                    <motion.p
                                         animate={{ x: ["100%", "0%"] }}
                                         transition={{
                                             x: {
@@ -378,13 +386,16 @@ const Header = ({
                                         }}
                                         className="font-bold ml-4 text-sm absolute whitespace-nowrap"
                                     >
-                                        {renderHighlightedText(Cintillo?.description)}
-                                    </motion.span>
-                                    <span className="font-bold ml-4 text-sm opacity-0 whitespace-nowrap">
-                                        {renderHighlightedText(Cintillo?.description)}
-                                    </span>
+                                        {renderHighlightedText(
+                                            Cintillo?.description,
+                                        )}
+                                    </motion.p>
+                                    <p className="font-bold ml-4 text-sm opacity-0 whitespace-nowrap">
+                                        {renderHighlightedText(
+                                            Cintillo?.description,
+                                        )}
+                                    </p>
                                 </div>
-                                 
                             </div>
                         </div>
                     </div>
@@ -394,14 +405,16 @@ const Header = ({
                     initial="hidden"
                     animate="visible"
                     variants={containerVariants}
-                    className={` static lg:w-full top-0 z-[9998] transition-colors duration-300 py-1 ${backgroundType === "none"
-                        ? "bg-primary mt-0"
-                        : isScrolled
-                            ? "bg-primary pt-0 !mt-0"
-                            : "bg-primary top-4 pt-8 md:pt-14 lg:pt-10"
-                        } ${isScrolled &&
+                    className={` static lg:w-full top-0 z-[9998] transition-colors duration-300 py-1 ${
+                        backgroundType === "none"
+                            ? "bg-primary mt-0"
+                            : isScrolled
+                              ? "bg-primary pt-0 !mt-0"
+                              : "bg-primary top-4 pt-8 md:pt-14 lg:pt-10"
+                    } ${
+                        isScrolled &&
                         "bg-primary pt-0 !mt-0 transition-all duration-150"
-                        }`}
+                    }`}
                 >
                     <div
                         className={`px-[5%] w-full py-4 lg:py-0 flex justify-between items-center text-[#3E2F4D] shadow-lg lg:shadow-none`}
@@ -412,19 +425,23 @@ const Header = ({
                         >
                             <a href="/">
                                 <motion.img
-                                    whileHover={{ 
+                                    whileHover={{
                                         scale: 1.08,
                                         y: -2,
-                                        filter: "drop-shadow(0 0 10px rgba(187, 255, 82, 0.4))"
+                                        filter: "drop-shadow(0 0 10px rgba(187, 255, 82, 0.4))",
                                     }}
                                     whileTap={{ scale: 0.96 }}
                                     animate={{
                                         y: [0, -2, 0],
                                     }}
                                     transition={{
-                                        y: { duration: 4, repeat: Infinity, ease: "easeInOut" },
+                                        y: {
+                                            duration: 4,
+                                            repeat: Infinity,
+                                            ease: "easeInOut",
+                                        },
                                         scale: { duration: 0.2 },
-                                        filter: { duration: 0.3 }
+                                        filter: { duration: 0.3 },
                                     }}
                                     src="/assets/img/logo.svg"
                                     alt={Global.APP_NAME}
@@ -446,21 +463,23 @@ const Header = ({
                                     "/blog",
                                 ].map((path) => {
                                     const text = {
-                                        "/nosotros": t("public.header.home", "Nosotros"),
+                                        "/nosotros": t(
+                                            "public.header.home",
+                                            "Nosotros",
+                                        ),
                                         "/servicios": t(
                                             "public.header.services",
-                                            "Servicios"
-                                        ), "/contacto": t(
+                                            "Servicios",
+                                        ),
+                                        "/contacto": t(
                                             "public.header.contact",
-                                            "Contacto"
+                                            "Contacto",
                                         ),
 
                                         "/blog": t(
                                             "public.header.options",
-                                            "Blog"
+                                            "Blog",
                                         ),
-
-
                                     }[path];
 
                                     return (
@@ -469,56 +488,63 @@ const Header = ({
                                                 key={path}
                                                 href={path}
                                                 onClick={(e) => {
-                                                    if (path.startsWith('#')) {
+                                                    if (path.startsWith("#")) {
                                                         e.preventDefault();
                                                         toggleMegaMenu(path);
                                                         handleLinkClick(path);
                                                     } else {
                                                         // Para URLs normales, navega directamente
                                                         handleLinkClick(path);
-                                                        window.location.href = path;
+                                                        window.location.href =
+                                                            path;
                                                     }
                                                 }}
                                                 variants={itemVariants}
-                                                whileHover={{ 
+                                                whileHover={{
                                                     scale: 1.06,
                                                     y: -2,
-                                                    boxShadow: "0 10px 25px rgba(126, 90, 251, 0.25)"
+                                                    boxShadow:
+                                                        "0 10px 25px rgba(126, 90, 251, 0.25)",
                                                 }}
-                                                whileTap={{ 
+                                                whileTap={{
                                                     scale: 0.95,
-                                                    y: 0
+                                                    y: 0,
                                                 }}
                                                 transition={{
                                                     type: "spring",
                                                     stiffness: 400,
-                                                    damping: 17
+                                                    damping: 17,
                                                 }}
-                                                className={`relative uppercase py-2 rounded-full transition-all duration-300 ${isActive(path)
-                                                    ? "bg-constrast pl-7 pr-3 text-white font-semibold shadow-lg"
-                                                    : "bg-transparent px-5 text-neutral-dark hover:bg-gradient-to-r hover:from-primary/50 hover:to-neutral/30"
-                                                    }`}
+                                                className={`relative uppercase py-2 rounded-full transition-all duration-300 ${
+                                                    isActive(path)
+                                                        ? "bg-constrast pl-7 pr-3 text-white font-semibold shadow-lg"
+                                                        : "bg-transparent px-5 text-neutral-dark hover:bg-gradient-to-r hover:from-primary/50 hover:to-neutral/30"
+                                                }`}
                                             >
                                                 {text}
                                                 {isActive(path) && (
                                                     <motion.span
                                                         layoutId="activeDot"
                                                         initial={{ scale: 0 }}
-                                                        animate={{ 
+                                                        animate={{
                                                             scale: [1, 1.1, 1],
                                                             boxShadow: [
                                                                 "0 0 0 0 rgba(187, 255, 82, 0.7)",
                                                                 "0 0 0 8px rgba(187, 255, 82, 0.2)",
-                                                                "0 0 0 0 rgba(187, 255, 82, 0)"
-                                                            ]
+                                                                "0 0 0 0 rgba(187, 255, 82, 0)",
+                                                            ],
                                                         }}
                                                         transition={{
-                                                            scale: { duration: 1, repeat: Infinity, ease: "easeInOut" },
-                                                            boxShadow: { 
+                                                            scale: {
+                                                                duration: 1,
+                                                                repeat: Infinity,
+                                                                ease: "easeInOut",
+                                                            },
+                                                            boxShadow: {
                                                                 duration: 2,
                                                                 repeat: Infinity,
-                                                                ease: "easeInOut"
-                                                            }
+                                                                ease: "easeInOut",
+                                                            },
                                                         }}
                                                         className="absolute left-3 top-[40%] -translate-x-1/2 -translate-y-1/2 h-2 w-2 bg-secondary rounded-full"
                                                     />
@@ -529,8 +555,13 @@ const Header = ({
                                                     <div className="">
                                                         <MegaMenuPopup
                                                             info={modalData}
-                                                            isOpen={activeMegaMenu === path}
-                                                            onClose={closeMegaMenu}
+                                                            isOpen={
+                                                                activeMegaMenu ===
+                                                                path
+                                                            }
+                                                            onClose={
+                                                                closeMegaMenu
+                                                            }
                                                             data={servicesData}
                                                         />
                                                     </div>
@@ -565,23 +596,24 @@ const Header = ({
                             >
                                 Reserva una consulta
                             </WhatsAppButtonWithArrow> */}
-                            <motion.a 
-                            href="https://mi.cambiafx.pe/registro" 
-                                target="_blank" 
+                            <motion.a
+                                href="https://mi.cambiafx.pe/registro"
+                                target="_blank"
                                 rel="noopener noreferrer"
-                                whileHover={{ 
+                                whileHover={{
                                     scale: 1.06,
                                     y: -2,
-                                    boxShadow: "0 10px 25px rgba(126, 90, 251, 0.3)"
+                                    boxShadow:
+                                        "0 10px 25px rgba(126, 90, 251, 0.3)",
                                 }}
-                                whileTap={{ 
+                                whileTap={{
                                     scale: 0.95,
-                                    y: 0
+                                    y: 0,
                                 }}
                                 transition={{
                                     type: "spring",
                                     stiffness: 400,
-                                    damping: 17
+                                    damping: 17,
                                 }}
                                 className="py-3 px-4 bg-constrast uppercase text-sm font-medium text-white rounded-full relative overflow-hidden group"
                             >
@@ -593,58 +625,63 @@ const Header = ({
                                     transition={{ duration: 0.3 }}
                                 />
                             </motion.a>
-                            <motion.a 
-                                href="https://mi.cambiafx.pe/login" 
-                                target="_blank" 
-                                rel="noopener noreferrer" 
-                                whileHover={{ 
+                            <motion.a
+                                href="https://mi.cambiafx.pe/login"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                whileHover={{
                                     scale: 1.06,
                                     y: -2,
-                                    boxShadow: "0 10px 25px rgba(187, 255, 82, 0.3)"
+                                    boxShadow:
+                                        "0 10px 25px rgba(187, 255, 82, 0.3)",
                                 }}
-                                whileTap={{ 
+                                whileTap={{
                                     scale: 0.95,
-                                    y: 0
+                                    y: 0,
                                 }}
                                 transition={{
                                     type: "spring",
                                     stiffness: 400,
-                                    damping: 17
+                                    damping: 17,
                                 }}
                                 className="py-3 px-4 bg-secondary uppercase text-sm font-medium text-neutral-dark rounded-full relative overflow-hidden group"
                             >
                                 <span className="relative z-10 flex items-center gap-2">
                                     iniciar operación
-                                    <motion.svg 
-                                        width="16" 
-                                        height="16" 
-                                        viewBox="0 0 24 24" 
-                                        fill="none" 
+                                    <motion.svg
+                                        width="16"
+                                        height="16"
+                                        viewBox="0 0 24 24"
+                                        fill="none"
                                         xmlns="http://www.w3.org/2000/svg"
                                         className="w-4 h-4"
                                         animate={{
-                                            rotate: [0, 360]
+                                            rotate: [0, 360],
                                         }}
                                         transition={{
-                                            rotate: { duration: 8, repeat: Infinity, ease: "linear" }
+                                            rotate: {
+                                                duration: 8,
+                                                repeat: Infinity,
+                                                ease: "linear",
+                                            },
                                         }}
                                     >
-                                        <path 
-                                            d="M12 2V6M12 18V22M4.93 4.93L7.76 7.76M16.24 16.24L19.07 19.07M2 12H6M18 12H22M4.93 19.07L7.76 16.24M16.24 7.76L19.07 4.93" 
-                                            stroke="currentColor" 
-                                            strokeWidth="2" 
+                                        <path
+                                            d="M12 2V6M12 18V22M4.93 4.93L7.76 7.76M16.24 16.24L19.07 19.07M2 12H6M18 12H22M4.93 19.07L7.76 16.24M16.24 7.76L19.07 4.93"
+                                            stroke="currentColor"
+                                            strokeWidth="2"
                                             strokeLinecap="round"
                                         />
-                                        <circle 
-                                            cx="12" 
-                                            cy="12" 
-                                            r="3" 
-                                            stroke="currentColor" 
+                                        <circle
+                                            cx="12"
+                                            cy="12"
+                                            r="3"
+                                            stroke="currentColor"
                                             strokeWidth="2"
                                         />
-                                        <path 
-                                            d="M12 9C10.34 9 9 10.34 9 12S10.34 15 12 15" 
-                                            stroke="currentColor" 
+                                        <path
+                                            d="M12 9C10.34 9 9 10.34 9 12S10.34 15 12 15"
+                                            stroke="currentColor"
                                             strokeWidth="2"
                                         />
                                     </motion.svg>
@@ -665,35 +702,46 @@ const Header = ({
                                     ref={btnToggleRef}
                                     onClick={toggleMenu}
                                     whileTap={{ scale: 0.95 }}
-                                    whileHover={{ 
+                                    whileHover={{
                                         scale: 1.06,
-                                        boxShadow: "0 8px 20px rgba(126, 90, 251, 0.3)"
+                                        boxShadow:
+                                            "0 8px 20px rgba(126, 90, 251, 0.3)",
                                     }}
                                     transition={{
                                         duration: 0.2,
-                                        ease: "easeInOut"
+                                        ease: "easeInOut",
                                     }}
                                     className="text-white menu-toggle rounded-xl h-[50px] w-[50px] flex items-center justify-center bg-constrast shadow-lg border border-white/20"
                                     aria-label="Toggle menu"
                                 >
                                     <div className="text-white relative z-10">
                                         {isOpen ? (
-                                            <svg 
-                                                className="w-6 h-6" 
-                                                fill="none" 
-                                                stroke="currentColor" 
+                                            <svg
+                                                className="w-6 h-6"
+                                                fill="none"
+                                                stroke="currentColor"
                                                 viewBox="0 0 24 24"
                                             >
-                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                                                <path
+                                                    strokeLinecap="round"
+                                                    strokeLinejoin="round"
+                                                    strokeWidth={2}
+                                                    d="M6 18L18 6M6 6l12 12"
+                                                />
                                             </svg>
                                         ) : (
-                                            <svg 
-                                                className="w-6 h-6" 
-                                                fill="none" 
-                                                stroke="currentColor" 
+                                            <svg
+                                                className="w-6 h-6"
+                                                fill="none"
+                                                stroke="currentColor"
                                                 viewBox="0 0 24 24"
                                             >
-                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+                                                <path
+                                                    strokeLinecap="round"
+                                                    strokeLinejoin="round"
+                                                    strokeWidth={2}
+                                                    d="M4 6h16M4 12h16M4 18h16"
+                                                />
                                             </svg>
                                         )}
                                     </div>
@@ -701,8 +749,6 @@ const Header = ({
                             </div>
                         </motion.div>
                     </div>
-
-
                 </motion.header>
 
                 {/* Menú móvil */}
@@ -728,20 +774,23 @@ const Header = ({
                                     type: "spring",
                                     damping: 25,
                                     stiffness: 200,
-                                    duration: 0.4
+                                    duration: 0.4,
                                 }}
-                                className={`fixed left-[5%] right-[5%] ${isScrolled
-                                    ? "top-16"
-                                    : "top-[100px]"
-                                    } z-[99999999] bg-gradient-to-br from-white via-white to-blue-50 rounded-2xl shadow-2xl border border-gray-100 overflow-hidden max-h-[calc(100vh-120px)] overflow-y-auto`}
+                                className={`fixed left-[5%] right-[5%] ${
+                                    isScrolled ? "top-16" : "top-[100px]"
+                                } z-[99999999] bg-gradient-to-br from-white via-white to-blue-50 rounded-2xl shadow-2xl border border-gray-100 overflow-hidden max-h-[calc(100vh-120px)] overflow-y-auto`}
                                 style={{ zIndex: 99999999 }}
                             >
                                 {/* Header del menú */}
                                 <div className="bg-gradient-to-r from-accent to-constrast p-6 text-white">
                                     <div className="flex items-center justify-between">
                                         <div>
-                                            <h3 className="text-lg font-semibold">Navegación</h3>
-                                            <p className="text-sm opacity-90">Explora nuestros servicios</p>
+                                            <h3 className="text-lg font-semibold">
+                                                Navegación
+                                            </h3>
+                                            <p className="text-sm opacity-90">
+                                                Explora nuestros servicios
+                                            </p>
                                         </div>
                                         <motion.button
                                             whileHover={{ scale: 1.1 }}
@@ -749,8 +798,18 @@ const Header = ({
                                             onClick={() => setIsOpen(false)}
                                             className="w-8 h-8 bg-white/20 rounded-full flex items-center justify-center"
                                         >
-                                            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                                            <svg
+                                                className="w-5 h-5"
+                                                fill="none"
+                                                stroke="currentColor"
+                                                viewBox="0 0 24 24"
+                                            >
+                                                <path
+                                                    strokeLinecap="round"
+                                                    strokeLinejoin="round"
+                                                    strokeWidth={2}
+                                                    d="M6 18L18 6M6 6l12 12"
+                                                />
                                             </svg>
                                         </motion.button>
                                     </div>
@@ -763,23 +822,46 @@ const Header = ({
                                         initial="hidden"
                                         animate="visible"
                                         className="space-y-3"
-                                        style={{ opacity: 1, visibility: 'visible' }}
+                                        style={{
+                                            opacity: 1,
+                                            visibility: "visible",
+                                        }}
                                     >
                                         {[
-                                            
-                                
-                                
-                                            { path: "/nosotros", color: "bg-white" },
-                                            { path: "/servicios", color: "bg-white" },
-                                            { path: "/contacto", color: "bg-white" },
-                                            { path: "/blog", color: "bg-white" },
-                                          
+                                            {
+                                                path: "/nosotros",
+                                                color: "bg-white",
+                                            },
+                                            {
+                                                path: "/servicios",
+                                                color: "bg-white",
+                                            },
+                                            {
+                                                path: "/contacto",
+                                                color: "bg-white",
+                                            },
+                                            {
+                                                path: "/blog",
+                                                color: "bg-white",
+                                            },
                                         ].map((item, index) => {
                                             const text = {
-                                                "/nosotros": t("public.header.home", "Nosotros"),
-                                                "/servicios": t("public.header.services", "Servicios"),
-                                                "/contacto": t("public.header.contact", "Contacto"),
-                                                "/blog": t("public.header.options", "Blog"),
+                                                "/nosotros": t(
+                                                    "public.header.home",
+                                                    "Nosotros",
+                                                ),
+                                                "/servicios": t(
+                                                    "public.header.services",
+                                                    "Servicios",
+                                                ),
+                                                "/contacto": t(
+                                                    "public.header.contact",
+                                                    "Contacto",
+                                                ),
+                                                "/blog": t(
+                                                    "public.header.options",
+                                                    "Blog",
+                                                ),
                                             }[item.path];
 
                                             return (
@@ -790,54 +872,136 @@ const Header = ({
                                                     animate="visible"
                                                     whileHover={{ scale: 1.02 }}
                                                     whileTap={{ scale: 0.98 }}
-                                                    style={{ opacity: 1, visibility: 'visible' }}
+                                                    style={{
+                                                        opacity: 1,
+                                                        visibility: "visible",
+                                                    }}
                                                 >
                                                     <button
                                                         onClick={(e) => {
                                                             e.stopPropagation();
-                                                            if (item.path.startsWith('#')) {
-                                                                if (item.hasSubmenu) {
-                                                                    toggleMegaMenu(item.path);
+                                                            if (
+                                                                item.path.startsWith(
+                                                                    "#",
+                                                                )
+                                                            ) {
+                                                                if (
+                                                                    item.hasSubmenu
+                                                                ) {
+                                                                    toggleMegaMenu(
+                                                                        item.path,
+                                                                    );
                                                                 }
-                                                                handleLinkClick(item.path);
+                                                                handleLinkClick(
+                                                                    item.path,
+                                                                );
                                                             } else {
-                                                                handleLinkClick(item.path);
-                                                                window.location.href = item.path;
-                                                                setIsOpen(false);
+                                                                handleLinkClick(
+                                                                    item.path,
+                                                                );
+                                                                window.location.href =
+                                                                    item.path;
+                                                                setIsOpen(
+                                                                    false,
+                                                                );
                                                             }
                                                         }}
                                                         aria-label={`Navegar a ${item.label}`}
-                                                        className={`w-full group relative overflow-hidden flex items-center p-4 rounded-xl transition-all duration-300 ${isActive(item.path) || activeMegaMenu === item.path
-                                                            ? "bg-accent text-white border-2 border-accent shadow-lg"
-                                                            : "bg-gray-50 hover:bg-gradient-to-r hover:from-gray-100 hover:to-blue-50 text-gray-700 hover:text-primary border-2 border-transparent"
-                                                            }`}
+                                                        className={`w-full group relative overflow-hidden flex items-center p-4 rounded-xl transition-all duration-300 ${
+                                                            isActive(
+                                                                item.path,
+                                                            ) ||
+                                                            activeMegaMenu ===
+                                                                item.path
+                                                                ? "bg-accent text-white border-2 border-accent shadow-lg"
+                                                                : "bg-gray-50 hover:bg-gradient-to-r hover:from-gray-100 hover:to-blue-50 text-gray-700 hover:text-primary border-2 border-transparent"
+                                                        }`}
                                                     >
                                                         {/* Texto */}
                                                         <div className="flex-1 text-left">
-                                                            <span className={`font-medium text-base ${isActive(item.path) || activeMegaMenu === item.path ? "!text-white" : "!text-gray-700 group-hover:!text-primary"
-                                                                }`} style={{ opacity: 1, visibility: 'visible' }}>
-                                                                {text || item.path}
+                                                            <span
+                                                                className={`font-medium text-base ${
+                                                                    isActive(
+                                                                        item.path,
+                                                                    ) ||
+                                                                    activeMegaMenu ===
+                                                                        item.path
+                                                                        ? "!text-white"
+                                                                        : "!text-gray-700 group-hover:!text-primary"
+                                                                }`}
+                                                                style={{
+                                                                    opacity: 1,
+                                                                    visibility:
+                                                                        "visible",
+                                                                }}
+                                                            >
+                                                                {text ||
+                                                                    item.path}
                                                             </span>
-                                                            {item.path === "#services" && (
-                                                                <p className={`text-xs mt-1 ${isActive(item.path) || activeMegaMenu === item.path ? "text-white/80" : "text-gray-500"
-                                                                    }`} style={{ opacity: 1, visibility: 'visible' }}>
-                                                                    Descubre nuestras soluciones
+                                                            {item.path ===
+                                                                "#services" && (
+                                                                <p
+                                                                    className={`text-xs mt-1 ${
+                                                                        isActive(
+                                                                            item.path,
+                                                                        ) ||
+                                                                        activeMegaMenu ===
+                                                                            item.path
+                                                                            ? "text-white/80"
+                                                                            : "text-gray-500"
+                                                                    }`}
+                                                                    style={{
+                                                                        opacity: 1,
+                                                                        visibility:
+                                                                            "visible",
+                                                                    }}
+                                                                >
+                                                                    Descubre
+                                                                    nuestras
+                                                                    soluciones
                                                                 </p>
                                                             )}
                                                         </div>
 
                                                         {/* Flecha o indicador de submenú */}
                                                         <motion.div
-                                                            className={`transition-colors duration-300 ${isActive(item.path) || activeMegaMenu === item.path ? "text-white" : "text-gray-400 group-hover:text-primary"
-                                                                }`}
+                                                            className={`transition-colors duration-300 ${
+                                                                isActive(
+                                                                    item.path,
+                                                                ) ||
+                                                                activeMegaMenu ===
+                                                                    item.path
+                                                                    ? "text-white"
+                                                                    : "text-gray-400 group-hover:text-primary"
+                                                            }`}
                                                         >
                                                             {item.hasSubmenu ? (
                                                                 <motion.div
-                                                                    animate={{ rotate: activeMegaMenu === item.path ? 180 : 0 }}
-                                                                    transition={{ duration: 0.2 }}
+                                                                    animate={{
+                                                                        rotate:
+                                                                            activeMegaMenu ===
+                                                                            item.path
+                                                                                ? 180
+                                                                                : 0,
+                                                                    }}
+                                                                    transition={{
+                                                                        duration: 0.2,
+                                                                    }}
                                                                 >
-                                                                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                                                                    <svg
+                                                                        className="w-5 h-5"
+                                                                        fill="none"
+                                                                        stroke="currentColor"
+                                                                        viewBox="0 0 24 24"
+                                                                    >
+                                                                        <path
+                                                                            strokeLinecap="round"
+                                                                            strokeLinejoin="round"
+                                                                            strokeWidth={
+                                                                                2
+                                                                            }
+                                                                            d="M19 9l-7 7-7-7"
+                                                                        />
                                                                     </svg>
                                                                 </motion.div>
                                                             ) : (
@@ -848,49 +1012,100 @@ const Header = ({
 
                                                     {/* Submenú de servicios para móvil */}
                                                     <AnimatePresence>
-                                                        {item.hasSubmenu && activeMegaMenu === item.path && (
-                                                            <motion.div
-                                                                initial={{ opacity: 0, height: 0 }}
-                                                                animate={{ opacity: 1, height: "auto" }}
-                                                                exit={{ opacity: 0, height: 0 }}
-                                                                transition={{ duration: 0.3, ease: "easeInOut" }}
-                                                                className="mt-3 overflow-hidden"
-                                                            >
-                                                                <div className="bg-gradient-to-br from-blue-50 to-purple-50 rounded-xl p-4 border border-blue-100">
-                                                                    <h4 className="text-sm font-semibold text-gray-700 mb-3">
-                                                                        Nuestros Servicios
-                                                                    </h4>
-                                                                    <div className="grid grid-cols-1 gap-2">
-                                                                        {servicesData && servicesData.slice(0, 6).map((service, serviceIndex) => (
-                                                                            <motion.button
-                                                                                key={serviceIndex}
-                                                                                onClick={() => {
-                                                                                    window.location.href = `/servicio/${service.slug || service.id}`;
-                                                                                    setIsOpen(false);
-                                                                                }}
-                                                                                whileHover={{ scale: 1.02 }}
-                                                                                whileTap={{ scale: 0.98 }}
-                                                                                className="flex items-center p-3 bg-white rounded-lg hover:bg-blue-50 transition-colors duration-200 border border-gray-100 hover:border-blue-200 text-left w-full"
-                                                                            >
-                                                                                <div className="flex-1 min-w-0">
-                                                                                    <p className="font-medium text-gray-800 text-sm truncate">
-                                                                                        {service.name || service.title}
-                                                                                    </p>
-                                                                                    {service.description && (
-                                                                                        <p className="text-xs text-gray-500 truncate">
-                                                                                            {service.description.substring(0, 50)}...
-                                                                                        </p>
+                                                        {item.hasSubmenu &&
+                                                            activeMegaMenu ===
+                                                                item.path && (
+                                                                <motion.div
+                                                                    initial={{
+                                                                        opacity: 0,
+                                                                        height: 0,
+                                                                    }}
+                                                                    animate={{
+                                                                        opacity: 1,
+                                                                        height: "auto",
+                                                                    }}
+                                                                    exit={{
+                                                                        opacity: 0,
+                                                                        height: 0,
+                                                                    }}
+                                                                    transition={{
+                                                                        duration: 0.3,
+                                                                        ease: "easeInOut",
+                                                                    }}
+                                                                    className="mt-3 overflow-hidden"
+                                                                >
+                                                                    <div className="bg-gradient-to-br from-blue-50 to-purple-50 rounded-xl p-4 border border-blue-100">
+                                                                        <h4 className="text-sm font-semibold text-gray-700 mb-3">
+                                                                            Nuestros
+                                                                            Servicios
+                                                                        </h4>
+                                                                        <div className="grid grid-cols-1 gap-2">
+                                                                            {servicesData &&
+                                                                                servicesData
+                                                                                    .slice(
+                                                                                        0,
+                                                                                        6,
+                                                                                    )
+                                                                                    .map(
+                                                                                        (
+                                                                                            service,
+                                                                                            serviceIndex,
+                                                                                        ) => (
+                                                                                            <motion.button
+                                                                                                key={
+                                                                                                    serviceIndex
+                                                                                                }
+                                                                                                onClick={() => {
+                                                                                                    window.location.href = `/servicio/${service.slug || service.id}`;
+                                                                                                    setIsOpen(
+                                                                                                        false,
+                                                                                                    );
+                                                                                                }}
+                                                                                                whileHover={{
+                                                                                                    scale: 1.02,
+                                                                                                }}
+                                                                                                whileTap={{
+                                                                                                    scale: 0.98,
+                                                                                                }}
+                                                                                                className="flex items-center p-3 bg-white rounded-lg hover:bg-blue-50 transition-colors duration-200 border border-gray-100 hover:border-blue-200 text-left w-full"
+                                                                                            >
+                                                                                                <div className="flex-1 min-w-0">
+                                                                                                    <p className="font-medium text-gray-800 text-sm truncate">
+                                                                                                        {service.name ||
+                                                                                                            service.title}
+                                                                                                    </p>
+                                                                                                    {service.description && (
+                                                                                                        <p className="text-xs text-gray-500 truncate">
+                                                                                                            {service.description.substring(
+                                                                                                                0,
+                                                                                                                50,
+                                                                                                            )}
+                                                                                                            ...
+                                                                                                        </p>
+                                                                                                    )}
+                                                                                                </div>
+                                                                                                <svg
+                                                                                                    className="w-4 h-4 text-gray-400 flex-shrink-0 ml-2"
+                                                                                                    fill="none"
+                                                                                                    stroke="currentColor"
+                                                                                                    viewBox="0 0 24 24"
+                                                                                                >
+                                                                                                    <path
+                                                                                                        strokeLinecap="round"
+                                                                                                        strokeLinejoin="round"
+                                                                                                        strokeWidth={
+                                                                                                            2
+                                                                                                        }
+                                                                                                        d="M9 5l7 7-7 7"
+                                                                                                    />
+                                                                                                </svg>
+                                                                                            </motion.button>
+                                                                                        ),
                                                                                     )}
-                                                                                </div>
-                                                                                <svg className="w-4 h-4 text-gray-400 flex-shrink-0 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                                                                                </svg>
-                                                                            </motion.button>
-                                                                        ))}
+                                                                        </div>
                                                                     </div>
-                                                                </div>
-                                                            </motion.div>
-                                                        )}
+                                                                </motion.div>
+                                                            )}
                                                     </AnimatePresence>
                                                 </motion.li>
                                             );
@@ -898,103 +1113,106 @@ const Header = ({
                                     </motion.ul>
 
                                     {/* CTA Button */}
-                                        <motion.div
-                            variants={itemVariants}
-                            className=" flex flex-col gap-4 mt-8 w-full"
-                        >
-                           
-                            <motion.a 
-                            href="https://mi.cambiafx.pe/registro" 
-                                target="_blank" 
-                                rel="noopener noreferrer"
-                                whileHover={{ 
-                                    scale: 1.06,
-                                    y: -2,
-                                    boxShadow: "0 10px 25px rgba(126, 90, 251, 0.3)"
-                                }}
-                                whileTap={{ 
-                                    scale: 0.95,
-                                    y: 0
-                                }}
-                                transition={{
-                                    type: "spring",
-                                    stiffness: 400,
-                                    damping: 17
-                                }}
-                                className="py-3 px-4 flex items-center justify-center bg-constrast uppercase text-sm font-medium text-white rounded-full relative overflow-hidden group"
-                            >
-                                <span className="relative z-10">
-                                    ¿Eres nuevo? regístrate
-                                </span>
-                                <motion.div
-                                    className="absolute inset-0 bg-gradient-to-r from-constrast/90 to-accent/90 opacity-0 group-hover:opacity-100"
-                                    transition={{ duration: 0.3 }}
-                                />
-                            </motion.a>
-                            <motion.a 
-                                href="https://mi.cambiafx.pe/login" 
-                                target="_blank" 
-                                rel="noopener noreferrer" 
-                                whileHover={{ 
-                                    scale: 1.06,
-                                    y: -2,
-                                    boxShadow: "0 10px 25px rgba(187, 255, 82, 0.3)"
-                                }}
-                                whileTap={{ 
-                                    scale: 0.95,
-                                    y: 0
-                                }}
-                                transition={{
-                                    type: "spring",
-                                    stiffness: 400,
-                                    damping: 17
-                                }}
-                                className="py-3 px-4 flex items-center justify-center bg-secondary uppercase text-sm font-medium text-neutral-dark rounded-full relative overflow-hidden group"
-                            >
-                                <span className="relative z-10 flex items-center gap-2">
-                                    iniciar operación
-                                    <motion.svg 
-                                        width="16" 
-                                        height="16" 
-                                        viewBox="0 0 24 24" 
-                                        fill="none" 
-                                        xmlns="http://www.w3.org/2000/svg"
-                                        className="w-4 h-4"
-                                        animate={{
-                                            rotate: [0, 360]
-                                        }}
-                                        transition={{
-                                            rotate: { duration: 8, repeat: Infinity, ease: "linear" }
-                                        }}
+                                    <motion.div
+                                        variants={itemVariants}
+                                        className=" flex flex-col gap-4 mt-8 w-full"
                                     >
-                                        <path 
-                                            d="M12 2V6M12 18V22M4.93 4.93L7.76 7.76M16.24 16.24L19.07 19.07M2 12H6M18 12H22M4.93 19.07L7.76 16.24M16.24 7.76L19.07 4.93" 
-                                            stroke="currentColor" 
-                                            strokeWidth="2" 
-                                            strokeLinecap="round"
-                                        />
-                                        <circle 
-                                            cx="12" 
-                                            cy="12" 
-                                            r="3" 
-                                            stroke="currentColor" 
-                                            strokeWidth="2"
-                                        />
-                                        <path 
-                                            d="M12 9C10.34 9 9 10.34 9 12S10.34 15 12 15" 
-                                            stroke="currentColor" 
-                                            strokeWidth="2"
-                                        />
-                                    </motion.svg>
-                                </span>
-                                <motion.div
-                                    className="absolute inset-0 bg-gradient-to-r from-secondary/90 to-primary/90 opacity-0 group-hover:opacity-100"
-                                    transition={{ duration: 0.3 }}
-                                />
-                            </motion.a>
-                        </motion.div>
-
-                               
+                                        <motion.a
+                                            href="https://mi.cambiafx.pe/registro"
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            whileHover={{
+                                                scale: 1.06,
+                                                y: -2,
+                                                boxShadow:
+                                                    "0 10px 25px rgba(126, 90, 251, 0.3)",
+                                            }}
+                                            whileTap={{
+                                                scale: 0.95,
+                                                y: 0,
+                                            }}
+                                            transition={{
+                                                type: "spring",
+                                                stiffness: 400,
+                                                damping: 17,
+                                            }}
+                                            className="py-3 px-4 flex items-center justify-center bg-constrast uppercase text-sm font-medium text-white rounded-full relative overflow-hidden group"
+                                        >
+                                            <span className="relative z-10">
+                                                ¿Eres nuevo? regístrate
+                                            </span>
+                                            <motion.div
+                                                className="absolute inset-0 bg-gradient-to-r from-constrast/90 to-accent/90 opacity-0 group-hover:opacity-100"
+                                                transition={{ duration: 0.3 }}
+                                            />
+                                        </motion.a>
+                                        <motion.a
+                                            href="https://mi.cambiafx.pe/login"
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            whileHover={{
+                                                scale: 1.06,
+                                                y: -2,
+                                                boxShadow:
+                                                    "0 10px 25px rgba(187, 255, 82, 0.3)",
+                                            }}
+                                            whileTap={{
+                                                scale: 0.95,
+                                                y: 0,
+                                            }}
+                                            transition={{
+                                                type: "spring",
+                                                stiffness: 400,
+                                                damping: 17,
+                                            }}
+                                            className="py-3 px-4 flex items-center justify-center bg-secondary uppercase text-sm font-medium text-neutral-dark rounded-full relative overflow-hidden group"
+                                        >
+                                            <span className="relative z-10 flex items-center gap-2">
+                                                iniciar operación
+                                                <motion.svg
+                                                    width="16"
+                                                    height="16"
+                                                    viewBox="0 0 24 24"
+                                                    fill="none"
+                                                    xmlns="http://www.w3.org/2000/svg"
+                                                    className="w-4 h-4"
+                                                    animate={{
+                                                        rotate: [0, 360],
+                                                    }}
+                                                    transition={{
+                                                        rotate: {
+                                                            duration: 8,
+                                                            repeat: Infinity,
+                                                            ease: "linear",
+                                                        },
+                                                    }}
+                                                >
+                                                    <path
+                                                        d="M12 2V6M12 18V22M4.93 4.93L7.76 7.76M16.24 16.24L19.07 19.07M2 12H6M18 12H22M4.93 19.07L7.76 16.24M16.24 7.76L19.07 4.93"
+                                                        stroke="currentColor"
+                                                        strokeWidth="2"
+                                                        strokeLinecap="round"
+                                                    />
+                                                    <circle
+                                                        cx="12"
+                                                        cy="12"
+                                                        r="3"
+                                                        stroke="currentColor"
+                                                        strokeWidth="2"
+                                                    />
+                                                    <path
+                                                        d="M12 9C10.34 9 9 10.34 9 12S10.34 15 12 15"
+                                                        stroke="currentColor"
+                                                        strokeWidth="2"
+                                                    />
+                                                </motion.svg>
+                                            </span>
+                                            <motion.div
+                                                className="absolute inset-0 bg-gradient-to-r from-secondary/90 to-primary/90 opacity-0 group-hover:opacity-100"
+                                                transition={{ duration: 0.3 }}
+                                            />
+                                        </motion.a>
+                                    </motion.div>
                                 </div>
                             </motion.div>
                         </>
@@ -1100,8 +1318,8 @@ const Header = ({
                                                         src={`/api/items/media/${item.image}`}
                                                         alt={item.name}
                                                         onError={(e) =>
-                                                        (e.target.src =
-                                                            "/api/cover/thumbnail/null")
+                                                            (e.target.src =
+                                                                "/api/cover/thumbnail/null")
                                                         }
                                                         className="w-20 h-20 md:w-28 md:h-28 lg:w-52 lg:h-52 object-cover rounded-lg"
                                                     />
@@ -1135,9 +1353,9 @@ const Header = ({
                                                                         S/{" "}
                                                                         {Number(
                                                                             item.price -
-                                                                            item.discount
+                                                                                item.discount,
                                                                         ).toFixed(
-                                                                            0
+                                                                            0,
                                                                         )}{" "}
                                                                         <img
                                                                             src="/assets/img/emojis/fire.png"
@@ -1159,7 +1377,7 @@ const Header = ({
                                                                     className="group text-white px-2 py-1 rounded-md hover:fill-red-500 transition-all duration-300"
                                                                     onClick={() =>
                                                                         eliminarProducto(
-                                                                            item.id
+                                                                            item.id,
                                                                         )
                                                                     }
                                                                 >
@@ -1189,9 +1407,9 @@ const Header = ({
                                                                 <p className="text-[18.42px] md:text-[24.42px] h-full items-center lg:text-[35.33px] 2xl:text-[45.33px] font-bold text-[#5F48B7]">
                                                                     S/{" "}
                                                                     {Number(
-                                                                        item.final_price
+                                                                        item.final_price,
                                                                     ).toFixed(
-                                                                        2
+                                                                        2,
                                                                     )}
                                                                 </p>
                                                             </div>
@@ -1204,7 +1422,7 @@ const Header = ({
                                                                         className="h-full md:w-8 md:h-8 text-xs md:text-base 2xl:text-2xl"
                                                                         onClick={() =>
                                                                             decrementarCantidad(
-                                                                                item.id
+                                                                                item.id,
                                                                             )
                                                                         }
                                                                     >
@@ -1212,19 +1430,19 @@ const Header = ({
                                                                     </motion.button>
                                                                     <span className="h-full flex items-center text-xs md:text-base 2xl:text-2xl font-medium">
                                                                         {item.variations &&
-                                                                            item
-                                                                                .variations
-                                                                                .length >
+                                                                        item
+                                                                            .variations
+                                                                            .length >
                                                                             0
                                                                             ? item.variations.reduce(
-                                                                                (
-                                                                                    sum,
-                                                                                    v
-                                                                                ) =>
-                                                                                    sum +
-                                                                                    v.quantity,
-                                                                                0
-                                                                            )
+                                                                                  (
+                                                                                      sum,
+                                                                                      v,
+                                                                                  ) =>
+                                                                                      sum +
+                                                                                      v.quantity,
+                                                                                  0,
+                                                                              )
                                                                             : item.quantity}
                                                                     </span>
                                                                     <motion.button
@@ -1234,7 +1452,7 @@ const Header = ({
                                                                         className="h-6 md:w-8 md:h-8 text-xs md:text-base 2xl:text-2xl"
                                                                         onClick={() =>
                                                                             incrementarCantidad(
-                                                                                item.id
+                                                                                item.id,
                                                                             )
                                                                         }
                                                                     >
