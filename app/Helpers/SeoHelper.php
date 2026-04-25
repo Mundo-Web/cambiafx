@@ -27,7 +27,10 @@ class SeoHelper
                 'twitter_site',
                 'facebook_page',
                 'instagram_profile',
-                'linkedin_profile'
+                'linkedin_profile',
+                'company_locality',
+                'company_region',
+                'company_country'
             ])->get();
 
             $seoData = [];
@@ -81,7 +84,7 @@ class SeoHelper
         return [
             'og:title' => $title,
             'og:description' => $description,
-            'og:image' => $image,
+            'og:image' => str_starts_with($image, 'http') ? $image : url($image),
             'og:url' => $url,
             'og:type' => 'website',
             'og:site_name' => $seoData['company_name'] ?? 'CambiaFX'
@@ -103,7 +106,7 @@ class SeoHelper
             'twitter:card' => 'summary_large_image',
             'twitter:title' => $title,
             'twitter:description' => $description,
-            'twitter:image' => $image,
+            'twitter:image' => str_starts_with($image, 'http') ? $image : url($image),
             'twitter:site' => $seoData['twitter_site'] ?? '@cambiafx'
         ];
     }
@@ -116,25 +119,24 @@ class SeoHelper
         $seoData = self::getSeoData();
         
         if ($type === 'Organization') {
+            $logo = $seoData['company_logo'] ?? '/assets/img/icon-192x192.png';
             return [
                 '@context' => 'https://schema.org',
                 '@type' => 'Organization',
-                'name' => $seoData['company_name'] ?? 'CambiaFX',
+                'name' => $seoData['company_name'] ?? 'Cambia FX',
                 'description' => $seoData['company_description'] ?? $seoData['seo_description'] ?? 'Casa de cambio online con las mejores tasas de cambio',
                 'url' => $seoData['company_url'] ?? url('/'),
-                'logo' => $seoData['company_logo'] ?? '/assets/img/logo.png',
-                'telephone' => $seoData['company_phone'] ?? '',
-                'email' => $seoData['company_email'] ?? '',
+                'logo' => str_starts_with($logo, 'http') ? $logo : url($logo),
+                'telephone' => $seoData['company_phone'] ?? '+51 922 985 423',
+                'email' => $seoData['company_email'] ?? 'hola@cambiafx.pe',
                 'address' => [
                     '@type' => 'PostalAddress',
-                    'streetAddress' => $seoData['company_address'] ?? ''
+                    'streetAddress' => $seoData['company_address'] ?? 'Av. Javier Prado Este N.560 Of. 2302',
+                    'addressLocality' => $seoData['company_locality'] ?? 'San Isidro',
+                    'addressRegion' => $seoData['company_region'] ?? 'Lima',
+                    'addressCountry' => $seoData['company_country'] ?? 'PE'
                 ],
-                'sameAs' => array_filter([
-                    $seoData['facebook_page'] ?? '',
-                    $seoData['instagram_profile'] ?? '',
-                    $seoData['linkedin_profile'] ?? '',
-                    $seoData['twitter_site'] ?? ''
-                ])
+                'sameAs' => \App\Models\Social::where('visible', true)->pluck('link')->toArray()
             ];
         }
         

@@ -13,6 +13,7 @@ import { createRoot } from "react-dom/client";
 import Base from "./Components/Tailwind/Base";
 import HtmlContent from "./Utils/HtmlContent";
 import HtmlContentWithInsert from "./Utils/HtmlContentWithInsert";
+import General from "./Utils/General";
 
 import Tippy from "@tippyjs/react";
 import Header from "./components/Tailwind/Header";
@@ -30,15 +31,15 @@ import CintilloSection from "./components/Tailwind/CambiaFX/CintilloSection";
 import WhatsAppButton from "./components/Shared/WhatsAppButton";
 
 // Configurar moment en español
-moment.locale('es');
+moment.locale("es");
 
 // Animaciones reutilizables mejoradas
 const pageTransition = {
     hidden: { opacity: 0 },
     visible: {
         opacity: 1,
-        transition: { duration: 0.8, ease: "easeOut" }
-    }
+        transition: { duration: 0.8, ease: "easeOut" },
+    },
 };
 
 const fadeInUp = {
@@ -139,137 +140,179 @@ const Toast = ({ show, message }) => {
 };
 
 const BannerArticle = ({ banner }) => {
-   return (
-       <motion.div 
-           className="bg-[#C6FF6B] px-4 py-4  lg:px-16 lg:py-2 rounded-2xl flex flex-col md:flex-row items-center justify-between relative overflow-hidden lg:overflow-visible"
-           initial={{ opacity: 0, scale: 0.95, y: 20 }}
-           whileInView={{ opacity: 1, scale: 1, y: 0 }}
-           transition={{ duration: 0.8, ease: "easeOut" }}
-           viewport={{ once: true, margin: "-50px" }}
-           whileHover={{ scale: 1.02 }}
-       >
-                {/* Texto y promo */}
-                <motion.div 
-                    className="flex-1 flex flex-col justify-center z-[999]"
-                    initial={{ opacity: 0, x: -30 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.8, delay: 0.2 }}
+    return (
+        <motion.div
+            className="bg-[#C6FF6B] px-8 py-10 h-full lg:px-16 rounded-2xl flex flex-col md:flex-row items-center justify-between relative overflow-hidden lg:overflow-visible min-h-[180px]"
+            style={{
+                backgroundImage: "url(/assets/cambiafx/operation-overlay.png)",
+                backgroundSize: "cover",
+                backgroundPosition: "center",
+                backgroundBlendMode: "multiply",
+            }}
+            initial={{ opacity: 0, scale: 0.95, y: 20 }}
+            whileInView={{ opacity: 1, scale: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            whileHover={{ scale: 1.02 }}
+        >
+            {/* Texto y promo */}
+            <motion.div
+                className="flex-1 flex flex-col justify-center z-[999]"
+                initial={{ opacity: 0, x: -30 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.8, delay: 0.2 }}
+                viewport={{ once: true }}
+            >
+                <motion.h2
+                    className=" text-3xl lg:text-[36px] max-w-md font-semibold leading-[1.1] text-text-neutral-light mb-2"
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6, delay: 0.3 }}
                     viewport={{ once: true }}
                 >
-                    <motion.h2 
-                        className=" text-3xl lg:text-[36px] max-w-md font-semibold leading-[1.1] text-text-neutral-light mb-2"
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.6, delay: 0.3 }}
-                        viewport={{ once: true }}
-                    >
-                        <TextWithHighlight text={banner?.name} color='bg-constrast' />
-                    </motion.h2>
-                    <motion.p 
-                        className="text-base text-text-neutral-light font-paragraph"
-                        initial={{ opacity: 0, y: 15 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.6, delay: 0.4 }}
-                        viewport={{ once: true }}
-                    >
-                        {banner?.description}
-                    </motion.p>
-                </motion.div>
-
-                <motion.div 
-                    className="hidden lg:block absolute !w-full h-full right-0 bottom-0 lg:right-16"
-                    initial={{ opacity: 0, scale: 0.8 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
-                    transition={{ duration: 0.8, delay: 0.3 }}
-                    viewport={{ once: true }}
-                >
-                    <motion.img 
-                        src="/assets/cambiafx/operation-overlay.png" 
-                        alt="Teléfono móvil" 
-                        className="w-full h-full  lg:h-[170px] lg:w-auto z-10 relative"
-                       
+                    <TextWithHighlight
+                        text={banner?.name}
+                        color="bg-constrast"
                     />
-                </motion.div>
-
-                {/* Teléfono */}
-                <motion.div 
-                    className="absolute bottom-0 flex-1 left-1/3 translate-x-1/2 z-50"
-                  
-                >
-                    <motion.img 
-                        src={`/api/banners/media/${banner?.image}`} 
-                        alt="Teléfono móvil"
-                        className="w-[200px] md:w-[200px] lg:w-[250px] h-auto z-10 relative"
-                        onError={(e) =>
-                        (e.target.src =
-                            "/api/cover/thumbnail/null")
-                        }
-                     
-                    />
-                </motion.div>
-
-                {/* Botón promo */}
-                <motion.div 
-                    className="lg:flex-1 z-[999] flex mt-4  lg:mt-0  lg:justify-end items-center md:py-12 w-full md:w-auto"
-                    initial={{ opacity: 0, x: 30 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.8, delay: 0.5 }}
+                </motion.h2>
+                <motion.p
+                    className="text-base text-text-neutral-light font-paragraph"
+                    initial={{ opacity: 0, y: 15 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6, delay: 0.4 }}
                     viewport={{ once: true }}
                 >
-                     <WhatsAppButton buttonData={banner?.button_link}>   
-                    <motion.span 
+                    {banner?.description}
+                </motion.p>
+            </motion.div>
+
+            {/* Teléfono */}
+            <motion.div className="absolute -bottom-10 flex-1 left-1/3 translate-x-1/2 z-50">
+                <motion.img
+                    src={`/api/banners/media/${banner?.image}`}
+                    alt="Teléfono móvil"
+                    className="w-[200px] md:w-[200px] lg:w-[250px] h-full z-10 relative"
+                    onError={(e) =>
+                        (e.target.src = "/api/cover/thumbnail/null")
+                    }
+                />
+            </motion.div>
+
+            {/* Botón promo */}
+            <motion.div
+                className="lg:flex-1 z-[999] flex mt-4  lg:mt-0  lg:justify-end items-center md:py-12 w-full md:w-auto"
+                initial={{ opacity: 0, x: 30 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.8, delay: 0.5 }}
+                viewport={{ once: true }}
+            >
+                <WhatsAppButton buttonData={banner?.button_link}>
+                    <motion.span
                         className="bg-constrast uppercase text-white px-6 py-4 rounded-full font-medium text-sm flex items-center gap-3 transition-all duration-300 shadow-lg"
-                        whileHover={{ 
+                        whileHover={{
                             scale: 1.05,
-                            boxShadow: "0 10px 25px rgba(0,0,0,0.2)"
+                            boxShadow: "0 10px 25px rgba(0,0,0,0.2)",
                         }}
                         whileTap={{ scale: 0.95 }}
                         animate={{
                             boxShadow: [
                                 "0 4px 15px rgba(0,0,0,0.1)",
                                 "0 6px 20px rgba(0,0,0,0.15)",
-                                "0 4px 15px rgba(0,0,0,0.1)"
-                            ]
+                                "0 4px 15px rgba(0,0,0,0.1)",
+                            ],
                         }}
                         transition={{
                             boxShadow: {
                                 duration: 2,
                                 repeat: Infinity,
-                                ease: "easeInOut"
-                            }
+                                ease: "easeInOut",
+                            },
                         }}
                     >
                         {banner?.button_text || "¡Quiero cambiar!"}
-                        <motion.svg 
-                            width="24" 
-                            height="25" 
-                            viewBox="0 0 24 25" 
-                            fill="none" 
+                        <motion.svg
+                            width="24"
+                            height="25"
+                            viewBox="0 0 24 25"
+                            fill="none"
                             xmlns="http://www.w3.org/2000/svg"
                             animate={{ rotate: [0, 5, -5, 0] }}
                             transition={{ duration: 2, repeat: Infinity }}
                         >
                             <g clipPath="url(#clip0_141_6110)">
-                                <path d="M0 24.5002C0.12869 24.0263 0.248084 23.5822 0.369923 23.1391C0.789268 21.6102 1.21302 20.0827 1.62355 18.5513C1.65487 18.4347 1.63432 18.2761 1.57805 18.1677C-0.391453 14.3705 -0.483445 10.5376 1.54037 6.76187C3.32344 3.43558 6.1419 1.33566 9.88077 0.709535C14.8752 -0.12692 18.9918 1.54257 21.8725 5.68873C26.7823 12.7547 22.7601 22.4403 14.246 24.0985C11.5635 24.6207 8.98826 24.2162 6.55195 22.9746C6.38607 22.8902 6.24221 22.8785 6.06557 22.9254C4.12787 23.4373 2.18822 23.9429 0.248573 24.4489C0.180068 24.467 0.110096 24.4777 0 24.5002ZM2.87327 21.678C4.04273 21.372 5.15593 21.0895 6.26276 20.7854C6.52014 20.7147 6.71587 20.7498 6.94438 20.884C9.13603 22.1714 11.4921 22.5984 13.9842 22.0962C21.021 20.6781 24.2955 12.5478 20.1246 6.71307C17.7309 3.36481 14.3575 2.00326 10.2923 2.67574C5.62323 3.44875 2.24645 7.44509 2.1207 12.1705C2.06638 14.2109 2.61882 16.0917 3.73006 17.8061C3.82988 17.9603 3.86071 18.095 3.80688 18.28C3.55978 19.1311 3.33029 19.9865 3.09591 20.8411C3.02349 21.1041 2.95547 21.3686 2.87327 21.678Z" fill="white" />
-                                <path d="M15.2814 18.494C14.3845 18.4799 13.6417 18.1671 12.8847 17.8825C10.3271 16.9216 8.51662 15.1121 7.07656 12.8672C6.6626 12.2221 6.25695 11.574 6.02844 10.8361C5.57191 9.36183 5.79406 8.03834 6.93857 6.93738C7.4 6.49378 7.95684 6.42106 8.55136 6.60797C8.83027 6.69581 9.01768 6.89053 9.12043 7.17065C9.40619 7.94903 9.71153 8.72058 9.97821 9.50482C10.0335 9.66684 10.0066 9.90206 9.92487 10.0543C9.79667 10.2934 9.59116 10.4911 9.41598 10.7044C9.34356 10.7922 9.26234 10.8732 9.19139 10.962C8.90367 11.3232 8.8978 11.4569 9.12631 11.8619C9.99093 13.3943 11.2147 14.5509 12.7854 15.3444C12.894 15.3995 13.0056 15.4503 13.1206 15.4913C13.3897 15.5869 13.627 15.5581 13.8247 15.3224C14.1178 14.9735 14.4285 14.6402 14.7212 14.2908C14.9751 13.9867 15.1067 13.9326 15.4806 14.118C16.1876 14.4694 16.8849 14.8412 17.5827 15.2107C18.2212 15.5484 18.2408 15.5957 18.1077 16.3009C17.8905 17.4521 16.9334 18.292 15.6484 18.4584C15.5031 18.4769 15.3568 18.4867 15.2814 18.494Z" fill="white" />
+                                <path
+                                    d="M0 24.5002C0.12869 24.0263 0.248084 23.5822 0.369923 23.1391C0.789268 21.6102 1.21302 20.0827 1.62355 18.5513C1.65487 18.4347 1.63432 18.2761 1.57805 18.1677C-0.391453 14.3705 -0.483445 10.5376 1.54037 6.76187C3.32344 3.43558 6.1419 1.33566 9.88077 0.709535C14.8752 -0.12692 18.9918 1.54257 21.8725 5.68873C26.7823 12.7547 22.7601 22.4403 14.246 24.0985C11.5635 24.6207 8.98826 24.2162 6.55195 22.9746C6.38607 22.8902 6.24221 22.8785 6.06557 22.9254C4.12787 23.4373 2.18822 23.9429 0.248573 24.4489C0.180068 24.467 0.110096 24.4777 0 24.5002ZM2.87327 21.678C4.04273 21.372 5.15593 21.0895 6.26276 20.7854C6.52014 20.7147 6.71587 20.7498 6.94438 20.884C9.13603 22.1714 11.4921 22.5984 13.9842 22.0962C21.021 20.6781 24.2955 12.5478 20.1246 6.71307C17.7309 3.36481 14.3575 2.00326 10.2923 2.67574C5.62323 3.44875 2.24645 7.44509 2.1207 12.1705C2.06638 14.2109 2.61882 16.0917 3.73006 17.8061C3.82988 17.9603 3.86071 18.095 3.80688 18.28C3.55978 19.1311 3.33029 19.9865 3.09591 20.8411C3.02349 21.1041 2.95547 21.3686 2.87327 21.678Z"
+                                    fill="white"
+                                />
+                                <path
+                                    d="M15.2814 18.494C14.3845 18.4799 13.6417 18.1671 12.8847 17.8825C10.3271 16.9216 8.51662 15.1121 7.07656 12.8672C6.6626 12.2221 6.25695 11.574 6.02844 10.8361C5.57191 9.36183 5.79406 8.03834 6.93857 6.93738C7.4 6.49378 7.95684 6.42106 8.55136 6.60797C8.83027 6.69581 9.01768 6.89053 9.12043 7.17065C9.40619 7.94903 9.71153 8.72058 9.97821 9.50482C10.0335 9.66684 10.0066 9.90206 9.92487 10.0543C9.79667 10.2934 9.59116 10.4911 9.41598 10.7044C9.34356 10.7922 9.26234 10.8732 9.19139 10.962C8.90367 11.3232 8.8978 11.4569 9.12631 11.8619C9.99093 13.3943 11.2147 14.5509 12.7854 15.3444C12.894 15.3995 13.0056 15.4503 13.1206 15.4913C13.3897 15.5869 13.627 15.5581 13.8247 15.3224C14.1178 14.9735 14.4285 14.6402 14.7212 14.2908C14.9751 13.9867 15.1067 13.9326 15.4806 14.118C16.1876 14.4694 16.8849 14.8412 17.5827 15.2107C18.2212 15.5484 18.2408 15.5957 18.1077 16.3009C17.8905 17.4521 16.9334 18.292 15.6484 18.4584C15.5031 18.4769 15.3568 18.4867 15.2814 18.494Z"
+                                    fill="white"
+                                />
                             </g>
                             <defs>
                                 <clipPath id="clip0_141_6110">
-                                    <rect width="24" height="24" fill="white" transform="translate(0 0.5)" />
+                                    <rect
+                                        width="24"
+                                        height="24"
+                                        fill="white"
+                                        transform="translate(0 0.5)"
+                                    />
                                 </clipPath>
                             </defs>
                         </motion.svg>
                     </motion.span>
-                    </WhatsAppButton>
-                </motion.div>
+                </WhatsAppButton>
             </motion.div>
-   )
+        </motion.div>
+    );
 };
-const BlogArticle = ({ article, posts, landing, banner_operacion,banner }) => {
+const BlogArticle = ({ article, posts, landing, banner, generals }) => {
+    // Definición de animaciones que faltaban
+    const fadeInUp = {
+        initial: { opacity: 0, y: 30 },
+        animate: { opacity: 1, y: 0 },
+        transition: { duration: 0.6, ease: "easeOut" },
+    };
+
+    const fadeInLeft = {
+        initial: { opacity: 0, x: -30 },
+        animate: { opacity: 1, x: 0 },
+        transition: { duration: 0.6, ease: "easeOut" },
+    };
+
+    const fadeInRight = {
+        initial: { opacity: 0, x: 30 },
+        animate: { opacity: 1, x: 0 },
+        transition: { duration: 0.6, ease: "easeOut" },
+    };
+
+    const staggerContainer = {
+        animate: {
+            transition: {
+                staggerChildren: 0.1,
+            },
+        },
+    };
+
+    const staggerFast = {
+        animate: {
+            transition: {
+                staggerChildren: 0.05,
+            },
+        },
+    };
+
+    const staggerSlow = {
+        animate: {
+            transition: {
+                staggerChildren: 0.2,
+            },
+        },
+    };
+
     const shareUrl = encodeURIComponent(window.location.href);
     const shareTitle = encodeURIComponent(article.name);
     const shareText = encodeURIComponent(
-        `${article.name} - ${article.description.substring(0, 100)}...`
+        `${article.name} - ${article.description.substring(0, 100)}...`,
     );
     const [showToast, setShowToast] = useState(false);
     const [hoveredShare, setHoveredShare] = useState(null);
@@ -320,7 +363,13 @@ const BlogArticle = ({ article, posts, landing, banner_operacion,banner }) => {
                 width={width}
                 height={height}
             >
-                <rect x={width} width={width} height={height} transform={`rotate(90 ${width} 0)`} fill="#D9D9D9" />
+                <rect
+                    x={width}
+                    width={width}
+                    height={height}
+                    transform={`rotate(90 ${width} 0)`}
+                    fill="#D9D9D9"
+                />
             </mask>
             <g mask="url(#mask0_202_13054)">
                 <path
@@ -331,10 +380,10 @@ const BlogArticle = ({ article, posts, landing, banner_operacion,banner }) => {
         </svg>
     );
     const handleOperationStart = (operationData) => {
-        console.log('Operation data:', operationData);
+        console.log("Operation data:", operationData);
         // Aquí puedes manejar los datos de la operación como necesites
         // Por defecto redirigirá a mi.cambiafx.pe/login
-        window.location.href = 'https://mi.cambiafx.pe/login';
+        window.location.href = "https://mi.cambiafx.pe/login";
     };
 
     return (
@@ -344,13 +393,16 @@ const BlogArticle = ({ article, posts, landing, banner_operacion,banner }) => {
             variants={pageTransition}
         >
             <Header />
-            
+
             <motion.div
                 initial={{ opacity: 0, y: -20 }}
-                animate={{ opacity: sectionsReady ? 1 : 0, y: sectionsReady ? 0 : -20 }}
+                animate={{
+                    opacity: sectionsReady ? 1 : 0,
+                    y: sectionsReady ? 0 : -20,
+                }}
                 transition={{ duration: 0.6, delay: 0.1 }}
             >
-                <CintilloSection/>
+                <CintilloSection />
             </motion.div>
 
             <motion.section
@@ -383,15 +435,12 @@ const BlogArticle = ({ article, posts, landing, banner_operacion,banner }) => {
                             </span>
                         </motion.a>
 
-                        <motion.div 
-                            className="w-auto mb-2"
-                            variants={fadeInUp}
-                        >
+                        <motion.div className="w-auto mb-2" variants={fadeInUp}>
                             <motion.span
                                 className="inline-block rounded-lg text-sm text-neutral font-semibold px-4 py-2 bg-constrast border border-primary/20"
                                 whileHover={{
                                     scale: 1.05,
-                                    boxShadow: "0 4px 15px rgba(0,0,0,0.1)"
+                                    boxShadow: "0 4px 15px rgba(0,0,0,0.1)",
                                 }}
                                 whileTap={{ scale: 0.95 }}
                                 transition={{ duration: 0.2 }}
@@ -418,19 +467,24 @@ const BlogArticle = ({ article, posts, landing, banner_operacion,banner }) => {
                             >
                                 <motion.div
                                     animate={{ rotate: [0, 10, -10, 0] }}
-                                    transition={{ duration: 3, repeat: Infinity }}
+                                    transition={{
+                                        duration: 3,
+                                        repeat: Infinity,
+                                    }}
                                 >
                                     <CalendarClockIcon className="h-5 w-5" />
                                 </motion.div>
-                                <span>{moment(article.post_date).format("LL")}</span>
+                                <span>
+                                    {moment(article.post_date).format("LL")}
+                                </span>
                             </motion.div>
 
                             <motion.div
                                 className="h-1 w-1 bg-neutral-dark rounded-full"
                                 variants={fadeInUp}
-                                animate={{ 
+                                animate={{
                                     scale: [1, 1.5, 1],
-                                    opacity: [0.5, 1, 0.5]
+                                    opacity: [0.5, 1, 0.5],
                                 }}
                                 transition={{ duration: 2, repeat: Infinity }}
                             />
@@ -440,17 +494,25 @@ const BlogArticle = ({ article, posts, landing, banner_operacion,banner }) => {
                                 variants={fadeInUp}
                                 whileHover={{ scale: 1.05, y: -2 }}
                             >
-                                Tiempo de lectura: ~{Math.max(1, Math.ceil(article.description.split(' ').length / 200))} min
+                                Tiempo de lectura: ~
+                                {Math.max(
+                                    1,
+                                    Math.ceil(
+                                        article.description.split(" ").length /
+                                            200,
+                                    ),
+                                )}{" "}
+                                min
                             </motion.span>
                         </motion.div>
 
                         {article.tags && article.tags.length > 0 && (
-                            <motion.div 
+                            <motion.div
                                 className="flex flex-wrap gap-2 mt-4 hidden"
                                 variants={fadeInUp}
                             >
                                 {article.tags.map((tag, index) => (
-                                    <span 
+                                    <span
                                         key={index}
                                         className="px-3 py-1 bg-gray-100 text-gray-600 rounded-full text-sm font-medium"
                                     >
@@ -461,20 +523,24 @@ const BlogArticle = ({ article, posts, landing, banner_operacion,banner }) => {
                         )}
                     </motion.div>
 
-                    <motion.div 
+                    <motion.div
                         className="flex flex-col lg:flex-row gap-8 mb-12"
                         variants={staggerContainer}
                     >
                         <motion.div
                             variants={fadeInLeft}
                             className="lg:w-2/3 lg:flex-shrink-0 overflow-hidden rounded-2xl shadow-2xl bg-white"
-                            whileHover={{ 
-                                scale: 1.02, 
-                                boxShadow: "0 25px 50px rgba(0,0,0,0.15)" 
+                            whileHover={{
+                                scale: 1.02,
+                                boxShadow: "0 25px 50px rgba(0,0,0,0.15)",
                             }}
-                            transition={{ type: "spring", stiffness: 400, damping: 25 }}
+                            transition={{
+                                type: "spring",
+                                stiffness: 400,
+                                damping: 25,
+                            }}
                         >
-                            <motion.div 
+                            <motion.div
                                 className="relative w-full h-full object-cover"
                                 initial={{ opacity: 0 }}
                                 whileInView={{ opacity: 1 }}
@@ -487,7 +553,10 @@ const BlogArticle = ({ article, posts, landing, banner_operacion,banner }) => {
                                     className="absolute inset-0 w-full h-full object-cover object-center"
                                     initial={{ opacity: 0, scale: 1.2 }}
                                     whileInView={{ opacity: 1, scale: 1 }}
-                                    transition={{ duration: 1.2, ease: "easeOut" }}
+                                    transition={{
+                                        duration: 1.2,
+                                        ease: "easeOut",
+                                    }}
                                     viewport={{ once: true }}
                                 />
 
@@ -500,8 +569,8 @@ const BlogArticle = ({ article, posts, landing, banner_operacion,banner }) => {
                                 />
                             </motion.div>
                         </motion.div>
-                        
-                        <motion.div 
+
+                        <motion.div
                             className="lg:w-1/3 lg:flex-shrink-0"
                             variants={fadeInRight}
                         >
@@ -530,9 +599,83 @@ const BlogArticle = ({ article, posts, landing, banner_operacion,banner }) => {
                         transition={{ duration: 0.8, delay: 0.2 }}
                         viewport={{ once: true, margin: "-50px" }}
                     >
+                        {/* Schema.org NewsArticle JSON-LD */}
+                        {article && (
+                            <script
+                                type="application/ld+json"
+                                dangerouslySetInnerHTML={{
+                                    __html: JSON.stringify({
+                                        "@context": "https://schema.org",
+                                        "@type": "NewsArticle",
+                                        headline: article.name,
+                                        description:
+                                            article.summary || article.name,
+                                        image: [
+                                            (typeof window !== "undefined"
+                                                ? window.location.origin
+                                                : "") +
+                                                `/api/posts/media/${article.image}`,
+                                        ],
+                                        datePublished: article.post_date,
+                                        dateModified:
+                                            article.updated_at ||
+                                            article.post_date,
+                                        author: [
+                                            {
+                                                "@type": "Organization",
+                                                name:
+                                                    General.get(
+                                                        "company_name",
+                                                    ) || "Cambia FX",
+                                                url:
+                                                    General.get(
+                                                        "company_url",
+                                                    ) ||
+                                                    (typeof window !==
+                                                    "undefined"
+                                                        ? window.location.origin
+                                                        : ""),
+                                            },
+                                        ],
+                                    }),
+                                }}
+                            />
+                        )}
+
+                        {/* Bloque de autor — E-E-A-T */}
+                        <div className="flex items-center gap-4 mb-8 p-6 bg-gray-50 rounded-2xl border border-gray-100">
+                            <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center overflow-hidden border border-gray-100 shadow-sm">
+                                <img
+                                    src="/assets/img/icon.png"
+                                    alt="Cambia FX Logo"
+                                    className="w-full h-full object-contain p-1"
+                                />
+                            </div>
+                            <div className="flex flex-col">
+                                <span className="text-sm text-accent font-semibold uppercase tracking-wider">
+                                    {article?.category?.name}
+                                </span>
+                                <div className="flex items-center gap-2">
+                                    <span className="font-bold text-neutral-dark">
+                                        Equipo Cambia FX
+                                    </span>
+                                    <span className="text-gray-400">•</span>
+                                    <time
+                                        className="text-gray-500 text-sm"
+                                        dateTime={article?.post_date}
+                                    >
+                                        Publicado el{" "}
+                                        {moment(article?.post_date).format(
+                                            "LL",
+                                        )}
+                                    </time>
+                                </div>
+                            </div>
+                        </div>
+
                         <HtmlContentWithInsert
                             className="blog-article-content text-neutral-dark leading-relaxed"
-                            html={article.description}
+                            html={article?.description}
                             insertComponent={<BannerArticle banner={banner} />}
                         />
 
@@ -845,7 +988,7 @@ const BlogArticle = ({ article, posts, landing, banner_operacion,banner }) => {
                         transition={{ duration: 0.8 }}
                         viewport={{ once: true, margin: "-100px" }}
                     >
-                        <motion.div 
+                        <motion.div
                             className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6"
                             variants={staggerContainer}
                         >
@@ -865,54 +1008,117 @@ const BlogArticle = ({ article, posts, landing, banner_operacion,banner }) => {
                                     ¿Te gustó este artículo? ¡Compártelo!
                                 </motion.h3>
 
-                                <motion.div 
+                                <motion.div
                                     className="flex flex-wrap gap-3"
                                     variants={staggerFast}
                                 >
                                     {[
-                                        { type: "copy", label: "Copiar enlace", icon: Link, color: "bg-gray-100 hover:bg-gray-200 text-neutral-dark" },
-                                        { type: "linkedin", label: "LinkedIn", icon: Linkedin, color: "bg-blue-600 hover:bg-blue-700 text-white" },
-                                        { type: "twitter", label: "Twitter", icon: Twitter, color: "bg-blue-400 hover:bg-blue-500 text-white" },
-                                        { type: "facebook", label: "Facebook", icon: Facebook, color: "bg-blue-800 hover:bg-blue-900 text-white" },
-                                    ].map(({ type, label, icon: Icon, color }, index) => (
-                                        <motion.div
-                                            key={type}
-                                            variants={fadeInUp}
-                                            whileHover={{ 
-                                                y: -5, 
-                                                scale: 1.08,
-                                                boxShadow: "0 10px 25px rgba(0,0,0,0.15)"
-                                            }}
-                                            whileTap={{ scale: 0.95 }}
-                                            onHoverStart={() => setHoveredShare(type)}
-                                            onHoverEnd={() => setHoveredShare(null)}
-                                        >
-                                            <Tippy content={label}>
-                                                <motion.a
-                                                    href={type !== "copy" ? socialShareLinks[type] : undefined}
-                                                    onClick={type === "copy" ? copyToClipboard : undefined}
-                                                    target="_blank"
-                                                    rel="noopener noreferrer"
-                                                    className={`${color} px-4 py-3 rounded-xl flex items-center gap-2 font-medium transition-all duration-200 shadow-md hover:shadow-lg`}
-                                                    style={{ cursor: 'pointer' }}
-                                                    animate={{
-                                                        rotate: hoveredShare === type ? [0, -2, 2, 0] : 0
-                                                    }}
-                                                    transition={{ duration: 0.3 }}
-                                                >
-                                                    <motion.div
-                                                        animate={{
-                                                            scale: hoveredShare === type ? [1, 1.2, 1] : 1
+                                        {
+                                            type: "copy",
+                                            label: "Copiar enlace",
+                                            icon: Link,
+                                            color: "bg-gray-100 hover:bg-gray-200 text-neutral-dark",
+                                        },
+                                        {
+                                            type: "linkedin",
+                                            label: "LinkedIn",
+                                            icon: Linkedin,
+                                            color: "bg-blue-600 hover:bg-blue-700 text-white",
+                                        },
+                                        {
+                                            type: "twitter",
+                                            label: "Twitter",
+                                            icon: Twitter,
+                                            color: "bg-blue-400 hover:bg-blue-500 text-white",
+                                        },
+                                        {
+                                            type: "facebook",
+                                            label: "Facebook",
+                                            icon: Facebook,
+                                            color: "bg-blue-800 hover:bg-blue-900 text-white",
+                                        },
+                                    ].map(
+                                        (
+                                            { type, label, icon: Icon, color },
+                                            index,
+                                        ) => (
+                                            <motion.div
+                                                key={type}
+                                                variants={fadeInUp}
+                                                whileHover={{
+                                                    y: -5,
+                                                    scale: 1.08,
+                                                    boxShadow:
+                                                        "0 10px 25px rgba(0,0,0,0.15)",
+                                                }}
+                                                whileTap={{ scale: 0.95 }}
+                                                onHoverStart={() =>
+                                                    setHoveredShare(type)
+                                                }
+                                                onHoverEnd={() =>
+                                                    setHoveredShare(null)
+                                                }
+                                            >
+                                                <Tippy content={label}>
+                                                    <motion.a
+                                                        href={
+                                                            type !== "copy"
+                                                                ? socialShareLinks[
+                                                                      type
+                                                                  ]
+                                                                : undefined
+                                                        }
+                                                        onClick={
+                                                            type === "copy"
+                                                                ? copyToClipboard
+                                                                : undefined
+                                                        }
+                                                        target="_blank"
+                                                        rel="noopener noreferrer"
+                                                        className={`${color} px-4 py-3 rounded-xl flex items-center gap-2 font-medium transition-all duration-200 shadow-md hover:shadow-lg`}
+                                                        style={{
+                                                            cursor: "pointer",
                                                         }}
-                                                        transition={{ duration: 0.3 }}
+                                                        animate={{
+                                                            rotate:
+                                                                hoveredShare ===
+                                                                type
+                                                                    ? [
+                                                                          0, -2,
+                                                                          2, 0,
+                                                                      ]
+                                                                    : 0,
+                                                        }}
+                                                        transition={{
+                                                            duration: 0.3,
+                                                        }}
                                                     >
-                                                        <Icon className="h-5 w-5" />
-                                                    </motion.div>
-                                                    <span className="hidden sm:inline">{label}</span>
-                                                </motion.a>
-                                            </Tippy>
-                                        </motion.div>
-                                    ))}
+                                                        <motion.div
+                                                            animate={{
+                                                                scale:
+                                                                    hoveredShare ===
+                                                                    type
+                                                                        ? [
+                                                                              1,
+                                                                              1.2,
+                                                                              1,
+                                                                          ]
+                                                                        : 1,
+                                                            }}
+                                                            transition={{
+                                                                duration: 0.3,
+                                                            }}
+                                                        >
+                                                            <Icon className="h-5 w-5" />
+                                                        </motion.div>
+                                                        <span className="hidden sm:inline">
+                                                            {label}
+                                                        </span>
+                                                    </motion.a>
+                                                </Tippy>
+                                            </motion.div>
+                                        ),
+                                    )}
                                 </motion.div>
                             </motion.div>
                         </motion.div>
@@ -931,14 +1137,18 @@ const BlogArticle = ({ article, posts, landing, banner_operacion,banner }) => {
                     className="text-white text-3xl sm:text-4xl lg:text-[44px] !leading-tight"
                     variants={fadeInUp}
                 >
-                    <TextWithHighlight text={landing?.title || "Ver más *noticias*"} color="bg-neutral font-semibold" />
+                    <TextWithHighlight
+                        text={landing?.title || "Ver más *noticias*"}
+                        color="bg-neutral font-semibold"
+                    />
                 </motion.h2>
 
                 <motion.p
                     className="flex mt-3 text-center lg:text-left text-base 2xl:text-lg text-white"
                     variants={fadeInUp}
                 >
-                    {landing?.description || "Descubre más artículos interesantes y mantente al día con nuestras últimas noticias y actualizaciones."}
+                    {landing?.description ||
+                        "Descubre más artículos interesantes y mantente al día con nuestras últimas noticias y actualizaciones."}
                 </motion.p>
 
                 <motion.section
@@ -949,30 +1159,30 @@ const BlogArticle = ({ article, posts, landing, banner_operacion,banner }) => {
                         <motion.div
                             key={index}
                             variants={fadeInUp}
-                            whileHover={{ 
-                                y: -8, 
+                            whileHover={{
+                                y: -8,
                                 scale: 1.02,
-                                transition: { duration: 0.3 }
+                                transition: { duration: 0.3 },
                             }}
                             whileTap={{ scale: 0.98 }}
                         >
                             <motion.div
                                 initial={{ opacity: 0, y: 50 }}
                                 whileInView={{ opacity: 1, y: 0 }}
-                                transition={{ 
-                                    duration: 0.8, 
+                                transition={{
+                                    duration: 0.8,
                                     delay: index * 0.1,
-                                    ease: "easeOut"
+                                    ease: "easeOut",
                                 }}
                                 viewport={{ once: true }}
                             >
-                                <PostCard 
-                                    {...item} 
-                                    firstImage 
-                                    classTitle="text-white" 
-                                    classDescription="text-white" 
-                                    classBtn="bg-neutral-dark" 
-                                    classCategory="text-neutral-dark" 
+                                <PostCard
+                                    {...item}
+                                    firstImage
+                                    classTitle="text-white"
+                                    classDescription="text-white"
+                                    classBtn="bg-neutral-dark"
+                                    classCategory="text-neutral-dark"
                                 />
                             </motion.div>
                         </motion.div>
@@ -982,7 +1192,10 @@ const BlogArticle = ({ article, posts, landing, banner_operacion,banner }) => {
 
             <motion.div
                 initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: sectionsReady ? 1 : 0, y: sectionsReady ? 0 : 30 }}
+                animate={{
+                    opacity: sectionsReady ? 1 : 0,
+                    y: sectionsReady ? 0 : 30,
+                }}
                 transition={{ duration: 0.8, delay: 0.3 }}
             >
                 <Footer />
@@ -997,6 +1210,6 @@ CreateReactScript((el, properties) => {
             <Base {...properties}>
                 <BlogArticle {...properties} />
             </Base>
-        </CarritoProvider>
+        </CarritoProvider>,
     );
 });

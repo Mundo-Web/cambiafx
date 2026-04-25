@@ -149,6 +149,7 @@ Route::get('/test', [TestController::class, 'reactView'])->name('Test.jsx');
 Route::get('/test/result/{formula}', [TestResultController::class, 'reactView'])->name('TestResult.jsx');
 //Route::get('/about', [AboutController::class, 'reactView'])->name('About.jsx');
 Route::get('/blog', [BlogController::class, 'reactView'])->name('Blog.jsx');
+Route::get('/blog/la-caida-del-dolar-en-peru-y-el-mundo-que-sgnifica', fn() => redirect('/blog/la-caida-del-dolar-en-peru-y-el-mundo-que-significa', 301));
 Route::get('/blog/{slug}', [ArticleController::class, 'reactView'])->name('BlogArticle.jsx');
 //Route::get('/contacto', [ContactController::class, 'reactView'])->name('Contact.jsx');
 Route::get('/libro-de-reclamaciones', [ComplaintController::class, 'reactView'])->name('LibroDeReclamaciones.jsx');

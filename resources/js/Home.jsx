@@ -153,6 +153,7 @@ const Home = ({
 
     return (
         <div>
+            <h1 className="sr-only">Cambia dolares y soles online en Peru</h1>
             {/* Debug Info <AppDebugInfo apps={apps} />*/}
             
             

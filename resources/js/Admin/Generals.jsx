@@ -135,6 +135,14 @@ const Generals = ({ generals }) => {
         linkedinProfile:
             generals.find((x) => x.correlative == "linkedin_profile")?.description ?? "",
         
+        // Datos geográficos para SEO
+        companyLocality:
+            generals.find((x) => x.correlative == "company_locality")?.description ?? "San Isidro",
+        companyRegion:
+            generals.find((x) => x.correlative == "company_region")?.description ?? "Lima",
+        companyCountry:
+            generals.find((x) => x.correlative == "company_country")?.description ?? "PE",
+        
         // Imágenes por defecto
         ogImageDefault:
             generals.find((x) => x.correlative == "og_image_default")?.description ?? "",
@@ -346,6 +354,22 @@ const Generals = ({ generals }) => {
                     correlative: "linkedin_profile",
                     name: "Perfil de LinkedIn",
                     description: formData.linkedinProfile,
+                },
+                // Datos geográficos para SEO
+                {
+                    correlative: "company_locality",
+                    name: "Localidad/Distrito (SEO)",
+                    description: formData.companyLocality,
+                },
+                {
+                    correlative: "company_region",
+                    name: "Región/Estado (SEO)",
+                    description: formData.companyRegion,
+                },
+                {
+                    correlative: "company_country",
+                    name: "País (Código ISO, ej: PE)",
+                    description: formData.companyCountry,
                 },
                 // Imágenes por defecto
                 {
@@ -1088,6 +1112,49 @@ const Generals = ({ generals }) => {
                                 <small className="form-text text-muted">
                                     Desde Bing Webmaster Tools
                                 </small>
+                            </div>
+                        </div>
+
+                        <h5 className="mt-4 mb-3">Datos Geográficos (Schema.org)</h5>
+                        <div className="row">
+                            <div className="col-md-4">
+                                <InputFormGroup
+                                    label="Distrito / Localidad"
+                                    value={formData.companyLocality ?? ""}
+                                    onChange={(e) =>
+                                        setFormData({
+                                            ...formData,
+                                            companyLocality: e.target.value,
+                                        })
+                                    }
+                                    placeholder="San Isidro"
+                                />
+                            </div>
+                            <div className="col-md-4">
+                                <InputFormGroup
+                                    label="Provincia / Región"
+                                    value={formData.companyRegion ?? ""}
+                                    onChange={(e) =>
+                                        setFormData({
+                                            ...formData,
+                                            companyRegion: e.target.value,
+                                        })
+                                    }
+                                    placeholder="Lima"
+                                />
+                            </div>
+                            <div className="col-md-4">
+                                <InputFormGroup
+                                    label="País (Código ISO)"
+                                    value={formData.companyCountry ?? ""}
+                                    onChange={(e) =>
+                                        setFormData({
+                                            ...formData,
+                                            companyCountry: e.target.value,
+                                        })
+                                    }
+                                    placeholder="PE"
+                                />
                             </div>
                         </div>
                     </div>

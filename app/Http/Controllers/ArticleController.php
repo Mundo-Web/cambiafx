@@ -35,7 +35,8 @@ class ArticleController extends BasicController
             'seoDescription' => $currentArticle->seo_description,
             'seoKeywords' => $currentArticle->seo_keywords,
             'seoImage' => url("/api/posts/media/{$currentArticle->image}"),
-            'seoUrl' => url("/blog/{$currentArticle->slug}")
+            'seoUrl' => url("/blog/{$currentArticle->slug}"),
+            'generals' => \App\Models\General::where('lang_id', app('current_lang_id'))->get()
         ];
     }
 }

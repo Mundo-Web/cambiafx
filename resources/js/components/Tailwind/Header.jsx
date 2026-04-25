@@ -352,7 +352,7 @@ const Header = ({
                                   
                                 ></div>
                                 <div className="relative">
-                                    <motion.h1
+                                    <motion.span
                                         animate={{ x: [0, "-100%"] }}
                                         transition={{
                                             x: {
@@ -365,8 +365,8 @@ const Header = ({
                                         className="font-bold text-sm absolute whitespace-nowrap"
                                     >
                                         {renderHighlightedText(Cintillo?.description)}
-                                    </motion.h1>
-                                    <motion.h1
+                                    </motion.span>
+                                    <motion.span
                                         animate={{ x: ["100%", "0%"] }}
                                         transition={{
                                             x: {
@@ -379,10 +379,10 @@ const Header = ({
                                         className="font-bold ml-4 text-sm absolute whitespace-nowrap"
                                     >
                                         {renderHighlightedText(Cintillo?.description)}
-                                    </motion.h1>
-                                    <h1 className="font-bold ml-4 text-sm opacity-0 whitespace-nowrap">
+                                    </motion.span>
+                                    <span className="font-bold ml-4 text-sm opacity-0 whitespace-nowrap">
                                         {renderHighlightedText(Cintillo?.description)}
-                                    </h1>
+                                    </span>
                                 </div>
                                  
                             </div>

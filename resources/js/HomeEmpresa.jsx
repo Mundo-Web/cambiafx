@@ -384,6 +384,7 @@ const Home = ({
             animate="visible"
             variants={pageVariants}
         >
+            <h1 className="sr-only">Cambio de dolares para empresas en Peru</h1>
             {/* Header con animación desde arriba */}
             <motion.div
                 className="animate-section relative z-[99999]"
