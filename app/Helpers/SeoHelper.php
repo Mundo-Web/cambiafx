@@ -77,8 +77,8 @@ class SeoHelper
         $seoData = self::getSeoData();
         
         $title = $title ?? $seoData['seo_title'] ?? 'CambiaFX - Casa de Cambio Online';
-        $description = $description ?? $seoData['seo_description'] ?? 'Casa de cambio online con las mejores tasas de cambio. Compra y vende dólares de forma segura y rápida.';
-        $image = $image ?? $seoData['company_logo'] ?? '/assets/img/logo.png';
+        $description = $description ?? $seoData['seo_description'] ?? 'Casa de cambio online con las mejores tasas de cambio. Compra y vende dólares de forma rápida, segura y al mejor tipo de cambio usando bancos peruanos.';
+        $image = $image ?? $seoData['company_logo'] ?? '/assets/img/icon.png';
         $url = $url ?? $seoData['company_url'] ?? url()->current();
         
         return [
@@ -99,15 +99,19 @@ class SeoHelper
         $seoData = self::getSeoData();
         
         $title = $title ?? $seoData['seo_title'] ?? 'CambiaFX - Casa de Cambio Online';
-        $description = $description ?? $seoData['seo_description'] ?? 'Casa de cambio online con las mejores tasas de cambio. Compra y vende dólares de forma segura y rápida.';
-        $image = $image ?? $seoData['company_logo'] ?? '/assets/img/logo.png';
+        $description = $description ?? $seoData['seo_description'] ?? 'Casa de cambio online con las mejores tasas de cambio. Compra y vende dólares de forma rápida, segura y al mejor tipo de cambio usando bancos peruanos.';
+        $image = $image ?? $seoData['company_logo'] ?? '/assets/img/icon.png';
+        $twitterSite = $seoData['twitter_site'] ?? '@cambiafx';
         
         return [
             'twitter:card' => 'summary_large_image',
             'twitter:title' => $title,
             'twitter:description' => $description,
             'twitter:image' => str_starts_with($image, 'http') ? $image : url($image),
-            'twitter:site' => $seoData['twitter_site'] ?? '@cambiafx'
+            'twitter:site' => $twitterSite,
+            'twitter:creator' => $twitterSite,
+            'twitter:url' => url()->current(),
+            'twitter:domain' => request()->getHost()
         ];
     }
 
