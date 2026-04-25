@@ -13,36 +13,36 @@ import AppStoreBanner from "./components/Apps/AppStoreBanner";
 import HeroSecction from "./components/Tailwind/CambiaFX/HeroSecction";
 import CintilloSection from "./components/Tailwind/CambiaFX/CintilloSection";
 
-const PrimeraOperacionSection = lazy(() =>
-    import("./components/Tailwind/CambiaFX/PrimeraOperacionSection")
+const PrimeraOperacionSection = lazy(
+    () => import("./components/Tailwind/CambiaFX/PrimeraOperacionSection"),
 );
-const FuncionSection = lazy(() =>
-    import("./components/Tailwind/CambiaFX/FuncionSection")
+const FuncionSection = lazy(
+    () => import("./components/Tailwind/CambiaFX/FuncionSection"),
 );
-const CuponesSection = lazy(() =>
-    import("./components/Tailwind/CambiaFX/CuponesSection")
+const CuponesSection = lazy(
+    () => import("./components/Tailwind/CambiaFX/CuponesSection"),
 );
-const PilaresSection = lazy(() =>
-    import("./components/Tailwind/CambiaFX/PilaresSection")
+const PilaresSection = lazy(
+    () => import("./components/Tailwind/CambiaFX/PilaresSection"),
 );
-const EmpresasSection = lazy(() =>
-    import("./components/Tailwind/CambiaFX/EmpresasSection")
+const EmpresasSection = lazy(
+    () => import("./components/Tailwind/CambiaFX/EmpresasSection"),
 );
-const BlogSection = lazy(() =>
-    import("./components/Tailwind/CambiaFX/BlogSection")
+const BlogSection = lazy(
+    () => import("./components/Tailwind/CambiaFX/BlogSection"),
 );
-const LazyModalAppointment = lazy(() =>
-    import("./components/Appointment/ModalAppointment")
+const LazyModalAppointment = lazy(
+    () => import("./components/Appointment/ModalAppointment"),
 );
-const LazyPopupManager = lazy(() =>
-    import("./components/PopupManager/PopupManager")
+const LazyPopupManager = lazy(
+    () => import("./components/PopupManager/PopupManager"),
 );
 
 const SectionFallback = ({ minHeight = "400px" }) => (
-    <div 
-        className="w-full rounded-3xl bg-neutral-100/40 animate-pulse" 
-        style={{ minHeight }} 
-        aria-hidden 
+    <div
+        className="w-full rounded-3xl bg-neutral-100/40 animate-pulse"
+        style={{ minHeight }}
+        aria-hidden
     />
 );
 
@@ -54,8 +54,8 @@ const Home = ({
     landing,
 
     apps,
-    pasos=[],
-    cupones=[],
+    pasos = [],
+    cupones = [],
     core_values = [],
 
     sliders,
@@ -73,7 +73,8 @@ const Home = ({
 
     // Estado para controlar cuando las secciones están listas para animar
     const [sectionsReady, setSectionsReady] = useState(false);
-    const [shouldRenderPopupManager, setShouldRenderPopupManager] = useState(false);
+    const [shouldRenderPopupManager, setShouldRenderPopupManager] =
+        useState(false);
 
     // Efecto para marcar las secciones como listas después del primer render
     useEffect(() => {
@@ -81,7 +82,7 @@ const Home = ({
         const timer = setTimeout(() => {
             setSectionsReady(true);
         }, 100);
-        
+
         return () => clearTimeout(timer);
     }, []);
 
@@ -93,8 +94,11 @@ const Home = ({
         const schedule = () => setShouldRenderPopupManager(true);
 
         if ("requestIdleCallback" in window) {
-            const idleId = window.requestIdleCallback(schedule, { timeout: 4000 });
-            return () => window.cancelIdleCallback && window.cancelIdleCallback(idleId);
+            const idleId = window.requestIdleCallback(schedule, {
+                timeout: 4000,
+            });
+            return () =>
+                window.cancelIdleCallback && window.cancelIdleCallback(idleId);
         }
 
         const timeoutId = window.setTimeout(schedule, 3000);
@@ -112,7 +116,10 @@ const Home = ({
         window.openAppointmentModal = handleOpenModal;
 
         return () => {
-            window.removeEventListener("open-appointment-modal", handleOpenModal);
+            window.removeEventListener(
+                "open-appointment-modal",
+                handleOpenModal,
+            );
             if (window.openAppointmentModal === handleOpenModal) {
                 delete window.openAppointmentModal;
             }
@@ -120,46 +127,43 @@ const Home = ({
     }, []);
 
     const landingInicio = landing?.find(
-        (item) => item.correlative === "page_home_inicio"
+        (item) => item.correlative === "page_home_inicio",
     );
 
     const landingPasos = landing?.find(
-        (item) => item.correlative === "page_home_pasos"
+        (item) => item.correlative === "page_home_pasos",
     );
 
     const landingCupones = landing?.find(
-        (item) => item.correlative === "page_home_cupones"
-    );  
+        (item) => item.correlative === "page_home_cupones",
+    );
     const landingPilares = landing?.find(
-        (item) => item.correlative === "page_home_pilares"
-    );  
+        (item) => item.correlative === "page_home_pilares",
+    );
 
     // Filtrar indicadores para cupones
-    const indicadoresCupones = indicators?.filter(
-        (indicator) => indicator.correlative === "inicio_cupones"
-    ) || [];
-      const indicadoresInicio = indicators?.filter(
-        (indicator) => indicator.correlative === "inicio_hero"
-    ) || [];
-
+    const indicadoresCupones =
+        indicators?.filter(
+            (indicator) => indicator.correlative === "inicio_cupones",
+        ) || [];
+    const indicadoresInicio =
+        indicators?.filter(
+            (indicator) => indicator.correlative === "inicio_hero",
+        ) || [];
 
     const landingBlog = landing?.find(
-        (item) => item.correlative === "page_home_blog"
+        (item) => item.correlative === "page_home_blog",
     );
 
     const [isModalOpen, setIsModalOpen] = useState(false);
 
-
-
     return (
         <div>
-            <h1 className="sr-only">Cambia dolares y soles online en Peru</h1>
             {/* Debug Info <AppDebugInfo apps={apps} />*/}
-            
-            
+
             {/* App Store Banner - Enlaces a tiendas de aplicaciones */}
             <AppStoreBanner apps={apps} />
-            
+
             <Header showSlogan={showSlogan} />
 
             <CintilloSection />
@@ -168,12 +172,18 @@ const Home = ({
             <motion.div
                 className="animate-section"
                 initial={{ opacity: 0, y: 40 }}
-                animate={sectionsReady ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
+                animate={
+                    sectionsReady ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }
+                }
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.2 }}
                 transition={{ duration: 0.7 }}
             >
-                <HeroSecction data={landingInicio} apps={apps} indicators={indicadoresInicio} />
+                <HeroSecction
+                    data={landingInicio}
+                    apps={apps}
+                    indicators={indicadoresInicio}
+                />
             </motion.div>
 
             {/* SLIDER  <SliderInteractive ... /> */}
@@ -182,7 +192,9 @@ const Home = ({
             <motion.div
                 className="animate-section"
                 initial={{ opacity: 0, y: 40 }}
-                animate={sectionsReady ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
+                animate={
+                    sectionsReady ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }
+                }
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.2 }}
                 transition={{ duration: 0.7, delay: 0.1 }}
@@ -194,7 +206,9 @@ const Home = ({
             <motion.div
                 className="animate-section"
                 initial={{ opacity: 0, y: 40 }}
-                animate={sectionsReady ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
+                animate={
+                    sectionsReady ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }
+                }
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.2 }}
                 transition={{ duration: 0.7, delay: 0.2 }}
@@ -206,31 +220,44 @@ const Home = ({
             <motion.div
                 className="animate-section"
                 initial={{ opacity: 0, y: 40 }}
-                animate={sectionsReady ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
+                animate={
+                    sectionsReady ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }
+                }
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.2 }}
                 transition={{ duration: 0.7, delay: 0.3 }}
             >
                 <Suspense fallback={<SectionFallback minHeight="700px" />}>
-                    <CuponesSection data={landingCupones} cupones={cupones} indicators={indicadoresCupones} />
+                    <CuponesSection
+                        data={landingCupones}
+                        cupones={cupones}
+                        indicators={indicadoresCupones}
+                    />
                 </Suspense>
             </motion.div>
             <motion.div
                 className="animate-section"
                 initial={{ opacity: 0, y: 40 }}
-                animate={sectionsReady ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
+                animate={
+                    sectionsReady ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }
+                }
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.2 }}
                 transition={{ duration: 0.7, delay: 0.4 }}
             >
                 <Suspense fallback={<SectionFallback minHeight="550px" />}>
-                    <PilaresSection data={landingPilares} core_values={core_values} />
+                    <PilaresSection
+                        data={landingPilares}
+                        core_values={core_values}
+                    />
                 </Suspense>
             </motion.div>
             <motion.div
                 className="animate-section"
                 initial={{ opacity: 0, y: 40 }}
-                animate={sectionsReady ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
+                animate={
+                    sectionsReady ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }
+                }
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.2 }}
                 transition={{ duration: 0.7, delay: 0.5 }}
@@ -242,7 +269,9 @@ const Home = ({
             <motion.div
                 className="animate-section"
                 initial={{ opacity: 0, y: 40 }}
-                animate={sectionsReady ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
+                animate={
+                    sectionsReady ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }
+                }
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.2 }}
                 transition={{ duration: 0.7, delay: 0.6 }}
@@ -291,6 +320,6 @@ CreateReactScript((el, properties) => {
             <Base {...properties}>
                 <Home {...properties} />
             </Base>
-        </CarritoProvider>
+        </CarritoProvider>,
     );
 });
