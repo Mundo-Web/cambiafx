@@ -445,10 +445,10 @@ const BlogArticle = ({ article, posts, landing, banner, generals }) => {
                             >
                                 {article.category.name}
                             </motion.a>
-                            <span className="text-neutral-dark/30 hidden md:inline">
+                            <span className="text-neutral-dark/30">
                                 /
                             </span>
-                            <span className="text-neutral-dark font-semibold truncate max-w-[200px] hidden md:inline">
+                            <span className="text-neutral-dark font-semibold truncate max-w-[120px] sm:max-w-[250px] inline-block align-bottom">
                                 {article.name}
                             </span>
                         </motion.nav>
@@ -511,7 +511,7 @@ const BlogArticle = ({ article, posts, landing, banner, generals }) => {
                                     <CalendarClockIcon className="h-5 w-5" />
                                 </motion.div>
                                 <span>
-                                    {moment(article.post_date).locale('es').format("LL")}
+                                    {new Intl.DateTimeFormat('es-ES', { dateStyle: 'long' }).format(new Date(article.post_date))}
                                 </span>
                             </motion.div>
 
@@ -658,9 +658,7 @@ const BlogArticle = ({ article, posts, landing, banner, generals }) => {
                                         dateTime={article?.post_date}
                                     >
                                         Publicado el{" "}
-                                        {moment(article?.post_date).locale('es').format(
-                                            "LL",
-                                        )}
+                                        {new Intl.DateTimeFormat('es-ES', { dateStyle: 'long' }).format(new Date(article?.post_date))}
                                     </time>
                                 </div>
                             </div>
