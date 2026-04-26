@@ -47,7 +47,7 @@ function Blog({ categories, postRecent, landing, sliders, banner }) {
             animate={{ opacity: sectionsReady ? 1 : 0 }}
             transition={{ duration: 0.6 }}
         >
-            <h1 className="sr-only">Blog sobre tipo de cambio y finanzas en Peru</h1>
+
             <Header />
             <CintilloSection/>
 

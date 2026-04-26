@@ -30,7 +30,9 @@ class SeoHelper
                 'linkedin_profile',
                 'company_locality',
                 'company_region',
-                'company_country'
+                'company_country',
+                'og_image_default',
+                'twitter_image_default'
             ])->get();
 
             $seoData = [];
@@ -89,7 +91,10 @@ class SeoHelper
             'og:image' => str_starts_with($image, 'http') ? $image : url($image),
             'og:url' => $url,
             'og:type' => 'website',
-            'og:site_name' => $seoData['company_name'] ?? 'CambiaFX'
+            'og:site_name' => $seoData['company_name'] ?? 'CambiaFX',
+            'og:image:type' => str_ends_with($image, '.png') ? 'image/png' : 'image/jpeg',
+            'og:image:width' => '1200',
+            'og:image:height' => '630'
         ];
     }
 
