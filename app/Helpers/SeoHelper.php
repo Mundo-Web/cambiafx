@@ -94,7 +94,8 @@ class SeoHelper
             'og:site_name' => $seoData['company_name'] ?? 'CambiaFX',
             'og:image:type' => str_ends_with($image, '.png') ? 'image/png' : 'image/jpeg',
             'og:image:width' => '1200',
-            'og:image:height' => '630'
+            'og:image:height' => '630',
+            'og:image:secure_url' => str_starts_with($image, 'http') ? $image : url($image)
         ];
     }
 
