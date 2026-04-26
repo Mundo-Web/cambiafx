@@ -511,7 +511,7 @@ const BlogArticle = ({ article, posts, landing, banner, generals }) => {
                                     <CalendarClockIcon className="h-5 w-5" />
                                 </motion.div>
                                 <span>
-                                    {moment(article.post_date).format("LL")}
+                                    {moment(article.post_date).locale('es').format("LL")}
                                 </span>
                             </motion.div>
 
@@ -658,7 +658,7 @@ const BlogArticle = ({ article, posts, landing, banner, generals }) => {
                                         dateTime={article?.post_date}
                                     >
                                         Publicado el{" "}
-                                        {moment(article?.post_date).format(
+                                        {moment(article?.post_date).locale('es').format(
                                             "LL",
                                         )}
                                     </time>
