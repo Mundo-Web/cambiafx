@@ -31,6 +31,8 @@ class SeoMiddleware
         View::share('seoKeywords', $seoData['keywords']);
         View::share('seoImage', $seoData['image']);
         View::share('seoUrl', $seoData['url']);
+        View::share('ogTitle', $seoData['og_title'] ?? null);
+        View::share('ogDescription', $seoData['og_description'] ?? null);
         
         return $next($request);
     }
@@ -60,23 +62,25 @@ class SeoMiddleware
                 'url' => url('/nosotros')
             ],
             'Contacto.jsx' => [
-                'title' => 'Contacto - CambiaFX',
-                'description' => 'Contáctanos para resolver tus dudas sobre cambio de divisas. Atención personalizada y soporte especializado.',
-                'keywords' => 'contacto, soporte, atención al cliente, dudas cambio divisas',
+                'title' => 'Contacto y Soporte - Cambia FX | Casa de Cambio Online en Peru',
+                'description' => '¿Tienes dudas sobre tu cambio de dolares? Contactanos por WhatsApp, telefono o correo. Soporte personalizado de Cambia FX, rapidez y seguridad garantizada.',
+                'keywords' => 'contacto, soporte, atención al cliente, ayuda cambiafx, telefono cambiafx, whatsapp cambiafx',
                 'image' => $defaultImage,
                 'url' => url('/contacto')
             ],
             'Servicios.jsx' => [
-                'title' => 'Servicios - CambiaFX',
-                'description' => 'Descubre todos nuestros servicios de cambio de divisas. Cambio de dólares, euros y más monedas.',
-                'keywords' => 'servicios, cambio divisas, cambio dólares, cambio euros',
+                'title' => 'Servicios de Cambio de Moneda Online en Peru | Cambia FX',
+                'description' => 'Descubre como cambiar dolares y soles de forma segura con Cambia FX. Transferencias inmediatas, mejores tasas que el banco y atencion preferencial.',
+                'keywords' => 'servicios, cambio divisas, cambio dólares, cambio euros, transferencia inmediata, casa de cambio online',
                 'image' => $defaultImage,
                 'url' => url('/servicios')
             ],
             'Blog.jsx' => [
-                'title' => 'Blog - CambiaFX',
-                'description' => 'Mantente informado con nuestro blog sobre tipo de cambio, economía y tips financieros.',
-                'keywords' => 'blog, noticias, tipo de cambio, economía, tips financieros',
+                'title' => 'Blog sobre tipo de cambio y economia en Peru | Cambia FX',
+                'description' => 'Noticias del dolar en Peru, analisis del tipo de cambio y consejos financieros actualizados. Por Cambia FX, casa de cambio digital registrada en la SBS.',
+                'og_title' => 'Blog sobre tipo de cambio en Peru | Cambia FX',
+                'og_description' => 'Noticias del dolar, analisis del tipo de cambio y consejos financieros. Cambia FX, SBS.',
+                'keywords' => 'blog, noticias, tipo de cambio, economía, tips financieros, dolar peru, sbs',
                 'image' => $defaultImage,
                 'url' => url('/blog')
             ]
@@ -88,7 +92,9 @@ class SeoMiddleware
             'description' => $seoData['seo_description'] ?? 'Casa de cambio online con las mejores tasas de cambio.',
             'keywords' => $seoData['seo_keywords'] ?? 'casa de cambio, cambio de dólares',
             'image' => $defaultImage,
-            'url' => url()->current()
+            'url' => url()->current(),
+            'og_title' => null,
+            'og_description' => null
         ];
         
         return $pageConfigs[$routeName] ?? $defaultConfig;

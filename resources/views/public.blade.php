@@ -27,6 +27,8 @@ $isHome = $component === 'Home.jsx';
     'keywords' => $seoKeywords ?? null,
     'image' => $seoImage ?? null,
     'url' => $seoUrl ?? null,
+    'ogTitle' => $ogTitle ?? null,
+    'ogDescription' => $ogDescription ?? null,
     'schemaType' => $schemaType ?? 'Organization'
     ])
 

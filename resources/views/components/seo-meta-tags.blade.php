@@ -7,8 +7,8 @@
     // Obtener datos SEO de la tabla generals
     $seoData = App\Helpers\SeoHelper::getSeoData();
     $basicMeta = App\Helpers\SeoHelper::getBasicMetaTags($title ?? null, $description ?? null, $keywords ?? null);
-    $openGraphTags = App\Helpers\SeoHelper::getOpenGraphTags($title ?? null, $description ?? null, $image ?? null, $url ?? null);
-    $twitterCardTags = App\Helpers\SeoHelper::getTwitterCardTags($title ?? null, $description ?? null, $image ?? null);
+    $openGraphTags = App\Helpers\SeoHelper::getOpenGraphTags($ogTitle ?? $title ?? null, $ogDescription ?? $description ?? null, $image ?? null, $url ?? null);
+    $twitterCardTags = App\Helpers\SeoHelper::getTwitterCardTags($ogTitle ?? $title ?? null, $ogDescription ?? $description ?? null, $image ?? null);
     $jsonLD = App\Helpers\SeoHelper::getJsonLD($schemaType ?? 'Organization');
 @endphp
 
