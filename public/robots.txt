@@ -1,4 +1,7 @@
 User-agent: *
 Allow: /
-facebookexternalhit
-Sitemap: http://localhost:8000/sitemap.xml
+
+User-agent: facebookexternalhit
+Allow: /
+
+Sitemap: https://cambiafx.pe/sitemap.xml
