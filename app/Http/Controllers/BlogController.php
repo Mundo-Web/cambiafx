@@ -20,7 +20,8 @@ class BlogController extends PublicController
         $langId = app('current_lang_id');
         $categories = Category::select([
             DB::raw('DISTINCT(categories.id)'),
-            'categories.name'
+            'categories.name',
+            'categories.slug'
         ])
             ->join('posts', 'posts.category_id', 'categories.id')
             ->where('categories.visible', true)

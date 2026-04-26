@@ -156,4 +156,107 @@ class SeoHelper
         
         return [];
     }
+
+    /**
+     * Genera el JSON-LD para NewsArticle
+     */
+    public static function getNewsArticleSchema($article)
+    {
+        if (!$article) {
+            return null;
+        }
+
+        $seoData = self::getSeoData();
+        $logo = $seoData['company_logo'] ?? '/assets/img/icon-192x192.png';
+
+        $name = $article->name ?? $article['name'] ?? '';
+        $image = $article->image ?? $article['image'] ?? '';
+        $postDate = $article->post_date ?? $article['post_date'] ?? null;
+        $createdAt = $article->created_at ?? $article['created_at'] ?? null;
+        $updatedAt = $article->updated_at ?? $article['updated_at'] ?? null;
+        $description = $article->description ?? $article['description'] ?? '';
+
+        return [
+            '@context' => 'https://schema.org',
+            '@type' => 'NewsArticle',
+            'headline' => $name,
+            'image' => [
+                str_starts_with($image, 'http') ? $image : url("/api/posts/media/{$image}")
+            ],
+            'datePublished' => $postDate ?? $createdAt,
+            'dateModified' => $updatedAt ?? $postDate ?? $createdAt,
+            'author' => [
+                [
+                    '@type' => 'Organization',
+                    'name' => $seoData['company_name'] ?? 'Cambia FX',
+                    'url' => url('/')
+                ]
+            ],
+            'publisher' => [
+                '@type' => 'Organization',
+                'name' => $seoData['company_name'] ?? 'Cambia FX',
+                'logo' => [
+                    '@type' => 'ImageObject',
+                    'url' => str_starts_with($logo, 'http') ? $logo : url($logo)
+                ]
+            ],
+            'description' => strip_tags($description)
+        ];
+    }
+
+    /**
+     * Genera el JSON-LD para FAQPage
+     */
+    public static function getFaqSchema($faqs = [])
+    {
+        if (empty($faqs)) {
+            return null;
+        }
+
+        $questions = [];
+        foreach ($faqs as $faq) {
+            $questions[] = [
+                '@type' => 'Question',
+                'name' => $faq['name'] ?? $faq->name ?? '',
+                'acceptedAnswer' => [
+                    '@type' => 'Answer',
+                    'text' => strip_tags($faq['description'] ?? $faq->description ?? '')
+                ]
+            ];
+        }
+
+        return [
+            '@context' => 'https://schema.org',
+            '@type' => 'FAQPage',
+            'mainEntity' => $questions
+        ];
+    }
+
+    /**
+     * Genera el JSON-LD para BreadcrumbList
+     */
+    public static function getBreadcrumbSchema($items = [])
+    {
+        if (empty($items)) {
+            return null;
+        }
+
+        $itemListElement = [];
+        foreach ($items as $index => $item) {
+            $name = $item['name'] ?? $item->name ?? '';
+            $url = $item['url'] ?? $item->url ?? '';
+            $itemListElement[] = [
+                '@type' => 'ListItem',
+                'position' => $index + 1,
+                'name' => $name,
+                'item' => str_starts_with($url, 'http') ? $url : url($url)
+            ];
+        }
+
+        return [
+            '@context' => 'https://schema.org',
+            '@type' => 'BreadcrumbList',
+            'itemListElement' => $itemListElement
+        ];
+    }
 }

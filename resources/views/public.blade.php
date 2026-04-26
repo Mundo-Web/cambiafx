@@ -29,7 +29,10 @@ $isHome = $component === 'Home.jsx';
     'url' => $seoUrl ?? null,
     'ogTitle' => $ogTitle ?? null,
     'ogDescription' => $ogDescription ?? null,
-    'schemaType' => $schemaType ?? 'Organization'
+    'schemaType' => $schemaType ?? 'Organization',
+    'faqs' => $page['props']['faqs'] ?? null,
+    'breadcrumbs' => $page['props']['breadcrumbs'] ?? null,
+    'article' => $page['props']['article'] ?? null
     ])
 
     <!-- PWA Configuration -->

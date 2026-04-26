@@ -10,6 +10,9 @@
     $openGraphTags = App\Helpers\SeoHelper::getOpenGraphTags($ogTitle ?? $title ?? null, $ogDescription ?? $description ?? null, $image ?? null, $url ?? null);
     $twitterCardTags = App\Helpers\SeoHelper::getTwitterCardTags($ogTitle ?? $title ?? null, $ogDescription ?? $description ?? null, $image ?? null);
     $jsonLD = App\Helpers\SeoHelper::getJsonLD($schemaType ?? 'Organization');
+    $faqSchema = isset($faqs) ? App\Helpers\SeoHelper::getFaqSchema($faqs) : null;
+    $breadcrumbSchema = isset($breadcrumbs) ? App\Helpers\SeoHelper::getBreadcrumbSchema($breadcrumbs) : null;
+    $newsArticleSchema = isset($article) ? App\Helpers\SeoHelper::getNewsArticleSchema($article) : null;
 @endphp
 
 <!-- SEO Meta Tags -->
@@ -40,6 +43,27 @@
 @if(!empty($jsonLD))
 <script type="application/ld+json">
     {!! json_encode($jsonLD, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT) !!}
+</script>
+@endif
+
+<!-- FAQ Schema.org JSON-LD -->
+@if(!empty($faqSchema))
+<script type="application/ld+json">
+    {!! json_encode($faqSchema, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT) !!}
+</script>
+@endif
+
+<!-- Breadcrumb Schema.org JSON-LD -->
+@if(!empty($breadcrumbSchema))
+<script type="application/ld+json">
+    {!! json_encode($breadcrumbSchema, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT) !!}
+</script>
+@endif
+
+<!-- NewsArticle Schema.org JSON-LD -->
+@if(!empty($newsArticleSchema))
+<script type="application/ld+json">
+    {!! json_encode($newsArticleSchema, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT) !!}
 </script>
 @endif
 

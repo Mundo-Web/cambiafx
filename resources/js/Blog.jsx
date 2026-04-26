@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import CreateReactScript from "./Utils/CreateReactScript";
 import { createRoot } from "react-dom/client";
@@ -17,7 +17,7 @@ import TextWithHighlight from "./Utils/TextWithHighlight";
 import WhatsAppButton from "./components/Shared/WhatsAppButton";
 import CintilloSection from "./components/Tailwind/CambiaFX/CintilloSection";
 function Blog({ categories, postRecent, landing, sliders, banner }) {
-
+    const blogListRef = useRef(null);
     const landingDestacados = landing?.find(
         (item) => item.correlative === "page_blog_destacados"
     );
@@ -37,6 +37,20 @@ function Blog({ categories, postRecent, landing, sliders, banner }) {
     useEffect(() => {
         const timer = setTimeout(() => {
             setSectionsReady(true);
+            
+            // M-03: Scroll to category if present in URL
+            const params = new URLSearchParams(window.location.search);
+            const categoryParam = params.get('category');
+            if (categoryParam) {
+                // Buscar la categoría por slug o ID para obtener el ID real
+                const category = categories.find(c => c.slug === categoryParam || c.id === categoryParam);
+                if (category) {
+                    setFilter(prev => ({ ...prev, category: category.id }));
+                    setTimeout(() => {
+                        blogListRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }, 500);
+                }
+            }
         }, 100);
         return () => clearTimeout(timer);
     }, []);
@@ -250,6 +264,8 @@ function Blog({ categories, postRecent, landing, sliders, banner }) {
                         </motion.section>
 
                         <motion.div
+                            ref={blogListRef}
+                            id="blog-list"
                             initial={{ opacity: 0, y: 30 }}
                             animate={{ opacity: sectionsReady ? 1 : 0, y: sectionsReady ? 0 : 30 }}
                             transition={{ duration: 0.8, delay: 0.4 }}

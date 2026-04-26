@@ -24,6 +24,7 @@ use App\Models\Staff;
 use App\Models\Strength;
 use App\Models\Supply;
 use App\Models\Testimony;
+use App\Models\Faq;
 use Illuminate\Http\Request;
 
 class HomeController extends BasicController
@@ -96,6 +97,12 @@ class HomeController extends BasicController
             ->orderBy('order', 'asc')
             ->get();
 
+        $faqs = Faq::where('status', true)
+            ->where('visible', true)
+            ->whereNull('service_id')
+            ->where('lang_id', $langId)
+            ->get();
+
         return [
             'landing' => $landing,
             'sliders' => $sliders,
@@ -114,7 +121,7 @@ class HomeController extends BasicController
             'core_values' => $core_values,
             'banner_operacion' => $banner_operacion,
             'banner_slider' => $banner_slider,
-            
+            'faqs' => $faqs
         ];
     }
 }

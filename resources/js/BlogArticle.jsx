@@ -417,9 +417,45 @@ const BlogArticle = ({ article, posts, landing, banner, generals }) => {
                         variants={fadeInUp}
                         className="mb-8 w-auto flex flex-col gap-4"
                     >
+                        {/* Breadcrumbs */}
+                        <motion.nav
+                            className="flex flex-wrap items-center gap-2 text-sm md:text-base font-medium text-neutral-dark/60 mb-2"
+                            variants={fadeInLeft}
+                        >
+                            <motion.a
+                                href="/"
+                                className="hover:text-accent transition-colors"
+                                whileHover={{ scale: 1.05 }}
+                            >
+                                Inicio
+                            </motion.a>
+                            <span className="text-neutral-dark/30">/</span>
+                            <motion.a
+                                href="/blog"
+                                className="hover:text-accent transition-colors"
+                                whileHover={{ scale: 1.05 }}
+                            >
+                                Blog
+                            </motion.a>
+                            <span className="text-neutral-dark/30">/</span>
+                            <motion.a
+                                href={`/blog?category=${article.category.slug || article.category.id}#blog-list`}
+                                className="hover:text-accent transition-colors"
+                                whileHover={{ scale: 1.05 }}
+                            >
+                                {article.category.name}
+                            </motion.a>
+                            <span className="text-neutral-dark/30 hidden md:inline">
+                                /
+                            </span>
+                            <span className="text-neutral-dark font-semibold truncate max-w-[200px] hidden md:inline">
+                                {article.name}
+                            </span>
+                        </motion.nav>
+
                         <motion.a
                             href="/blog"
-                            className="flex w-auto items-center gap-2 text-neutral-dark hover:text-accent transition-colors duration-200"
+                            className="flex hidden w-auto items-center gap-2 text-neutral-dark hover:text-accent transition-colors duration-200 mt-2"
                             variants={fadeInLeft}
                             whileHover={{ x: -8, scale: 1.02 }}
                             whileTap={{ scale: 0.95 }}
@@ -430,7 +466,7 @@ const BlogArticle = ({ article, posts, landing, banner, generals }) => {
                             >
                                 <ArrowLeftIcon />
                             </motion.div>
-                            <span className="text-base 2xl:text-lg font-medium">
+                            <span className=" text-base 2xl:text-lg font-medium">
                                 Volver a blog
                             </span>
                         </motion.a>
@@ -599,49 +635,6 @@ const BlogArticle = ({ article, posts, landing, banner, generals }) => {
                         transition={{ duration: 0.8, delay: 0.2 }}
                         viewport={{ once: true, margin: "-50px" }}
                     >
-                        {/* Schema.org NewsArticle JSON-LD */}
-                        {article && (
-                            <script
-                                type="application/ld+json"
-                                dangerouslySetInnerHTML={{
-                                    __html: JSON.stringify({
-                                        "@context": "https://schema.org",
-                                        "@type": "NewsArticle",
-                                        headline: article.name,
-                                        description:
-                                            article.summary || article.name,
-                                        image: [
-                                            (typeof window !== "undefined"
-                                                ? window.location.origin
-                                                : "") +
-                                                `/api/posts/media/${article.image}`,
-                                        ],
-                                        datePublished: article.post_date,
-                                        dateModified:
-                                            article.updated_at ||
-                                            article.post_date,
-                                        author: [
-                                            {
-                                                "@type": "Organization",
-                                                name:
-                                                    General.get(
-                                                        "company_name",
-                                                    ) || "Cambia FX",
-                                                url:
-                                                    General.get(
-                                                        "company_url",
-                                                    ) ||
-                                                    (typeof window !==
-                                                    "undefined"
-                                                        ? window.location.origin
-                                                        : ""),
-                                            },
-                                        ],
-                                    }),
-                                }}
-                            />
-                        )}
-
                         {/* Bloque de autor — E-E-A-T */}
                         <div className="flex items-center gap-4 mb-8 p-6 bg-gray-50 rounded-2xl border border-gray-100">
                             <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center overflow-hidden border border-gray-100 shadow-sm">
@@ -676,7 +669,11 @@ const BlogArticle = ({ article, posts, landing, banner, generals }) => {
                         <HtmlContentWithInsert
                             className="blog-article-content text-neutral-dark leading-relaxed"
                             html={article?.description}
-                            insertComponent={<BannerArticle banner={banner} />}
+                            insertComponent={
+                                banner ? (
+                                    <BannerArticle banner={banner} />
+                                ) : null
+                            }
                         />
 
                         <style>{`
@@ -1188,6 +1185,27 @@ const BlogArticle = ({ article, posts, landing, banner, generals }) => {
                         </motion.div>
                     ))}
                 </motion.section>
+
+                <motion.div
+                    className="flex justify-center lg:justify-start mt-8"
+                    variants={fadeInUp}
+                >
+                    <motion.a
+                        href={`/blog?category=${article.category.slug || article.category.id}#blog-list`}
+                        className="bg-white text-neutral-dark font-semibold px-8 py-4 rounded-full hover:bg-primary transition-all duration-300 flex items-center gap-2 group shadow-lg shadow-black/5"
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
+                    >
+                        <span>
+                            Ver más artículos de {article.category.name}
+                        </span>
+                        <motion.i
+                            className="fas fa-arrow-right text-xs"
+                            initial={{ x: 0 }}
+                            whileHover={{ x: 5 }}
+                        />
+                    </motion.a>
+                </motion.div>
             </motion.section>
 
             <motion.div
