@@ -27,7 +27,9 @@ class Post extends Model
         'lang_id',
         'seo_title',
         'seo_description',
-        'seo_keywords'
+        'seo_keywords',
+        'author',
+        'author_type'
     ];
 
     protected $casts = [

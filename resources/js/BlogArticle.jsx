@@ -650,7 +650,7 @@ const BlogArticle = ({ article, posts, landing, banner, generals }) => {
                                 </span>
                                 <div className="flex items-center gap-2">
                                     <span className="font-bold text-neutral-dark">
-                                        Equipo Cambia FX
+                                        {article.author || 'Equipo Cambia FX'}
                                     </span>
                                     <span className="text-gray-400">•</span>
                                     <time

@@ -176,6 +176,9 @@ class SeoHelper
         $updatedAt = $article->updated_at ?? $article['updated_at'] ?? null;
         $description = $article->description ?? $article['description'] ?? '';
 
+        $authorName = ($article->author ?? $article['author'] ?? null) ?: 'Equipo Cambia FX';
+        $authorType = ($article->author_type ?? $article['author_type'] ?? null) ?: 'Organization';
+
         return [
             '@context' => 'https://schema.org',
             '@type' => 'NewsArticle',
@@ -187,8 +190,8 @@ class SeoHelper
             'dateModified' => $updatedAt ?? $postDate ?? $createdAt,
             'author' => [
                 [
-                    '@type' => 'Organization',
-                    'name' => $seoData['company_name'] ?? 'Cambia FX',
+                    '@type' => $authorType,
+                    'name' => $authorName,
                     'url' => url('/')
                 ]
             ],
