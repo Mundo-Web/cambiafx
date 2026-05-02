@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import TextWithHighlight from "../../Utils/TextWithHighlight";
 import { useTranslation } from "../../hooks/useTranslation";
 import HtmlContent from "../../Utils/HtmlContent";
-import { X } from "lucide-react";
+import { X, ChevronLeft, ChevronRight } from "lucide-react";
 
 import Swal from "sweetalert2";
 import ReactModal from "react-modal";
@@ -19,6 +19,9 @@ const FilterAgencia = ({ categories, filter, setFilter, landing }) => {
     const [generals, setGenerals] = useState([]);
     const [aboutuses, setAboutuses] = useState(null);
     const emailRef = useRef();
+    const scrollRef = useRef(null);
+    const [showLeftArrow, setShowLeftArrow] = useState(false);
+    const [showRightArrow, setShowRightArrow] = useState(false);
     const { t } = useTranslation();
 
     // Configurar SubscriptionsRest
@@ -45,13 +48,41 @@ const FilterAgencia = ({ categories, filter, setFilter, landing }) => {
                 const data = await generalRest.getAboutuses();
                 setAboutuses(data);
             } catch (error) {
-                console.error('Error al obtener datos de aboutus:', error);
+                console.error("Error al obtener datos de aboutus:", error);
             }
         };
 
         fetchGenerals();
         fetchAboutuses();
     }, []);
+
+    const checkScroll = () => {
+        if (scrollRef.current) {
+            const { scrollLeft, scrollWidth, clientWidth } = scrollRef.current;
+            setShowLeftArrow(scrollLeft > 10);
+            setShowRightArrow(scrollLeft < scrollWidth - clientWidth - 10);
+        }
+    };
+
+    useEffect(() => {
+        checkScroll();
+        const timer = setTimeout(checkScroll, 500); // Check after animations
+        window.addEventListener("resize", checkScroll);
+        return () => {
+            window.removeEventListener("resize", checkScroll);
+            clearTimeout(timer);
+        };
+    }, [categories]);
+
+    const scroll = (direction) => {
+        if (scrollRef.current) {
+            const scrollAmount = 200;
+            scrollRef.current.scrollBy({
+                left: direction === "left" ? -scrollAmount : scrollAmount,
+                behavior: "smooth",
+            });
+        }
+    };
 
     // Obtener datos de aboutus (igual que en Footer)
     const aboutusData = aboutuses?.aboutus || [];
@@ -65,8 +96,11 @@ const FilterAgencia = ({ categories, filter, setFilter, landing }) => {
 
     // Función para obtener contenido de política (igual que en Footer)
     const getPolicyContent = (key) => {
-        return generals.find((x) => x.correlative == key)?.description ??
-            generalsData.find((x) => x.correlative == key)?.description ?? "";
+        return (
+            generals.find((x) => x.correlative == key)?.description ??
+            generalsData.find((x) => x.correlative == key)?.description ??
+            ""
+        );
     };
 
     // Funciones para modales de términos y privacidad (igual que en Footer)
@@ -103,9 +137,9 @@ const FilterAgencia = ({ categories, filter, setFilter, landing }) => {
     const clearEmailForm = () => {
         if (emailRef.current) {
             emailRef.current.value = "";
-            emailRef.current.style.transform = 'scale(0.98)';
+            emailRef.current.style.transform = "scale(0.98)";
             setTimeout(() => {
-                emailRef.current.style.transform = 'scale(1)';
+                emailRef.current.style.transform = "scale(1)";
             }, 100);
         }
         setTermsAccepted(false);
@@ -118,11 +152,11 @@ const FilterAgencia = ({ categories, filter, setFilter, landing }) => {
 
         if (!termsAccepted) {
             Swal.fire({
-                icon: 'warning',
-                title: 'Términos y condiciones',
-                text: 'Debes aceptar los términos y condiciones para suscribirte.',
-                confirmButtonText: 'Entendido',
-                confirmButtonColor: '#C6FF6B'
+                icon: "warning",
+                title: "Términos y condiciones",
+                text: "Debes aceptar los términos y condiciones para suscribirte.",
+                confirmButtonText: "Entendido",
+                confirmButtonColor: "#C6FF6B",
             });
             return;
         }
@@ -131,7 +165,7 @@ const FilterAgencia = ({ categories, filter, setFilter, landing }) => {
 
         const request = {
             email: emailRef.current.value,
-            status: true
+            status: true,
         };
 
         try {
@@ -140,37 +174,36 @@ const FilterAgencia = ({ categories, filter, setFilter, landing }) => {
 
             if (!result) {
                 Swal.fire({
-                    icon: 'error',
-                    title: 'Error al suscribirse',
-                    text: 'Hubo un problema al procesar tu suscripción. Por favor, inténtalo de nuevo.',
-                    confirmButtonText: 'Entendido',
-                    confirmButtonColor: '#C6FF6B'
+                    icon: "error",
+                    title: "Error al suscribirse",
+                    text: "Hubo un problema al procesar tu suscripción. Por favor, inténtalo de nuevo.",
+                    confirmButtonText: "Entendido",
+                    confirmButtonColor: "#C6FF6B",
                 });
                 return;
             }
 
             // Éxito
             Swal.fire({
-                icon: 'success',
-                title: '¡Suscripción exitosa!',
-                text: '¡Gracias por suscribirte! Recibirás nuestras últimas noticias y actualizaciones del blog.',
+                icon: "success",
+                title: "¡Suscripción exitosa!",
+                text: "¡Gracias por suscribirte! Recibirás nuestras últimas noticias y actualizaciones del blog.",
                 showConfirmButton: false,
                 timer: 3000,
-                background: '#ffffff',
-                iconColor: '#C6FF6B'
+                background: "#ffffff",
+                iconColor: "#C6FF6B",
             });
 
             clearEmailForm();
             closeSubscriptionModal();
-
         } catch (error) {
             setSaving(false);
             Swal.fire({
-                icon: 'error',
-                title: 'Error al suscribirse',
-                text: 'Hubo un problema al procesar tu suscripción. Por favor, inténtalo de nuevo.',
-                confirmButtonText: 'Entendido',
-                confirmButtonColor: '#C6FF6B'
+                icon: "error",
+                title: "Error al suscribirse",
+                text: "Hubo un problema al procesar tu suscripción. Por favor, inténtalo de nuevo.",
+                confirmButtonText: "Entendido",
+                confirmButtonColor: "#C6FF6B",
             });
         }
     };
@@ -234,13 +267,10 @@ const FilterAgencia = ({ categories, filter, setFilter, landing }) => {
                             <TextWithHighlight
                                 text={landing?.title || ""}
                                 color="bg-neutral-dark font-semibold"
-
                             />
-
                         </h2>
                         <p className=" text-lg text-neutral-light max-w-2xl">
                             {landing?.description || ""}
-
                         </p>
                     </motion.div>
                     {/* Campo de búsqueda
@@ -287,30 +317,61 @@ const FilterAgencia = ({ categories, filter, setFilter, landing }) => {
                     >
                         quiero suscribirme al blog
                     </motion.button>
-
                 </div>
 
-
-                <div className="w-full overflow-hidden">
-
-
+                <div className="w-full  overflow-hidden">
                     {/* Botones de categorías */}
                     <motion.div
-                        className="w-full"
+                        className="w-full flex flex-col gap-4"
                         variants={containerVariants}
                     >
-                        <div className="flex overflow-x-auto md:flex-wrap gap-2 p-2 bg-white rounded-xl scrollbar-hide">
-                            <motion.button
-
-                                className={`px-4 py-2.5 text-neutral-light rounded-lg whitespace-nowrap flex-shrink-0 transition-all duration-300 ${filter.category === null
-                                    ? "  bg-secondary"
-                                    : ""
+                        <div className="flex justify-between items-center md:hidden px-1">
+                            <span className="text-sm font-semibold text-neutral-dark uppercase tracking-widest">
+                                Categorías
+                            </span>
+                            <div className="flex gap-2">
+                                <motion.button
+                                    whileTap={{ scale: 0.9 }}
+                                    onClick={() => scroll("left")}
+                                    className={`p-2 rounded-full shadow-sm border border-gray-200 flex items-center justify-center transition-all ${
+                                        showLeftArrow
+                                            ? "bg-white text-neutral-dark"
+                                            : "bg-gray-100 text-gray-400 opacity-50"
                                     }`}
+                                    disabled={!showLeftArrow}
+                                >
+                                    <ChevronLeft className="w-5 h-5" />
+                                </motion.button>
+                                <motion.button
+                                    whileTap={{ scale: 0.9 }}
+                                    onClick={() => scroll("right")}
+                                    className={`p-2 rounded-full shadow-sm border border-gray-200 flex items-center justify-center transition-all ${
+                                        showRightArrow
+                                            ? "bg-white text-neutral-dark"
+                                            : "bg-gray-100 text-gray-400 opacity-50"
+                                    }`}
+                                    disabled={!showRightArrow}
+                                >
+                                    <ChevronRight className="w-5 h-5" />
+                                </motion.button>
+                            </div>
+                        </div>
+
+                        <div
+                            ref={scrollRef}
+                            onScroll={checkScroll}
+                            className="flex overflow-x-auto md:flex-wrap gap-2 p-2 bg-white rounded-xl scrollbar-hide w-full max-w-full"
+                        >
+                            <motion.button
+                                className={`px-4 py-2.5 text-neutral-light rounded-lg whitespace-nowrap flex-shrink-0 transition-all duration-300 ${
+                                    filter.category === null
+                                        ? "  bg-secondary"
+                                        : ""
+                                }`}
                                 onClick={() =>
                                     setFilter((old) => ({
                                         ...old,
-                                        category: null
-
+                                        category: null,
                                     }))
                                 }
                                 variants={itemVariants}
@@ -328,10 +389,11 @@ const FilterAgencia = ({ categories, filter, setFilter, landing }) => {
                             {categories.map((item, index) => (
                                 <motion.button
                                     key={index}
-                                    className={`px-4 py-2.5 text-neutral-light rounded-lg whitespace-nowrap flex-shrink-0 transition-all duration-300 ${item.id == filter.category
-                                        ? "  bg-secondary"
-                                        : ""
-                                        }`}
+                                    className={`px-4 py-2.5 text-neutral-light rounded-lg whitespace-nowrap flex-shrink-0 transition-all duration-300 ${
+                                        item.id == filter.category
+                                            ? "  bg-secondary"
+                                            : ""
+                                    }`}
                                     onClick={() =>
                                         setFilter((old) => ({
                                             ...old,
@@ -386,7 +448,10 @@ const FilterAgencia = ({ categories, filter, setFilter, landing }) => {
                                     whileHover={{ scale: 1.1, rotate: 90 }}
                                     whileTap={{ scale: 0.9 }}
                                 >
-                                    <X className="w-5 h-5 text-white" strokeWidth={2.5} />
+                                    <X
+                                        className="w-5 h-5 text-white"
+                                        strokeWidth={2.5}
+                                    />
                                 </motion.button>
 
                                 <motion.div
@@ -394,12 +459,12 @@ const FilterAgencia = ({ categories, filter, setFilter, landing }) => {
                                     animate={{ opacity: 1, y: 0 }}
                                     transition={{ delay: 0.1 }}
                                 >
-                                    
                                     <h2 className="text-4xl font-bold text-white mb-3">
                                         ¡Únete a nuestra comunidad!
                                     </h2>
                                     <p className="text-white text-opacity-90 text-lg leading-relaxed">
-                                        Recibe contenido exclusivo y las últimas noticias directamente en tu correo
+                                        Recibe contenido exclusivo y las últimas
+                                        noticias directamente en tu correo
                                     </p>
                                 </motion.div>
                             </div>
@@ -411,9 +476,15 @@ const FilterAgencia = ({ categories, filter, setFilter, landing }) => {
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ delay: 0.2 }}
                             >
-                                <form onSubmit={onEmailSubmit} className="space-y-6">
+                                <form
+                                    onSubmit={onEmailSubmit}
+                                    className="space-y-6"
+                                >
                                     <div>
-                                        <label htmlFor="modal-email" className="block text-sm font-semibold text-neutral-dark mb-3">
+                                        <label
+                                            htmlFor="modal-email"
+                                            className="block text-sm font-semibold text-neutral-dark mb-3"
+                                        >
                                             Correo electrónico
                                         </label>
                                         <motion.input
@@ -443,31 +514,55 @@ const FilterAgencia = ({ categories, filter, setFilter, landing }) => {
                                                 type="checkbox"
                                                 id="modal-terms"
                                                 checked={termsAccepted}
-                                                onChange={(e) => setTermsAccepted(e.target.checked)}
+                                                onChange={(e) =>
+                                                    setTermsAccepted(
+                                                        e.target.checked,
+                                                    )
+                                                }
                                                 className="sr-only"
                                             />
                                             <motion.div
                                                 className={`w-6 h-6 rounded-lg border-2 cursor-pointer transition-all duration-300 ${
                                                     termsAccepted
-                                                        ? 'bg-constrast border-constrast shadow-lg shadow-constrast/25'
-                                                        : 'bg-white border-gray-300 hover:border-constrast hover:shadow-sm'
+                                                        ? "bg-constrast border-constrast shadow-lg shadow-constrast/25"
+                                                        : "bg-white border-gray-300 hover:border-constrast hover:shadow-sm"
                                                 }`}
-                                                onClick={() => setTermsAccepted(!termsAccepted)}
+                                                onClick={() =>
+                                                    setTermsAccepted(
+                                                        !termsAccepted,
+                                                    )
+                                                }
                                                 whileHover={{ scale: 1.05 }}
                                                 whileTap={{ scale: 0.95 }}
                                                 animate={{
-                                                    backgroundColor: termsAccepted ? '#7e5afb' : '#ffffff',
-                                                    borderColor: termsAccepted ? '#7e5afb' : '#d1d5db'
+                                                    backgroundColor:
+                                                        termsAccepted
+                                                            ? "#7e5afb"
+                                                            : "#ffffff",
+                                                    borderColor: termsAccepted
+                                                        ? "#7e5afb"
+                                                        : "#d1d5db",
                                                 }}
                                                 transition={{ duration: 0.2 }}
                                             >
                                                 <AnimatePresence>
                                                     {termsAccepted && (
                                                         <motion.div
-                                                            initial={{ opacity: 0, scale: 0.3 }}
-                                                            animate={{ opacity: 1, scale: 1 }}
-                                                            exit={{ opacity: 0, scale: 0.3 }}
-                                                            transition={{ duration: 0.2 }}
+                                                            initial={{
+                                                                opacity: 0,
+                                                                scale: 0.3,
+                                                            }}
+                                                            animate={{
+                                                                opacity: 1,
+                                                                scale: 1,
+                                                            }}
+                                                            exit={{
+                                                                opacity: 0,
+                                                                scale: 0.3,
+                                                            }}
+                                                            transition={{
+                                                                duration: 0.2,
+                                                            }}
                                                             className="absolute inset-0 flex items-center justify-center"
                                                         >
                                                             <svg
@@ -479,7 +574,9 @@ const FilterAgencia = ({ categories, filter, setFilter, landing }) => {
                                                                 <path
                                                                     strokeLinecap="round"
                                                                     strokeLinejoin="round"
-                                                                    strokeWidth={3}
+                                                                    strokeWidth={
+                                                                        3
+                                                                    }
                                                                     d="M5 13l4 4L19 7"
                                                                 />
                                                             </svg>
@@ -489,7 +586,10 @@ const FilterAgencia = ({ categories, filter, setFilter, landing }) => {
                                             </motion.div>
                                         </motion.div>
 
-                                        <label htmlFor="modal-terms" className="text-sm text-neutral-light leading-relaxed cursor-pointer">
+                                        <label
+                                            htmlFor="modal-terms"
+                                            className="text-sm text-neutral-light leading-relaxed cursor-pointer"
+                                        >
                                             Acepto los{" "}
                                             <button
                                                 type="button"
@@ -513,7 +613,10 @@ const FilterAgencia = ({ categories, filter, setFilter, landing }) => {
                                         type="submit"
                                         disabled={saving || !termsAccepted}
                                         className="w-full bg-constrast  text-white py-4 px-8 rounded-xl font-semibold text-base uppercase tracking-wide hover:shadow-lg hover:shadow-constrast/25 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300 transform"
-                                        whileHover={{ scale: saving ? 1 : 1.02, y: -2 }}
+                                        whileHover={{
+                                            scale: saving ? 1 : 1.02,
+                                            y: -2,
+                                        }}
                                         whileTap={{ scale: saving ? 1 : 0.98 }}
                                         initial={{ opacity: 0, y: 20 }}
                                         animate={{ opacity: 1, y: 0 }}
@@ -530,8 +633,14 @@ const FilterAgencia = ({ categories, filter, setFilter, landing }) => {
                                                 >
                                                     <motion.div
                                                         className="w-5 h-5 border-2 border-white border-t-transparent rounded-full"
-                                                        animate={{ rotate: 360 }}
-                                                        transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
+                                                        animate={{
+                                                            rotate: 360,
+                                                        }}
+                                                        transition={{
+                                                            duration: 1,
+                                                            repeat: Infinity,
+                                                            ease: "linear",
+                                                        }}
                                                     />
                                                     Suscribiendo...
                                                 </motion.div>
@@ -548,8 +657,6 @@ const FilterAgencia = ({ categories, filter, setFilter, landing }) => {
                                         </AnimatePresence>
                                     </motion.button>
                                 </form>
-
-                                
                             </motion.div>
                         </motion.div>
                     </ReactModal>
@@ -575,7 +682,7 @@ const FilterAgencia = ({ categories, filter, setFilter, landing }) => {
                 </h2>
                 <HtmlContent
                     className="prose prose-sm lg:prose"
-                    html={getPolicyContent('terms_conditions')}
+                    html={getPolicyContent("terms_conditions")}
                 />
             </ReactModal>
 
@@ -597,7 +704,7 @@ const FilterAgencia = ({ categories, filter, setFilter, landing }) => {
                 </h2>
                 <HtmlContent
                     className="prose prose-sm lg:prose"
-                    html={getPolicyContent('privacy_policy')}
+                    html={getPolicyContent("privacy_policy")}
                 />
             </ReactModal>
         </>
