@@ -291,18 +291,18 @@ const FilterAgencia = ({ categories, filter, setFilter, landing }) => {
                 </div>
 
 
-                <div className="flex">
+                <div className="w-full overflow-hidden">
 
 
                     {/* Botones de categorías */}
                     <motion.div
-                        className="flex flex-wrap  gap-3 justify-start  "
+                        className="w-full"
                         variants={containerVariants}
                     >
-                        <div className="flex p-2 bg-white rounded-xl">
+                        <div className="flex overflow-x-auto md:flex-wrap gap-2 p-2 bg-white rounded-xl scrollbar-hide">
                             <motion.button
 
-                                className={`px-4 py-2.5 text-neutral-light rounded-lg    ${filter.category === null
+                                className={`px-4 py-2.5 text-neutral-light rounded-lg whitespace-nowrap flex-shrink-0 transition-all duration-300 ${filter.category === null
                                     ? "  bg-secondary"
                                     : ""
                                     }`}
@@ -328,7 +328,7 @@ const FilterAgencia = ({ categories, filter, setFilter, landing }) => {
                             {categories.map((item, index) => (
                                 <motion.button
                                     key={index}
-                                    className={`px-4 py-2.5 text-neutral-light rounded-lg  ${item.id == filter.category
+                                    className={`px-4 py-2.5 text-neutral-light rounded-lg whitespace-nowrap flex-shrink-0 transition-all duration-300 ${item.id == filter.category
                                         ? "  bg-secondary"
                                         : ""
                                         }`}

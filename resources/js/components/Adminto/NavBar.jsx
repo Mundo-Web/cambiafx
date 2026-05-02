@@ -16,7 +16,7 @@ const NavBar = ({ session = {}, title = "Pagina", languagesSystem }) => {
     }, [null]);
     const { currentLanguage, changeLanguage } = useContext(LanguageContext);
     const [selectLanguage, setSelectLanguage] = useState(
-        currentLanguage || languagesSystem[0]
+        currentLanguage || languagesSystem[0],
     );
     const onUseLanguage = async (langData) => {
         try {
@@ -51,7 +51,7 @@ const NavBar = ({ session = {}, title = "Pagina", languagesSystem }) => {
     return (
         <div className="navbar-custom">
             <ul className="list-unstyled topnav-menu float-end mb-0">
-               {/* <li className="dropdown notification-list topbar-dropdown ">
+                {/* <li className="dropdown notification-list topbar-dropdown ">
                     <div className=" ">
                         <div className="d-flex gap-0 align-items-center justify-content-center ">
                             {languagesSystem.map((language) => (
@@ -190,7 +190,7 @@ const NavBar = ({ session = {}, title = "Pagina", languagesSystem }) => {
                     background: "#003049 ",
                 }}
             >
-                <a href="/home" className="logo logo-light text-center">
+                <a href="/" className="logo logo-light text-center">
                     <span className="logo-sm">
                         <img src="/assets/img/favicon.png" alt="" height="22" />
                     </span>
@@ -202,7 +202,7 @@ const NavBar = ({ session = {}, title = "Pagina", languagesSystem }) => {
                         />
                     </span>
                 </a>
-                <a href="/home" className="logo logo-dark text-center">
+                <a href="/" className="logo logo-dark text-center">
                     <span className="logo-sm">
                         <img src="/assets/img/favicon.png" alt="" height="22" />
                     </span>
@@ -214,7 +214,10 @@ const NavBar = ({ session = {}, title = "Pagina", languagesSystem }) => {
 
             <ul className="list-unstyled topnav-menu topnav-menu-left mb-0">
                 <li>
-                    <button aria-label="menu" className="button-menu-mobile disable-btn waves-effect">
+                    <button
+                        aria-label="menu"
+                        className="button-menu-mobile disable-btn waves-effect"
+                    >
                         <i className="fe-menu"></i>
                     </button>
                 </li>
