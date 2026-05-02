@@ -810,6 +810,7 @@ const BlogArticle = ({ article, posts, landing, banner, generals }) => {
                             .blog-article-content-part img {
                              
                                 height: auto !important;
+                                max-width: 100% !important;
                                 margin-left: auto !important;
                                 margin-right: auto !important;
                                 margin-top: 2rem !important;
@@ -1147,16 +1148,17 @@ const BlogArticle = ({ article, posts, landing, banner, generals }) => {
                 </motion.p>
 
                 <motion.section
-                    className="py-6 grid md:grid-cols-2 lg:grid-cols-3 gap-5 lg:gap-8"
+                    className="py-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 overflow-hidden"
                     variants={staggerContainer}
                 >
                     {posts.map((item, index) => (
                         <motion.div
                             key={index}
+                            className="w-full"
                             variants={fadeInUp}
                             whileHover={{
                                 y: -8,
-                                scale: 1.02,
+                                scale: 1.01,
                                 transition: { duration: 0.3 },
                             }}
                             whileTap={{ scale: 0.98 }}
