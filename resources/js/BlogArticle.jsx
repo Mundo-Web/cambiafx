@@ -445,9 +445,7 @@ const BlogArticle = ({ article, posts, landing, banner, generals }) => {
                             >
                                 {article.category.name}
                             </motion.a>
-                            <span className="text-neutral-dark/30">
-                                /
-                            </span>
+                            <span className="text-neutral-dark/30">/</span>
                             <span className="text-neutral-dark font-semibold truncate max-w-[120px] sm:max-w-[250px] inline-block align-bottom">
                                 {article.name}
                             </span>
@@ -511,7 +509,9 @@ const BlogArticle = ({ article, posts, landing, banner, generals }) => {
                                     <CalendarClockIcon className="h-5 w-5" />
                                 </motion.div>
                                 <span>
-                                    {new Intl.DateTimeFormat('es-ES', { dateStyle: 'long' }).format(new Date(article.post_date))}
+                                    {new Intl.DateTimeFormat("es-ES", {
+                                        dateStyle: "long",
+                                    }).format(new Date(article.post_date))}
                                 </span>
                             </motion.div>
 
@@ -650,7 +650,7 @@ const BlogArticle = ({ article, posts, landing, banner, generals }) => {
                                 </span>
                                 <div className="flex items-center gap-2">
                                     <span className="font-bold text-neutral-dark">
-                                        {article.author || 'Equipo Cambia FX'}
+                                        {article.author || "Equipo Cambia FX"}
                                     </span>
                                     <span className="text-gray-400">•</span>
                                     <time
@@ -658,7 +658,9 @@ const BlogArticle = ({ article, posts, landing, banner, generals }) => {
                                         dateTime={article?.post_date}
                                     >
                                         Publicado el{" "}
-                                        {new Intl.DateTimeFormat('es-ES', { dateStyle: 'long' }).format(new Date(article?.post_date))}
+                                        {new Intl.DateTimeFormat("es-ES", {
+                                            dateStyle: "long",
+                                        }).format(new Date(article?.post_date))}
                                     </time>
                                 </div>
                             </div>
@@ -1130,7 +1132,7 @@ const BlogArticle = ({ article, posts, landing, banner, generals }) => {
                 className="mt-8 pt-6 bg-constrast text-sm font-title font-medium px-[5%] py-8 md:py-12 text-neutral-dark"
             >
                 <motion.h2
-                    className="text-white text-3xl sm:text-4xl lg:text-[44px] !leading-tight"
+                    className="text-white text-3xl text-center lg:text-start sm:text-4xl lg:text-[44px] !leading-tight"
                     variants={fadeInUp}
                 >
                     <TextWithHighlight
