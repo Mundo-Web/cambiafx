@@ -116,16 +116,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         width: 100%;
         overflow-x: hidden;
         height: auto;
-        background-color:#FFFFFF;
+        /* background-color eliminado para que los componentes React controlen su propio fondo */
         background-size: 100% auto;
         background-repeat: no-repeat;
-        /* Asegura que la imagen no se repita */
         background-position: top center;
-        /* Centra la imagen en la parte superior */
     }
 </style>
 
-<body class="font-poppins">
+<body>
     <!-- Google Tag Manager (noscript) -->
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KSHS2XZ"
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>

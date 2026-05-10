@@ -210,7 +210,7 @@ const SolesADolares = ({
     };
 
     return (
-        <div className="min-h-screen  overflow-x-hidden">
+        <div className="min-h-screen bg-latte overflow-x-hidden font-title">
             <Header showSlogan={true} />
             <CintilloSection />
 
