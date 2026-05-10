@@ -42,12 +42,7 @@ export default defineConfig({
     build: {
         rollupOptions: {
             output: {
-                assetFileNames: (assetInfo) => {
-                    if (assetInfo.name == "app-C6GHMxSp.css") return "app.css";
-                    return assetInfo.name;
-                },
-                // Desactivar manualChunks para evitar dependencias circulares
-                // Vite manejará los chunks automáticamente
+                // Vite manejará los chunks automáticamente con hash para cache busting
             },
         },
         minify: 'terser',

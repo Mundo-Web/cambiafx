@@ -21,13 +21,13 @@
       "_main-BjF2hfsq.js"
     ]
   },
-  "_Base-B4sxzebp.js": {
-    "file": "assets/Base-B4sxzebp.js",
+  "_Base-2lomdTYS.js": {
+    "file": "assets/Base-2lomdTYS.js",
     "name": "Base",
     "imports": [
       "resources/js/Admin/components/RequirementCard.jsx",
       "resources/js/components/WebVitalsMonitor.jsx",
-      "_CreateReactScript-CtCtVq5m.js",
+      "_CreateReactScript-BspcGzwC.js",
       "_tippy-react.esm-C0M1j_tS.js",
       "_Logout-C7cdb_W1.js",
       "_index.esm-5NFqnzAw.js",
@@ -36,7 +36,7 @@
       "_main-BjF2hfsq.js"
     ],
     "css": [
-      "tippy.css"
+      "assets/tippy-LriLsbSV.css"
     ]
   },
   "_Base-D_0hRoD7.js": {
@@ -83,8 +83,8 @@
       "resources/js/components/Blog/Results.jsx"
     ]
   },
-  "_CreateReactScript-CtCtVq5m.js": {
-    "file": "assets/CreateReactScript-CtCtVq5m.js",
+  "_CreateReactScript-BspcGzwC.js": {
+    "file": "assets/CreateReactScript-BspcGzwC.js",
     "name": "CreateReactScript",
     "imports": [
       "_index.esm-5NFqnzAw.js",
@@ -92,8 +92,8 @@
       "_General-CSnTKUjB.js"
     ],
     "css": [
-      "swiper.css",
-      "tippy.css"
+      "assets/swiper-EKmKsbKj.css",
+      "assets/tippy-LriLsbSV.css"
     ]
   },
   "_DragDropImage-H9FDOwFe.js": {
@@ -109,30 +109,30 @@
     "file": "assets/DxButton-CkntFyfB.js",
     "name": "DxButton"
   },
-  "_ExchangeCard-33Y_SIkf.js": {
-    "file": "assets/ExchangeCard-33Y_SIkf.js",
+  "_ExchangeCard-B_7SfEpu.js": {
+    "file": "assets/ExchangeCard-B_7SfEpu.js",
     "name": "ExchangeCard",
     "imports": [
       "resources/js/Admin/components/RequirementCard.jsx",
       "resources/js/components/WebVitalsMonitor.jsx",
       "_CambiaFXService-DtlIP2o9.js",
       "resources/js/components/Tailwind/CambiaFX/BannerFxEmpresas.jsx",
-      "_Header-BvFTyX2z.js",
-      "_CreateReactScript-CtCtVq5m.js",
+      "_Header-DMq8GupK.js",
+      "_CreateReactScript-BspcGzwC.js",
       "_createLucideIcon-CycH6ojs.js"
     ]
   },
-  "_Footer-Cn3rRDkn.js": {
-    "file": "assets/Footer-Cn3rRDkn.js",
+  "_Footer-C1LzT8tQ.js": {
+    "file": "assets/Footer-C1LzT8tQ.js",
     "name": "Footer",
     "imports": [
       "resources/js/Admin/components/RequirementCard.jsx",
       "resources/js/components/WebVitalsMonitor.jsx",
-      "_Header-BvFTyX2z.js",
+      "_Header-DMq8GupK.js",
       "_useTranslation-CbKLA_Xw.js",
       "_sweetalert2.all-Dn_IOoc8.js",
       "resources/js/components/Blog/Results.jsx",
-      "_CreateReactScript-CtCtVq5m.js",
+      "_CreateReactScript-BspcGzwC.js",
       "_proxy-CGT4zrn4.js",
       "_index-CoDVSLHB.js"
     ]
@@ -141,8 +141,8 @@
     "file": "assets/General-CSnTKUjB.js",
     "name": "General"
   },
-  "_Header-BvFTyX2z.js": {
-    "file": "assets/Header-BvFTyX2z.js",
+  "_Header-DMq8GupK.js": {
+    "file": "assets/Header-DMq8GupK.js",
     "name": "Header",
     "imports": [
       "resources/js/Admin/components/RequirementCard.jsx",
@@ -154,37 +154,37 @@
       "resources/js/components/Blog/Filter.jsx",
       "_createLucideIcon-CycH6ojs.js",
       "resources/js/components/Tailwind/CambiaFX/BannerFxEmpresas.jsx",
-      "_CreateReactScript-CtCtVq5m.js",
+      "_CreateReactScript-BspcGzwC.js",
       "_proxy-CGT4zrn4.js",
       "_index-CoDVSLHB.js"
     ]
   },
-  "_HeroSecction-BI5aysyx.js": {
-    "file": "assets/HeroSecction-BI5aysyx.js",
+  "_HeroSecction-CYSvLHKT.js": {
+    "file": "assets/HeroSecction-CYSvLHKT.js",
     "name": "HeroSecction",
     "imports": [
       "resources/js/Admin/components/RequirementCard.jsx",
       "resources/js/components/WebVitalsMonitor.jsx",
       "_OptimizedImage-CpVjkwEC.js",
       "_TextWithHighlight-Duv9Efqt.js",
-      "_ExchangeCard-33Y_SIkf.js",
+      "_ExchangeCard-B_7SfEpu.js",
       "_proxy-CGT4zrn4.js"
     ]
   },
-  "_HomeSeccionTestimonios-B5JkvZZ8.js": {
-    "file": "assets/HomeSeccionTestimonios-B5JkvZZ8.js",
+  "_HomeSeccionTestimonios-BzP2Nd82.js": {
+    "file": "assets/HomeSeccionTestimonios-BzP2Nd82.js",
     "name": "HomeSeccionTestimonios",
     "imports": [
       "resources/js/Admin/components/RequirementCard.jsx",
       "resources/js/components/WebVitalsMonitor.jsx",
       "resources/js/components/Tailwind/CambioGerencia/HomeSeccionBlog.jsx",
-      "_pagination-C7LyLecn.js",
-      "_autoplay-CgyjI068.js",
+      "_pagination-fEG83Prm.js",
+      "_autoplay-BgDP12Xg.js",
       "resources/js/components/About/Strengths.jsx",
       "_TextWithHighlight-Duv9Efqt.js"
     ],
     "css": [
-      "swiper.css"
+      "assets/swiper-EKmKsbKj.css"
     ]
   },
   "_HtmlContent-CWS4Frzl.js": {
@@ -433,20 +433,20 @@
       "resources/js/components/WebVitalsMonitor.jsx"
     ]
   },
-  "_WeCupSection-C-ATeWMS.js": {
-    "file": "assets/WeCupSection-C-ATeWMS.js",
+  "_WeCupSection-WtVvBwWK.js": {
+    "file": "assets/WeCupSection-WtVvBwWK.js",
     "name": "WeCupSection",
     "imports": [
       "resources/js/Admin/components/RequirementCard.jsx",
       "resources/js/components/WebVitalsMonitor.jsx",
       "resources/js/components/Tailwind/CambioGerencia/HomeSeccionBlog.jsx",
       "resources/js/components/Tailwind/Carrusel/CarruselBrands.jsx",
-      "_navigation-BOfrQD41.js",
+      "_navigation-BfvIe0Sy.js",
       "resources/js/components/Tailwind/Instructions/WeCupSection.jsx",
-      "_classes-to-selector-CKrGzIdC.js"
+      "_classes-to-selector-5FZscthG.js"
     ],
     "css": [
-      "swiper.css"
+      "assets/swiper-EKmKsbKj.css"
     ]
   },
   "____vite-browser-external_commonjs-proxy-CGejAyr8.js": {
@@ -456,8 +456,8 @@
       "resources/js/components/WebVitalsMonitor.jsx"
     ]
   },
-  "_autoplay-CgyjI068.js": {
-    "file": "assets/autoplay-CgyjI068.js",
+  "_autoplay-BgDP12Xg.js": {
+    "file": "assets/autoplay-BgDP12Xg.js",
     "name": "autoplay",
     "imports": [
       "resources/js/components/Tailwind/CambioGerencia/HomeSeccionBlog.jsx"
@@ -488,8 +488,8 @@
       "_createLucideIcon-CycH6ojs.js"
     ]
   },
-  "_classes-to-selector-CKrGzIdC.js": {
-    "file": "assets/classes-to-selector-CKrGzIdC.js",
+  "_classes-to-selector-5FZscthG.js": {
+    "file": "assets/classes-to-selector-5FZscthG.js",
     "name": "classes-to-selector",
     "imports": [
       "resources/js/components/Tailwind/CambioGerencia/HomeSeccionBlog.jsx"
@@ -562,19 +562,19 @@
       "_createLucideIcon-CycH6ojs.js"
     ]
   },
-  "_navigation-BOfrQD41.js": {
-    "file": "assets/navigation-BOfrQD41.js",
+  "_navigation-BfvIe0Sy.js": {
+    "file": "assets/navigation-BfvIe0Sy.js",
     "name": "navigation",
     "imports": [
-      "_classes-to-selector-CKrGzIdC.js",
+      "_classes-to-selector-5FZscthG.js",
       "resources/js/components/Tailwind/CambioGerencia/HomeSeccionBlog.jsx"
     ]
   },
-  "_pagination-C7LyLecn.js": {
-    "file": "assets/pagination-C7LyLecn.js",
+  "_pagination-fEG83Prm.js": {
+    "file": "assets/pagination-fEG83Prm.js",
     "name": "pagination",
     "imports": [
-      "_classes-to-selector-CKrGzIdC.js",
+      "_classes-to-selector-5FZscthG.js",
       "resources/js/components/Tailwind/CambioGerencia/HomeSeccionBlog.jsx"
     ]
   },
@@ -605,11 +605,11 @@
     ]
   },
   "_swiper-!~{04Q}~.js": {
-    "file": "swiper.css",
+    "file": "assets/swiper-EKmKsbKj.css",
     "src": "_swiper-!~{04Q}~.js"
   },
   "_tippy-!~{04H}~.js": {
-    "file": "tippy.css",
+    "file": "assets/tippy-LriLsbSV.css",
     "src": "_tippy-!~{04H}~.js"
   },
   "_tippy-react.esm-C0M1j_tS.js": {
@@ -629,7 +629,7 @@
     ]
   },
   "node_modules/canvg/lib/index.es.js": {
-    "file": "assets/index.es-IC_UIrDJ.js",
+    "file": "assets/index.es-MyBGnlLz.js",
     "name": "index.es",
     "src": "node_modules/canvg/lib/index.es.js",
     "isDynamicEntry": true,
@@ -644,13 +644,13 @@
       "_Base-D_0hRoD7.js",
       "resources/js/components/Blog/Filter.jsx",
       "_axios-COzaZAiy.js",
-      "_CreateReactScript-CtCtVq5m.js",
+      "_CreateReactScript-BspcGzwC.js",
       "_index.esm-5NFqnzAw.js",
       "_General-CSnTKUjB.js",
       "resources/js/Utils/ReactAppend.jsx",
       "_index-CF8W1V4f.js",
-      "_Footer-Cn3rRDkn.js",
-      "_Header-BvFTyX2z.js",
+      "_Footer-C1LzT8tQ.js",
+      "_Header-DMq8GupK.js",
       "_useTranslation-CbKLA_Xw.js",
       "_createLucideIcon-CycH6ojs.js",
       "resources/js/components/Tailwind/CambiaFX/BannerFxEmpresas.jsx",
@@ -663,8 +663,8 @@
       "_HtmlContent-CWS4Frzl.js"
     ],
     "css": [
-      "swiper.css",
-      "tippy.css"
+      "assets/swiper-EKmKsbKj.css",
+      "assets/tippy-LriLsbSV.css"
     ]
   },
   "node_modules/dompurify/dist/purify.es.mjs": {
@@ -680,32 +680,32 @@
     "isDynamicEntry": true
   },
   "public/assets/fonts/general-sans/GeneralSans-Bold.woff2": {
-    "file": "GeneralSans-Bold.woff2",
+    "file": "assets/GeneralSans-Bold-Ctx684HN.woff2",
     "src": "public/assets/fonts/general-sans/GeneralSans-Bold.woff2"
   },
   "public/assets/fonts/general-sans/GeneralSans-Light.woff2": {
-    "file": "GeneralSans-Light.woff2",
+    "file": "assets/GeneralSans-Light-ulp9itO8.woff2",
     "src": "public/assets/fonts/general-sans/GeneralSans-Light.woff2"
   },
   "public/assets/fonts/general-sans/GeneralSans-Medium.woff2": {
-    "file": "GeneralSans-Medium.woff2",
+    "file": "assets/GeneralSans-Medium-DvEF04Ne.woff2",
     "src": "public/assets/fonts/general-sans/GeneralSans-Medium.woff2"
   },
   "public/assets/fonts/general-sans/GeneralSans-Regular.woff2": {
-    "file": "GeneralSans-Regular.woff2",
+    "file": "assets/GeneralSans-Regular-BeAhF2WT.woff2",
     "src": "public/assets/fonts/general-sans/GeneralSans-Regular.woff2"
   },
   "public/assets/fonts/general-sans/GeneralSans-Semibold.woff2": {
-    "file": "GeneralSans-Semibold.woff2",
+    "file": "assets/GeneralSans-Semibold-DFLbTJgb.woff2",
     "src": "public/assets/fonts/general-sans/GeneralSans-Semibold.woff2"
   },
   "resources/css/app.css": {
-    "file": "app.css",
+    "file": "assets/app-PRt-QBJ5.css",
     "src": "resources/css/app.css",
     "isEntry": true
   },
   "resources/js/About.jsx": {
-    "file": "assets/About-Cr2oknpe.js",
+    "file": "assets/About-cHlvzGN1.js",
     "name": "About",
     "src": "resources/js/About.jsx",
     "isEntry": true,
@@ -714,9 +714,9 @@
       "resources/js/components/WebVitalsMonitor.jsx",
       "resources/js/Utils/ReactAppend.jsx",
       "_Base-D_0hRoD7.js",
-      "_CreateReactScript-CtCtVq5m.js",
-      "_Header-BvFTyX2z.js",
-      "_Footer-Cn3rRDkn.js",
+      "_CreateReactScript-BspcGzwC.js",
+      "_Header-DMq8GupK.js",
+      "_Footer-C1LzT8tQ.js",
       "resources/js/components/Tailwind/DetailProduct/Detail.jsx",
       "resources/js/components/Blog/Filter.jsx",
       "resources/js/components/Tailwind/CambioGerencia/HomeSeccionBlog.jsx",
@@ -726,8 +726,8 @@
       "resources/js/components/Tailwind/CambiaFX/BannerFxEmpresas.jsx",
       "resources/js/components/Tailwind/Carrusel/CarruselBrands.jsx",
       "_CintilloSection-c8XCLiBz.js",
-      "_pagination-C7LyLecn.js",
-      "_autoplay-CgyjI068.js",
+      "_pagination-fEG83Prm.js",
+      "_autoplay-BgDP12Xg.js",
       "resources/js/components/About/Strengths.jsx",
       "_index-CF8W1V4f.js",
       "_main-BjF2hfsq.js",
@@ -741,21 +741,21 @@
       "_axios-COzaZAiy.js",
       "_message-circle-Vrz7cx2B.js",
       "_phone-Cv7s4kZQ.js",
-      "_classes-to-selector-CKrGzIdC.js"
+      "_classes-to-selector-5FZscthG.js"
     ],
     "css": [
-      "swiper.css",
-      "tippy.css"
+      "assets/swiper-EKmKsbKj.css",
+      "assets/tippy-LriLsbSV.css"
     ]
   },
   "resources/js/Admin/About.jsx": {
-    "file": "assets/About-BW7XzwLo.js",
+    "file": "assets/About-L0MlPYJV.js",
     "name": "About",
     "src": "resources/js/Admin/About.jsx",
     "isEntry": true,
     "imports": [
       "resources/js/Admin/components/RequirementCard.jsx",
-      "_Base-B4sxzebp.js",
+      "_Base-2lomdTYS.js",
       "_SwitchFormGroup-Dcg5J4Xi.js",
       "_TextareaFormGroup-BUXKuApM.js",
       "resources/js/components/WebVitalsMonitor.jsx",
@@ -765,7 +765,7 @@
       "_Table-BOT7Fp6l.js",
       "_DxButton-CkntFyfB.js",
       "_InputFormGroup-ChYq379r.js",
-      "_CreateReactScript-CtCtVq5m.js",
+      "_CreateReactScript-BspcGzwC.js",
       "_ReactAppend-CAweQVQe.js",
       "_tippy-react.esm-C0M1j_tS.js",
       "_index-CF8W1V4f.js",
@@ -779,12 +779,12 @@
       "_General-CSnTKUjB.js"
     ],
     "css": [
-      "tippy.css",
-      "swiper.css"
+      "assets/tippy-LriLsbSV.css",
+      "assets/swiper-EKmKsbKj.css"
     ]
   },
   "resources/js/Admin/Account.jsx": {
-    "file": "assets/Account-Cykg7NjK.js",
+    "file": "assets/Account-8IwJ1eiD.js",
     "name": "Account",
     "src": "resources/js/Admin/Account.jsx",
     "isEntry": true,
@@ -793,8 +793,8 @@
       "resources/js/components/WebVitalsMonitor.jsx",
       "resources/js/Utils/ReactAppend.jsx",
       "_JSEncrypt-Bgn96wmg.js",
-      "_Base-B4sxzebp.js",
-      "_CreateReactScript-CtCtVq5m.js",
+      "_Base-2lomdTYS.js",
+      "_CreateReactScript-BspcGzwC.js",
       "_main-BjF2hfsq.js",
       "_InputFormGroup-xbon111q.js",
       "_PasswordFormGroup-BiFlm-Zm.js",
@@ -809,12 +809,12 @@
       "_General-CSnTKUjB.js"
     ],
     "css": [
-      "tippy.css",
-      "swiper.css"
+      "assets/tippy-LriLsbSV.css",
+      "assets/swiper-EKmKsbKj.css"
     ]
   },
   "resources/js/Admin/Ads.jsx": {
-    "file": "assets/Ads-q5mX1zh8.js",
+    "file": "assets/Ads-BfAARlXB.js",
     "name": "Ads",
     "src": "resources/js/Admin/Ads.jsx",
     "isEntry": true,
@@ -822,8 +822,8 @@
       "resources/js/Admin/components/RequirementCard.jsx",
       "resources/js/components/WebVitalsMonitor.jsx",
       "resources/js/Utils/ReactAppend.jsx",
-      "_Base-B4sxzebp.js",
-      "_CreateReactScript-CtCtVq5m.js",
+      "_Base-2lomdTYS.js",
+      "_CreateReactScript-BspcGzwC.js",
       "_Table-BOT7Fp6l.js",
       "_Modal-DTcWRRJp.js",
       "_InputFormGroup-xbon111q.js",
@@ -847,12 +847,12 @@
       "_General-CSnTKUjB.js"
     ],
     "css": [
-      "tippy.css",
-      "swiper.css"
+      "assets/tippy-LriLsbSV.css",
+      "assets/swiper-EKmKsbKj.css"
     ]
   },
   "resources/js/Admin/Appointments.jsx": {
-    "file": "assets/Appointments-BkK0pnvv.js",
+    "file": "assets/Appointments-BG9lIp2H.js",
     "name": "Appointments",
     "src": "resources/js/Admin/Appointments.jsx",
     "isEntry": true,
@@ -860,8 +860,8 @@
       "resources/js/Admin/components/RequirementCard.jsx",
       "resources/js/components/WebVitalsMonitor.jsx",
       "resources/js/Utils/ReactAppend.jsx",
-      "_Base-B4sxzebp.js",
-      "_CreateReactScript-CtCtVq5m.js",
+      "_Base-2lomdTYS.js",
+      "_CreateReactScript-BspcGzwC.js",
       "_Table-BOT7Fp6l.js",
       "_DxButton-CkntFyfB.js",
       "_ReactAppend-CAweQVQe.js",
@@ -881,12 +881,12 @@
       "resources/js/components/Blog/Results.jsx"
     ],
     "css": [
-      "tippy.css",
-      "swiper.css"
+      "assets/tippy-LriLsbSV.css",
+      "assets/swiper-EKmKsbKj.css"
     ]
   },
   "resources/js/Admin/Apps.jsx": {
-    "file": "assets/Apps-CJPGGppy.js",
+    "file": "assets/Apps-DrB6s72o.js",
     "name": "Apps",
     "src": "resources/js/Admin/Apps.jsx",
     "isEntry": true,
@@ -894,8 +894,8 @@
       "resources/js/Admin/components/RequirementCard.jsx",
       "resources/js/components/WebVitalsMonitor.jsx",
       "resources/js/Utils/ReactAppend.jsx",
-      "_Base-B4sxzebp.js",
-      "_CreateReactScript-CtCtVq5m.js",
+      "_Base-2lomdTYS.js",
+      "_CreateReactScript-BspcGzwC.js",
       "_Table-BOT7Fp6l.js",
       "_Modal-DTcWRRJp.js",
       "_InputFormGroup-ChYq379r.js",
@@ -918,12 +918,12 @@
       "_General-CSnTKUjB.js"
     ],
     "css": [
-      "tippy.css",
-      "swiper.css"
+      "assets/tippy-LriLsbSV.css",
+      "assets/swiper-EKmKsbKj.css"
     ]
   },
   "resources/js/Admin/Banners.jsx": {
-    "file": "assets/Banners-2vYTQ6Ki.js",
+    "file": "assets/Banners-lEdA-hgD.js",
     "name": "Banners",
     "src": "resources/js/Admin/Banners.jsx",
     "isEntry": true,
@@ -931,8 +931,8 @@
       "resources/js/Admin/components/RequirementCard.jsx",
       "resources/js/components/WebVitalsMonitor.jsx",
       "resources/js/Utils/ReactAppend.jsx",
-      "_Base-B4sxzebp.js",
-      "_CreateReactScript-CtCtVq5m.js",
+      "_Base-2lomdTYS.js",
+      "_CreateReactScript-BspcGzwC.js",
       "_Table-BOT7Fp6l.js",
       "_Modal-DTcWRRJp.js",
       "_InputFormGroup-xbon111q.js",
@@ -957,12 +957,12 @@
       "_General-CSnTKUjB.js"
     ],
     "css": [
-      "tippy.css",
-      "swiper.css"
+      "assets/tippy-LriLsbSV.css",
+      "assets/swiper-EKmKsbKj.css"
     ]
   },
   "resources/js/Admin/Benefits.jsx": {
-    "file": "assets/Benefits-DpYw86Z3.js",
+    "file": "assets/Benefits-BRyNjsFN.js",
     "name": "Benefits",
     "src": "resources/js/Admin/Benefits.jsx",
     "isEntry": true,
@@ -970,8 +970,8 @@
       "resources/js/Admin/components/RequirementCard.jsx",
       "resources/js/components/WebVitalsMonitor.jsx",
       "resources/js/Utils/ReactAppend.jsx",
-      "_Base-B4sxzebp.js",
-      "_CreateReactScript-CtCtVq5m.js",
+      "_Base-2lomdTYS.js",
+      "_CreateReactScript-BspcGzwC.js",
       "_Table-BOT7Fp6l.js",
       "_Modal-DTcWRRJp.js",
       "_ReactAppend-CAweQVQe.js",
@@ -995,18 +995,18 @@
       "_General-CSnTKUjB.js"
     ],
     "css": [
-      "tippy.css",
-      "swiper.css"
+      "assets/tippy-LriLsbSV.css",
+      "assets/swiper-EKmKsbKj.css"
     ]
   },
   "resources/js/Admin/Brands.jsx": {
-    "file": "assets/Brands-CrjFmccn.js",
+    "file": "assets/Brands-4nFJXKVE.js",
     "name": "Brands",
     "src": "resources/js/Admin/Brands.jsx",
     "isEntry": true,
     "imports": [
       "resources/js/Admin/components/RequirementCard.jsx",
-      "_Base-B4sxzebp.js",
+      "_Base-2lomdTYS.js",
       "_SwitchFormGroup-Dcg5J4Xi.js",
       "_TextareaFormGroup-BUXKuApM.js",
       "resources/js/components/WebVitalsMonitor.jsx",
@@ -1018,7 +1018,7 @@
       "_Modal-B_yL3fj9.js",
       "_Table-Byvikyxn.js",
       "_DxButton-CkntFyfB.js",
-      "_CreateReactScript-CtCtVq5m.js",
+      "_CreateReactScript-BspcGzwC.js",
       "_ReactAppend-CAweQVQe.js",
       "_tippy-react.esm-C0M1j_tS.js",
       "_index-CF8W1V4f.js",
@@ -1032,12 +1032,12 @@
       "_General-CSnTKUjB.js"
     ],
     "css": [
-      "tippy.css",
-      "swiper.css"
+      "assets/tippy-LriLsbSV.css",
+      "assets/swiper-EKmKsbKj.css"
     ]
   },
   "resources/js/Admin/Bundles.jsx": {
-    "file": "assets/Bundles-DQUC_vPF.js",
+    "file": "assets/Bundles-BCBvDrKm.js",
     "name": "Bundles",
     "src": "resources/js/Admin/Bundles.jsx",
     "isEntry": true,
@@ -1045,8 +1045,8 @@
       "resources/js/Admin/components/RequirementCard.jsx",
       "resources/js/components/WebVitalsMonitor.jsx",
       "resources/js/Utils/ReactAppend.jsx",
-      "_Base-B4sxzebp.js",
-      "_CreateReactScript-CtCtVq5m.js",
+      "_Base-2lomdTYS.js",
+      "_CreateReactScript-BspcGzwC.js",
       "_Table-BOT7Fp6l.js",
       "_Modal-DTcWRRJp.js",
       "_InputFormGroup-xbon111q.js",
@@ -1069,12 +1069,12 @@
       "_General-CSnTKUjB.js"
     ],
     "css": [
-      "tippy.css",
-      "swiper.css"
+      "assets/tippy-LriLsbSV.css",
+      "assets/swiper-EKmKsbKj.css"
     ]
   },
   "resources/js/Admin/Categories.jsx": {
-    "file": "assets/Categories-BBmImMPc.js",
+    "file": "assets/Categories-VJ_oNlsl.js",
     "name": "Categories",
     "src": "resources/js/Admin/Categories.jsx",
     "isEntry": true,
@@ -1082,8 +1082,8 @@
       "resources/js/Admin/components/RequirementCard.jsx",
       "resources/js/components/WebVitalsMonitor.jsx",
       "resources/js/Utils/ReactAppend.jsx",
-      "_Base-B4sxzebp.js",
-      "_CreateReactScript-CtCtVq5m.js",
+      "_Base-2lomdTYS.js",
+      "_CreateReactScript-BspcGzwC.js",
       "_Table-BOT7Fp6l.js",
       "_Modal-DTcWRRJp.js",
       "_ReactAppend-CAweQVQe.js",
@@ -1105,12 +1105,12 @@
       "_General-CSnTKUjB.js"
     ],
     "css": [
-      "tippy.css",
-      "swiper.css"
+      "assets/tippy-LriLsbSV.css",
+      "assets/swiper-EKmKsbKj.css"
     ]
   },
   "resources/js/Admin/Colors.jsx": {
-    "file": "assets/Colors-CtHzsi28.js",
+    "file": "assets/Colors-D1Rl1PdN.js",
     "name": "Colors",
     "src": "resources/js/Admin/Colors.jsx",
     "isEntry": true,
@@ -1118,8 +1118,8 @@
       "resources/js/Admin/components/RequirementCard.jsx",
       "resources/js/components/WebVitalsMonitor.jsx",
       "resources/js/Utils/ReactAppend.jsx",
-      "_Base-B4sxzebp.js",
-      "_CreateReactScript-CtCtVq5m.js",
+      "_Base-2lomdTYS.js",
+      "_CreateReactScript-BspcGzwC.js",
       "_Table-BOT7Fp6l.js",
       "_Modal-DTcWRRJp.js",
       "_InputFormGroup-xbon111q.js",
@@ -1142,12 +1142,12 @@
       "_General-CSnTKUjB.js"
     ],
     "css": [
-      "tippy.css",
-      "swiper.css"
+      "assets/tippy-LriLsbSV.css",
+      "assets/swiper-EKmKsbKj.css"
     ]
   },
   "resources/js/Admin/Complaints.jsx": {
-    "file": "assets/Complaints-DErnG7li.js",
+    "file": "assets/Complaints-DEpOQ8_A.js",
     "name": "Complaints",
     "src": "resources/js/Admin/Complaints.jsx",
     "isEntry": true,
@@ -1155,8 +1155,8 @@
       "resources/js/Admin/components/RequirementCard.jsx",
       "resources/js/components/WebVitalsMonitor.jsx",
       "resources/js/Utils/ReactAppend.jsx",
-      "_Base-B4sxzebp.js",
-      "_CreateReactScript-CtCtVq5m.js",
+      "_Base-2lomdTYS.js",
+      "_CreateReactScript-BspcGzwC.js",
       "_Table-BOT7Fp6l.js",
       "_Modal-DTcWRRJp.js",
       "_DxButton-CkntFyfB.js",
@@ -1175,12 +1175,12 @@
       "_General-CSnTKUjB.js"
     ],
     "css": [
-      "tippy.css",
-      "swiper.css"
+      "assets/tippy-LriLsbSV.css",
+      "assets/swiper-EKmKsbKj.css"
     ]
   },
   "resources/js/Admin/CoreValues.jsx": {
-    "file": "assets/CoreValues-CCQFHz-J.js",
+    "file": "assets/CoreValues-DZzF6UIc.js",
     "name": "CoreValues",
     "src": "resources/js/Admin/CoreValues.jsx",
     "isEntry": true,
@@ -1188,8 +1188,8 @@
       "resources/js/Admin/components/RequirementCard.jsx",
       "resources/js/components/WebVitalsMonitor.jsx",
       "resources/js/Utils/ReactAppend.jsx",
-      "_Base-B4sxzebp.js",
-      "_CreateReactScript-CtCtVq5m.js",
+      "_Base-2lomdTYS.js",
+      "_CreateReactScript-BspcGzwC.js",
       "_Table-BOT7Fp6l.js",
       "_Modal-DTcWRRJp.js",
       "_ReactAppend-CAweQVQe.js",
@@ -1212,12 +1212,12 @@
       "_General-CSnTKUjB.js"
     ],
     "css": [
-      "tippy.css",
-      "swiper.css"
+      "assets/tippy-LriLsbSV.css",
+      "assets/swiper-EKmKsbKj.css"
     ]
   },
   "resources/js/Admin/Coupons.jsx": {
-    "file": "assets/Coupons-DalKyXcB.js",
+    "file": "assets/Coupons-wNgN8f0W.js",
     "name": "Coupons",
     "src": "resources/js/Admin/Coupons.jsx",
     "isEntry": true,
@@ -1225,8 +1225,8 @@
       "resources/js/Admin/components/RequirementCard.jsx",
       "resources/js/components/WebVitalsMonitor.jsx",
       "resources/js/Utils/ReactAppend.jsx",
-      "_Base-B4sxzebp.js",
-      "_CreateReactScript-CtCtVq5m.js",
+      "_Base-2lomdTYS.js",
+      "_CreateReactScript-BspcGzwC.js",
       "_Table-BOT7Fp6l.js",
       "_Modal-DTcWRRJp.js",
       "_InputFormGroup-xbon111q.js",
@@ -1247,19 +1247,19 @@
       "_General-CSnTKUjB.js"
     ],
     "css": [
-      "tippy.css",
-      "swiper.css"
+      "assets/tippy-LriLsbSV.css",
+      "assets/swiper-EKmKsbKj.css"
     ]
   },
   "resources/js/Admin/Facilities.jsx": {
-    "file": "assets/Facilities-CDkBWHzD.js",
+    "file": "assets/Facilities-dXofi2Tb.js",
     "name": "Facilities",
     "src": "resources/js/Admin/Facilities.jsx",
     "isEntry": true,
     "imports": [
       "resources/js/Admin/components/RequirementCard.jsx",
       "resources/js/components/WebVitalsMonitor.jsx",
-      "_Base-B4sxzebp.js",
+      "_Base-2lomdTYS.js",
       "resources/js/Utils/ReactAppend.jsx",
       "resources/js/components/Adminto/Dx/DxBox.jsx",
       "_sweetalert2.all-Dn_IOoc8.js",
@@ -1267,7 +1267,7 @@
       "_Table-Byvikyxn.js",
       "_InputFormGroup-xbon111q.js",
       "_DxButton-CkntFyfB.js",
-      "_CreateReactScript-CtCtVq5m.js",
+      "_CreateReactScript-BspcGzwC.js",
       "resources/js/components/Blog/Results.jsx",
       "_tippy-react.esm-C0M1j_tS.js",
       "_index-CF8W1V4f.js",
@@ -1281,12 +1281,12 @@
       "_General-CSnTKUjB.js"
     ],
     "css": [
-      "tippy.css",
-      "swiper.css"
+      "assets/tippy-LriLsbSV.css",
+      "assets/swiper-EKmKsbKj.css"
     ]
   },
   "resources/js/Admin/Faqs.jsx": {
-    "file": "assets/Faqs-B97TQcPg.js",
+    "file": "assets/Faqs-DF6qED5-.js",
     "name": "Faqs",
     "src": "resources/js/Admin/Faqs.jsx",
     "isEntry": true,
@@ -1294,8 +1294,8 @@
       "resources/js/Admin/components/RequirementCard.jsx",
       "resources/js/components/WebVitalsMonitor.jsx",
       "resources/js/Utils/ReactAppend.jsx",
-      "_Base-B4sxzebp.js",
-      "_CreateReactScript-CtCtVq5m.js",
+      "_Base-2lomdTYS.js",
+      "_CreateReactScript-BspcGzwC.js",
       "_Table-BOT7Fp6l.js",
       "_Modal-DTcWRRJp.js",
       "_ReactAppend-CAweQVQe.js",
@@ -1317,8 +1317,8 @@
       "_General-CSnTKUjB.js"
     ],
     "css": [
-      "tippy.css",
-      "swiper.css"
+      "assets/tippy-LriLsbSV.css",
+      "assets/swiper-EKmKsbKj.css"
     ]
   },
   "resources/js/Admin/FileViewer.jsx": {
@@ -1332,7 +1332,7 @@
     ]
   },
   "resources/js/Admin/Formulas.jsx": {
-    "file": "assets/Formulas-CfzSFFxA.js",
+    "file": "assets/Formulas-0aCYFpxU.js",
     "name": "Formulas",
     "src": "resources/js/Admin/Formulas.jsx",
     "isEntry": true,
@@ -1340,8 +1340,8 @@
       "resources/js/Admin/components/RequirementCard.jsx",
       "resources/js/components/WebVitalsMonitor.jsx",
       "resources/js/Utils/ReactAppend.jsx",
-      "_Base-B4sxzebp.js",
-      "_CreateReactScript-CtCtVq5m.js",
+      "_Base-2lomdTYS.js",
+      "_CreateReactScript-BspcGzwC.js",
       "_Table-BOT7Fp6l.js",
       "_Modal-DTcWRRJp.js",
       "_InputFormGroup-xbon111q.js",
@@ -1362,12 +1362,12 @@
       "_General-CSnTKUjB.js"
     ],
     "css": [
-      "tippy.css",
-      "swiper.css"
+      "assets/tippy-LriLsbSV.css",
+      "assets/swiper-EKmKsbKj.css"
     ]
   },
   "resources/js/Admin/Fragrances.jsx": {
-    "file": "assets/Fragrances-ByzDDetr.js",
+    "file": "assets/Fragrances-Dh7rTPr6.js",
     "name": "Fragrances",
     "src": "resources/js/Admin/Fragrances.jsx",
     "isEntry": true,
@@ -1375,8 +1375,8 @@
       "resources/js/Admin/components/RequirementCard.jsx",
       "resources/js/components/WebVitalsMonitor.jsx",
       "resources/js/Utils/ReactAppend.jsx",
-      "_Base-B4sxzebp.js",
-      "_CreateReactScript-CtCtVq5m.js",
+      "_Base-2lomdTYS.js",
+      "_CreateReactScript-BspcGzwC.js",
       "_Table-BOT7Fp6l.js",
       "_Modal-DTcWRRJp.js",
       "_InputFormGroup-xbon111q.js",
@@ -1399,12 +1399,12 @@
       "_General-CSnTKUjB.js"
     ],
     "css": [
-      "tippy.css",
-      "swiper.css"
+      "assets/tippy-LriLsbSV.css",
+      "assets/swiper-EKmKsbKj.css"
     ]
   },
   "resources/js/Admin/Gallery.jsx": {
-    "file": "assets/Gallery-BJUDnTCg.js",
+    "file": "assets/Gallery-2i0ZixZj.js",
     "name": "Gallery",
     "src": "resources/js/Admin/Gallery.jsx",
     "isEntry": true,
@@ -1412,8 +1412,8 @@
       "resources/js/Admin/components/RequirementCard.jsx",
       "resources/js/components/WebVitalsMonitor.jsx",
       "resources/js/Utils/ReactAppend.jsx",
-      "_Base-B4sxzebp.js",
-      "_CreateReactScript-CtCtVq5m.js",
+      "_Base-2lomdTYS.js",
+      "_CreateReactScript-BspcGzwC.js",
       "resources/js/components/Blog/Results.jsx",
       "_index-CF8W1V4f.js",
       "_tippy-react.esm-C0M1j_tS.js",
@@ -1427,12 +1427,12 @@
       "_General-CSnTKUjB.js"
     ],
     "css": [
-      "tippy.css",
-      "swiper.css"
+      "assets/tippy-LriLsbSV.css",
+      "assets/swiper-EKmKsbKj.css"
     ]
   },
   "resources/js/Admin/Generals.jsx": {
-    "file": "assets/Generals-D9KIZSq6.js",
+    "file": "assets/Generals-B_lo3VZU.js",
     "name": "Generals",
     "src": "resources/js/Admin/Generals.jsx",
     "isEntry": true,
@@ -1440,10 +1440,10 @@
       "resources/js/Admin/components/RequirementCard.jsx",
       "resources/js/components/WebVitalsMonitor.jsx",
       "_index-CF8W1V4f.js",
-      "_Base-B4sxzebp.js",
+      "_Base-2lomdTYS.js",
       "resources/js/components/Blog/Results.jsx",
       "_main-BjF2hfsq.js",
-      "_CreateReactScript-CtCtVq5m.js",
+      "_CreateReactScript-BspcGzwC.js",
       "resources/js/Utils/ReactAppend.jsx",
       "_QuillFormGroup-BBmSVjme.js",
       "_TextareaFormGroup-BUXKuApM.js",
@@ -1461,12 +1461,12 @@
       "_index-Cx_JNDNR.js"
     ],
     "css": [
-      "tippy.css",
-      "swiper.css"
+      "assets/tippy-LriLsbSV.css",
+      "assets/swiper-EKmKsbKj.css"
     ]
   },
   "resources/js/Admin/Gifts.jsx": {
-    "file": "assets/Gifts-BAP2e95e.js",
+    "file": "assets/Gifts-Xbe9vnlr.js",
     "name": "Gifts",
     "src": "resources/js/Admin/Gifts.jsx",
     "isEntry": true,
@@ -1474,8 +1474,8 @@
       "resources/js/Admin/components/RequirementCard.jsx",
       "resources/js/components/WebVitalsMonitor.jsx",
       "resources/js/Utils/ReactAppend.jsx",
-      "_Base-B4sxzebp.js",
-      "_CreateReactScript-CtCtVq5m.js",
+      "_Base-2lomdTYS.js",
+      "_CreateReactScript-BspcGzwC.js",
       "_Table-BOT7Fp6l.js",
       "_Modal-DTcWRRJp.js",
       "_InputFormGroup-xbon111q.js",
@@ -1499,12 +1499,12 @@
       "resources/js/components/Blog/Results.jsx"
     ],
     "css": [
-      "tippy.css",
-      "swiper.css"
+      "assets/tippy-LriLsbSV.css",
+      "assets/swiper-EKmKsbKj.css"
     ]
   },
   "resources/js/Admin/Home.jsx": {
-    "file": "assets/Home-CRvDTlro.js",
+    "file": "assets/Home-DCN1Tt_u.js",
     "name": "Home",
     "src": "resources/js/Admin/Home.jsx",
     "isEntry": true,
@@ -1512,8 +1512,8 @@
       "resources/js/Admin/components/RequirementCard.jsx",
       "resources/js/components/WebVitalsMonitor.jsx",
       "resources/js/Utils/ReactAppend.jsx",
-      "_CreateReactScript-CtCtVq5m.js",
-      "_Base-B4sxzebp.js",
+      "_CreateReactScript-BspcGzwC.js",
+      "_Base-2lomdTYS.js",
       "_index-CF8W1V4f.js",
       "_index.esm-5NFqnzAw.js",
       "_axios-COzaZAiy.js",
@@ -1526,12 +1526,12 @@
       "resources/js/components/Blog/Filter.jsx"
     ],
     "css": [
-      "swiper.css",
-      "tippy.css"
+      "assets/swiper-EKmKsbKj.css",
+      "assets/tippy-LriLsbSV.css"
     ]
   },
   "resources/js/Admin/Indicators.jsx": {
-    "file": "assets/Indicators-DQK2gYv2.js",
+    "file": "assets/Indicators-Dpy_fIAd.js",
     "name": "Indicators",
     "src": "resources/js/Admin/Indicators.jsx",
     "isEntry": true,
@@ -1539,8 +1539,8 @@
       "resources/js/Admin/components/RequirementCard.jsx",
       "resources/js/components/WebVitalsMonitor.jsx",
       "resources/js/Utils/ReactAppend.jsx",
-      "_Base-B4sxzebp.js",
-      "_CreateReactScript-CtCtVq5m.js",
+      "_Base-2lomdTYS.js",
+      "_CreateReactScript-BspcGzwC.js",
       "_Table-BOT7Fp6l.js",
       "_Modal-DTcWRRJp.js",
       "_InputFormGroup-ChYq379r.js",
@@ -1564,12 +1564,12 @@
       "_General-CSnTKUjB.js"
     ],
     "css": [
-      "tippy.css",
-      "swiper.css"
+      "assets/tippy-LriLsbSV.css",
+      "assets/swiper-EKmKsbKj.css"
     ]
   },
   "resources/js/Admin/InfoproductCategories.jsx": {
-    "file": "assets/InfoproductCategories-D5P87uaa.js",
+    "file": "assets/InfoproductCategories-CuaSm2BT.js",
     "name": "InfoproductCategories",
     "src": "resources/js/Admin/InfoproductCategories.jsx",
     "isEntry": true,
@@ -1577,8 +1577,8 @@
       "resources/js/Admin/components/RequirementCard.jsx",
       "resources/js/components/WebVitalsMonitor.jsx",
       "resources/js/Utils/ReactAppend.jsx",
-      "_Base-B4sxzebp.js",
-      "_CreateReactScript-CtCtVq5m.js",
+      "_Base-2lomdTYS.js",
+      "_CreateReactScript-BspcGzwC.js",
       "_Table-BOT7Fp6l.js",
       "_Modal-DTcWRRJp.js",
       "_ReactAppend-CAweQVQe.js",
@@ -1600,12 +1600,12 @@
       "_General-CSnTKUjB.js"
     ],
     "css": [
-      "tippy.css",
-      "swiper.css"
+      "assets/tippy-LriLsbSV.css",
+      "assets/swiper-EKmKsbKj.css"
     ]
   },
   "resources/js/Admin/Infoproducts.jsx": {
-    "file": "assets/Infoproducts-C3hsbrLK.js",
+    "file": "assets/Infoproducts-CPmUft7p.js",
     "name": "Infoproducts",
     "src": "resources/js/Admin/Infoproducts.jsx",
     "isEntry": true,
@@ -1613,8 +1613,8 @@
       "resources/js/Admin/components/RequirementCard.jsx",
       "resources/js/components/WebVitalsMonitor.jsx",
       "resources/js/Utils/ReactAppend.jsx",
-      "_Base-B4sxzebp.js",
-      "_CreateReactScript-CtCtVq5m.js",
+      "_Base-2lomdTYS.js",
+      "_CreateReactScript-BspcGzwC.js",
       "_Table-BOT7Fp6l.js",
       "_Modal-DTcWRRJp.js",
       "_InputFormGroup-ChYq379r.js",
@@ -1638,12 +1638,12 @@
       "_General-CSnTKUjB.js"
     ],
     "css": [
-      "tippy.css",
-      "swiper.css"
+      "assets/tippy-LriLsbSV.css",
+      "assets/swiper-EKmKsbKj.css"
     ]
   },
   "resources/js/Admin/InstagramPosts.jsx": {
-    "file": "assets/InstagramPosts-Dg8o6-fE.js",
+    "file": "assets/InstagramPosts-DIL8EmX7.js",
     "name": "InstagramPosts",
     "src": "resources/js/Admin/InstagramPosts.jsx",
     "isEntry": true,
@@ -1651,8 +1651,8 @@
       "resources/js/Admin/components/RequirementCard.jsx",
       "resources/js/components/WebVitalsMonitor.jsx",
       "resources/js/Utils/ReactAppend.jsx",
-      "_Base-B4sxzebp.js",
-      "_CreateReactScript-CtCtVq5m.js",
+      "_Base-2lomdTYS.js",
+      "_CreateReactScript-BspcGzwC.js",
       "_Table-BOT7Fp6l.js",
       "_Modal-DTcWRRJp.js",
       "_InputFormGroup-xbon111q.js",
@@ -1675,18 +1675,18 @@
       "_General-CSnTKUjB.js"
     ],
     "css": [
-      "tippy.css",
-      "swiper.css"
+      "assets/tippy-LriLsbSV.css",
+      "assets/swiper-EKmKsbKj.css"
     ]
   },
   "resources/js/Admin/Items.jsx": {
-    "file": "assets/Items-n-RJd2np.js",
+    "file": "assets/Items-D_HujE8t.js",
     "name": "Items",
     "src": "resources/js/Admin/Items.jsx",
     "isEntry": true,
     "imports": [
       "resources/js/Admin/components/RequirementCard.jsx",
-      "_Base-B4sxzebp.js",
+      "_Base-2lomdTYS.js",
       "_SwitchFormGroup-Dcg5J4Xi.js",
       "resources/js/components/WebVitalsMonitor.jsx",
       "resources/js/Utils/ReactAppend.jsx",
@@ -1700,7 +1700,7 @@
       "_main-BjF2hfsq.js",
       "_SelectFormGroup-y_1x5e4h.js",
       "_DxButton-CkntFyfB.js",
-      "_CreateReactScript-CtCtVq5m.js",
+      "_CreateReactScript-BspcGzwC.js",
       "_Number2Currency-DExzICY3.js",
       "_ReactAppend-CAweQVQe.js",
       "_tippy-react.esm-C0M1j_tS.js",
@@ -1715,12 +1715,12 @@
       "_General-CSnTKUjB.js"
     ],
     "css": [
-      "tippy.css",
-      "swiper.css"
+      "assets/tippy-LriLsbSV.css",
+      "assets/swiper-EKmKsbKj.css"
     ]
   },
   "resources/js/Admin/LandingHome.jsx": {
-    "file": "assets/LandingHome-Du2-iTkQ.js",
+    "file": "assets/LandingHome-CZWEV2U2.js",
     "name": "LandingHome",
     "src": "resources/js/Admin/LandingHome.jsx",
     "isEntry": true,
@@ -1728,8 +1728,8 @@
       "resources/js/Admin/components/RequirementCard.jsx",
       "resources/js/components/WebVitalsMonitor.jsx",
       "resources/js/Utils/ReactAppend.jsx",
-      "_Base-B4sxzebp.js",
-      "_CreateReactScript-CtCtVq5m.js",
+      "_Base-2lomdTYS.js",
+      "_CreateReactScript-BspcGzwC.js",
       "_Modal-DTcWRRJp.js",
       "_InputFormGroup-xbon111q.js",
       "_SwitchFormGroup-Dcg5J4Xi.js",
@@ -1749,12 +1749,12 @@
       "_General-CSnTKUjB.js"
     ],
     "css": [
-      "tippy.css",
-      "swiper.css"
+      "assets/tippy-LriLsbSV.css",
+      "assets/swiper-EKmKsbKj.css"
     ]
   },
   "resources/js/Admin/Langs.jsx": {
-    "file": "assets/Langs-CYFbi1Tg.js",
+    "file": "assets/Langs-8gI9k46l.js",
     "name": "Langs",
     "src": "resources/js/Admin/Langs.jsx",
     "isEntry": true,
@@ -1762,8 +1762,8 @@
       "resources/js/Admin/components/RequirementCard.jsx",
       "resources/js/components/WebVitalsMonitor.jsx",
       "resources/js/Utils/ReactAppend.jsx",
-      "_Base-B4sxzebp.js",
-      "_CreateReactScript-CtCtVq5m.js",
+      "_Base-2lomdTYS.js",
+      "_CreateReactScript-BspcGzwC.js",
       "_Table-BOT7Fp6l.js",
       "_Modal-DTcWRRJp.js",
       "_InputFormGroup-ChYq379r.js",
@@ -1786,12 +1786,12 @@
       "_General-CSnTKUjB.js"
     ],
     "css": [
-      "tippy.css",
-      "swiper.css"
+      "assets/tippy-LriLsbSV.css",
+      "assets/swiper-EKmKsbKj.css"
     ]
   },
   "resources/js/Admin/Messages.jsx": {
-    "file": "assets/Messages-DoDS9FAv.js",
+    "file": "assets/Messages-DzKZLVpV.js",
     "name": "Messages",
     "src": "resources/js/Admin/Messages.jsx",
     "isEntry": true,
@@ -1799,8 +1799,8 @@
       "resources/js/Admin/components/RequirementCard.jsx",
       "resources/js/components/WebVitalsMonitor.jsx",
       "resources/js/Utils/ReactAppend.jsx",
-      "_Base-B4sxzebp.js",
-      "_CreateReactScript-CtCtVq5m.js",
+      "_Base-2lomdTYS.js",
+      "_CreateReactScript-BspcGzwC.js",
       "_Table-BOT7Fp6l.js",
       "_DxButton-CkntFyfB.js",
       "_ReactAppend-CAweQVQe.js",
@@ -1819,12 +1819,12 @@
       "_General-CSnTKUjB.js"
     ],
     "css": [
-      "tippy.css",
-      "swiper.css"
+      "assets/tippy-LriLsbSV.css",
+      "assets/swiper-EKmKsbKj.css"
     ]
   },
   "resources/js/Admin/PaymentMethods.jsx": {
-    "file": "assets/PaymentMethods-WlnkLz_R.js",
+    "file": "assets/PaymentMethods-DRbqkNkO.js",
     "name": "PaymentMethods",
     "src": "resources/js/Admin/PaymentMethods.jsx",
     "isEntry": true,
@@ -1832,8 +1832,8 @@
       "resources/js/Admin/components/RequirementCard.jsx",
       "resources/js/components/WebVitalsMonitor.jsx",
       "resources/js/Utils/ReactAppend.jsx",
-      "_Base-B4sxzebp.js",
-      "_CreateReactScript-CtCtVq5m.js",
+      "_Base-2lomdTYS.js",
+      "_CreateReactScript-BspcGzwC.js",
       "_Table-BOT7Fp6l.js",
       "_Modal-DTcWRRJp.js",
       "_InputFormGroup-xbon111q.js",
@@ -1858,12 +1858,12 @@
       "_General-CSnTKUjB.js"
     ],
     "css": [
-      "tippy.css",
-      "swiper.css"
+      "assets/tippy-LriLsbSV.css",
+      "assets/swiper-EKmKsbKj.css"
     ]
   },
   "resources/js/Admin/Posts.jsx": {
-    "file": "assets/Posts-DFZtBx5O.js",
+    "file": "assets/Posts-CXrDLyvy.js",
     "name": "Posts",
     "src": "resources/js/Admin/Posts.jsx",
     "isEntry": true,
@@ -1871,8 +1871,8 @@
       "resources/js/Admin/components/RequirementCard.jsx",
       "resources/js/components/WebVitalsMonitor.jsx",
       "resources/js/Utils/ReactAppend.jsx",
-      "_Base-B4sxzebp.js",
-      "_CreateReactScript-CtCtVq5m.js",
+      "_Base-2lomdTYS.js",
+      "_CreateReactScript-BspcGzwC.js",
       "_Table-BOT7Fp6l.js",
       "_Modal-DTcWRRJp.js",
       "_InputFormGroup-ChYq379r.js",
@@ -1898,12 +1898,12 @@
       "_General-CSnTKUjB.js"
     ],
     "css": [
-      "tippy.css",
-      "swiper.css"
+      "assets/tippy-LriLsbSV.css",
+      "assets/swiper-EKmKsbKj.css"
     ]
   },
   "resources/js/Admin/Profile.jsx": {
-    "file": "assets/Profile-D5dhApMf.js",
+    "file": "assets/Profile-DH7lmMzB.js",
     "name": "Profile",
     "src": "resources/js/Admin/Profile.jsx",
     "isEntry": true,
@@ -1913,9 +1913,9 @@
       "resources/js/components/WebVitalsMonitor.jsx",
       "resources/js/Utils/ReactAppend.jsx",
       "_main-BjF2hfsq.js",
-      "_Base-B4sxzebp.js",
+      "_Base-2lomdTYS.js",
       "_InputFormGroup-xbon111q.js",
-      "_CreateReactScript-CtCtVq5m.js",
+      "_CreateReactScript-BspcGzwC.js",
       "_index-CF8W1V4f.js",
       "____vite-browser-external_commonjs-proxy-CGejAyr8.js",
       "_Logout-C7cdb_W1.js",
@@ -1926,12 +1926,12 @@
       "_General-CSnTKUjB.js"
     ],
     "css": [
-      "tippy.css",
-      "swiper.css"
+      "assets/tippy-LriLsbSV.css",
+      "assets/swiper-EKmKsbKj.css"
     ]
   },
   "resources/js/Admin/PurchaseOptions.jsx": {
-    "file": "assets/PurchaseOptions-C00Xz8b_.js",
+    "file": "assets/PurchaseOptions-DZt9JeVD.js",
     "name": "PurchaseOptions",
     "src": "resources/js/Admin/PurchaseOptions.jsx",
     "isEntry": true,
@@ -1939,7 +1939,7 @@
       "resources/js/Admin/components/RequirementCard.jsx",
       "resources/js/components/WebVitalsMonitor.jsx",
       "resources/js/Utils/ReactAppend.jsx",
-      "_Base-B4sxzebp.js",
+      "_Base-2lomdTYS.js",
       "resources/js/components/Adminto/Dx/DxBox.jsx",
       "_sweetalert2.all-Dn_IOoc8.js",
       "_Modal-B_yL3fj9.js",
@@ -1947,7 +1947,7 @@
       "_ImageFormGroup-COllXU6A.js",
       "_InputFormGroup-xbon111q.js",
       "_DxButton-CkntFyfB.js",
-      "_CreateReactScript-CtCtVq5m.js",
+      "_CreateReactScript-BspcGzwC.js",
       "_ReactAppend-CAweQVQe.js",
       "_SwitchFormGroup-Dcg5J4Xi.js",
       "resources/js/components/Blog/Filter.jsx",
@@ -1966,12 +1966,12 @@
       "_index-Cx_JNDNR.js"
     ],
     "css": [
-      "tippy.css",
-      "swiper.css"
+      "assets/tippy-LriLsbSV.css",
+      "assets/swiper-EKmKsbKj.css"
     ]
   },
   "resources/js/Admin/Renewals.jsx": {
-    "file": "assets/Renewals-DqBq9O2P.js",
+    "file": "assets/Renewals-Bp-ZmLCu.js",
     "name": "Renewals",
     "src": "resources/js/Admin/Renewals.jsx",
     "isEntry": true,
@@ -1979,8 +1979,8 @@
       "resources/js/Admin/components/RequirementCard.jsx",
       "resources/js/components/WebVitalsMonitor.jsx",
       "resources/js/Utils/ReactAppend.jsx",
-      "_Base-B4sxzebp.js",
-      "_CreateReactScript-CtCtVq5m.js",
+      "_Base-2lomdTYS.js",
+      "_CreateReactScript-BspcGzwC.js",
       "_Table-BOT7Fp6l.js",
       "_Modal-DTcWRRJp.js",
       "_InputFormGroup-xbon111q.js",
@@ -2002,12 +2002,12 @@
       "_General-CSnTKUjB.js"
     ],
     "css": [
-      "tippy.css",
-      "swiper.css"
+      "assets/tippy-LriLsbSV.css",
+      "assets/swiper-EKmKsbKj.css"
     ]
   },
   "resources/js/Admin/Sales.jsx": {
-    "file": "assets/Sales-DuDyuQ0U.js",
+    "file": "assets/Sales-CTxxyVr8.js",
     "name": "Sales",
     "src": "resources/js/Admin/Sales.jsx",
     "isEntry": true,
@@ -2015,8 +2015,8 @@
       "resources/js/Admin/components/RequirementCard.jsx",
       "resources/js/components/WebVitalsMonitor.jsx",
       "resources/js/Utils/ReactAppend.jsx",
-      "_Base-B4sxzebp.js",
-      "_CreateReactScript-CtCtVq5m.js",
+      "_Base-2lomdTYS.js",
+      "_CreateReactScript-BspcGzwC.js",
       "_Table-BOT7Fp6l.js",
       "_DxButton-CkntFyfB.js",
       "_ReactAppend-CAweQVQe.js",
@@ -2037,12 +2037,12 @@
       "_General-CSnTKUjB.js"
     ],
     "css": [
-      "tippy.css",
-      "swiper.css"
+      "assets/tippy-LriLsbSV.css",
+      "assets/swiper-EKmKsbKj.css"
     ]
   },
   "resources/js/Admin/Services.jsx": {
-    "file": "assets/Services-OzQf6oPN.js",
+    "file": "assets/Services-DuijyIXs.js",
     "name": "Services",
     "src": "resources/js/Admin/Services.jsx",
     "isEntry": true,
@@ -2050,7 +2050,7 @@
       "resources/js/Admin/components/RequirementCard.jsx",
       "resources/js/components/WebVitalsMonitor.jsx",
       "resources/js/Utils/ReactAppend.jsx",
-      "_Base-B4sxzebp.js",
+      "_Base-2lomdTYS.js",
       "resources/js/components/Adminto/Dx/DxBox.jsx",
       "_sweetalert2.all-Dn_IOoc8.js",
       "resources/js/components/Blog/Results.jsx",
@@ -2059,7 +2059,7 @@
       "_ImageFormGroup-COllXU6A.js",
       "_InputFormGroup-xbon111q.js",
       "_DxButton-CkntFyfB.js",
-      "_CreateReactScript-CtCtVq5m.js",
+      "_CreateReactScript-BspcGzwC.js",
       "_ReactAppend-CAweQVQe.js",
       "_SwitchFormGroup-Dcg5J4Xi.js",
       "resources/js/components/Blog/Filter.jsx",
@@ -2076,12 +2076,12 @@
       "_index-Cx_JNDNR.js"
     ],
     "css": [
-      "tippy.css",
-      "swiper.css"
+      "assets/tippy-LriLsbSV.css",
+      "assets/swiper-EKmKsbKj.css"
     ]
   },
   "resources/js/Admin/Sizes.jsx": {
-    "file": "assets/Sizes-D0pS-Dlu.js",
+    "file": "assets/Sizes-BbNhcfMz.js",
     "name": "Sizes",
     "src": "resources/js/Admin/Sizes.jsx",
     "isEntry": true,
@@ -2089,8 +2089,8 @@
       "resources/js/Admin/components/RequirementCard.jsx",
       "resources/js/components/WebVitalsMonitor.jsx",
       "resources/js/Utils/ReactAppend.jsx",
-      "_Base-B4sxzebp.js",
-      "_CreateReactScript-CtCtVq5m.js",
+      "_Base-2lomdTYS.js",
+      "_CreateReactScript-BspcGzwC.js",
       "_Table-BOT7Fp6l.js",
       "_Modal-DTcWRRJp.js",
       "_InputFormGroup-xbon111q.js",
@@ -2113,12 +2113,12 @@
       "_General-CSnTKUjB.js"
     ],
     "css": [
-      "tippy.css",
-      "swiper.css"
+      "assets/tippy-LriLsbSV.css",
+      "assets/swiper-EKmKsbKj.css"
     ]
   },
   "resources/js/Admin/Sliders.jsx": {
-    "file": "assets/Sliders-BtDy75i1.js",
+    "file": "assets/Sliders-D_RVNAyI.js",
     "name": "Sliders",
     "src": "resources/js/Admin/Sliders.jsx",
     "isEntry": true,
@@ -2126,8 +2126,8 @@
       "resources/js/Admin/components/RequirementCard.jsx",
       "resources/js/components/WebVitalsMonitor.jsx",
       "resources/js/Utils/ReactAppend.jsx",
-      "_Base-B4sxzebp.js",
-      "_CreateReactScript-CtCtVq5m.js",
+      "_Base-2lomdTYS.js",
+      "_CreateReactScript-BspcGzwC.js",
       "_Table-BOT7Fp6l.js",
       "_Modal-DTcWRRJp.js",
       "_InputFormGroup-ChYq379r.js",
@@ -2150,12 +2150,12 @@
       "_General-CSnTKUjB.js"
     ],
     "css": [
-      "tippy.css",
-      "swiper.css"
+      "assets/tippy-LriLsbSV.css",
+      "assets/swiper-EKmKsbKj.css"
     ]
   },
   "resources/js/Admin/Socials.jsx": {
-    "file": "assets/Socials-C83cJqAg.js",
+    "file": "assets/Socials-m7iv74o6.js",
     "name": "Socials",
     "src": "resources/js/Admin/Socials.jsx",
     "isEntry": true,
@@ -2163,8 +2163,8 @@
       "resources/js/Admin/components/RequirementCard.jsx",
       "resources/js/components/WebVitalsMonitor.jsx",
       "resources/js/Utils/ReactAppend.jsx",
-      "_Base-B4sxzebp.js",
-      "_CreateReactScript-CtCtVq5m.js",
+      "_Base-2lomdTYS.js",
+      "_CreateReactScript-BspcGzwC.js",
       "_Table-BOT7Fp6l.js",
       "_Modal-DTcWRRJp.js",
       "_ReactAppend-CAweQVQe.js",
@@ -2188,12 +2188,12 @@
       "_General-CSnTKUjB.js"
     ],
     "css": [
-      "tippy.css",
-      "swiper.css"
+      "assets/tippy-LriLsbSV.css",
+      "assets/swiper-EKmKsbKj.css"
     ]
   },
   "resources/js/Admin/Solutions.jsx": {
-    "file": "assets/Solutions-BBfvhnA0.js",
+    "file": "assets/Solutions-P5dDT1ar.js",
     "name": "Solutions",
     "src": "resources/js/Admin/Solutions.jsx",
     "isEntry": true,
@@ -2201,7 +2201,7 @@
       "resources/js/Admin/components/RequirementCard.jsx",
       "resources/js/components/WebVitalsMonitor.jsx",
       "resources/js/Utils/ReactAppend.jsx",
-      "_Base-B4sxzebp.js",
+      "_Base-2lomdTYS.js",
       "resources/js/components/Adminto/Dx/DxBox.jsx",
       "_sweetalert2.all-Dn_IOoc8.js",
       "_Modal-B_yL3fj9.js",
@@ -2209,7 +2209,7 @@
       "_ImageFormGroup-COllXU6A.js",
       "_InputFormGroup-xbon111q.js",
       "_DxButton-CkntFyfB.js",
-      "_CreateReactScript-CtCtVq5m.js",
+      "_CreateReactScript-BspcGzwC.js",
       "_ReactAppend-CAweQVQe.js",
       "resources/js/components/Blog/Filter.jsx",
       "_DragDropImage-H9FDOwFe.js",
@@ -2227,12 +2227,12 @@
       "_index-Cx_JNDNR.js"
     ],
     "css": [
-      "tippy.css",
-      "swiper.css"
+      "assets/tippy-LriLsbSV.css",
+      "assets/swiper-EKmKsbKj.css"
     ]
   },
   "resources/js/Admin/Specialities.jsx": {
-    "file": "assets/Specialities-DijJRA8p.js",
+    "file": "assets/Specialities-DmYGECce.js",
     "name": "Specialities",
     "src": "resources/js/Admin/Specialities.jsx",
     "isEntry": true,
@@ -2240,8 +2240,8 @@
       "resources/js/Admin/components/RequirementCard.jsx",
       "resources/js/components/WebVitalsMonitor.jsx",
       "resources/js/Utils/ReactAppend.jsx",
-      "_Base-B4sxzebp.js",
-      "_CreateReactScript-CtCtVq5m.js",
+      "_Base-2lomdTYS.js",
+      "_CreateReactScript-BspcGzwC.js",
       "_Table-BOT7Fp6l.js",
       "_Modal-DTcWRRJp.js",
       "_InputFormGroup-ChYq379r.js",
@@ -2264,19 +2264,19 @@
       "_General-CSnTKUjB.js"
     ],
     "css": [
-      "tippy.css",
-      "swiper.css"
+      "assets/tippy-LriLsbSV.css",
+      "assets/swiper-EKmKsbKj.css"
     ]
   },
   "resources/js/Admin/Staff.jsx": {
-    "file": "assets/Staff-BVrsHKVA.js",
+    "file": "assets/Staff-DLH7ePZT.js",
     "name": "Staff",
     "src": "resources/js/Admin/Staff.jsx",
     "isEntry": true,
     "imports": [
       "resources/js/Admin/components/RequirementCard.jsx",
       "resources/js/components/WebVitalsMonitor.jsx",
-      "_Base-B4sxzebp.js",
+      "_Base-2lomdTYS.js",
       "resources/js/Utils/ReactAppend.jsx",
       "resources/js/components/Adminto/Dx/DxBox.jsx",
       "_sweetalert2.all-Dn_IOoc8.js",
@@ -2285,7 +2285,7 @@
       "_ImageFormGroup-COllXU6A.js",
       "_InputFormGroup-xbon111q.js",
       "_DxButton-CkntFyfB.js",
-      "_CreateReactScript-CtCtVq5m.js",
+      "_CreateReactScript-BspcGzwC.js",
       "_ReactAppend-CAweQVQe.js",
       "resources/js/components/Blog/Results.jsx",
       "_tippy-react.esm-C0M1j_tS.js",
@@ -2300,12 +2300,12 @@
       "_General-CSnTKUjB.js"
     ],
     "css": [
-      "tippy.css",
-      "swiper.css"
+      "assets/tippy-LriLsbSV.css",
+      "assets/swiper-EKmKsbKj.css"
     ]
   },
   "resources/js/Admin/Strengths.jsx": {
-    "file": "assets/Strengths-H1qZ6mDk.js",
+    "file": "assets/Strengths-CygyvKE8.js",
     "name": "Strengths",
     "src": "resources/js/Admin/Strengths.jsx",
     "isEntry": true,
@@ -2313,8 +2313,8 @@
       "resources/js/Admin/components/RequirementCard.jsx",
       "resources/js/components/WebVitalsMonitor.jsx",
       "resources/js/Utils/ReactAppend.jsx",
-      "_Base-B4sxzebp.js",
-      "_CreateReactScript-CtCtVq5m.js",
+      "_Base-2lomdTYS.js",
+      "_CreateReactScript-BspcGzwC.js",
       "_Table-BOT7Fp6l.js",
       "_Modal-DTcWRRJp.js",
       "_ReactAppend-CAweQVQe.js",
@@ -2337,12 +2337,12 @@
       "_General-CSnTKUjB.js"
     ],
     "css": [
-      "tippy.css",
-      "swiper.css"
+      "assets/tippy-LriLsbSV.css",
+      "assets/swiper-EKmKsbKj.css"
     ]
   },
   "resources/js/Admin/Subscriptions.jsx": {
-    "file": "assets/Subscriptions-wZCPaijb.js",
+    "file": "assets/Subscriptions-mytO_g1m.js",
     "name": "Subscriptions",
     "src": "resources/js/Admin/Subscriptions.jsx",
     "isEntry": true,
@@ -2350,8 +2350,8 @@
       "resources/js/Admin/components/RequirementCard.jsx",
       "resources/js/components/WebVitalsMonitor.jsx",
       "resources/js/Utils/ReactAppend.jsx",
-      "_Base-B4sxzebp.js",
-      "_CreateReactScript-CtCtVq5m.js",
+      "_Base-2lomdTYS.js",
+      "_CreateReactScript-BspcGzwC.js",
       "_Table-BOT7Fp6l.js",
       "_DxButton-CkntFyfB.js",
       "resources/js/components/Blog/Results.jsx",
@@ -2369,12 +2369,12 @@
       "_General-CSnTKUjB.js"
     ],
     "css": [
-      "tippy.css",
-      "swiper.css"
+      "assets/tippy-LriLsbSV.css",
+      "assets/swiper-EKmKsbKj.css"
     ]
   },
   "resources/js/Admin/SuccessStories.jsx": {
-    "file": "assets/SuccessStories-CSgQ8L1a.js",
+    "file": "assets/SuccessStories-T8NsVst5.js",
     "name": "SuccessStories",
     "src": "resources/js/Admin/SuccessStories.jsx",
     "isEntry": true,
@@ -2382,7 +2382,7 @@
       "resources/js/Admin/components/RequirementCard.jsx",
       "resources/js/components/WebVitalsMonitor.jsx",
       "resources/js/Utils/ReactAppend.jsx",
-      "_Base-B4sxzebp.js",
+      "_Base-2lomdTYS.js",
       "resources/js/components/Adminto/Dx/DxBox.jsx",
       "_sweetalert2.all-Dn_IOoc8.js",
       "_Modal-B_yL3fj9.js",
@@ -2391,7 +2391,7 @@
       "_InputFormGroup-xbon111q.js",
       "_SetSelectValue-BAAs8rFW.js",
       "_DxButton-CkntFyfB.js",
-      "_CreateReactScript-CtCtVq5m.js",
+      "_CreateReactScript-BspcGzwC.js",
       "_ReactAppend-CAweQVQe.js",
       "resources/js/components/Blog/Filter.jsx",
       "_DragDropImage-H9FDOwFe.js",
@@ -2408,12 +2408,12 @@
       "_index-Cx_JNDNR.js"
     ],
     "css": [
-      "tippy.css",
-      "swiper.css"
+      "assets/tippy-LriLsbSV.css",
+      "assets/swiper-EKmKsbKj.css"
     ]
   },
   "resources/js/Admin/Supplies.jsx": {
-    "file": "assets/Supplies-BkQMcyg5.js",
+    "file": "assets/Supplies-Cm_rW0Df.js",
     "name": "Supplies",
     "src": "resources/js/Admin/Supplies.jsx",
     "isEntry": true,
@@ -2421,8 +2421,8 @@
       "resources/js/Admin/components/RequirementCard.jsx",
       "resources/js/components/WebVitalsMonitor.jsx",
       "resources/js/Utils/ReactAppend.jsx",
-      "_Base-B4sxzebp.js",
-      "_CreateReactScript-CtCtVq5m.js",
+      "_Base-2lomdTYS.js",
+      "_CreateReactScript-BspcGzwC.js",
       "_Table-BOT7Fp6l.js",
       "_Modal-DTcWRRJp.js",
       "_InputFormGroup-xbon111q.js",
@@ -2444,12 +2444,12 @@
       "_General-CSnTKUjB.js"
     ],
     "css": [
-      "tippy.css",
-      "swiper.css"
+      "assets/tippy-LriLsbSV.css",
+      "assets/swiper-EKmKsbKj.css"
     ]
   },
   "resources/js/Admin/Tags.jsx": {
-    "file": "assets/Tags-BMt0Xb6T.js",
+    "file": "assets/Tags-CG4BOQKk.js",
     "name": "Tags",
     "src": "resources/js/Admin/Tags.jsx",
     "isEntry": true,
@@ -2457,8 +2457,8 @@
       "resources/js/Admin/components/RequirementCard.jsx",
       "resources/js/components/WebVitalsMonitor.jsx",
       "resources/js/Utils/ReactAppend.jsx",
-      "_Base-B4sxzebp.js",
-      "_CreateReactScript-CtCtVq5m.js",
+      "_Base-2lomdTYS.js",
+      "_CreateReactScript-BspcGzwC.js",
       "_Table-BOT7Fp6l.js",
       "_Modal-DTcWRRJp.js",
       "_ReactAppend-CAweQVQe.js",
@@ -2480,12 +2480,12 @@
       "_General-CSnTKUjB.js"
     ],
     "css": [
-      "tippy.css",
-      "swiper.css"
+      "assets/tippy-LriLsbSV.css",
+      "assets/swiper-EKmKsbKj.css"
     ]
   },
   "resources/js/Admin/Testimonies.jsx": {
-    "file": "assets/Testimonies-3LippqGs.js",
+    "file": "assets/Testimonies-DQFJGTfR.js",
     "name": "Testimonies",
     "src": "resources/js/Admin/Testimonies.jsx",
     "isEntry": true,
@@ -2493,8 +2493,8 @@
       "resources/js/Admin/components/RequirementCard.jsx",
       "resources/js/components/WebVitalsMonitor.jsx",
       "resources/js/Utils/ReactAppend.jsx",
-      "_Base-B4sxzebp.js",
-      "_CreateReactScript-CtCtVq5m.js",
+      "_Base-2lomdTYS.js",
+      "_CreateReactScript-BspcGzwC.js",
       "_Table-BOT7Fp6l.js",
       "_Modal-DTcWRRJp.js",
       "_InputFormGroup-ChYq379r.js",
@@ -2517,12 +2517,12 @@
       "_General-CSnTKUjB.js"
     ],
     "css": [
-      "tippy.css",
-      "swiper.css"
+      "assets/tippy-LriLsbSV.css",
+      "assets/swiper-EKmKsbKj.css"
     ]
   },
   "resources/js/Admin/TransactionalLanding.jsx": {
-    "file": "assets/TransactionalLanding-CrUKoidO.js",
+    "file": "assets/TransactionalLanding-C9hsy4Oa.js",
     "name": "TransactionalLanding",
     "src": "resources/js/Admin/TransactionalLanding.jsx",
     "isEntry": true,
@@ -2530,8 +2530,8 @@
       "resources/js/Admin/components/RequirementCard.jsx",
       "resources/js/components/WebVitalsMonitor.jsx",
       "resources/js/Utils/ReactAppend.jsx",
-      "_Base-B4sxzebp.js",
-      "_CreateReactScript-CtCtVq5m.js",
+      "_Base-2lomdTYS.js",
+      "_CreateReactScript-BspcGzwC.js",
       "_InputFormGroup-xbon111q.js",
       "_TextareaFormGroup-BUXKuApM.js",
       "_ImageFormGroup-COllXU6A.js",
@@ -2549,12 +2549,12 @@
       "_General-CSnTKUjB.js"
     ],
     "css": [
-      "tippy.css",
-      "swiper.css"
+      "assets/tippy-LriLsbSV.css",
+      "assets/swiper-EKmKsbKj.css"
     ]
   },
   "resources/js/Admin/Translations.jsx": {
-    "file": "assets/Translations-DuHFeWyd.js",
+    "file": "assets/Translations-C3VW-tPJ.js",
     "name": "Translations",
     "src": "resources/js/Admin/Translations.jsx",
     "isEntry": true,
@@ -2562,8 +2562,8 @@
       "resources/js/Admin/components/RequirementCard.jsx",
       "resources/js/components/WebVitalsMonitor.jsx",
       "resources/js/Utils/ReactAppend.jsx",
-      "_Base-B4sxzebp.js",
-      "_CreateReactScript-CtCtVq5m.js",
+      "_Base-2lomdTYS.js",
+      "_CreateReactScript-BspcGzwC.js",
       "_Table-BOT7Fp6l.js",
       "_Modal-DTcWRRJp.js",
       "_ReactAppend-CAweQVQe.js",
@@ -2583,12 +2583,12 @@
       "_General-CSnTKUjB.js"
     ],
     "css": [
-      "tippy.css",
-      "swiper.css"
+      "assets/tippy-LriLsbSV.css",
+      "assets/swiper-EKmKsbKj.css"
     ]
   },
   "resources/js/Admin/Users.jsx": {
-    "file": "assets/Users-C1msBtDq.js",
+    "file": "assets/Users-C_tL5wmZ.js",
     "name": "Users",
     "src": "resources/js/Admin/Users.jsx",
     "isEntry": true,
@@ -2596,8 +2596,8 @@
       "resources/js/Admin/components/RequirementCard.jsx",
       "resources/js/components/WebVitalsMonitor.jsx",
       "resources/js/Utils/ReactAppend.jsx",
-      "_Base-B4sxzebp.js",
-      "_CreateReactScript-CtCtVq5m.js",
+      "_Base-2lomdTYS.js",
+      "_CreateReactScript-BspcGzwC.js",
       "_Table-BOT7Fp6l.js",
       "_Modal-DTcWRRJp.js",
       "_ReactAppend-CAweQVQe.js",
@@ -2620,8 +2620,8 @@
       "_General-CSnTKUjB.js"
     ],
     "css": [
-      "tippy.css",
-      "swiper.css"
+      "assets/tippy-LriLsbSV.css",
+      "assets/swiper-EKmKsbKj.css"
     ]
   },
   "resources/js/Admin/components/RequirementCard.jsx": {
@@ -2634,14 +2634,14 @@
     ]
   },
   "resources/js/Blog.jsx": {
-    "file": "assets/Blog-CSSFvgN2.js",
+    "file": "assets/Blog-8LgVGFMw.js",
     "name": "Blog",
     "src": "resources/js/Blog.jsx",
     "isEntry": true,
     "imports": [
       "resources/js/Admin/components/RequirementCard.jsx",
       "resources/js/components/WebVitalsMonitor.jsx",
-      "_CreateReactScript-CtCtVq5m.js",
+      "_CreateReactScript-BspcGzwC.js",
       "resources/js/Utils/ReactAppend.jsx",
       "_Base-D_0hRoD7.js",
       "_sweetalert2.all-Dn_IOoc8.js",
@@ -2651,8 +2651,8 @@
       "resources/js/components/Blog/Filter.jsx",
       "_ArrayJoin-CBp5ScIE.js",
       "_PostCard-BZ8nLc8o.js",
-      "_Header-BvFTyX2z.js",
-      "_Footer-Cn3rRDkn.js",
+      "_Header-DMq8GupK.js",
+      "_Footer-C1LzT8tQ.js",
       "resources/js/components/Tailwind/DetailProduct/Detail.jsx",
       "_MaintenancePage-BmxvSubv.js",
       "_useTranslation-CbKLA_Xw.js",
@@ -2674,30 +2674,30 @@
       "_phone-Cv7s4kZQ.js"
     ],
     "css": [
-      "swiper.css",
-      "tippy.css"
+      "assets/swiper-EKmKsbKj.css",
+      "assets/tippy-LriLsbSV.css"
     ]
   },
   "resources/js/BlogArticle.jsx": {
-    "file": "assets/BlogArticle-CRaOu7-P.js",
+    "file": "assets/BlogArticle-BLMmXI1S.js",
     "name": "BlogArticle",
     "src": "resources/js/BlogArticle.jsx",
     "isEntry": true,
     "imports": [
       "resources/js/Admin/components/RequirementCard.jsx",
       "resources/js/components/WebVitalsMonitor.jsx",
-      "_CreateReactScript-CtCtVq5m.js",
+      "_CreateReactScript-BspcGzwC.js",
       "resources/js/Utils/ReactAppend.jsx",
       "_Base-D_0hRoD7.js",
       "_HtmlContent-CWS4Frzl.js",
       "_tippy-react.esm-C0M1j_tS.js",
-      "_Header-BvFTyX2z.js",
-      "_Footer-Cn3rRDkn.js",
+      "_Header-DMq8GupK.js",
+      "_Footer-C1LzT8tQ.js",
       "resources/js/components/Tailwind/DetailProduct/Detail.jsx",
       "_PostCard-BZ8nLc8o.js",
       "_TextWithHighlight-Duv9Efqt.js",
       "_main-BjF2hfsq.js",
-      "_ExchangeCard-33Y_SIkf.js",
+      "_ExchangeCard-B_7SfEpu.js",
       "resources/js/components/Tailwind/CambiaFX/PrimeraOperacionSection.jsx",
       "_CintilloSection-c8XCLiBz.js",
       "resources/js/components/Tailwind/CambiaFX/BannerFxEmpresas.jsx",
@@ -2720,12 +2720,12 @@
       "_phone-Cv7s4kZQ.js"
     ],
     "css": [
-      "swiper.css",
-      "tippy.css"
+      "assets/swiper-EKmKsbKj.css",
+      "assets/tippy-LriLsbSV.css"
     ]
   },
   "resources/js/CasosDeExito.jsx": {
-    "file": "assets/CasosDeExito-DcBMmTLC.js",
+    "file": "assets/CasosDeExito-Cna9_gAJ.js",
     "name": "CasosDeExito",
     "src": "resources/js/CasosDeExito.jsx",
     "isEntry": true,
@@ -2734,14 +2734,14 @@
       "resources/js/components/WebVitalsMonitor.jsx",
       "resources/js/Utils/ReactAppend.jsx",
       "_Base-D_0hRoD7.js",
-      "_CreateReactScript-CtCtVq5m.js",
+      "_CreateReactScript-BspcGzwC.js",
       "resources/js/components/Tailwind/DetailProduct/Detail.jsx",
-      "_Footer-Cn3rRDkn.js",
-      "_Header-BvFTyX2z.js",
+      "_Footer-C1LzT8tQ.js",
+      "_Header-DMq8GupK.js",
       "resources/js/components/Tailwind/CambioGerencia/HomeSeccionBlog.jsx",
       "resources/js/components/Tailwind/Carrusel/CarruselBrands.jsx",
       "resources/js/components/About/Strengths.jsx",
-      "_HomeSeccionTestimonios-B5JkvZZ8.js",
+      "_HomeSeccionTestimonios-BzP2Nd82.js",
       "_index-CF8W1V4f.js",
       "resources/js/components/Blog/Filter.jsx",
       "_axios-COzaZAiy.js",
@@ -2758,18 +2758,18 @@
       "resources/js/components/Tailwind/CambiaFX/BannerFxEmpresas.jsx",
       "_message-circle-Vrz7cx2B.js",
       "_phone-Cv7s4kZQ.js",
-      "_pagination-C7LyLecn.js",
-      "_classes-to-selector-CKrGzIdC.js",
-      "_autoplay-CgyjI068.js",
+      "_pagination-fEG83Prm.js",
+      "_classes-to-selector-5FZscthG.js",
+      "_autoplay-BgDP12Xg.js",
       "_TextWithHighlight-Duv9Efqt.js"
     ],
     "css": [
-      "swiper.css",
-      "tippy.css"
+      "assets/swiper-EKmKsbKj.css",
+      "assets/tippy-LriLsbSV.css"
     ]
   },
   "resources/js/CatalogProducts.jsx": {
-    "file": "assets/CatalogProducts-Er84eJuY.js",
+    "file": "assets/CatalogProducts-CpmzEY0Z.js",
     "name": "CatalogProducts",
     "src": "resources/js/CatalogProducts.jsx",
     "isEntry": true,
@@ -2778,15 +2778,15 @@
       "resources/js/components/WebVitalsMonitor.jsx",
       "resources/js/Utils/ReactAppend.jsx",
       "_Base-D_0hRoD7.js",
-      "_CreateReactScript-CtCtVq5m.js",
-      "_Header-BvFTyX2z.js",
+      "_CreateReactScript-BspcGzwC.js",
+      "_Header-DMq8GupK.js",
       "_main-BjF2hfsq.js",
       "resources/js/components/Blog/Results.jsx",
       "resources/js/components/Tailwind/CambioGerencia/HomeSeccionBlog.jsx",
       "resources/js/components/Tailwind/Carrusel/CarruselBrands.jsx",
       "resources/js/components/Tailwind/DetailProduct/Detail.jsx",
       "resources/js/components/About/Strengths.jsx",
-      "_Footer-Cn3rRDkn.js",
+      "_Footer-C1LzT8tQ.js",
       "_check-lEOw4FT0.js",
       "_index-CF8W1V4f.js",
       "resources/js/components/Blog/Filter.jsx",
@@ -2804,12 +2804,12 @@
       "_sweetalert2.all-Dn_IOoc8.js"
     ],
     "css": [
-      "swiper.css",
-      "tippy.css"
+      "assets/swiper-EKmKsbKj.css",
+      "assets/tippy-LriLsbSV.css"
     ]
   },
   "resources/js/Checkout.jsx": {
-    "file": "assets/Checkout-D_ipJQdQ.js",
+    "file": "assets/Checkout-yk-0w4wB.js",
     "name": "Checkout",
     "src": "resources/js/Checkout.jsx",
     "isEntry": true,
@@ -2818,13 +2818,13 @@
       "resources/js/components/WebVitalsMonitor.jsx",
       "_main-BjF2hfsq.js",
       "_CouponsRest-DNbIE7zv.js",
-      "_CreateReactScript-CtCtVq5m.js",
+      "_CreateReactScript-BspcGzwC.js",
       "_Number2Currency-DExzICY3.js",
       "_tippy-react.esm-C0M1j_tS.js",
       "resources/js/components/Tailwind/DetailProduct/Detail.jsx",
       "_Base-D_0hRoD7.js",
       "resources/js/Utils/ReactAppend.jsx",
-      "_Header-BvFTyX2z.js",
+      "_Header-DMq8GupK.js",
       "____vite-browser-external_commonjs-proxy-CGejAyr8.js",
       "_createLucideIcon-CycH6ojs.js",
       "resources/js/components/Blog/Results.jsx",
@@ -2841,12 +2841,12 @@
       "_index-CoDVSLHB.js"
     ],
     "css": [
-      "swiper.css",
-      "tippy.css"
+      "assets/swiper-EKmKsbKj.css",
+      "assets/tippy-LriLsbSV.css"
     ]
   },
   "resources/js/ConfirmEmail.jsx": {
-    "file": "assets/ConfirmEmail-Hgyjoqn5.js",
+    "file": "assets/ConfirmEmail-Ci8QXBkk.js",
     "name": "ConfirmEmail",
     "src": "resources/js/ConfirmEmail.jsx",
     "isEntry": true,
@@ -2854,7 +2854,7 @@
       "resources/js/Admin/components/RequirementCard.jsx",
       "resources/js/Utils/ReactAppend.jsx",
       "resources/js/components/WebVitalsMonitor.jsx",
-      "_CreateReactScript-CtCtVq5m.js",
+      "_CreateReactScript-BspcGzwC.js",
       "_index.esm-5NFqnzAw.js",
       "_index-CF8W1V4f.js",
       "_main-BjF2hfsq.js",
@@ -2863,19 +2863,19 @@
       "_axios-COzaZAiy.js"
     ],
     "css": [
-      "swiper.css",
-      "tippy.css"
+      "assets/swiper-EKmKsbKj.css",
+      "assets/tippy-LriLsbSV.css"
     ]
   },
   "resources/js/Contact.jsx": {
-    "file": "assets/Contact-Bj7545pQ.js",
+    "file": "assets/Contact-DuzjLZhn.js",
     "name": "Contact",
     "src": "resources/js/Contact.jsx",
     "isEntry": true,
     "imports": [
       "resources/js/Admin/components/RequirementCard.jsx",
       "resources/js/components/WebVitalsMonitor.jsx",
-      "_CreateReactScript-CtCtVq5m.js",
+      "_CreateReactScript-BspcGzwC.js",
       "resources/js/Utils/ReactAppend.jsx",
       "_Base-D_0hRoD7.js",
       "_createLucideIcon-CycH6ojs.js",
@@ -2895,12 +2895,12 @@
       "resources/js/components/Blog/Results.jsx"
     ],
     "css": [
-      "swiper.css",
-      "tippy.css"
+      "assets/swiper-EKmKsbKj.css",
+      "assets/tippy-LriLsbSV.css"
     ]
   },
   "resources/js/Contacto.jsx": {
-    "file": "assets/Contacto-BUXGxnZD.js",
+    "file": "assets/Contacto-9ubOGSsz.js",
     "name": "Contacto",
     "src": "resources/js/Contacto.jsx",
     "isEntry": true,
@@ -2909,9 +2909,9 @@
       "resources/js/components/WebVitalsMonitor.jsx",
       "resources/js/Utils/ReactAppend.jsx",
       "_Base-D_0hRoD7.js",
-      "_CreateReactScript-CtCtVq5m.js",
-      "_Header-BvFTyX2z.js",
-      "_Footer-Cn3rRDkn.js",
+      "_CreateReactScript-BspcGzwC.js",
+      "_Header-DMq8GupK.js",
+      "_Footer-C1LzT8tQ.js",
       "resources/js/components/Tailwind/DetailProduct/Detail.jsx",
       "_TextWithHighlight-Duv9Efqt.js",
       "_MessagesRest-DzPxSv_p.js",
@@ -2921,8 +2921,8 @@
       "_ServiceSeccionFaq-C6SHSVJx.js",
       "_CintilloSection-c8XCLiBz.js",
       "resources/js/components/Tailwind/CambioGerencia/HomeSeccionBlog.jsx",
-      "_pagination-C7LyLecn.js",
-      "_autoplay-CgyjI068.js",
+      "_pagination-fEG83Prm.js",
+      "_autoplay-BgDP12Xg.js",
       "resources/js/components/About/Strengths.jsx",
       "_proxy-CGT4zrn4.js",
       "_index-CoDVSLHB.js",
@@ -2938,15 +2938,15 @@
       "resources/js/components/Tailwind/CambiaFX/BannerFxEmpresas.jsx",
       "_message-circle-Vrz7cx2B.js",
       "_phone-Cv7s4kZQ.js",
-      "_classes-to-selector-CKrGzIdC.js"
+      "_classes-to-selector-5FZscthG.js"
     ],
     "css": [
-      "swiper.css",
-      "tippy.css"
+      "assets/swiper-EKmKsbKj.css",
+      "assets/tippy-LriLsbSV.css"
     ]
   },
   "resources/js/CourseDetails.jsx": {
-    "file": "assets/CourseDetails-BgufLTFX.js",
+    "file": "assets/CourseDetails-kSRMR_5S.js",
     "name": "CourseDetails",
     "src": "resources/js/CourseDetails.jsx",
     "isEntry": true,
@@ -2954,7 +2954,7 @@
       "resources/js/Admin/components/RequirementCard.jsx",
       "resources/js/components/WebVitalsMonitor.jsx",
       "resources/js/Utils/ReactAppend.jsx",
-      "_CreateReactScript-CtCtVq5m.js",
+      "_CreateReactScript-BspcGzwC.js",
       "_Base-D_0hRoD7.js",
       "_HtmlContent-CWS4Frzl.js",
       "_main-BjF2hfsq.js",
@@ -2968,12 +2968,12 @@
       "resources/js/components/Blog/Filter.jsx"
     ],
     "css": [
-      "swiper.css",
-      "tippy.css"
+      "assets/swiper-EKmKsbKj.css",
+      "assets/tippy-LriLsbSV.css"
     ]
   },
   "resources/js/DetailFaq.jsx": {
-    "file": "assets/DetailFaq-iCO1DZKx.js",
+    "file": "assets/DetailFaq-DoSELWCT.js",
     "name": "DetailFaq",
     "src": "resources/js/DetailFaq.jsx",
     "isEntry": true,
@@ -2982,11 +2982,11 @@
       "resources/js/components/WebVitalsMonitor.jsx",
       "resources/js/Utils/ReactAppend.jsx",
       "_Base-D_0hRoD7.js",
-      "_CreateReactScript-CtCtVq5m.js",
+      "_CreateReactScript-BspcGzwC.js",
       "resources/js/components/Home/CallToAction.jsx",
       "_HtmlContent-CWS4Frzl.js",
-      "_Header-BvFTyX2z.js",
-      "_Footer-Cn3rRDkn.js",
+      "_Header-DMq8GupK.js",
+      "_Footer-C1LzT8tQ.js",
       "resources/js/components/Tailwind/DetailProduct/Detail.jsx",
       "_useTranslation-CbKLA_Xw.js",
       "_index-CF8W1V4f.js",
@@ -3006,12 +3006,12 @@
       "_sweetalert2.all-Dn_IOoc8.js"
     ],
     "css": [
-      "swiper.css",
-      "tippy.css"
+      "assets/swiper-EKmKsbKj.css",
+      "assets/tippy-LriLsbSV.css"
     ]
   },
   "resources/js/DetailProduct.jsx": {
-    "file": "assets/DetailProduct-DSDXfjwm.js",
+    "file": "assets/DetailProduct-F2SFaUPK.js",
     "name": "DetailProduct",
     "src": "resources/js/DetailProduct.jsx",
     "isEntry": true,
@@ -3020,16 +3020,16 @@
       "resources/js/components/WebVitalsMonitor.jsx",
       "resources/js/Utils/ReactAppend.jsx",
       "_Base-D_0hRoD7.js",
-      "_CreateReactScript-CtCtVq5m.js",
-      "_Header-BvFTyX2z.js",
+      "_CreateReactScript-BspcGzwC.js",
+      "_Header-DMq8GupK.js",
       "_main-BjF2hfsq.js",
       "resources/js/components/Blog/Results.jsx",
-      "_WeCupSection-C-ATeWMS.js",
+      "_WeCupSection-WtVvBwWK.js",
       "resources/js/components/Tailwind/DetailProduct/Detail.jsx",
       "resources/js/components/Tailwind/CambioGerencia/HomeSeccionBlog.jsx",
       "resources/js/components/Tailwind/Carrusel/CarruselBrands.jsx",
       "resources/js/components/About/Strengths.jsx",
-      "_Footer-Cn3rRDkn.js",
+      "_Footer-C1LzT8tQ.js",
       "_index-CF8W1V4f.js",
       "resources/js/components/Blog/Filter.jsx",
       "_axios-COzaZAiy.js",
@@ -3043,18 +3043,18 @@
       "_message-circle-Vrz7cx2B.js",
       "_phone-Cv7s4kZQ.js",
       "_index-CoDVSLHB.js",
-      "_navigation-BOfrQD41.js",
-      "_classes-to-selector-CKrGzIdC.js",
+      "_navigation-BfvIe0Sy.js",
+      "_classes-to-selector-5FZscthG.js",
       "resources/js/components/Tailwind/Instructions/WeCupSection.jsx",
       "_sweetalert2.all-Dn_IOoc8.js"
     ],
     "css": [
-      "swiper.css",
-      "tippy.css"
+      "assets/swiper-EKmKsbKj.css",
+      "assets/tippy-LriLsbSV.css"
     ]
   },
   "resources/js/DetailPurchaseOption.jsx": {
-    "file": "assets/DetailPurchaseOption-C4WFM49N.js",
+    "file": "assets/DetailPurchaseOption-CQk92cVt.js",
     "name": "DetailPurchaseOption",
     "src": "resources/js/DetailPurchaseOption.jsx",
     "isEntry": true,
@@ -3063,9 +3063,9 @@
       "resources/js/components/WebVitalsMonitor.jsx",
       "resources/js/Utils/ReactAppend.jsx",
       "_Base-D_0hRoD7.js",
-      "_CreateReactScript-CtCtVq5m.js",
-      "_Header-BvFTyX2z.js",
-      "_Footer-Cn3rRDkn.js",
+      "_CreateReactScript-BspcGzwC.js",
+      "_Header-DMq8GupK.js",
+      "_Footer-C1LzT8tQ.js",
       "resources/js/components/Tailwind/DetailProduct/Detail.jsx",
       "_TextWithHighlight-Duv9Efqt.js",
       "_sweetalert2.all-Dn_IOoc8.js",
@@ -3088,12 +3088,12 @@
       "_index-CoDVSLHB.js"
     ],
     "css": [
-      "swiper.css",
-      "tippy.css"
+      "assets/swiper-EKmKsbKj.css",
+      "assets/tippy-LriLsbSV.css"
     ]
   },
   "resources/js/DetailService.jsx": {
-    "file": "assets/DetailService-NcKmqhHS.js",
+    "file": "assets/DetailService-lYJIP2Jc.js",
     "name": "DetailService",
     "src": "resources/js/DetailService.jsx",
     "isEntry": true,
@@ -3102,9 +3102,9 @@
       "resources/js/components/WebVitalsMonitor.jsx",
       "resources/js/Utils/ReactAppend.jsx",
       "_Base-D_0hRoD7.js",
-      "_CreateReactScript-CtCtVq5m.js",
-      "_Header-BvFTyX2z.js",
-      "_Footer-Cn3rRDkn.js",
+      "_CreateReactScript-BspcGzwC.js",
+      "_Header-DMq8GupK.js",
+      "_Footer-C1LzT8tQ.js",
       "resources/js/components/Tailwind/DetailProduct/Detail.jsx",
       "_sweetalert2.all-Dn_IOoc8.js",
       "resources/js/components/Appointment/ModalAppointment.jsx",
@@ -3114,8 +3114,8 @@
       "_TextWithHighlight-Duv9Efqt.js",
       "resources/js/components/Tailwind/CambiaFX/BannerFxEmpresas.jsx",
       "_ServiceSeccionFaq-C6SHSVJx.js",
-      "_HomeSeccionTestimonios-B5JkvZZ8.js",
-      "_autoplay-CgyjI068.js",
+      "_HomeSeccionTestimonios-BzP2Nd82.js",
+      "_autoplay-BgDP12Xg.js",
       "resources/js/components/Tailwind/Carrusel/CarruselBrands.jsx",
       "_index-CF8W1V4f.js",
       "_index.esm-5NFqnzAw.js",
@@ -3129,17 +3129,17 @@
       "_index-CoDVSLHB.js",
       "_message-circle-Vrz7cx2B.js",
       "_phone-Cv7s4kZQ.js",
-      "_pagination-C7LyLecn.js",
-      "_classes-to-selector-CKrGzIdC.js",
+      "_pagination-fEG83Prm.js",
+      "_classes-to-selector-5FZscthG.js",
       "resources/js/components/About/Strengths.jsx"
     ],
     "css": [
-      "swiper.css",
-      "tippy.css"
+      "assets/swiper-EKmKsbKj.css",
+      "assets/tippy-LriLsbSV.css"
     ]
   },
   "resources/js/DetailSolution.jsx": {
-    "file": "assets/DetailSolution-CY9_1TnN.js",
+    "file": "assets/DetailSolution-DM-URke-.js",
     "name": "DetailSolution",
     "src": "resources/js/DetailSolution.jsx",
     "isEntry": true,
@@ -3148,9 +3148,9 @@
       "resources/js/components/WebVitalsMonitor.jsx",
       "resources/js/Utils/ReactAppend.jsx",
       "_Base-D_0hRoD7.js",
-      "_CreateReactScript-CtCtVq5m.js",
-      "_Header-BvFTyX2z.js",
-      "_Footer-Cn3rRDkn.js",
+      "_CreateReactScript-BspcGzwC.js",
+      "_Header-DMq8GupK.js",
+      "_Footer-C1LzT8tQ.js",
       "resources/js/components/Tailwind/DetailProduct/Detail.jsx",
       "_TextWithHighlight-Duv9Efqt.js",
       "_sweetalert2.all-Dn_IOoc8.js",
@@ -3173,12 +3173,12 @@
       "_index-CoDVSLHB.js"
     ],
     "css": [
-      "swiper.css",
-      "tippy.css"
+      "assets/swiper-EKmKsbKj.css",
+      "assets/tippy-LriLsbSV.css"
     ]
   },
   "resources/js/DetalleCasoExito.jsx": {
-    "file": "assets/DetalleCasoExito-BSoRST0k.js",
+    "file": "assets/DetalleCasoExito-CBqIr5CP.js",
     "name": "DetalleCasoExito",
     "src": "resources/js/DetalleCasoExito.jsx",
     "isEntry": true,
@@ -3188,10 +3188,10 @@
       "_index.esm-5NFqnzAw.js",
       "resources/js/Utils/ReactAppend.jsx",
       "_Base-D_0hRoD7.js",
-      "_CreateReactScript-CtCtVq5m.js",
+      "_CreateReactScript-BspcGzwC.js",
       "resources/js/components/Tailwind/DetailProduct/Detail.jsx",
-      "_Header-BvFTyX2z.js",
-      "_Footer-Cn3rRDkn.js",
+      "_Header-DMq8GupK.js",
+      "_Footer-C1LzT8tQ.js",
       "resources/js/components/Tailwind/CambiaFX/BannerFxEmpresas.jsx",
       "_TextWithHighlight-Duv9Efqt.js",
       "_axios-COzaZAiy.js",
@@ -3210,8 +3210,8 @@
       "_phone-Cv7s4kZQ.js"
     ],
     "css": [
-      "swiper.css",
-      "tippy.css"
+      "assets/swiper-EKmKsbKj.css",
+      "assets/tippy-LriLsbSV.css"
     ]
   },
   "resources/js/DynamicGalleryService.jsx": {
@@ -3246,7 +3246,7 @@
     ]
   },
   "resources/js/FAQs.jsx": {
-    "file": "assets/FAQs-C-VNHpXd.js",
+    "file": "assets/FAQs-CgjNJz-j.js",
     "name": "FAQs",
     "src": "resources/js/FAQs.jsx",
     "isEntry": true,
@@ -3255,10 +3255,10 @@
       "resources/js/components/WebVitalsMonitor.jsx",
       "resources/js/Utils/ReactAppend.jsx",
       "_Base-D_0hRoD7.js",
-      "_CreateReactScript-CtCtVq5m.js",
+      "_CreateReactScript-BspcGzwC.js",
       "resources/js/components/Home/CallToAction.jsx",
-      "_Header-BvFTyX2z.js",
-      "_Footer-Cn3rRDkn.js",
+      "_Header-DMq8GupK.js",
+      "_Footer-C1LzT8tQ.js",
       "resources/js/components/Tailwind/DetailProduct/Detail.jsx",
       "_useTranslation-CbKLA_Xw.js",
       "_index-CF8W1V4f.js",
@@ -3278,12 +3278,12 @@
       "_sweetalert2.all-Dn_IOoc8.js"
     ],
     "css": [
-      "swiper.css",
-      "tippy.css"
+      "assets/swiper-EKmKsbKj.css",
+      "assets/tippy-LriLsbSV.css"
     ]
   },
   "resources/js/FisioTerapiaPage.jsx": {
-    "file": "assets/FisioTerapiaPage-DZW5PZwD.js",
+    "file": "assets/FisioTerapiaPage-BCsocM90.js",
     "name": "FisioTerapiaPage",
     "src": "resources/js/FisioTerapiaPage.jsx",
     "isEntry": true,
@@ -3292,15 +3292,15 @@
       "resources/js/components/WebVitalsMonitor.jsx",
       "resources/js/Utils/ReactAppend.jsx",
       "_Base-D_0hRoD7.js",
-      "_CreateReactScript-CtCtVq5m.js",
-      "_Header-BvFTyX2z.js",
-      "_Footer-Cn3rRDkn.js",
+      "_CreateReactScript-BspcGzwC.js",
+      "_Header-DMq8GupK.js",
+      "_Footer-C1LzT8tQ.js",
       "resources/js/components/Tailwind/DetailProduct/Detail.jsx",
       "resources/js/components/Tailwind/CambioGerencia/HomeSeccionBlog.jsx",
       "resources/js/components/Tailwind/Carrusel/CarruselBrands.jsx",
       "resources/js/components/About/Strengths.jsx",
-      "_navigation-BOfrQD41.js",
-      "_pagination-C7LyLecn.js",
+      "_navigation-BfvIe0Sy.js",
+      "_pagination-fEG83Prm.js",
       "_TextWithHighlight-Duv9Efqt.js",
       "_MaintenancePage-BmxvSubv.js",
       "_useTranslation-CbKLA_Xw.js",
@@ -3321,15 +3321,15 @@
       "_message-circle-Vrz7cx2B.js",
       "_phone-Cv7s4kZQ.js",
       "_sweetalert2.all-Dn_IOoc8.js",
-      "_classes-to-selector-CKrGzIdC.js"
+      "_classes-to-selector-5FZscthG.js"
     ],
     "css": [
-      "swiper.css",
-      "tippy.css"
+      "assets/swiper-EKmKsbKj.css",
+      "assets/tippy-LriLsbSV.css"
     ]
   },
   "resources/js/Formula.jsx": {
-    "file": "assets/Formula-CaiBVoVM.js",
+    "file": "assets/Formula-DU5Hr_kh.js",
     "name": "Formula",
     "src": "resources/js/Formula.jsx",
     "isEntry": true,
@@ -3338,7 +3338,7 @@
       "resources/js/components/WebVitalsMonitor.jsx",
       "resources/js/Utils/ReactAppend.jsx",
       "_Base-D_0hRoD7.js",
-      "_CreateReactScript-CtCtVq5m.js",
+      "_CreateReactScript-BspcGzwC.js",
       "_main-BjF2hfsq.js",
       "_CouponsRest-DNbIE7zv.js",
       "_Number2Currency-DExzICY3.js",
@@ -3354,12 +3354,12 @@
       "resources/js/components/Blog/Results.jsx"
     ],
     "css": [
-      "swiper.css",
-      "tippy.css"
+      "assets/swiper-EKmKsbKj.css",
+      "assets/tippy-LriLsbSV.css"
     ]
   },
   "resources/js/Home.jsx": {
-    "file": "assets/Home-DHdcqoin.js",
+    "file": "assets/Home-Bu9aWr5f.js",
     "name": "Home",
     "src": "resources/js/Home.jsx",
     "isEntry": true,
@@ -3369,13 +3369,13 @@
       "resources/js/components/WebVitalsMonitor.jsx",
       "resources/js/Utils/ReactAppend.jsx",
       "_Base-D_0hRoD7.js",
-      "_CreateReactScript-CtCtVq5m.js",
-      "_Header-BvFTyX2z.js",
-      "_Footer-Cn3rRDkn.js",
+      "_CreateReactScript-BspcGzwC.js",
+      "_Header-DMq8GupK.js",
+      "_Footer-C1LzT8tQ.js",
       "resources/js/components/Tailwind/DetailProduct/Detail.jsx",
       "_useTranslation-CbKLA_Xw.js",
       "_createLucideIcon-CycH6ojs.js",
-      "_HeroSecction-BI5aysyx.js",
+      "_HeroSecction-CYSvLHKT.js",
       "_CintilloSection-c8XCLiBz.js",
       "_proxy-CGT4zrn4.js",
       "_index-CF8W1V4f.js",
@@ -3393,7 +3393,7 @@
       "_sweetalert2.all-Dn_IOoc8.js",
       "_OptimizedImage-CpVjkwEC.js",
       "_TextWithHighlight-Duv9Efqt.js",
-      "_ExchangeCard-33Y_SIkf.js",
+      "_ExchangeCard-B_7SfEpu.js",
       "_CambiaFXService-DtlIP2o9.js"
     ],
     "dynamicImports": [
@@ -3407,12 +3407,12 @@
       "resources/js/components/PopupManager/PopupManager.jsx"
     ],
     "css": [
-      "swiper.css",
-      "tippy.css"
+      "assets/swiper-EKmKsbKj.css",
+      "assets/tippy-LriLsbSV.css"
     ]
   },
   "resources/js/HomeEmpresa.jsx": {
-    "file": "assets/HomeEmpresa-DRwx4Qd6.js",
+    "file": "assets/HomeEmpresa-CbH68qzX.js",
     "name": "HomeEmpresa",
     "src": "resources/js/HomeEmpresa.jsx",
     "isEntry": true,
@@ -3421,9 +3421,9 @@
       "resources/js/components/WebVitalsMonitor.jsx",
       "resources/js/Utils/ReactAppend.jsx",
       "_Base-D_0hRoD7.js",
-      "_CreateReactScript-CtCtVq5m.js",
-      "_Header-BvFTyX2z.js",
-      "_Footer-Cn3rRDkn.js",
+      "_CreateReactScript-BspcGzwC.js",
+      "_Header-DMq8GupK.js",
+      "_Footer-C1LzT8tQ.js",
       "resources/js/components/Tailwind/DetailProduct/Detail.jsx",
       "_main-BjF2hfsq.js",
       "resources/js/components/Blog/Results.jsx",
@@ -3435,18 +3435,18 @@
       "resources/js/components/Appointment/ModalAppointment.jsx",
       "resources/js/Utils/BlurText.jsx",
       "resources/js/components/Tailwind/CambiaFX/BannerFxEmpresas.jsx",
-      "_HeroSecction-BI5aysyx.js",
+      "_HeroSecction-CYSvLHKT.js",
       "resources/js/components/Tailwind/CambiaFX/PrimeraOperacionSection.jsx",
       "resources/js/components/Tailwind/CambiaFX/FuncionSection.jsx",
       "resources/js/components/Tailwind/CambiaFX/CuponesSection.jsx",
       "resources/js/components/Tailwind/CambiaFX/BlogSection.jsx",
       "_CintilloSection-c8XCLiBz.js",
-      "_ExchangeCard-33Y_SIkf.js",
+      "_ExchangeCard-B_7SfEpu.js",
       "_TextWithHighlight-Duv9Efqt.js",
       "resources/js/components/Tailwind/CambiaFX/HeroSecctionEmpresa.jsx",
       "_proxy-CGT4zrn4.js",
-      "_navigation-BOfrQD41.js",
-      "_pagination-C7LyLecn.js",
+      "_navigation-BfvIe0Sy.js",
+      "_pagination-fEG83Prm.js",
       "_chevron-right-fUjJ5Nhn.js",
       "_sweetalert2.all-Dn_IOoc8.js",
       "_MessagesRest-DzPxSv_p.js",
@@ -3465,33 +3465,33 @@
       "_message-circle-Vrz7cx2B.js",
       "_phone-Cv7s4kZQ.js",
       "_OptimizedImage-CpVjkwEC.js",
-      "_autoplay-CgyjI068.js",
+      "_autoplay-BgDP12Xg.js",
       "resources/js/components/Home/Supplies.jsx",
-      "_classes-to-selector-CKrGzIdC.js",
+      "_classes-to-selector-5FZscthG.js",
       "_CambiaFXService-DtlIP2o9.js"
     ],
     "css": [
-      "swiper.css",
-      "tippy.css"
+      "assets/swiper-EKmKsbKj.css",
+      "assets/tippy-LriLsbSV.css"
     ]
   },
   "resources/js/InfoProductos.jsx": {
-    "file": "assets/InfoProductos-DHP-Wusc.js",
+    "file": "assets/InfoProductos-C_V7jtDl.js",
     "name": "InfoProductos",
     "src": "resources/js/InfoProductos.jsx",
     "isEntry": true,
     "imports": [
       "resources/js/Admin/components/RequirementCard.jsx",
       "resources/js/components/WebVitalsMonitor.jsx",
-      "_CreateReactScript-CtCtVq5m.js",
+      "_CreateReactScript-BspcGzwC.js",
       "resources/js/Utils/ReactAppend.jsx",
       "_Base-D_0hRoD7.js",
       "_sweetalert2.all-Dn_IOoc8.js",
       "resources/js/components/Blog/Results.jsx",
       "_TextWithHighlight-Duv9Efqt.js",
       "resources/js/components/Blog/Filter.jsx",
-      "_Header-BvFTyX2z.js",
-      "_Footer-Cn3rRDkn.js",
+      "_Header-DMq8GupK.js",
+      "_Footer-C1LzT8tQ.js",
       "resources/js/components/Tailwind/DetailProduct/Detail.jsx",
       "_MaintenancePage-BmxvSubv.js",
       "_index-CV64TNoF.js",
@@ -3513,23 +3513,23 @@
       "_ArrayJoin-CBp5ScIE.js"
     ],
     "css": [
-      "swiper.css",
-      "tippy.css"
+      "assets/swiper-EKmKsbKj.css",
+      "assets/tippy-LriLsbSV.css"
     ]
   },
   "resources/js/InfoProductos3.jsx": {
-    "file": "assets/InfoProductos3-DJXyfa7B.js",
+    "file": "assets/InfoProductos3-BOssvZO6.js",
     "name": "InfoProductos3",
     "src": "resources/js/InfoProductos3.jsx",
     "isEntry": true,
     "imports": [
       "resources/js/Admin/components/RequirementCard.jsx",
       "resources/js/components/WebVitalsMonitor.jsx",
-      "_CreateReactScript-CtCtVq5m.js",
+      "_CreateReactScript-BspcGzwC.js",
       "resources/js/Utils/ReactAppend.jsx",
       "_Base-D_0hRoD7.js",
-      "_Header-BvFTyX2z.js",
-      "_Footer-Cn3rRDkn.js",
+      "_Header-DMq8GupK.js",
+      "_Footer-C1LzT8tQ.js",
       "resources/js/components/Tailwind/DetailProduct/Detail.jsx",
       "_MaintenancePage-BmxvSubv.js",
       "_ResultsInfoProducto-DAsIgINq.js",
@@ -3552,12 +3552,12 @@
       "_ArrayJoin-CBp5ScIE.js"
     ],
     "css": [
-      "swiper.css",
-      "tippy.css"
+      "assets/swiper-EKmKsbKj.css",
+      "assets/tippy-LriLsbSV.css"
     ]
   },
   "resources/js/InstalacionesPage.jsx": {
-    "file": "assets/InstalacionesPage-BREF0Jew.js",
+    "file": "assets/InstalacionesPage-BsRCUjK-.js",
     "name": "InstalacionesPage",
     "src": "resources/js/InstalacionesPage.jsx",
     "isEntry": true,
@@ -3566,9 +3566,9 @@
       "resources/js/components/WebVitalsMonitor.jsx",
       "resources/js/Utils/ReactAppend.jsx",
       "_Base-D_0hRoD7.js",
-      "_CreateReactScript-CtCtVq5m.js",
-      "_Header-BvFTyX2z.js",
-      "_Footer-Cn3rRDkn.js",
+      "_CreateReactScript-BspcGzwC.js",
+      "_Header-DMq8GupK.js",
+      "_Footer-C1LzT8tQ.js",
       "resources/js/components/Tailwind/DetailProduct/Detail.jsx",
       "resources/js/components/Tailwind/CambioGerencia/HomeSeccionBlog.jsx",
       "resources/js/components/Tailwind/Carrusel/CarruselBrands.jsx",
@@ -3596,12 +3596,12 @@
       "_chevron-down-DhuCuuFK.js"
     ],
     "css": [
-      "swiper.css",
-      "tippy.css"
+      "assets/swiper-EKmKsbKj.css",
+      "assets/tippy-LriLsbSV.css"
     ]
   },
   "resources/js/Instructions.jsx": {
-    "file": "assets/Instructions-bUoOeK5P.js",
+    "file": "assets/Instructions-D9jmwPQc.js",
     "name": "Instructions",
     "src": "resources/js/Instructions.jsx",
     "isEntry": true,
@@ -3610,16 +3610,16 @@
       "resources/js/components/WebVitalsMonitor.jsx",
       "resources/js/Utils/ReactAppend.jsx",
       "_Base-D_0hRoD7.js",
-      "_CreateReactScript-CtCtVq5m.js",
-      "_Header-BvFTyX2z.js",
+      "_CreateReactScript-BspcGzwC.js",
+      "_Header-DMq8GupK.js",
       "_main-BjF2hfsq.js",
       "resources/js/components/Blog/Results.jsx",
-      "_WeCupSection-C-ATeWMS.js",
+      "_WeCupSection-WtVvBwWK.js",
       "resources/js/components/Tailwind/DetailProduct/Detail.jsx",
       "resources/js/components/Tailwind/CambioGerencia/HomeSeccionBlog.jsx",
       "resources/js/components/Tailwind/Carrusel/CarruselBrands.jsx",
       "resources/js/components/About/Strengths.jsx",
-      "_Footer-Cn3rRDkn.js",
+      "_Footer-C1LzT8tQ.js",
       "_index-CF8W1V4f.js",
       "resources/js/components/Blog/Filter.jsx",
       "_axios-COzaZAiy.js",
@@ -3633,18 +3633,18 @@
       "_message-circle-Vrz7cx2B.js",
       "_phone-Cv7s4kZQ.js",
       "_index-CoDVSLHB.js",
-      "_navigation-BOfrQD41.js",
-      "_classes-to-selector-CKrGzIdC.js",
+      "_navigation-BfvIe0Sy.js",
+      "_classes-to-selector-5FZscthG.js",
       "resources/js/components/Tailwind/Instructions/WeCupSection.jsx",
       "_sweetalert2.all-Dn_IOoc8.js"
     ],
     "css": [
-      "swiper.css",
-      "tippy.css"
+      "assets/swiper-EKmKsbKj.css",
+      "assets/tippy-LriLsbSV.css"
     ]
   },
   "resources/js/Landings/SolesADolares.jsx": {
-    "file": "assets/SolesADolares-Cpo_riMd.js",
+    "file": "assets/SolesADolares-Clc7U90f.js",
     "name": "SolesADolares",
     "src": "resources/js/Landings/SolesADolares.jsx",
     "isEntry": true,
@@ -3654,13 +3654,13 @@
       "resources/js/components/WebVitalsMonitor.jsx",
       "resources/js/Utils/ReactAppend.jsx",
       "_Base-D_0hRoD7.js",
-      "_CreateReactScript-CtCtVq5m.js",
-      "_Header-BvFTyX2z.js",
-      "_Footer-Cn3rRDkn.js",
+      "_CreateReactScript-BspcGzwC.js",
+      "_Header-DMq8GupK.js",
+      "_Footer-C1LzT8tQ.js",
       "resources/js/components/Tailwind/DetailProduct/Detail.jsx",
       "_useTranslation-CbKLA_Xw.js",
       "_CintilloSection-c8XCLiBz.js",
-      "_ExchangeCard-33Y_SIkf.js",
+      "_ExchangeCard-B_7SfEpu.js",
       "_TextWithHighlight-Duv9Efqt.js",
       "_OptimizedImage-CpVjkwEC.js",
       "_proxy-CGT4zrn4.js",
@@ -3687,12 +3687,12 @@
       "resources/js/components/Tailwind/CambiaFX/BlogSection.jsx"
     ],
     "css": [
-      "swiper.css",
-      "tippy.css"
+      "assets/swiper-EKmKsbKj.css",
+      "assets/tippy-LriLsbSV.css"
     ]
   },
   "resources/js/Landings/TipoDeCambioHoy.jsx": {
-    "file": "assets/TipoDeCambioHoy-Bxs5ubGq.js",
+    "file": "assets/TipoDeCambioHoy-Dhq1g0RO.js",
     "name": "TipoDeCambioHoy",
     "src": "resources/js/Landings/TipoDeCambioHoy.jsx",
     "isEntry": true,
@@ -3701,7 +3701,7 @@
       "resources/js/components/WebVitalsMonitor.jsx",
       "resources/js/Utils/ReactAppend.jsx",
       "_Base-D_0hRoD7.js",
-      "_CreateReactScript-CtCtVq5m.js",
+      "_CreateReactScript-BspcGzwC.js",
       "resources/js/components/Tailwind/DetailProduct/Detail.jsx",
       "_useTranslation-CbKLA_Xw.js",
       "_CambiaFXService-DtlIP2o9.js",
@@ -3718,12 +3718,12 @@
       "resources/js/components/Blog/Results.jsx"
     ],
     "css": [
-      "swiper.css",
-      "tippy.css"
+      "assets/swiper-EKmKsbKj.css",
+      "assets/tippy-LriLsbSV.css"
     ]
   },
   "resources/js/Legal.jsx": {
-    "file": "assets/Legal-DqXNsQip.js",
+    "file": "assets/Legal-BpAmiVYM.js",
     "name": "Legal",
     "src": "resources/js/Legal.jsx",
     "isEntry": true,
@@ -3732,10 +3732,10 @@
       "resources/js/components/WebVitalsMonitor.jsx",
       "resources/js/Utils/ReactAppend.jsx",
       "_Base-D_0hRoD7.js",
-      "_CreateReactScript-CtCtVq5m.js",
+      "_CreateReactScript-BspcGzwC.js",
       "resources/js/components/Tailwind/DetailProduct/Detail.jsx",
-      "_Header-BvFTyX2z.js",
-      "_Footer-Cn3rRDkn.js",
+      "_Header-DMq8GupK.js",
+      "_Footer-C1LzT8tQ.js",
       "_TextWithHighlight-Duv9Efqt.js",
       "resources/js/components/Blog/Filter.jsx",
       "_index-CF8W1V4f.js",
@@ -3755,12 +3755,12 @@
       "_sweetalert2.all-Dn_IOoc8.js"
     ],
     "css": [
-      "swiper.css",
-      "tippy.css"
+      "assets/swiper-EKmKsbKj.css",
+      "assets/tippy-LriLsbSV.css"
     ]
   },
   "resources/js/LegalPolicy.jsx": {
-    "file": "assets/LegalPolicy-DSeho69d.js",
+    "file": "assets/LegalPolicy-HWNgMpHS.js",
     "name": "LegalPolicy",
     "src": "resources/js/LegalPolicy.jsx",
     "isEntry": true,
@@ -3769,9 +3769,9 @@
       "resources/js/components/WebVitalsMonitor.jsx",
       "resources/js/Utils/ReactAppend.jsx",
       "_Base-D_0hRoD7.js",
-      "_CreateReactScript-CtCtVq5m.js",
-      "_Header-BvFTyX2z.js",
-      "_Footer-Cn3rRDkn.js",
+      "_CreateReactScript-BspcGzwC.js",
+      "_Header-DMq8GupK.js",
+      "_Footer-C1LzT8tQ.js",
       "resources/js/components/Tailwind/DetailProduct/Detail.jsx",
       "_useTranslation-CbKLA_Xw.js",
       "_proxy-CGT4zrn4.js",
@@ -3791,12 +3791,12 @@
       "_sweetalert2.all-Dn_IOoc8.js"
     ],
     "css": [
-      "swiper.css",
-      "tippy.css"
+      "assets/swiper-EKmKsbKj.css",
+      "assets/tippy-LriLsbSV.css"
     ]
   },
   "resources/js/LibroDeReclamaciones.jsx": {
-    "file": "assets/LibroDeReclamaciones-DlPnhl3I.js",
+    "file": "assets/LibroDeReclamaciones-CwzkMMf5.js",
     "name": "LibroDeReclamaciones",
     "src": "resources/js/LibroDeReclamaciones.jsx",
     "isEntry": true,
@@ -3805,10 +3805,10 @@
       "resources/js/components/WebVitalsMonitor.jsx",
       "resources/js/components/Tailwind/DetailProduct/Detail.jsx",
       "_Base-D_0hRoD7.js",
-      "_CreateReactScript-CtCtVq5m.js",
+      "_CreateReactScript-BspcGzwC.js",
       "resources/js/Utils/ReactAppend.jsx",
-      "_Footer-Cn3rRDkn.js",
-      "_Header-BvFTyX2z.js",
+      "_Footer-C1LzT8tQ.js",
+      "_Header-DMq8GupK.js",
       "_main-BjF2hfsq.js",
       "_preload-helper-BTyGlzsf.js",
       "_HtmlContent-CWS4Frzl.js",
@@ -3834,12 +3834,12 @@
       "node_modules/canvg/lib/index.es.js"
     ],
     "css": [
-      "swiper.css",
-      "tippy.css"
+      "assets/swiper-EKmKsbKj.css",
+      "assets/tippy-LriLsbSV.css"
     ]
   },
   "resources/js/Login.jsx": {
-    "file": "assets/Login-CGvxKFBg.js",
+    "file": "assets/Login-DknEGj8N.js",
     "name": "Login",
     "src": "resources/js/Login.jsx",
     "isEntry": true,
@@ -3848,7 +3848,7 @@
       "resources/js/Utils/ReactAppend.jsx",
       "resources/js/components/WebVitalsMonitor.jsx",
       "_JSEncrypt-Bgn96wmg.js",
-      "_CreateReactScript-CtCtVq5m.js",
+      "_CreateReactScript-BspcGzwC.js",
       "_AuthRest-JUKx4vCk.js",
       "_index.esm-5NFqnzAw.js",
       "_sweetalert2.all-Dn_IOoc8.js",
@@ -3859,12 +3859,12 @@
       "____vite-browser-external_commonjs-proxy-CGejAyr8.js"
     ],
     "css": [
-      "swiper.css",
-      "tippy.css"
+      "assets/swiper-EKmKsbKj.css",
+      "assets/tippy-LriLsbSV.css"
     ]
   },
   "resources/js/LoginVua.jsx": {
-    "file": "assets/LoginVua-D__4VAcH.js",
+    "file": "assets/LoginVua-BnRnC9L1.js",
     "name": "LoginVua",
     "src": "resources/js/LoginVua.jsx",
     "isEntry": true,
@@ -3873,7 +3873,7 @@
       "resources/js/components/WebVitalsMonitor.jsx",
       "resources/js/Utils/ReactAppend.jsx",
       "_Base-D_0hRoD7.js",
-      "_CreateReactScript-CtCtVq5m.js",
+      "_CreateReactScript-BspcGzwC.js",
       "_index-CF8W1V4f.js",
       "resources/js/components/Blog/Filter.jsx",
       "_axios-COzaZAiy.js",
@@ -3883,12 +3883,12 @@
       "_General-CSnTKUjB.js"
     ],
     "css": [
-      "swiper.css",
-      "tippy.css"
+      "assets/swiper-EKmKsbKj.css",
+      "assets/tippy-LriLsbSV.css"
     ]
   },
   "resources/js/MyAccount.jsx": {
-    "file": "assets/MyAccount-2jVneciS.js",
+    "file": "assets/MyAccount-D2VbVmpg.js",
     "name": "MyAccount",
     "src": "resources/js/MyAccount.jsx",
     "isEntry": true,
@@ -3897,7 +3897,7 @@
       "resources/js/components/WebVitalsMonitor.jsx",
       "resources/js/Utils/ReactAppend.jsx",
       "_Base-D_0hRoD7.js",
-      "_CreateReactScript-CtCtVq5m.js",
+      "_CreateReactScript-BspcGzwC.js",
       "resources/js/components/Blog/Results.jsx",
       "_ReactAppend-CAweQVQe.js",
       "_Number2Currency-DExzICY3.js",
@@ -3914,12 +3914,12 @@
       "_index-Cx_JNDNR.js"
     ],
     "css": [
-      "swiper.css",
-      "tippy.css"
+      "assets/swiper-EKmKsbKj.css",
+      "assets/tippy-LriLsbSV.css"
     ]
   },
   "resources/js/Partners.jsx": {
-    "file": "assets/Partners-BVsMHLyV.js",
+    "file": "assets/Partners-CuodWKyh.js",
     "name": "Partners",
     "src": "resources/js/Partners.jsx",
     "isEntry": true,
@@ -3928,10 +3928,10 @@
       "resources/js/components/WebVitalsMonitor.jsx",
       "resources/js/Utils/ReactAppend.jsx",
       "_Base-D_0hRoD7.js",
-      "_CreateReactScript-CtCtVq5m.js",
+      "_CreateReactScript-BspcGzwC.js",
       "resources/js/components/Tailwind/DetailProduct/Detail.jsx",
-      "_Header-BvFTyX2z.js",
-      "_Footer-Cn3rRDkn.js",
+      "_Header-DMq8GupK.js",
+      "_Footer-C1LzT8tQ.js",
       "_TextWithHighlight-Duv9Efqt.js",
       "resources/js/components/Blog/Filter.jsx",
       "_index-CF8W1V4f.js",
@@ -3951,12 +3951,12 @@
       "_sweetalert2.all-Dn_IOoc8.js"
     ],
     "css": [
-      "swiper.css",
-      "tippy.css"
+      "assets/swiper-EKmKsbKj.css",
+      "assets/tippy-LriLsbSV.css"
     ]
   },
   "resources/js/Plans.jsx": {
-    "file": "assets/Plans-Df3YT4K2.js",
+    "file": "assets/Plans-IH-2JHhk.js",
     "name": "Plans",
     "src": "resources/js/Plans.jsx",
     "isEntry": true,
@@ -3965,7 +3965,7 @@
       "resources/js/components/WebVitalsMonitor.jsx",
       "resources/js/Utils/ReactAppend.jsx",
       "_Base-D_0hRoD7.js",
-      "_CreateReactScript-CtCtVq5m.js",
+      "_CreateReactScript-BspcGzwC.js",
       "_index-CF8W1V4f.js",
       "resources/js/components/Blog/Filter.jsx",
       "_axios-COzaZAiy.js",
@@ -3975,12 +3975,12 @@
       "_General-CSnTKUjB.js"
     ],
     "css": [
-      "swiper.css",
-      "tippy.css"
+      "assets/swiper-EKmKsbKj.css",
+      "assets/tippy-LriLsbSV.css"
     ]
   },
   "resources/js/Popup.jsx": {
-    "file": "assets/Popup-CmuTNWu-.js",
+    "file": "assets/Popup-CFgMkceH.js",
     "name": "Popup",
     "src": "resources/js/Popup.jsx",
     "isEntry": true,
@@ -3989,7 +3989,7 @@
       "resources/js/components/WebVitalsMonitor.jsx",
       "resources/js/Utils/ReactAppend.jsx",
       "_Base-D_0hRoD7.js",
-      "_CreateReactScript-CtCtVq5m.js",
+      "_CreateReactScript-BspcGzwC.js",
       "_index-CF8W1V4f.js",
       "resources/js/components/Blog/Filter.jsx",
       "_axios-COzaZAiy.js",
@@ -3999,12 +3999,12 @@
       "_General-CSnTKUjB.js"
     ],
     "css": [
-      "swiper.css",
-      "tippy.css"
+      "assets/swiper-EKmKsbKj.css",
+      "assets/tippy-LriLsbSV.css"
     ]
   },
   "resources/js/Quiz.jsx": {
-    "file": "assets/Quiz-CQZE7Zu0.js",
+    "file": "assets/Quiz-CGTBZ29P.js",
     "name": "Quiz",
     "src": "resources/js/Quiz.jsx",
     "isEntry": true,
@@ -4013,9 +4013,9 @@
       "resources/js/components/WebVitalsMonitor.jsx",
       "resources/js/Utils/ReactAppend.jsx",
       "_Base-D_0hRoD7.js",
-      "_CreateReactScript-CtCtVq5m.js",
-      "_Header-BvFTyX2z.js",
-      "_Footer-Cn3rRDkn.js",
+      "_CreateReactScript-BspcGzwC.js",
+      "_Header-DMq8GupK.js",
+      "_Footer-C1LzT8tQ.js",
       "resources/js/components/Tailwind/DetailProduct/Detail.jsx",
       "_sweetalert2.all-Dn_IOoc8.js",
       "_index-CF8W1V4f.js",
@@ -4035,12 +4035,12 @@
       "_index-CoDVSLHB.js"
     ],
     "css": [
-      "swiper.css",
-      "tippy.css"
+      "assets/swiper-EKmKsbKj.css",
+      "assets/tippy-LriLsbSV.css"
     ]
   },
   "resources/js/Register.jsx": {
-    "file": "assets/Register-C6tRZwap.js",
+    "file": "assets/Register-BGbz4Wi7.js",
     "name": "Register",
     "src": "resources/js/Register.jsx",
     "isEntry": true,
@@ -4052,7 +4052,7 @@
       "resources/js/Utils/ReactAppend.jsx",
       "_index-Cx_JNDNR.js",
       "_sweetalert2.all-Dn_IOoc8.js",
-      "_CreateReactScript-CtCtVq5m.js",
+      "_CreateReactScript-BspcGzwC.js",
       "_AuthRest-JUKx4vCk.js",
       "_axios-COzaZAiy.js",
       "____vite-browser-external_commonjs-proxy-CGejAyr8.js",
@@ -4061,8 +4061,8 @@
       "_General-CSnTKUjB.js"
     ],
     "css": [
-      "swiper.css",
-      "tippy.css"
+      "assets/swiper-EKmKsbKj.css",
+      "assets/tippy-LriLsbSV.css"
     ]
   },
   "resources/js/Reutilizables/Businesses/BusinessCard.jsx": {
@@ -4112,7 +4112,7 @@
     ]
   },
   "resources/js/ServiciosPage.jsx": {
-    "file": "assets/ServiciosPage-B-pzgN8G.js",
+    "file": "assets/ServiciosPage-DBKf56sK.js",
     "name": "ServiciosPage",
     "src": "resources/js/ServiciosPage.jsx",
     "isEntry": true,
@@ -4121,9 +4121,9 @@
       "resources/js/components/WebVitalsMonitor.jsx",
       "resources/js/Utils/ReactAppend.jsx",
       "_Base-D_0hRoD7.js",
-      "_CreateReactScript-CtCtVq5m.js",
-      "_Header-BvFTyX2z.js",
-      "_Footer-Cn3rRDkn.js",
+      "_CreateReactScript-BspcGzwC.js",
+      "_Header-DMq8GupK.js",
+      "_Footer-C1LzT8tQ.js",
       "resources/js/components/Tailwind/DetailProduct/Detail.jsx",
       "_sweetalert2.all-Dn_IOoc8.js",
       "resources/js/components/Appointment/ModalAppointment.jsx",
@@ -4134,8 +4134,8 @@
       "resources/js/components/Tailwind/CambiaFX/EmpresasSection.jsx",
       "_proxy-CGT4zrn4.js",
       "resources/js/components/Tailwind/CambioGerencia/HomeSeccionBlog.jsx",
-      "_pagination-C7LyLecn.js",
-      "_autoplay-CgyjI068.js",
+      "_pagination-fEG83Prm.js",
+      "_autoplay-BgDP12Xg.js",
       "resources/js/components/Tailwind/Carrusel/CarruselBrands.jsx",
       "resources/js/components/About/Strengths.jsx",
       "_index-CF8W1V4f.js",
@@ -4150,15 +4150,15 @@
       "_message-circle-Vrz7cx2B.js",
       "_phone-Cv7s4kZQ.js",
       "_index-CoDVSLHB.js",
-      "_classes-to-selector-CKrGzIdC.js"
+      "_classes-to-selector-5FZscthG.js"
     ],
     "css": [
-      "swiper.css",
-      "tippy.css"
+      "assets/swiper-EKmKsbKj.css",
+      "assets/tippy-LriLsbSV.css"
     ]
   },
   "resources/js/Supplies.jsx": {
-    "file": "assets/Supplies-f2PcdVnD.js",
+    "file": "assets/Supplies-DfZsu15u.js",
     "name": "Supplies",
     "src": "resources/js/Supplies.jsx",
     "isEntry": true,
@@ -4166,7 +4166,7 @@
       "resources/js/Admin/components/RequirementCard.jsx",
       "resources/js/components/WebVitalsMonitor.jsx",
       "resources/js/Utils/ReactAppend.jsx",
-      "_CreateReactScript-CtCtVq5m.js",
+      "_CreateReactScript-BspcGzwC.js",
       "_Base-D_0hRoD7.js",
       "_SupplieCard-BBx-FAhW.js",
       "_index-CF8W1V4f.js",
@@ -4178,12 +4178,12 @@
       "resources/js/components/Blog/Filter.jsx"
     ],
     "css": [
-      "swiper.css",
-      "tippy.css"
+      "assets/swiper-EKmKsbKj.css",
+      "assets/tippy-LriLsbSV.css"
     ]
   },
   "resources/js/Test.jsx": {
-    "file": "assets/Test-Dh3z8_HR.js",
+    "file": "assets/Test-C2p-DcEs.js",
     "name": "Test",
     "src": "resources/js/Test.jsx",
     "isEntry": true,
@@ -4193,7 +4193,7 @@
       "resources/js/components/WebVitalsMonitor.jsx",
       "resources/js/Utils/ReactAppend.jsx",
       "_Base-D_0hRoD7.js",
-      "_CreateReactScript-CtCtVq5m.js",
+      "_CreateReactScript-BspcGzwC.js",
       "_main-BjF2hfsq.js",
       "_ProgressBar-DVisQ_tM.js",
       "_index-CF8W1V4f.js",
@@ -4213,8 +4213,8 @@
       "resources/js/components/Test/Fragrance.jsx"
     ],
     "css": [
-      "swiper.css",
-      "tippy.css"
+      "assets/swiper-EKmKsbKj.css",
+      "assets/tippy-LriLsbSV.css"
     ]
   },
   "resources/js/TestExchangeCard.jsx": {
@@ -4237,7 +4237,7 @@
     ]
   },
   "resources/js/TestResult.jsx": {
-    "file": "assets/TestResult-C3H3CMDl.js",
+    "file": "assets/TestResult-C42bF9zy.js",
     "name": "TestResult",
     "src": "resources/js/TestResult.jsx",
     "isEntry": true,
@@ -4246,7 +4246,7 @@
       "resources/js/components/WebVitalsMonitor.jsx",
       "resources/js/Utils/ReactAppend.jsx",
       "_Base-D_0hRoD7.js",
-      "_CreateReactScript-CtCtVq5m.js",
+      "_CreateReactScript-BspcGzwC.js",
       "_SupplieCard-BBx-FAhW.js",
       "_ProgressBar-DVisQ_tM.js",
       "_main-BjF2hfsq.js",
@@ -4258,25 +4258,25 @@
       "_General-CSnTKUjB.js"
     ],
     "css": [
-      "swiper.css",
-      "tippy.css"
+      "assets/swiper-EKmKsbKj.css",
+      "assets/tippy-LriLsbSV.css"
     ]
   },
   "resources/js/Thanks.jsx": {
-    "file": "assets/Thanks-CGwNWPpL.js",
+    "file": "assets/Thanks-MWdYh0yy.js",
     "name": "Thanks",
     "src": "resources/js/Thanks.jsx",
     "isEntry": true,
     "imports": [
       "resources/js/Admin/components/RequirementCard.jsx",
       "resources/js/components/WebVitalsMonitor.jsx",
-      "_CreateReactScript-CtCtVq5m.js",
+      "_CreateReactScript-BspcGzwC.js",
       "resources/js/Utils/ReactAppend.jsx",
       "_Base-D_0hRoD7.js",
       "_main-BjF2hfsq.js",
       "resources/js/components/Tailwind/DetailProduct/Detail.jsx",
-      "_Header-BvFTyX2z.js",
-      "_Footer-Cn3rRDkn.js",
+      "_Header-DMq8GupK.js",
+      "_Footer-C1LzT8tQ.js",
       "_useTranslation-CbKLA_Xw.js",
       "_proxy-CGT4zrn4.js",
       "_index.esm-5NFqnzAw.js",
@@ -4294,8 +4294,8 @@
       "_sweetalert2.all-Dn_IOoc8.js"
     ],
     "css": [
-      "swiper.css",
-      "tippy.css"
+      "assets/swiper-EKmKsbKj.css",
+      "assets/tippy-LriLsbSV.css"
     ]
   },
   "resources/js/Utils/BlurText.jsx": {
@@ -4310,7 +4310,7 @@
     ]
   },
   "resources/js/Utils/CreateReactScript.jsx": {
-    "file": "assets/CreateReactScript-BiUjNMll.js",
+    "file": "assets/CreateReactScript-BxgBfm3A.js",
     "name": "CreateReactScript",
     "src": "resources/js/Utils/CreateReactScript.jsx",
     "isEntry": true,
@@ -4322,8 +4322,8 @@
       "____vite-browser-external_commonjs-proxy-CGejAyr8.js"
     ],
     "css": [
-      "swiper.css",
-      "tippy.css"
+      "assets/swiper-EKmKsbKj.css",
+      "assets/tippy-LriLsbSV.css"
     ]
   },
   "resources/js/Utils/HtmlContent.jsx": {
@@ -4457,7 +4457,7 @@
     ]
   },
   "resources/js/components/About/Strengths.jsx": {
-    "file": "assets/Strengths-B6YHK_Dv.js",
+    "file": "assets/Strengths-C-CQIJA5.js",
     "name": "Strengths",
     "src": "resources/js/components/About/Strengths.jsx",
     "isEntry": true,
@@ -4467,16 +4467,16 @@
       "resources/js/components/Tailwind/CambioGerencia/HomeSeccionBlog.jsx"
     ],
     "css": [
-      "Strengths.css",
-      "swiper.css"
+      "assets/Strengths-BoW6ihGT.css",
+      "assets/swiper-EKmKsbKj.css"
     ]
   },
   "resources/js/components/About/images/header.png": {
-    "file": "header.png",
+    "file": "assets/header-wuYqK47A.png",
     "src": "resources/js/components/About/images/header.png"
   },
   "resources/js/components/About/images/history.png": {
-    "file": "history.png",
+    "file": "assets/history-B2OldoHD.png",
     "src": "resources/js/components/About/images/history.png"
   },
   "resources/js/components/Admin/ImageUploadValidator.jsx": {
@@ -4490,7 +4490,7 @@
     ]
   },
   "resources/js/components/Adminto/Base.jsx": {
-    "file": "assets/Base-D63XJfzQ.js",
+    "file": "assets/Base-DJCqqcwV.js",
     "name": "Base",
     "src": "resources/js/components/Adminto/Base.jsx",
     "isEntry": true,
@@ -4504,7 +4504,7 @@
       "_axios-COzaZAiy.js"
     ],
     "css": [
-      "tippy.css"
+      "assets/tippy-LriLsbSV.css"
     ]
   },
   "resources/js/components/Adminto/DataGrid.jsx": {
@@ -4547,7 +4547,7 @@
     ]
   },
   "resources/js/components/Adminto/Menu.jsx": {
-    "file": "assets/Menu-DIz9gjkU.js",
+    "file": "assets/Menu-C1UEwGeX.js",
     "name": "Menu",
     "src": "resources/js/components/Adminto/Menu.jsx",
     "isEntry": true,
@@ -4561,11 +4561,11 @@
       "_axios-COzaZAiy.js"
     ],
     "css": [
-      "tippy.css"
+      "assets/tippy-LriLsbSV.css"
     ]
   },
   "resources/js/components/Adminto/Modal.jsx": {
-    "file": "assets/Modal-DYGxZomm.js",
+    "file": "assets/Modal-Cg9YEes8.js",
     "name": "Modal",
     "src": "resources/js/components/Adminto/Modal.jsx",
     "isEntry": true,
@@ -4613,7 +4613,7 @@
     ]
   },
   "resources/js/components/Adminto/form/CheckboxFormGroup.jsx": {
-    "file": "assets/CheckboxFormGroup-DYGxZomm.js",
+    "file": "assets/CheckboxFormGroup-Cg9YEes8.js",
     "name": "CheckboxFormGroup",
     "src": "resources/js/components/Adminto/form/CheckboxFormGroup.jsx",
     "isEntry": true,
@@ -4643,7 +4643,7 @@
     ]
   },
   "resources/js/components/Adminto/form/InputFormGroup.jsx": {
-    "file": "assets/InputFormGroup-DYGxZomm.js",
+    "file": "assets/InputFormGroup-Cg9YEes8.js",
     "name": "InputFormGroup",
     "src": "resources/js/components/Adminto/form/InputFormGroup.jsx",
     "isEntry": true,
@@ -4673,7 +4673,7 @@
     ]
   },
   "resources/js/components/Adminto/form/SelectAPIFormGroup.jsx": {
-    "file": "assets/SelectAPIFormGroup-kcr9NeSG.js",
+    "file": "assets/SelectAPIFormGroup-BdzCbESk.js",
     "name": "SelectAPIFormGroup",
     "src": "resources/js/components/Adminto/form/SelectAPIFormGroup.jsx",
     "isEntry": true,
@@ -4697,7 +4697,7 @@
     ]
   },
   "resources/js/components/Adminto/form/SelectFormGroup.jsx": {
-    "file": "assets/SelectFormGroup-Cg9YEes8.js",
+    "file": "assets/SelectFormGroup-DYGxZomm.js",
     "name": "SelectFormGroup",
     "src": "resources/js/components/Adminto/form/SelectFormGroup.jsx",
     "isEntry": true,
@@ -4738,7 +4738,7 @@
     ]
   },
   "resources/js/components/Adminto/form/TippyButton.jsx": {
-    "file": "assets/TippyButton-DyOw7MtT.js",
+    "file": "assets/TippyButton-DUuIjmf6.js",
     "name": "TippyButton",
     "src": "resources/js/components/Adminto/form/TippyButton.jsx",
     "isEntry": true,
@@ -4747,7 +4747,7 @@
       "resources/js/components/WebVitalsMonitor.jsx"
     ],
     "css": [
-      "tippy.css"
+      "assets/tippy-LriLsbSV.css"
     ]
   },
   "resources/js/components/Adminto/form/VideoFormGroup.jsx": {
@@ -4885,7 +4885,7 @@
     ]
   },
   "resources/js/components/Blog/images/header.png": {
-    "file": "header2.png",
+    "file": "assets/header-Be5lcvjA.png",
     "src": "resources/js/components/Blog/images/header.png"
   },
   "resources/js/components/Common/OptimizedImage.jsx": {
@@ -5036,7 +5036,7 @@
     ]
   },
   "resources/js/components/DataGrid.jsx": {
-    "file": "assets/DataGrid-DYGxZomm.js",
+    "file": "assets/DataGrid-Cg9YEes8.js",
     "name": "DataGrid",
     "src": "resources/js/components/DataGrid.jsx",
     "isEntry": true,
@@ -5058,7 +5058,7 @@
     ]
   },
   "resources/js/components/Home/Banner.jsx": {
-    "file": "assets/Banner-DiXcTTgx.js",
+    "file": "assets/Banner-CTDp-7ot.js",
     "name": "Banner",
     "src": "resources/js/components/Home/Banner.jsx",
     "isEntry": true,
@@ -5070,8 +5070,8 @@
       "resources/js/components/About/Strengths.jsx"
     ],
     "css": [
-      "Banner.css",
-      "swiper.css"
+      "assets/Banner-B0a9OMnn.css",
+      "assets/swiper-EKmKsbKj.css"
     ]
   },
   "resources/js/components/Home/CallToAction.jsx": {
@@ -5127,7 +5127,7 @@
     ]
   },
   "resources/js/components/Home/Popups.jsx": {
-    "file": "assets/Popups-CSUl7n5u.js",
+    "file": "assets/Popups-DCuj4S8u.js",
     "name": "Popups",
     "src": "resources/js/components/Home/Popups.jsx",
     "isEntry": true,
@@ -5141,11 +5141,11 @@
       "_index-Cx_JNDNR.js"
     ],
     "css": [
-      "swiper.css"
+      "assets/swiper-EKmKsbKj.css"
     ]
   },
   "resources/js/components/Home/Routine.jsx": {
-    "file": "assets/Routine-Cy03g_Cd.js",
+    "file": "assets/Routine-IJzA1A3o.js",
     "name": "Routine",
     "src": "resources/js/components/Home/Routine.jsx",
     "isEntry": true,
@@ -5157,7 +5157,7 @@
       "resources/js/components/Tailwind/CambioGerencia/HomeSeccionBlog.jsx"
     ],
     "css": [
-      "swiper.css"
+      "assets/swiper-EKmKsbKj.css"
     ]
   },
   "resources/js/components/Home/Subscribe.jsx": {
@@ -5171,7 +5171,7 @@
     ]
   },
   "resources/js/components/Home/Supplies.jsx": {
-    "file": "assets/Supplies-SxG2OD1t.js",
+    "file": "assets/Supplies-BfSMcOox.js",
     "name": "Supplies",
     "src": "resources/js/components/Home/Supplies.jsx",
     "isEntry": true,
@@ -5181,11 +5181,11 @@
       "resources/js/components/Tailwind/CambioGerencia/HomeSeccionBlog.jsx"
     ],
     "css": [
-      "swiper.css"
+      "assets/swiper-EKmKsbKj.css"
     ]
   },
   "resources/js/components/Home/Testimonies.jsx": {
-    "file": "assets/Testimonies-_gPVkWdB.js",
+    "file": "assets/Testimonies-Bc4TD5w_.js",
     "name": "Testimonies",
     "src": "resources/js/components/Home/Testimonies.jsx",
     "isEntry": true,
@@ -5196,11 +5196,11 @@
       "resources/js/components/Home/Supplies.jsx"
     ],
     "css": [
-      "swiper.css"
+      "assets/swiper-EKmKsbKj.css"
     ]
   },
   "resources/js/components/Home/TestimonioSection.jsx": {
-    "file": "assets/TestimonioSection-CXjAIcOO.js",
+    "file": "assets/TestimonioSection-NYDAksa5.js",
     "name": "TestimonioSection",
     "src": "resources/js/components/Home/TestimonioSection.jsx",
     "isEntry": true,
@@ -5212,11 +5212,11 @@
       "resources/js/components/WebVitalsMonitor.jsx"
     ],
     "css": [
-      "swiper.css"
+      "assets/swiper-EKmKsbKj.css"
     ]
   },
   "resources/js/components/Home/TratamientoSection.jsx": {
-    "file": "assets/TratamientoSection-6BZVafP7.js",
+    "file": "assets/TratamientoSection-CbJsx_YG.js",
     "name": "TratamientoSection",
     "src": "resources/js/components/Home/TratamientoSection.jsx",
     "isEntry": true,
@@ -5229,15 +5229,15 @@
       "_axios-COzaZAiy.js"
     ],
     "css": [
-      "swiper.css"
+      "assets/swiper-EKmKsbKj.css"
     ]
   },
   "resources/js/components/Home/images/cruelty-free.svg": {
-    "file": "cruelty-free.svg",
+    "file": "assets/cruelty-free-D5ZCy4bL.svg",
     "src": "resources/js/components/Home/images/cruelty-free.svg"
   },
   "resources/js/components/Home/images/no-parabens.svg": {
-    "file": "no-parabens.svg",
+    "file": "assets/no-parabens-D1Pkg5oY.svg",
     "src": "resources/js/components/Home/images/no-parabens.svg"
   },
   "resources/js/components/InfoProductos/InfoProductoCard.jsx": {
@@ -5297,7 +5297,7 @@
     ]
   },
   "resources/js/components/Modal.jsx": {
-    "file": "assets/Modal-Cg9YEes8.js",
+    "file": "assets/Modal-DYGxZomm.js",
     "name": "Modal",
     "src": "resources/js/components/Modal.jsx",
     "isEntry": true,
@@ -5348,13 +5348,14 @@
     ]
   },
   "resources/js/components/PopupManager/PopupManager.jsx": {
-    "file": "assets/PopupManager-Cg9YEes8.js",
+    "file": "assets/PopupManager-BOJF39-Q.js",
     "name": "PopupManager",
     "src": "resources/js/components/PopupManager/PopupManager.jsx",
-    "isEntry": true,
+    "isDynamicEntry": true,
     "imports": [
       "resources/js/Admin/components/RequirementCard.jsx",
-      "resources/js/components/WebVitalsMonitor.jsx"
+      "resources/js/components/WebVitalsMonitor.jsx",
+      "_axios-COzaZAiy.js"
     ]
   },
   "resources/js/components/Product/Checkout.jsx": {
@@ -5507,7 +5508,7 @@
     ]
   },
   "resources/js/components/Tailwind/CambiaFX/BeneficiosSecctionEmpresa.jsx": {
-    "file": "assets/BeneficiosSecctionEmpresa-huwmNLW2.js",
+    "file": "assets/BeneficiosSecctionEmpresa-DnuyDZwb.js",
     "name": "BeneficiosSecctionEmpresa",
     "src": "resources/js/components/Tailwind/CambiaFX/BeneficiosSecctionEmpresa.jsx",
     "isEntry": true,
@@ -5519,11 +5520,11 @@
       "resources/js/components/About/Strengths.jsx"
     ],
     "css": [
-      "swiper.css"
+      "assets/swiper-EKmKsbKj.css"
     ]
   },
   "resources/js/components/Tailwind/CambiaFX/BlogSection.jsx": {
-    "file": "assets/BlogSection-CkrfyQdO.js",
+    "file": "assets/BlogSection-CJmuVilu.js",
     "name": "BlogSection",
     "src": "resources/js/components/Tailwind/CambiaFX/BlogSection.jsx",
     "isDynamicEntry": true,
@@ -5533,18 +5534,18 @@
       "_OptimizedImage-CpVjkwEC.js",
       "_TextWithHighlight-Duv9Efqt.js",
       "resources/js/components/Tailwind/CambioGerencia/HomeSeccionBlog.jsx",
-      "_navigation-BOfrQD41.js",
-      "_pagination-C7LyLecn.js",
-      "_autoplay-CgyjI068.js",
+      "_navigation-BfvIe0Sy.js",
+      "_pagination-fEG83Prm.js",
+      "_autoplay-BgDP12Xg.js",
       "resources/js/components/About/Strengths.jsx",
       "resources/js/components/Tailwind/Carrusel/CarruselBrands.jsx",
       "resources/js/components/Home/Supplies.jsx",
       "_proxy-CGT4zrn4.js",
       "_index-CoDVSLHB.js",
-      "_classes-to-selector-CKrGzIdC.js"
+      "_classes-to-selector-5FZscthG.js"
     ],
     "css": [
-      "swiper.css"
+      "assets/swiper-EKmKsbKj.css"
     ]
   },
   "resources/js/components/Tailwind/CambiaFX/CintilloSection.jsx": {
@@ -5582,7 +5583,7 @@
     ]
   },
   "resources/js/components/Tailwind/CambiaFX/CuponesSection.jsx": {
-    "file": "assets/CuponesSection-B4q_iF_u.js",
+    "file": "assets/CuponesSection-BQd5zdGg.js",
     "name": "CuponesSection",
     "src": "resources/js/components/Tailwind/CambiaFX/CuponesSection.jsx",
     "isDynamicEntry": true,
@@ -5591,28 +5592,29 @@
       "_TextWithHighlight-Duv9Efqt.js",
       "_OptimizedImage-CpVjkwEC.js",
       "resources/js/components/Tailwind/CambioGerencia/HomeSeccionBlog.jsx",
-      "_autoplay-CgyjI068.js",
+      "_autoplay-BgDP12Xg.js",
       "_proxy-CGT4zrn4.js",
       "resources/js/components/WebVitalsMonitor.jsx"
     ],
     "css": [
-      "swiper.css"
+      "assets/swiper-EKmKsbKj.css"
     ]
   },
   "resources/js/components/Tailwind/CambiaFX/EmpresasSection.jsx": {
-    "file": "assets/EmpresasSection-Vi_lpjVv.js",
+    "file": "assets/EmpresasSection--MCzV_VL.js",
     "name": "EmpresasSection",
     "src": "resources/js/components/Tailwind/CambiaFX/EmpresasSection.jsx",
-    "isEntry": true,
+    "isDynamicEntry": true,
     "imports": [
       "resources/js/Admin/components/RequirementCard.jsx",
       "resources/js/components/WebVitalsMonitor.jsx",
       "resources/js/components/Tailwind/CambiaFX/BannerFxEmpresas.jsx",
+      "_proxy-CGT4zrn4.js",
+      "_index-CoDVSLHB.js",
       "_main-BjF2hfsq.js",
       "____vite-browser-external_commonjs-proxy-CGejAyr8.js",
       "resources/js/components/Blog/Results.jsx",
       "_General-CSnTKUjB.js",
-      "_proxy-CGT4zrn4.js",
       "_message-circle-Vrz7cx2B.js",
       "_createLucideIcon-CycH6ojs.js",
       "_phone-Cv7s4kZQ.js"
@@ -5726,7 +5728,7 @@
     ]
   },
   "resources/js/components/Tailwind/CambiaFX/MoreServiceSection.jsx": {
-    "file": "assets/MoreServiceSection-0iPgcbGj.js",
+    "file": "assets/MoreServiceSection-IDK8_u0I.js",
     "name": "MoreServiceSection",
     "src": "resources/js/components/Tailwind/CambiaFX/MoreServiceSection.jsx",
     "isEntry": true,
@@ -5738,11 +5740,11 @@
       "resources/js/components/WebVitalsMonitor.jsx"
     ],
     "css": [
-      "swiper.css"
+      "assets/swiper-EKmKsbKj.css"
     ]
   },
   "resources/js/components/Tailwind/CambiaFX/PilaresSection.jsx": {
-    "file": "assets/PilaresSection-B-lnbU74.js",
+    "file": "assets/PilaresSection-CFA74l6f.js",
     "name": "PilaresSection",
     "src": "resources/js/components/Tailwind/CambiaFX/PilaresSection.jsx",
     "isEntry": true,
@@ -5753,7 +5755,7 @@
       "resources/js/components/About/Strengths.jsx"
     ],
     "css": [
-      "swiper.css"
+      "assets/swiper-EKmKsbKj.css"
     ]
   },
   "resources/js/components/Tailwind/CambiaFX/PrimeraOperacionSection.jsx": {
@@ -5778,15 +5780,13 @@
     ]
   },
   "resources/js/components/Tailwind/CambiaFX/StepsSection.jsx": {
-    "file": "assets/StepsSection-C1qDntFn.js",
+    "file": "assets/StepsSection-Cg9YEes8.js",
     "name": "StepsSection",
     "src": "resources/js/components/Tailwind/CambiaFX/StepsSection.jsx",
-    "isDynamicEntry": true,
+    "isEntry": true,
     "imports": [
       "resources/js/Admin/components/RequirementCard.jsx",
-      "resources/js/components/WebVitalsMonitor.jsx",
-      "_TextWithHighlight-Duv9Efqt.js",
-      "_proxy-CGT4zrn4.js"
+      "resources/js/components/WebVitalsMonitor.jsx"
     ]
   },
   "resources/js/components/Tailwind/CambiaFX/TransferenciaServiceSection.jsx": {
@@ -5823,7 +5823,7 @@
     ]
   },
   "resources/js/components/Tailwind/CambioGerencia/AboutSeccionWhy.jsx": {
-    "file": "assets/AboutSeccionWhy-Dk-sZHQO.js",
+    "file": "assets/AboutSeccionWhy-BMNrWdZY.js",
     "name": "AboutSeccionWhy",
     "src": "resources/js/components/Tailwind/CambioGerencia/AboutSeccionWhy.jsx",
     "isEntry": true,
@@ -5842,11 +5842,11 @@
       "_phone-Cv7s4kZQ.js"
     ],
     "css": [
-      "swiper.css"
+      "assets/swiper-EKmKsbKj.css"
     ]
   },
   "resources/js/components/Tailwind/CambioGerencia/HomeSeccionBlog.jsx": {
-    "file": "assets/HomeSeccionBlog-DzZRVEsw.js",
+    "file": "assets/HomeSeccionBlog-XsPM9RyC.js",
     "name": "HomeSeccionBlog",
     "src": "resources/js/components/Tailwind/CambioGerencia/HomeSeccionBlog.jsx",
     "isEntry": true,
@@ -5855,11 +5855,11 @@
       "resources/js/components/WebVitalsMonitor.jsx"
     ],
     "css": [
-      "swiper.css"
+      "assets/swiper-EKmKsbKj.css"
     ]
   },
   "resources/js/components/Tailwind/CambioGerencia/HomeSeccionImpacto.jsx": {
-    "file": "assets/HomeSeccionImpacto-Dk-sZHQO.js",
+    "file": "assets/HomeSeccionImpacto-BMNrWdZY.js",
     "name": "HomeSeccionImpacto",
     "src": "resources/js/components/Tailwind/CambioGerencia/HomeSeccionImpacto.jsx",
     "isEntry": true,
@@ -5878,7 +5878,7 @@
       "_phone-Cv7s4kZQ.js"
     ],
     "css": [
-      "swiper.css"
+      "assets/swiper-EKmKsbKj.css"
     ]
   },
   "resources/js/components/Tailwind/CambioGerencia/HomeSeccionNosotros.jsx": {
@@ -5892,7 +5892,7 @@
     ]
   },
   "resources/js/components/Tailwind/CambioGerencia/HomeSeccionServicios.jsx": {
-    "file": "assets/HomeSeccionServicios-Dk-sZHQO.js",
+    "file": "assets/HomeSeccionServicios-BMNrWdZY.js",
     "name": "HomeSeccionServicios",
     "src": "resources/js/components/Tailwind/CambioGerencia/HomeSeccionServicios.jsx",
     "isEntry": true,
@@ -5911,11 +5911,11 @@
       "_phone-Cv7s4kZQ.js"
     ],
     "css": [
-      "swiper.css"
+      "assets/swiper-EKmKsbKj.css"
     ]
   },
   "resources/js/components/Tailwind/CambioGerencia/HomeSeccionTestimonios.jsx": {
-    "file": "assets/HomeSeccionTestimonios-B-lnbU74.js",
+    "file": "assets/HomeSeccionTestimonios-CFA74l6f.js",
     "name": "HomeSeccionTestimonios",
     "src": "resources/js/components/Tailwind/CambioGerencia/HomeSeccionTestimonios.jsx",
     "isEntry": true,
@@ -5926,11 +5926,11 @@
       "resources/js/components/About/Strengths.jsx"
     ],
     "css": [
-      "swiper.css"
+      "assets/swiper-EKmKsbKj.css"
     ]
   },
   "resources/js/components/Tailwind/CambioGerencia/ServiceSeccionBeneficio.jsx": {
-    "file": "assets/ServiceSeccionBeneficio-SxG2OD1t.js",
+    "file": "assets/ServiceSeccionBeneficio-BfSMcOox.js",
     "name": "ServiceSeccionBeneficio",
     "src": "resources/js/components/Tailwind/CambioGerencia/ServiceSeccionBeneficio.jsx",
     "isEntry": true,
@@ -5940,7 +5940,7 @@
       "resources/js/components/Tailwind/CambioGerencia/HomeSeccionBlog.jsx"
     ],
     "css": [
-      "swiper.css"
+      "assets/swiper-EKmKsbKj.css"
     ]
   },
   "resources/js/components/Tailwind/CambioGerencia/ServiceSeccionEnfoque.jsx": {
@@ -6020,7 +6020,7 @@
     ]
   },
   "resources/js/components/Tailwind/Carrusel/CarruselBrands.jsx": {
-    "file": "assets/CarruselBrands-CWS2Huj1.js",
+    "file": "assets/CarruselBrands-BoFOp3Po.js",
     "name": "CarruselBrands",
     "src": "resources/js/components/Tailwind/Carrusel/CarruselBrands.jsx",
     "isEntry": true,
@@ -6030,12 +6030,12 @@
       "resources/js/components/WebVitalsMonitor.jsx"
     ],
     "css": [
-      "CarruselBrands.css",
-      "swiper.css"
+      "assets/CarruselBrands-aOjAu50E.css",
+      "assets/swiper-EKmKsbKj.css"
     ]
   },
   "resources/js/components/Tailwind/Carrusel/CarruselCoreValues.jsx": {
-    "file": "assets/CarruselCoreValues-CZPbIwqk.js",
+    "file": "assets/CarruselCoreValues-CiZZpnbO.js",
     "name": "CarruselCoreValues",
     "src": "resources/js/components/Tailwind/Carrusel/CarruselCoreValues.jsx",
     "isEntry": true,
@@ -6047,7 +6047,7 @@
       "resources/js/components/WebVitalsMonitor.jsx"
     ],
     "css": [
-      "swiper.css"
+      "assets/swiper-EKmKsbKj.css"
     ]
   },
   "resources/js/components/Tailwind/Components/InputForm.jsx": {
@@ -6061,7 +6061,7 @@
     ]
   },
   "resources/js/components/Tailwind/DataGrid.jsx": {
-    "file": "assets/DataGrid-Cg9YEes8.js",
+    "file": "assets/DataGrid-DYGxZomm.js",
     "name": "DataGrid",
     "src": "resources/js/components/Tailwind/DataGrid.jsx",
     "isEntry": true,
@@ -6216,7 +6216,7 @@
     ]
   },
   "resources/js/components/Tailwind/Instructions/WeCupSection.jsx": {
-    "file": "assets/WeCupSection-BLZvJWRK.js",
+    "file": "assets/WeCupSection-BT4NRMrs.js",
     "name": "WeCupSection",
     "src": "resources/js/components/Tailwind/Instructions/WeCupSection.jsx",
     "isEntry": true,
@@ -6226,12 +6226,12 @@
       "resources/js/components/Tailwind/CambioGerencia/HomeSeccionBlog.jsx"
     ],
     "css": [
-      "WeCupSection.css",
-      "swiper.css"
+      "assets/WeCupSection-C8o5bZ4T.css",
+      "assets/swiper-EKmKsbKj.css"
     ]
   },
   "resources/js/components/Tailwind/Instructions/WeDiskSection.jsx": {
-    "file": "assets/WeDiskSection-Bxj8N5mE.js",
+    "file": "assets/WeDiskSection-DkVfD-KW.js",
     "name": "WeDiskSection",
     "src": "resources/js/components/Tailwind/Instructions/WeDiskSection.jsx",
     "isEntry": true,
@@ -6242,7 +6242,7 @@
       "resources/js/components/Tailwind/Instructions/WeCupSection.jsx"
     ],
     "css": [
-      "swiper.css"
+      "assets/swiper-EKmKsbKj.css"
     ]
   },
   "resources/js/components/Tailwind/Products/Components/SelectForm.jsx": {
@@ -6266,7 +6266,7 @@
     ]
   },
   "resources/js/components/Tailwind/Products/ProductCarousel.jsx": {
-    "file": "assets/ProductCarousel-DE-EO1oY.js",
+    "file": "assets/ProductCarousel-CAqyBHom.js",
     "name": "ProductCarousel",
     "src": "resources/js/components/Tailwind/Products/ProductCarousel.jsx",
     "isEntry": true,
@@ -6277,7 +6277,7 @@
       "resources/js/components/Tailwind/Carrusel/CarruselBrands.jsx"
     ],
     "css": [
-      "swiper.css"
+      "assets/swiper-EKmKsbKj.css"
     ]
   },
   "resources/js/components/Tailwind/Products/ProductFilter.jsx": {
@@ -6347,7 +6347,7 @@
     ]
   },
   "resources/js/components/Tailwind/Welcome/InstagramSection.jsx": {
-    "file": "assets/InstagramSection-DE-EO1oY.js",
+    "file": "assets/InstagramSection-CAqyBHom.js",
     "name": "InstagramSection",
     "src": "resources/js/components/Tailwind/Welcome/InstagramSection.jsx",
     "isEntry": true,
@@ -6358,7 +6358,7 @@
       "resources/js/components/Tailwind/Carrusel/CarruselBrands.jsx"
     ],
     "css": [
-      "swiper.css"
+      "assets/swiper-EKmKsbKj.css"
     ]
   },
   "resources/js/components/Tailwind/Welcome/NotSureSection.jsx": {
@@ -6400,7 +6400,7 @@
     ]
   },
   "resources/js/components/Tailwind/Welcome/WeLoversSections.jsx": {
-    "file": "assets/WeLoversSections-BQsAB4Cb.js",
+    "file": "assets/WeLoversSections-D76AkGb7.js",
     "name": "WeLoversSections",
     "src": "resources/js/components/Tailwind/Welcome/WeLoversSections.jsx",
     "isEntry": true,
@@ -6415,14 +6415,14 @@
       "____vite-browser-external_commonjs-proxy-CGejAyr8.js"
     ],
     "css": [
-      "swiper.css"
+      "assets/swiper-EKmKsbKj.css"
     ]
   },
   "resources/js/components/Test/Email.jsx": {
-    "file": "assets/Email-CqzSsUqP.js",
+    "file": "assets/Email-Db-qJFuY.js",
     "name": "Email",
     "src": "resources/js/components/Test/Email.jsx",
-    "isEntry": true,
+    "isDynamicEntry": true,
     "imports": [
       "resources/js/Admin/components/RequirementCard.jsx",
       "resources/js/components/WebVitalsMonitor.jsx",
@@ -6443,10 +6443,10 @@
     ]
   },
   "resources/js/components/Test/HairGoals.jsx": {
-    "file": "assets/HairGoals-Cg9YEes8.js",
+    "file": "assets/HairGoals-DSruwNl9.js",
     "name": "HairGoals",
     "src": "resources/js/components/Test/HairGoals.jsx",
-    "isEntry": true,
+    "isDynamicEntry": true,
     "imports": [
       "resources/js/Admin/components/RequirementCard.jsx",
       "resources/js/components/WebVitalsMonitor.jsx"
@@ -6593,7 +6593,7 @@
     "isEntry": true
   },
   "resources/js/components/form/CheckboxFormGroup.jsx": {
-    "file": "assets/CheckboxFormGroup-Cg9YEes8.js",
+    "file": "assets/CheckboxFormGroup-DYGxZomm.js",
     "name": "CheckboxFormGroup",
     "src": "resources/js/components/form/CheckboxFormGroup.jsx",
     "isEntry": true,
@@ -6603,7 +6603,7 @@
     ]
   },
   "resources/js/components/form/InputFormGroup.jsx": {
-    "file": "assets/InputFormGroup-Cg9YEes8.js",
+    "file": "assets/InputFormGroup-DYGxZomm.js",
     "name": "InputFormGroup",
     "src": "resources/js/components/form/InputFormGroup.jsx",
     "isEntry": true,
@@ -6633,7 +6633,7 @@
     ]
   },
   "resources/js/components/form/SelectAPIFormGroup.jsx": {
-    "file": "assets/SelectAPIFormGroup-BdzCbESk.js",
+    "file": "assets/SelectAPIFormGroup-kcr9NeSG.js",
     "name": "SelectAPIFormGroup",
     "src": "resources/js/components/form/SelectAPIFormGroup.jsx",
     "isEntry": true,
@@ -6645,7 +6645,7 @@
     ]
   },
   "resources/js/components/form/SelectFormGroup.jsx": {
-    "file": "assets/SelectFormGroup-DYGxZomm.js",
+    "file": "assets/SelectFormGroup-Cg9YEes8.js",
     "name": "SelectFormGroup",
     "src": "resources/js/components/form/SelectFormGroup.jsx",
     "isEntry": true,
@@ -6665,7 +6665,7 @@
     ]
   },
   "resources/js/components/form/TippyButton.jsx": {
-    "file": "assets/TippyButton-DffdF6bk.js",
+    "file": "assets/TippyButton-BUi7hN8w.js",
     "name": "TippyButton",
     "src": "resources/js/components/form/TippyButton.jsx",
     "isEntry": true,
@@ -6674,11 +6674,11 @@
       "resources/js/components/WebVitalsMonitor.jsx"
     ],
     "css": [
-      "tippy.css"
+      "assets/tippy-LriLsbSV.css"
     ]
   },
   "resources/js/components/modals/WhatsAppModal.jsx": {
-    "file": "assets/WhatsAppModal-EV6L3aTs.js",
+    "file": "assets/WhatsAppModal-BdkPeb3M.js",
     "name": "WhatsAppModal",
     "src": "resources/js/components/modals/WhatsAppModal.jsx",
     "isEntry": true,
@@ -6690,7 +6690,7 @@
       "____vite-browser-external_commonjs-proxy-CGejAyr8.js"
     ],
     "css": [
-      "WhatsAppModal.css"
+      "assets/WhatsAppModal-DnSvpRGd.css"
     ]
   },
   "resources/js/context/CarritoContext.jsx": {
