@@ -4565,7 +4565,7 @@
     ]
   },
   "resources/js/components/Adminto/Modal.jsx": {
-    "file": "assets/Modal-Cg9YEes8.js",
+    "file": "assets/Modal-DYGxZomm.js",
     "name": "Modal",
     "src": "resources/js/components/Adminto/Modal.jsx",
     "isEntry": true,
@@ -4653,7 +4653,7 @@
     ]
   },
   "resources/js/components/Adminto/form/PasswordFormGroup.jsx": {
-    "file": "assets/PasswordFormGroup-Cg9YEes8.js",
+    "file": "assets/PasswordFormGroup-DYGxZomm.js",
     "name": "PasswordFormGroup",
     "src": "resources/js/components/Adminto/form/PasswordFormGroup.jsx",
     "isEntry": true,
@@ -4663,7 +4663,7 @@
     ]
   },
   "resources/js/components/Adminto/form/QuillFormGroup.jsx": {
-    "file": "assets/QuillFormGroup-DYGxZomm.js",
+    "file": "assets/QuillFormGroup-Cg9YEes8.js",
     "name": "QuillFormGroup",
     "src": "resources/js/components/Adminto/form/QuillFormGroup.jsx",
     "isEntry": true,
@@ -5036,7 +5036,7 @@
     ]
   },
   "resources/js/components/DataGrid.jsx": {
-    "file": "assets/DataGrid-Cg9YEes8.js",
+    "file": "assets/DataGrid-DYGxZomm.js",
     "name": "DataGrid",
     "src": "resources/js/components/DataGrid.jsx",
     "isEntry": true,
@@ -5297,7 +5297,7 @@
     ]
   },
   "resources/js/components/Modal.jsx": {
-    "file": "assets/Modal-DYGxZomm.js",
+    "file": "assets/Modal-Cg9YEes8.js",
     "name": "Modal",
     "src": "resources/js/components/Modal.jsx",
     "isEntry": true,
@@ -5598,19 +5598,20 @@
     ]
   },
   "resources/js/components/Tailwind/CambiaFX/EmpresasSection.jsx": {
-    "file": "assets/EmpresasSection-Vi_lpjVv.js",
+    "file": "assets/EmpresasSection--MCzV_VL.js",
     "name": "EmpresasSection",
     "src": "resources/js/components/Tailwind/CambiaFX/EmpresasSection.jsx",
-    "isEntry": true,
+    "isDynamicEntry": true,
     "imports": [
       "resources/js/Admin/components/RequirementCard.jsx",
       "resources/js/components/WebVitalsMonitor.jsx",
       "resources/js/components/Tailwind/CambiaFX/BannerFxEmpresas.jsx",
+      "_proxy-CGT4zrn4.js",
+      "_index-CoDVSLHB.js",
       "_main-BjF2hfsq.js",
       "____vite-browser-external_commonjs-proxy-CGejAyr8.js",
       "resources/js/components/Blog/Results.jsx",
       "_General-CSnTKUjB.js",
-      "_proxy-CGT4zrn4.js",
       "_message-circle-Vrz7cx2B.js",
       "_createLucideIcon-CycH6ojs.js",
       "_phone-Cv7s4kZQ.js"
@@ -5646,14 +5647,12 @@
     ]
   },
   "resources/js/components/Tailwind/CambiaFX/FuncionSection.jsx": {
-    "file": "assets/FuncionSection-CpsGtyzj.js",
+    "file": "assets/FuncionSection-Cg9YEes8.js",
     "name": "FuncionSection",
     "src": "resources/js/components/Tailwind/CambiaFX/FuncionSection.jsx",
-    "isDynamicEntry": true,
+    "isEntry": true,
     "imports": [
       "resources/js/Admin/components/RequirementCard.jsx",
-      "_TextWithHighlight-Duv9Efqt.js",
-      "_proxy-CGT4zrn4.js",
       "resources/js/components/WebVitalsMonitor.jsx"
     ]
   },
@@ -5742,15 +5741,20 @@
     ]
   },
   "resources/js/components/Tailwind/CambiaFX/PilaresSection.jsx": {
-    "file": "assets/PilaresSection-B-lnbU74.js",
+    "file": "assets/PilaresSection-7p-lwi-6.js",
     "name": "PilaresSection",
     "src": "resources/js/components/Tailwind/CambiaFX/PilaresSection.jsx",
-    "isEntry": true,
+    "isDynamicEntry": true,
     "imports": [
       "resources/js/Admin/components/RequirementCard.jsx",
       "resources/js/components/WebVitalsMonitor.jsx",
+      "_TextWithHighlight-Duv9Efqt.js",
       "resources/js/components/Tailwind/CambioGerencia/HomeSeccionBlog.jsx",
-      "resources/js/components/About/Strengths.jsx"
+      "_pagination-C7LyLecn.js",
+      "_autoplay-CgyjI068.js",
+      "resources/js/components/About/Strengths.jsx",
+      "_proxy-CGT4zrn4.js",
+      "_classes-to-selector-CKrGzIdC.js"
     ],
     "css": [
       "swiper.css"
@@ -6059,7 +6063,7 @@
     ]
   },
   "resources/js/components/Tailwind/DataGrid.jsx": {
-    "file": "assets/DataGrid-DYGxZomm.js",
+    "file": "assets/DataGrid-Cg9YEes8.js",
     "name": "DataGrid",
     "src": "resources/js/components/Tailwind/DataGrid.jsx",
     "isEntry": true,
@@ -6417,10 +6421,10 @@
     ]
   },
   "resources/js/components/Test/Email.jsx": {
-    "file": "assets/Email-CqzSsUqP.js",
+    "file": "assets/Email-Db-qJFuY.js",
     "name": "Email",
     "src": "resources/js/components/Test/Email.jsx",
-    "isEntry": true,
+    "isDynamicEntry": true,
     "imports": [
       "resources/js/Admin/components/RequirementCard.jsx",
       "resources/js/components/WebVitalsMonitor.jsx",
@@ -6431,13 +6435,15 @@
     ]
   },
   "resources/js/components/Test/Fragrance.jsx": {
-    "file": "assets/Fragrance-Cg9YEes8.js",
+    "file": "assets/Fragrance-CDs6oy8k.js",
     "name": "Fragrance",
     "src": "resources/js/components/Test/Fragrance.jsx",
-    "isEntry": true,
+    "isDynamicEntry": true,
     "imports": [
       "resources/js/Admin/components/RequirementCard.jsx",
-      "resources/js/components/WebVitalsMonitor.jsx"
+      "_tippy-react.esm-C0M1j_tS.js",
+      "resources/js/components/WebVitalsMonitor.jsx",
+      "_index-CF8W1V4f.js"
     ]
   },
   "resources/js/components/Test/HairGoals.jsx": {
@@ -6464,10 +6470,10 @@
     ]
   },
   "resources/js/components/Test/Main.jsx": {
-    "file": "assets/Main-Cg9YEes8.js",
+    "file": "assets/Main-D8ixZVsW.js",
     "name": "Main",
     "src": "resources/js/components/Test/Main.jsx",
-    "isEntry": true,
+    "isDynamicEntry": true,
     "imports": [
       "resources/js/Admin/components/RequirementCard.jsx",
       "resources/js/components/WebVitalsMonitor.jsx"
@@ -6611,7 +6617,7 @@
     ]
   },
   "resources/js/components/form/PasswordFormGroup.jsx": {
-    "file": "assets/PasswordFormGroup-DYGxZomm.js",
+    "file": "assets/PasswordFormGroup-Cg9YEes8.js",
     "name": "PasswordFormGroup",
     "src": "resources/js/components/form/PasswordFormGroup.jsx",
     "isEntry": true,
@@ -6621,7 +6627,7 @@
     ]
   },
   "resources/js/components/form/QuillFormGroup.jsx": {
-    "file": "assets/QuillFormGroup-Cg9YEes8.js",
+    "file": "assets/QuillFormGroup-DYGxZomm.js",
     "name": "QuillFormGroup",
     "src": "resources/js/components/form/QuillFormGroup.jsx",
     "isEntry": true,

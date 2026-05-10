@@ -40,6 +40,9 @@ export default {
                 "neutral-dark":"#0C0C0C",
                 "neutral":"#ECE6FE",
                 "neutral-light":"#222222",
+                latte: "#FDF9F0",
+                majorelle: "#6039F5",
+                mindaro: "#E1FF8D",
             },
             // Puedes agregar personalizaciones aquí si es necesario
             lineClamp: {
