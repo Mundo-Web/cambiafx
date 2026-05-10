@@ -1,1 +1,0 @@
-import{j as s}from"./RequirementCard-BRHcaFA5.js";import"./WebVitalsMonitor-CIEr9-is.js";import{L as r}from"./Filter-BU1Li_Ff.js";const o=({children:o,footerLinks:e,session:t,socials:i,terms:n,showSlogan:d=!0,showFooter:a=!0,gradientStart:c="#c4b8d3",gradientEnd:m="#f1d7c1",menuGradientEnd:j="#dbc8c9"})=>s.jsx(r,{children:s.jsxs("section",{children:[" ",o]})});export{o as B};

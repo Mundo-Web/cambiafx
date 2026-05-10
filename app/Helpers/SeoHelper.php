@@ -262,4 +262,40 @@ class SeoHelper
             'itemListElement' => $itemListElement
         ];
     }
+
+    /**
+     * Genera el JSON-LD para FinancialService
+     */
+    public static function getFinancialServiceSchema($service)
+    {
+        if (!$service) {
+            return null;
+        }
+
+        $seoData = self::getSeoData();
+        $logo = $seoData['company_logo'] ?? '/assets/img/icon-192x192.png';
+
+        return [
+            '@context' => 'https://schema.org',
+            '@type' => 'FinancialService',
+            'name' => $service['name'] ?? '',
+            'description' => $service['description'] ?? '',
+            'url' => url()->current(),
+            'logo' => str_starts_with($logo, 'http') ? $logo : url($logo),
+            'telephone' => $seoData['company_phone'] ?? '+51 922 985 423',
+            'address' => [
+                '@type' => 'PostalAddress',
+                'streetAddress' => $seoData['company_address'] ?? '',
+                'addressLocality' => $seoData['company_locality'] ?? '',
+                'addressRegion' => $seoData['company_region'] ?? '',
+                'addressCountry' => $seoData['company_country'] ?? 'PE'
+            ],
+            'serviceType' => 'Currency Exchange',
+            'areaServed' => 'PE',
+            'provider' => [
+                '@type' => 'Organization',
+                'name' => $seoData['company_name'] ?? 'Cambia FX'
+            ]
+        ];
+    }
 }

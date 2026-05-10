@@ -93,6 +93,8 @@ use App\Http\Controllers\TestController;
 use App\Http\Controllers\TestResultController;
 use App\Http\Controllers\ThankController;
 use App\Http\Controllers\DescargameController;
+use App\Http\Controllers\LandingController;
+use App\Http\Controllers\Admin\TransactionalLandingController as AdminTransactionalLandingController;
 use GrahamCampbell\ResultType\Success;
 use Illuminate\Http\Request;
 
@@ -123,6 +125,10 @@ Route::get('/casos-de-exito', [SuccessStoryController::class, 'reactView'])->nam
 Route::get('/infoproductos', [InfoproductController::class, 'reactView'])->name('Infoproductos.jsx');
 
 Route::get('/', [HomeController::class, 'reactView'])->name('Home.jsx');
+Route::get('/soles-a-dolares', [LandingController::class, 'solesADolares'])->name('Landings/SolesADolares.jsx');
+Route::get('/tipo-de-cambio-hoy', [LandingController::class, 'tipoDeCambioHoy'])->name('Landings/TipoDeCambioHoy.jsx');
+Route::get('/casa-de-cambio-digital', [LandingController::class, 'casaDeCambioDigital'])->name('Landings/CasaDeCambioDigital.jsx');
+Route::get('/compra-y-venta-de-dolares', [LandingController::class, 'compraVentaDolares'])->name('Landings/CompraVentaDolares.jsx');
 Route::get('/descargame', [DescargameController::class, 'redirect'])->name('descargame');
 Route::get('/empresas', [HomeEmpresaController::class, 'reactView'])->name('HomeEmpresa.jsx');
 Route::get('/test-exchange', [HomeController::class, 'reactView'])->name('TestExchangeCard.jsx');
@@ -187,6 +193,18 @@ Route::middleware(['can:Admin', 'auth'])->prefix('admin')->group(function () {
 
 
     Route::get('/landing_home', [AdminLandingHomeController::class, 'reactView'])->name('Admin/LandingHome.jsx');
+    Route::post('/landing_home', [AdminLandingHomeController::class, 'save']);
+    Route::post('/landing_home/translate', [AdminLandingHomeController::class, 'translate']);
+    Route::get('/landing_home/by_lang/{langId}', [AdminLandingHomeController::class, 'getByLang']);
+    Route::patch('/landing_home/visible', [AdminLandingHomeController::class, 'boolean']);
+    Route::delete('/landing_home/{id}', [AdminLandingHomeController::class, 'delete']);
+
+    Route::get('/transactional_landings', [AdminTransactionalLandingController::class, 'reactView'])->name('Admin/TransactionalLanding.jsx');
+    Route::get('/transactional_landings/paginate', [AdminTransactionalLandingController::class, 'paginate']);
+    Route::post('/transactional_landings', [AdminTransactionalLandingController::class, 'save']);
+    Route::patch('/transactional_landings/status', [AdminTransactionalLandingController::class, 'status']);
+    Route::delete('/transactional_landings/{id}', [AdminTransactionalLandingController::class, 'delete']);
+
     Route::get('/services', [AdminServiceController::class, 'reactView'])->name('Admin/Services.jsx');
     Route::get('/solutions', [AdminSolutionController::class, 'reactView'])->name('Admin/Solutions.jsx');
     Route::get('/purchaseOptions', [AdminPurchaseOptionController::class, 'reactView'])->name('Admin/PurchaseOptions.jsx');

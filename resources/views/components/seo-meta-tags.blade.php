@@ -13,6 +13,7 @@
     $faqSchema = isset($faqs) ? App\Helpers\SeoHelper::getFaqSchema($faqs) : null;
     $breadcrumbSchema = isset($breadcrumbs) ? App\Helpers\SeoHelper::getBreadcrumbSchema($breadcrumbs) : null;
     $newsArticleSchema = isset($article) ? App\Helpers\SeoHelper::getNewsArticleSchema($article) : null;
+    $financialServiceSchema = isset($financialService) ? App\Helpers\SeoHelper::getFinancialServiceSchema($financialService) : null;
 @endphp
 
 <!-- SEO Meta Tags -->
@@ -64,6 +65,13 @@
 @if(!empty($newsArticleSchema))
 <script type="application/ld+json">
     {!! json_encode($newsArticleSchema, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT) !!}
+</script>
+@endif
+
+<!-- FinancialService Schema.org JSON-LD -->
+@if(!empty($financialServiceSchema))
+<script type="application/ld+json">
+    {!! json_encode($financialServiceSchema, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT) !!}
 </script>
 @endif
 

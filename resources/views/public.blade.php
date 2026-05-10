@@ -77,7 +77,7 @@ $isHome = $component === 'Home.jsx';
         rel="stylesheet" type="text/css" id="dg-dark-stylesheet" disabled="disabled" />
     @endif
 
-    @vite(['resources/css/app.css', 'resources/js/' . Route::currentRouteName()])
+    @vite(['resources/css/app.css', 'resources/js/' . $page['component'] . '.jsx'])
     @inertiaHead
 
     <link href="/lte/assets/libs/quill/quill.snow.css" rel="stylesheet" type="text/css" media="print" onload="this.media='all'" />

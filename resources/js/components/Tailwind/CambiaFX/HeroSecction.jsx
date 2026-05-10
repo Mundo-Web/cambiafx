@@ -21,111 +21,6 @@ export default function HeroSecction({ data = [], apps = [], indicators = [] }) 
     const heroImageSrc = heroImageId ? `/api/landing_home/media/${heroImageId}` : '/api/cover/thumbnail/null';
     const appCardImageWidths = [160, 240, 320, 420];
 
-
-
-
-
-    // Componente para renderizar texto con colores cambiantes (sin typing)
-    const TextWithColors = ({ text, className = '' }) => {
-        if (!text) return null;
-
-        // Dividir por coma para mantener la funcionalidad original
-        const lines = text.split(',');
-
-        return (
-            <div className={`${className} flex flex-col`}>
-                {lines.map((line, lineIndex) => {
-                    const parts = line.trim().split(/(\*[^*]+\*)/g); // Separa las partes con asterisco
-
-                    return (
-                        <motion.span
-                            key={lineIndex}
-                            className="block"
-                            initial={{ opacity: 0, y: 10 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ delay: lineIndex * 0.2, duration: 0.5 }}
-                        >
-                            {parts.map((part, partIndex) => {
-                                if (part.startsWith("*") && part.endsWith("*")) {
-                                    return (
-                                        <motion.span
-                                            key={`${lineIndex}-${partIndex}-${colorIndex}`}
-                                            className={`${colors[colorIndex]} font-bold relative`}
-                                            initial={{ opacity: 0.7, scale: 0.98 }}
-                                            animate={{
-                                                opacity: 1,
-                                                scale: 1,
-                                                transition: {
-                                                    duration: 0.6,
-                                                    ease: "easeInOut",
-                                                    type: "spring",
-                                                    stiffness: 150
-                                                }
-                                            }}
-                                            whileHover={{
-                                                scale: 1.05,
-                                                transition: { duration: 0.2 }
-                                            }}
-                                            style={{
-                                                textShadow:
-                                                    colorIndex === 1 ? "0 0 20px rgba(126, 90, 251, 0.4), 0 0 40px rgba(126, 90, 251, 0.2)" :
-                                                        colorIndex === 2 ? "0 0 15px rgba(187, 255, 82, 0.4), 0 0 30px rgba(187, 255, 82, 0.2)" :
-                                                            "0 2px 4px rgba(12, 12, 12, 0.1)",
-                                                filter:
-                                                    colorIndex === 1 ? "drop-shadow(0 0 15px rgba(126, 90, 251, 0.3))" :
-                                                        colorIndex === 2 ? "drop-shadow(0 0 10px rgba(149, 255, 0,0.1))" :
-                                                            "none"
-                                            }}
-                                        >
-                                            {part.slice(1, -1)}
-                                            {/* Efecto de partículas para colores especiales */}
-                                            {(colorIndex === 1 || colorIndex === 2) && (
-                                                <motion.span
-                                                    className="absolute -top-1 -right-1 w-2 h-2 rounded-full"
-                                                    style={{
-                                                        backgroundColor: colorIndex === 1 ? '#7E5AFB' : '#BBFF52'
-                                                    }}
-                                                    animate={{
-                                                        scale: [0, 1, 0],
-                                                        opacity: [0, 1, 0]
-                                                    }}
-                                                    transition={{
-                                                        duration: 2,
-                                                        repeat: Infinity,
-                                                        ease: "easeInOut"
-                                                    }}
-                                                />
-                                            )}
-                                            {/* Efecto de pulso adicional */}
-                                            {colorIndex === 1 && (
-                                                <motion.span
-                                                    className="absolute inset-0 rounded-lg"
-                                                    style={{
-                                                        background: 'linear-gradient(45deg, rgba(126, 90, 251, 0.1), rgba(126, 90, 251, 0.05))'
-                                                    }}
-                                                    animate={{
-                                                        opacity: [0, 0.3, 0],
-                                                        scale: [0.95, 1.05, 0.95]
-                                                    }}
-                                                    transition={{
-                                                        duration: 3,
-                                                        repeat: Infinity,
-                                                        ease: "easeInOut"
-                                                    }}
-                                                />
-                                            )}
-                                        </motion.span>
-                                    );
-                                }
-                                return <span key={partIndex}>{part}</span>;
-                            })}
-                        </motion.span>
-                    );
-                })}
-            </div>
-        );
-    };
-
     // Variantes de animación más suaves y elegantes con loop
     const containerVariants = {
         hidden: { opacity: 0 },
@@ -307,8 +202,9 @@ export default function HeroSecction({ data = [], apps = [], indicators = [] }) 
                         transition={{ delay: 0.2 }}
                     >
                         {/* Texto con colores cambiantes para palabras con asterisco */}
-                        <TextWithColors
+                        <TextWithHighlight
                             text={data?.title}
+                            color="bg-constrast"
                         />
                     </motion.h1>
                     <motion.p

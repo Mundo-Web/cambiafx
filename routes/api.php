@@ -60,6 +60,7 @@ use App\Http\Controllers\Admin\BrandController as AdminBrandController;
 use App\Http\Controllers\Admin\SupplyController as AdminSupplyController;
 use App\Http\Controllers\Admin\UserController as AdminUserController;
 use App\Http\Controllers\Admin\AppController as AdminAppController;
+use App\Http\Controllers\Admin\TransactionalLandingController as AdminTransactionalLandingController;
 use App\Http\Controllers\AppMediaController;
 
 // Customer
@@ -200,6 +201,7 @@ Route::get('/instagram_post/media/{uuid}', [InstagramPostsController::class, 'me
 Route::get('/brands/media/{uuid}', [BrandController::class, 'media']);
 Route::get('/brands/media/{uuid}', [BrandController::class, 'media']);
 Route::get('/infoproducts/media/{uuid}', [InfoproductController::class, 'media']);
+Route::get('/transactional_landings/media/{uuid}', [AdminTransactionalLandingController::class, 'media']);
 
 Route::post('/posts/paginate', [PostController::class, 'paginate']);
 Route::post('/infoproducts/paginate', [InfoproductController::class, 'paginate']);
@@ -228,7 +230,7 @@ Route::get('/cambiafx/cupon/{code}', [App\Http\Controllers\CambiaFXProxyControll
 
 Route::post('/items/verify-stock', [ItemController::class, 'verifyStock']);
 
-
+Route::get('/competition-rates', [App\Http\Controllers\CompetitionRateController::class, 'getRates']);
 
 Route::prefix('/culqi')->group(function () {
     Route::post('/order', [CulqiController::class, 'order']);
@@ -540,6 +542,12 @@ Route::middleware('auth')->group(function () {
         Route::patch('/langs/status', [AdminLangController::class, 'status']);
         Route::patch('/langs/{field}', [AdminLangController::class, 'boolean']);
         Route::delete('/langs/{id}', [AdminLangController::class, 'delete']);
+
+        Route::post('/transactional_landings', [AdminTransactionalLandingController::class, 'save']);
+        Route::post('/transactional_landings/paginate', [AdminTransactionalLandingController::class, 'paginate']);
+        Route::patch('/transactional_landings/status', [AdminTransactionalLandingController::class, 'status']);
+        Route::patch('/transactional_landings/{field}', [AdminTransactionalLandingController::class, 'boolean']);
+        Route::delete('/transactional_landings/{id}', [AdminTransactionalLandingController::class, 'delete']);
     });
 
     // Endpoint para obtener variables de notificaciones

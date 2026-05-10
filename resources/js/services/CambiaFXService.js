@@ -3,7 +3,6 @@ import axios from 'axios';
 class CambiaFXService {
     constructor() {
         this.baseURL = 'https://apiluna.cambiafx.pe/api/BackendPizarra';
-        this.localAPI = '/api';
         this.tcData = [];
         this.tcBase = [];
         this.tcBaseOriginal = null;
@@ -315,6 +314,23 @@ class CambiaFXService {
             return { success: true, redirectUrl: url };
         } catch (error) {
             throw error;
+        }
+    }
+
+    async getCompetitionRates(landingUrl = null) {
+        try {
+            const response = await axios.get('/api/competition-rates', {
+                params: { url: landingUrl }
+            });
+            
+            if (response.data && response.data.status === 200) {
+                return response.data.data;
+            }
+            
+            return [];
+        } catch (error) {
+            console.error('Error fetching competition rates:', error);
+            return [];
         }
     }
 
