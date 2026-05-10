@@ -3644,7 +3644,7 @@
     ]
   },
   "resources/js/Landings/SolesADolares.jsx": {
-    "file": "assets/SolesADolares-D7UjmiWw.js",
+    "file": "assets/SolesADolares-DzSbzH5v.js",
     "name": "SolesADolares",
     "src": "resources/js/Landings/SolesADolares.jsx",
     "isEntry": true,
@@ -4643,7 +4643,7 @@
     ]
   },
   "resources/js/components/Adminto/form/InputFormGroup.jsx": {
-    "file": "assets/InputFormGroup-Cg9YEes8.js",
+    "file": "assets/InputFormGroup-DYGxZomm.js",
     "name": "InputFormGroup",
     "src": "resources/js/components/Adminto/form/InputFormGroup.jsx",
     "isEntry": true,
@@ -4663,7 +4663,7 @@
     ]
   },
   "resources/js/components/Adminto/form/QuillFormGroup.jsx": {
-    "file": "assets/QuillFormGroup-Cg9YEes8.js",
+    "file": "assets/QuillFormGroup-DYGxZomm.js",
     "name": "QuillFormGroup",
     "src": "resources/js/components/Adminto/form/QuillFormGroup.jsx",
     "isEntry": true,
@@ -5447,7 +5447,7 @@
     ]
   },
   "resources/js/components/Table.jsx": {
-    "file": "assets/Table-DYGxZomm.js",
+    "file": "assets/Table-Cg9YEes8.js",
     "name": "Table",
     "src": "resources/js/components/Table.jsx",
     "isEntry": true,
@@ -5582,18 +5582,16 @@
     ]
   },
   "resources/js/components/Tailwind/CambiaFX/CuponesSection.jsx": {
-    "file": "assets/CuponesSection-B4q_iF_u.js",
+    "file": "assets/CuponesSection-CxyU7z85.js",
     "name": "CuponesSection",
     "src": "resources/js/components/Tailwind/CambiaFX/CuponesSection.jsx",
-    "isDynamicEntry": true,
+    "isEntry": true,
     "imports": [
       "resources/js/Admin/components/RequirementCard.jsx",
-      "_TextWithHighlight-Duv9Efqt.js",
+      "resources/js/components/WebVitalsMonitor.jsx",
       "_OptimizedImage-CpVjkwEC.js",
       "resources/js/components/Tailwind/CambioGerencia/HomeSeccionBlog.jsx",
-      "_autoplay-CgyjI068.js",
-      "_proxy-CGT4zrn4.js",
-      "resources/js/components/WebVitalsMonitor.jsx"
+      "_proxy-CGT4zrn4.js"
     ],
     "css": [
       "swiper.css"
@@ -5648,12 +5646,14 @@
     ]
   },
   "resources/js/components/Tailwind/CambiaFX/FuncionSection.jsx": {
-    "file": "assets/FuncionSection-Cg9YEes8.js",
+    "file": "assets/FuncionSection-CpsGtyzj.js",
     "name": "FuncionSection",
     "src": "resources/js/components/Tailwind/CambiaFX/FuncionSection.jsx",
-    "isEntry": true,
+    "isDynamicEntry": true,
     "imports": [
       "resources/js/Admin/components/RequirementCard.jsx",
+      "_TextWithHighlight-Duv9Efqt.js",
+      "_proxy-CGT4zrn4.js",
       "resources/js/components/WebVitalsMonitor.jsx"
     ]
   },
@@ -6299,7 +6299,7 @@
     ]
   },
   "resources/js/components/Tailwind/Table.jsx": {
-    "file": "assets/Table-Cg9YEes8.js",
+    "file": "assets/Table-DYGxZomm.js",
     "name": "Table",
     "src": "resources/js/components/Tailwind/Table.jsx",
     "isEntry": true,
@@ -6417,10 +6417,10 @@
     ]
   },
   "resources/js/components/Test/Email.jsx": {
-    "file": "assets/Email-Db-qJFuY.js",
+    "file": "assets/Email-CqzSsUqP.js",
     "name": "Email",
     "src": "resources/js/components/Test/Email.jsx",
-    "isDynamicEntry": true,
+    "isEntry": true,
     "imports": [
       "resources/js/Admin/components/RequirementCard.jsx",
       "resources/js/components/WebVitalsMonitor.jsx",
@@ -6601,7 +6601,7 @@
     ]
   },
   "resources/js/components/form/InputFormGroup.jsx": {
-    "file": "assets/InputFormGroup-DYGxZomm.js",
+    "file": "assets/InputFormGroup-Cg9YEes8.js",
     "name": "InputFormGroup",
     "src": "resources/js/components/form/InputFormGroup.jsx",
     "isEntry": true,
@@ -6621,7 +6621,7 @@
     ]
   },
   "resources/js/components/form/QuillFormGroup.jsx": {
-    "file": "assets/QuillFormGroup-DYGxZomm.js",
+    "file": "assets/QuillFormGroup-Cg9YEes8.js",
     "name": "QuillFormGroup",
     "src": "resources/js/components/form/QuillFormGroup.jsx",
     "isEntry": true,

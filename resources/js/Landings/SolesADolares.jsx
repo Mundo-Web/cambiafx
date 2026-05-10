@@ -210,7 +210,7 @@ const SolesADolares = ({
     };
 
     return (
-        <div className="min-h-screen bg-latte overflow-x-hidden">
+        <div className="min-h-screen  overflow-x-hidden">
             <Header showSlogan={true} />
             <CintilloSection />
 
@@ -261,7 +261,7 @@ const SolesADolares = ({
                 </motion.div>
 
                 {/* Lado Izquierdo: Info, Stats & Comparison */}
-                <div className="w-full lg:w-7/12 bg-latte px-[6%] py-16 relative flex flex-col justify-center">
+                <div className="w-full lg:w-7/12  px-[6%] py-16 relative flex flex-col justify-center">
                     {/* SVG Decorativo fondo claro */}
                     <div className="absolute top-0 left-0 w-full h-full opacity-40 pointer-events-none -z-10">
                         <svg
@@ -365,10 +365,10 @@ const SolesADolares = ({
                 </div>
 
                 {/* Lado Derecho: Calculadora */}
-                <div className="w-full lg:w-5/12 bg-latte px-[4%] py-16 flex flex-col items-center justify-center relative overflow-hidden">
+                <div className="w-full lg:w-5/12 px-[4%] py-16 flex flex-col items-center justify-center relative overflow-hidden">
                     {/* Brillo decorativo sutil */}
-                    <div className="absolute -top-20 -right-20 w-96 h-96 bg-majorelle/5 blur-[120px] rounded-full"></div>
-                    <div className="absolute -bottom-20 -left-20 w-96 h-96 bg-mindaro/5 blur-[100px] rounded-full"></div>
+                    <div className="absolute -top-20 -right-20 w-96 h-96 blur-[120px] rounded-full"></div>
+                    <div className="absolute -bottom-20 -left-20 w-96 h-96  blur-[100px] rounded-full"></div>
 
                     <motion.div
                         initial={{ opacity: 0, scale: 0.9 }}
@@ -381,7 +381,6 @@ const SolesADolares = ({
                         className="w-full max-w-[460px] z-10"
                     >
                         <div className="relative">
-                            <div className="absolute -inset-1 bg-gradient-to-r from-majorelle/10 to-mindaro/10 rounded-[32px] blur opacity-10 transition duration-1000"></div>
                             <div className="relative">
                                 <ExchangeCard
                                     title="COTIZA TU CAMBIO"
@@ -397,8 +396,6 @@ const SolesADolares = ({
             {/* SECCIÓN COMPARATIVA DE MERCADO (Fondo Oscuro) */}
             <section className="bg-neutral-dark py-24 px-[5%] relative overflow-hidden">
                 {/* Decoración de fondo */}
-                <div className="absolute top-0 right-0 w-1/2 h-full bg-majorelle/5 blur-[120px] rounded-full pointer-events-none"></div>
-                <div className="absolute bottom-0 left-0 w-1/2 h-full bg-mindaro/5 blur-[120px] rounded-full pointer-events-none"></div>
                 {/* Fondo decorativo animado - Oculto en móvil para mejor rendimiento */}
                 <motion.div
                     className="absolute h-full w-auto top-0 right-0 opacity-50 z-0 overflow-hidden rounded-[28px] md:rounded-[56px] hidden md:block"
@@ -470,13 +467,23 @@ const SolesADolares = ({
                                 ))}
                             </div>
                             <div className="text-white/60 text-sm font-medium">
-                                <strong className="text-mindaro text-lg block">
-                                    {landing.stats?.find(
-                                        (s) =>
-                                            s.label.includes("clientes") ||
-                                            s.label.includes("personas"),
-                                    )?.value || "60k+"}{" "}
-                                    personas
+                                <strong className="text-white text-lg block">
+                                    <TextWithHighlight
+                                        text={
+                                            landing.stats?.find(
+                                                (s) =>
+                                                    s.label.includes(
+                                                        "clientes",
+                                                    ) ||
+                                                    s.label.includes(
+                                                        "personas",
+                                                    ),
+                                            )?.value +
+                                                " " +
+                                                "personas" || "60k+ personas"
+                                        }
+                                        color="bg-constrast"
+                                    />
                                 </strong>
                                 ya confían en nuestra tasa
                             </div>
@@ -486,7 +493,7 @@ const SolesADolares = ({
                             whileHover={{ scale: 1.05 }}
                             whileTap={{ scale: 0.95 }}
                             href="https://mi.cambiafx.pe/register"
-                            className="inline-flex items-center bg-secondary gap-3 bg-mindaro text-neutral-dark px-10 py-5 rounded-full font-bold text-lg hover:brightness-110 transition-all shadow-xl uppercase tracking-wider"
+                            className="inline-flex items-center bg-secondary gap-3 text-neutral-dark px-10 py-5 rounded-full font-bold text-lg hover:brightness-110 transition-all shadow-xl uppercase tracking-wider"
                         >
                             {landing.comparison_cta || "Comenzar ahora"}
                             <ArrowRight size={20} />
@@ -494,7 +501,6 @@ const SolesADolares = ({
                     </div>
 
                     <div className="relative">
-                        <div className="absolute -inset-10 bg-mindaro/20 blur-[100px] rounded-full opacity-30 animate-pulse"></div>
                         <div className="bg-white/5 backdrop-blur-xl rounded-[48px] p-2 md:p-8 border border-white/10 shadow-2xl relative">
                             <ComparisonTable
                                 data={[
@@ -672,7 +678,7 @@ const SolesADolares = ({
                                     landing.cta_button_link ||
                                     "https://mi.cambiafx.pe/login"
                                 }
-                                className="bg-mindaro text-neutral-dark bg-secondary font-black px-12 py-5 rounded-full text-lg uppercase tracking-widest shadow-xl whitespace-nowrap"
+                                className=" text-neutral-dark bg-secondary font-black px-12 py-5 rounded-full text-lg uppercase tracking-widest shadow-xl whitespace-nowrap"
                             >
                                 {landing.cta_button_text || "Cambiar ahora"}
                             </motion.a>
