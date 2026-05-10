@@ -9,12 +9,15 @@ const ComparisonTable = ({ data = [] }) => {
     });
 
     useEffect(() => {
-        // Intentar obtener tasas reales de Cambia FX
+        // Obtener tasas reales de Cambia FX
         const fetchOwnRates = async () => {
             try {
-                const rates = CambiaFXService.getCurrentRates();
-                if (rates && rates.compra !== "0.0000") {
-                    setOwnRates(rates);
+                const rates = await CambiaFXService.getExchangeRates();
+                if (rates && rates.length > 0) {
+                    setOwnRates({
+                        compra: rates[0].tc_compra.toFixed(4),
+                        venta: rates[0].tc_venta.toFixed(4),
+                    });
                 }
             } catch (error) {
                 console.error(

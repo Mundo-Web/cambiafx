@@ -64,8 +64,8 @@
       "_proxy-CGT4zrn4.js"
     ]
   },
-  "_ComparisonTable-D_K3-QgR.js": {
-    "file": "assets/ComparisonTable-D_K3-QgR.js",
+  "_ComparisonTable-CX4ftums.js": {
+    "file": "assets/ComparisonTable-CX4ftums.js",
     "name": "ComparisonTable",
     "imports": [
       "resources/js/Admin/components/RequirementCard.jsx",
@@ -3644,7 +3644,7 @@
     ]
   },
   "resources/js/Landings/SolesADolares.jsx": {
-    "file": "assets/SolesADolares-Clc7U90f.js",
+    "file": "assets/SolesADolares-Dkl3y4si.js",
     "name": "SolesADolares",
     "src": "resources/js/Landings/SolesADolares.jsx",
     "isEntry": true,
@@ -3665,7 +3665,7 @@
       "_OptimizedImage-CpVjkwEC.js",
       "_proxy-CGT4zrn4.js",
       "_index-CoDVSLHB.js",
-      "_ComparisonTable-D_K3-QgR.js",
+      "_ComparisonTable-CX4ftums.js",
       "_CambiaFXService-DtlIP2o9.js",
       "_index-CF8W1V4f.js",
       "resources/js/components/Blog/Filter.jsx",
@@ -3692,7 +3692,7 @@
     ]
   },
   "resources/js/Landings/TipoDeCambioHoy.jsx": {
-    "file": "assets/TipoDeCambioHoy-Dhq1g0RO.js",
+    "file": "assets/TipoDeCambioHoy-DXFQ09Oa.js",
     "name": "TipoDeCambioHoy",
     "src": "resources/js/Landings/TipoDeCambioHoy.jsx",
     "isEntry": true,
@@ -3705,7 +3705,7 @@
       "resources/js/components/Tailwind/DetailProduct/Detail.jsx",
       "_useTranslation-CbKLA_Xw.js",
       "_CambiaFXService-DtlIP2o9.js",
-      "_ComparisonTable-D_K3-QgR.js",
+      "_ComparisonTable-CX4ftums.js",
       "_proxy-CGT4zrn4.js",
       "_index-CoDVSLHB.js",
       "_index-CF8W1V4f.js",
@@ -4613,7 +4613,7 @@
     ]
   },
   "resources/js/components/Adminto/form/CheckboxFormGroup.jsx": {
-    "file": "assets/CheckboxFormGroup-Cg9YEes8.js",
+    "file": "assets/CheckboxFormGroup-DYGxZomm.js",
     "name": "CheckboxFormGroup",
     "src": "resources/js/components/Adminto/form/CheckboxFormGroup.jsx",
     "isEntry": true,
@@ -4643,7 +4643,7 @@
     ]
   },
   "resources/js/components/Adminto/form/InputFormGroup.jsx": {
-    "file": "assets/InputFormGroup-Cg9YEes8.js",
+    "file": "assets/InputFormGroup-DYGxZomm.js",
     "name": "InputFormGroup",
     "src": "resources/js/components/Adminto/form/InputFormGroup.jsx",
     "isEntry": true,
@@ -4653,7 +4653,7 @@
     ]
   },
   "resources/js/components/Adminto/form/PasswordFormGroup.jsx": {
-    "file": "assets/PasswordFormGroup-Cg9YEes8.js",
+    "file": "assets/PasswordFormGroup-DYGxZomm.js",
     "name": "PasswordFormGroup",
     "src": "resources/js/components/Adminto/form/PasswordFormGroup.jsx",
     "isEntry": true,
@@ -4717,7 +4717,7 @@
     ]
   },
   "resources/js/components/Adminto/form/TextareaFormGroup.jsx": {
-    "file": "assets/TextareaFormGroup-Cg9YEes8.js",
+    "file": "assets/TextareaFormGroup-DYGxZomm.js",
     "name": "TextareaFormGroup",
     "src": "resources/js/components/Adminto/form/TextareaFormGroup.jsx",
     "isEntry": true,
@@ -5036,7 +5036,7 @@
     ]
   },
   "resources/js/components/DataGrid.jsx": {
-    "file": "assets/DataGrid-Cg9YEes8.js",
+    "file": "assets/DataGrid-DYGxZomm.js",
     "name": "DataGrid",
     "src": "resources/js/components/DataGrid.jsx",
     "isEntry": true,
@@ -5348,14 +5348,13 @@
     ]
   },
   "resources/js/components/PopupManager/PopupManager.jsx": {
-    "file": "assets/PopupManager-BOJF39-Q.js",
+    "file": "assets/PopupManager-Cg9YEes8.js",
     "name": "PopupManager",
     "src": "resources/js/components/PopupManager/PopupManager.jsx",
-    "isDynamicEntry": true,
+    "isEntry": true,
     "imports": [
       "resources/js/Admin/components/RequirementCard.jsx",
-      "resources/js/components/WebVitalsMonitor.jsx",
-      "_axios-COzaZAiy.js"
+      "resources/js/components/WebVitalsMonitor.jsx"
     ]
   },
   "resources/js/components/Product/Checkout.jsx": {
@@ -5448,7 +5447,7 @@
     ]
   },
   "resources/js/components/Table.jsx": {
-    "file": "assets/Table-Cg9YEes8.js",
+    "file": "assets/Table-DYGxZomm.js",
     "name": "Table",
     "src": "resources/js/components/Table.jsx",
     "isEntry": true,
@@ -5583,38 +5582,35 @@
     ]
   },
   "resources/js/components/Tailwind/CambiaFX/CuponesSection.jsx": {
-    "file": "assets/CuponesSection-BQd5zdGg.js",
+    "file": "assets/CuponesSection-BS8R6t_g.js",
     "name": "CuponesSection",
     "src": "resources/js/components/Tailwind/CambiaFX/CuponesSection.jsx",
-    "isDynamicEntry": true,
+    "isEntry": true,
     "imports": [
       "resources/js/Admin/components/RequirementCard.jsx",
-      "_TextWithHighlight-Duv9Efqt.js",
+      "resources/js/components/WebVitalsMonitor.jsx",
       "_OptimizedImage-CpVjkwEC.js",
       "resources/js/components/Tailwind/CambioGerencia/HomeSeccionBlog.jsx",
-      "_autoplay-BgDP12Xg.js",
-      "_proxy-CGT4zrn4.js",
-      "resources/js/components/WebVitalsMonitor.jsx"
+      "_proxy-CGT4zrn4.js"
     ],
     "css": [
       "assets/swiper-EKmKsbKj.css"
     ]
   },
   "resources/js/components/Tailwind/CambiaFX/EmpresasSection.jsx": {
-    "file": "assets/EmpresasSection--MCzV_VL.js",
+    "file": "assets/EmpresasSection-Vi_lpjVv.js",
     "name": "EmpresasSection",
     "src": "resources/js/components/Tailwind/CambiaFX/EmpresasSection.jsx",
-    "isDynamicEntry": true,
+    "isEntry": true,
     "imports": [
       "resources/js/Admin/components/RequirementCard.jsx",
       "resources/js/components/WebVitalsMonitor.jsx",
       "resources/js/components/Tailwind/CambiaFX/BannerFxEmpresas.jsx",
-      "_proxy-CGT4zrn4.js",
-      "_index-CoDVSLHB.js",
       "_main-BjF2hfsq.js",
       "____vite-browser-external_commonjs-proxy-CGejAyr8.js",
       "resources/js/components/Blog/Results.jsx",
       "_General-CSnTKUjB.js",
+      "_proxy-CGT4zrn4.js",
       "_message-circle-Vrz7cx2B.js",
       "_createLucideIcon-CycH6ojs.js",
       "_phone-Cv7s4kZQ.js"
@@ -6061,7 +6057,7 @@
     ]
   },
   "resources/js/components/Tailwind/DataGrid.jsx": {
-    "file": "assets/DataGrid-DYGxZomm.js",
+    "file": "assets/DataGrid-Cg9YEes8.js",
     "name": "DataGrid",
     "src": "resources/js/components/Tailwind/DataGrid.jsx",
     "isEntry": true,
@@ -6301,7 +6297,7 @@
     ]
   },
   "resources/js/components/Tailwind/Table.jsx": {
-    "file": "assets/Table-DYGxZomm.js",
+    "file": "assets/Table-Cg9YEes8.js",
     "name": "Table",
     "src": "resources/js/components/Tailwind/Table.jsx",
     "isEntry": true,
@@ -6419,10 +6415,10 @@
     ]
   },
   "resources/js/components/Test/Email.jsx": {
-    "file": "assets/Email-Db-qJFuY.js",
+    "file": "assets/Email-CqzSsUqP.js",
     "name": "Email",
     "src": "resources/js/components/Test/Email.jsx",
-    "isDynamicEntry": true,
+    "isEntry": true,
     "imports": [
       "resources/js/Admin/components/RequirementCard.jsx",
       "resources/js/components/WebVitalsMonitor.jsx",
@@ -6443,20 +6439,20 @@
     ]
   },
   "resources/js/components/Test/HairGoals.jsx": {
-    "file": "assets/HairGoals-DSruwNl9.js",
+    "file": "assets/HairGoals-Cg9YEes8.js",
     "name": "HairGoals",
     "src": "resources/js/components/Test/HairGoals.jsx",
-    "isDynamicEntry": true,
+    "isEntry": true,
     "imports": [
       "resources/js/Admin/components/RequirementCard.jsx",
       "resources/js/components/WebVitalsMonitor.jsx"
     ]
   },
   "resources/js/components/Test/HairType.jsx": {
-    "file": "assets/HairType-DEujYqTo.js",
+    "file": "assets/HairType-in0CVWnT.js",
     "name": "HairType",
     "src": "resources/js/components/Test/HairType.jsx",
-    "isDynamicEntry": true,
+    "isEntry": true,
     "imports": [
       "resources/js/Admin/components/RequirementCard.jsx",
       "resources/js/components/WebVitalsMonitor.jsx",
@@ -6593,7 +6589,7 @@
     "isEntry": true
   },
   "resources/js/components/form/CheckboxFormGroup.jsx": {
-    "file": "assets/CheckboxFormGroup-DYGxZomm.js",
+    "file": "assets/CheckboxFormGroup-Cg9YEes8.js",
     "name": "CheckboxFormGroup",
     "src": "resources/js/components/form/CheckboxFormGroup.jsx",
     "isEntry": true,
@@ -6603,7 +6599,7 @@
     ]
   },
   "resources/js/components/form/InputFormGroup.jsx": {
-    "file": "assets/InputFormGroup-DYGxZomm.js",
+    "file": "assets/InputFormGroup-Cg9YEes8.js",
     "name": "InputFormGroup",
     "src": "resources/js/components/form/InputFormGroup.jsx",
     "isEntry": true,
@@ -6613,7 +6609,7 @@
     ]
   },
   "resources/js/components/form/PasswordFormGroup.jsx": {
-    "file": "assets/PasswordFormGroup-DYGxZomm.js",
+    "file": "assets/PasswordFormGroup-Cg9YEes8.js",
     "name": "PasswordFormGroup",
     "src": "resources/js/components/form/PasswordFormGroup.jsx",
     "isEntry": true,
@@ -6655,7 +6651,7 @@
     ]
   },
   "resources/js/components/form/TextareaFormGroup.jsx": {
-    "file": "assets/TextareaFormGroup-DYGxZomm.js",
+    "file": "assets/TextareaFormGroup-Cg9YEes8.js",
     "name": "TextareaFormGroup",
     "src": "resources/js/components/form/TextareaFormGroup.jsx",
     "isEntry": true,
