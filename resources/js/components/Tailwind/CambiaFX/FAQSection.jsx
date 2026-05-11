@@ -3,10 +3,14 @@ import { motion, AnimatePresence } from "framer-motion";
 import TextWithHighlight from "../../../Utils/TextWithHighlight";
 
 const FAQSection = ({ faqs = [] }) => {
-    const [activeIndex, setActiveIndex] = useState(null);
+    const [activeIndices, setActiveIndices] = useState([]);
 
     const toggleAccordion = (index) => {
-        setActiveIndex(activeIndex === index ? null : index);
+        if (activeIndices.includes(index)) {
+            setActiveIndices(activeIndices.filter((i) => i !== index));
+        } else {
+            setActiveIndices([...activeIndices, index]);
+        }
     };
 
     if (!faqs || faqs.length === 0) return null;
@@ -28,58 +32,61 @@ const FAQSection = ({ faqs = [] }) => {
                 </div>
 
                 <div className="space-y-4">
-                    {faqs.map((faq, index) => (
-                        <div
-                            key={index}
-                            className="border border-neutral-light/10 rounded-2xl overflow-hidden"
-                        >
-                            <button
-                                onClick={() => toggleAccordion(index)}
-                                className="w-full flex items-center justify-between p-6 md:p-8 text-left hover:bg-neutral-light/5 transition-colors"
+                    {faqs.map((faq, index) => {
+                        const isOpen = activeIndices.includes(index);
+                        return (
+                            <div
+                                key={index}
+                                className="border border-neutral-light/10 rounded-2xl overflow-hidden"
                             >
-                                <span className="text-xl font-medium text-neutral-dark pr-8">
-                                    {faq.question || faq.title}
-                                </span>
-                                <motion.div
-                                    animate={{
-                                        rotate: activeIndex === index ? 180 : 0,
-                                    }}
-                                    className="flex-shrink-0"
+                                <button
+                                    onClick={() => toggleAccordion(index)}
+                                    className="w-full flex items-center justify-between p-6 md:p-8 text-left hover:bg-neutral-light/5 transition-colors"
                                 >
-                                    <svg
-                                        width="24"
-                                        height="24"
-                                        viewBox="0 0 24 24"
-                                        fill="none"
-                                        xmlns="http://www.w3.org/2000/svg"
-                                    >
-                                        <path
-                                            d="M6 9L12 15L18 9"
-                                            stroke="currentColor"
-                                            strokeWidth="2"
-                                            strokeLinecap="round"
-                                            strokeLinejoin="round"
-                                        />
-                                    </svg>
-                                </motion.div>
-                            </button>
-
-                            <AnimatePresence>
-                                {activeIndex === index && (
+                                    <span className="text-xl font-medium text-neutral-dark pr-8">
+                                        {faq.question || faq.title}
+                                    </span>
                                     <motion.div
-                                        initial={{ height: 0, opacity: 0 }}
-                                        animate={{ height: "auto", opacity: 1 }}
-                                        exit={{ height: 0, opacity: 0 }}
-                                        transition={{ duration: 0.3 }}
+                                        animate={{
+                                            rotate: isOpen ? 180 : 0,
+                                        }}
+                                        className="flex-shrink-0"
                                     >
-                                        <div className="px-6 md:px-8 pb-8 text-neutral-light/70 text-lg leading-relaxed whitespace-pre-line">
-                                            {faq.answer || faq.description}
-                                        </div>
+                                        <svg
+                                            width="24"
+                                            height="24"
+                                            viewBox="0 0 24 24"
+                                            fill="none"
+                                            xmlns="http://www.w3.org/2000/svg"
+                                        >
+                                            <path
+                                                d="M6 9L12 15L18 9"
+                                                stroke="currentColor"
+                                                strokeWidth="2"
+                                                strokeLinecap="round"
+                                                strokeLinejoin="round"
+                                            />
+                                        </svg>
                                     </motion.div>
-                                )}
-                            </AnimatePresence>
-                        </div>
-                    ))}
+                                </button>
+
+                                <AnimatePresence>
+                                    {isOpen && (
+                                        <motion.div
+                                            initial={{ height: 0, opacity: 0 }}
+                                            animate={{ height: "auto", opacity: 1 }}
+                                            exit={{ height: 0, opacity: 0 }}
+                                            transition={{ duration: 0.3 }}
+                                        >
+                                            <div className="px-6 md:px-8 pb-8 text-neutral-light/70 text-lg leading-relaxed whitespace-pre-line">
+                                                {faq.answer || faq.description}
+                                            </div>
+                                        </motion.div>
+                                    )}
+                                </AnimatePresence>
+                            </div>
+                        );
+                    })}
                 </div>
             </div>
         </section>
