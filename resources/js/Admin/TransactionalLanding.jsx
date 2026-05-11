@@ -18,6 +18,7 @@ const TransactionalLanding = ({
     items: initialItems,
     current_lang_id,
     default_lang_id,
+    PROGRAMER,
 }) => {
     const modalRef = useRef();
     const [items, setItems] = useState(initialItems);
@@ -28,6 +29,7 @@ const TransactionalLanding = ({
     const [comparisonData, setComparisonData] = useState([]);
     const [faqData, setFaqData] = useState([]);
     const [stepsData, setStepsData] = useState([]);
+    const [currentSlug, setCurrentSlug] = useState("");
 
     // Form refs
     const idRef = useRef();
@@ -62,6 +64,7 @@ const TransactionalLanding = ({
 
     const onModalOpen = (data) => {
         setIsEditing(!!data?.id);
+        setCurrentSlug(data?.url || "");
 
         setStats(
             data?.stats || [
@@ -336,12 +339,14 @@ const TransactionalLanding = ({
             <div className="card">
                 <div className="card-header d-flex justify-content-between align-items-center">
                     <h4 className="card-title">Listado de Landings SEO</h4>
-                    <button
-                        className="btn btn-primary btn-sm"
-                        onClick={() => onModalOpen()}
-                    >
-                        <i className="fa fa-plus me-1"></i> Nueva Landing
-                    </button>
+                    {PROGRAMER === "landing" && (
+                        <button
+                            className="btn btn-primary btn-sm"
+                            onClick={() => onModalOpen()}
+                        >
+                            <i className="fa fa-plus me-1"></i> Nueva Landing
+                        </button>
+                    )}
                 </div>
                 <div className="card-body">
                     <div className="table-responsive">
@@ -435,36 +440,57 @@ const TransactionalLanding = ({
                                             SEO & General
                                         </button>
                                     </li>
-                                    <li
-                                        className="nav-item"
-                                        role="presentation"
-                                    >
-                                        <button
-                                            className="nav-link"
-                                            id="hero-tab"
-                                            data-bs-toggle="tab"
-                                            data-bs-target="#hero"
-                                            type="button"
-                                            role="tab"
+                                    {currentSlug !== "tipo-de-cambio-hoy" && (
+                                        <li
+                                            className="nav-item"
+                                            role="presentation"
                                         >
-                                            Hero & Stats
-                                        </button>
-                                    </li>
-                                    <li
-                                        className="nav-item"
-                                        role="presentation"
-                                    >
-                                        <button
-                                            className="nav-link"
-                                            id="comparison-tab"
-                                            data-bs-toggle="tab"
-                                            data-bs-target="#comparison"
-                                            type="button"
-                                            role="tab"
+                                            <button
+                                                className="nav-link"
+                                                id="hero-tab"
+                                                data-bs-toggle="tab"
+                                                data-bs-target="#hero"
+                                                type="button"
+                                                role="tab"
+                                            >
+                                                Hero & Stats
+                                            </button>
+                                        </li>
+                                    )}
+                                    {currentSlug === "tipo-de-cambio-hoy" && (
+                                        <li
+                                            className="nav-item"
+                                            role="presentation"
                                         >
-                                            Comparativa
-                                        </button>
-                                    </li>
+                                            <button
+                                                className="nav-link"
+                                                id="hero-tab"
+                                                data-bs-toggle="tab"
+                                                data-bs-target="#hero"
+                                                type="button"
+                                                role="tab"
+                                            >
+                                                Hero Content
+                                            </button>
+                                        </li>
+                                    )}
+                                    {currentSlug !== "tipo-de-cambio-hoy" && (
+                                        <li
+                                            className="nav-item"
+                                            role="presentation"
+                                        >
+                                            <button
+                                                className="nav-link"
+                                                id="comparison-tab"
+                                                data-bs-toggle="tab"
+                                                data-bs-target="#comparison"
+                                                type="button"
+                                                role="tab"
+                                            >
+                                                Comparativa
+                                            </button>
+                                        </li>
+                                    )}
                                     <li
                                         className="nav-item"
                                         role="presentation"
@@ -522,6 +548,8 @@ const TransactionalLanding = ({
                                                     colSize="12"
                                                     eRef={urlRef}
                                                     required
+                                                    disabled={isEditing}
+                                                    onChange={(e) => setCurrentSlug(e.target.value)}
                                                 />
                                             </div>
                                             <div className="col-md-12">
@@ -589,79 +617,81 @@ const TransactionalLanding = ({
                                                     rows={2}
                                                 />
                                             </div>
-                                            <div className="col-md-12">
-                                                <hr />
-                                                <div className="d-flex justify-content-between align-items-center mb-3">
-                                                    <h5 className="mb-0 text-primary">
-                                                        Estadísticas (Stats)
-                                                    </h5>
-                                                    <button
-                                                        type="button"
-                                                        className="btn btn-xs btn-outline-primary"
-                                                        onClick={addStat}
-                                                    >
-                                                        + Agregar
-                                                    </button>
-                                                </div>
-                                                <div className="row g-2">
-                                                    {stats.map((stat, i) => (
-                                                        <div
-                                                            key={i}
-                                                            className="col-md-4 mb-2"
+                                            {currentSlug !== "tipo-de-cambio-hoy" && (
+                                                <div className="col-md-12">
+                                                    <hr />
+                                                    <div className="d-flex justify-content-between align-items-center mb-3">
+                                                        <h5 className="mb-0 text-primary">
+                                                            Estadísticas (Stats)
+                                                        </h5>
+                                                        <button
+                                                            type="button"
+                                                            className="btn btn-xs btn-outline-primary"
+                                                            onClick={addStat}
                                                         >
-                                                            <div className="input-group input-group-sm">
-                                                                <input
-                                                                    className="form-control"
-                                                                    placeholder="Label"
-                                                                    value={
-                                                                        stat.label
-                                                                    }
-                                                                    onChange={(
-                                                                        e,
-                                                                    ) =>
-                                                                        updateStat(
-                                                                            i,
-                                                                            "label",
-                                                                            e
-                                                                                .target
-                                                                                .value,
-                                                                        )
-                                                                    }
-                                                                />
-                                                                <input
-                                                                    className="form-control"
-                                                                    placeholder="Valor"
-                                                                    value={
-                                                                        stat.value
-                                                                    }
-                                                                    onChange={(
-                                                                        e,
-                                                                    ) =>
-                                                                        updateStat(
-                                                                            i,
-                                                                            "value",
-                                                                            e
-                                                                                .target
-                                                                                .value,
-                                                                        )
-                                                                    }
-                                                                />
-                                                                <button
-                                                                    type="button"
-                                                                    className="btn btn-danger"
-                                                                    onClick={() =>
-                                                                        removeStat(
-                                                                            i,
-                                                                        )
-                                                                    }
-                                                                >
-                                                                    <i className="fa fa-trash"></i>
-                                                                </button>
+                                                            + Agregar
+                                                        </button>
+                                                    </div>
+                                                    <div className="row g-2">
+                                                        {stats.map((stat, i) => (
+                                                            <div
+                                                                key={i}
+                                                                className="col-md-4 mb-2"
+                                                            >
+                                                                <div className="input-group input-group-sm">
+                                                                    <input
+                                                                        className="form-control"
+                                                                        placeholder="Label"
+                                                                        value={
+                                                                            stat.label
+                                                                        }
+                                                                        onChange={(
+                                                                            e,
+                                                                        ) =>
+                                                                            updateStat(
+                                                                                i,
+                                                                                "label",
+                                                                                e
+                                                                                    .target
+                                                                                    .value,
+                                                                            )
+                                                                        }
+                                                                    />
+                                                                    <input
+                                                                        className="form-control"
+                                                                        placeholder="Valor"
+                                                                        value={
+                                                                            stat.value
+                                                                        }
+                                                                        onChange={(
+                                                                            e,
+                                                                        ) =>
+                                                                            updateStat(
+                                                                                i,
+                                                                                "value",
+                                                                                e
+                                                                                    .target
+                                                                                    .value,
+                                                                            )
+                                                                        }
+                                                                    />
+                                                                    <button
+                                                                        type="button"
+                                                                        className="btn btn-danger"
+                                                                        onClick={() =>
+                                                                            removeStat(
+                                                                                i,
+                                                                            )
+                                                                        }
+                                                                    >
+                                                                        <i className="fa fa-trash"></i>
+                                                                    </button>
+                                                                </div>
                                                             </div>
-                                                        </div>
-                                                    ))}
+                                                        ))}
+                                                    </div>
                                                 </div>
-                                            </div>
+                                            )}
                                         </div>
                                     </div>
 

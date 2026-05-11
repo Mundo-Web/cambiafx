@@ -1,66 +1,127 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, Suspense, lazy } from "react";
 import { createRoot } from "react-dom/client";
-import { motion, AnimatePresence } from "framer-motion";
 import Base from "../Components/Tailwind/Base";
 import CreateReactScript from "../Utils/CreateReactScript";
+import Header from "../components/Tailwind/Header";
+import Footer from "../components/Tailwind/Footer";
 import { CarritoProvider } from "../context/CarritoContext";
+import { motion, AnimatePresence } from "framer-motion";
 import { useTranslation } from "../hooks/useTranslation";
-import CambiaFXService from "../services/CambiaFXService";
+import CintilloSection from "../components/Tailwind/CambiaFX/CintilloSection";
+import ExchangeCard from "../components/Tailwind/CambiaFX/ExchangeCard";
 import TextWithHighlight from "../Utils/TextWithHighlight";
+import OptimizedImage from "../components/Common/OptimizedImage";
+
+const StepsSection = lazy(
+    () => import("../components/Tailwind/CambiaFX/StepsSection"),
+);
+const CuponesSection = lazy(
+    () => import("../components/Tailwind/CambiaFX/CuponesSection"),
+);
+import FAQSection from "../components/Tailwind/CambiaFX/FAQSection";
+const BlogSection = lazy(
+    () => import("../components/Tailwind/CambiaFX/BlogSection"),
+);
 import ComparisonTable from "../components/Tailwind/CambiaFX/ComparisonTable";
+import CambiaFXService from "../services/CambiaFXService";
+import { ArrowRight } from "lucide-react";
 
 const TipoDeCambioHoy = ({
     landing = {},
+    apps = [],
     indicators = [],
     pasos = [],
     faqs = [],
+    posts = [],
     socials = [],
     marketRates = [],
+    liveRates = {},
     financialServiceData = {},
     globalKeywords = "",
 }) => {
     const { t } = useTranslation();
     const [sectionsReady, setSectionsReady] = useState(false);
-    const [amount, setAmount] = useState(1000);
-    const [result, setResult] = useState(0);
-    const [ownRates, setOwnRates] = useState({ compra: "3.715", venta: "3.725" });
-    const [activeFaq, setActiveFaq] = useState(null);
+    const [comparisonData, setComparisonData] = useState(
+        landing.comparison_data || [
+            {
+                entity: "CambiaFX",
+                buy: "3.715",
+                sell: "3.725",
+                is_highlight: true,
+                category: "Nosotros",
+            },
+            {
+                entity: "BCP",
+                buy: "3.650",
+                sell: "3.780",
+                category: "Banco",
+            },
+            {
+                entity: "SUNAT",
+                buy: "3.710",
+                sell: "3.718",
+                category: "Oficial",
+            },
+            {
+                entity: "Paralelo",
+                buy: "3.712",
+                sell: "3.728",
+                category: "Paralelo",
+            },
+        ],
+    );
 
     useEffect(() => {
-        setSectionsReady(true);
-        const fetchRates = async () => {
-            const rates = CambiaFXService.getCurrentRates();
-            if (rates && rates.compra !== "0.0000") {
-                setOwnRates(rates);
-            }
-        };
-        fetchRates();
-    }, []);
+        const timer = setTimeout(() => {
+            setSectionsReady(true);
+        }, 100);
 
-    const sunatRate = (marketRates || []).find(r => r.entity === 'SUNAT') || { buy: '3.750', sell: '3.760' };
-    const oconaRate = (marketRates || []).find(r => r.entity === 'Paralelo') || { buy: '3.720', sell: '3.730' };
-
-    useEffect(() => {
-        const calculate = () => {
-            const res = amount / parseFloat(ownRates.venta);
-            setResult(res.toFixed(2));
-        };
-        calculate();
-    }, [amount, ownRates]);
-
-    // SEO Dynamic Update
-    useEffect(() => {
+        // SEO y Metadatos Dinámicos
         const updateSEO = () => {
-            document.title = landing.meta_title || "Tipo de Cambio Dolar Hoy Peru | Cambia FX";
-            
-            let metaDesc = document.querySelector('meta[name="description"]');
-            if (!metaDesc) {
-                metaDesc = document.createElement("meta");
-                metaDesc.name = "description";
-                document.head.appendChild(metaDesc);
-            }
-            metaDesc.content = landing.meta_description || financialServiceData.description || "";
+            const title =
+                landing.meta_title ||
+                landing.hero_title ||
+                "Cambia soles a dólares online";
+            const description =
+                landing.meta_description ||
+                financialServiceData.description ||
+                "";
+            const keywords = landing.meta_keywords || globalKeywords || "";
+            const image = landing.cta_image
+                ? `${window.location.origin}/api/transactional_landings/media/${landing.cta_image}`
+                : `${window.location.origin}/assets/cambiafx/og-image.webp`;
 
+            document.title = title;
+
+            const setMeta = (name, content, isProperty = false) => {
+                let el = document.querySelector(
+                    `meta[${isProperty ? "property" : "name"}="${name}"]`,
+                );
+                if (!el) {
+                    el = document.createElement("meta");
+                    el.setAttribute(isProperty ? "property" : "name", name);
+                    document.head.appendChild(el);
+                }
+                el.content = content;
+            };
+
+            setMeta("description", description);
+            setMeta("keywords", keywords);
+
+            // Open Graph
+            setMeta("og:title", title, true);
+            setMeta("og:description", description, true);
+            setMeta("og:image", image, true);
+            setMeta("og:type", "website", true);
+            setMeta("og:url", window.location.href, true);
+
+            // Twitter
+            setMeta("twitter:card", "summary_large_image");
+            setMeta("twitter:title", title);
+            setMeta("twitter:description", description);
+            setMeta("twitter:image", image);
+
+            // Inject JSON-LD
             const injectSchema = (id, schema) => {
                 let script = document.getElementById(id);
                 if (!script) {
@@ -75,8 +136,55 @@ const TipoDeCambioHoy = ({
             injectSchema("financial-service-schema", financialServiceSchema);
             injectSchema("faq-schema", faqSchema);
         };
+
         updateSEO();
-    }, [landing, financialServiceData]);
+
+        // Cargar datos de competencia en tiempo real
+        const fetchCompetition = async () => {
+            try {
+                const rates = await CambiaFXService.getCompetitionRates(
+                    landing.url,
+                );
+                if (rates && rates.length > 0) {
+                    setComparisonData(rates);
+                } else if (
+                    landing.comparison_data &&
+                    landing.comparison_data.length > 0
+                ) {
+                    setComparisonData(landing.comparison_data);
+                }
+            } catch (error) {
+                console.error("Error fetching competition rates:", error);
+                if (landing.comparison_data) {
+                    setComparisonData(landing.comparison_data);
+                }
+            }
+        };
+
+        fetchCompetition();
+
+        return () => clearTimeout(timer);
+    }, [landing, financialServiceData, globalKeywords]);
+
+    const containerVariants = {
+        hidden: { opacity: 0 },
+        visible: {
+            opacity: 1,
+            transition: {
+                staggerChildren: 0.15,
+                delayChildren: 0.2,
+            },
+        },
+    };
+
+    const itemVariants = {
+        hidden: { opacity: 0, y: 30 },
+        visible: {
+            opacity: 1,
+            y: 0,
+            transition: { duration: 0.8, ease: "easeOut" },
+        },
+    };
 
     const financialServiceSchema = {
         "@context": "https://schema.org",
@@ -86,12 +194,22 @@ const TipoDeCambioHoy = ({
         url: `https://cambiafx.pe/${landing.url}`,
         telephone: financialServiceData.phone,
         logo: "https://cambiafx.pe/assets/img/logo.png",
-        image: landing.cta_image ? `/api/transactional_landings/media/${landing.cta_image}` : "https://cambiafx.pe/assets/img/logo.png",
+        image: landing.cta_image
+            ? `/api/transactional_landings/media/${landing.cta_image}`
+            : "https://cambiafx.pe/assets/img/logo.png",
         address: {
             "@type": "PostalAddress",
             addressLocality: financialServiceData.address?.locality,
             addressRegion: financialServiceData.address?.region,
             addressCountry: financialServiceData.address?.country,
+        },
+        openingHours: financialServiceData.openingHours,
+        currenciesAccepted: "USD, PEN",
+        paymentAccepted: financialServiceData.paymentsAccepted,
+        priceRange: "$$",
+        areaServed: {
+            "@type": "Country",
+            name: "Peru",
         },
         sameAs: (socials || []).map((s) => s.link),
     };
@@ -109,236 +227,585 @@ const TipoDeCambioHoy = ({
         })),
     };
 
-    const containerVariants = {
-        hidden: { opacity: 0 },
-        visible: {
-            opacity: 1,
-            transition: { staggerChildren: 0.1, delayChildren: 0.3 },
-        },
-    };
-
-    const itemVariants = {
-        hidden: { y: 20, opacity: 0 },
-        visible: { y: 0, opacity: 1, transition: { duration: 0.6 } },
-    };
-
     return (
-        <div className="min-h-screen bg-white font-sans selection:bg-mindaro selection:text-neutral-dark">
-            {/* 1. NAV - Estilo Periodístico */}
-            <nav className="bg-[#0C0C0C] py-4 px-[5%] flex justify-between items-center sticky top-0 z-50 border-b border-white/5">
-                <div className="flex items-center gap-8">
-                    <img src="/assets/img/logo-white.png" alt="Cambia FX" className="h-8 md:h-10" />
-                    <span className="hidden md:block text-white/40 text-xs uppercase tracking-[0.2em] font-medium border-l border-white/10 pl-8">
-                        Tipo de cambio en vivo — {new Date().toLocaleDateString('es-PE', { day: 'numeric', month: 'short', year: 'numeric' })}
-                    </span>
-                </div>
-                <button 
-                    onClick={() => window.location.href = 'https://mi.cambiafx.pe/register'}
-                    className="bg-[#BBFF52] text-neutral-dark px-6 py-2.5 rounded-full text-sm font-bold hover:scale-105 transition-transform"
-                >
-                    Cambiar dólares
-                </button>
-            </nav>
+        <div className="min-h-screen bg-latte overflow-x-hidden font-title">
+            <Header showSlogan={true} />
+            <CintilloSection />
 
-            {/* 2. HERO - Estilo Financiero */}
-            <header className="bg-[#0C0C0C] pt-24 pb-40 px-[5%] relative overflow-hidden">
-                <div className="max-w-7xl mx-auto relative z-10">
-                    <motion.div 
-                        initial="hidden"
-                        animate="visible"
-                        variants={containerVariants}
-                        className="text-center md:text-left"
-                    >
-                        <motion.h1 
-                            variants={itemVariants}
-                            className="text-white/60 text-sm uppercase tracking-widest font-bold mb-6"
+            {/* PREMIUM HERO SECTION */}
+            <motion.section
+                className="relative min-h-[800px] bg-neutral-dark flex flex-col lg:flex-row "
+                initial="hidden"
+                animate={sectionsReady ? "visible" : "hidden"}
+                variants={containerVariants}
+            >
+                {/* Lado Izquierdo: Info, Stats & Comparison */}
+                <div className="w-full lg:w-8/12 order-1  px-[6%] py-16 relative flex flex-col justify-center">
+                    {/* SVG Decorativo fondo claro */}
+                    <div className="absolute top-0 left-0 w-full h-full opacity-40 pointer-events-none -z-10">
+                        <svg
+                            className="w-full h-full object-cover"
+                            width="1032"
+                            height="696"
+                            viewBox="0 0 1032 696"
+                            fill="none"
                         >
-                            {landing.h1 || "Tipo de cambio hoy en Perú"}
-                        </motion.h1>
-                        
-                        <div className="flex flex-col md:flex-row md:items-end gap-6 mb-12">
-                            <motion.div variants={itemVariants} className="flex flex-col">
-                                <span className="text-[#BBFF52] text-[80px] md:text-[120px] font-black leading-none tracking-tighter">
-                                    S/ {ownRates.venta}
-                                </span>
-                                <span className="text-white/30 text-sm mt-2 font-medium">
-                                    Precio de venta oficial Cambia FX — Actualizado hace 1 min
-                                </span>
-                            </motion.div>
+                            <path
+                                d="M962.486 762.894C901.955 871.616 810.878 955.559 705.847 999.2C482.713 1086.8 265.287 1039.12 123.123 872.135C-16.4963 708.189 -39.4199 470.768 66.0483 281.333C103.611 213.865 155.93 153.528 221.813 101.827L223.621 100.484C265.297 70.3687 442.611 -32.9777 547.184 11.146C585.342 27.3298 609.663 60.7518 615.961 105.286L616.35 108.394C618.309 132.8 612.99 156.95 601.083 178.335"
+                                fill="url(#paint0_linear)"
+                                fillOpacity="0.3"
+                            />
+                            <defs>
+                                <linearGradient
+                                    id="paint0_linear"
+                                    x1="55.0487"
+                                    y1="301.09"
+                                    x2="945.994"
+                                    y2="792.447"
+                                    gradientUnits="userSpaceOnUse"
+                                >
+                                    <stop offset="0.48" stopColor="#FFFDF9" />
+                                    <stop
+                                        offset="1"
+                                        stopColor="#C7B7FF"
+                                        stopOpacity="0.2"
+                                    />
+                                </linearGradient>
+                            </defs>
+                        </svg>
+                    </div>
 
-                            <motion.div variants={itemVariants} className="flex gap-3 pb-4">
-                                <div className="bg-white/5 border border-white/10 rounded-2xl px-5 py-3 backdrop-blur-sm">
-                                    <span className="block text-white/30 text-[10px] uppercase font-bold mb-1">Cambia FX</span>
-                                    <span className="text-[#BBFF52] font-bold text-lg">S/ {ownRates.compra}</span>
-                                    <span className="text-[#BBFF52] ml-1 text-xs">↑</span>
+                    <motion.span
+                        variants={itemVariants}
+                        className="text-sm text-secondary font-medium tracking-widest  mb-2 uppercase"
+                    >
+                        {landing.hero_eyebrow ||
+                            "Cambia ahora - Sin comisiones"}
+                    </motion.span>
+
+                    <motion.h1
+                        variants={itemVariants}
+                        className="text-5xl md:text-8xl font-medium text-white leading-[0.95] mb-10"
+                    >
+                        <TextWithHighlight
+                            text={
+                                landing.hero_title ||
+                                "Cambia *soles a dólares* online en Perú al mejor tipo de cambio"
+                            }
+                            color="bg-secondary"
+                        />
+                    </motion.h1>
+
+                    <motion.p
+                        variants={itemVariants}
+                        className="text-lg md:text-xl text-white/70 max-w-2xl mb-16 leading-relaxed"
+                    >
+                        {landing.hero_subtitle ||
+                            "Nuestra tecnología se conecta con los principales indicadores para ofrecerte el mejor precio."}
+                    </motion.p>
+
+                    {/* Market Rates Section */}
+                    <motion.div
+                        variants={itemVariants}
+                        className="flex flex-wrap gap-x-8 gap-y-10"
+                    >
+                        {["SUNAT", "Paralelo"].map((entityName) => {
+                            const rate = (marketRates || []).find((r) =>
+                                r.entity
+                                    .toLowerCase()
+                                    .includes(entityName.toLowerCase()),
+                            );
+                            if (!rate) return null;
+                            return (
+                                <div
+                                    key={entityName}
+                                    className="flex flex-col bg-white/5 border border-white/10 p-6 rounded-[32px] backdrop-blur-sm min-w-[260px] hover:border-secondary/30 transition-colors group"
+                                >
+                                    <div className="flex items-center gap-2 mb-4">
+                                        <div className="w-2 h-2 rounded-full bg-secondary animate-pulse"></div>
+                                        <span className="text-sm text-secondary font-medium   opacity-80">
+                                            Dólar{" "}
+                                            {entityName === "Paralelo"
+                                                ? "Ocoña"
+                                                : entityName}
+                                        </span>
+                                    </div>
+                                    <div className="flex justify-between items-center gap-4">
+                                        <div className="flex flex-col">
+                                            <span className="text-3xl md:text-5xl font-bold text-white tracking-tighter leading-none">
+                                                {rate.buy}
+                                            </span>
+                                            <span className="text-[10px] font-bold text-white/30 uppercase mt-2 tracking-widest">
+                                                Compra
+                                            </span>
+                                        </div>
+                                        <div className="w-px h-10 bg-white/10"></div>
+                                        <div className="flex flex-col text-right">
+                                            <span className="text-3xl md:text-5xl font-bold text-white tracking-tighter leading-none">
+                                                {rate.sell}
+                                            </span>
+                                            <span className="text-[10px] font-bold text-white/30 uppercase mt-2 tracking-widest">
+                                                Venta
+                                            </span>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div className="bg-white/5 border border-white/10 rounded-2xl px-5 py-3 backdrop-blur-sm">
-                                    <span className="block text-white/30 text-[10px] uppercase font-bold mb-1">SUNAT</span>
-                                    <span className="text-white/60 font-bold text-lg">S/ {sunatRate.sell}</span>
-                                    <span className="text-white/60 ml-1 text-xs">→</span>
-                                </div>
-                                <div className="bg-white/5 border border-white/10 rounded-2xl px-5 py-3 backdrop-blur-sm">
-                                    <span className="block text-white/30 text-[10px] uppercase font-bold mb-1">Ocoña</span>
-                                    <span className="text-amber-400 font-bold text-lg">S/ {oconaRate.sell}</span>
-                                    <span className="text-amber-400 ml-1 text-xs">↑</span>
-                                </div>
-                            </motion.div>
+                            );
+                        })}
+                    </motion.div>
+
+                    {/* Live Updates Section (Vertical Timeline) */}
+                    <motion.div
+                        variants={itemVariants}
+                        className="mt-16 w-full"
+                    >
+                        <div className="flex items-center gap-3 mb-10">
+                            <span className="relative flex h-3 w-3">
+                                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-secondary opacity-75"></span>
+                                <span className="relative inline-flex rounded-full h-3 w-3 bg-secondary"></span>
+                            </span>
+                            <h3 className="text-sm font-black text-white ">
+                                Línea de Tiempo del Mercado
+                            </h3>
                         </div>
 
-                        {/* 3. COTIZADOR INLINE */}
-                        <motion.div 
-                            variants={itemVariants}
-                            className="w-full max-w-4xl bg-white/5 border border-white/10 p-2 rounded-[32px] backdrop-blur-md flex flex-col md:flex-row items-center gap-2"
-                        >
-                            <div className="flex-1 w-full relative">
-                                <input 
-                                    type="number"
-                                    value={amount}
-                                    onChange={(e) => setAmount(e.target.value)}
-                                    placeholder="Soles que cambias"
-                                    className="w-full bg-transparent border-none text-white text-xl font-bold py-4 px-8 focus:ring-0 placeholder:text-white/20"
-                                />
-                                <span className="absolute right-8 top-1/2 -translate-y-1/2 text-white/30 font-bold text-xs uppercase">PEN</span>
-                            </div>
-                            <div className="hidden md:block w-px h-8 bg-white/10"></div>
-                            <div className="flex-1 w-full relative">
-                                <div className="w-full py-4 px-8 text-[#BBFF52] text-xl font-bold">
-                                    {result}
+                        <div className="relative pl-8 space-y-8 before:absolute before:inset-0 before:ml-1 before:-translate-x-px before:h-full before:w-0.5 before:bg-gradient-to-b before:from-secondary before:via-white/10 before:to-transparent">
+                            {(liveRates?.momentos || []).length > 0 ? (
+                                [...liveRates.momentos]
+                                    .sort((a, b) =>
+                                        b.hora.localeCompare(a.hora),
+                                    )
+                                    .map((moment, idx) => (
+                                        <motion.div
+                                            key={idx}
+                                            initial={{ opacity: 0, x: -20 }}
+                                            whileInView={{ opacity: 1, x: 0 }}
+                                            viewport={{ once: true }}
+                                            transition={{ delay: 0.1 * idx }}
+                                            className="relative group"
+                                        >
+                                            {/* Timeline Dot */}
+                                            <div className="absolute left-[-35px] top-1.5 w-3 h-3 rounded-full bg-neutral-dark border-2 border-secondary group-hover:scale-125 transition-transform"></div>
+
+                                            <div className="bg-white/5 border border-white/10 p-6 rounded-[24px] backdrop-blur-md hover:border-secondary/30 transition-all flex flex-col md:flex-row md:items-center justify-between gap-6">
+                                                <div className="flex flex-col gap-1">
+                                                    <div className="flex items-center gap-3">
+                                                        <span className="text-[10px] font-black text-secondary uppercase tracking-widest">
+                                                            {moment.fuente}
+                                                        </span>
+                                                        <span className="text-[10px] text-white/40 font-medium bg-white/5 px-2 py-1 rounded-full">
+                                                            {moment.hora}
+                                                        </span>
+                                                    </div>
+                                                    <p className="text-white font-medium text-sm mt-1 opacity-80">
+                                                        {moment.titulo ||
+                                                            `Actualización de precio ${moment.fuente}`}
+                                                    </p>
+                                                </div>
+
+                                                <div className="flex items-center gap-8 md:border-l md:border-white/10 md:pl-8">
+                                                    <div className="flex flex-col">
+                                                        <span className="text-[9px] text-white/30 uppercase font-bold mb-1 tracking-widest">
+                                                            Compra
+                                                        </span>
+                                                        <span className="text-2xl font-bold text-white tabular-nums">
+                                                            S/{" "}
+                                                            {moment.compra?.toFixed(
+                                                                3,
+                                                            )}
+                                                        </span>
+                                                    </div>
+                                                    <div className="flex flex-col">
+                                                        <span className="text-[9px] text-white/30 uppercase font-bold mb-1 tracking-widest">
+                                                            Venta
+                                                        </span>
+                                                        <span className="text-2xl font-bold text-white tabular-nums">
+                                                            S/{" "}
+                                                            {moment.venta?.toFixed(
+                                                                3,
+                                                            )}
+                                                        </span>
+                                                    </div>
+                                                    {moment.spread && (
+                                                        <div className="hidden sm:flex flex-col text-right">
+                                                            <span className="text-[9px] text-white/30 uppercase font-bold mb-1 tracking-widest">
+                                                                Spread
+                                                            </span>
+                                                            <span className="text-xs font-bold text-secondary">
+                                                                S/{" "}
+                                                                {moment.spread.toFixed(
+                                                                    3,
+                                                                )}
+                                                            </span>
+                                                        </div>
+                                                    )}
+                                                </div>
+                                            </div>
+                                        </motion.div>
+                                    ))
+                            ) : (
+                                <div className="text-white/20 text-sm font-medium italic py-8 flex items-center gap-3">
+                                    <div className="w-1.5 h-1.5 rounded-full bg-white/20"></div>
+                                    Monitorizando pulsos del mercado...
                                 </div>
-                                <span className="absolute right-8 top-1/2 -translate-y-1/2 text-white/30 font-bold text-xs uppercase">USD Recibes</span>
-                            </div>
-                            <button className="w-full md:w-auto bg-[#BBFF52] text-neutral-dark px-10 py-4 rounded-[24px] font-black hover:scale-[1.02] transition-transform">
-                                Cambiar ahora
-                            </button>
-                        </motion.div>
+                            )}
+                        </div>
                     </motion.div>
                 </div>
-                
-                {/* Background Decor */}
-                <div className="absolute top-0 right-0 w-full h-full pointer-events-none opacity-20">
-                    <div className="absolute top-[10%] right-[5%] w-96 h-96 bg-majorelle/30 blur-[120px] rounded-full"></div>
-                </div>
-            </header>
 
-            {/* 4. AHORRO STRIP */}
-            <section className="bg-[#0C0C0C] pb-24 px-[5%] border-t border-white/5">
-                <div className="max-w-7xl mx-auto">
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                        {[
-                            { bank: 'BCP', saving: 'S/ 135', color: 'text-mindaro' },
-                            { bank: 'BBVA', saving: 'S/ 120', color: 'text-mindaro' },
-                            { bank: 'Interbank', saving: 'S/ 115', color: 'text-mindaro' }
-                        ].map((item, i) => (
-                            <div key={i} className="bg-white/5 border border-white/10 p-8 rounded-[32px] hover:border-[#BBFF52]/30 transition-colors group">
-                                <span className="text-white/40 text-xs font-bold uppercase tracking-widest mb-4 block">Ahorras vs {item.bank}</span>
-                                <div className="flex items-end gap-2">
-                                    <span className="text-white text-4xl font-bold">+{item.saving}</span>
-                                    <span className="text-[#BBFF52] text-sm font-bold mb-2 opacity-0 group-hover:opacity-100 transition-opacity">Ahorro real</span>
-                                </div>
+                {/* Lado Derecho: Calculadora */}
+                <div className="w-full lg:w-4/12 px-[4%] py-16 flex flex-col items-start justify-start relative overflow-hidden">
+                    {/* Brillo decorativo sutil */}
+                    <div className="absolute -top-20 -right-20 w-96 h-96 blur-[120px] rounded-full"></div>
+                    <div className="absolute -bottom-20 -left-20 w-96 h-96  blur-[100px] rounded-full"></div>
+
+                    <motion.div
+                        initial={{ opacity: 0, scale: 0.9 }}
+                        animate={
+                            sectionsReady
+                                ? { opacity: 1, scale: 1 }
+                                : { opacity: 0, scale: 0.9 }
+                        }
+                        transition={{ duration: 0.8, delay: 0.4 }}
+                        className="w-full max-w-[460px] z-10"
+                    >
+                        <div className="relative">
+                            <div className="relative">
+                                <ExchangeCard
+                                    title="COTIZA TU CAMBIO"
+                                    initialOperationType="venta"
+                                    showCoupons={true}
+                                />
                             </div>
-                        ))}
-                    </div>
+                        </div>
+                    </motion.div>
+                    {/* SELLO DE CONFIANZA SBS */}
+                    <motion.div
+                        variants={itemVariants}
+                        className="mt-16 flex items-center justify-center gap-6"
+                    >
+                        <div className="flex gap-4 items-center justify-center">
+                            <span className="text-xs font-black text-white  mb-2">
+                                Registrados en:
+                            </span>
+                            <img
+                                src="/assets/cambiafx/sbs_logo.webp"
+                                alt="SBS Logo"
+                                className="h-12 object-contain grayscale invert"
+                            />
+                        </div>
+                    </motion.div>
                 </div>
-            </section>
-            
-            {/* 4.5 TABLA COMPARATIVA - Inyectando marketRates */}
-            <section className="bg-[#0C0C0C] py-24 px-[5%] border-t border-white/5">
-                <div className="max-w-4xl mx-auto text-center">
-                    <h2 className="text-white text-2xl md:text-4xl font-bold mb-12">
-                        Compara el <span className="text-[#BBFF52]">precio del dólar</span> en tiempo real
-                    </h2>
-                    <ComparisonTable data={marketRates} />
-                </div>
-            </section>
+            </motion.section>
 
-            {/* 5. PASOS - Diseño Oscuro */}
-            <section className="bg-neutral-dark py-24 px-[5%]">
-                <div className="max-w-7xl mx-auto">
-                    <h2 className="text-white text-3xl md:text-5xl font-bold mb-16 text-center md:text-left">
-                        Cambia en <span className="text-[#BBFF52]">4 simples pasos</span>
-                    </h2>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-                        {(pasos.length > 0 ? pasos : [
-                            { name: 'Regístrate', description: 'Crea tu cuenta en segundos' },
-                            { name: 'Cotiza', description: 'Elige cuánto quieres cambiar' },
-                            { name: 'Transfiere', description: 'Envía los soles vía banca móvil' },
-                            { name: 'Recibe', description: 'Dólares en tu cuenta en 15 min' }
-                        ]).map((paso, i) => (
-                            <div key={i} className="relative group">
-                                <div className="text-[#BBFF52]/20 text-[100px] font-black absolute -top-10 -left-4 leading-none select-none group-hover:text-[#BBFF52]/30 transition-colors">
-                                    {i + 1}
-                                </div>
-                                <div className="relative z-10 pt-10">
-                                    <h3 className="text-white text-xl font-bold mb-3">{paso.name}</h3>
-                                    <p className="text-white/50 text-sm leading-relaxed">{paso.description}</p>
-                                </div>
-                            </div>
-                        ))}
-                    </div>
-                </div>
-            </section>
-
-            {/* 6. FAQ - Fondo Blanco (Según Brief) */}
-            <section className="bg-white py-24 px-[5%]">
-                <div className="max-w-3xl mx-auto">
-                    <h2 className="text-4xl font-black text-neutral-dark mb-16 text-center">
-                        Preguntas <span className="text-majorelle">frecuentes</span>
-                    </h2>
-                    <div className="space-y-4">
-                        {(landing.schema_faq || []).map((faq, i) => (
-                            <div key={i} className="border-b border-neutral-dark/10">
-                                <button 
-                                    onClick={() => setActiveFaq(activeFaq === i ? null : i)}
-                                    className="w-full py-6 flex justify-between items-center text-left group"
-                                >
-                                    <span className="text-lg font-bold text-neutral-dark group-hover:text-majorelle transition-colors">
-                                        {faq.question}
-                                    </span>
-                                    <span className={`text-2xl transition-transform ${activeFaq === i ? 'rotate-45' : ''}`}>+</span>
-                                </button>
-                                <AnimatePresence>
-                                    {activeFaq === i && (
-                                        <motion.div 
-                                            initial={{ height: 0, opacity: 0 }}
-                                            animate={{ height: 'auto', opacity: 1 }}
-                                            exit={{ height: 0, opacity: 0 }}
-                                            className="overflow-hidden"
-                                        >
-                                            <p className="pb-8 text-neutral-dark/60 leading-relaxed">
-                                                {faq.answer}
-                                            </p>
-                                        </motion.div>
-                                    )}
-                                </AnimatePresence>
-                            </div>
-                        ))}
-                    </div>
-                </div>
-            </section>
-
-            {/* 7. FOOTER CTA */}
-            <section className="bg-[#BBFF52] py-20 px-[5%] text-center">
-                <h2 className="text-neutral-dark text-4xl md:text-6xl font-black mb-10">
-                    ¡Qué bueno que cambiaste!
-                </h2>
-                <button 
-                    onClick={() => window.location.href = 'https://mi.cambiafx.pe/register'}
-                    className="bg-neutral-dark text-white px-12 py-5 rounded-full text-lg font-black hover:scale-105 transition-transform shadow-xl"
+            {/* SECCIÓN COMPARATIVA DE MERCADO (Fondo Oscuro) */}
+            <section className="bg-neutral-dark hidden py-24 px-[5%] relative overflow-hidden">
+                {/* Decoración de fondo */}
+                {/* Fondo decorativo animado - Oculto en móvil para mejor rendimiento */}
+                <motion.div
+                    className="absolute h-full w-auto top-0 right-0 opacity-50 z-0 overflow-hidden rounded-[28px] md:rounded-[56px] hidden md:block"
+                    initial={{ opacity: 0, x: 100 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true, amount: 0.2 }}
+                    transition={{ duration: 1, delay: 0.5 }}
                 >
-                    Empezar ahora
-                </button>
+                    <svg
+                        className="z-0 h-full opacity-20"
+                        width="1080"
+                        height="1080"
+                        viewBox="0 0 726 406"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                    >
+                        <path
+                            d="M106.632 475.609C46.3026 412.336 8.96465 333.732 1.57527 254.167C-10.6896 86.2005 66.6131 -49.7434 208.283 -110.322C347.381 -169.827 511.454 -135.723 616.571 -25.4768C654.009 13.7878 683.587 61.4665 704.543 116.446L705.068 117.939C716.587 152.177 748.969 292.684 697.569 353.65C678.758 375.879 651.264 385.231 620.072 380.174L617.905 379.787C601.122 376.014 586.028 367.412 574.161 354.967C554.638 334.491 546.306 305.952 551.763 278.674C566.519 214.478 545.681 143.75 497.371 93.0833C473.867 68.4325 445.015 49.8011 413.966 39.3954L412.114 38.7093C357.011 16.7474 296.319 26.4814 245.657 65.4353C190.689 107.729 161.557 174.136 169.673 238.906C173.866 282.275 195.191 326.327 228.111 360.854C271.521 406.381 327.405 427.905 377.546 418.42C405.847 412.744 435.433 422.245 456.027 443.844C466.975 455.326 474.554 469.561 478.009 484.97C483.675 509.613 478.407 534.103 463.043 553.505C446.339 574.643 419.424 587.43 390.488 588.04C291.608 600.308 185.644 558.319 106.787 475.614L106.632 475.609Z"
+                            fill="url(#paint0_linear_16_2457)"
+                            fillOpacity="0.6"
+                        />
+                        <defs>
+                            <linearGradient
+                                id="paint0_linear_16_2457"
+                                x1="605.608"
+                                y1="-36.9748"
+                                x2="90.2411"
+                                y2="458.384"
+                                gradientUnits="userSpaceOnUse"
+                            >
+                                <stop offset="0.483986" stopColor="#7E5AFB" />
+                                <stop offset="1" stopColor="#C7B7FF" />
+                            </linearGradient>
+                        </defs>
+                    </svg>
+                </motion.div>
+                <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-20 items-center relative z-10">
+                    <div>
+                        <motion.h2
+                            initial={{ opacity: 0, x: -30 }}
+                            whileInView={{ opacity: 1, x: 0 }}
+                            className="text-4xl md:text-7xl font-medium text-white mb-8"
+                        >
+                            <TextWithHighlight
+                                text={
+                                    landing.comparison_title ||
+                                    "Ahorra más en cada *operación*"
+                                }
+                                color="bg-constrast"
+                            />
+                        </motion.h2>
+                        <p className="text-white/60 text-xl mb-12 leading-relaxed max-w-xl">
+                            {landing.comparison_subtitle ||
+                                "Nuestra tecnología se conecta con los principales indicadores para ofrecerte el mejor precio."}
+                        </p>
+
+                        <div className="flex items-center gap-6 mb-16">
+                            <div className="flex -space-x-3">
+                                {[1, 2, 3, 4].map((i) => (
+                                    <div
+                                        key={i}
+                                        className="w-12 h-12 rounded-full border-2 border-neutral-dark bg-white/10 overflow-hidden"
+                                    >
+                                        <img
+                                            src={`https://i.pravatar.cc/100?u=${i + 10}`}
+                                            alt="User"
+                                        />
+                                    </div>
+                                ))}
+                            </div>
+                            <div className="text-white/60 text-sm font-medium">
+                                <strong className="text-white text-lg block">
+                                    <TextWithHighlight
+                                        text={
+                                            landing.stats?.find(
+                                                (s) =>
+                                                    s.label.includes(
+                                                        "clientes",
+                                                    ) ||
+                                                    s.label.includes(
+                                                        "personas",
+                                                    ),
+                                            )?.value +
+                                                " " +
+                                                "personas" || "60k+ personas"
+                                        }
+                                        color="bg-constrast"
+                                    />
+                                </strong>
+                                ya confían en nuestra tasa
+                            </div>
+                        </div>
+
+                        <motion.a
+                            whileHover={{ scale: 1.05 }}
+                            whileTap={{ scale: 0.95 }}
+                            href="https://mi.cambiafx.pe/register"
+                            className="inline-flex items-center bg-secondary gap-3 text-neutral-dark px-10 py-5 rounded-full font-bold text-lg hover:brightness-110 transition-all shadow-xl uppercase tracking-wider"
+                        >
+                            {landing.comparison_cta || "Comenzar ahora"}
+                            <ArrowRight size={20} />
+                        </motion.a>
+                    </div>
+
+                    <div className="relative">
+                        <div className="bg-white/5 backdrop-blur-xl rounded-[48px] p-2 md:p-8 border border-white/10 shadow-2xl relative">
+                            <ComparisonTable
+                                data={[
+                                    ...(marketRates || []),
+                                    ...(landing.comparison_data || []),
+                                ]}
+                            />
+                        </div>
+                    </div>
+                </div>
             </section>
 
-            {/* Footer Simple con Badge SBS */}
-            <footer className="bg-[#0C0C0C] py-12 px-[5%] border-t border-white/5 text-center">
-                <img src="/assets/img/logo-white.png" alt="Logo" className="h-8 mx-auto mb-8 opacity-50" />
-                <div className="flex justify-center items-center gap-6 mb-8">
-                    <img src="/assets/cambiafx/sbs_logo.webp" alt="SBS" className="h-10 opacity-60 grayscale hover:grayscale-0 transition-all" />
-                </div>
-                <p className="text-white/20 text-[10px] uppercase tracking-widest font-bold">
-                    &copy; {new Date().getFullYear()} Cambia FX • Todos los derechos reservados
-                </p>
-            </footer>
+            {/* SECCIÓN FUNCIONAMIENTO */}
+            {landing.steps && (
+                <Suspense fallback={null}>
+                    <motion.div
+                        initial={{ opacity: 0, y: 40 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.8 }}
+                    >
+                        <StepsSection
+                            data={{
+                                title:
+                                    landing.steps_title || "Cambia en 3 pasos",
+                                description:
+                                    landing.steps_subtitle ||
+                                    "Es más fácil que el banco y 100% seguro.",
+                            }}
+                            pasos={landing.steps}
+                        />
+                    </motion.div>
+                </Suspense>
+            )}
+
+            {/* CTA SECTION PREMIUM (Inspirado en EmpresasSection) */}
+            <section className="w-full overflow-hidden bg-primary py-12 md:py-32 flex justify-center items-center px-[3%] md:px-[5%] mx-auto">
+                <motion.div
+                    className="relative w-full h-full px-4 md:px-16 rounded-[28px] md:rounded-[56px] bg-constrast flex flex-col md:flex-row items-center py-10 md:py-10 md:min-h-[400px]"
+                    initial={{ opacity: 0, scale: 0.95 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.8 }}
+                >
+                    {/* Fondo decorativo SVG (Copiado de EmpresasSection) */}
+                    <div className="absolute h-full w-auto top-0 right-0 z-0 overflow-hidden rounded-[28px] md:rounded-[56px] hidden md:block opacity-40">
+                        <svg
+                            className="z-0 h-full"
+                            width="726"
+                            height="406"
+                            viewBox="0 0 726 406"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                        >
+                            <path
+                                d="M106.632 475.609C46.3026 412.336 8.96465 333.732 1.57527 254.167C-10.6896 86.2005 66.6131 -49.7434 208.283 -110.322C347.381 -169.827 511.454 -135.723 616.571 -25.4768C654.009 13.7878 683.587 61.4665 704.543 116.446L705.068 117.939C716.587 152.177 748.969 292.684 697.569 353.65C678.758 375.879 651.264 385.231 620.072 380.174L617.905 379.787C601.122 376.014 586.028 367.412 574.161 354.967C554.638 334.491 546.306 305.952 551.763 278.674C566.519 214.478 545.681 143.75 497.371 93.0833C473.867 68.4325 445.015 49.8011 413.966 39.3954L412.114 38.7093C357.011 16.7474 296.319 26.4814 245.657 65.4353C190.689 107.729 161.557 174.136 169.673 238.906C173.866 282.275 195.191 326.327 228.111 360.854C271.521 406.381 327.405 427.905 377.546 418.42C405.847 412.744 435.433 422.245 456.027 443.844C466.975 455.326 474.554 469.561 478.009 484.97C483.675 509.613 478.407 534.103 463.043 553.505C446.339 574.643 419.424 587.43 390.488 588.04C291.608 600.308 185.644 558.319 106.787 475.614L106.632 475.609Z"
+                                fill="url(#paint0_linear_16_2457)"
+                                fillOpacity="0.6"
+                            />
+                            <defs>
+                                <linearGradient
+                                    id="paint0_linear_16_2457"
+                                    x1="605.608"
+                                    y1="-36.9748"
+                                    x2="90.2411"
+                                    y2="458.384"
+                                    gradientUnits="userSpaceOnUse"
+                                >
+                                    <stop
+                                        offset="0.483986"
+                                        stopColor="#7E5AFB"
+                                    />
+                                    <stop offset="1" stopColor="#C7B7FF" />
+                                </linearGradient>
+                            </defs>
+                        </svg>
+                    </div>
+
+                    {/* DESKTOP LAYOUT - Exact match to EmpresasSection */}
+                    <div className="flex-1 z-10 flex flex-col md:flex-row w-full h-full items-center">
+                        {/* Columna izquierda: texto */}
+                        <div className="flex-1 z-10 flex flex-col justify-center items-start gap-4">
+                            <motion.h2
+                                initial={{ opacity: 0, x: -30 }}
+                                whileInView={{ opacity: 1, x: 0 }}
+                                transition={{ delay: 0.2 }}
+                                className="text-4xl md:text-5xl lg:text-7xl font-medium leading-tight text-white mb-2"
+                            >
+                                <TextWithHighlight
+                                    text={
+                                        landing.cta_title ||
+                                        "Empieza a ahorrar ahora"
+                                    }
+                                    color="bg-secondary font-bold"
+                                />
+                            </motion.h2>
+                            <motion.p
+                                initial={{ opacity: 0, x: -30 }}
+                                whileInView={{ opacity: 1, x: 0 }}
+                                transition={{ delay: 0.3 }}
+                                className="text-white text-lg md:text-2xl max-w-xl font-light"
+                            >
+                                {landing.cta_subtitle ||
+                                    "Únete a los más de 60,000 peruanos que ya ahorran con la casa de cambio digital líder en Perú."}
+                            </motion.p>
+                        </div>
+
+                        {/* Columna central: imagen */}
+                        {landing.cta_image && (
+                            <div className="z-10 flex-1 justify-center items-end min-h-[300px] md:min-h-[400px] relative hidden md:flex">
+                                <motion.img
+                                    initial={{ opacity: 0, scale: 0.8, y: 30 }}
+                                    whileInView={{ opacity: 1, scale: 1, y: 0 }}
+                                    transition={{ delay: 0.4, type: "spring" }}
+                                    src={`/api/transactional_landings/media/${landing.cta_image}`}
+                                    alt="CTA Banner"
+                                    className="h-[500px] lg:h-[600px] absolute -bottom-10 lg:-bottom-10 w-auto object-contain select-none transition-all duration-500 drop-shadow-2xl"
+                                    draggable="false"
+                                />
+                            </div>
+                        )}
+
+                        {/* Columna derecha: botón y decoración */}
+                        <div className="z-10 flex flex-col gap-10 items-center md:items-end justify-center md:justify-end min-w-[200px] md:ml-8 mt-12 md:mt-0">
+                            <motion.div
+                                className="hidden md:flex text-white relative text-2xl text-end mb-2"
+                                initial={{ opacity: 0, y: 20 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                            >
+                                <span>Haz clic aquí</span>
+                                <div className="absolute -right-10 top-0">
+                                    <svg
+                                        width="53"
+                                        height="76"
+                                        viewBox="0 0 53 76"
+                                        fill="none"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                    >
+                                        <g clipPath="url(#clip0_cta)">
+                                            <path
+                                                d="M24.904 2.71705C44.9855 27.8746 39.9591 61.6151 23.9101 73.0194"
+                                                stroke="#FAF3E1"
+                                                strokeWidth="1.50408"
+                                                strokeLinecap="round"
+                                                strokeLinejoin="round"
+                                            />
+                                            <path
+                                                d="M25.18 65.8476L23.9083 73.0192L31.0918 71.9369"
+                                                stroke="#FAF3E1"
+                                                strokeWidth="1.50408"
+                                                strokeLinecap="round"
+                                                strokeLinejoin="round"
+                                            />
+                                        </g>
+                                        <defs>
+                                            <clipPath id="clip0_cta">
+                                                <rect
+                                                    width="69.751"
+                                                    height="30.5232"
+                                                    fill="white"
+                                                    transform="translate(28.7188) rotate(70.1997)"
+                                                />
+                                            </clipPath>
+                                        </defs>
+                                    </svg>
+                                </div>
+                            </motion.div>
+
+                            <motion.a
+                                initial={{ opacity: 0, scale: 0.8 }}
+                                whileInView={{ opacity: 1, scale: 1 }}
+                                whileHover={{ scale: 1.1 }}
+                                whileTap={{ scale: 0.95 }}
+                                href={
+                                    landing.cta_button_link ||
+                                    "https://mi.cambiafx.pe/login"
+                                }
+                                className=" text-neutral-dark bg-secondary font-black px-12 py-5 rounded-full text-lg uppercase tracking-widest shadow-xl whitespace-nowrap"
+                            >
+                                {landing.cta_button_text || "Cambiar ahora"}
+                            </motion.a>
+                        </div>
+                    </div>
+
+                    {/* Imagen visible solo en móvil (debajo del contenido) */}
+                    {landing.cta_image && (
+                        <div className="md:hidden w-full flex justify-center mt-8">
+                            <img
+                                src={`/api/transactional_landings/media/${landing.cta_image}`}
+                                className="max-w-[80%] h-auto object-contain"
+                            />
+                        </div>
+                    )}
+                </motion.div>
+            </section>
+
+            {/* FAQ SECTION */}
+            <FAQSection faqs={landing.schema_faq} />
+
+            <Footer />
         </div>
     );
 };

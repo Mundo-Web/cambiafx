@@ -1,0 +1,55 @@
+{
+    "fecha_scraping": "2026-05-11 06:20:00",
+    "total_registros": 5,
+    "metadata": {
+        "api_url": "https:\/\/api.cuantoestaeldolar.pe\/envivo",
+        "pages_consulted": 1
+    },
+    "momentos": [
+        {
+            "id": "c04f184c-41bd-477b-8cd1-405a9b054ed6",
+            "hora": "06:00:19",
+            "fuente": "SUNAT",
+            "titulo": "SUNAT",
+            "compra": 3.456,
+            "venta": 3.461,
+            "spread": 0.005
+        },
+        {
+            "id": "2f28cc4b-519a-4372-a8bb-35f381c69903",
+            "hora": "22:42:49",
+            "fuente": "DICHIKASH",
+            "titulo": "Precio del dólar Dichikash",
+            "compra": 3.436,
+            "venta": 3.473,
+            "spread": 0.037
+        },
+        {
+            "id": "717f38e4-cb3c-473b-8a46-37b5e4589f6e",
+            "hora": "19:55:14",
+            "fuente": "TU CAMBISTA",
+            "titulo": "Precio del dólar Tu Cambista",
+            "compra": 3.4265,
+            "venta": 3.4535,
+            "spread": 0.027
+        },
+        {
+            "id": "b0f23c8b-43c6-47da-8412-06f0fd594cb0",
+            "hora": "10:22:04",
+            "fuente": "DICHIKASH",
+            "titulo": "Precio del dólar Dichikash",
+            "compra": 3.435,
+            "venta": 3.471,
+            "spread": 0.036
+        },
+        {
+            "id": "6608a312-ce01-41e4-9364-87fbc19d9611",
+            "hora": "09:33:30",
+            "fuente": "DICHIKASH",
+            "titulo": "Precio del dólar Dichikash",
+            "compra": 3.436,
+            "venta": 3.469,
+            "spread": 0.033
+        }
+    ]
+}

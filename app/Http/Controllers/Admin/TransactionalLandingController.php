@@ -76,7 +76,8 @@ class TransactionalLandingController extends BasicController
         return [
             'items' => $items,
             'current_lang_id' => $currentLangId,
-            'default_lang_id' => $defaultLang->id
+            'default_lang_id' => $defaultLang->id,
+            'PROGRAMER' => env('PROGRAMER')
         ];
     }
 }

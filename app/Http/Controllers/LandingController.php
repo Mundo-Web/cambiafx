@@ -91,6 +91,104 @@ class LandingController extends BasicController
         });
     }
 
+    private function getLiveRates()
+    {
+        return \Cache::remember('live_market_updates_v2', 600, function () {
+            try {
+                $url = "https://api.cuantoestaeldolar.pe/envivo?page=1&limit=20";
+                $ch = curl_init();
+                curl_setopt_array($ch, [
+                    CURLOPT_URL => $url,
+                    CURLOPT_RETURNTRANSFER => true,
+                    CURLOPT_SSL_VERIFYPEER => false,
+                    CURLOPT_TIMEOUT => 15,
+                    CURLOPT_HTTPHEADER => [
+                        'Accept: application/json',
+                        'User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36',
+                        'Origin: https://cuantoestaeldolar.pe',
+                        'Referer: https://cuantoestaeldolar.pe/'
+                    ]
+                ]);
+                $response = curl_exec($ch);
+                curl_close($ch);
+                
+                if (!$response) return ['momentos' => []];
+                $data = json_decode($response, true);
+                if (!isset($data['details'])) return ['momentos' => []];
+
+                $momentos = [];
+                foreach ($data['details'] as $item) {
+                    $registro = [
+                        'id' => $item['eid'] ?? uniqid(),
+                        'hora' => $item['time'] ?? date('H:i:s'),
+                        'fuente' => strtoupper($item['name'] ?? $item['title'] ?? 'MERCADO'),
+                        'titulo' => $item['title'] ?? '',
+                        'compra' => null,
+                        'venta' => null
+                    ];
+
+                    // Lógica de mapeo de campos igual a script_tx.php
+                    $camposCompra = ['buy', 'compra', 'purchase', 'price_buy'];
+                    $camposVenta = ['sell', 'venta', 'sale', 'price_sell'];
+
+                    foreach ($camposCompra as $f) {
+                        if (isset($item[$f]) && is_numeric($item[$f])) {
+                            $registro['compra'] = floatval($item[$f]);
+                            break;
+                        }
+                    }
+                    foreach ($camposVenta as $f) {
+                        if (isset($item[$f]) && is_numeric($item[$f])) {
+                            $registro['venta'] = floatval($item[$f]);
+                            break;
+                        }
+                    }
+
+                    // Búsqueda recursiva si falló lo anterior (igual que script_tx.php)
+                    if ($registro['compra'] === null || $registro['venta'] === null) {
+                        $deep = $this->deepSearchPrices($item);
+                        $registro['compra'] = $registro['compra'] ?? $deep['compra'];
+                        $registro['venta'] = $registro['venta'] ?? $deep['venta'];
+                    }
+
+                    if ($registro['compra'] !== null && $registro['venta'] !== null) {
+                        $registro['spread'] = round($registro['venta'] - $registro['compra'], 3);
+                        $momentos[] = $registro;
+                    }
+                }
+
+                return [
+                    'fecha_scraping' => date('Y-m-d H:i:s'),
+                    'momentos' => $momentos
+                ];
+            } catch (\Exception $e) {
+                return ['momentos' => []];
+            }
+        });
+    }
+
+    private function deepSearchPrices($data, $depth = 0)
+    {
+        $res = ['compra' => null, 'venta' => null];
+        if (!is_array($data) || $depth > 3) return $res;
+
+        foreach ($data as $key => $val) {
+            $k = strtolower($key);
+            if ($res['compra'] === null && is_numeric($val) && preg_match('/buy|compra|purchase/i', $k)) {
+                $res['compra'] = floatval($val);
+            }
+            if ($res['venta'] === null && is_numeric($val) && preg_match('/sell|venta|sale/i', $k)) {
+                $res['venta'] = floatval($val);
+            }
+            if (is_array($val) && ($res['compra'] === null || $res['venta'] === null)) {
+                $sub = $this->deepSearchPrices($val, $depth + 1);
+                $res['compra'] = $res['compra'] ?? $sub['compra'];
+                $res['venta'] = $res['venta'] ?? $sub['venta'];
+            }
+        }
+        return $res;
+    }
+
     private function renderLanding($url, $view)
     {
         $landing = TransactionalLanding::where('url', $url)->where('status', true)->first();
@@ -100,6 +198,7 @@ class LandingController extends BasicController
         }
 
         $marketRates = $this->getMarketRates();
+        $liveRates = $this->getLiveRates();
         $apps = App::where('status', true)->get();
         $indicators = Indicator::where('status', true)->get();
         $pasos = Specialty::where('status', true)->get();
@@ -135,6 +234,7 @@ class LandingController extends BasicController
         return Inertia::render($view, [
             'landing' => $landing,
             'marketRates' => $marketRates,
+            'liveRates' => $liveRates,
             'apps' => $apps,
             'indicators' => $indicators,
             'pasos' => (isset($landing->steps) && count($landing->steps) > 0) ? $landing->steps : $pasos,

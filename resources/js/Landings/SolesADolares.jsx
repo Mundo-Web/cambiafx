@@ -452,43 +452,6 @@ const SolesADolares = ({
                                 "Nuestra tecnología se conecta con los principales indicadores para ofrecerte el mejor precio."}
                         </p>
 
-                        <div className="flex items-center gap-6 mb-16">
-                            <div className="flex -space-x-3">
-                                {[1, 2, 3, 4].map((i) => (
-                                    <div
-                                        key={i}
-                                        className="w-12 h-12 rounded-full border-2 border-neutral-dark bg-white/10 overflow-hidden"
-                                    >
-                                        <img
-                                            src={`https://i.pravatar.cc/100?u=${i + 10}`}
-                                            alt="User"
-                                        />
-                                    </div>
-                                ))}
-                            </div>
-                            <div className="text-white/60 text-sm font-medium">
-                                <strong className="text-white text-lg block">
-                                    <TextWithHighlight
-                                        text={
-                                            landing.stats?.find(
-                                                (s) =>
-                                                    s.label.includes(
-                                                        "clientes",
-                                                    ) ||
-                                                    s.label.includes(
-                                                        "personas",
-                                                    ),
-                                            )?.value +
-                                                " " +
-                                                "personas" || "60k+ personas"
-                                        }
-                                        color="bg-constrast"
-                                    />
-                                </strong>
-                                ya confían en nuestra tasa
-                            </div>
-                        </div>
-
                         <motion.a
                             whileHover={{ scale: 1.05 }}
                             whileTap={{ scale: 0.95 }}
