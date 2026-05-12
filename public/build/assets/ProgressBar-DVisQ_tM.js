@@ -1,1 +1,0 @@
-import{j as s}from"./RequirementCard-BS1uHIXc.js";import"./WebVitalsMonitor-CIEr9-is.js";const a=({className:a="max-w-md",width:l,color:o="#F7C2C6"})=>s.jsx("div",{className:`h-2 bg-[#EFEAE5] ${a} rounded-full mx-auto`,children:s.jsx("hr",{className:"h-full rounded-full",style:{backgroundColor:o,width:l,transition:"all .25s"}})});export{a as P};

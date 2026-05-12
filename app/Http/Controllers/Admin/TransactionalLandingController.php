@@ -39,14 +39,20 @@ class TransactionalLandingController extends BasicController
             $data['schema_faq'] = json_decode($data['schema_faq'], true);
         }
 
+        if (isset($data['company_types']) && is_string($data['company_types'])) {
+            $data['company_types'] = json_decode($data['company_types'], true);
+        }
+
+        if (isset($data['benefit_cards']) && is_string($data['benefit_cards'])) {
+            $data['benefit_cards'] = json_decode($data['benefit_cards'], true);
+        }
+
         if (isset($data['steps']) && is_string($data['steps'])) {
             $data['steps'] = json_decode($data['steps'], true);
             foreach ($data['steps'] as $i => &$step) {
                 $fileKey = "step_image_{$i}";
                 if ($request->hasFile($fileKey)) {
-                    \Illuminate\Support\Facades\Log::info("Processing file for step {$i}: " . $fileKey);
                     $result = SimpleImageProcessor::processAndStore($request->file($fileKey), 'transactional_landing', 5);
-                    \Illuminate\Support\Facades\Log::info("Result for step {$i}:", $result);
                     if (!$result['success']) {
                         throw new \Exception("Error en imagen del paso " . ($i + 1) . ": " . $result['message']);
                     }
@@ -55,7 +61,6 @@ class TransactionalLandingController extends BasicController
             }
         }
         
-        \Illuminate\Support\Facades\Log::info('TransactionalLanding Final Data to Save:', $data);
         return $data;
     }
 

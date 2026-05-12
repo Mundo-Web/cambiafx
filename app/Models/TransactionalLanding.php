@@ -41,6 +41,8 @@ class TransactionalLanding extends Model
         'schema_service_payments_accepted',
         'schema_faq',
         'steps',
+        'company_types',
+        'benefit_cards',
         'status',
         'lang_id'
     ];
@@ -50,6 +52,8 @@ class TransactionalLanding extends Model
         'comparison_data' => 'array',
         'schema_faq' => 'array',
         'steps' => 'array',
+        'company_types' => 'array',
+        'benefit_cards' => 'array',
         'status' => 'boolean'
     ];
 

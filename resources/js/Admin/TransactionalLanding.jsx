@@ -11,6 +11,22 @@ import ImageFormGroup from "../Components/Adminto/form/ImageFormGroup";
 import TransactionalLandingRest from "../actions/Admin/TransactionalLandingRest";
 import { Notify } from "sode-extend-react";
 import Swal from "sweetalert2";
+import {
+    TrendingUp,
+    Clock,
+    CirclePercent,
+    ShieldCheck,
+    Zap,
+    Users,
+    Heart,
+    Star,
+    Wallet,
+    Globe,
+    Smartphone,
+    MousePointer2,
+    Lock,
+    Sparkles,
+} from "lucide-react";
 
 const transactionalLandingRest = new TransactionalLandingRest();
 
@@ -29,6 +45,8 @@ const TransactionalLanding = ({
     const [comparisonData, setComparisonData] = useState([]);
     const [faqData, setFaqData] = useState([]);
     const [stepsData, setStepsData] = useState([]);
+    const [companyTypes, setCompanyTypes] = useState([]);
+    const [benefitCards, setBenefitCards] = useState([]);
     const [currentSlug, setCurrentSlug] = useState("");
 
     // Form refs
@@ -66,27 +84,126 @@ const TransactionalLanding = ({
         setIsEditing(!!data?.id);
         setCurrentSlug(data?.url || "");
 
+        let rawStats = data?.stats;
+        if (typeof rawStats === "string") {
+            try {
+                rawStats = JSON.parse(rawStats);
+            } catch (e) {
+                rawStats = [];
+            }
+        }
         setStats(
-            data?.stats || [
-                { label: "clientes", value: "60k+" },
-                { label: "promedio", value: "15min" },
-                { label: "registrado", value: "SBS" },
-            ],
+            Array.isArray(rawStats) && rawStats.length > 0
+                ? rawStats
+                : [
+                      { label: "clientes", value: "60k+" },
+                      { label: "promedio", value: "15min" },
+                      { label: "registrado", value: "SBS" },
+                  ],
         );
 
+        let rawComp = data?.comparison_data;
+        if (typeof rawComp === "string") {
+            try {
+                rawComp = JSON.parse(rawComp);
+            } catch (e) {
+                rawComp = [];
+            }
+        }
         setComparisonData(
-            data?.comparison_data || [
-                {
-                    entity: "Cambia FX",
-                    buy: "3.510",
-                    sell: "3.510",
-                    is_highlight: true,
-                },
-            ],
+            Array.isArray(rawComp) && rawComp.length > 0
+                ? rawComp
+                : [
+                      {
+                          entity: "Cambia FX",
+                          buy: "3.510",
+                          sell: "3.510",
+                          is_highlight: true,
+                      },
+                  ],
         );
 
-        setFaqData(data?.schema_faq || [{ question: "", answer: "" }]);
-        setStepsData(data?.steps || [{ title: "", description: "", image: "" }]);
+        let rawFaq = data?.schema_faq;
+        if (typeof rawFaq === "string") {
+            try {
+                rawFaq = JSON.parse(rawFaq);
+            } catch (e) {
+                rawFaq = [];
+            }
+        }
+        setFaqData(
+            Array.isArray(rawFaq) && rawFaq.length > 0
+                ? rawFaq
+                : [{ question: "", answer: "" }],
+        );
+
+        let rawSteps = data?.steps;
+        if (typeof rawSteps === "string") {
+            try {
+                rawSteps = JSON.parse(rawSteps);
+            } catch (e) {
+                rawSteps = [];
+            }
+        }
+        setStepsData(
+            Array.isArray(rawSteps) && rawSteps.length > 0
+                ? rawSteps
+                : [{ title: "", description: "", image: "" }],
+        );
+        let cTypes = data?.company_types;
+        if (typeof cTypes === "string") {
+            try {
+                cTypes = JSON.parse(cTypes);
+            } catch (e) {
+                cTypes = [];
+            }
+        }
+        setCompanyTypes(
+            Array.isArray(cTypes) && cTypes.length > 0
+                ? cTypes
+                : [
+                      "Importadoras",
+                      "Exportadoras",
+                      "Agencias de viaje",
+                      "Startups",
+                      "Comercio exterior",
+                  ],
+        );
+
+        let bCards = data?.benefit_cards;
+        if (typeof bCards === "string") {
+            try {
+                bCards = JSON.parse(bCards);
+            } catch (e) {
+                bCards = [];
+            }
+        }
+        setBenefitCards(
+            Array.isArray(bCards) && bCards.length > 0
+                ? bCards
+                : [
+                      {
+                          icon: "TrendingUp",
+                          title: "Mejor precio",
+                          desc: "Garantizamos tasas competitivas con actualización en tiempo real del mercado.",
+                      },
+                      {
+                          icon: "Clock",
+                          title: "Sin filas",
+                          desc: "Olvídate de las agencias. Opera desde tu celular o laptop en menos de 15 minutos.",
+                      },
+                      {
+                          icon: "CirclePercent",
+                          title: "Sin comisiones",
+                          desc: "Transferencias directas y transparentes. Lo que ves es exactamente lo que recibes.",
+                      },
+                      {
+                          icon: "ShieldCheck",
+                          title: "Seguro y legal",
+                          desc: "Empresa registrada en la SBS con Resolución N° 02998-2020 para tu tranquilidad.",
+                      },
+                  ],
+        );
 
         setTimeout(() => {
             if (idRef.current) idRef.current.value = data?.id ?? "";
@@ -157,7 +274,9 @@ const TransactionalLanding = ({
         }, 100);
 
         if (modalRef.current) {
-            const modalInstance = bootstrap.Modal.getInstance(modalRef.current) || new bootstrap.Modal(modalRef.current);
+            const modalInstance =
+                bootstrap.Modal.getInstance(modalRef.current) ||
+                new bootstrap.Modal(modalRef.current);
             modalInstance.show();
         }
     };
@@ -192,8 +311,16 @@ const TransactionalLanding = ({
         setFaqData(newData);
     };
 
-    const addStep = () => setStepsData([...stepsData, { title: "", description: "", image: "" }]);
-    const removeStep = (index) => setStepsData(stepsData.filter((_, i) => i !== index));
+    const addStep = () => {
+        if (stepsData.length < 4) {
+            setStepsData([
+                ...stepsData,
+                { title: "", description: "", image: "" },
+            ]);
+        }
+    };
+    const removeStep = (index) =>
+        setStepsData(stepsData.filter((_, i) => i !== index));
     const updateStep = (index, field, value) => {
         const newData = [...stepsData];
         newData[index][field] = value;
@@ -251,6 +378,8 @@ const TransactionalLanding = ({
             formData.append("stats", JSON.stringify(stats));
             formData.append("comparison_data", JSON.stringify(comparisonData));
             formData.append("schema_faq", JSON.stringify(faqData));
+            formData.append("company_types", JSON.stringify(companyTypes));
+            formData.append("benefit_cards", JSON.stringify(benefitCards));
 
             // Para los pasos, enviamos la data y los archivos por separado
             const stepsWithoutFiles = stepsData.map((step, i) => {
@@ -304,14 +433,21 @@ const TransactionalLanding = ({
             const result = await transactionalLandingRest.save(formData);
             if (result) {
                 // Cerramos el modal inmediatamente antes de actualizar estados para evitar bloqueos de React
-                const modalEl = document.getElementById("modal-transactional-landing");
+                const modalEl = document.getElementById(
+                    "modal-transactional-landing",
+                );
                 if (modalEl) {
-                    const modalInstance = bootstrap.Modal.getInstance(modalEl) || new bootstrap.Modal(modalEl);
+                    const modalInstance =
+                        bootstrap.Modal.getInstance(modalEl) ||
+                        new bootstrap.Modal(modalEl);
                     modalInstance.hide();
                     // Refuerzo con jQuery y limpieza de backdrop por si falla la transición
                     $(modalEl).modal("hide");
                     $(".modal-backdrop").remove();
-                    $("body").removeClass("modal-open").css("overflow", "").css("padding-right", "");
+                    $("body")
+                        .removeClass("modal-open")
+                        .css("overflow", "")
+                        .css("padding-right", "");
                 }
 
                 const updatedLanding = result.data || result;
@@ -549,7 +685,11 @@ const TransactionalLanding = ({
                                                     eRef={urlRef}
                                                     required
                                                     disabled={isEditing}
-                                                    onChange={(e) => setCurrentSlug(e.target.value)}
+                                                    onChange={(e) =>
+                                                        setCurrentSlug(
+                                                            e.target.value,
+                                                        )
+                                                    }
                                                 />
                                             </div>
                                             <div className="col-md-12">
@@ -617,78 +757,176 @@ const TransactionalLanding = ({
                                                     rows={2}
                                                 />
                                             </div>
-                                            {currentSlug !== "tipo-de-cambio-hoy" && (
+                                            {currentSlug !==
+                                                "tipo-de-cambio-hoy" &&
+                                                currentSlug !==
+                                                    "casa-de-cambio-digital" && (
+                                                    <div className="col-md-12">
+                                                        <hr />
+                                                        <div className="d-flex justify-content-between align-items-center mb-3">
+                                                            <h5 className="mb-0 text-primary">
+                                                                Estadísticas
+                                                                (Stats)
+                                                            </h5>
+                                                            <button
+                                                                type="button"
+                                                                className="btn btn-xs btn-outline-primary"
+                                                                onClick={
+                                                                    addStat
+                                                                }
+                                                            >
+                                                                + Agregar
+                                                            </button>
+                                                        </div>
+                                                        <div className="row g-2">
+                                                            {stats.map(
+                                                                (stat, i) => (
+                                                                    <div
+                                                                        key={i}
+                                                                        className="col-md-4 mb-2"
+                                                                    >
+                                                                        <div className="input-group input-group-sm">
+                                                                            <input
+                                                                                className="form-control"
+                                                                                placeholder="Label"
+                                                                                value={
+                                                                                    stat.label
+                                                                                }
+                                                                                onChange={(
+                                                                                    e,
+                                                                                ) =>
+                                                                                    updateStat(
+                                                                                        i,
+                                                                                        "label",
+                                                                                        e
+                                                                                            .target
+                                                                                            .value,
+                                                                                    )
+                                                                                }
+                                                                            />
+                                                                            <input
+                                                                                className="form-control"
+                                                                                placeholder="Valor"
+                                                                                value={
+                                                                                    stat.value
+                                                                                }
+                                                                                onChange={(
+                                                                                    e,
+                                                                                ) =>
+                                                                                    updateStat(
+                                                                                        i,
+                                                                                        "value",
+                                                                                        e
+                                                                                            .target
+                                                                                            .value,
+                                                                                    )
+                                                                                }
+                                                                            />
+                                                                            <button
+                                                                                type="button"
+                                                                                className="btn btn-danger"
+                                                                                onClick={() =>
+                                                                                    removeStat(
+                                                                                        i,
+                                                                                    )
+                                                                                }
+                                                                            >
+                                                                                <i className="fa fa-trash"></i>
+                                                                            </button>
+                                                                        </div>
+                                                                    </div>
+                                                                ),
+                                                            )}
+                                                        </div>
+                                                    </div>
+                                                )}
+
+                                            {/* SECCIÓN ESPECIAL PARA CASA DE CAMBIO DIGITAL */}
+                                            {currentSlug ===
+                                                "casa-de-cambio-digital" && (
                                                 <div className="col-md-12">
                                                     <hr />
-                                                    <div className="d-flex justify-content-between align-items-center mb-3">
-                                                        <h5 className="mb-0 text-primary">
-                                                            Estadísticas (Stats)
-                                                        </h5>
-                                                        <button
-                                                            type="button"
-                                                            className="btn btn-xs btn-outline-primary"
-                                                            onClick={addStat}
-                                                        >
-                                                            + Agregar
-                                                        </button>
-                                                    </div>
-                                                    <div className="row g-2">
-                                                        {stats.map((stat, i) => (
-                                                            <div
-                                                                key={i}
-                                                                className="col-md-4 mb-2"
-                                                            >
-                                                                <div className="input-group input-group-sm">
-                                                                    <input
-                                                                        className="form-control"
-                                                                        placeholder="Label"
-                                                                        value={
-                                                                            stat.label
-                                                                        }
-                                                                        onChange={(
-                                                                            e,
-                                                                        ) =>
-                                                                            updateStat(
-                                                                                i,
-                                                                                "label",
-                                                                                e
-                                                                                    .target
-                                                                                    .value,
-                                                                            )
-                                                                        }
-                                                                    />
-                                                                    <input
-                                                                        className="form-control"
-                                                                        placeholder="Valor"
-                                                                        value={
-                                                                            stat.value
-                                                                        }
-                                                                        onChange={(
-                                                                            e,
-                                                                        ) =>
-                                                                            updateStat(
-                                                                                i,
-                                                                                "value",
-                                                                                e
-                                                                                    .target
-                                                                                    .value,
-                                                                            )
-                                                                        }
-                                                                    />
-                                                                    <button
-                                                                        type="button"
-                                                                        className="btn btn-danger"
-                                                                        onClick={() =>
-                                                                            removeStat(
-                                                                                i,
-                                                                            )
-                                                                        }
-                                                                    >
-                                                                        <i className="fa fa-trash"></i>
-                                                                    </button>
-                                                                </div>
+                                                    <div className="row g-3">
+                                                        <div className="col-md-12">
+                                                            <div className="d-flex justify-content-between align-items-center mb-3">
+                                                                <h5 className="mb-0 text-primary">
+                                                                    Tipos de
+                                                                    Empresa
+                                                                </h5>
+                                                                <button
+                                                                    type="button"
+                                                                    className="btn btn-xs btn-soft-primary"
+                                                                    onClick={() =>
+                                                                        setCompanyTypes(
+                                                                            [
+                                                                                ...companyTypes,
+                                                                                "",
+                                                                            ],
+                                                                        )
+                                                                    }
+                                                                >
+                                                                    + Agregar
+                                                                </button>
                                                             </div>
-                                                        ))}
+                                                            <div className="row g-2">
+                                                                {companyTypes.map(
+                                                                    (
+                                                                        type,
+                                                                        i,
+                                                                    ) => (
+                                                                        <div
+                                                                            key={
+                                                                                i
+                                                                            }
+                                                                            className="col-md-6"
+                                                                        >
+                                                                            <div className="input-group input-group-sm">
+                                                                                <input
+                                                                                    type="text"
+                                                                                    className="form-control"
+                                                                                    value={
+                                                                                        type
+                                                                                    }
+                                                                                    onChange={(
+                                                                                        e,
+                                                                                    ) => {
+                                                                                        const newTypes =
+                                                                                            [
+                                                                                                ...companyTypes,
+                                                                                            ];
+                                                                                        newTypes[
+                                                                                            i
+                                                                                        ] =
+                                                                                            e.target.value;
+                                                                                        setCompanyTypes(
+                                                                                            newTypes,
+                                                                                        );
+                                                                                    }}
+                                                                                />
+                                                                                <button
+                                                                                    type="button"
+                                                                                    className="btn btn-soft-danger"
+                                                                                    onClick={() =>
+                                                                                        setCompanyTypes(
+                                                                                            companyTypes.filter(
+                                                                                                (
+                                                                                                    _,
+                                                                                                    idx,
+                                                                                                ) =>
+                                                                                                    idx !==
+                                                                                                    i,
+                                                                                            ),
+                                                                                        )
+                                                                                    }
+                                                                                >
+                                                                                    <i className="fa fa-trash"></i>
+                                                                                </button>
+                                                                            </div>
+                                                                        </div>
+                                                                    ),
+                                                                )}
+                                                            </div>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             )}
@@ -729,109 +967,352 @@ const TransactionalLanding = ({
                                                     rows={2}
                                                 />
                                             </div>
-                                            <div className="col-md-12">
-                                                <hr />
-                                                <div className="d-flex justify-content-between align-items-center mb-3">
-                                                    <h5 className="mb-0 text-primary">
-                                                        Tabla de Mercado
-                                                        (Bancos)
-                                                    </h5>
-                                                    <button
-                                                        type="button"
-                                                        className="btn btn-xs btn-outline-primary"
-                                                        onClick={addComparison}
-                                                    >
-                                                        + Agregar Entidad
-                                                    </button>
+                                            {currentSlug !==
+                                                "casa-de-cambio-digital" && (
+                                                <div className="col-md-12">
+                                                    <hr />
+                                                    <div className="d-flex justify-content-between align-items-center mb-3">
+                                                        <h5 className="mb-0 text-primary">
+                                                            Tabla de Mercado
+                                                            (Bancos)
+                                                        </h5>
+                                                        <button
+                                                            type="button"
+                                                            className="btn btn-xs btn-outline-primary"
+                                                            onClick={
+                                                                addComparison
+                                                            }
+                                                        >
+                                                            + Agregar Entidad
+                                                        </button>
+                                                    </div>
+                                                    <div className="table-responsive border rounded">
+                                                        <table className="table table-sm table-centered mb-0">
+                                                            <thead className="table-light">
+                                                                <tr>
+                                                                    <th>
+                                                                        Entidad
+                                                                    </th>
+                                                                    <th>
+                                                                        Compra
+                                                                    </th>
+                                                                    <th>
+                                                                        Venta
+                                                                    </th>
+                                                                    <th></th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                {comparisonData.map(
+                                                                    (
+                                                                        comp,
+                                                                        i,
+                                                                    ) => (
+                                                                        <tr
+                                                                            key={
+                                                                                i
+                                                                            }
+                                                                        >
+                                                                            <td>
+                                                                                <select
+                                                                                    className="form-select form-select-sm border-0"
+                                                                                    value={
+                                                                                        comp.entity
+                                                                                    }
+                                                                                    onChange={(
+                                                                                        e,
+                                                                                    ) =>
+                                                                                        updateComparison(
+                                                                                            i,
+                                                                                            "entity",
+                                                                                            e
+                                                                                                .target
+                                                                                                .value,
+                                                                                        )
+                                                                                    }
+                                                                                >
+                                                                                    <option value="">
+                                                                                        Seleccionar
+                                                                                        Entidad
+                                                                                    </option>
+                                                                                    <option value="BCP">
+                                                                                        BCP
+                                                                                    </option>
+                                                                                    <option value="Interbank">
+                                                                                        Interbank
+                                                                                    </option>
+                                                                                    <option value="Scotiabank">
+                                                                                        Scotiabank
+                                                                                    </option>
+                                                                                    <option value="BBVA">
+                                                                                        BBVA
+                                                                                    </option>
+                                                                                    <option value="Pichincha">
+                                                                                        Pichincha
+                                                                                    </option>
+                                                                                    <option value="Banbif">
+                                                                                        Banbif
+                                                                                    </option>
+                                                                                    <option value="Otros">
+                                                                                        Otros
+                                                                                    </option>
+                                                                                </select>
+                                                                            </td>
+                                                                            <td>
+                                                                                <input
+                                                                                    className="form-control form-control-sm border-0"
+                                                                                    value={
+                                                                                        comp.buy
+                                                                                    }
+                                                                                    onChange={(
+                                                                                        e,
+                                                                                    ) =>
+                                                                                        updateComparison(
+                                                                                            i,
+                                                                                            "buy",
+                                                                                            e
+                                                                                                .target
+                                                                                                .value,
+                                                                                        )
+                                                                                    }
+                                                                                />
+                                                                            </td>
+                                                                            <td>
+                                                                                <input
+                                                                                    className="form-control form-control-sm border-0"
+                                                                                    value={
+                                                                                        comp.sell
+                                                                                    }
+                                                                                    onChange={(
+                                                                                        e,
+                                                                                    ) =>
+                                                                                        updateComparison(
+                                                                                            i,
+                                                                                            "sell",
+                                                                                            e
+                                                                                                .target
+                                                                                                .value,
+                                                                                        )
+                                                                                    }
+                                                                                />
+                                                                            </td>
+                                                                            <td className="text-center">
+                                                                                <button
+                                                                                    type="button"
+                                                                                    className="btn btn-link text-danger p-0"
+                                                                                    onClick={() =>
+                                                                                        removeComparison(
+                                                                                            i,
+                                                                                        )
+                                                                                    }
+                                                                                >
+                                                                                    <i className="fa fa-trash"></i>
+                                                                                </button>
+                                                                            </td>
+                                                                        </tr>
+                                                                    ),
+                                                                )}
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
                                                 </div>
-                                                <div className="table-responsive border rounded">
-                                                    <table className="table table-sm table-centered mb-0">
-                                                        <thead className="table-light">
-                                                            <tr>
-                                                                <th>Entidad</th>
-                                                                <th>Compra</th>
-                                                                <th>Venta</th>
-                                                                <th></th>
-                                                            </tr>
-                                                        </thead>
-                                                        <tbody>
-                                                            {comparisonData.map(
-                                                                (comp, i) => (
-                                                                    <tr key={i}>
-                                                                        <td>
-                                                                            <select
-                                                                                className="form-select form-select-sm border-0"
-                                                                                value={comp.entity}
-                                                                                onChange={(e) => updateComparison(i, "entity", e.target.value)}
-                                                                            >
-                                                                                <option value="">Seleccionar Entidad</option>
-                                                                                <option value="BCP">BCP</option>
-                                                                                <option value="Interbank">Interbank</option>
-                                                                                <option value="Scotiabank">Scotiabank</option>
-                                                                                <option value="BBVA">BBVA</option>
-                                                                                <option value="Pichincha">Pichincha</option>
-                                                                                <option value="Banbif">Banbif</option>
-                                                                                <option value="Otros">Otros</option>
-                                                                            </select>
-                                                                        </td>
-                                                                        <td>
-                                                                            <input
-                                                                                className="form-control form-control-sm border-0"
-                                                                                value={
-                                                                                    comp.buy
-                                                                                }
-                                                                                onChange={(
-                                                                                    e,
-                                                                                ) =>
-                                                                                    updateComparison(
-                                                                                        i,
-                                                                                        "buy",
-                                                                                        e
-                                                                                            .target
-                                                                                            .value,
-                                                                                    )
-                                                                                }
-                                                                            />
-                                                                        </td>
-                                                                        <td>
-                                                                            <input
-                                                                                className="form-control form-control-sm border-0"
-                                                                                value={
-                                                                                    comp.sell
-                                                                                }
-                                                                                onChange={(
-                                                                                    e,
-                                                                                ) =>
-                                                                                    updateComparison(
-                                                                                        i,
-                                                                                        "sell",
-                                                                                        e
-                                                                                            .target
-                                                                                            .value,
-                                                                                    )
-                                                                                }
-                                                                            />
-                                                                        </td>
-                                                                        <td className="text-center">
-                                                                            <button
-                                                                                type="button"
-                                                                                className="btn btn-link text-danger p-0"
-                                                                                onClick={() =>
-                                                                                    removeComparison(
-                                                                                        i,
-                                                                                    )
-                                                                                }
-                                                                            >
-                                                                                <i className="fa fa-trash"></i>
-                                                                            </button>
-                                                                        </td>
-                                                                    </tr>
-                                                                ),
-                                                            )}
-                                                        </tbody>
-                                                    </table>
+                                            )}
+                                            {/* SECCIÓN ESPECIAL PARA CASA DE CAMBIO DIGITAL */}
+                                            {currentSlug ===
+                                                "casa-de-cambio-digital" && (
+                                                <div className="col-md-12">
+                                                    <hr />
+                                                    <div className="row g-3">
+                                                        <div className="col-md-12">
+                                                            <h5 className="mb-3 text-primary">
+                                                                Tarjetas de
+                                                                Beneficios (2x2)
+                                                            </h5>
+                                                            <div className="row g-2">
+                                                                {benefitCards.map(
+                                                                    (
+                                                                        card,
+                                                                        i,
+                                                                    ) => (
+                                                                        <div
+                                                                            key={
+                                                                                i
+                                                                            }
+                                                                            className="col-md-12 border rounded p-2 bg-light-subtle mb-3 shadow-sm"
+                                                                        >
+                                                                            <div className="row g-2">
+                                                                                <div className="col-md-1 d-flex align-items-center justify-content-center">
+                                                                                    {(() => {
+                                                                                        const IconComp =
+                                                                                            {
+                                                                                                TrendingUp,
+                                                                                                Clock,
+                                                                                                CirclePercent,
+                                                                                                ShieldCheck,
+                                                                                                Zap,
+                                                                                                Users,
+                                                                                                Heart,
+                                                                                                Star,
+                                                                                                Wallet,
+                                                                                                Globe,
+                                                                                                Smartphone,
+                                                                                                MousePointer2,
+                                                                                                Lock,
+                                                                                                Sparkles,
+                                                                                            }[
+                                                                                                card
+                                                                                                    .icon
+                                                                                            ] ||
+                                                                                            Sparkles;
+                                                                                        return (
+                                                                                            <IconComp
+                                                                                                size={
+                                                                                                    20
+                                                                                                }
+                                                                                                className="text-primary"
+                                                                                            />
+                                                                                        );
+                                                                                    })()}
+                                                                                </div>
+                                                                                <div className="col-md-4">
+                                                                                    <select
+                                                                                        className="form-select form-select-sm"
+                                                                                        value={
+                                                                                            card.icon
+                                                                                        }
+                                                                                        onChange={(
+                                                                                            e,
+                                                                                        ) => {
+                                                                                            const newCards =
+                                                                                                [
+                                                                                                    ...benefitCards,
+                                                                                                ];
+                                                                                            newCards[
+                                                                                                i
+                                                                                            ].icon =
+                                                                                                e.target.value;
+                                                                                            setBenefitCards(
+                                                                                                newCards,
+                                                                                            );
+                                                                                        }}
+                                                                                    >
+                                                                                        <option value="TrendingUp">
+                                                                                            Tendencia
+                                                                                            (TrendingUp)
+                                                                                        </option>
+                                                                                        <option value="Clock">
+                                                                                            Reloj
+                                                                                            (Clock)
+                                                                                        </option>
+                                                                                        <option value="CirclePercent">
+                                                                                            Porcentaje
+                                                                                            (CirclePercent)
+                                                                                        </option>
+                                                                                        <option value="ShieldCheck">
+                                                                                            Escudo
+                                                                                            (ShieldCheck)
+                                                                                        </option>
+                                                                                        <option value="Zap">
+                                                                                            Rayo
+                                                                                            (Zap)
+                                                                                        </option>
+                                                                                        <option value="Users">
+                                                                                            Usuarios
+                                                                                            (Users)
+                                                                                        </option>
+                                                                                        <option value="Heart">
+                                                                                            Corazón
+                                                                                            (Heart)
+                                                                                        </option>
+                                                                                        <option value="Star">
+                                                                                            Estrella
+                                                                                            (Star)
+                                                                                        </option>
+                                                                                        <option value="Wallet">
+                                                                                            Billetera
+                                                                                            (Wallet)
+                                                                                        </option>
+                                                                                        <option value="Globe">
+                                                                                            Globo
+                                                                                            (Globe)
+                                                                                        </option>
+                                                                                        <option value="Smartphone">
+                                                                                            Celular
+                                                                                            (Smartphone)
+                                                                                        </option>
+                                                                                        <option value="MousePointer2">
+                                                                                            Puntero
+                                                                                            (MousePointer2)
+                                                                                        </option>
+                                                                                        <option value="Lock">
+                                                                                            Candado
+                                                                                            (Lock)
+                                                                                        </option>
+                                                                                        <option value="Sparkles">
+                                                                                            Destellos
+                                                                                            (Sparkles)
+                                                                                        </option>
+                                                                                    </select>
+                                                                                </div>
+                                                                                <div className="col-md-7">
+                                                                                    <input
+                                                                                        type="text"
+                                                                                        className="form-control form-control-sm"
+                                                                                        placeholder="Título"
+                                                                                        value={
+                                                                                            card.title
+                                                                                        }
+                                                                                        onChange={(
+                                                                                            e,
+                                                                                        ) => {
+                                                                                            const newCards =
+                                                                                                [
+                                                                                                    ...benefitCards,
+                                                                                                ];
+                                                                                            newCards[
+                                                                                                i
+                                                                                            ].title =
+                                                                                                e.target.value;
+                                                                                            setBenefitCards(
+                                                                                                newCards,
+                                                                                            );
+                                                                                        }}
+                                                                                    />
+                                                                                </div>
+                                                                                <div className="col-md-12">
+                                                                                    <textarea
+                                                                                        className="form-control form-control-sm"
+                                                                                        placeholder="Descripción"
+                                                                                        rows="3"
+                                                                                        value={
+                                                                                            card.desc
+                                                                                        }
+                                                                                        onChange={(
+                                                                                            e,
+                                                                                        ) => {
+                                                                                            const newCards =
+                                                                                                [
+                                                                                                    ...benefitCards,
+                                                                                                ];
+                                                                                            newCards[
+                                                                                                i
+                                                                                            ].desc =
+                                                                                                e.target.value;
+                                                                                            setBenefitCards(
+                                                                                                newCards,
+                                                                                            );
+                                                                                        }}
+                                                                                    ></textarea>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    ),
+                                                                )}
+                                                            </div>
+                                                        </div>
+                                                    </div>
                                                 </div>
-                                            </div>
+                                            )}
                                         </div>
                                     </div>
 
@@ -863,52 +1344,123 @@ const TransactionalLanding = ({
                                             </div>
                                             <div className="col-md-12">
                                                 <div className="d-flex justify-content-between align-items-center mb-3">
-                                                    <h6 className="mb-0 text-primary">Gestionar Pasos Individuales</h6>
-                                                    <button type="button" className="btn btn-xs btn-outline-primary" onClick={addStep}>+ Agregar Paso</button>
+                                                    <h6 className="mb-0 text-primary">
+                                                        Gestionar Pasos
+                                                        Individuales
+                                                    </h6>
+                                                    <button
+                                                        type="button"
+                                                        className="btn btn-xs btn-outline-primary"
+                                                        onClick={addStep}
+                                                        disabled={
+                                                            stepsData.length >=
+                                                            4
+                                                        }
+                                                    >
+                                                        {stepsData.length >= 4
+                                                            ? "Límite alcanzado (4)"
+                                                            : "+ Agregar Paso"}
+                                                    </button>
                                                 </div>
                                                 <div className="row g-3">
-                                                    {stepsData.map((step, i) => (
-                                                        <div key={i} className="col-md-4">
-                                                            <div className="card border shadow-none mb-0">
-                                                                <div className="card-body p-2">
-                                                                    <div className="d-flex justify-content-between mb-2">
-                                                                        <span className="badge bg-primary">Paso {i + 1}</span>
-                                                                        <button type="button" className="btn btn-link text-danger p-0" onClick={() => removeStep(i)}>
-                                                                            <i className="fa fa-trash"></i>
-                                                                        </button>
-                                                                    </div>
-                                                                    <div className="mb-2">
-                                                                        <input 
-                                                                            type="text" 
-                                                                            className="form-control form-control-sm" 
-                                                                            placeholder="Título del paso" 
-                                                                            value={step.title}
-                                                                            onChange={(e) => updateStep(i, 'title', e.target.value)}
-                                                                        />
-                                                                    </div>
-                                                                    <div className="mb-2">
-                                                                        <textarea 
-                                                                            className="form-control form-control-sm" 
-                                                                            placeholder="Descripción" 
-                                                                            rows="2"
-                                                                            value={step.description}
-                                                                            onChange={(e) => updateStep(i, 'description', e.target.value)}
-                                                                        ></textarea>
-                                                                    </div>
-                                                                    <div className="mb-0">
-                                                                        <ImageFormGroup
-                                                                            label="Imagen del paso"
-                                                                            aspect={1}
-                                                                            fit="cover"
-                                                                            src={step.image ? `/api/transactional_landings/media/${step.image}` : ''}
-                                                                            onChange={(e) => onStepImageChange(i, e.target.files[0])}
-                                                                            col="col-12"
-                                                                        />
+                                                    {stepsData.map(
+                                                        (step, i) => (
+                                                            <div
+                                                                key={i}
+                                                                className="col-md-4"
+                                                            >
+                                                                <div className="card border shadow-none mb-0">
+                                                                    <div className="card-body p-2">
+                                                                        <div className="d-flex justify-content-between mb-2">
+                                                                            <span className="badge bg-primary">
+                                                                                Paso{" "}
+                                                                                {i +
+                                                                                    1}
+                                                                            </span>
+                                                                            <button
+                                                                                type="button"
+                                                                                className="btn btn-link text-danger p-0"
+                                                                                onClick={() =>
+                                                                                    removeStep(
+                                                                                        i,
+                                                                                    )
+                                                                                }
+                                                                            >
+                                                                                <i className="fa fa-trash"></i>
+                                                                            </button>
+                                                                        </div>
+                                                                        <div className="mb-2">
+                                                                            <input
+                                                                                type="text"
+                                                                                className="form-control form-control-sm"
+                                                                                placeholder="Título del paso"
+                                                                                value={
+                                                                                    step.title
+                                                                                }
+                                                                                onChange={(
+                                                                                    e,
+                                                                                ) =>
+                                                                                    updateStep(
+                                                                                        i,
+                                                                                        "title",
+                                                                                        e
+                                                                                            .target
+                                                                                            .value,
+                                                                                    )
+                                                                                }
+                                                                            />
+                                                                        </div>
+                                                                        <div className="mb-2">
+                                                                            <textarea
+                                                                                className="form-control form-control-sm"
+                                                                                placeholder="Descripción"
+                                                                                rows="2"
+                                                                                value={
+                                                                                    step.description
+                                                                                }
+                                                                                onChange={(
+                                                                                    e,
+                                                                                ) =>
+                                                                                    updateStep(
+                                                                                        i,
+                                                                                        "description",
+                                                                                        e
+                                                                                            .target
+                                                                                            .value,
+                                                                                    )
+                                                                                }
+                                                                            ></textarea>
+                                                                        </div>
+                                                                        <div className="mb-0">
+                                                                            <ImageFormGroup
+                                                                                label="Imagen del paso"
+                                                                                aspect={
+                                                                                    1
+                                                                                }
+                                                                                fit="cover"
+                                                                                src={
+                                                                                    step.image
+                                                                                        ? `/api/transactional_landings/media/${step.image}`
+                                                                                        : ""
+                                                                                }
+                                                                                onChange={(
+                                                                                    e,
+                                                                                ) =>
+                                                                                    onStepImageChange(
+                                                                                        i,
+                                                                                        e
+                                                                                            .target
+                                                                                            .files[0],
+                                                                                    )
+                                                                                }
+                                                                                col="col-12"
+                                                                            />
+                                                                        </div>
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                        </div>
-                                                    ))}
+                                                        ),
+                                                    )}
                                                 </div>
                                             </div>
                                             <div className="col-md-12">

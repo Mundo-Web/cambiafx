@@ -29,12 +29,12 @@ class LandingController extends BasicController
 
     public function casaDeCambioDigital(Request $request)
     {
-        return $this->renderLanding('casa-de-cambio-digital', 'Landings/SolesADolares');
+        return $this->renderLanding('casa-de-cambio-digital', 'Landings/CasaDeCambioDigital');
     }
 
     public function compraVentaDolares(Request $request)
     {
-        return $this->renderLanding('compra-y-venta-de-dolares', 'Landings/SolesADolares');
+        return $this->renderLanding('compra-y-venta-de-dolares', 'Landings/CompraVentaDolares');
     }
 
     private function getMarketRates()
