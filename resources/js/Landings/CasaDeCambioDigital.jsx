@@ -678,9 +678,6 @@ const CasaDeCambioDigital = ({
                                                                     </span>
                                                                 )}
                                                             </div>
-                                                            <span className="text-xs font-bold text-white/60 uppercase">
-                                                                {bank.entity}
-                                                            </span>
                                                         </div>
                                                         <div className="col-span-6 text-right text-sm font-bold text-white/40 tabular-nums">
                                                             {bank.receiveUSD.toLocaleString(
