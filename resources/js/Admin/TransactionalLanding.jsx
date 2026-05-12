@@ -968,7 +968,7 @@ const TransactionalLanding = ({
                                                 />
                                             </div>
                                             {currentSlug !==
-                                                "casa-de-cambio-digital" && (
+                                                "compra-y-venta-de-dolares" && (
                                                 <div className="col-md-12">
                                                     <hr />
                                                     <div className="d-flex justify-content-between align-items-center mb-3">
