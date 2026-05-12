@@ -76,16 +76,20 @@ class CompetitionRateController extends Controller
             ];
         }
 
-        // 3. Actualizar CambiaFX en la lista de la DB
+        // 3. Actualizar únicamente la fila de CambiaFX con la tasa real de Luna
         $updatedRates = array_map(function($rate) use ($buyLive, $sellLive) {
-            // Buscamos la fila de CambiaFX o la que esté marcada como highlight
-            if (isset($rate['entity']) && (stripos($rate['entity'], 'Cambia') !== false || ($rate['is_highlight'] ?? false))) {
-                $rate['buy'] = number_format($buyLive, 3);
-                $rate['sell'] = number_format($sellLive, 3);
+            $entity = $rate['entity'] ?? '';
+            // Identificar si es nuestra entidad por nombre
+            $isNosotros = stripos($entity, 'Cambia') !== false;
+
+            if ($isNosotros) {
+                $rate['buy'] = number_format($buyLive, 3, '.', '');
+                $rate['sell'] = number_format($sellLive, 3, '.', '');
                 $rate['diff'] = 'MEJOR OPCIÓN';
                 $rate['is_highlight'] = true;
                 $rate['category'] = 'Nosotros';
             }
+            // Las demás entidades se devuelven tal cual están en la DB (respetando lo ingresado en el Admin)
             return $rate;
         }, $dbRates);
 

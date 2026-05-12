@@ -66,19 +66,23 @@ const CasaDeCambioDigital = ({
     ];
 
     const logoMapping = {
-        "Cambia FX": "/assets/img/logo.png",
-        CambiaFX: "/assets/img/logo.png",
-        BCP: "/assets/img/bcp_logo.png",
-        Interbank: "/assets/img/interbank_logo.png",
-        Scotiabank: "/assets/img/scotiabank_logo.png",
-        BBVA: "/assets/img/bbva_logo.png",
-        SUNAT: "/assets/img/sunat_logo.avif",
-        Otros: "/assets/img/otros_logo.png",
-        Pichincha: "/assets/img/pichincha_logo.png",
-        Banbif: "/assets/img/banbif_logo.png",
-        Paralelo: "/assets/img/ocona_logo.png",
-        GNB: "/assets/img/gnb_logo.png",
-        Comercio: "/assets/img/comercio_logo.png",
+        "cambia fx": "/assets/img/logo.png",
+        cambiafx: "/assets/img/logo.png",
+        bcp: "/assets/img/bcp_logo.png",
+        interbank: "/assets/img/interbank_logo.png",
+        scotiabank: "/assets/img/scotiabank_logo.png",
+        bbva: "/assets/img/bbva_logo.png",
+        sunat: "/assets/img/sunat_logo.avif",
+        otros: "/assets/img/otros_logo.png",
+        pichincha: "/assets/img/pichincha_logo.png",
+        banbif: "/assets/img/banbif_logo.png",
+        paralelo: "/assets/img/ocona_logo.png",
+        "dólar ocoña": "/assets/img/ocona_logo.png",
+        "dolar ocoña": "/assets/img/ocona_logo.png",
+        "dolar ocona": "/assets/img/ocona_logo.png",
+        ocona: "/assets/img/ocona_logo.png",
+        gnb: "/assets/img/gnb_logo.png",
+        comercio: "/assets/img/comercio_logo.png",
     };
 
     // Lógica de cálculo de ahorro real (Sincronizada con ExchangeCard - Modo VENTA)
@@ -97,12 +101,13 @@ const CasaDeCambioDigital = ({
                 return {
                     ...bank,
                     logo:
-                        logoMapping[bank.entity] ||
+                        logoMapping[bank.entity.toLowerCase()] ||
                         logoMapping[
                             Object.keys(logoMapping).find((k) =>
-                                bank.entity.includes(k),
+                                bank.entity.toLowerCase().includes(k),
                             )
-                        ],
+                        ] ||
+                        logoMapping["otros"],
                     receiveUSD,
                     savingsPEN: (amount / cambiaRate - receiveUSD) * cambiaRate,
                 };
@@ -629,7 +634,7 @@ const CasaDeCambioDigital = ({
                                                         <img
                                                             src={
                                                                 logoMapping[
-                                                                    "Cambia FX"
+                                                                    "cambia fx"
                                                                 ]
                                                             }
                                                             alt="Cambia FX"
