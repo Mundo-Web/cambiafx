@@ -397,13 +397,15 @@ const CasaDeCambioDigital = ({
                         variants={itemVariants}
                         className="flex flex-wrap gap-3 mb-4"
                     >
-                        {(landing.company_types || [
-                            "Importadoras",
-                            "Exportadoras",
-                            "Agencias de viaje",
-                            "Startups",
-                            "Comercio exterior",
-                        ]).map((tag, i) => (
+                        {(
+                            landing.company_types || [
+                                "Importadoras",
+                                "Exportadoras",
+                                "Agencias de viaje",
+                                "Startups",
+                                "Comercio exterior",
+                            ]
+                        ).map((tag, i) => (
                             <span
                                 key={i}
                                 className="px-4 py-2 bg-white/50 backdrop-blur-sm border border-neutral-light/10 rounded-full text-xs font-bold uppercase tracking-widest text-neutral-dark/60"
@@ -821,33 +823,47 @@ const CasaDeCambioDigital = ({
 
                     <div className="flex flex-col gap-8">
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                            {(landing.benefit_cards || [
-                                {
-                                    icon: "TrendingUp",
-                                    title: "Mejor precio",
-                                    desc: "Garantizamos tasas competitivas con actualización en tiempo real del mercado.",
-                                },
-                                {
-                                    icon: "Clock",
-                                    title: "Sin filas",
-                                    desc: "Olvídate de las agencias. Opera desde tu celular o laptop en menos de 15 minutos.",
-                                },
-                                {
-                                    icon: "CirclePercent",
-                                    title: "Sin comisiones",
-                                    desc: "Transferencias directas y transparentes. Lo que ves es exactamente lo que recibes.",
-                                },
-                                {
-                                    icon: "ShieldCheck",
-                                    title: "Seguro y legal",
-                                    desc: "Empresa registrada en la SBS con Resolución N° 02998-2020 para tu tranquilidad.",
-                                },
-                            ]).map((card, i) => {
-                                const IconComponent = {
-                                    TrendingUp, Clock, CirclePercent, ShieldCheck, 
-                                    Zap, Users, Heart, Star, Wallet, Globe, 
-                                    Smartphone, MousePointer2, Lock, Sparkles
-                                }[card.icon] || Sparkles;
+                            {(
+                                landing.benefit_cards || [
+                                    {
+                                        icon: "TrendingUp",
+                                        title: "Mejor precio",
+                                        desc: "Garantizamos tasas competitivas con actualización en tiempo real del mercado.",
+                                    },
+                                    {
+                                        icon: "Clock",
+                                        title: "Sin filas",
+                                        desc: "Olvídate de las agencias. Opera desde tu celular o laptop en menos de 15 minutos.",
+                                    },
+                                    {
+                                        icon: "CirclePercent",
+                                        title: "Sin comisiones",
+                                        desc: "Transferencias directas y transparentes. Lo que ves es exactamente lo que recibes.",
+                                    },
+                                    {
+                                        icon: "ShieldCheck",
+                                        title: "Seguro y legal",
+                                        desc: "Empresa registrada en la SBS con Resolución N° 02998-2020 para tu tranquilidad.",
+                                    },
+                                ]
+                            ).map((card, i) => {
+                                const IconComponent =
+                                    {
+                                        TrendingUp,
+                                        Clock,
+                                        CirclePercent,
+                                        ShieldCheck,
+                                        Zap,
+                                        Users,
+                                        Heart,
+                                        Star,
+                                        Wallet,
+                                        Globe,
+                                        Smartphone,
+                                        MousePointer2,
+                                        Lock,
+                                        Sparkles,
+                                    }[card.icon] || Sparkles;
 
                                 return (
                                     <motion.div
@@ -861,7 +877,7 @@ const CasaDeCambioDigital = ({
                                         }}
                                         className={`bg-white p-8 rounded-[32px] flex flex-col justify-between min-h-[220px] shadow-[0_20px_50px_rgba(0,0,0,0.2)] hover:scale-[1.02] transition-all duration-300 group`}
                                     >
-                                        <div className="w-14 h-14 bg-neutral-dark/5 rounded-2xl flex items-center justify-center group-hover:bg-neutral-dark/10 transition-colors">
+                                        <div className="w-14 h-14 bg-primary rounded-full flex items-center justify-center group-hover:bg-neutral-dark/10 transition-colors">
                                             <IconComponent
                                                 className="text-neutral-dark"
                                                 size={28}
@@ -907,8 +923,8 @@ const CasaDeCambioDigital = ({
                 </motion.div>
             </Suspense>
 
-            {/* CTA SECTION PREMIUM (Same as SolesADolares) */}
-            <section className="w-full overflow-hidden bg-primary py-12 md:py-32 flex justify-center items-center px-[3%] md:px-[5%] mx-auto">
+            {/* CTA SECTION PREMIUM (Inspirado en EmpresasSection) */}
+            <section className="w-full overflow-hidden relative bg-primary py-12 md:py-32 flex justify-center items-center px-[3%] md:px-[5%] mx-auto">
                 <motion.div
                     className="relative w-full h-full px-4 md:px-16 rounded-[28px] md:rounded-[56px] bg-constrast flex flex-col md:flex-row items-center py-10 md:py-10 md:min-h-[400px]"
                     initial={{ opacity: 0, scale: 0.95 }}
@@ -916,6 +932,7 @@ const CasaDeCambioDigital = ({
                     viewport={{ once: true }}
                     transition={{ duration: 0.8 }}
                 >
+                    {/* Fondo decorativo SVG (Copiado de EmpresasSection) */}
                     <div className="absolute h-full w-auto top-0 right-0 z-0 overflow-hidden rounded-[28px] md:rounded-[56px] hidden md:block opacity-40">
                         <svg
                             className="z-0 h-full"
@@ -927,31 +944,121 @@ const CasaDeCambioDigital = ({
                         >
                             <path
                                 d="M106.632 475.609C46.3026 412.336 8.96465 333.732 1.57527 254.167C-10.6896 86.2005 66.6131 -49.7434 208.283 -110.322C347.381 -169.827 511.454 -135.723 616.571 -25.4768C654.009 13.7878 683.587 61.4665 704.543 116.446L705.068 117.939C716.587 152.177 748.969 292.684 697.569 353.65C678.758 375.879 651.264 385.231 620.072 380.174L617.905 379.787C601.122 376.014 586.028 367.412 574.161 354.967C554.638 334.491 546.306 305.952 551.763 278.674C566.519 214.478 545.681 143.75 497.371 93.0833C473.867 68.4325 445.015 49.8011 413.966 39.3954L412.114 38.7093C357.011 16.7474 296.319 26.4814 245.657 65.4353C190.689 107.729 161.557 174.136 169.673 238.906C173.866 282.275 195.191 326.327 228.111 360.854C271.521 406.381 327.405 427.905 377.546 418.42C405.847 412.744 435.433 422.245 456.027 443.844C466.975 455.326 474.554 469.561 478.009 484.97C483.675 509.613 478.407 534.103 463.043 553.505C446.339 574.643 419.424 587.43 390.488 588.04C291.608 600.308 185.644 558.319 106.787 475.614L106.632 475.609Z"
-                                fill="url(#paint0_linear_16_2457)"
+                                fill="url(#paint_linear_cta)"
                                 fillOpacity="0.6"
                             />
+                            <defs>
+                                <linearGradient
+                                    id="paint_linear_cta"
+                                    x1="605.608"
+                                    y1="-36.9748"
+                                    x2="90.2411"
+                                    y2="458.384"
+                                    gradientUnits="userSpaceOnUse"
+                                >
+                                    <stop
+                                        offset="0.483986"
+                                        stopColor="#7E5AFB"
+                                    />
+                                    <stop offset="1" stopColor="#C7B7FF" />
+                                </linearGradient>
+                            </defs>
                         </svg>
                     </div>
 
+                    {/* DESKTOP LAYOUT - Exact match to EmpresasSection */}
                     <div className="flex-1 z-10 flex flex-col md:flex-row w-full h-full items-center">
+                        {/* Columna izquierda: texto */}
                         <div className="flex-1 z-10 flex flex-col justify-center items-start gap-4">
-                            <motion.h2 className="text-4xl md:text-5xl lg:text-7xl font-medium leading-tight text-white mb-2">
+                            <motion.h2
+                                initial={{ opacity: 0, x: -30 }}
+                                whileInView={{ opacity: 1, x: 0 }}
+                                transition={{ delay: 0.2 }}
+                                className="text-4xl md:text-5xl lg:text-7xl font-medium leading-tight text-white mb-2"
+                            >
                                 <TextWithHighlight
                                     text={
                                         landing.cta_title ||
-                                        "¿Tu empresa cambia *divisas*?"
+                                        "Empieza a ahorrar ahora"
                                     }
                                     color="bg-secondary font-bold"
                                 />
                             </motion.h2>
-                            <motion.p className="text-white text-lg md:text-2xl max-w-xl font-light">
+                            <motion.p
+                                initial={{ opacity: 0, x: -30 }}
+                                whileInView={{ opacity: 1, x: 0 }}
+                                transition={{ delay: 0.3 }}
+                                className="text-white text-lg md:text-2xl max-w-xl font-light"
+                            >
                                 {landing.cta_subtitle ||
-                                    "Únete a las miles de empresas que ya ahorran con nuestra plataforma corporativa."}
+                                    "Únete a los más de 60,000 peruanos que ya ahorran con la casa de cambio digital líder en Perú."}
                             </motion.p>
                         </div>
 
+                        {/* Columna central: imagen */}
+                        {landing.cta_image && (
+                            <div className="z-10 flex-1 justify-center items-end min-h-[300px] md:min-h-[400px] relative hidden md:flex">
+                                <motion.img
+                                    initial={{ opacity: 0, scale: 0.8, y: 30 }}
+                                    whileInView={{ opacity: 1, scale: 1, y: 0 }}
+                                    transition={{ delay: 0.4, type: "spring" }}
+                                    src={`/api/transactional_landings/media/${landing.cta_image}`}
+                                    alt="CTA Banner"
+                                    className="h-[500px] lg:h-[600px] absolute -bottom-10 lg:-bottom-10 w-auto object-contain select-none transition-all duration-500 drop-shadow-2xl"
+                                    draggable="false"
+                                />
+                            </div>
+                        )}
+
+                        {/* Columna derecha: botón y decoración */}
                         <div className="z-10 flex flex-col gap-10 items-center md:items-end justify-center md:justify-end min-w-[200px] md:ml-8 mt-12 md:mt-0">
+                            <motion.div
+                                className="hidden md:flex text-white relative text-2xl text-end mb-2"
+                                initial={{ opacity: 0, y: 20 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                            >
+                                <span>Haz clic aquí</span>
+                                <div className="absolute -right-10 top-0">
+                                    <svg
+                                        width="53"
+                                        height="76"
+                                        viewBox="0 0 53 76"
+                                        fill="none"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                    >
+                                        <g clipPath="url(#clip0_cta)">
+                                            <path
+                                                d="M24.904 2.71705C44.9855 27.8746 39.9591 61.6151 23.9101 73.0194"
+                                                stroke="#FAF3E1"
+                                                strokeWidth="1.50408"
+                                                strokeLinecap="round"
+                                                strokeLinejoin="round"
+                                            />
+                                            <path
+                                                d="M25.18 65.8476L23.9083 73.0192L31.0918 71.9369"
+                                                stroke="#FAF3E1"
+                                                strokeWidth="1.50408"
+                                                strokeLinecap="round"
+                                                strokeLinejoin="round"
+                                            />
+                                        </g>
+                                        <defs>
+                                            <clipPath id="clip0_cta">
+                                                <rect
+                                                    width="69.751"
+                                                    height="30.5232"
+                                                    fill="white"
+                                                    transform="translate(28.7188) rotate(70.1997)"
+                                                />
+                                            </clipPath>
+                                        </defs>
+                                    </svg>
+                                </div>
+                            </motion.div>
+
                             <motion.a
+                                initial={{ opacity: 0, scale: 0.8 }}
+                                whileInView={{ opacity: 1, scale: 1 }}
                                 whileHover={{ scale: 1.1 }}
                                 whileTap={{ scale: 0.95 }}
                                 href={
@@ -960,10 +1067,20 @@ const CasaDeCambioDigital = ({
                                 }
                                 className=" text-neutral-dark bg-secondary font-black px-12 py-5 rounded-full text-lg uppercase tracking-widest shadow-xl whitespace-nowrap"
                             >
-                                {landing.cta_button_text || "Empezar ahora"}
+                                {landing.cta_button_text || "Cambiar ahora"}
                             </motion.a>
                         </div>
                     </div>
+
+                    {/* Imagen visible solo en móvil (debajo del contenido) */}
+                    {landing.cta_image && (
+                        <div className="md:hidden w-full flex justify-center mt-8">
+                            <img
+                                src={`/api/transactional_landings/media/${landing.cta_image}`}
+                                className="max-w-[80%] h-auto object-contain"
+                            />
+                        </div>
+                    )}
                 </motion.div>
             </section>
 
