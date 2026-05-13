@@ -353,8 +353,44 @@ const Header = ({
                             />
                             <div className="overflow-hidden whitespace-nowrap w-full relative">
                                 {/*agregar overlay que este transparente y finalize en bg-accent */}
+
+                                <div className="absolute w-10 h-full z-[999] bg-gradient-to-l from-transparent to-accent"></div>
                                 <div className="relative">
-                                    <p className="font-bold ml-4 text-lg whitespace-nowrap">
+                                    <motion.p
+                                        aria-label="Promocion activa"
+                                        role="marquee"
+                                        animate={{ x: [0, "-100%"] }}
+                                        transition={{
+                                            x: {
+                                                repeat: Infinity,
+                                                repeatType: "loop",
+                                                duration: 10,
+                                                ease: "linear",
+                                            },
+                                        }}
+                                        className="font-bold text-sm absolute whitespace-nowrap"
+                                    >
+                                        {renderHighlightedText(
+                                            Cintillo?.description,
+                                        )}
+                                    </motion.p>
+                                    <motion.p
+                                        animate={{ x: ["100%", "0%"] }}
+                                        transition={{
+                                            x: {
+                                                repeat: Infinity,
+                                                repeatType: "loop",
+                                                duration: 10,
+                                                ease: "linear",
+                                            },
+                                        }}
+                                        className="font-bold ml-4 text-sm absolute whitespace-nowrap"
+                                    >
+                                        {renderHighlightedText(
+                                            Cintillo?.description,
+                                        )}
+                                    </motion.p>
+                                    <p className="font-bold ml-4 text-sm opacity-0 whitespace-nowrap">
                                         {renderHighlightedText(
                                             Cintillo?.description,
                                         )}
