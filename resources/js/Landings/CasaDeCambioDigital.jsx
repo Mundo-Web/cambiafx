@@ -56,6 +56,7 @@ const CasaDeCambioDigital = ({
         compra: 3.715,
         venta: 3.725,
     });
+    const [operationType, setOperationType] = useState("compra"); // 'compra' o 'venta'
 
     const milestones = [
         { value: 1000, label: "1k" },
@@ -85,19 +86,62 @@ const CasaDeCambioDigital = ({
         comercio: "/assets/img/comercio_logo.png",
     };
 
-    // Lógica de cálculo de ahorro real (Sincronizada con ExchangeCard - Modo VENTA)
+    // Lógica de cálculo de ahorro real (Sincronizada con ExchangeCard)
     const getSavingsInfo = () => {
-        const cambiaRate = cambiaRates.venta;
+        const isVenta = operationType === "venta";
+        const cambiaRate = isVenta ? cambiaRates.venta : cambiaRates.compra;
 
         // Tasa del banco (Venta)
-        let defaultBankRate = cambiaRate + 0.12;
+        let defaultBankRate = isVenta ? cambiaRate + 0.12 : cambiaRate - 0.12;
 
-        // Mapear todas las entidades de la competencia
-        const banks = comparisonData
+        // Unificar datos de competencia incluyendo Dólar Ocoña de marketRates
+        const baseComparison = [...(comparisonData || [])];
+        const oconaFromMarket = (marketRates || []).find(
+            (mr) =>
+                mr.entity.toLowerCase().includes("paralelo") ||
+                mr.entity.toLowerCase().includes("ocoña") ||
+                mr.entity.toLowerCase().includes("ocona"),
+        );
+
+        if (
+            oconaFromMarket &&
+            !baseComparison.some(
+                (bc) =>
+                    bc.entity.toLowerCase().includes("paralelo") ||
+                    bc.entity.toLowerCase().includes("ocoña") ||
+                    bc.entity.toLowerCase().includes("ocona"),
+            )
+        ) {
+            baseComparison.push({
+                entity: "Dólar Ocoña",
+                buy: oconaFromMarket.buy,
+                sell: oconaFromMarket.sell,
+                category: "Paralelo",
+            });
+        }
+
+        // Mapear competencia (incluyendo Ocoña inyectado y bancos reales del backend)
+        const banks = baseComparison
             .filter((ent) => !ent.entity.toLowerCase().includes("cambia"))
             .map((bank) => {
-                const sell = parseFloat(bank.sell);
-                const receiveUSD = amount / sell;
+                const bankRate = isVenta
+                    ? parseFloat(bank.sell || 0)
+                    : parseFloat(bank.buy || 0);
+
+                // Si es VENTA (PEN -> USD): amount es PEN, recibes USD
+                // Si es COMPRA (USD -> PEN): amount es USD, recibes PEN
+                const receive = isVenta
+                    ? bankRate > 0
+                        ? amount / bankRate
+                        : 0
+                    : amount * bankRate;
+
+                const cambiaReceive = isVenta
+                    ? cambiaRate > 0
+                        ? amount / cambiaRate
+                        : 0
+                    : amount * cambiaRate;
+
                 return {
                     ...bank,
                     logo:
@@ -108,39 +152,74 @@ const CasaDeCambioDigital = ({
                             )
                         ] ||
                         logoMapping["otros"],
-                    receiveUSD,
-                    savingsPEN: (amount / cambiaRate - receiveUSD) * cambiaRate,
+                    receive,
+                    // Ahorro en PEN si es Venta, Ganancia en PEN si es Compra
+                    savingsAmount: isVenta
+                        ? (cambiaReceive - receive) * cambiaRate
+                        : receive - cambiaReceive,
                 };
             });
 
         const mainBank =
             banks.length > 0
-                ? banks.reduce((prev, curr) =>
-                      parseFloat(prev.sell) > parseFloat(curr.sell)
-                          ? prev
-                          : curr,
-                  )
-                : null;
-        const bankRate = mainBank ? parseFloat(mainBank.sell) : defaultBankRate;
-        const bankName = mainBank ? mainBank.entity : "Tu banco";
+                ? banks.reduce((prev, curr) => {
+                      const prevRate = isVenta
+                          ? parseFloat(prev.sell || 0)
+                          : parseFloat(prev.buy || 0);
+                      const currRate = isVenta
+                          ? parseFloat(curr.sell || 0)
+                          : parseFloat(curr.buy || 0);
 
-        const receiveUSD = amount / cambiaRate;
-        const bankReceiveUSD = amount / bankRate;
-        const savingsAmount = (receiveUSD - bankReceiveUSD) * cambiaRate;
+                      if (isVenta) {
+                          return prevRate > currRate ? prev : curr; // El banco con tasa más alta (peor para el usuario)
+                      } else {
+                          return prevRate < currRate ? prev : curr; // El banco con tasa más baja (peor para el usuario)
+                      }
+                  })
+                : null;
+
+        const bankRate = mainBank
+            ? isVenta
+                ? parseFloat(mainBank.sell || 0)
+                : parseFloat(mainBank.buy || 0)
+            : defaultBankRate;
+        const bankName = mainBank ? mainBank.entity : "Bancos";
+
+        const currentReceive = isVenta
+            ? cambiaRate > 0
+                ? amount / cambiaRate
+                : 0
+            : amount * cambiaRate;
+        const bankReceive = isVenta
+            ? bankRate > 0
+                ? amount / bankRate
+                : 0
+            : amount * bankRate;
+
+        // El ahorro total siempre se expresa en la moneda que recibes (o convertido a soles para impacto)
+        const totalSavings = isVenta
+            ? (currentReceive - bankReceive) * cambiaRate
+            : currentReceive - bankReceive;
 
         return {
             cambiaRate,
             bankRate,
             bankName,
-            savingsAmount,
-            receiveUSD,
-            banks, // Todas las entidades
+            totalSavings,
+            receive: currentReceive,
+            banks,
             logoMapping,
         };
     };
 
-    const { cambiaRate, bankRate, bankName, savingsAmount, receiveUSD, banks } =
-        getSavingsInfo();
+    const {
+        cambiaRate: currentCambiaRate,
+        bankRate: currentBankRate,
+        bankName: currentBankName,
+        totalSavings,
+        receive: currentReceive,
+        banks: calculatedBanks,
+    } = getSavingsInfo();
 
     // Helper para calcular la posición porcentual del thumb basado en hitos no lineales
     const getSliderPercentage = (val) => {
@@ -175,7 +254,6 @@ const CasaDeCambioDigital = ({
         const end = milestones[segmentIndex + 1].value;
         return Math.round(start + (end - start) * relPct);
     };
-
 
     const containerVariants = {
         hidden: { opacity: 0 },
@@ -225,14 +303,12 @@ const CasaDeCambioDigital = ({
                 );
                 if (rates && rates.length > 0) {
                     setComparisonData(rates);
-                } else if (landing.comparison_data) {
-                    setComparisonData(landing.comparison_data);
+                } else {
+                    setComparisonData([]);
                 }
             } catch (error) {
                 console.error("Error fetching competition rates:", error);
-                if (landing.comparison_data) {
-                    setComparisonData(landing.comparison_data);
-                }
+                setComparisonData([]);
             }
         };
 
@@ -398,27 +474,42 @@ const CasaDeCambioDigital = ({
                             {/* Ambient Light Effects */}
                             <div className="absolute -top-24 -right-24 w-64 h-64 bg-constrast/20 blur-[100px] rounded-full transition-all duration-1000"></div>
 
-                            {/* Header: Title & Trust Badge */}
-                            <div className="flex justify-between items-center mb-8 relative z-10">
-                                <div className="space-y-1">
-                                    <p className="text-3xl font-medium text-white">
-                                        Ingresa tu monto
-                                    </p>
-                                </div>
+                            {/* Operation Toggle Switch (Moved up and refined) */}
+                            <div className="flex bg-white/5 p-1 rounded-3xl border border-white/10 mb-10 relative z-10">
+                                <button
+                                    onClick={() => setOperationType("compra")}
+                                    className={`flex-1 flex flex-col items-center py-4 px-6 rounded-[22px] transition-all duration-500 ${operationType === "compra" ? "bg-white text-neutral-dark shadow-2xl scale-[1.02] z-20" : "text-white/40 hover:text-white/60"}`}
+                                >
+                                    <span className="text-[10px] font-black uppercase tracking-widest">
+                                        Dólar a Soles
+                                    </span>
+                                </button>
+                                <button
+                                    onClick={() => setOperationType("venta")}
+                                    className={`flex-1 flex flex-col items-center py-4 px-6 rounded-[22px] transition-all duration-500 ${operationType === "venta" ? "bg-white text-neutral-dark shadow-2xl scale-[1.02] z-20" : "text-white/40 hover:text-white/60"}`}
+                                >
+                                    <span className="text-[10px] font-black uppercase tracking-widest ">
+                                        Soles a Dólar
+                                    </span>
+                                </button>
                             </div>
 
                             {/* Input Section */}
                             <div className="space-y-8 relative z-10">
                                 <div>
-                                    <div className="flex justify-between items-center mb-4">
-                                        <label className="text-md font-semibold text-white/40  tracking-widest">
-                                            Tengo para cambiar
+                                    <div className="flex justify-between items-center mb-6">
+                                        <label className="text-md font-semibold text-white/40 tracking-widest uppercase">
+                                            {operationType === "venta"
+                                                ? "Monto en Soles"
+                                                : "Monto en Dólares"}
                                         </label>
                                     </div>
 
                                     <div className="flex items-center gap-2 bg-white/5 border border-white/10 rounded-full px-6 py-4 focus-within:border-constrast/50 transition-all mb-0">
                                         <span className="text-xl font-bold text-white/30">
-                                            S/
+                                            {operationType === "venta"
+                                                ? "S/"
+                                                : "$"}
                                         </span>
                                         <input
                                             type="text"
@@ -526,7 +617,9 @@ const CasaDeCambioDigital = ({
                                         </div>
                                         <div className="col-span-6 text-right">
                                             <span className="text-[10px] font-bold text-white/30 uppercase tracking-widest">
-                                                Recibes (USD)
+                                                {operationType === "venta"
+                                                    ? "Recibes (USD)"
+                                                    : "Recibes (Soles)"}
                                             </span>
                                         </div>
                                     </div>
@@ -557,7 +650,7 @@ const CasaDeCambioDigital = ({
                                             {/* Row Master: Cambia FX (Always first and highlighted) */}
                                             <motion.div className="grid grid-cols-12 items-center px-5 py-4 rounded-[28px] transition-all duration-500 bg-white border-2 border-constrast  scale-[1.02] z-10 relative mb-4 mx-1">
                                                 <div className="col-span-6 flex items-center gap-4">
-                                                    <div className="w-24 h-8 flex items-center justify-center overflow-hidden bg-neutral-dark/5 border-neutral-dark/10">
+                                                    <div className="w-24 h-8 flex items-center justify-center overflow-hidden ">
                                                         <img
                                                             src={
                                                                 logoMapping[
@@ -570,7 +663,10 @@ const CasaDeCambioDigital = ({
                                                     </div>
                                                 </div>
                                                 <div className="col-span-6 text-right text-xl font-black text-neutral-dark tabular-nums">
-                                                    {receiveUSD.toLocaleString(
+                                                    {operationType === "venta"
+                                                        ? "$ "
+                                                        : "S/ "}
+                                                    {currentReceive.toLocaleString(
                                                         undefined,
                                                         {
                                                             minimumFractionDigits: 2,
@@ -582,46 +678,66 @@ const CasaDeCambioDigital = ({
 
                                             {/* Competitors Rows */}
                                             <div className="space-y-2 mx-1">
-                                                {banks.map((bank, idx) => (
-                                                    <motion.div
-                                                        key={idx}
-                                                        className="grid grid-cols-12 items-center px-5 py-4 rounded-[28px] transition-all duration-500 bg-white/5 border border-white/10 hover:border-white/20 hover:bg-white/10 group"
-                                                    >
-                                                        <div className="col-span-6 flex items-center gap-4">
-                                                            <div className="w-10 h-10 rounded-2xl flex items-center justify-center overflow-hidden bg-white/10 border-white/10">
-                                                                {bank.logo ? (
-                                                                    <img
-                                                                        src={
-                                                                            bank.logo
-                                                                        }
-                                                                        alt={
+                                                {(calculatedBanks || []).map(
+                                                    (bank, idx) => (
+                                                        <motion.div
+                                                            key={idx}
+                                                            className="grid grid-cols-12 items-center px-5 py-4 rounded-[28px] transition-all duration-500 bg-white/5 border border-white/10 hover:border-white/20 hover:bg-white/10 group"
+                                                        >
+                                                            <div className="col-span-6 flex items-center gap-4">
+                                                                <div className="w-10 h-10 rounded-2xl flex items-center justify-center overflow-hidden  border-white/10">
+                                                                    {bank.logo ? (
+                                                                        <img
+                                                                            src={
+                                                                                bank.logo
+                                                                            }
+                                                                            alt={
+                                                                                bank.entity
+                                                                            }
+                                                                            className="w-full h-full object-contain"
+                                                                        />
+                                                                    ) : (
+                                                                        <span className="text-[10px] font-black text-white/40">
+                                                                            {bank.entity
+                                                                                .substring(
+                                                                                    0,
+                                                                                    2,
+                                                                                )
+                                                                                .toUpperCase()}
+                                                                        </span>
+                                                                    )}
+                                                                </div>
+                                                                <div className="flex flex-col">
+                                                                    <span className="text-xs font-bold text-white group-hover:text-constrast transition-colors">
+                                                                        {
                                                                             bank.entity
                                                                         }
-                                                                        className="w-full h-full object-contain"
-                                                                    />
-                                                                ) : (
-                                                                    <span className="text-[10px] font-black text-white/40">
-                                                                        {bank.entity
-                                                                            .substring(
-                                                                                0,
-                                                                                2,
-                                                                            )
-                                                                            .toUpperCase()}
                                                                     </span>
+                                                                    <span className="text-[9px] text-white/30 uppercase tracking-widest font-medium">
+                                                                        Tasa:{" "}
+                                                                        {operationType ===
+                                                                        "venta"
+                                                                            ? bank.sell
+                                                                            : bank.buy}
+                                                                    </span>
+                                                                </div>
+                                                            </div>
+                                                            <div className="col-span-6 text-right text-sm font-bold text-white/40 tabular-nums">
+                                                                {operationType ===
+                                                                "venta"
+                                                                    ? "$ "
+                                                                    : "S/ "}
+                                                                {bank.receive.toLocaleString(
+                                                                    undefined,
+                                                                    {
+                                                                        minimumFractionDigits: 2,
+                                                                        maximumFractionDigits: 2,
+                                                                    },
                                                                 )}
                                                             </div>
-                                                        </div>
-                                                        <div className="col-span-6 text-right text-sm font-bold text-white/40 tabular-nums">
-                                                            {bank.receiveUSD.toLocaleString(
-                                                                undefined,
-                                                                {
-                                                                    minimumFractionDigits: 2,
-                                                                    maximumFractionDigits: 2,
-                                                                },
-                                                            )}
-                                                        </div>
-                                                    </motion.div>
-                                                ))}
+                                                        </motion.div>
+                                                    ),
+                                                )}
                                             </div>
                                         </div>
                                     </div>
@@ -629,7 +745,7 @@ const CasaDeCambioDigital = ({
 
                                 {/* THE SAVINGS HERO BLOCK (Refined Premium UX) */}
                                 <motion.div
-                                    className="bg-white/5 border border-white/10 p-6 rounded-[32px] relative overflow-hidden backdrop-blur-xl group/savings mt-8"
+                                    className="bg-white/5 hidden border border-white/10 p-6 rounded-[32px] relative overflow-hidden backdrop-blur-xl group/savings mt-8"
                                     whileHover={{
                                         y: -5,
                                         backgroundColor:
@@ -639,14 +755,17 @@ const CasaDeCambioDigital = ({
                                     {/* Ambient Flare */}
                                     <div className="absolute -top-10 -right-10 w-32 h-32 bg-constrast/10 blur-3xl group-hover/savings:bg-constrast/20 transition-all duration-700" />
 
-                                    <div className="relative z-10 flex items-center justify-between gap-6">
+                                    <div className="relative  z-10 flex items-center justify-between gap-6">
                                         {/* Left Side: Brand Message */}
                                         <div className="flex-1">
                                             <span className="text-[10px] font-black text-constrast uppercase tracking-[0.2em] mb-1.5 block">
                                                 ¡Cambia al mejor precio!
                                             </span>
                                             <h4 className="text-white text-xl md:text-2xl font-black leading-tight tracking-tighter">
-                                                Solo con{" "}
+                                                {operationType === "venta"
+                                                    ? "Ahorra"
+                                                    : "Gana"}{" "}
+                                                más con{" "}
                                                 <span className="text-constrast block">
                                                     Cambia FX
                                                 </span>
@@ -659,13 +778,15 @@ const CasaDeCambioDigital = ({
                                         {/* Right Side: Savings Impact */}
                                         <div className="text-right">
                                             <span className="text-[10px] font-bold text-white/40 uppercase tracking-widest block mb-1">
-                                                Ahorras aprox.
+                                                {operationType === "venta"
+                                                    ? "Ahorras aprox."
+                                                    : "Ganas aprox."}
                                             </span>
                                             <div className="text-white text-3xl md:text-4xl font-black tabular-nums tracking-tighter">
                                                 <span className="text-constrast text-xl mr-1">
                                                     S/
                                                 </span>
-                                                {savingsAmount.toLocaleString(
+                                                {totalSavings.toLocaleString(
                                                     undefined,
                                                     {
                                                         maximumFractionDigits: 0,

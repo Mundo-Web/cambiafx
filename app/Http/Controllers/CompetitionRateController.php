@@ -49,52 +49,8 @@ class CompetitionRateController extends Controller
         Log::info('Tasa CambiaFX Live:', ['buy' => $buyLive, 'sell' => $sellLive]);
 
         if (empty($dbRates)) {
-            Log::warning('No hay data en la DB para la comparativa, devolviendo estructura básica con bancos');
-            return [
-                [
-                    'entity' => 'CambiaFX',
-                    'buy' => number_format($buyLive, 3, '.', ''),
-                    'sell' => number_format($sellLive, 3, '.', ''),
-                    'diff' => 'MEJOR',
-                    'is_highlight' => true,
-                    'category' => 'Nosotros'
-                ],
-                [
-                    'entity' => 'SUNAT (Oficial)',
-                    'buy' => number_format($buyLive - 0.005, 3, '.', ''),
-                    'sell' => number_format($sellLive + 0.005, 3, '.', ''),
-                    'diff' => '- S/ 0.005',
-                    'category' => 'Oficial'
-                ],
-                [
-                    'entity' => 'BCP',
-                    'buy' => number_format($buyLive - 0.045, 3, '.', ''),
-                    'sell' => number_format($sellLive + 0.045, 3, '.', ''),
-                    'diff' => '- S/ 45.00',
-                    'category' => 'Banco'
-                ],
-                [
-                    'entity' => 'BBVA',
-                    'buy' => number_format($buyLive - 0.052, 3, '.', ''),
-                    'sell' => number_format($sellLive + 0.052, 3, '.', ''),
-                    'diff' => '- S/ 52.00',
-                    'category' => 'Banco'
-                ],
-                [
-                    'entity' => 'Interbank',
-                    'buy' => number_format($buyLive - 0.048, 3, '.', ''),
-                    'sell' => number_format($sellLive + 0.048, 3, '.', ''),
-                    'diff' => '- S/ 48.00',
-                    'category' => 'Banco'
-                ],
-                [
-                    'entity' => 'Kambista',
-                    'buy' => number_format($buyLive - 0.005, 3, '.', ''),
-                    'sell' => number_format($sellLive + 0.005, 3, '.', ''),
-                    'diff' => '- S/ 5.00',
-                    'category' => 'Digital'
-                ]
-            ];
+            Log::warning('No hay data en la DB para la comparativa, devolviendo lista vacía');
+            return [];
         }
 
         // 3. Actualizar únicamente la fila de CambiaFX con la tasa real de Luna
@@ -136,44 +92,7 @@ class CompetitionRateController extends Controller
         $buyBase = $cambiaFXRate['compra'] ?? 3.750;
         $sellBase = $cambiaFXRate['venta'] ?? 3.785;
 
-        return [
-            [
-                'entity' => 'CambiaFX',
-                'buy' => number_format($buyBase, 3),
-                'sell' => number_format($sellBase, 3),
-                'diff' => 'MEJOR',
-                'is_highlight' => true,
-                'category' => 'Nosotros'
-            ],
-            [
-                'entity' => 'SUNAT (Oficial)',
-                'buy' => number_format($buyBase - 0.015, 3),
-                'sell' => number_format($sellBase + 0.015, 3),
-                'diff' => '- S/ 0.05',
-                'category' => 'Oficial'
-            ],
-            [
-                'entity' => 'BCP',
-                'buy' => number_format($buyBase - 0.045, 3),
-                'sell' => number_format($sellBase + 0.045, 3),
-                'diff' => '- S/ 45.00',
-                'category' => 'Banco'
-            ],
-            [
-                'entity' => 'BBVA',
-                'buy' => number_format($buyBase - 0.052, 3),
-                'sell' => number_format($sellBase + 0.052, 3),
-                'diff' => '- S/ 52.00',
-                'category' => 'Banco'
-            ],
-            [
-                'entity' => 'Kambista',
-                'buy' => number_format($buyBase - 0.005, 3),
-                'sell' => number_format($sellBase + 0.005, 3),
-                'diff' => '- S/ 5.00',
-                'category' => 'Digital'
-            ]
-        ];
+        return [];
     }
 
     /**

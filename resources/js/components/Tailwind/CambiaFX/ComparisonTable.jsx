@@ -112,7 +112,7 @@ const ComparisonTable = ({ data = [] }) => {
                         {/* Entidad con Logo */}
                         <div className="col-span-6 flex items-center gap-4">
                             <div
-                                className={`${row.entity.includes("Cambia") ? "w-28 h-8" : "w-10 h-10 rounded-2xl "} flex items-center justify-center overflow-hidden ${row.is_highlight ? "bg-neutral-dark/5 border-neutral-dark/10" : "bg-white/10 border-white/10"}`}
+                                className={`${row.entity.includes("Cambia") ? "w-28 h-8" : "w-10 h-10 rounded-2xl "} flex items-center justify-center overflow-hidden ${row.is_highlight ? "" : "bg-white/10 border-white/10"}`}
                             >
                                 {logoMapping[row.entity] ? (
                                     <img

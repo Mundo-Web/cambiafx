@@ -111,16 +111,7 @@ const TransactionalLanding = ({
             }
         }
         setComparisonData(
-            Array.isArray(rawComp) && rawComp.length > 0
-                ? rawComp
-                : [
-                      {
-                          entity: "Cambia FX",
-                          buy: "3.510",
-                          sell: "3.510",
-                          is_highlight: true,
-                      },
-                  ],
+            Array.isArray(rawComp) && rawComp.length > 0 ? rawComp : [],
         );
 
         let rawFaq = data?.schema_faq;

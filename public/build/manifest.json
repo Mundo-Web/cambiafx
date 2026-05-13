@@ -64,8 +64,8 @@
       "_proxy-CCJoq4u5.js"
     ]
   },
-  "_ComparisonTable-BnpGgO2G.js": {
-    "file": "assets/ComparisonTable-BnpGgO2G.js",
+  "_ComparisonTable-D2qjqlq3.js": {
+    "file": "assets/ComparisonTable-D2qjqlq3.js",
     "name": "ComparisonTable",
     "imports": [
       "resources/js/Admin/components/RequirementCard.jsx",
@@ -742,7 +742,7 @@
     "src": "public/assets/fonts/general-sans/GeneralSans-Semibold.woff2"
   },
   "resources/css/app.css": {
-    "file": "assets/app-BFwI6Aj_.css",
+    "file": "assets/app-CfMeIwvV.css",
     "src": "resources/css/app.css",
     "isEntry": true
   },
@@ -2564,7 +2564,7 @@
     ]
   },
   "resources/js/Admin/TransactionalLanding.jsx": {
-    "file": "assets/TransactionalLanding-Ct0_SYyn.js",
+    "file": "assets/TransactionalLanding-DcegOS5T.js",
     "name": "TransactionalLanding",
     "src": "resources/js/Admin/TransactionalLanding.jsx",
     "isEntry": true,
@@ -3698,7 +3698,7 @@
     ]
   },
   "resources/js/Landings/CasaDeCambioDigital.jsx": {
-    "file": "assets/CasaDeCambioDigital-CS3QEae_.js",
+    "file": "assets/CasaDeCambioDigital-CErtOVFO.js",
     "name": "CasaDeCambioDigital",
     "src": "resources/js/Landings/CasaDeCambioDigital.jsx",
     "isEntry": true,
@@ -3796,7 +3796,7 @@
     ]
   },
   "resources/js/Landings/SolesADolares.jsx": {
-    "file": "assets/SolesADolares-T2wd5DBJ.js",
+    "file": "assets/SolesADolares-DKlVJ5b2.js",
     "name": "SolesADolares",
     "src": "resources/js/Landings/SolesADolares.jsx",
     "isEntry": true,
@@ -3816,7 +3816,7 @@
       "_TextWithHighlight-pwvdifVY.js",
       "_OptimizedImage-uw97VKTS.js",
       "_FAQSection-BQmE7W_4.js",
-      "_ComparisonTable-BnpGgO2G.js",
+      "_ComparisonTable-D2qjqlq3.js",
       "_CambiaFXService-1KwYxN77.js",
       "_proxy-CCJoq4u5.js",
       "_index-CF8W1V4f.js",
@@ -3845,7 +3845,7 @@
     ]
   },
   "resources/js/Landings/TipoDeCambioHoy.jsx": {
-    "file": "assets/TipoDeCambioHoy-DWq-7kG7.js",
+    "file": "assets/TipoDeCambioHoy-BWdhyneL.js",
     "name": "TipoDeCambioHoy",
     "src": "resources/js/Landings/TipoDeCambioHoy.jsx",
     "isEntry": true,
@@ -3865,7 +3865,7 @@
       "_TextWithHighlight-pwvdifVY.js",
       "_OptimizedImage-uw97VKTS.js",
       "_FAQSection-BQmE7W_4.js",
-      "_ComparisonTable-BnpGgO2G.js",
+      "_ComparisonTable-D2qjqlq3.js",
       "_CambiaFXService-1KwYxN77.js",
       "_proxy-CCJoq4u5.js",
       "_index-CF8W1V4f.js",
@@ -4737,7 +4737,7 @@
     ]
   },
   "resources/js/components/Adminto/Modal.jsx": {
-    "file": "assets/Modal-D_2wSl83.js",
+    "file": "assets/Modal-CiLs9KOM.js",
     "name": "Modal",
     "src": "resources/js/components/Adminto/Modal.jsx",
     "isEntry": true,
@@ -4785,7 +4785,7 @@
     ]
   },
   "resources/js/components/Adminto/form/CheckboxFormGroup.jsx": {
-    "file": "assets/CheckboxFormGroup-D_2wSl83.js",
+    "file": "assets/CheckboxFormGroup-CiLs9KOM.js",
     "name": "CheckboxFormGroup",
     "src": "resources/js/components/Adminto/form/CheckboxFormGroup.jsx",
     "isEntry": true,
@@ -4815,7 +4815,7 @@
     ]
   },
   "resources/js/components/Adminto/form/InputFormGroup.jsx": {
-    "file": "assets/InputFormGroup-D_2wSl83.js",
+    "file": "assets/InputFormGroup-CiLs9KOM.js",
     "name": "InputFormGroup",
     "src": "resources/js/components/Adminto/form/InputFormGroup.jsx",
     "isEntry": true,
@@ -4825,7 +4825,7 @@
     ]
   },
   "resources/js/components/Adminto/form/PasswordFormGroup.jsx": {
-    "file": "assets/PasswordFormGroup-D_2wSl83.js",
+    "file": "assets/PasswordFormGroup-CiLs9KOM.js",
     "name": "PasswordFormGroup",
     "src": "resources/js/components/Adminto/form/PasswordFormGroup.jsx",
     "isEntry": true,
@@ -4869,7 +4869,7 @@
     ]
   },
   "resources/js/components/Adminto/form/SelectFormGroup.jsx": {
-    "file": "assets/SelectFormGroup-D_2wSl83.js",
+    "file": "assets/SelectFormGroup-CiLs9KOM.js",
     "name": "SelectFormGroup",
     "src": "resources/js/components/Adminto/form/SelectFormGroup.jsx",
     "isEntry": true,
@@ -5208,7 +5208,7 @@
     ]
   },
   "resources/js/components/DataGrid.jsx": {
-    "file": "assets/DataGrid-D_2wSl83.js",
+    "file": "assets/DataGrid-CiLs9KOM.js",
     "name": "DataGrid",
     "src": "resources/js/components/DataGrid.jsx",
     "isEntry": true,
@@ -5469,7 +5469,7 @@
     ]
   },
   "resources/js/components/Modal.jsx": {
-    "file": "assets/Modal-CiLs9KOM.js",
+    "file": "assets/Modal-D_2wSl83.js",
     "name": "Modal",
     "src": "resources/js/components/Modal.jsx",
     "isEntry": true,
@@ -5952,13 +5952,14 @@
     ]
   },
   "resources/js/components/Tailwind/CambiaFX/PrimeraOperacionSection.jsx": {
-    "file": "assets/PrimeraOperacionSection-DYxCPEFj.js",
+    "file": "assets/PrimeraOperacionSection-VOE9hj5M.js",
     "name": "PrimeraOperacionSection",
     "src": "resources/js/components/Tailwind/CambiaFX/PrimeraOperacionSection.jsx",
-    "isEntry": true,
+    "isDynamicEntry": true,
     "imports": [
       "resources/js/Admin/components/RequirementCard.jsx",
       "resources/js/components/WebVitalsMonitor.jsx",
+      "_TextWithHighlight-pwvdifVY.js",
       "resources/js/components/Tailwind/CambiaFX/BannerFxEmpresas.jsx",
       "_OptimizedImage-uw97VKTS.js",
       "_proxy-CCJoq4u5.js",
@@ -6261,7 +6262,7 @@
     ]
   },
   "resources/js/components/Tailwind/DataGrid.jsx": {
-    "file": "assets/DataGrid-CiLs9KOM.js",
+    "file": "assets/DataGrid-D_2wSl83.js",
     "name": "DataGrid",
     "src": "resources/js/components/Tailwind/DataGrid.jsx",
     "isEntry": true,
@@ -6645,10 +6646,10 @@
     ]
   },
   "resources/js/components/Test/HairGoals.jsx": {
-    "file": "assets/HairGoals-D8Gq888_.js",
+    "file": "assets/HairGoals-D_2wSl83.js",
     "name": "HairGoals",
     "src": "resources/js/components/Test/HairGoals.jsx",
-    "isDynamicEntry": true,
+    "isEntry": true,
     "imports": [
       "resources/js/Admin/components/RequirementCard.jsx",
       "resources/js/components/WebVitalsMonitor.jsx"
@@ -6795,7 +6796,7 @@
     "isEntry": true
   },
   "resources/js/components/form/CheckboxFormGroup.jsx": {
-    "file": "assets/CheckboxFormGroup-CiLs9KOM.js",
+    "file": "assets/CheckboxFormGroup-D_2wSl83.js",
     "name": "CheckboxFormGroup",
     "src": "resources/js/components/form/CheckboxFormGroup.jsx",
     "isEntry": true,
@@ -6805,7 +6806,7 @@
     ]
   },
   "resources/js/components/form/InputFormGroup.jsx": {
-    "file": "assets/InputFormGroup-CiLs9KOM.js",
+    "file": "assets/InputFormGroup-D_2wSl83.js",
     "name": "InputFormGroup",
     "src": "resources/js/components/form/InputFormGroup.jsx",
     "isEntry": true,
@@ -6815,7 +6816,7 @@
     ]
   },
   "resources/js/components/form/PasswordFormGroup.jsx": {
-    "file": "assets/PasswordFormGroup-CiLs9KOM.js",
+    "file": "assets/PasswordFormGroup-D_2wSl83.js",
     "name": "PasswordFormGroup",
     "src": "resources/js/components/form/PasswordFormGroup.jsx",
     "isEntry": true,
@@ -6847,7 +6848,7 @@
     ]
   },
   "resources/js/components/form/SelectFormGroup.jsx": {
-    "file": "assets/SelectFormGroup-CiLs9KOM.js",
+    "file": "assets/SelectFormGroup-D_2wSl83.js",
     "name": "SelectFormGroup",
     "src": "resources/js/components/form/SelectFormGroup.jsx",
     "isEntry": true,
