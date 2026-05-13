@@ -176,33 +176,6 @@ const CasaDeCambioDigital = ({
         return Math.round(start + (end - start) * relPct);
     };
 
-    const financialServiceSchema = {
-        "@context": "https://schema.org",
-        "@type": "FinancialService",
-        name: financialServiceData.name,
-        description: financialServiceData.description,
-        url: `https://cambiafx.pe/${landing.url}`,
-        telephone: financialServiceData.phone,
-        address: {
-            "@type": "PostalAddress",
-            addressLocality: financialServiceData.address?.locality,
-            addressRegion: financialServiceData.address?.region,
-            addressCountry: financialServiceData.address?.country,
-        },
-    };
-
-    const faqSchema = {
-        "@context": "https://schema.org",
-        "@type": "FAQPage",
-        mainEntity: (landing.schema_faq || []).map((faq) => ({
-            "@type": "Question",
-            name: faq.question,
-            acceptedAnswer: {
-                "@type": "Answer",
-                text: faq.answer,
-            },
-        })),
-    };
 
     const containerVariants = {
         hidden: { opacity: 0 },
@@ -263,54 +236,8 @@ const CasaDeCambioDigital = ({
             }
         };
 
-        // SEO y Metadatos Dinámicos
-        const updateSEO = () => {
-            const title =
-                landing.meta_title ||
-                landing.hero_title ||
-                "¿Por qué una casa de cambio digital?";
-            const description =
-                landing.meta_description ||
-                financialServiceData.description ||
-                "";
-            const keywords = landing.meta_keywords || globalKeywords || "";
-
-            document.title = title;
-
-            const setMeta = (name, content, isProperty = false) => {
-                let el = document.querySelector(
-                    `meta[${isProperty ? "property" : "name"}="${name}"]`,
-                );
-                if (!el) {
-                    el = document.createElement("meta");
-                    el.setAttribute(isProperty ? "property" : "name", name);
-                    document.head.appendChild(el);
-                }
-                el.content = content;
-            };
-
-            setMeta("description", description);
-            setMeta("keywords", keywords);
-            setMeta("og:title", title, true);
-
-            const injectSchema = (id, schema) => {
-                let script = document.getElementById(id);
-                if (!script) {
-                    script = document.createElement("script");
-                    script.id = id;
-                    script.type = "application/ld+json";
-                    document.head.appendChild(script);
-                }
-                script.textContent = JSON.stringify(schema);
-            };
-
-            injectSchema("financial-service-schema", financialServiceSchema);
-            injectSchema("faq-schema", faqSchema);
-        };
-
         initRates();
         fetchCompetition();
-        updateSEO();
 
         return () => clearTimeout(timer);
     }, [landing]);

@@ -75,52 +75,6 @@ const SolesADolares = ({
             setSectionsReady(true);
         }, 100);
 
-        // SEO y Metadatos Dinámicos (Sin usar Head de Inertia para evitar errores de contexto)
-        const updateSEO = () => {
-            document.title =
-                landing.meta_title ||
-                landing.hero_title ||
-                "Cambia soles a dólares online";
-
-            // Meta Description
-            let metaDesc = document.querySelector('meta[name="description"]');
-            if (!metaDesc) {
-                metaDesc = document.createElement("meta");
-                metaDesc.name = "description";
-                document.head.appendChild(metaDesc);
-            }
-            metaDesc.content =
-                landing.meta_description ||
-                financialServiceData.description ||
-                "";
-
-            // Meta Keywords
-            let metaKey = document.querySelector('meta[name="keywords"]');
-            if (!metaKey) {
-                metaKey = document.createElement("meta");
-                metaKey.name = "keywords";
-                document.head.appendChild(metaKey);
-            }
-            metaKey.content = landing.meta_keywords || globalKeywords || "";
-
-            // Inject JSON-LD
-            const injectSchema = (id, schema) => {
-                let script = document.getElementById(id);
-                if (!script) {
-                    script = document.createElement("script");
-                    script.id = id;
-                    script.type = "application/ld+json";
-                    document.head.appendChild(script);
-                }
-                script.textContent = JSON.stringify(schema);
-            };
-
-            injectSchema("financial-service-schema", financialServiceSchema);
-            injectSchema("faq-schema", faqSchema);
-        };
-
-        updateSEO();
-
         // Cargar datos de competencia en tiempo real
         const fetchCompetition = async () => {
             try {
@@ -168,46 +122,6 @@ const SolesADolares = ({
         },
     };
 
-    const financialServiceSchema = {
-        "@context": "https://schema.org",
-        "@type": "FinancialService",
-        name: financialServiceData.name,
-        description: financialServiceData.description,
-        url: `https://cambiafx.pe/${landing.url}`,
-        telephone: financialServiceData.phone,
-        logo: "https://cambiafx.pe/assets/img/logo.png",
-        image: landing.cta_image
-            ? `/api/transactional_landings/media/${landing.cta_image}`
-            : "https://cambiafx.pe/assets/img/logo.png",
-        address: {
-            "@type": "PostalAddress",
-            addressLocality: financialServiceData.address?.locality,
-            addressRegion: financialServiceData.address?.region,
-            addressCountry: financialServiceData.address?.country,
-        },
-        openingHours: financialServiceData.openingHours,
-        currenciesAccepted: "USD, PEN",
-        paymentAccepted: financialServiceData.paymentsAccepted,
-        priceRange: "$$",
-        areaServed: {
-            "@type": "Country",
-            name: "Peru",
-        },
-        sameAs: (socials || []).map((s) => s.link),
-    };
-
-    const faqSchema = {
-        "@context": "https://schema.org",
-        "@type": "FAQPage",
-        mainEntity: (landing.schema_faq || []).map((faq) => ({
-            "@type": "Question",
-            name: faq.question,
-            acceptedAnswer: {
-                "@type": "Answer",
-                text: faq.answer,
-            },
-        })),
-    };
 
     return (
         <div className="min-h-screen bg-latte overflow-x-hidden font-title">

@@ -58,6 +58,8 @@ class GeneralController extends BasicController
                     'description' => $record['description']
                 ]);
             }
+            // Limpiar caché SEO para reflejar cambios inmediatamente
+            \Illuminate\Support\Facades\Cache::forget('seo_data');
         });
         return response($response->toArray(), $response->status);
     }
@@ -65,35 +67,7 @@ class GeneralController extends BasicController
     public function generateSitemap(Request $request)
     {
         $response = Response::simpleTryCatch(function () {
-            $baseUrl = url('/');
-            $urls = [
-                $baseUrl,
-                $baseUrl . '/servicios',
-                $baseUrl . '/nosotros',
-                $baseUrl . '/contacto',
-                $baseUrl . '/blog',
-                $baseUrl . '/empresas'
-            ];
-
-            $posts = Post::where('status', true)->get();
-            foreach ($posts as $post) {
-                $urls[] = $baseUrl . '/blog/' . $post->slug;
-            }
-
-            $xml = '<?xml version="1.0" encoding="UTF-8"?>';
-            $xml .= '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">';
-
-            foreach ($urls as $url) {
-                $xml .= '<url>';
-                $xml .= '<loc>' . htmlspecialchars($url) . '</loc>';
-                $xml .= '<changefreq>weekly</changefreq>';
-                $xml .= '<priority>0.8</priority>';
-                $xml .= '</url>';
-            }
-
-            $xml .= '</urlset>';
-
-            file_put_contents(public_path('sitemap.xml'), $xml);
+            \Illuminate\Support\Facades\Artisan::call('sitemap:generate');
         });
 
         return response($response->toArray(), $response->status);
@@ -105,6 +79,10 @@ class GeneralController extends BasicController
             $baseUrl = url('/');
             $content = "User-agent: *\n";
             $content .= "Allow: /\n";
+            $content .= "User-agent: facebookexternalhit\n";
+            $content .= "Allow: /\n";
+
+        
             $content .= "Sitemap: " . $baseUrl . "/sitemap.xml\n";
 
             file_put_contents(public_path('robots.txt'), $content);

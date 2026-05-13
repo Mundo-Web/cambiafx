@@ -31,6 +31,7 @@ $isHome = $component === 'Home.jsx';
     'ogDescription' => $ogDescription ?? null,
     'schemaType' => $schemaType ?? 'Organization',
     'faqs' => $page['props']['faqs'] ?? null,
+    'financialService' => $page['props']['financialServiceData'] ?? null,
     'breadcrumbs' => $page['props']['breadcrumbs'] ?? null,
     'article' => $page['props']['article'] ?? null
     ])

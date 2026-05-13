@@ -238,7 +238,7 @@ class LandingController extends BasicController
             'apps' => $apps,
             'indicators' => $indicators,
             'pasos' => (isset($landing->steps) && count($landing->steps) > 0) ? $landing->steps : $pasos,
-            'faqs' => $faqs,
+            'faqs' => (isset($landing->schema_faq) && count($landing->schema_faq) > 0) ? $landing->schema_faq : $faqs,
             'posts' => $posts,
             'socials' => $socials,
             'financialServiceData' => $viewData['financialService'],

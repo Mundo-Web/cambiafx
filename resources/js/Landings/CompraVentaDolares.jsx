@@ -215,62 +215,6 @@ const CompraVentaDolares = ({
             }
         };
 
-        // SEO y Metadatos Dinámicos
-        const updateSEO = () => {
-            const title =
-                landing.meta_title ||
-                landing.hero_title ||
-                "Compra y Venta de Dolares Online Peru | Cambia FX — SBS";
-            const description =
-                landing.meta_description ||
-                "Compra o vende dolares online en Peru al mejor tipo de cambio. Cambia FX: casa de cambio digital registrada en la SBS. Sin comisiones, en 15 minutos, desde cualquier banco.";
-            const keywords = landing.meta_keywords || globalKeywords || "";
-            const image = landing.cta_image
-                ? `${window.location.origin}/api/transactional_landings/media/${landing.cta_image}`
-                : `${window.location.origin}/assets/cambiafx/og-image.webp`;
-
-            document.title = title;
-
-            const setMeta = (name, content, isProperty = false) => {
-                let el = document.querySelector(
-                    `meta[${isProperty ? "property" : "name"}="${name}"]`,
-                );
-                if (!el) {
-                    el = document.createElement("meta");
-                    el.setAttribute(isProperty ? "property" : "name", name);
-                    document.head.appendChild(el);
-                }
-                el.content = content;
-            };
-
-            setMeta("description", description);
-            setMeta("keywords", keywords);
-            setMeta("og:title", title, true);
-            setMeta("og:description", description, true);
-            setMeta("og:image", image, true);
-            setMeta("og:type", "website", true);
-            setMeta("og:url", window.location.href, true);
-
-            // Twitter
-            setMeta("twitter:card", "summary_large_image");
-            setMeta("twitter:title", title);
-            setMeta("twitter:description", description);
-            setMeta("twitter:image", image);
-
-            const injectSchema = (id, schema) => {
-                let script = document.getElementById(id);
-                if (!script) {
-                    script = document.createElement("script");
-                    script.id = id;
-                    script.type = "application/ld+json";
-                    document.head.appendChild(script);
-                }
-                script.textContent = JSON.stringify(schema);
-            };
-
-            injectSchema("financial-service-schema", financialServiceSchema);
-            injectSchema("faq-schema", faqSchema);
-        };
 
         const fetchCompetition = async () => {
             try {
@@ -286,7 +230,6 @@ const CompraVentaDolares = ({
         };
 
         initRates();
-        updateSEO();
         fetchCompetition();
         return () => clearTimeout(timer);
     }, [landing, financialServiceData, globalKeywords]);
@@ -326,26 +269,6 @@ const CompraVentaDolares = ({
                   { entity: "Interbank", sell: ventaRate + 0.11 },
               ];
 
-    const financialServiceSchema = {
-        "@context": "https://schema.org",
-        "@type": "FinancialService",
-        name: "Cambia FX",
-        description:
-            "Compra y venta de dólares online en Perú al mejor tipo de cambio.",
-    };
-
-    const faqSchema = {
-        "@context": "https://schema.org",
-        "@type": "FAQPage",
-        mainEntity: (landing.schema_faq || []).map((faq) => ({
-            "@type": "Question",
-            name: faq.question,
-            acceptedAnswer: {
-                "@type": "Answer",
-                text: faq.answer,
-            },
-        })),
-    };
 
     return (
         <div className="min-h-screen bg-neutral-dark overflow-x-hidden font-title text-white">

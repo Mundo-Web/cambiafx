@@ -33,7 +33,9 @@ class SeoHelper
                 'company_country',
                 'og_image_default',
                 'twitter_image_default'
-            ])->get();
+            ])
+            ->where('lang_id', app('current_lang_id'))
+            ->get();
 
             $seoData = [];
             foreach ($generals as $general) {
@@ -126,35 +128,31 @@ class SeoHelper
     }
 
     /**
-     * Genera el JSON-LD para Schema.org
+     * Genera el JSON-LD para Schema.org (Solo Organización por defecto)
      */
-    public static function getJsonLD($type = 'Organization')
+    public static function getJsonLD()
     {
         $seoData = self::getSeoData();
+        $logo = $seoData['company_logo'] ?? $seoData['og_image_default'] ?? '/assets/img/icon-192x192.png';
         
-        if ($type === 'Organization') {
-            $logo = $seoData['company_logo'] ?? '/assets/img/icon-192x192.png';
-            return [
-                '@context' => 'https://schema.org',
-                '@type' => 'Organization',
-                'name' => $seoData['company_name'] ?? 'Cambia FX',
-                'description' => $seoData['company_description'] ?? $seoData['seo_description'] ?? 'Casa de cambio online con las mejores tasas de cambio',
-                'url' => $seoData['company_url'] ?? url('/'),
-                'logo' => str_starts_with($logo, 'http') ? $logo : url($logo),
-                'telephone' => $seoData['company_phone'] ?? '+51 922 985 423',
-                'email' => $seoData['company_email'] ?? 'hola@cambiafx.pe',
-                'address' => [
-                    '@type' => 'PostalAddress',
-                    'streetAddress' => $seoData['company_address'] ?? 'Av. Javier Prado Este N.560 Of. 2302',
-                    'addressLocality' => $seoData['company_locality'] ?? 'San Isidro',
-                    'addressRegion' => $seoData['company_region'] ?? 'Lima',
-                    'addressCountry' => $seoData['company_country'] ?? 'PE'
-                ],
-                'sameAs' => \App\Models\Social::where('visible', true)->pluck('link')->toArray()
-            ];
-        }
-        
-        return [];
+        return [
+            '@context' => 'https://schema.org',
+            '@type' => 'Organization',
+            'name' => $seoData['company_name'] ?? 'Cambia FX',
+            'description' => $seoData['company_description'] ?? $seoData['seo_description'] ?? 'Casa de cambio online con las mejores tasas de cambio',
+            'url' => $seoData['company_url'] ?? url('/'),
+            'logo' => str_starts_with($logo, 'http') ? $logo : url($logo),
+            'telephone' => $seoData['company_phone'] ?? '+51 922 985 423',
+            'email' => $seoData['company_email'] ?? 'hola@cambiafx.pe',
+            'address' => [
+                '@type' => 'PostalAddress',
+                'streetAddress' => $seoData['company_address'] ?? 'Av. Javier Prado Este N.560 Of. 2302',
+                'addressLocality' => $seoData['company_locality'] ?? 'San Isidro',
+                'addressRegion' => $seoData['company_region'] ?? 'Lima',
+                'addressCountry' => $seoData['company_country'] ?? 'PE'
+            ],
+            'sameAs' => \App\Models\Social::where('visible', true)->pluck('link')->toArray()
+        ];
     }
 
     /**
@@ -167,7 +165,7 @@ class SeoHelper
         }
 
         $seoData = self::getSeoData();
-        $logo = $seoData['company_logo'] ?? '/assets/img/icon-192x192.png';
+        $logo = $seoData['company_logo'] ?? $seoData['og_image_default'] ?? '/assets/img/icon-192x192.png';
 
         $name = $article->name ?? $article['name'] ?? '';
         $image = $article->image ?? $article['image'] ?? '';
@@ -218,15 +216,24 @@ class SeoHelper
 
         $questions = [];
         foreach ($faqs as $faq) {
+            // Soporte para estructura de landing transactional (question/answer) 
+            // y estructura de tabla faqs (name/description)
+            $question = $faq['question'] ?? $faq['name'] ?? $faq->question ?? $faq->name ?? '';
+            $answer = $faq['answer'] ?? $faq['description'] ?? $faq->answer ?? $faq->description ?? '';
+
+            if (empty($question) || empty($answer)) continue;
+
             $questions[] = [
                 '@type' => 'Question',
-                'name' => $faq['name'] ?? $faq->name ?? '',
+                'name' => $question,
                 'acceptedAnswer' => [
                     '@type' => 'Answer',
-                    'text' => strip_tags($faq['description'] ?? $faq->description ?? '')
+                    'text' => strip_tags($answer)
                 ]
             ];
         }
+
+        if (empty($questions)) return null;
 
         return [
             '@context' => 'https://schema.org',
@@ -273,7 +280,7 @@ class SeoHelper
         }
 
         $seoData = self::getSeoData();
-        $logo = $seoData['company_logo'] ?? '/assets/img/icon-192x192.png';
+        $logo = $seoData['company_logo'] ?? $seoData['og_image_default'] ?? '/assets/img/icon-192x192.png';
 
         return [
             '@context' => 'https://schema.org',

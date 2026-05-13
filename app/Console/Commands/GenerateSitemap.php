@@ -80,12 +80,31 @@ class GenerateSitemap extends Command
                 'priority' => '0.8'
             ]
         ]);
+
+        // Agregar Landings Transaccionales dinámicamente
+        if (class_exists(\App\Models\TransactionalLanding::class)) {
+            try {
+                $landings = \App\Models\TransactionalLanding::where('status', 1)
+                    ->select('url', 'updated_at')
+                    ->get();
+                
+                foreach ($landings as $landing) {
+                    $urls->push([
+                        'url' => $baseUrl . '/' . $landing->url,
+                        'lastmod' => $landing->updated_at ? $landing->updated_at->toISOString() : $now,
+                        'changefreq' => 'daily',
+                        'priority' => '0.8'
+                    ]);
+                }
+            } catch (\Exception $e) {
+                $this->warn('No se pudieron cargar las landings: ' . $e->getMessage());
+            }
+        }
         
         // Agregar posts del blog
         if (class_exists(Post::class)) {
             try {
                 $posts = Post::where('status', 1)
-                    ->where('visible', 1)
                     ->select('slug', 'updated_at')
                     ->get();
                 
@@ -102,26 +121,7 @@ class GenerateSitemap extends Command
             }
         }
         
-        // Agregar servicios
-        if (class_exists(Service::class)) {
-            try {
-                $services = Service::where('status', 1)
-                    ->where('visible', 1)
-                    ->select('slug', 'updated_at')
-                    ->get();
-                
-                foreach ($services as $service) {
-                    $urls->push([
-                        'url' => $baseUrl . '/servicios/' . $service->slug,
-                        'lastmod' => $service->updated_at->toISOString(),
-                        'changefreq' => 'monthly',
-                        'priority' => '0.7'
-                    ]);
-                }
-            } catch (\Exception $e) {
-                $this->warn('No se pudieron cargar los servicios: ' . $e->getMessage());
-            }
-        }
+       
         
         // Agregar soluciones
         if (class_exists(Solution::class)) {
@@ -143,6 +143,8 @@ class GenerateSitemap extends Command
                 $this->warn('No se pudieron cargar las soluciones: ' . $e->getMessage());
             }
         }
+
+ 
         
         return $this->buildXml($urls);
     }
