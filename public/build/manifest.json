@@ -64,8 +64,8 @@
       "_proxy-CCJoq4u5.js"
     ]
   },
-  "_ComparisonTable--V0SlMrt.js": {
-    "file": "assets/ComparisonTable--V0SlMrt.js",
+  "_ComparisonTable-BnpGgO2G.js": {
+    "file": "assets/ComparisonTable-BnpGgO2G.js",
     "name": "ComparisonTable",
     "imports": [
       "resources/js/Admin/components/RequirementCard.jsx",
@@ -742,7 +742,7 @@
     "src": "public/assets/fonts/general-sans/GeneralSans-Semibold.woff2"
   },
   "resources/css/app.css": {
-    "file": "assets/app-BlhvOTy8.css",
+    "file": "assets/app-D6M-5niG.css",
     "src": "resources/css/app.css",
     "isEntry": true
   },
@@ -3796,7 +3796,7 @@
     ]
   },
   "resources/js/Landings/SolesADolares.jsx": {
-    "file": "assets/SolesADolares-D2J2yufs.js",
+    "file": "assets/SolesADolares-B7sXhKU3.js",
     "name": "SolesADolares",
     "src": "resources/js/Landings/SolesADolares.jsx",
     "isEntry": true,
@@ -3816,7 +3816,7 @@
       "_TextWithHighlight-pwvdifVY.js",
       "_OptimizedImage-uw97VKTS.js",
       "_FAQSection-BQmE7W_4.js",
-      "_ComparisonTable--V0SlMrt.js",
+      "_ComparisonTable-BnpGgO2G.js",
       "_CambiaFXService-1KwYxN77.js",
       "_proxy-CCJoq4u5.js",
       "_index-CF8W1V4f.js",
@@ -3845,7 +3845,7 @@
     ]
   },
   "resources/js/Landings/TipoDeCambioHoy.jsx": {
-    "file": "assets/TipoDeCambioHoy-KH-jjY3E.js",
+    "file": "assets/TipoDeCambioHoy-hiTMPu6V.js",
     "name": "TipoDeCambioHoy",
     "src": "resources/js/Landings/TipoDeCambioHoy.jsx",
     "isEntry": true,
@@ -3865,7 +3865,7 @@
       "_TextWithHighlight-pwvdifVY.js",
       "_OptimizedImage-uw97VKTS.js",
       "_FAQSection-BQmE7W_4.js",
-      "_ComparisonTable--V0SlMrt.js",
+      "_ComparisonTable-BnpGgO2G.js",
       "_CambiaFXService-1KwYxN77.js",
       "_proxy-CCJoq4u5.js",
       "_index-CF8W1V4f.js",
@@ -4737,7 +4737,7 @@
     ]
   },
   "resources/js/components/Adminto/Modal.jsx": {
-    "file": "assets/Modal-D_2wSl83.js",
+    "file": "assets/Modal-CiLs9KOM.js",
     "name": "Modal",
     "src": "resources/js/components/Adminto/Modal.jsx",
     "isEntry": true,
@@ -4785,7 +4785,7 @@
     ]
   },
   "resources/js/components/Adminto/form/CheckboxFormGroup.jsx": {
-    "file": "assets/CheckboxFormGroup-D_2wSl83.js",
+    "file": "assets/CheckboxFormGroup-CiLs9KOM.js",
     "name": "CheckboxFormGroup",
     "src": "resources/js/components/Adminto/form/CheckboxFormGroup.jsx",
     "isEntry": true,
@@ -4815,7 +4815,7 @@
     ]
   },
   "resources/js/components/Adminto/form/InputFormGroup.jsx": {
-    "file": "assets/InputFormGroup-CiLs9KOM.js",
+    "file": "assets/InputFormGroup-D_2wSl83.js",
     "name": "InputFormGroup",
     "src": "resources/js/components/Adminto/form/InputFormGroup.jsx",
     "isEntry": true,
@@ -4869,7 +4869,7 @@
     ]
   },
   "resources/js/components/Adminto/form/SelectFormGroup.jsx": {
-    "file": "assets/SelectFormGroup-D_2wSl83.js",
+    "file": "assets/SelectFormGroup-CiLs9KOM.js",
     "name": "SelectFormGroup",
     "src": "resources/js/components/Adminto/form/SelectFormGroup.jsx",
     "isEntry": true,
@@ -5208,7 +5208,7 @@
     ]
   },
   "resources/js/components/DataGrid.jsx": {
-    "file": "assets/DataGrid-CiLs9KOM.js",
+    "file": "assets/DataGrid-D_2wSl83.js",
     "name": "DataGrid",
     "src": "resources/js/components/DataGrid.jsx",
     "isEntry": true,
@@ -5469,7 +5469,7 @@
     ]
   },
   "resources/js/components/Modal.jsx": {
-    "file": "assets/Modal-CiLs9KOM.js",
+    "file": "assets/Modal-D_2wSl83.js",
     "name": "Modal",
     "src": "resources/js/components/Modal.jsx",
     "isEntry": true,
@@ -5520,13 +5520,14 @@
     ]
   },
   "resources/js/components/PopupManager/PopupManager.jsx": {
-    "file": "assets/PopupManager-D_2wSl83.js",
+    "file": "assets/PopupManager-XhVpqkPI.js",
     "name": "PopupManager",
     "src": "resources/js/components/PopupManager/PopupManager.jsx",
-    "isEntry": true,
+    "isDynamicEntry": true,
     "imports": [
       "resources/js/Admin/components/RequirementCard.jsx",
-      "resources/js/components/WebVitalsMonitor.jsx"
+      "resources/js/components/WebVitalsMonitor.jsx",
+      "_axios-COzaZAiy.js"
     ]
   },
   "resources/js/components/Product/Checkout.jsx": {
@@ -5790,23 +5791,34 @@
     ]
   },
   "resources/js/components/Tailwind/CambiaFX/EmpresasSection.jsx": {
-    "file": "assets/EmpresasSection-i87yBnAP.js",
+    "file": "assets/EmpresasSection-CRAzdBQg.js",
     "name": "EmpresasSection",
     "src": "resources/js/components/Tailwind/CambiaFX/EmpresasSection.jsx",
-    "isEntry": true,
+    "isDynamicEntry": true,
     "imports": [
       "resources/js/Admin/components/RequirementCard.jsx",
       "resources/js/components/WebVitalsMonitor.jsx",
       "resources/js/components/Tailwind/CambiaFX/BannerFxEmpresas.jsx",
+      "_proxy-CCJoq4u5.js",
+      "_Header-BIGZynGS.js",
       "_main-BK7KYfUi.js",
       "____vite-browser-external_commonjs-proxy-CGejAyr8.js",
       "resources/js/components/Blog/Results.jsx",
       "_General-CSnTKUjB.js",
-      "_proxy-CCJoq4u5.js",
       "_message-circle-CsX8zSWT.js",
       "_createLucideIcon-Cv84hsTO.js",
       "_globe-BWP0wzx-.js",
-      "_phone-DSOdGSSd.js"
+      "_phone-DSOdGSSd.js",
+      "resources/js/components/Tailwind/DetailProduct/Detail.jsx",
+      "_useTranslation-CR1hYvhU.js",
+      "resources/js/components/Blog/Filter.jsx",
+      "_axios-COzaZAiy.js",
+      "_CreateReactScript-BeYkFXZG.js",
+      "_index.esm-CreRSunE.js"
+    ],
+    "css": [
+      "assets/swiper-EKmKsbKj.css",
+      "assets/tippy-LriLsbSV.css"
     ]
   },
   "resources/js/components/Tailwind/CambiaFX/ExchangeCard.jsx": {
@@ -5937,29 +5949,33 @@
     ]
   },
   "resources/js/components/Tailwind/CambiaFX/PilaresSection.jsx": {
-    "file": "assets/PilaresSection-Digiroew.js",
+    "file": "assets/PilaresSection-Dnwj4tjy.js",
     "name": "PilaresSection",
     "src": "resources/js/components/Tailwind/CambiaFX/PilaresSection.jsx",
-    "isEntry": true,
+    "isDynamicEntry": true,
     "imports": [
       "resources/js/Admin/components/RequirementCard.jsx",
       "resources/js/components/WebVitalsMonitor.jsx",
+      "_TextWithHighlight-pwvdifVY.js",
       "resources/js/components/Tailwind/CambioGerencia/HomeSeccionBlog.jsx",
-      "resources/js/components/About/Strengths.jsx"
+      "_pagination-0tdWGJpf.js",
+      "_autoplay-BL65JYjv.js",
+      "resources/js/components/About/Strengths.jsx",
+      "_proxy-CCJoq4u5.js",
+      "_classes-to-selector-BeN5SquM.js"
     ],
     "css": [
       "assets/swiper-EKmKsbKj.css"
     ]
   },
   "resources/js/components/Tailwind/CambiaFX/PrimeraOperacionSection.jsx": {
-    "file": "assets/PrimeraOperacionSection-VOE9hj5M.js",
+    "file": "assets/PrimeraOperacionSection-DYxCPEFj.js",
     "name": "PrimeraOperacionSection",
     "src": "resources/js/components/Tailwind/CambiaFX/PrimeraOperacionSection.jsx",
-    "isDynamicEntry": true,
+    "isEntry": true,
     "imports": [
       "resources/js/Admin/components/RequirementCard.jsx",
       "resources/js/components/WebVitalsMonitor.jsx",
-      "_TextWithHighlight-pwvdifVY.js",
       "resources/js/components/Tailwind/CambiaFX/BannerFxEmpresas.jsx",
       "_OptimizedImage-uw97VKTS.js",
       "_proxy-CCJoq4u5.js",
@@ -5974,15 +5990,13 @@
     ]
   },
   "resources/js/components/Tailwind/CambiaFX/StepsSection.jsx": {
-    "file": "assets/StepsSection-CNgN0sUV.js",
+    "file": "assets/StepsSection-D_2wSl83.js",
     "name": "StepsSection",
     "src": "resources/js/components/Tailwind/CambiaFX/StepsSection.jsx",
-    "isDynamicEntry": true,
+    "isEntry": true,
     "imports": [
       "resources/js/Admin/components/RequirementCard.jsx",
-      "resources/js/components/WebVitalsMonitor.jsx",
-      "_TextWithHighlight-pwvdifVY.js",
-      "_proxy-CCJoq4u5.js"
+      "resources/js/components/WebVitalsMonitor.jsx"
     ]
   },
   "resources/js/components/Tailwind/CambiaFX/TransferenciaServiceSection.jsx": {
@@ -6264,7 +6278,7 @@
     ]
   },
   "resources/js/components/Tailwind/DataGrid.jsx": {
-    "file": "assets/DataGrid-D_2wSl83.js",
+    "file": "assets/DataGrid-CiLs9KOM.js",
     "name": "DataGrid",
     "src": "resources/js/components/Tailwind/DataGrid.jsx",
     "isEntry": true,
@@ -6648,20 +6662,20 @@
     ]
   },
   "resources/js/components/Test/HairGoals.jsx": {
-    "file": "assets/HairGoals-D_2wSl83.js",
+    "file": "assets/HairGoals-D8Gq888_.js",
     "name": "HairGoals",
     "src": "resources/js/components/Test/HairGoals.jsx",
-    "isEntry": true,
+    "isDynamicEntry": true,
     "imports": [
       "resources/js/Admin/components/RequirementCard.jsx",
       "resources/js/components/WebVitalsMonitor.jsx"
     ]
   },
   "resources/js/components/Test/HairType.jsx": {
-    "file": "assets/HairType-BLyHJd3c.js",
+    "file": "assets/HairType-UIt2vDlT.js",
     "name": "HairType",
     "src": "resources/js/components/Test/HairType.jsx",
-    "isDynamicEntry": true,
+    "isEntry": true,
     "imports": [
       "resources/js/Admin/components/RequirementCard.jsx",
       "resources/js/components/WebVitalsMonitor.jsx",
@@ -6798,7 +6812,7 @@
     "isEntry": true
   },
   "resources/js/components/form/CheckboxFormGroup.jsx": {
-    "file": "assets/CheckboxFormGroup-CiLs9KOM.js",
+    "file": "assets/CheckboxFormGroup-D_2wSl83.js",
     "name": "CheckboxFormGroup",
     "src": "resources/js/components/form/CheckboxFormGroup.jsx",
     "isEntry": true,
@@ -6808,7 +6822,7 @@
     ]
   },
   "resources/js/components/form/InputFormGroup.jsx": {
-    "file": "assets/InputFormGroup-D_2wSl83.js",
+    "file": "assets/InputFormGroup-CiLs9KOM.js",
     "name": "InputFormGroup",
     "src": "resources/js/components/form/InputFormGroup.jsx",
     "isEntry": true,
@@ -6850,7 +6864,7 @@
     ]
   },
   "resources/js/components/form/SelectFormGroup.jsx": {
-    "file": "assets/SelectFormGroup-CiLs9KOM.js",
+    "file": "assets/SelectFormGroup-D_2wSl83.js",
     "name": "SelectFormGroup",
     "src": "resources/js/components/form/SelectFormGroup.jsx",
     "isEntry": true,

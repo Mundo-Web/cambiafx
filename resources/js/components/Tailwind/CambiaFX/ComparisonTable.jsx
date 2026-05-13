@@ -130,6 +130,14 @@ const ComparisonTable = ({ data = [] }) => {
                                     </span>
                                 )}
                             </div>
+
+                            <p
+                                className={` text-md font-medium ${row.is_highlight ? "text-neutral-dark" : "text-white"}`}
+                            >
+                                {row.entity.includes("Cambia")
+                                    ? ""
+                                    : row.entity}
+                            </p>
                         </div>
 
                         {/* Compra */}

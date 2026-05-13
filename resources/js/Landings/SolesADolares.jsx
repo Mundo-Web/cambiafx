@@ -122,7 +122,6 @@ const SolesADolares = ({
         },
     };
 
-
     return (
         <div className="min-h-screen bg-latte overflow-x-hidden font-title">
             <Header showSlogan={true} />
@@ -292,7 +291,7 @@ const SolesADolares = ({
                                 : { opacity: 0, scale: 0.9 }
                         }
                         transition={{ duration: 0.8, delay: 0.4 }}
-                        className="w-full max-w-[460px] z-10"
+                        className="w-full max-w-[520px] z-10"
                     >
                         <div className="relative">
                             <div className="relative">
@@ -300,6 +299,7 @@ const SolesADolares = ({
                                     title="COTIZA TU CAMBIO"
                                     initialOperationType="venta"
                                     showCoupons={true}
+                                    className="scale-125 "
                                 />
                             </div>
                         </div>
