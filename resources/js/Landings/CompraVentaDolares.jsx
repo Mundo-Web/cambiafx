@@ -215,7 +215,6 @@ const CompraVentaDolares = ({
             }
         };
 
-
         const fetchCompetition = async () => {
             try {
                 const rates = await CambiaFXService.getCompetitionRates(
@@ -268,7 +267,6 @@ const CompraVentaDolares = ({
                   { entity: "BBVA", sell: ventaRate + 0.1 },
                   { entity: "Interbank", sell: ventaRate + 0.11 },
               ];
-
 
     return (
         <div className="min-h-screen bg-neutral-dark overflow-x-hidden font-title text-white">
@@ -390,94 +388,6 @@ const CompraVentaDolares = ({
                                         Operación de Compra
                                     </span>
                                     <h3 className="text-white text-4xl font-semibold tracking-tight">
-                                        Quiero comprar dólares
-                                    </h3>
-                                    <p className="text-white text-lg mt-2">
-                                        Tengo soles, quiero dólares
-                                    </p>
-                                </div>
-
-                                <div className="space-y-6 mb-12">
-                                    <div>
-                                        <label className="text-sm font-normal text-white mb-3 block ml-1">
-                                            Envías soles
-                                        </label>
-                                        <div className="bg-[#080808] border border-white/5 rounded-full px-7 py-4 flex justify-between items-center focus-within:border-secondary/30 transition-all shadow-inner">
-                                            <input
-                                                type="text"
-                                                value={buyAmount}
-                                                onFocus={() =>
-                                                    setBuyOrigin("O")
-                                                }
-                                                onChange={(e) =>
-                                                    handleBuyChange(
-                                                        e.target.value,
-                                                        "O",
-                                                    )
-                                                }
-                                                className="bg-transparent border-none outline-none focus:outline-none text-3xl font-semibold text-white w-full tabular-nums"
-                                                placeholder="0,00"
-                                            />
-                                            <div className="flex items-center gap-2 bg-white/5 px-4 py-2 rounded-full">
-                                                <span className="text-white/40 font-medium text-sm">
-                                                    PEN
-                                                </span>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div>
-                                        <label className="text-sm font-normal text-white mb-3 block ml-1">
-                                            Recibes dólares
-                                        </label>
-                                        <div className="bg-secondary/[0.03] border border-secondary/10 rounded-full px-7 py-4 flex justify-between items-center group-hover:bg-secondary/[0.06] transition-all">
-                                            <input
-                                                type="text"
-                                                value={buyResult}
-                                                onFocus={() =>
-                                                    setBuyOrigin("D")
-                                                }
-                                                onChange={(e) =>
-                                                    handleBuyChange(
-                                                        e.target.value,
-                                                        "D",
-                                                    )
-                                                }
-                                                className="bg-transparent border-none outline-none focus:outline-none  text-3xl font-semibold text-secondary w-full tabular-nums"
-                                            />
-                                            <div className="flex items-center gap-2 bg-secondary/10 px-4 py-2 rounded-full">
-                                                <span className="text-secondary/60 font-medium text-sm">
-                                                    USD
-                                                </span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <motion.a
-                                whileHover={{ y: -5 }}
-                                whileTap={{ scale: 0.98 }}
-                                href="https://mi.cambiafx.pe/register"
-                                className="w-full bg-secondary text-neutral-dark font-semibold px-10 py-5 rounded-full text-lg flex items-center justify-center gap-3 uppercase tracking-widest shadow-xl hover:shadow-secondary/20 transition-all"
-                            >
-                                Comprar ahora <ArrowRight size={20} />
-                            </motion.a>
-                        </motion.div>
-
-                        {/* CARD DERECHA: VENTA */}
-                        <motion.div
-                            className="bg-[#181818] p-10 md:p-14 rounded-[40px] flex flex-col justify-between group relative border border-white/5 shadow-[0_20px_50px_rgba(0,0,0,0.5)] hover:border-constrast/20 transition-all duration-700"
-                            initial={{ opacity: 0, y: 30 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ delay: 0.1 }}
-                        >
-                            <div className="relative z-10">
-                                <div className="mb-10">
-                                    <span className="text-constrast text-base font-medium mb-3 block">
-                                        Operación de Venta
-                                    </span>
-                                    <h3 className="text-white text-4xl font-semibold tracking-tight">
                                         Quiero vender dólares
                                     </h3>
                                     <p className="text-white text-lg mt-2">
@@ -503,7 +413,7 @@ const CompraVentaDolares = ({
                                                         "O",
                                                     )
                                                 }
-                                                className="bg-transparent border-none outline-none text-3xl focus:outline-none  font-semibold text-white w-full tabular-nums"
+                                                className="bg-transparent border-none outline-none focus:outline-none text-3xl font-semibold text-white w-full tabular-nums"
                                                 placeholder="0,00"
                                             />
                                             <div className="flex items-center gap-2 bg-white/5 px-4 py-2 rounded-full">
@@ -518,7 +428,7 @@ const CompraVentaDolares = ({
                                         <label className="text-sm font-normal text-white mb-3 block ml-1">
                                             Recibes soles
                                         </label>
-                                        <div className="bg-constrast/[0.03] border border-constrast/10 rounded-full px-7 py-4 flex justify-between items-center group-hover:bg-constrast/[0.06] transition-all">
+                                        <div className="bg-secondary/[0.03] border border-secondary/10 rounded-full px-7 py-4 flex justify-between items-center group-hover:bg-secondary/[0.06] transition-all">
                                             <input
                                                 type="text"
                                                 value={sellResult}
@@ -531,11 +441,99 @@ const CompraVentaDolares = ({
                                                         "D",
                                                     )
                                                 }
+                                                className="bg-transparent border-none outline-none focus:outline-none  text-3xl font-semibold text-secondary w-full tabular-nums"
+                                            />
+                                            <div className="flex items-center gap-2 bg-secondary/10 px-4 py-2 rounded-full">
+                                                <span className="text-secondary/60 font-medium text-sm">
+                                                    PEN
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <motion.a
+                                whileHover={{ y: -5 }}
+                                whileTap={{ scale: 0.98 }}
+                                href="https://mi.cambiafx.pe/register"
+                                className="w-full bg-secondary text-neutral-dark font-semibold px-10 py-5 rounded-full text-lg flex items-center justify-center gap-3 uppercase tracking-widest shadow-xl hover:shadow-secondary/20 transition-all"
+                            >
+                                Vender ahora <ArrowRight size={20} />
+                            </motion.a>
+                        </motion.div>
+
+                        {/* CARD DERECHA: VENTA */}
+                        <motion.div
+                            className="bg-[#181818] p-10 md:p-14 rounded-[40px] flex flex-col justify-between group relative border border-white/5 shadow-[0_20px_50px_rgba(0,0,0,0.5)] hover:border-constrast/20 transition-all duration-700"
+                            initial={{ opacity: 0, y: 30 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ delay: 0.1 }}
+                        >
+                            <div className="relative z-10">
+                                <div className="mb-10">
+                                    <span className="text-constrast text-base font-medium mb-3 block">
+                                        Operación de Venta
+                                    </span>
+                                    <h3 className="text-white text-4xl font-semibold tracking-tight">
+                                        Quiero comprar dólares
+                                    </h3>
+                                    <p className="text-white text-lg mt-2">
+                                        Tengo soles, quiero dólares
+                                    </p>
+                                </div>
+
+                                <div className="space-y-6 mb-12">
+                                    <div>
+                                        <label className="text-sm font-normal text-white mb-3 block ml-1">
+                                            Envías soles
+                                        </label>
+                                        <div className="bg-[#080808] border border-white/5 rounded-full px-7 py-4 flex justify-between items-center focus-within:border-secondary/30 transition-all shadow-inner">
+                                            <input
+                                                type="text"
+                                                value={buyAmount}
+                                                onFocus={() =>
+                                                    setBuyOrigin("O")
+                                                }
+                                                onChange={(e) =>
+                                                    handleBuyChange(
+                                                        e.target.value,
+                                                        "O",
+                                                    )
+                                                }
+                                                className="bg-transparent border-none outline-none text-3xl focus:outline-none  font-semibold text-white w-full tabular-nums"
+                                                placeholder="0,00"
+                                            />
+                                            <div className="flex items-center gap-2 bg-white/5 px-4 py-2 rounded-full">
+                                                <span className="text-white/40 font-medium text-sm">
+                                                    PEN
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div>
+                                        <label className="text-sm font-normal text-white mb-3 block ml-1">
+                                            Recibes dólares
+                                        </label>
+                                        <div className="bg-constrast/[0.03] border border-constrast/10 rounded-full px-7 py-4 flex justify-between items-center group-hover:bg-constrast/[0.06] transition-all">
+                                            <input
+                                                type="text"
+                                                value={buyResult}
+                                                onFocus={() =>
+                                                    setBuyOrigin("D")
+                                                }
+                                                onChange={(e) =>
+                                                    handleBuyChange(
+                                                        e.target.value,
+                                                        "D",
+                                                    )
+                                                }
                                                 className="bg-transparent border-none outline-none text-3xl focus:outline-none  font-semibold text-constrast w-full tabular-nums"
                                             />
                                             <div className="flex items-center gap-2 bg-constrast/10 px-4 py-2 rounded-full">
                                                 <span className="text-constrast/60 font-medium text-sm">
-                                                    PEN
+                                                    USD
                                                 </span>
                                             </div>
                                         </div>
@@ -548,7 +546,7 @@ const CompraVentaDolares = ({
                                 href="https://mi.cambiafx.pe/register"
                                 className="w-full bg-constrast text-white font-semibold px-10 py-5 rounded-full text-lg flex items-center justify-center gap-3 uppercase tracking-widest shadow-xl hover:shadow-constrast/20 transition-all"
                             >
-                                Vender ahora <ArrowRight size={20} />
+                                Comprar ahora <ArrowRight size={20} />
                             </motion.a>
                         </motion.div>
                     </div>
@@ -614,7 +612,7 @@ const CompraVentaDolares = ({
                             whileHover={{ y: -5 }}
                             whileTap={{ scale: 0.98 }}
                             href="https://mi.cambiafx.pe/register"
-                            className="bg-secondary text-neutral-dark px-10 py-5 rounded-full font-bold uppercase tracking-widest text-sm shadow-xl hover:shadow-secondary/20 transition-all"
+                            className="bg-secondary text-neutral-dark px-10 z-50 py-5 rounded-full font-bold uppercase tracking-widest text-sm shadow-xl hover:shadow-secondary/20 transition-all"
                         >
                             {landing.comparison_cta || "Comenzar a ahorrar"}
                         </motion.a>
@@ -638,10 +636,10 @@ const CompraVentaDolares = ({
                                     <div className="absolute inset-0 bg-gradient-to-br from-white/[0.03] to-transparent pointer-events-none" />
 
                                     {/* Styled Icon Background */}
-                                    <div className="absolute top-4 right-4 opacity-[0.03] group-hover:opacity-[0.07] group-hover:scale-105 transition-all duration-700">
+                                    <div className="absolute top-4 right-4 opacity-20 group-hover:opacity-60 group-hover:scale-105 transition-all duration-700">
                                         <TrendingUp
                                             size={120}
-                                            className="text-secondary"
+                                            className="text-constrast"
                                         />
                                     </div>
 
@@ -719,9 +717,6 @@ const CompraVentaDolares = ({
                                 transition={{ delay: i * 0.1, duration: 0.8 }}
                                 className="flex flex-col min-w-[200px]"
                             >
-                                {/* Decorative line */}
-                                <div className="w-8 h-[2px] bg-secondary mb-8" />
-
                                 <div className="flex flex-col">
                                     <div className="flex items-baseline gap-1 mb-2">
                                         <span className="text-5xl md:text-7xl font-bold text-white tracking-tighter">
