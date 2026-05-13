@@ -807,13 +807,6 @@ const CompraVentaDolares = ({
                                                 counter
                                             />
                                         </span>
-                                        {/* Show '+' only if it's not already in the value */}
-                                        {!stat.value.includes("+") &&
-                                            !isNaN(stat.value[0]) && (
-                                                <span className="text-secondary text-3xl font-black">
-                                                    +
-                                                </span>
-                                            )}
                                     </div>
                                     <span className="text-white/40 text-sm font-bold uppercase tracking-[0.2em] leading-relaxed max-w-[150px]">
                                         {stat.label}
