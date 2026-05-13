@@ -41,6 +41,8 @@ const TipoDeCambioHoy = ({
 }) => {
     const { t } = useTranslation();
     const [sectionsReady, setSectionsReady] = useState(false);
+    const [currentTimelinePage, setCurrentTimelinePage] = useState(0);
+    const itemsPerPage = 3;
     const [comparisonData, setComparisonData] = useState(
         landing.comparison_data || [
             {
@@ -122,7 +124,6 @@ const TipoDeCambioHoy = ({
             transition: { duration: 0.8, ease: "easeOut" },
         },
     };
-
 
     return (
         <div className="min-h-screen bg-latte overflow-x-hidden font-title">
@@ -256,14 +257,86 @@ const TipoDeCambioHoy = ({
                         variants={itemVariants}
                         className="mt-16 w-full"
                     >
-                        <div className="flex items-center gap-3 mb-10">
-                            <span className="relative flex h-3 w-3">
-                                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-secondary opacity-75"></span>
-                                <span className="relative inline-flex rounded-full h-3 w-3 bg-secondary"></span>
-                            </span>
-                            <h3 className="text-sm font-black text-white ">
-                                Línea de Tiempo del Mercado
-                            </h3>
+                        <div className="flex items-center justify-between mb-10">
+                            <div className="flex items-center gap-3">
+                                <span className="relative flex h-3 w-3">
+                                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-secondary opacity-75"></span>
+                                    <span className="relative inline-flex rounded-full h-3 w-3 bg-secondary"></span>
+                                </span>
+                                <h3 className="text-sm font-black text-white ">
+                                    Línea de Tiempo del Mercado
+                                </h3>
+                            </div>
+
+                            {/* Controles de navegación estilo PilaresSection */}
+                            {(liveRates?.momentos || []).length >
+                                itemsPerPage && (
+                                <div className="flex gap-3">
+                                    <button
+                                        onClick={() =>
+                                            setCurrentTimelinePage((prev) =>
+                                                Math.max(0, prev - 1),
+                                            )
+                                        }
+                                        disabled={currentTimelinePage === 0}
+                                        className={`bg-white/10 hover:bg-white/20 backdrop-blur-sm rounded-full p-2 transition-all duration-300 group disabled:opacity-30 disabled:cursor-not-allowed`}
+                                    >
+                                        <svg
+                                            className="w-4 h-4 text-white group-hover:text-secondary transition-colors"
+                                            fill="none"
+                                            stroke="currentColor"
+                                            viewBox="0 0 24 24"
+                                        >
+                                            <path
+                                                strokeLinecap="round"
+                                                strokeLinejoin="round"
+                                                strokeWidth={2}
+                                                d="M5 15l7-7 7 7"
+                                            />
+                                        </svg>
+                                    </button>
+                                    <button
+                                        onClick={() =>
+                                            setCurrentTimelinePage((prev) => {
+                                                const maxPage =
+                                                    Math.ceil(
+                                                        (
+                                                            liveRates?.momentos ||
+                                                            []
+                                                        ).length / itemsPerPage,
+                                                    ) - 1;
+                                                return Math.min(
+                                                    maxPage,
+                                                    prev + 1,
+                                                );
+                                            })
+                                        }
+                                        disabled={
+                                            currentTimelinePage >=
+                                            Math.ceil(
+                                                (liveRates?.momentos || [])
+                                                    .length / itemsPerPage,
+                                            ) -
+                                                1
+                                        }
+                                        className={`bg-white/10 hover:bg-white/20 backdrop-blur-sm rounded-full p-2 transition-all duration-300 group disabled:opacity-30 disabled:cursor-not-allowed`}
+                                    >
+                                        <svg
+                                            className="w-4 h-4 text-white group-hover:text-secondary transition-colors"
+                                            fill="none"
+                                            stroke="currentColor"
+                                            viewBox="0 0 24 24"
+                                        >
+                                            <path
+                                                strokeLinecap="round"
+                                                strokeLinejoin="round"
+                                                strokeWidth={2}
+                                                d="M19 9l-7 7-7-7"
+                                            />
+                                        </svg>
+                                    </button>
+                                </div>
+                            )}
                         </div>
 
                         <div className="relative pl-8 space-y-8 before:absolute before:inset-0 before:ml-1 before:-translate-x-px before:h-full before:w-0.5 before:bg-gradient-to-b before:from-secondary before:via-white/10 before:to-transparent">
@@ -271,6 +344,11 @@ const TipoDeCambioHoy = ({
                                 [...liveRates.momentos]
                                     .sort((a, b) =>
                                         b.hora.localeCompare(a.hora),
+                                    )
+                                    .slice(
+                                        currentTimelinePage * itemsPerPage,
+                                        currentTimelinePage * itemsPerPage +
+                                            itemsPerPage,
                                     )
                                     .map((moment, idx) => (
                                         <motion.div
@@ -287,7 +365,7 @@ const TipoDeCambioHoy = ({
                                             <div className="bg-white/5 border border-white/10 p-6 rounded-[24px] backdrop-blur-md hover:border-secondary/30 transition-all flex flex-col md:flex-row md:items-center justify-between gap-6">
                                                 <div className="flex flex-col gap-1">
                                                     <div className="flex items-center gap-3">
-                                                        <span className="text-[10px] font-black text-secondary uppercase tracking-widest">
+                                                        <span className="text-sm font-black text-secondary  tracking-widest">
                                                             {moment.fuente}
                                                         </span>
                                                         <span className="text-[10px] text-white/40 font-medium bg-white/5 px-2 py-1 rounded-full">
@@ -351,7 +429,7 @@ const TipoDeCambioHoy = ({
                 </div>
 
                 {/* Lado Derecho: Calculadora */}
-                <div className="w-full lg:w-4/12 px-[4%] py-16 flex flex-col items-start justify-start relative overflow-hidden">
+                <div className="w-full lg:w-4/12 px-[4%] py-16 flex flex-col items-start justify-start relative">
                     {/* Brillo decorativo sutil */}
                     <div className="absolute -top-20 -right-20 w-96 h-96 blur-[120px] rounded-full"></div>
                     <div className="absolute -bottom-20 -left-20 w-96 h-96  blur-[100px] rounded-full"></div>
@@ -364,15 +442,19 @@ const TipoDeCambioHoy = ({
                                 : { opacity: 0, scale: 0.9 }
                         }
                         transition={{ duration: 0.8, delay: 0.4 }}
-                        className="w-full max-w-[460px] z-10"
+                        className="w-full max-w-[600px]  z-10"
                     >
                         <div className="relative">
                             <div className="relative">
-                                <ExchangeCard
-                                    title="COTIZA TU CAMBIO"
-                                    initialOperationType="venta"
-                                    showCoupons={true}
-                                />
+                                <div className="lg:w-[600px] lg:h-[850px] relative">
+                                    <div className="lg:scale-125 lg:origin-top-left">
+                                        <ExchangeCard
+                                            title="COTIZA TU CAMBIO"
+                                            initialOperationType="venta"
+                                            showCoupons={true}
+                                        />
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </motion.div>
