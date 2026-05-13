@@ -967,156 +967,140 @@ const TransactionalLanding = ({
                                                     rows={2}
                                                 />
                                             </div>
-                                            {currentSlug !==
-                                                "compra-y-venta-de-dolares" && (
-                                                <div className="col-md-12">
-                                                    <hr />
-                                                    <div className="d-flex justify-content-between align-items-center mb-3">
-                                                        <h5 className="mb-0 text-primary">
-                                                            Tabla de Mercado
-                                                            (Bancos)
-                                                        </h5>
-                                                        <button
-                                                            type="button"
-                                                            className="btn btn-xs btn-outline-primary"
-                                                            onClick={
-                                                                addComparison
-                                                            }
-                                                        >
-                                                            + Agregar Entidad
-                                                        </button>
-                                                    </div>
-                                                    <div className="table-responsive border rounded">
-                                                        <table className="table table-sm table-centered mb-0">
-                                                            <thead className="table-light">
-                                                                <tr>
-                                                                    <th>
-                                                                        Entidad
-                                                                    </th>
-                                                                    <th>
-                                                                        Compra
-                                                                    </th>
-                                                                    <th>
-                                                                        Venta
-                                                                    </th>
-                                                                    <th></th>
-                                                                </tr>
-                                                            </thead>
-                                                            <tbody>
-                                                                {comparisonData.map(
-                                                                    (
-                                                                        comp,
-                                                                        i,
-                                                                    ) => (
-                                                                        <tr
-                                                                            key={
-                                                                                i
-                                                                            }
-                                                                        >
-                                                                            <td>
-                                                                                <select
-                                                                                    className="form-select form-select-sm border-0"
-                                                                                    value={
-                                                                                        comp.entity
-                                                                                    }
-                                                                                    onChange={(
-                                                                                        e,
-                                                                                    ) =>
-                                                                                        updateComparison(
-                                                                                            i,
-                                                                                            "entity",
-                                                                                            e
-                                                                                                .target
-                                                                                                .value,
-                                                                                        )
-                                                                                    }
-                                                                                >
-                                                                                    <option value="">
-                                                                                        Seleccionar
-                                                                                        Entidad
-                                                                                    </option>
-                                                                                    <option value="BCP">
-                                                                                        BCP
-                                                                                    </option>
-                                                                                    <option value="Interbank">
-                                                                                        Interbank
-                                                                                    </option>
-                                                                                    <option value="Scotiabank">
-                                                                                        Scotiabank
-                                                                                    </option>
-                                                                                    <option value="BBVA">
-                                                                                        BBVA
-                                                                                    </option>
-                                                                                    <option value="Pichincha">
-                                                                                        Pichincha
-                                                                                    </option>
-                                                                                    <option value="Banbif">
-                                                                                        Banbif
-                                                                                    </option>
-                                                                                    <option value="Otros">
-                                                                                        Otros
-                                                                                    </option>
-                                                                                </select>
-                                                                            </td>
-                                                                            <td>
-                                                                                <input
-                                                                                    className="form-control form-control-sm border-0"
-                                                                                    value={
-                                                                                        comp.buy
-                                                                                    }
-                                                                                    onChange={(
-                                                                                        e,
-                                                                                    ) =>
-                                                                                        updateComparison(
-                                                                                            i,
-                                                                                            "buy",
-                                                                                            e
-                                                                                                .target
-                                                                                                .value,
-                                                                                        )
-                                                                                    }
-                                                                                />
-                                                                            </td>
-                                                                            <td>
-                                                                                <input
-                                                                                    className="form-control form-control-sm border-0"
-                                                                                    value={
-                                                                                        comp.sell
-                                                                                    }
-                                                                                    onChange={(
-                                                                                        e,
-                                                                                    ) =>
-                                                                                        updateComparison(
-                                                                                            i,
-                                                                                            "sell",
-                                                                                            e
-                                                                                                .target
-                                                                                                .value,
-                                                                                        )
-                                                                                    }
-                                                                                />
-                                                                            </td>
-                                                                            <td className="text-center">
-                                                                                <button
-                                                                                    type="button"
-                                                                                    className="btn btn-link text-danger p-0"
-                                                                                    onClick={() =>
-                                                                                        removeComparison(
-                                                                                            i,
-                                                                                        )
-                                                                                    }
-                                                                                >
-                                                                                    <i className="fa fa-trash"></i>
-                                                                                </button>
-                                                                            </td>
-                                                                        </tr>
-                                                                    ),
-                                                                )}
-                                                            </tbody>
-                                                        </table>
-                                                    </div>
+
+                                            <div className="col-md-12">
+                                                <hr />
+                                                <div className="d-flex justify-content-between align-items-center mb-3">
+                                                    <h5 className="mb-0 text-primary">
+                                                        Tabla de Mercado
+                                                        (Bancos)
+                                                    </h5>
+                                                    <button
+                                                        type="button"
+                                                        className="btn btn-xs btn-outline-primary"
+                                                        onClick={addComparison}
+                                                    >
+                                                        + Agregar Entidad
+                                                    </button>
                                                 </div>
-                                            )}
+                                                <div className="table-responsive border rounded">
+                                                    <table className="table table-sm table-centered mb-0">
+                                                        <thead className="table-light">
+                                                            <tr>
+                                                                <th>Entidad</th>
+                                                                <th>Compra</th>
+                                                                <th>Venta</th>
+                                                                <th></th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            {comparisonData.map(
+                                                                (comp, i) => (
+                                                                    <tr key={i}>
+                                                                        <td>
+                                                                            <select
+                                                                                className="form-select form-select-sm border-0"
+                                                                                value={
+                                                                                    comp.entity
+                                                                                }
+                                                                                onChange={(
+                                                                                    e,
+                                                                                ) =>
+                                                                                    updateComparison(
+                                                                                        i,
+                                                                                        "entity",
+                                                                                        e
+                                                                                            .target
+                                                                                            .value,
+                                                                                    )
+                                                                                }
+                                                                            >
+                                                                                <option value="">
+                                                                                    Seleccionar
+                                                                                    Entidad
+                                                                                </option>
+                                                                                <option value="BCP">
+                                                                                    BCP
+                                                                                </option>
+                                                                                <option value="Interbank">
+                                                                                    Interbank
+                                                                                </option>
+                                                                                <option value="Scotiabank">
+                                                                                    Scotiabank
+                                                                                </option>
+                                                                                <option value="BBVA">
+                                                                                    BBVA
+                                                                                </option>
+                                                                                <option value="Pichincha">
+                                                                                    Pichincha
+                                                                                </option>
+                                                                                <option value="Banbif">
+                                                                                    Banbif
+                                                                                </option>
+                                                                                <option value="Otros">
+                                                                                    Otros
+                                                                                </option>
+                                                                            </select>
+                                                                        </td>
+                                                                        <td>
+                                                                            <input
+                                                                                className="form-control form-control-sm border-0"
+                                                                                value={
+                                                                                    comp.buy
+                                                                                }
+                                                                                onChange={(
+                                                                                    e,
+                                                                                ) =>
+                                                                                    updateComparison(
+                                                                                        i,
+                                                                                        "buy",
+                                                                                        e
+                                                                                            .target
+                                                                                            .value,
+                                                                                    )
+                                                                                }
+                                                                            />
+                                                                        </td>
+                                                                        <td>
+                                                                            <input
+                                                                                className="form-control form-control-sm border-0"
+                                                                                value={
+                                                                                    comp.sell
+                                                                                }
+                                                                                onChange={(
+                                                                                    e,
+                                                                                ) =>
+                                                                                    updateComparison(
+                                                                                        i,
+                                                                                        "sell",
+                                                                                        e
+                                                                                            .target
+                                                                                            .value,
+                                                                                    )
+                                                                                }
+                                                                            />
+                                                                        </td>
+                                                                        <td className="text-center">
+                                                                            <button
+                                                                                type="button"
+                                                                                className="btn btn-link text-danger p-0"
+                                                                                onClick={() =>
+                                                                                    removeComparison(
+                                                                                        i,
+                                                                                    )
+                                                                                }
+                                                                            >
+                                                                                <i className="fa fa-trash"></i>
+                                                                            </button>
+                                                                        </td>
+                                                                    </tr>
+                                                                ),
+                                                            )}
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+
                                             {/* SECCIÓN ESPECIAL PARA CASA DE CAMBIO DIGITAL */}
                                             {currentSlug ===
                                                 "casa-de-cambio-digital" && (

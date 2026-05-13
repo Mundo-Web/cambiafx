@@ -153,37 +153,83 @@ class CambiaFXService {
         return 0;
     }
 
-    // � MÉTODO CALCULATEEXCHANGE SEGÚN DOCUMENTACIÓN CAMBIAFX
+    // 🔍 MÉTODO CALCULATEEXCHANGE SEGÚN DOCUMENTACIÓN CAMBIAFX
     calculateExchange(amount, operationType = 'V', origin = 'from') {
         let total = 0;
         
         // Mapear parámetros al formato de la documentación
-        const mappedOrigin = origin === 'from' ? 'O' : 'D';
-        
-        // Paso 1: Obtener el tipo de cambio correspondiente
-        const _tc = this.getTCFromAmount(amount, operationType, mappedOrigin);
-
-        // Paso 2: Calcular el monto convertido según documentación CambiaFX
-        // VENTA = soles → dólares (dividir por TC)
-        // COMPRA = dólares → soles (multiplicar por TC)  
+        // 'from' siempre es la moneda de origen de la operación
+        // VENTA (PEN -> USD): from = PEN (O)
+        // COMPRA (USD -> PEN): from = USD (D)
         const isVenta = operationType === 'V' || operationType === 'venta';
+        let mappedOrigin;
         
-        if (mappedOrigin === 'O') {
-            total = isVenta ? amount / _tc : amount * _tc;
-        } else if (mappedOrigin === 'D') {
-            total = isVenta ? amount * _tc : amount / _tc;
+        if (origin === 'from') {
+            mappedOrigin = isVenta ? 'O' : 'D';
+        } else if (origin === 'to') {
+            mappedOrigin = isVenta ? 'D' : 'O';
+        } else {
+            mappedOrigin = origin; // Permitir 'O' o 'D' directamente
         }
 
-        // Redondear a 2 decimales para montos
-        total = Math.round(total * 100) / 100;
+        // Paso 1: Obtener el tipo de cambio correspondiente
+        let _tc;
+        if (mappedOrigin === 'O') {
+            // Caso especial: Soles -> Dólares (Venta o recíproco de Compra)
+            // Necesitamos encontrar el TC cuyo resultado (USD) caiga en el rango correcto
+            _tc = isVenta ? this.findCorrectTcForVentaSoles(amount) : this.getTCFromAmount(amount, 'C', 'O');
+        } else {
+            _tc = this.getTCFromAmount(amount, operationType, mappedOrigin);
+        }
 
-     //   console.log(`🔁 calculateExchange: ${amount} (${mappedOrigin}) → ${total} (TC: ${_tc}, isVenta: ${isVenta})`);
+        if (!_tc || _tc <= 0) {
+            // Fallback a tasas base si el cálculo dinámico falla
+            const base = this.tcBase[0] || { tc_compra: 3.7, tc_venta: 3.7 };
+            _tc = isVenta ? base.tc_venta : base.tc_compra;
+        }
+
+        // Paso 2: Calcular el monto convertido
+        if (mappedOrigin === 'O') {
+            // Usuario entrega Soles (O)
+            // Venta: Soles / TC = USD
+            // Compra: Soles * TC (este caso es raro, pero se mantiene la lógica)
+            total = isVenta ? amount / _tc : amount * _tc;
+        } else if (mappedOrigin === 'D') {
+            // Usuario entrega Dólares (D)
+            // Venta: Dólares * TC = Soles (Soles que el usuario debe dar para comprar esos dólares)
+            // Compra: Dólares * TC = Soles (Soles que el usuario recibe por vender sus dólares)
+            total = amount * _tc;
+        }
 
         return {
             result: parseFloat(total.toFixed(2)),
             exchangeRate: _tc,
             operation: operationType
         };
+    }
+
+    // 🎯 FUNCIÓN ESPECIAL: Buscar TC correcto para VENTA con input en soles
+    findCorrectTcForVentaSoles(amountSoles) {
+        let bestTc = null;
+        const ranges = this.tcData.length > 0 ? this.tcData : this.tcBase;
+
+        if (ranges.length === 0) return 0;
+
+        for (const range of ranges) {
+            const tcVenta = range.tc_venta || 0;
+            if (tcVenta === 0) continue;
+
+            const calculatedUSD = amountSoles / tcVenta;
+            const minUSD = range.desde || 0;
+            const maxUSD = range.hasta || 999999;
+
+            if (calculatedUSD >= minUSD && calculatedUSD < maxUSD) {
+                bestTc = tcVenta;
+                break;
+            }
+        }
+
+        return bestTc || ranges[0].tc_venta;
     }
 
     // 🧠 IMPLEMENTACIÓN SEGÚN DOCUMENTACIÓN CAMBIAFX - MÉTODO PRINCIPAL
