@@ -105,6 +105,19 @@ const TipoDeCambioHoy = ({
         return () => clearTimeout(timer);
     }, [landing, financialServiceData, globalKeywords]);
 
+    useEffect(() => {
+        const momentos = liveRates?.momentos || [];
+        if (momentos.length <= itemsPerPage) return;
+
+        const maxPage = Math.ceil(momentos.length / itemsPerPage) - 1;
+        
+        const interval = setInterval(() => {
+            setCurrentTimelinePage((prev) => (prev >= maxPage ? 0 : prev + 1));
+        }, 5000);
+
+        return () => clearInterval(interval);
+    }, [liveRates?.momentos, itemsPerPage]);
+
     const containerVariants = {
         hidden: { opacity: 0 },
         visible: {
@@ -274,12 +287,12 @@ const TipoDeCambioHoy = ({
                                 <div className="flex gap-3">
                                     <button
                                         onClick={() =>
-                                            setCurrentTimelinePage((prev) =>
-                                                Math.max(0, prev - 1),
-                                            )
+                                            setCurrentTimelinePage((prev) => {
+                                                const maxPage = Math.ceil((liveRates?.momentos || []).length / itemsPerPage) - 1;
+                                                return prev === 0 ? maxPage : prev - 1;
+                                            })
                                         }
-                                        disabled={currentTimelinePage === 0}
-                                        className={`bg-white/10 hover:bg-white/20 backdrop-blur-sm rounded-full p-2 transition-all duration-300 group disabled:opacity-30 disabled:cursor-not-allowed`}
+                                        className={`bg-white/10 hover:bg-white/20 backdrop-blur-sm rounded-full p-2 transition-all duration-300 group`}
                                     >
                                         <svg
                                             className="w-4 h-4 text-white group-hover:text-secondary transition-colors"
@@ -298,28 +311,11 @@ const TipoDeCambioHoy = ({
                                     <button
                                         onClick={() =>
                                             setCurrentTimelinePage((prev) => {
-                                                const maxPage =
-                                                    Math.ceil(
-                                                        (
-                                                            liveRates?.momentos ||
-                                                            []
-                                                        ).length / itemsPerPage,
-                                                    ) - 1;
-                                                return Math.min(
-                                                    maxPage,
-                                                    prev + 1,
-                                                );
+                                                const maxPage = Math.ceil((liveRates?.momentos || []).length / itemsPerPage) - 1;
+                                                return prev >= maxPage ? 0 : prev + 1;
                                             })
                                         }
-                                        disabled={
-                                            currentTimelinePage >=
-                                            Math.ceil(
-                                                (liveRates?.momentos || [])
-                                                    .length / itemsPerPage,
-                                            ) -
-                                                1
-                                        }
-                                        className={`bg-white/10 hover:bg-white/20 backdrop-blur-sm rounded-full p-2 transition-all duration-300 group disabled:opacity-30 disabled:cursor-not-allowed`}
+                                        className={`bg-white/10 hover:bg-white/20 backdrop-blur-sm rounded-full p-2 transition-all duration-300 group`}
                                     >
                                         <svg
                                             className="w-4 h-4 text-white group-hover:text-secondary transition-colors"
@@ -352,11 +348,10 @@ const TipoDeCambioHoy = ({
                                     )
                                     .map((moment, idx) => (
                                         <motion.div
-                                            key={idx}
-                                            initial={{ opacity: 0, x: -20 }}
-                                            whileInView={{ opacity: 1, x: 0 }}
-                                            viewport={{ once: true }}
-                                            transition={{ delay: 0.1 * idx }}
+                                            key={`${currentTimelinePage}-${idx}`}
+                                            initial={{ opacity: 0, y: 15, scale: 0.98 }}
+                                            animate={{ opacity: 1, y: 0, scale: 1 }}
+                                            transition={{ duration: 0.4, delay: 0.1 * idx, ease: "easeOut" }}
                                             className="relative group"
                                         >
                                             {/* Timeline Dot */}
