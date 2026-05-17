@@ -369,7 +369,10 @@ const SolesADolares = ({
                         <motion.a
                             whileHover={{ scale: 1.05 }}
                             whileTap={{ scale: 0.95 }}
-                            href="https://mi.cambiafx.pe/register"
+                            href={
+                                landing.comparison_button_link ||
+                                "https://mi.cambiafx.pe/register"
+                            }
                             className="inline-flex items-center bg-secondary gap-3 text-neutral-dark px-10 py-5 rounded-full font-bold text-lg hover:brightness-110 transition-all shadow-xl uppercase tracking-wider"
                         >
                             {landing.comparison_cta || "Comenzar ahora"}

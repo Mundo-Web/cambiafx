@@ -611,7 +611,10 @@ const CompraVentaDolares = ({
                         <motion.a
                             whileHover={{ y: -5 }}
                             whileTap={{ scale: 0.98 }}
-                            href="https://mi.cambiafx.pe/register"
+                            href={
+                                landing.comparison_button_link ||
+                                "https://mi.cambiafx.pe/register"
+                            }
                             className="bg-secondary text-neutral-dark px-10 z-50 py-5 rounded-full font-bold uppercase tracking-widest text-sm shadow-xl hover:shadow-secondary/20 transition-all"
                         >
                             {landing.comparison_cta || "Comenzar a ahorrar"}

@@ -60,6 +60,8 @@ const TransactionalLanding = ({
     const heroEyebrowRef = useRef();
     const heroTitleRef = useRef();
     const heroSubtitleRef = useRef();
+    const heroButtonTextRef = useRef();
+    const heroButtonLinkRef = useRef();
 
     // Schema refs
     const schemaServiceNameRef = useRef();
@@ -70,6 +72,7 @@ const TransactionalLanding = ({
     const comparisonTitleRef = useRef();
     const comparisonSubtitleRef = useRef();
     const comparisonCtaRef = useRef();
+    const comparisonButtonLinkRef = useRef();
 
     // New steps and CTA section refs
     const stepsTitleRef = useRef();
@@ -213,6 +216,10 @@ const TransactionalLanding = ({
                 heroTitleRef.current.value = data?.hero_title ?? "";
             if (heroSubtitleRef.current)
                 heroSubtitleRef.current.value = data?.hero_subtitle ?? "";
+            if (heroButtonTextRef.current)
+                heroButtonTextRef.current.value = data?.hero_button_text ?? "";
+            if (heroButtonLinkRef.current)
+                heroButtonLinkRef.current.value = data?.hero_button_link ?? "";
 
             if (schemaServiceNameRef.current)
                 schemaServiceNameRef.current.value =
@@ -234,6 +241,9 @@ const TransactionalLanding = ({
             if (comparisonCtaRef.current)
                 comparisonCtaRef.current.value =
                     data?.comparison_cta ?? "Comenzar ahora";
+            if (comparisonButtonLinkRef.current)
+                comparisonButtonLinkRef.current.value =
+                    data?.comparison_button_link ?? "";
 
             if (stepsTitleRef.current)
                 stepsTitleRef.current.value =
@@ -365,6 +375,14 @@ const TransactionalLanding = ({
                 "hero_subtitle",
                 heroSubtitleRef.current?.value || "",
             );
+            formData.append(
+                "hero_button_text",
+                heroButtonTextRef.current?.value || "",
+            );
+            formData.append(
+                "hero_button_link",
+                heroButtonLinkRef.current?.value || "",
+            );
 
             formData.append("stats", JSON.stringify(stats));
             formData.append("comparison_data", JSON.stringify(comparisonData));
@@ -393,6 +411,10 @@ const TransactionalLanding = ({
             formData.append(
                 "comparison_cta",
                 comparisonCtaRef.current?.value || "",
+            );
+            formData.append(
+                "comparison_button_link",
+                comparisonButtonLinkRef.current?.value || "",
             );
 
             formData.append("steps_title", stepsTitleRef.current?.value || "");
@@ -748,6 +770,29 @@ const TransactionalLanding = ({
                                                     rows={2}
                                                 />
                                             </div>
+                                            {currentSlug ===
+                                                "casa-de-cambio-digital" && (
+                                                <>
+                                                    <div className="col-md-6">
+                                                        <InputFormGroup
+                                                            label="Hero Button Text"
+                                                            colSize="12"
+                                                            eRef={
+                                                                heroButtonTextRef
+                                                            }
+                                                        />
+                                                    </div>
+                                                    <div className="col-md-6">
+                                                        <InputFormGroup
+                                                            label="Hero Button Link"
+                                                            colSize="12"
+                                                            eRef={
+                                                                heroButtonLinkRef
+                                                            }
+                                                        />
+                                                    </div>
+                                                </>
+                                            )}
                                             {currentSlug !==
                                                 "tipo-de-cambio-hoy" &&
                                                 currentSlug !==
@@ -958,6 +1003,19 @@ const TransactionalLanding = ({
                                                     rows={2}
                                                 />
                                             </div>
+
+                                            {currentSlug !==
+                                                "tipo-de-cambio-hoy" && (
+                                                <div className="col-md-12">
+                                                    <InputFormGroup
+                                                        label="Link Botón Comparativa"
+                                                        colSize="12"
+                                                        eRef={
+                                                            comparisonButtonLinkRef
+                                                        }
+                                                    />
+                                                </div>
+                                            )}
 
                                             <div className="col-md-12">
                                                 <hr />
