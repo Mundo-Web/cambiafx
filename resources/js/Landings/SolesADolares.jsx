@@ -299,7 +299,7 @@ const SolesADolares = ({
                                     title="COTIZA TU CAMBIO"
                                     initialOperationType="venta"
                                     showCoupons={true}
-                                    className="lg:scale-125 "
+                                    className="2xl:scale-125 "
                                 />
                             </div>
                         </div>

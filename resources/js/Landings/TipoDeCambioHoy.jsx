@@ -145,13 +145,13 @@ const TipoDeCambioHoy = ({
 
             {/* PREMIUM HERO SECTION */}
             <motion.section
-                className="relative min-h-[800px] bg-neutral-dark flex flex-col lg:flex-row "
+                className="relative min-h-[800px]  2xl:w-full bg-neutral-dark flex gap-8 2xl:gap-0 flex-col lg:flex-row "
                 initial="hidden"
                 animate={sectionsReady ? "visible" : "hidden"}
                 variants={containerVariants}
             >
                 {/* Lado Izquierdo: Info, Stats & Comparison */}
-                <div className="w-full lg:w-8/12 order-1  px-[6%] py-16 relative flex flex-col justify-center">
+                <div className="w-full lg:w-8/12 order-1 pr-[6%]  2xl:px-[6%] py-16 relative flex flex-col justify-center">
                     {/* SVG Decorativo fondo claro */}
                     <div className="absolute top-0 left-0 w-full h-full opacity-40 pointer-events-none -z-10">
                         <svg
@@ -424,7 +424,7 @@ const TipoDeCambioHoy = ({
                 </div>
 
                 {/* Lado Derecho: Calculadora */}
-                <div className="w-full lg:w-4/12 px-[4%] py-16 flex flex-col items-start justify-start relative">
+                <div className="w-full lg:w-4/12 pl-[4%] 2xl:px-[4%] py-16 flex flex-col items-start justify-start relative">
                     {/* Brillo decorativo sutil */}
                     <div className="absolute -top-20 -right-20 w-96 h-96 blur-[120px] rounded-full"></div>
                     <div className="absolute -bottom-20 -left-20 w-96 h-96  blur-[100px] rounded-full"></div>
@@ -441,8 +441,8 @@ const TipoDeCambioHoy = ({
                     >
                         <div className="relative">
                             <div className="relative">
-                                <div className="lg:w-[600px] lg:h-[850px] relative">
-                                    <div className="lg:scale-125 lg:origin-top-left">
+                                <div className="2xl:w-[600px] lg:h-[850px] relative">
+                                    <div className="2xl:scale-125 lg:origin-top-left">
                                         <ExchangeCard
                                             title="COTIZA TU CAMBIO"
                                             initialOperationType="venta"
