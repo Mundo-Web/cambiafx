@@ -196,7 +196,7 @@ const TipoDeCambioHoy = ({
 
                     <motion.h1
                         variants={itemVariants}
-                        className="text-5xl md:text-8xl font-medium text-white leading-[0.95] mb-10"
+                        className="text-5xl md:text-8xl font-semibold text-white leading-[0.95] mb-10"
                     >
                         <TextWithHighlight
                             text={
@@ -209,7 +209,7 @@ const TipoDeCambioHoy = ({
 
                     <motion.p
                         variants={itemVariants}
-                        className="text-lg md:text-xl text-white/70 max-w-2xl mb-16 leading-relaxed"
+                        className="text-lg md:text-xl text-white max-w-2xl mb-16 leading-relaxed"
                     >
                         {landing.hero_subtitle ||
                             "Nuestra tecnología se conecta con los principales indicadores para ofrecerte el mejor precio."}
@@ -397,7 +397,7 @@ const TipoDeCambioHoy = ({
                                                         </span>
                                                     </div>
                                                     {moment.spread && (
-                                                        <div className="hidden sm:flex flex-col text-right">
+                                                        <div className="hidden flex-col text-right">
                                                             <span className="text-[9px] text-white/30 uppercase font-bold mb-1 tracking-widest">
                                                                 Spread
                                                             </span>

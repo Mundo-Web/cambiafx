@@ -381,7 +381,7 @@ const CasaDeCambioDigital = ({
 
                     <motion.h1
                         variants={itemVariants}
-                        className="text-5xl md:text-8xl font-medium text-neutral-dark leading-[0.95] mb-10"
+                        className="text-5xl md:text-8xl font-semibold text-neutral-dark leading-[0.95] mb-10"
                     >
                         <TextWithHighlight
                             text={
@@ -394,7 +394,7 @@ const CasaDeCambioDigital = ({
 
                     <motion.p
                         variants={itemVariants}
-                        className="text-lg md:text-xl text-neutral-light/70 max-w-2xl mb-16 leading-relaxed"
+                        className="text-lg md:text-xl text-neutral-light max-w-2xl mb-16 leading-relaxed"
                     >
                         {landing.hero_subtitle ||
                             "Obtén mejores tasas, seguridad garantizada por la SBS y opera en minutos sin salir de casa o tu oficina."}
@@ -428,7 +428,7 @@ const CasaDeCambioDigital = ({
                         <motion.a
                             whileHover={{ scale: 1.02, y: -2 }}
                             whileTap={{ scale: 0.98 }}
-                            href={landing.hero_button_link || "https://mi.cambiafx.pe/register"}
+                            href={landing.hero_button_link || "https://mi.cambiafx.pe/registro"}
                             className="group relative inline-flex items-center justify-center gap-4 bg-secondary text-neutral-dark font-black px-12 py-6 rounded-full shadow-[0_20px_40px_-10px_rgba(180,255,0,0.3)] hover:shadow-[0_25px_50px_-12px_rgba(180,255,0,0.5)] transition-all duration-500 overflow-hidden"
                         >
                             {/* Shine effect on hover */}
@@ -513,7 +513,7 @@ const CasaDeCambioDigital = ({
                                         </span>
                                         <input
                                             type="text"
-                                            value={amount.toLocaleString()}
+                                            value={amount.toLocaleString("en-US")}
                                             onChange={(e) => {
                                                 const val =
                                                     e.target.value.replace(
@@ -524,7 +524,7 @@ const CasaDeCambioDigital = ({
                                                     val ? parseInt(val) : 0,
                                                 );
                                             }}
-                                            className="bg-transparent border-none outline-none text-3xl font-black text-white w-full tabular-nums"
+                                            className="bg-transparent outline-none border-none focus:outline-none text-3xl font-black text-white w-full tabular-nums"
                                         />
                                     </div>
 
@@ -645,12 +645,11 @@ const CasaDeCambioDigital = ({
                                         `,
                                             }}
                                         />
-
                                         <div className="space-y-3 min-h-0 max-h-[380px] overflow-y-auto overflow-x-hidden custom-scrollbar pr-2 py-4">
                                             {/* Row Master: Cambia FX (Always first and highlighted) */}
-                                            <motion.div className="grid grid-cols-12 items-center px-5 py-4 rounded-[28px] transition-all duration-500 bg-white border-2 border-constrast  scale-[1.02] z-10 relative mb-4 mx-1">
-                                                <div className="col-span-6 flex items-center gap-4">
-                                                    <div className="w-24 h-8 flex items-center justify-center overflow-hidden ">
+                                            <motion.div className="grid grid-cols-12 items-center px-5 py-4 rounded-[28px] transition-all duration-500 bg-white border-2 border-constrast scale-[1.02] z-10 relative mb-4 mx-1">
+                                                <div className="col-span-6 flex flex-col justify-center gap-0">
+                                                    <div className="w-24 h-10 flex items-center justify-start overflow-hidden">
                                                         <img
                                                             src={
                                                                 logoMapping[
@@ -658,16 +657,19 @@ const CasaDeCambioDigital = ({
                                                                 ]
                                                             }
                                                             alt="Cambia FX"
-                                                            className="w-full h-full object-contain"
+                                                            className="w-full h-full object-contain object-left"
                                                         />
                                                     </div>
+                                                    <span className="ml-7 text-[9px] text-neutral-dark -mt-2 uppercase tracking-widest font-semibold">
+                                                        Tasa: {currentCambiaRate.toFixed(4)}
+                                                    </span>
                                                 </div>
                                                 <div className="col-span-6 text-right text-xl font-black text-neutral-dark tabular-nums">
                                                     {operationType === "venta"
                                                         ? "$ "
                                                         : "S/ "}
                                                     {currentReceive.toLocaleString(
-                                                        undefined,
+                                                        "en-US",
                                                         {
                                                             minimumFractionDigits: 2,
                                                             maximumFractionDigits: 2,
@@ -728,7 +730,7 @@ const CasaDeCambioDigital = ({
                                                                     ? "$ "
                                                                     : "S/ "}
                                                                 {bank.receive.toLocaleString(
-                                                                    undefined,
+                                                                    "en-US",
                                                                     {
                                                                         minimumFractionDigits: 2,
                                                                         maximumFractionDigits: 2,
@@ -787,7 +789,7 @@ const CasaDeCambioDigital = ({
                                                     S/
                                                 </span>
                                                 {totalSavings.toLocaleString(
-                                                    undefined,
+                                                    "en-US",
                                                     {
                                                         maximumFractionDigits: 0,
                                                     },
@@ -863,7 +865,7 @@ const CasaDeCambioDigital = ({
                         <motion.a
                             whileHover={{ scale: 1.05 }}
                             whileTap={{ scale: 0.95 }}
-                            href={landing.comparison_button_link || "https://mi.cambiafx.pe/register"}
+                            href={landing.comparison_button_link || "https://mi.cambiafx.pe/registro"}
                             className="inline-flex items-center bg-secondary gap-3 text-neutral-dark px-10 py-5 rounded-full font-bold text-lg hover:brightness-110 transition-all shadow-xl uppercase tracking-wider"
                         >
                             {landing.comparison_cta || "Comenzar ahora"}

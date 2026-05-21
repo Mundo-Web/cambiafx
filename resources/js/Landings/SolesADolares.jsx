@@ -219,7 +219,7 @@ const SolesADolares = ({
 
                     <motion.h1
                         variants={itemVariants}
-                        className="text-5xl md:text-8xl font-medium text-neutral-dark leading-[0.95] mb-10"
+                        className="text-5xl md:text-8xl font-semibold text-neutral-dark leading-[0.95] mb-10"
                     >
                         <TextWithHighlight
                             text={
@@ -232,7 +232,7 @@ const SolesADolares = ({
 
                     <motion.p
                         variants={itemVariants}
-                        className="text-lg md:text-xl text-neutral-light/70 max-w-2xl mb-16 leading-relaxed"
+                        className="text-lg md:text-xl text-neutral-light max-w-2xl mb-16 leading-relaxed"
                     >
                         {landing.hero_subtitle ||
                             "Nuestra tecnología se conecta con los principales indicadores para ofrecerte el mejor precio."}

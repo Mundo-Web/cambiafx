@@ -328,7 +328,7 @@ const CompraVentaDolares = ({
                     </motion.span>
                     <motion.h1
                         variants={itemVariants}
-                        className="text-5xl md:text-[80px] font-medium leading-[1] mb-8 text-white"
+                        className="text-5xl md:text-8xl font-semibold leading-[1] mb-8 text-white"
                     >
                         <TextWithHighlight
                             text={
@@ -340,7 +340,7 @@ const CompraVentaDolares = ({
                     </motion.h1>
                     <motion.p
                         variants={itemVariants}
-                        className="text-xl text-white/60 mb-12 max-w-2xl mx-auto leading-relaxed"
+                        className="text-lg md:text-xl text-white mb-12 max-w-2xl mx-auto leading-relaxed"
                     >
                         {landing.hero_subtitle ||
                             "Obten el mejor tipo de cambio online. Sin comisiones y 100% seguro."}
@@ -455,7 +455,7 @@ const CompraVentaDolares = ({
                             <motion.a
                                 whileHover={{ y: -5 }}
                                 whileTap={{ scale: 0.98 }}
-                                href="https://mi.cambiafx.pe/register"
+                                href="https://mi.cambiafx.pe/registro"
                                 className="w-full bg-secondary text-neutral-dark font-semibold px-10 py-5 rounded-full text-lg flex items-center justify-center gap-3 uppercase tracking-widest shadow-xl hover:shadow-secondary/20 transition-all"
                             >
                                 Vender ahora <ArrowRight size={20} />
@@ -543,7 +543,7 @@ const CompraVentaDolares = ({
                             <motion.a
                                 whileHover={{ y: -5 }}
                                 whileTap={{ scale: 0.98 }}
-                                href="https://mi.cambiafx.pe/register"
+                                href="https://mi.cambiafx.pe/registro"
                                 className="w-full bg-constrast text-white font-semibold px-10 py-5 rounded-full text-lg flex items-center justify-center gap-3 uppercase tracking-widest shadow-xl hover:shadow-constrast/20 transition-all"
                             >
                                 Comprar ahora <ArrowRight size={20} />
@@ -613,7 +613,7 @@ const CompraVentaDolares = ({
                             whileTap={{ scale: 0.98 }}
                             href={
                                 landing.comparison_button_link ||
-                                "https://mi.cambiafx.pe/register"
+                                "https://mi.cambiafx.pe/registro"
                             }
                             className="bg-secondary text-neutral-dark px-10 z-50 py-5 rounded-full font-bold uppercase tracking-widest text-sm shadow-xl hover:shadow-secondary/20 transition-all"
                         >

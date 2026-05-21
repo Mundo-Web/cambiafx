@@ -38,7 +38,7 @@ const TextWithHighlight = ({ text = "", split = false, split_coma = false, split
         if (counter) {
             const numberMatch = textToRender.match(/(\d+(?:,\d{3})*(?:\.\d+)?)/);
             if (numberMatch) {
-                const formattedNumber = currentNumber.toLocaleString();
+                const formattedNumber = currentNumber.toLocaleString("en-US");
                 processedText = textToRender.replace(numberMatch[0], formattedNumber);
             }
         }

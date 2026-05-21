@@ -71,7 +71,7 @@ const AnimatedIndicator = ({ indicator, index }) => {
                 return '*+*' + kValue + 'k';
             } else {
                 // Para formato *+*5900 - mostrar siempre el formato durante la animación
-                return '*+*' + roundedNum.toLocaleString();
+                return '*+*' + roundedNum.toLocaleString('en-US');
             }
         } else if (originalText.includes('M') || originalText.includes('m')) {
             return (roundedNum / 1000000).toFixed(decimals) + 'M';
@@ -80,9 +80,9 @@ const AnimatedIndicator = ({ indicator, index }) => {
             const kValue = Math.round(roundedNum / 1000);
             return (originalText.includes('+') ? '+' : '') + kValue + 'k';
         } else if (originalText.includes('+')) {
-            return roundedNum.toLocaleString() + '+';
+            return roundedNum.toLocaleString('en-US') + '+';
         } else {
-            return decimals > 0 ? roundedNum.toFixed(decimals) : roundedNum.toLocaleString();
+            return decimals > 0 ? roundedNum.toFixed(decimals) : roundedNum.toLocaleString('en-US');
         }
     };
 
