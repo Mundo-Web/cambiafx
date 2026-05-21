@@ -7,7 +7,7 @@ import GeneralRest from "../../actions/GeneralRest";
 import { Send } from "lucide-react";
 import { useTranslation } from "../../hooks/useTranslation";
 import Swal from "sweetalert2";
-import SubscriptionsRest from "../../Actions/SubscriptionsRest";
+import SubscriptionsRest from "../../actions/SubscriptionsRest";
 import Global from "../../Utils/Global";
 
 
@@ -24,9 +24,11 @@ const Footer = ({ terms, footerLinks = [] }) => {
     /* footerLinks.forEach((fl) => {
         links[fl.correlative] = fl.description;
     });*/
+
     const [socials, setSocials] = useState([]);
     const [generals, setGenerals] = useState([]);
     const [apps, setApps] = useState([]);
+    const [landings, setLandings] = useState([]);
 
     useEffect(() => {
         const fetchSocials = async () => {
@@ -56,10 +58,20 @@ const Footer = ({ terms, footerLinks = [] }) => {
             }
         };
 
+        const fetchLandings = async () => {
+            try {
+                const data = await generalRest.getTransactionalLandings();
+                setLandings(data);
+            } catch (error) {
+                console.error("Error fetching landings:", error);
+            }
+        };
+
         fetchSocials();
         fetchGenerals();
         fetchApps();
-    }, []); // Asegúrate de que este array de dependencias está vacío si solo se ejecuta una vez
+        fetchLandings();
+    }, []);
 
     // Redes sociales
     const Facebook = socials.find(
@@ -252,7 +264,7 @@ const Footer = ({ terms, footerLinks = [] }) => {
 
                 <div className="flex flex-col lg:flex-row gap-6 lg:gap-10 w-full px-[5%] py-8 lg:py-16">
                     {/* Columna 1 - Logo, App Badges y Suscripción */}
-                    <div className="w-full lg:w-6/12 flex flex-col gap-6">
+                    <div className="w-full lg:w-4/12 flex flex-col gap-6">
                         <a href="/">
                             <img
                                 className="h-12 lg:h-14"
@@ -538,7 +550,7 @@ const Footer = ({ terms, footerLinks = [] }) => {
                                         color: "#BBFF52",
                                         x: 2
                                     }}
-                                    transition={{ duration: 0.2 }}
+                            transition={{ duration: 0.2 }}
                                 >
                                     He leído y acepto la Política de Privacidad y los Términos y Condiciones
                                 </motion.label>
@@ -546,66 +558,85 @@ const Footer = ({ terms, footerLinks = [] }) => {
                         </motion.div>
                     </div>
 
-                    {/* Columna 2 - Horario de Atención */}
-                    <div className="w-full lg:w-6/12 flex flex-col lg:flex-row lg:flex-wrap lg:justify-end gap-6 lg:gap-0">
-                        <div className="w-full lg:w-6/12 flex flex-col gap-2 text-sm pb-4 lg:pb-8">
-                            <h3 className="text-lg lg:text-xl font-medium mb-2 lg:mb-4">
-                                Horario de Atención
-                            </h3>
-                            {openingHours ? (
-                                <div className="whitespace-pre-line">
-                                    {openingHours.split('\n').map(line => line.replace(/:/, ':\n')).join('\n')}
+                    {/* Contenedor de las Columnas de la derecha */}
+                    <div className="w-full lg:w-8/12 flex flex-col sm:flex-row lg:flex-row lg:flex-wrap lg:justify-between gap-6 lg:gap-0">
+                            {/* Columna 2 - Horario de Atención */}
+                            <div className="w-full sm:w-1/3 lg:w-[28%] flex flex-col gap-2 text-sm pb-4 lg:pb-8">
+                                <h3 className="text-lg lg:text-xl font-medium mb-2 lg:mb-4">
+                                    Horario de Atención
+                                </h3>
+                                {openingHours ? (
+                                    <div className="whitespace-pre-line">
+                                        {openingHours.split('\n').map(line => line.replace(/:/, ':\n')).join('\n')}
+                                    </div>
+                                ) : (
+                                    <>
+                                        <p><strong className="font-medium">Lunes a viernes:</strong><br />9:00 a.m. - 7:00 p.m.</p>
+                                        <p className="mt-2"><strong className="font-medium">Sábados:</strong><br />10:00 a.m. - 1:00 p.m.</p>
+                                        <p className="mt-2"><strong className="font-medium">Otros Horarios:</strong><br />Abonamos el día siguiente hábil</p>
+                                        <p className="mt-2"><strong className="font-medium">No atendemos:</strong><br />Domingos y feriados</p>
+                                    </>
+                                )}
+                            </div>
+
+                            {/* Columna 3 - Tipo de Cambio (Páginas Transaccionales) */}
+                            {landings && landings.length > 0 && (
+                                <div className="w-full sm:w-1/3 lg:w-[35%] flex flex-col gap-2 text-sm pb-4 lg:pb-8">
+                                    <h3 className="text-lg lg:text-xl font-medium mb-2 lg:mb-4">
+                                        Cambia Dólares Online
+                                    </h3>
+                                    <div className="flex flex-col gap-2">
+                                        {landings.map((landing, index) => (
+                                            <a
+                                                key={index}
+                                                href={`/${landing.url}`}
+                                                className="cursor-pointer hover:text-secondary transition-colors text-xs lg:text-sm font-light"
+                                            >
+                                                {landing.name}
+                                            </a>
+                                        ))}
+                                    </div>
                                 </div>
-                            ) : (
-                                <>
-                                    <p><strong className="font-medium">Lunes a viernes:</strong><br />9:00 a.m. - 7:00 p.m.</p>
-                                    <p className="mt-2"><strong className="font-medium">Sábados:</strong><br />10:00 a.m. - 1:00 p.m.</p>
-                                    <p className="mt-2"><strong className="font-medium">Otros Horarios:</strong><br />Abonamos el día siguiente hábil</p>
-                                    <p className="mt-2"><strong className="font-medium">No atendemos:</strong><br />Domingos y feriados</p>
-                                </>
                             )}
-                        </div>
 
-                        {/* Columna 3 - Legal */}
-                        <div className="w-full lg:w-5/12 flex flex-col gap-2 text-sm">
-                            <h3 className="text-lg lg:text-xl font-medium mb-2 lg:mb-4">
-                                Legal
-                            </h3>
-                            <a href="/legal/politicas-de-privacidad" className="cursor-pointer hover:text-secondary transition-colors">Política de Privacidad</a>
-                            <a href="/legal/terminos-y-condiciones" className="cursor-pointer hover:text-secondary transition-colors">Términos y Condiciones</a>
-                            <a href="/libro-de-reclamaciones" className="cursor-pointer hover:text-secondary transition-colors">Libro de Reclamaciones</a>
-                            <div className="mt-4">
-                                <p className="font-medium">Registrada en la SBS</p>
-                                <p>Resolución 04993-2018</p>
-                            </div>
+                            {/* Columna 4 - Legal */}
+                            <div className="w-full sm:w-1/3 lg:w-[32%] flex flex-col gap-2 text-sm">
+                                <h3 className="text-lg lg:text-xl font-medium mb-2 lg:mb-4">
+                                    Legal
+                                </h3>
+                                <a href="/legal/politicas-de-privacidad" className="cursor-pointer hover:text-secondary transition-colors">Política de Privacidad</a>
+                                <a href="/legal/terminos-y-condiciones" className="cursor-pointer hover:text-secondary transition-colors">Términos y Condiciones</a>
+                                <a href="/libro-de-reclamaciones" className="cursor-pointer hover:text-secondary transition-colors">Libro de Reclamaciones</a>
+                                <div className="mt-4">
+                                    <p className="font-medium">Registrada en la SBS</p>
+                                    <p>Resolución 04993-2018</p>
+                                </div>
 
-                             {/* Columna 4 - Contacto */}
-                        <div className="w-full  flex flex-col gap-4 text-sm mt-4">
-                            <div className="flex items-start gap-2">
-                                <svg className="w-4 h-4 lg:w-5 lg:h-5 mt-1 flex-shrink-0" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M11.3481 17.8052C10.9867 18.1435 10.5037 18.3327 10.0009 18.3327C9.49817 18.3327 9.01517 18.1435 8.65375 17.8052C5.34418 14.6877 0.908967 11.2051 3.07189 6.14907C4.24136 3.41532 7.04862 1.66602 10.0009 1.66602C12.9532 1.66602 15.7605 3.41532 16.93 6.14907C19.0902 11.1988 14.6658 14.6984 11.3481 17.8052Z" fill="white" stroke="#0C0C0C" strokeWidth="1.25" />
-                                    <path d="M12.9173 9.16667C12.9173 10.7775 11.6115 12.0833 10.0007 12.0833C8.38982 12.0833 7.08398 10.7775 7.08398 9.16667C7.08398 7.55583 8.38982 6.25 10.0007 6.25C11.6115 6.25 12.9173 7.55583 12.9173 9.16667Z" fill="#1A1A1A" />
-                                </svg>
+                                 {/* Columna 5 - Contacto */}
+                                <div className="w-full flex flex-col gap-4 text-sm mt-4">
+                                    <div className="flex items-start gap-2">
+                                        <svg className="w-4 h-4 lg:w-5 lg:h-5 mt-1 flex-shrink-0" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M11.3481 17.8052C10.9867 18.1435 10.5037 18.3327 10.0009 18.3327C9.49817 18.3327 9.01517 18.1435 8.65375 17.8052C5.34418 14.6877 0.908967 11.2051 3.07189 6.14907C4.24136 3.41532 7.04862 1.66602 10.0009 1.66602C12.9532 1.66602 15.7605 3.41532 16.93 6.14907C19.0902 11.1988 14.6658 14.6984 11.3481 17.8052Z" fill="white" stroke="#0C0C0C" strokeWidth="1.25" />
+                                            <path d="M12.9173 9.16667C12.9173 10.7775 11.6115 12.0833 10.0007 12.0833C8.38982 12.0833 7.08398 10.7775 7.08398 9.16667C7.08398 7.55583 8.38982 6.25 10.0007 6.25C11.6115 6.25 12.9173 7.55583 12.9173 9.16667Z" fill="#1A1A1A" />
+                                        </svg>
 
-                                <div className="whitespace-pre-line text-xs lg:text-sm">
-                                    {address || "Av. Javier Prado Este N.560,\nOficina 2302 San Isidro - Lima - Perú"}
+                                        <div className="whitespace-pre-line text-xs lg:text-sm">
+                                            {address || "Av. Javier Prado Este N.560,\nOficina 2302 San Isidro - Lima - Perú"}
+                                        </div>
+                                    </div>
+
+                                    <div className="flex items-center gap-2">
+                                        <svg className="w-4 h-4 lg:w-5 lg:h-5 flex-shrink-0" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M1.67916 11.229C1.73363 13.7837 1.76087 15.0609 2.70348 16.0072C3.64608 16.9534 4.95796 16.9863 7.58171 17.0522C9.19877 17.0928 10.7999 17.0928 12.417 17.0522C15.0408 16.9863 16.3526 16.9534 17.2953 16.0072C18.2378 15.0609 18.2651 13.7837 18.3195 11.229C18.3371 10.4076 18.3371 9.5911 18.3195 8.76968C18.2651 6.21507 18.2378 4.93776 17.2953 3.99157C16.3526 3.04537 15.0408 3.01242 12.417 2.94649C10.7999 2.90586 9.19876 2.90586 7.5817 2.94648C4.95796 3.0124 3.64608 3.04536 2.70347 3.99156C1.76087 4.93775 1.73363 6.21506 1.67915 8.76968C1.66163 9.5911 1.66164 10.4076 1.67916 11.229Z" fill="white" stroke="#1A1A1A" strokeWidth="1.25" strokeLinejoin="round" />
+                                            <path d="M1.66797 5L7.42882 8.26414C9.55264 9.4675 10.45 9.4675 12.5738 8.26414L18.3346 5" stroke="#1A1A1A" strokeWidth="1.25" strokeLinejoin="round" />
+                                        </svg>
+
+                                        <a href={`mailto:${emailContact || 'hola@cambiafx.pe'}`} className="hover:text-secondary transition-colors text-xs lg:text-sm">{emailContact || 'hola@cambiafx.pe'}</a>
+                                    </div>
                                 </div>
                             </div>
-
-                            <div className="flex items-center gap-2">
-                                <svg className="w-4 h-4 lg:w-5 lg:h-5 flex-shrink-0" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M1.67916 11.229C1.73363 13.7837 1.76087 15.0609 2.70348 16.0072C3.64608 16.9534 4.95796 16.9863 7.58171 17.0522C9.19877 17.0928 10.7999 17.0928 12.417 17.0522C15.0408 16.9863 16.3526 16.9534 17.2953 16.0072C18.2378 15.0609 18.2651 13.7837 18.3195 11.229C18.3371 10.4076 18.3371 9.5911 18.3195 8.76968C18.2651 6.21507 18.2378 4.93776 17.2953 3.99157C16.3526 3.04537 15.0408 3.01242 12.417 2.94649C10.7999 2.90586 9.19876 2.90586 7.5817 2.94648C4.95796 3.0124 3.64608 3.04536 2.70347 3.99156C1.76087 4.93775 1.73363 6.21506 1.67915 8.76968C1.66163 9.5911 1.66164 10.4076 1.67916 11.229Z" fill="white" stroke="#1A1A1A" strokeWidth="1.25" strokeLinejoin="round" />
-                                    <path d="M1.66797 5L7.42882 8.26414C9.55264 9.4675 10.45 9.4675 12.5738 8.26414L18.3346 5" stroke="#1A1A1A" strokeWidth="1.25" strokeLinejoin="round" />
-                                </svg>
-
-                                <a href={`mailto:${emailContact || 'hola@cambiafx.pe'}`} className="hover:text-secondary transition-colors text-xs lg:text-sm">{emailContact || 'hola@cambiafx.pe'}</a>
-                            </div>
                         </div>
-                        </div>
-
-                       
                     </div>
-                </div>
 
                 <div className="">
                     <div className="w-full px-[5%] mx-auto">

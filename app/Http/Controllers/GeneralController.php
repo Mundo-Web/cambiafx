@@ -209,4 +209,26 @@ class GeneralController extends BasicController
             );
         }
     }
+
+    public function getTransactionalLandings(Request $request): HttpResponse|ResponseFactory
+    {
+        $response = new Response();
+        try {
+            $langId = app('current_lang_id');
+            $data = \App\Models\TransactionalLanding::where('status', true)
+                ->where('lang_id', $langId)
+                ->get(['url', 'name']);
+            $response->data = $data;
+            $response->status = 200;
+            $response->message = 'Operacion correcta';
+        } catch (\Throwable $th) {
+            $response->status = 400;
+            $response->message = $th->getMessage();
+        } finally {
+            return response(
+                $response->toArray(),
+                $response->status
+            );
+        }
+    }
 }

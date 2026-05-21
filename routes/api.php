@@ -157,6 +157,7 @@ Route::get('/generals/get-aboutuses', [GeneralController::class, 'getAboutuses']
 Route::get('/generals/get-generals', [GeneralController::class, 'getGenerals']);
 Route::get('/generals/get-services', [GeneralController::class, 'getServices']);
 Route::get('/generals/get-modal', [GeneralController::class, 'getModal']);
+Route::get('/generals/get-transactional-landings', [GeneralController::class, 'getTransactionalLandings']);
 
 Route::get('/items/get-destacados', [ItemController::class, 'getDestacados']);
 Route::get('/items/get-testimonies', [TestimonyController::class, 'getTestimonies']);
