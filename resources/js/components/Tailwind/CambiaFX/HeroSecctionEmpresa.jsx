@@ -107,7 +107,7 @@ export default function HeroSecctionEmpresa({ landing }) {
                 >
                     <motion.h1
                         key={`title-${loopKey}`}
-                        className="text-6xl font-title font-medium text-white mb-4"
+                        className="text-6xl font-title font-semibold text-white mb-4"
                         variants={textLoopVariants}
                         initial="hidden"
                         animate="visible"

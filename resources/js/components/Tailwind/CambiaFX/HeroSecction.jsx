@@ -194,7 +194,7 @@ export default function HeroSecction({ data = [], apps = [], indicators = [] }) 
                     </motion.p>
                     <motion.h1
                         key={`title-${loopKey}`}
-                        className="text-4xl md:text-7xl font-title font-medium text-neutral-dark leading-tight mb-4"
+                        className="text-4xl md:text-7xl font-title font-semibold text-neutral-dark leading-tight mb-4"
                         variants={textLoopVariants}
                         initial="hidden"
                         animate="visible"
