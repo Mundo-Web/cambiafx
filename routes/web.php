@@ -130,7 +130,7 @@ Route::get('/soles-a-dolares', [LandingController::class, 'solesADolares'])->nam
 Route::get('/tipo-de-cambio-hoy', [LandingController::class, 'tipoDeCambioHoy'])->name('Landings/TipoDeCambioHoy.jsx');
 Route::get('/casa-de-cambio-digital', [LandingController::class, 'casaDeCambioDigital'])->name('Landings/CasaDeCambioDigital.jsx');
 Route::get('/compra-y-venta-de-dolares', [LandingController::class, 'compraVentaDolares'])->name('Landings/CompraVentaDolares.jsx');
-Route::get('/cambio-de-dolar', [LandingController::class, 'compraVentaDolares'])->name('Landings/CompraVentaDolares.jsx');
+Route::get('/cambio-de-dolar', [LandingController::class, 'cambioDeDolar'])->name('Landings/CompraVentaDolares.jsx');
 
 Route::get('/descargame', [DescargameController::class, 'redirect'])->name('descargame');
 Route::get('/empresas', [HomeEmpresaController::class, 'reactView'])->name('HomeEmpresa.jsx');

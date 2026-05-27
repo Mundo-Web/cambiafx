@@ -112,11 +112,32 @@ class TransactionalLandingSeeder extends Seeder
                     ['entity' => 'Cambia FX', 'buy' => '3.515', 'sell' => '3.515', 'is_highlight' => true],
                     ['entity' => 'Bancos', 'buy' => '3.45', 'sell' => '3.58', 'is_highlight' => false]
                 ]
+            ],
+            [
+                'url' => 'cambio-de-dolar',
+                'name' => 'Compra y Venta de Dólares (Empresas)',
+                'h1' => '*Cambio de dolares* para empresas en Peru',
+                'meta_title' => 'Compra y Venta de Dolares para Empresas | Cambia FX Business',
+                'meta_description' => 'Soluciones de cambio de divisas para empresas. Tipos de cambio preferenciales y facturacion inmediata. Optimiza la tesoreria de tu negocio.',
+                'hero_eyebrow' => 'SOLUCIONES CORPORATIVAS',
+                'hero_title' => 'Dólares para *tu Empresa*.',
+                'hero_subtitle' => "*Atención personalizada* y el mejor tipo de cambio interbancario para tu negocio.",
+                'stats' => [
+                    ['label' => 'empresas', 'value' => '15k+'],
+                    ['label' => 'facturación', 'value' => 'Inmediata'],
+                    ['label' => 'atención', 'value' => 'VIP']
+                ],
+                'comparison_title' => 'Tasas Corporativas',
+                'cta_title' => 'Optimiza tu *empresa*',
+                'comparison_data' => [
+                    ['entity' => 'Cambia FX', 'buy' => '3.515', 'sell' => '3.515', 'is_highlight' => true],
+                    ['entity' => 'Bancos', 'buy' => '3.45', 'sell' => '3.58', 'is_highlight' => false]
+                ]
             ]
         ];
 
         foreach ($landings as $landing) {
-            TransactionalLanding::updateOrCreate(['url' => $landing['url']], $landing);
+            TransactionalLanding::firstOrCreate(['url' => $landing['url']], $landing);
         }
     }
 }

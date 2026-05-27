@@ -37,6 +37,11 @@ class LandingController extends BasicController
         return $this->renderLanding('compra-y-venta-de-dolares', 'Landings/CompraVentaDolares');
     }
 
+    public function cambioDeDolar(Request $request)
+    {
+        return $this->renderLanding('cambio-de-dolar', 'Landings/CompraVentaDolares');
+    }
+
     private function getMarketRates()
     {
         return \Cache::remember('market_rates', 1800, function () {
