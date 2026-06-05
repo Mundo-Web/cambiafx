@@ -48,7 +48,56 @@
 @endif
 
 <!-- FAQ Schema.org JSON-LD -->
-@if(!empty($faqSchema))
+@if(request()->is('cambio-de-dolar'))
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "¿Cómo cambiar dólares por soles online en Perú?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Regístrate gratis en Cambia FX, cotiza el tipo de cambio del día, transfiere desde tu banco y recibe el abono en minutos."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Cuál es el tipo de cambio de dólar hoy?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "El tipo de cambio se actualiza en tiempo real en esta página y en nuestra app, según el mercado."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Es seguro cambiar dólares online en Cambia FX?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Sí, estamos registrados en la SBS (Resolución 04993-2018) y operamos dentro del sistema financiero peruano."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Cuánto puedo ahorrar al cambiar dólares con Cambia FX frente a un banco?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Por cada US$1,000 puedes ahorrar hasta S/88 frente a los principales bancos del Perú."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Cuánto demora el cambio de dólares?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Una vez recibida tu transferencia, el abono se realiza en minutos dentro del horario de atención."
+      }
+    }
+  ]
+}
+</script>
+@elseif(!empty($faqSchema))
 <script type="application/ld+json">
     {!! json_encode($faqSchema, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT) !!}
 </script>

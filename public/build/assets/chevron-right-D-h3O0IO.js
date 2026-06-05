@@ -1,1 +1,0 @@
-import{c as e}from"./createLucideIcon-C1llfSNW.js";const t=e("ChevronLeft",[["path",{d:"m15 18-6-6 6-6",key:"1wnfg3"}]]),a=e("ChevronRight",[["path",{d:"m9 18 6-6-6-6",key:"mthhwq"}]]);export{t as C,a};
