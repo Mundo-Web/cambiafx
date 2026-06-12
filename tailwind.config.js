@@ -25,7 +25,7 @@ export default {
             },
             fontFamily: {
                 title: ["GeneralSans", "sans-serif"],
-                paragraph: ["Archivo", "sans-serif"],
+                paragraph: ["Quicksand", "sans-serif"],
 
             },
             colors: {

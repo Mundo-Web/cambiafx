@@ -336,25 +336,25 @@ const Header = ({
                 className={`w-full max-w-full relative font-paragraph ${backgroundHeight} z-[9999]`}
             >
                 {/* CINTILLO INICIO */}
-                <div className="bg-accent relative  overflow-hidden text-white text-xs md:text-sm py-2 md:py-3">
-                    <div className="absolute top-0 -left-4 flex justify-end w-full h-full   lg:z-[9999] pointer-events-none">
+                <div className="bg-accent relative overflow-hidden text-white text-xs md:text-sm py-2 md:py-3">
+                    <div className="absolute top-0 -left-0 flex justify-end w-full h-full   pointer-events-none">
                         <img
                             src={`/assets/cambiafx/cintillo-overlay.png`}
                             alt="overlay Image"
-                            className="h-full  object-cover rounded-xl "
+                            className="h-full  object-cover "
                         />
                     </div>
                     <div className="px-[5%] mx-auto  flex flex-row items-center justify-center ">
-                        <div className="flex items-center gap-2 relative max-w-max">
+                        <div className="flex items-center justify-center gap-2 relative w-full md:w-auto max-w-full md:max-w-max">
                             <img
                                 src="/assets/cambiafx/cintillo.webp"
                                 alt="Cintillo Icon"
-                                className="w-10 z-[999]  absolute top-0 -left-10 transform scale-y-[-1] rotate-90"
+                                className="w-8 h-8 md:w-12 z-[999] relative md:absolute -bottom-2 md:-bottom-2 left-0 md:-left-10 transform scale-y-[-1] rotate-90"
                             />
-                            <div className="overflow-hidden whitespace-nowrap w-full relative">
+                            <div className="overflow-hidden md:whitespace-nowrap whitespace-normal w-full md:w-auto relative">
                                 {/*agregar overlay que este transparente y finalize en bg-accent */}
                                 <div className="relative">
-                                    <p className="font-bold ml-4 text-lg whitespace-nowrap">
+                                    <p className="font-bold ml-2 md:ml-4 xl:text-lg md:whitespace-nowrap whitespace-normal text-center break-words">
                                         {renderHighlightedText(
                                             Cintillo?.description,
                                         )}
@@ -369,16 +369,14 @@ const Header = ({
                     initial="hidden"
                     animate="visible"
                     variants={containerVariants}
-                    className={` static lg:w-full top-0 z-[9998] transition-colors duration-300 py-1 ${
-                        backgroundType === "none"
-                            ? "bg-primary mt-0"
-                            : isScrolled
-                              ? "bg-primary pt-0 !mt-0"
-                              : "bg-primary top-4 pt-8 md:pt-14 lg:pt-10"
-                    } ${
-                        isScrolled &&
+                    className={` static lg:w-full top-0 z-[9998] transition-colors duration-300 py-1 ${backgroundType === "none"
+                        ? "bg-primary mt-0"
+                        : isScrolled
+                            ? "bg-primary pt-0 !mt-0"
+                            : "bg-primary top-4 pt-8 md:pt-14 lg:pt-10"
+                        } ${isScrolled &&
                         "bg-primary pt-0 !mt-0 transition-all duration-150"
-                    }`}
+                        }`}
                 >
                     <div
                         className={`px-[5%] w-full py-4 lg:py-0 flex justify-between items-center text-[#3E2F4D] shadow-lg lg:shadow-none`}
@@ -479,11 +477,10 @@ const Header = ({
                                                     stiffness: 400,
                                                     damping: 17,
                                                 }}
-                                                className={`relative uppercase py-2 rounded-full transition-all duration-300 ${
-                                                    isActive(path)
-                                                        ? "bg-constrast pl-7 pr-3 text-white font-semibold shadow-lg"
-                                                        : "bg-transparent px-5 text-neutral-dark hover:bg-gradient-to-r hover:from-primary/50 hover:to-neutral/30"
-                                                }`}
+                                                className={`relative uppercase py-2 rounded-full transition-all duration-300 ${isActive(path)
+                                                    ? "bg-constrast pl-7 pr-3 text-white font-semibold shadow-lg"
+                                                    : "bg-transparent px-5 text-neutral-dark hover:bg-gradient-to-r hover:from-primary/50 hover:to-neutral/30"
+                                                    }`}
                                             >
                                                 {text}
                                                 {isActive(path) && (
@@ -740,9 +737,8 @@ const Header = ({
                                     stiffness: 200,
                                     duration: 0.4,
                                 }}
-                                className={`fixed left-[5%] right-[5%] ${
-                                    isScrolled ? "top-16" : "top-[100px]"
-                                } z-[99999999] bg-gradient-to-br from-white via-white to-blue-50 rounded-2xl shadow-2xl border border-gray-100 overflow-hidden max-h-[calc(100vh-120px)] overflow-y-auto`}
+                                className={`fixed left-[5%] right-[5%] ${isScrolled ? "top-16" : "top-[100px]"
+                                    } z-[99999999] bg-gradient-to-br from-white via-white to-blue-50 rounded-2xl shadow-2xl border border-gray-100 overflow-hidden max-h-[calc(100vh-120px)] overflow-y-auto`}
                                 style={{ zIndex: 99999999 }}
                             >
                                 {/* Header del menú */}
@@ -871,28 +867,26 @@ const Header = ({
                                                             }
                                                         }}
                                                         aria-label={`Navegar a ${item.label}`}
-                                                        className={`w-full group relative overflow-hidden flex items-center p-4 rounded-xl transition-all duration-300 ${
-                                                            isActive(
-                                                                item.path,
-                                                            ) ||
+                                                        className={`w-full group relative overflow-hidden flex items-center p-4 rounded-xl transition-all duration-300 ${isActive(
+                                                            item.path,
+                                                        ) ||
                                                             activeMegaMenu ===
-                                                                item.path
-                                                                ? "bg-accent text-white border-2 border-accent shadow-lg"
-                                                                : "bg-gray-50 hover:bg-gradient-to-r hover:from-gray-100 hover:to-blue-50 text-gray-700 hover:text-primary border-2 border-transparent"
-                                                        }`}
+                                                            item.path
+                                                            ? "bg-accent text-white border-2 border-accent shadow-lg"
+                                                            : "bg-gray-50 hover:bg-gradient-to-r hover:from-gray-100 hover:to-blue-50 text-gray-700 hover:text-primary border-2 border-transparent"
+                                                            }`}
                                                     >
                                                         {/* Texto */}
                                                         <div className="flex-1 text-left">
                                                             <span
-                                                                className={`font-medium text-base ${
-                                                                    isActive(
-                                                                        item.path,
-                                                                    ) ||
+                                                                className={`font-medium text-base ${isActive(
+                                                                    item.path,
+                                                                ) ||
                                                                     activeMegaMenu ===
-                                                                        item.path
-                                                                        ? "!text-white"
-                                                                        : "!text-gray-700 group-hover:!text-primary"
-                                                                }`}
+                                                                    item.path
+                                                                    ? "!text-white"
+                                                                    : "!text-gray-700 group-hover:!text-primary"
+                                                                    }`}
                                                                 style={{
                                                                     opacity: 1,
                                                                     visibility:
@@ -904,47 +898,45 @@ const Header = ({
                                                             </span>
                                                             {item.path ===
                                                                 "#services" && (
-                                                                <p
-                                                                    className={`text-xs mt-1 ${
-                                                                        isActive(
+                                                                    <p
+                                                                        className={`text-xs mt-1 ${isActive(
                                                                             item.path,
                                                                         ) ||
-                                                                        activeMegaMenu ===
+                                                                            activeMegaMenu ===
                                                                             item.path
                                                                             ? "text-white/80"
                                                                             : "text-gray-500"
-                                                                    }`}
-                                                                    style={{
-                                                                        opacity: 1,
-                                                                        visibility:
-                                                                            "visible",
-                                                                    }}
-                                                                >
-                                                                    Descubre
-                                                                    nuestras
-                                                                    soluciones
-                                                                </p>
-                                                            )}
+                                                                            }`}
+                                                                        style={{
+                                                                            opacity: 1,
+                                                                            visibility:
+                                                                                "visible",
+                                                                        }}
+                                                                    >
+                                                                        Descubre
+                                                                        nuestras
+                                                                        soluciones
+                                                                    </p>
+                                                                )}
                                                         </div>
 
                                                         {/* Flecha o indicador de submenú */}
                                                         <motion.div
-                                                            className={`transition-colors duration-300 ${
-                                                                isActive(
-                                                                    item.path,
-                                                                ) ||
+                                                            className={`transition-colors duration-300 ${isActive(
+                                                                item.path,
+                                                            ) ||
                                                                 activeMegaMenu ===
-                                                                    item.path
-                                                                    ? "text-white"
-                                                                    : "text-gray-400 group-hover:text-primary"
-                                                            }`}
+                                                                item.path
+                                                                ? "text-white"
+                                                                : "text-gray-400 group-hover:text-primary"
+                                                                }`}
                                                         >
                                                             {item.hasSubmenu ? (
                                                                 <motion.div
                                                                     animate={{
                                                                         rotate:
                                                                             activeMegaMenu ===
-                                                                            item.path
+                                                                                item.path
                                                                                 ? 180
                                                                                 : 0,
                                                                     }}
@@ -978,7 +970,7 @@ const Header = ({
                                                     <AnimatePresence>
                                                         {item.hasSubmenu &&
                                                             activeMegaMenu ===
-                                                                item.path && (
+                                                            item.path && (
                                                                 <motion.div
                                                                     initial={{
                                                                         opacity: 0,
@@ -1282,8 +1274,8 @@ const Header = ({
                                                         src={`/api/items/media/${item.image}`}
                                                         alt={item.name}
                                                         onError={(e) =>
-                                                            (e.target.src =
-                                                                "/api/cover/thumbnail/null")
+                                                        (e.target.src =
+                                                            "/api/cover/thumbnail/null")
                                                         }
                                                         className="w-20 h-20 md:w-28 md:h-28 lg:w-52 lg:h-52 object-cover rounded-lg"
                                                     />
@@ -1317,7 +1309,7 @@ const Header = ({
                                                                         S/{" "}
                                                                         {Number(
                                                                             item.price -
-                                                                                item.discount,
+                                                                            item.discount,
                                                                         ).toFixed(
                                                                             0,
                                                                         )}{" "}
@@ -1394,19 +1386,19 @@ const Header = ({
                                                                     </motion.button>
                                                                     <span className="h-full flex items-center text-xs md:text-base 2xl:text-2xl font-medium">
                                                                         {item.variations &&
-                                                                        item
-                                                                            .variations
-                                                                            .length >
+                                                                            item
+                                                                                .variations
+                                                                                .length >
                                                                             0
                                                                             ? item.variations.reduce(
-                                                                                  (
-                                                                                      sum,
-                                                                                      v,
-                                                                                  ) =>
-                                                                                      sum +
-                                                                                      v.quantity,
-                                                                                  0,
-                                                                              )
+                                                                                (
+                                                                                    sum,
+                                                                                    v,
+                                                                                ) =>
+                                                                                    sum +
+                                                                                    v.quantity,
+                                                                                0,
+                                                                            )
                                                                             : item.quantity}
                                                                     </span>
                                                                     <motion.button
