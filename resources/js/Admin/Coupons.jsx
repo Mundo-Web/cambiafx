@@ -27,7 +27,7 @@ const Coupons = ({ }) => {
  // const descriptionRef = useRef()
   //const typeRef = useRef()
  // const amountRef = useRef()
-  //const saleAmountRef = useRef()
+  const saleAmountRef = useRef()
  // const initialStockRef = useRef()
   const dateBeginRef = useRef()
   const dateEndRef = useRef()
@@ -36,20 +36,52 @@ const Coupons = ({ }) => {
   const [isEditing, setIsEditing] = useState(false)
 
   // Función para formatear fecha para input type="date" (YYYY-MM-DD)
-  const formatDateForInput = (dateString) => {
-    if (!dateString) return '';
-    // Solo extraer la parte de la fecha (YYYY-MM-DD) sin procesar zona horaria
-    if (dateString.includes('T')) {
-      return dateString.split('T')[0];
+  const formatDateForInput = (dateVal) => {
+    if (!dateVal) return '';
+    let dateStr = '';
+    if (dateVal instanceof Date) {
+      const year = dateVal.getFullYear();
+      const month = String(dateVal.getMonth() + 1).padStart(2, '0');
+      const day = String(dateVal.getDate()).padStart(2, '0');
+      return `${year}-${month}-${day}`;
+    } else if (typeof dateVal === 'string') {
+      dateStr = dateVal;
+    } else {
+      dateStr = String(dateVal);
     }
-    // Si es solo fecha (YYYY-MM-DD), devolverla tal como está
-    return dateString.substring(0, 10);
+    if (dateStr.includes('T')) {
+      return dateStr.split('T')[0];
+    }
+    return dateStr.substring(0, 10);
+  };
+
+  // Función para formatear fecha para visualización en tabla (DD/MM/YYYY)
+  const formatDateForTable = (dateVal) => {
+    if (!dateVal) return '-';
+    let dateStr = '';
+    if (dateVal instanceof Date) {
+      const year = dateVal.getFullYear();
+      const month = String(dateVal.getMonth() + 1).padStart(2, '0');
+      const day = String(dateVal.getDate()).padStart(2, '0');
+      return `${day}/${month}/${year}`;
+    } else if (typeof dateVal === 'string') {
+      dateStr = dateVal;
+    } else {
+      dateStr = String(dateVal);
+    }
+    
+    const cleanDate = dateStr.includes('T') ? dateStr.split('T')[0] : dateStr.substring(0, 10);
+    const parts = cleanDate.split('-');
+    if (parts.length === 3) {
+      const [year, month, day] = parts;
+      return `${day}/${month}/${year}`;
+    }
+    return dateStr;
   };
 
   // Función para formatear fecha para envío al servidor
   const formatDateForServer = (dateString) => {
     if (!dateString) return null;
-    // El input type="date" ya nos da el formato correcto YYYY-MM-DD
     return dateString;
   };
 
@@ -62,7 +94,7 @@ const Coupons = ({ }) => {
     //descriptionRef.current.value = data?.description ?? ''
     //$(typeRef.current).val(data?.type ?? 'percentage').trigger('change')
    // amountRef.current.value = data?.amount ?? 0
-  // saleAmountRef.current.value = data?.sale_amount ?? 0
+    saleAmountRef.current.value = data?.sale_amount ?? 0
    // initialStockRef.current.value = data?.initial_stock ?? null
     dateBeginRef.current.value = formatDateForInput(data?.date_begin)
     dateEndRef.current.value = formatDateForInput(data?.date_end)
@@ -79,7 +111,7 @@ const Coupons = ({ }) => {
       name: nameRef.current.value.toUpperCase(),
      // type: typeRef.current.value,
       amount:0, //amountRef.current.value,
-      sale_amount: 0,//saleAmountRef.current.value,
+      sale_amount: saleAmountRef.current.value,
      // initial_stock: initialStockRef.current.value,
       date_begin: formatDateForServer(dateBeginRef.current.value),
       date_end: formatDateForServer(dateEndRef.current.value),
@@ -152,19 +184,19 @@ const Coupons = ({ }) => {
             </p>)
           }
         },
-       
+        {
+          dataField: 'sale_amount',
+          caption: 'Monto Mínimo',
+          cellTemplate: (container, { data }) => {
+            container.text(Number2Currency(data.sale_amount || 0));
+          }
+        },
         {
           dataField: 'date_begin',
           caption: 'Fecha de inicio',
           dataType: 'date',
           cellTemplate: (container, { data }) => {
-            if (data.date_begin) {
-              const formattedDate = formatDateForInput(data.date_begin);
-              const [year, month, day] = formattedDate.split('-');
-              container.text(`${day}/${month}/${year}`);
-            } else {
-              container.text('-');
-            }
+            container.text(formatDateForTable(data.date_begin));
           }
         },
         {
@@ -172,13 +204,7 @@ const Coupons = ({ }) => {
           caption: 'Fecha de fin',
           dataType: 'date',
           cellTemplate: (container, { data }) => {
-            if (data.date_end) {
-              const formattedDate = formatDateForInput(data.date_end);
-              const [year, month, day] = formattedDate.split('-');
-              container.text(`${day}/${month}/${year}`);
-            } else {
-              container.text('-');
-            }
+            container.text(formatDateForTable(data.date_end));
           }
         },
         {
@@ -212,7 +238,7 @@ const Coupons = ({ }) => {
           <option value='fixed_amount'>Monto fijo</option>
         </SelectFormGroup>   */}
     {/*    <InputFormGroup eRef={amountRef} label='Descuento' type='number' step={0.01} col='col-md-4' required /> */}
-      {/*  <InputFormGroup eRef={saleAmountRef} label='Monto de venta' specification='Monto mínimo de compra para aplicar el descuento' type='number' step={0.01} col='col-md-4' /> */}
+           <InputFormGroup eRef={saleAmountRef} label='Monto mínimo de operación' specification='Monto mínimo para aplicar el cupón' type='number' step={0.01} col='col-md-12' />
       {/*  <InputFormGroup eRef={initialStockRef} label='Cantidad' type='number' col='col-md-4 col-sm-6' /> */}
         <InputFormGroup eRef={dateBeginRef} label='Fecha de inicio' type='date' col='col-md-6 col-sm-6'  />
         <InputFormGroup eRef={dateEndRef} label='Fecha de fin' type='date' col='col-md-6 col-sm-6'  />

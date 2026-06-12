@@ -47,6 +47,13 @@ class TransactionalLanding extends Model
         'steps',
         'company_types',
         'benefit_cards',
+        'hero_image',
+        'coupon_id',
+        'campaign_name',
+        'terms_title',
+        'terms_subtitle',
+        'terms_content',
+        'terms_footer',
         'status',
         'lang_id'
     ];
@@ -64,5 +71,10 @@ class TransactionalLanding extends Model
     public function lang()
     {
         return $this->belongsTo(Lang::class);
+    }
+
+    public function coupon()
+    {
+        return $this->belongsTo(Coupon::class, 'coupon_id');
     }
 }

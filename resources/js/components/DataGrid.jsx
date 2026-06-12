@@ -13,7 +13,7 @@ const DataGrid = ({ gridRef: dataGridRef, pageSize = 10, rest, columns, toolBar,
       },
       onToolbarPreparing: (e) => {
         const { items } = e.toolbarOptions;
-        toolBar(items)
+        if (typeof toolBar === 'function') toolBar(items)
 
         // items.unshift({
         //   widget: 'dxButton',

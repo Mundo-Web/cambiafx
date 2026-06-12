@@ -1,0 +1,1 @@
+import"./index.esm-5NFqnzAw.js";import"./main-BK7KYfUi.js";/* empty css               *//* empty css              */import"./axios-COzaZAiy.js";import"./WebVitalsMonitor-CIEr9-is.js";import"./___vite-browser-external_commonjs-proxy-CGejAyr8.js";

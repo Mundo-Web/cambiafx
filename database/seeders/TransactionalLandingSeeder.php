@@ -133,6 +133,26 @@ class TransactionalLandingSeeder extends Seeder
                     ['entity' => 'Cambia FX', 'buy' => '3.515', 'sell' => '3.515', 'is_highlight' => true],
                     ['entity' => 'Bancos', 'buy' => '3.45', 'sell' => '3.58', 'is_highlight' => false]
                 ]
+            ],
+            [
+                'url' => 'sorteo-cambiafx',
+                'name' => 'Sorteo Cambia FX',
+                'h1' => 'Participa en nuestro gran sorteo de temporada',
+                'meta_title' => 'Sorteo Cambia FX | Gana Grandes Premios Cambiando Dólares',
+                'meta_description' => 'Participa en el sorteo de Cambia FX. Realiza tus operaciones de cambio online de soles o dólares con el cupón de la promoción y gana espectaculares premios.',
+                'hero_eyebrow' => '⚽ Sorteo Mundialista',
+                'hero_title' => 'Cambia este Mundial y gánate una *TV de 32"*',
+                'hero_subtitle' => 'Cambia tus dólares o soles en Cambia FX, usa tu cupón y participa automáticamente. Rápido, seguro y 100% online.',
+                'campaign_name' => 'Sorteo Mundialista 2026',
+                'terms_title' => 'Bases del sorteo',
+                'terms_subtitle' => 'Resumen de términos y condiciones. Aplican restricciones.',
+                'terms_content' => '<ol><li><b>Organizador:</b> Cambia FX, operador de cambio de divisas online en Perú.</li><li><b>Vigencia:</b> La promoción es válida durante la vigencia de la campaña.</li><li><b>Quiénes participan:</b> Personas mayores de 18 años, residentes en Perú, que realicen una operación de cambio cumpliendo el monto mínimo y apliquen el cupón correspondiente.</li><li><b>Premio:</b> El premio establecido no es canjeable por dinero en efectivo.</li><li><b>Mecánica:</b> Cada operación válida otorga una participación automática. El ganador se elige por sorteo aleatorio.</li></ol>',
+                'terms_footer' => 'Esta promoción no está patrocinada ni administrada por Meta (Facebook/Instagram) ni por Google.',
+                'cta_title' => 'TV de 32"',
+                'cta_subtitle' => 'Vive el Mundial en grande. Cambia desde el monto mínimo con tu cupón y participa por este premiazo.',
+                'cta_button_text' => 'Participar ahora',
+                'stats' => [],
+                'comparison_data' => []
             ]
         ];
 

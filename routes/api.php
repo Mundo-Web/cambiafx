@@ -61,6 +61,7 @@ use App\Http\Controllers\Admin\SupplyController as AdminSupplyController;
 use App\Http\Controllers\Admin\UserController as AdminUserController;
 use App\Http\Controllers\Admin\AppController as AdminAppController;
 use App\Http\Controllers\Admin\TransactionalLandingController as AdminTransactionalLandingController;
+use App\Http\Controllers\Admin\CampaignSubscriptionController as AdminCampaignSubscriptionController;
 use App\Http\Controllers\AppMediaController;
 
 // Customer
@@ -86,6 +87,7 @@ use App\Http\Controllers\ItemImageController;
 use App\Http\Controllers\LandingHomeController;
 use App\Http\Controllers\MailingController;
 use App\Http\Controllers\MessageController;
+use App\Http\Controllers\CampaignSubscriptionController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\InfoproductController;
 use App\Http\Controllers\SaleController;
@@ -212,6 +214,7 @@ Route::post('/supplies/paginate', [SupplyController::class, 'paginate']);
 Route::post('/messages', [MessageController::class, 'save']);
 Route::post('/appointments', [MessageController::class, 'save']);
 Route::post('/subscriptions', [SubscriptionController::class, 'save']);
+Route::post('/campaign-subscriptions', [CampaignSubscriptionController::class, 'save']);
 
 
 Route::get('/cover/{uuid}', [CoverController::class, 'full']);
@@ -549,6 +552,9 @@ Route::middleware('auth')->group(function () {
         Route::patch('/transactional_landings/status', [AdminTransactionalLandingController::class, 'status']);
         Route::patch('/transactional_landings/{field}', [AdminTransactionalLandingController::class, 'boolean']);
         Route::delete('/transactional_landings/{id}', [AdminTransactionalLandingController::class, 'delete']);
+
+        Route::post('/campaign-subscriptions/paginate', [AdminCampaignSubscriptionController::class, 'paginate']);
+        Route::delete('/campaign-subscriptions/{id}', [AdminCampaignSubscriptionController::class, 'delete']);
     });
 
     // Endpoint para obtener variables de notificaciones

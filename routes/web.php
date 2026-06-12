@@ -95,6 +95,7 @@ use App\Http\Controllers\ThankController;
 use App\Http\Controllers\DescargameController;
 use App\Http\Controllers\LandingController;
 use App\Http\Controllers\Admin\TransactionalLandingController as AdminTransactionalLandingController;
+use App\Http\Controllers\Admin\CampaignSubscriptionController as AdminCampaignSubscriptionController;
 use GrahamCampbell\ResultType\Success;
 use Illuminate\Http\Request;
 
@@ -131,6 +132,7 @@ Route::get('/tipo-de-cambio-hoy', [LandingController::class, 'tipoDeCambioHoy'])
 Route::get('/casa-de-cambio-digital', [LandingController::class, 'casaDeCambioDigital'])->name('Landings/CasaDeCambioDigital.jsx');
 Route::get('/compra-y-venta-de-dolares', [LandingController::class, 'compraVentaDolares'])->name('Landings/CompraVentaDolares.jsx');
 Route::get('/cambio-de-dolar', [LandingController::class, 'cambioDeDolar'])->name('Landings/CompraVentaDolares.jsx');
+Route::get('/sorteo-cambiafx', [LandingController::class, 'sorteoCambiaFx'])->name('Landings/SorteoCambiaFx.jsx');
 
 Route::get('/descargame', [DescargameController::class, 'redirect'])->name('descargame');
 Route::get('/empresas', [HomeEmpresaController::class, 'reactView'])->name('HomeEmpresa.jsx');
@@ -207,6 +209,8 @@ Route::middleware(['can:Admin', 'auth'])->prefix('admin')->group(function () {
     Route::post('/transactional_landings', [AdminTransactionalLandingController::class, 'save']);
     Route::patch('/transactional_landings/status', [AdminTransactionalLandingController::class, 'status']);
     Route::delete('/transactional_landings/{id}', [AdminTransactionalLandingController::class, 'delete']);
+
+    Route::get('/campaign-subscriptions', [AdminCampaignSubscriptionController::class, 'reactView'])->name('Admin/CampaignSubscriptions.jsx');
 
     Route::get('/services', [AdminServiceController::class, 'reactView'])->name('Admin/Services.jsx');
     Route::get('/solutions', [AdminSolutionController::class, 'reactView'])->name('Admin/Solutions.jsx');

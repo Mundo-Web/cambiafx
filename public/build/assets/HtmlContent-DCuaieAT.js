@@ -1,0 +1,1 @@
+import{j as e}from"./RequirementCard-BRHcaFA5.js";import"./WebVitalsMonitor-CIEr9-is.js";const s=({className:s,html:t,properties:r})=>e.jsx("div",{className:s,dangerouslySetInnerHTML:{__html:t},...r});export{s as H};

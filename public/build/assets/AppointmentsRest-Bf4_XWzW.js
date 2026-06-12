@@ -1,0 +1,1 @@
+var e=Object.defineProperty;import{B as r}from"./Results-CyVtND4z.js";class t extends r{constructor(){var r;super(...arguments),((r,t,s)=>{t in r?e(r,t,{enumerable:!0,configurable:!0,writable:!0,value:s}):r[t]=s})(this,"symbol"!=typeof(r="path")?r+"":r,"admin/appointments")}}export{t as A};

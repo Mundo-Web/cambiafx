@@ -8,6 +8,7 @@ import DxButton from "../Components/dx/DxButton";
 import SwitchFormGroup from "@Adminto/form/SwitchFormGroup";
 import TextareaFormGroup from "../Components/Adminto/form/TextareaFormGroup";
 import ImageFormGroup from "../Components/Adminto/form/ImageFormGroup";
+import QuillFormGroup from "../Components/Adminto/form/QuillFormGroup";
 import TransactionalLandingRest from "../actions/Admin/TransactionalLandingRest";
 import { Notify } from "sode-extend-react";
 import Swal from "sweetalert2";
@@ -32,6 +33,7 @@ const transactionalLandingRest = new TransactionalLandingRest();
 
 const TransactionalLanding = ({
     items: initialItems,
+    coupons = [],
     current_lang_id,
     default_lang_id,
     PROGRAMER,
@@ -62,6 +64,14 @@ const TransactionalLanding = ({
     const heroSubtitleRef = useRef();
     const heroButtonTextRef = useRef();
     const heroButtonLinkRef = useRef();
+
+    const couponIdRef = useRef();
+    const heroImageRef = useRef();
+    const campaignNameRef = useRef();
+    const termsTitleRef = useRef();
+    const termsSubtitleRef = useRef();
+    const termsContentRef = useRef();
+    const termsFooterRef = useRef();
 
     // Schema refs
     const schemaServiceNameRef = useRef();
@@ -99,10 +109,10 @@ const TransactionalLanding = ({
             Array.isArray(rawStats) && rawStats.length > 0
                 ? rawStats
                 : [
-                      { label: "clientes", value: "60k+" },
-                      { label: "promedio", value: "15min" },
-                      { label: "registrado", value: "SBS" },
-                  ],
+                    { label: "clientes", value: "60k+" },
+                    { label: "promedio", value: "15min" },
+                    { label: "registrado", value: "SBS" },
+                ],
         );
 
         let rawComp = data?.comparison_data;
@@ -156,12 +166,12 @@ const TransactionalLanding = ({
             Array.isArray(cTypes) && cTypes.length > 0
                 ? cTypes
                 : [
-                      "Importadoras",
-                      "Exportadoras",
-                      "Agencias de viaje",
-                      "Startups",
-                      "Comercio exterior",
-                  ],
+                    "Importadoras",
+                    "Exportadoras",
+                    "Agencias de viaje",
+                    "Startups",
+                    "Comercio exterior",
+                ],
         );
 
         let bCards = data?.benefit_cards;
@@ -176,27 +186,27 @@ const TransactionalLanding = ({
             Array.isArray(bCards) && bCards.length > 0
                 ? bCards
                 : [
-                      {
-                          icon: "TrendingUp",
-                          title: "Mejor precio",
-                          desc: "Garantizamos tasas competitivas con actualización en tiempo real del mercado.",
-                      },
-                      {
-                          icon: "Clock",
-                          title: "Sin filas",
-                          desc: "Olvídate de las agencias. Opera desde tu celular o laptop en menos de 15 minutos.",
-                      },
-                      {
-                          icon: "CirclePercent",
-                          title: "Sin comisiones",
-                          desc: "Transferencias directas y transparentes. Lo que ves es exactamente lo que recibes.",
-                      },
-                      {
-                          icon: "ShieldCheck",
-                          title: "Seguro y legal",
-                          desc: "Empresa registrada en la SBS con Resolución N° 02998-2020 para tu tranquilidad.",
-                      },
-                  ],
+                    {
+                        icon: "TrendingUp",
+                        title: "Mejor precio",
+                        desc: "Garantizamos tasas competitivas con actualización en tiempo real del mercado.",
+                    },
+                    {
+                        icon: "Clock",
+                        title: "Sin filas",
+                        desc: "Olvídate de las agencias. Opera desde tu celular o laptop en menos de 15 minutos.",
+                    },
+                    {
+                        icon: "CirclePercent",
+                        title: "Sin comisiones",
+                        desc: "Transferencias directas y transparentes. Lo que ves es exactamente lo que recibes.",
+                    },
+                    {
+                        icon: "ShieldCheck",
+                        title: "Seguro y legal",
+                        desc: "Empresa registrada en la SBS con Resolución N° 02998-2020 para tu tranquilidad.",
+                    },
+                ],
         );
 
         setTimeout(() => {
@@ -220,6 +230,24 @@ const TransactionalLanding = ({
                 heroButtonTextRef.current.value = data?.hero_button_text ?? "";
             if (heroButtonLinkRef.current)
                 heroButtonLinkRef.current.value = data?.hero_button_link ?? "";
+
+            if (couponIdRef.current) couponIdRef.current.value = data?.coupon_id ?? "";
+            if (campaignNameRef.current) campaignNameRef.current.value = data?.campaign_name ?? "";
+            if (termsTitleRef.current) termsTitleRef.current.value = data?.terms_title ?? "Bases del sorteo";
+            if (termsSubtitleRef.current) termsSubtitleRef.current.value = data?.terms_subtitle ?? "";
+            if (termsFooterRef.current) termsFooterRef.current.value = data?.terms_footer ?? "";
+
+            if (termsContentRef.editor) {
+                termsContentRef.editor.root.innerHTML = data?.terms_content ?? "";
+            } else if (termsContentRef.current) {
+                termsContentRef.current.value = data?.terms_content ?? "";
+            }
+
+            if (heroImageRef.image) {
+                heroImageRef.image.src = data?.hero_image
+                    ? `/api/transactional_landings/media/${data.hero_image}`
+                    : "/api/cover/thumbnail/null";
+            }
 
             if (schemaServiceNameRef.current)
                 schemaServiceNameRef.current.value =
@@ -441,6 +469,17 @@ const TransactionalLanding = ({
                 formData.append("cta_image", ctaImageRef.current.files[0]);
             }
 
+            formData.append("coupon_id", couponIdRef.current?.value || "");
+            formData.append("campaign_name", campaignNameRef.current?.value || "");
+            formData.append("terms_title", termsTitleRef.current?.value || "");
+            formData.append("terms_subtitle", termsSubtitleRef.current?.value || "");
+            formData.append("terms_content", termsContentRef.current?.value || "");
+            formData.append("terms_footer", termsFooterRef.current?.value || "");
+
+            if (heroImageRef.current?.files[0]) {
+                formData.append("hero_image", heroImageRef.current.files[0]);
+            }
+
             formData.append("lang_id", default_lang_id);
 
             const result = await transactionalLandingRest.save(formData);
@@ -623,7 +662,7 @@ const TransactionalLanding = ({
                                             </button>
                                         </li>
                                     )}
-                                    {currentSlug !== "tipo-de-cambio-hoy" && (
+                                    {currentSlug !== "tipo-de-cambio-hoy" && currentSlug !== "sorteo-cambiafx" && (
                                         <li
                                             className="nav-item"
                                             role="presentation"
@@ -655,6 +694,23 @@ const TransactionalLanding = ({
                                             Marketing & Pasos
                                         </button>
                                     </li>
+                                    {currentSlug === "sorteo-cambiafx" && (
+                                        <li
+                                            className="nav-item"
+                                            role="presentation"
+                                        >
+                                            <button
+                                                className="nav-link"
+                                                id="terms-tab"
+                                                data-bs-toggle="tab"
+                                                data-bs-target="#terms"
+                                                type="button"
+                                                role="tab"
+                                            >
+                                                Bases del Sorteo
+                                            </button>
+                                        </li>
+                                    )}
                                     <li
                                         className="nav-item"
                                         role="presentation"
@@ -670,6 +726,7 @@ const TransactionalLanding = ({
                                             Estructurados
                                         </button>
                                     </li>
+
                                 </ul>
 
                                 <div
@@ -770,33 +827,68 @@ const TransactionalLanding = ({
                                                     rows={2}
                                                 />
                                             </div>
-                                            {currentSlug ===
-                                                "casa-de-cambio-digital" && (
+                                            {currentSlug === "sorteo-cambiafx" && (
                                                 <>
                                                     <div className="col-md-6">
-                                                        <InputFormGroup
-                                                            label="Hero Button Text"
-                                                            colSize="12"
-                                                            eRef={
-                                                                heroButtonTextRef
-                                                            }
-                                                        />
+                                                        <div className="form-group mb-3">
+                                                            <label className="form-label">Cupón del Sorteo</label>
+                                                            <select className="form-select" ref={couponIdRef}>
+                                                                <option value="">Ninguno</option>
+                                                                {coupons.map((coupon) => (
+                                                                    <option key={coupon.id} value={coupon.id}>
+                                                                        {coupon.name}
+                                                                    </option>
+                                                                ))}
+                                                            </select>
+                                                        </div>
                                                     </div>
                                                     <div className="col-md-6">
                                                         <InputFormGroup
-                                                            label="Hero Button Link"
+                                                            label="Nombre de la Campaña (para registro de usuarios)"
                                                             colSize="12"
-                                                            eRef={
-                                                                heroButtonLinkRef
-                                                            }
+                                                            eRef={campaignNameRef}
+                                                            placeholder="Ej: Campaña Sorteo Copa America 2026"
+                                                        />
+                                                    </div>
+                                                    <div className="col-md-12">
+                                                        <ImageFormGroup
+                                                            label="Imagen del Hero (Fondo / Ilustración)"
+                                                            colSize="12"
+                                                            eRef={heroImageRef}
+                                                            aspect="16/9"
+                                                            fit="contain"
                                                         />
                                                     </div>
                                                 </>
                                             )}
+                                            {currentSlug ===
+                                                "casa-de-cambio-digital" && (
+                                                    <>
+                                                        <div className="col-md-6">
+                                                            <InputFormGroup
+                                                                label="Hero Button Text"
+                                                                colSize="12"
+                                                                eRef={
+                                                                    heroButtonTextRef
+                                                                }
+                                                            />
+                                                        </div>
+                                                        <div className="col-md-6">
+                                                            <InputFormGroup
+                                                                label="Hero Button Link"
+                                                                colSize="12"
+                                                                eRef={
+                                                                    heroButtonLinkRef
+                                                                }
+                                                            />
+                                                        </div>
+                                                    </>
+                                                )}
                                             {currentSlug !==
                                                 "tipo-de-cambio-hoy" &&
                                                 currentSlug !==
-                                                    "casa-de-cambio-digital" && (
+                                                "casa-de-cambio-digital" && currentSlug !==
+                                                "sorteo-cambiafx" && (
                                                     <div className="col-md-12">
                                                         <hr />
                                                         <div className="d-flex justify-content-between align-items-center mb-3">
@@ -880,92 +972,92 @@ const TransactionalLanding = ({
                                             {/* SECCIÓN ESPECIAL PARA CASA DE CAMBIO DIGITAL */}
                                             {currentSlug ===
                                                 "casa-de-cambio-digital" && (
-                                                <div className="col-md-12">
-                                                    <hr />
-                                                    <div className="row g-3">
-                                                        <div className="col-md-12">
-                                                            <div className="d-flex justify-content-between align-items-center mb-3">
-                                                                <h5 className="mb-0 text-primary">
-                                                                    Tipos de
-                                                                    Empresa
-                                                                </h5>
-                                                                <button
-                                                                    type="button"
-                                                                    className="btn btn-xs btn-soft-primary"
-                                                                    onClick={() =>
-                                                                        setCompanyTypes(
-                                                                            [
-                                                                                ...companyTypes,
-                                                                                "",
-                                                                            ],
-                                                                        )
-                                                                    }
-                                                                >
-                                                                    + Agregar
-                                                                </button>
-                                                            </div>
-                                                            <div className="row g-2">
-                                                                {companyTypes.map(
-                                                                    (
-                                                                        type,
-                                                                        i,
-                                                                    ) => (
-                                                                        <div
-                                                                            key={
-                                                                                i
-                                                                            }
-                                                                            className="col-md-6"
-                                                                        >
-                                                                            <div className="input-group input-group-sm">
-                                                                                <input
-                                                                                    type="text"
-                                                                                    className="form-control"
-                                                                                    value={
-                                                                                        type
-                                                                                    }
-                                                                                    onChange={(
-                                                                                        e,
-                                                                                    ) => {
-                                                                                        const newTypes =
-                                                                                            [
-                                                                                                ...companyTypes,
-                                                                                            ];
-                                                                                        newTypes[
-                                                                                            i
-                                                                                        ] =
-                                                                                            e.target.value;
-                                                                                        setCompanyTypes(
-                                                                                            newTypes,
-                                                                                        );
-                                                                                    }}
-                                                                                />
-                                                                                <button
-                                                                                    type="button"
-                                                                                    className="btn btn-soft-danger"
-                                                                                    onClick={() =>
-                                                                                        setCompanyTypes(
-                                                                                            companyTypes.filter(
-                                                                                                (
-                                                                                                    _,
-                                                                                                    idx,
-                                                                                                ) =>
-                                                                                                    idx !==
-                                                                                                    i,
-                                                                                            ),
-                                                                                        )
-                                                                                    }
-                                                                                >
-                                                                                    <i className="fa fa-trash"></i>
-                                                                                </button>
+                                                    <div className="col-md-12">
+                                                        <hr />
+                                                        <div className="row g-3">
+                                                            <div className="col-md-12">
+                                                                <div className="d-flex justify-content-between align-items-center mb-3">
+                                                                    <h5 className="mb-0 text-primary">
+                                                                        Tipos de
+                                                                        Empresa
+                                                                    </h5>
+                                                                    <button
+                                                                        type="button"
+                                                                        className="btn btn-xs btn-soft-primary"
+                                                                        onClick={() =>
+                                                                            setCompanyTypes(
+                                                                                [
+                                                                                    ...companyTypes,
+                                                                                    "",
+                                                                                ],
+                                                                            )
+                                                                        }
+                                                                    >
+                                                                        + Agregar
+                                                                    </button>
+                                                                </div>
+                                                                <div className="row g-2">
+                                                                    {companyTypes.map(
+                                                                        (
+                                                                            type,
+                                                                            i,
+                                                                        ) => (
+                                                                            <div
+                                                                                key={
+                                                                                    i
+                                                                                }
+                                                                                className="col-md-6"
+                                                                            >
+                                                                                <div className="input-group input-group-sm">
+                                                                                    <input
+                                                                                        type="text"
+                                                                                        className="form-control"
+                                                                                        value={
+                                                                                            type
+                                                                                        }
+                                                                                        onChange={(
+                                                                                            e,
+                                                                                        ) => {
+                                                                                            const newTypes =
+                                                                                                [
+                                                                                                    ...companyTypes,
+                                                                                                ];
+                                                                                            newTypes[
+                                                                                                i
+                                                                                            ] =
+                                                                                                e.target.value;
+                                                                                            setCompanyTypes(
+                                                                                                newTypes,
+                                                                                            );
+                                                                                        }}
+                                                                                    />
+                                                                                    <button
+                                                                                        type="button"
+                                                                                        className="btn btn-soft-danger"
+                                                                                        onClick={() =>
+                                                                                            setCompanyTypes(
+                                                                                                companyTypes.filter(
+                                                                                                    (
+                                                                                                        _,
+                                                                                                        idx,
+                                                                                                    ) =>
+                                                                                                        idx !==
+                                                                                                        i,
+                                                                                                ),
+                                                                                            )
+                                                                                        }
+                                                                                    >
+                                                                                        <i className="fa fa-trash"></i>
+                                                                                    </button>
+                                                                                </div>
                                                                             </div>
-                                                                        </div>
-                                                                    ),
-                                                                )}
+                                                                        ),
+                                                                    )}
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                </div>
-                                            )}
+                                                )}
                                         </div>
                                     </div>
 
@@ -1006,16 +1098,16 @@ const TransactionalLanding = ({
 
                                             {currentSlug !==
                                                 "tipo-de-cambio-hoy" && (
-                                                <div className="col-md-12">
-                                                    <InputFormGroup
-                                                        label="Link Botón Comparativa"
-                                                        colSize="12"
-                                                        eRef={
-                                                            comparisonButtonLinkRef
-                                                        }
-                                                    />
-                                                </div>
-                                            )}
+                                                    <div className="col-md-12">
+                                                        <InputFormGroup
+                                                            label="Link Botón Comparativa"
+                                                            colSize="12"
+                                                            eRef={
+                                                                comparisonButtonLinkRef
+                                                            }
+                                                        />
+                                                    </div>
+                                                )}
 
                                             <div className="col-md-12">
                                                 <hr />
@@ -1153,199 +1245,199 @@ const TransactionalLanding = ({
                                             {/* SECCIÓN ESPECIAL PARA CASA DE CAMBIO DIGITAL */}
                                             {currentSlug ===
                                                 "casa-de-cambio-digital" && (
-                                                <div className="col-md-12">
-                                                    <hr />
-                                                    <div className="row g-3">
-                                                        <div className="col-md-12">
-                                                            <h5 className="mb-3 text-primary">
-                                                                Tarjetas de
-                                                                Beneficios (2x2)
-                                                            </h5>
-                                                            <div className="row g-2">
-                                                                {benefitCards.map(
-                                                                    (
-                                                                        card,
-                                                                        i,
-                                                                    ) => (
-                                                                        <div
-                                                                            key={
-                                                                                i
-                                                                            }
-                                                                            className="col-md-12 border rounded p-2 bg-light-subtle mb-3 shadow-sm"
-                                                                        >
-                                                                            <div className="row g-2">
-                                                                                <div className="col-md-1 d-flex align-items-center justify-content-center">
-                                                                                    {(() => {
-                                                                                        const IconComp =
-                                                                                            {
-                                                                                                TrendingUp,
-                                                                                                Clock,
-                                                                                                CirclePercent,
-                                                                                                ShieldCheck,
-                                                                                                Zap,
-                                                                                                Users,
-                                                                                                Heart,
-                                                                                                Star,
-                                                                                                Wallet,
-                                                                                                Globe,
-                                                                                                Smartphone,
-                                                                                                MousePointer2,
-                                                                                                Lock,
-                                                                                                Sparkles,
-                                                                                            }[
+                                                    <div className="col-md-12">
+                                                        <hr />
+                                                        <div className="row g-3">
+                                                            <div className="col-md-12">
+                                                                <h5 className="mb-3 text-primary">
+                                                                    Tarjetas de
+                                                                    Beneficios (2x2)
+                                                                </h5>
+                                                                <div className="row g-2">
+                                                                    {benefitCards.map(
+                                                                        (
+                                                                            card,
+                                                                            i,
+                                                                        ) => (
+                                                                            <div
+                                                                                key={
+                                                                                    i
+                                                                                }
+                                                                                className="col-md-12 border rounded p-2 bg-light-subtle mb-3 shadow-sm"
+                                                                            >
+                                                                                <div className="row g-2">
+                                                                                    <div className="col-md-1 d-flex align-items-center justify-content-center">
+                                                                                        {(() => {
+                                                                                            const IconComp =
+                                                                                                {
+                                                                                                    TrendingUp,
+                                                                                                    Clock,
+                                                                                                    CirclePercent,
+                                                                                                    ShieldCheck,
+                                                                                                    Zap,
+                                                                                                    Users,
+                                                                                                    Heart,
+                                                                                                    Star,
+                                                                                                    Wallet,
+                                                                                                    Globe,
+                                                                                                    Smartphone,
+                                                                                                    MousePointer2,
+                                                                                                    Lock,
+                                                                                                    Sparkles,
+                                                                                                }[
                                                                                                 card
                                                                                                     .icon
-                                                                                            ] ||
-                                                                                            Sparkles;
-                                                                                        return (
-                                                                                            <IconComp
-                                                                                                size={
-                                                                                                    20
-                                                                                                }
-                                                                                                className="text-primary"
-                                                                                            />
-                                                                                        );
-                                                                                    })()}
-                                                                                </div>
-                                                                                <div className="col-md-4">
-                                                                                    <select
-                                                                                        className="form-select form-select-sm"
-                                                                                        value={
-                                                                                            card.icon
-                                                                                        }
-                                                                                        onChange={(
-                                                                                            e,
-                                                                                        ) => {
-                                                                                            const newCards =
-                                                                                                [
-                                                                                                    ...benefitCards,
-                                                                                                ];
-                                                                                            newCards[
-                                                                                                i
-                                                                                            ].icon =
-                                                                                                e.target.value;
-                                                                                            setBenefitCards(
-                                                                                                newCards,
+                                                                                                ] ||
+                                                                                                Sparkles;
+                                                                                            return (
+                                                                                                <IconComp
+                                                                                                    size={
+                                                                                                        20
+                                                                                                    }
+                                                                                                    className="text-primary"
+                                                                                                />
                                                                                             );
-                                                                                        }}
-                                                                                    >
-                                                                                        <option value="TrendingUp">
-                                                                                            Tendencia
-                                                                                            (TrendingUp)
-                                                                                        </option>
-                                                                                        <option value="Clock">
-                                                                                            Reloj
-                                                                                            (Clock)
-                                                                                        </option>
-                                                                                        <option value="CirclePercent">
-                                                                                            Porcentaje
-                                                                                            (CirclePercent)
-                                                                                        </option>
-                                                                                        <option value="ShieldCheck">
-                                                                                            Escudo
-                                                                                            (ShieldCheck)
-                                                                                        </option>
-                                                                                        <option value="Zap">
-                                                                                            Rayo
-                                                                                            (Zap)
-                                                                                        </option>
-                                                                                        <option value="Users">
-                                                                                            Usuarios
-                                                                                            (Users)
-                                                                                        </option>
-                                                                                        <option value="Heart">
-                                                                                            Corazón
-                                                                                            (Heart)
-                                                                                        </option>
-                                                                                        <option value="Star">
-                                                                                            Estrella
-                                                                                            (Star)
-                                                                                        </option>
-                                                                                        <option value="Wallet">
-                                                                                            Billetera
-                                                                                            (Wallet)
-                                                                                        </option>
-                                                                                        <option value="Globe">
-                                                                                            Globo
-                                                                                            (Globe)
-                                                                                        </option>
-                                                                                        <option value="Smartphone">
-                                                                                            Celular
-                                                                                            (Smartphone)
-                                                                                        </option>
-                                                                                        <option value="MousePointer2">
-                                                                                            Puntero
-                                                                                            (MousePointer2)
-                                                                                        </option>
-                                                                                        <option value="Lock">
-                                                                                            Candado
-                                                                                            (Lock)
-                                                                                        </option>
-                                                                                        <option value="Sparkles">
-                                                                                            Destellos
-                                                                                            (Sparkles)
-                                                                                        </option>
-                                                                                    </select>
-                                                                                </div>
-                                                                                <div className="col-md-7">
-                                                                                    <input
-                                                                                        type="text"
-                                                                                        className="form-control form-control-sm"
-                                                                                        placeholder="Título"
-                                                                                        value={
-                                                                                            card.title
-                                                                                        }
-                                                                                        onChange={(
-                                                                                            e,
-                                                                                        ) => {
-                                                                                            const newCards =
-                                                                                                [
-                                                                                                    ...benefitCards,
-                                                                                                ];
-                                                                                            newCards[
-                                                                                                i
-                                                                                            ].title =
-                                                                                                e.target.value;
-                                                                                            setBenefitCards(
-                                                                                                newCards,
-                                                                                            );
-                                                                                        }}
-                                                                                    />
-                                                                                </div>
-                                                                                <div className="col-md-12">
-                                                                                    <textarea
-                                                                                        className="form-control form-control-sm"
-                                                                                        placeholder="Descripción"
-                                                                                        rows="3"
-                                                                                        value={
-                                                                                            card.desc
-                                                                                        }
-                                                                                        onChange={(
-                                                                                            e,
-                                                                                        ) => {
-                                                                                            const newCards =
-                                                                                                [
-                                                                                                    ...benefitCards,
-                                                                                                ];
-                                                                                            newCards[
-                                                                                                i
-                                                                                            ].desc =
-                                                                                                e.target.value;
-                                                                                            setBenefitCards(
-                                                                                                newCards,
-                                                                                            );
-                                                                                        }}
-                                                                                    ></textarea>
+                                                                                        })()}
+                                                                                    </div>
+                                                                                    <div className="col-md-4">
+                                                                                        <select
+                                                                                            className="form-select form-select-sm"
+                                                                                            value={
+                                                                                                card.icon
+                                                                                            }
+                                                                                            onChange={(
+                                                                                                e,
+                                                                                            ) => {
+                                                                                                const newCards =
+                                                                                                    [
+                                                                                                        ...benefitCards,
+                                                                                                    ];
+                                                                                                newCards[
+                                                                                                    i
+                                                                                                ].icon =
+                                                                                                    e.target.value;
+                                                                                                setBenefitCards(
+                                                                                                    newCards,
+                                                                                                );
+                                                                                            }}
+                                                                                        >
+                                                                                            <option value="TrendingUp">
+                                                                                                Tendencia
+                                                                                                (TrendingUp)
+                                                                                            </option>
+                                                                                            <option value="Clock">
+                                                                                                Reloj
+                                                                                                (Clock)
+                                                                                            </option>
+                                                                                            <option value="CirclePercent">
+                                                                                                Porcentaje
+                                                                                                (CirclePercent)
+                                                                                            </option>
+                                                                                            <option value="ShieldCheck">
+                                                                                                Escudo
+                                                                                                (ShieldCheck)
+                                                                                            </option>
+                                                                                            <option value="Zap">
+                                                                                                Rayo
+                                                                                                (Zap)
+                                                                                            </option>
+                                                                                            <option value="Users">
+                                                                                                Usuarios
+                                                                                                (Users)
+                                                                                            </option>
+                                                                                            <option value="Heart">
+                                                                                                Corazón
+                                                                                                (Heart)
+                                                                                            </option>
+                                                                                            <option value="Star">
+                                                                                                Estrella
+                                                                                                (Star)
+                                                                                            </option>
+                                                                                            <option value="Wallet">
+                                                                                                Billetera
+                                                                                                (Wallet)
+                                                                                            </option>
+                                                                                            <option value="Globe">
+                                                                                                Globo
+                                                                                                (Globe)
+                                                                                            </option>
+                                                                                            <option value="Smartphone">
+                                                                                                Celular
+                                                                                                (Smartphone)
+                                                                                            </option>
+                                                                                            <option value="MousePointer2">
+                                                                                                Puntero
+                                                                                                (MousePointer2)
+                                                                                            </option>
+                                                                                            <option value="Lock">
+                                                                                                Candado
+                                                                                                (Lock)
+                                                                                            </option>
+                                                                                            <option value="Sparkles">
+                                                                                                Destellos
+                                                                                                (Sparkles)
+                                                                                            </option>
+                                                                                        </select>
+                                                                                    </div>
+                                                                                    <div className="col-md-7">
+                                                                                        <input
+                                                                                            type="text"
+                                                                                            className="form-control form-control-sm"
+                                                                                            placeholder="Título"
+                                                                                            value={
+                                                                                                card.title
+                                                                                            }
+                                                                                            onChange={(
+                                                                                                e,
+                                                                                            ) => {
+                                                                                                const newCards =
+                                                                                                    [
+                                                                                                        ...benefitCards,
+                                                                                                    ];
+                                                                                                newCards[
+                                                                                                    i
+                                                                                                ].title =
+                                                                                                    e.target.value;
+                                                                                                setBenefitCards(
+                                                                                                    newCards,
+                                                                                                );
+                                                                                            }}
+                                                                                        />
+                                                                                    </div>
+                                                                                    <div className="col-md-12">
+                                                                                        <textarea
+                                                                                            className="form-control form-control-sm"
+                                                                                            placeholder="Descripción"
+                                                                                            rows="3"
+                                                                                            value={
+                                                                                                card.desc
+                                                                                            }
+                                                                                            onChange={(
+                                                                                                e,
+                                                                                            ) => {
+                                                                                                const newCards =
+                                                                                                    [
+                                                                                                        ...benefitCards,
+                                                                                                    ];
+                                                                                                newCards[
+                                                                                                    i
+                                                                                                ].desc =
+                                                                                                    e.target.value;
+                                                                                                setBenefitCards(
+                                                                                                    newCards,
+                                                                                                );
+                                                                                            }}
+                                                                                        ></textarea>
+                                                                                    </div>
                                                                                 </div>
                                                                             </div>
-                                                                        </div>
-                                                                    ),
-                                                                )}
+                                                                        ),
+                                                                    )}
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                </div>
-                                            )}
+                                                )}
                                         </div>
                                     </div>
 
@@ -1732,6 +1824,51 @@ const TransactionalLanding = ({
                                             </div>
                                         </div>
                                     </div>
+
+                                    {currentSlug === "sorteo-cambiafx" && (
+                                        <div
+                                            className="tab-pane fade"
+                                            id="terms"
+                                            role="tabpanel"
+                                        >
+                                            <div className="row g-3">
+                                                <div className="col-md-12">
+                                                    <h5 className="mb-3 text-primary">
+                                                        Bases del Sorteo
+                                                    </h5>
+                                                </div>
+                                                <div className="col-md-6">
+                                                    <InputFormGroup
+                                                        label="Título de las Bases"
+                                                        colSize="12"
+                                                        eRef={termsTitleRef}
+                                                    />
+                                                </div>
+                                                <div className="col-md-6">
+                                                    <InputFormGroup
+                                                        label="Subtítulo de las Bases"
+                                                        colSize="12"
+                                                        eRef={termsSubtitleRef}
+                                                    />
+                                                </div>
+                                                <div className="col-md-12">
+                                                    <QuillFormGroup
+                                                        label="Contenido / Reglas (Bases)"
+                                                        colSize="12"
+                                                        eRef={termsContentRef}
+                                                    />
+                                                </div>
+                                                <div className="col-md-12">
+                                                    <TextareaFormGroup
+                                                        label="Pie de página (Legales)"
+                                                        colSize="12"
+                                                        eRef={termsFooterRef}
+                                                        rows={3}
+                                                    />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    )}
                                 </div>
                             </div>
                             <div className="modal-footer">

@@ -37,9 +37,8 @@ const Menu = ({
             <div className="h-100" data-simplebar>
                 <div className="user-box text-center ">
                     <img
-                        src={`/api/admin/profile/thumbnail/${
-                            session.relative_id
-                        }?v=${new Date(session.updated_at).getTime()}`}
+                        src={`/api/admin/profile/thumbnail/${session.relative_id
+                            }?v=${new Date(session.updated_at).getTime()}`}
                         alt={session.name}
                         title={session.name}
                         className="rounded-circle img-thumbnail avatar-md"
@@ -233,6 +232,8 @@ const Menu = ({
                                     Cupones
                                 </MenuItem>
 
+
+
                                 <MenuItem
                                     href="/admin/banners"
                                     icon="mdi mdi-image-multiple"
@@ -345,6 +346,12 @@ const Menu = ({
                                         "admin.sidebar.landings",
                                         "Landings Transaccionales",
                                     )}
+                                </MenuItem>
+                                <MenuItem
+                                    href="/admin/campaign-subscriptions"
+                                    icon="mdi mdi-account-star"
+                                >
+                                    Suscriptores de Sorteos
                                 </MenuItem>
 
                                 <MenuItem

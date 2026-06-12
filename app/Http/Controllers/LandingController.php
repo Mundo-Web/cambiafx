@@ -22,6 +22,11 @@ class LandingController extends BasicController
         return $this->renderLanding('soles-a-dolares', 'Landings/SolesADolares');
     }
 
+    public function sorteoCambiaFx(Request $request)
+    {
+        return $this->renderLanding('sorteo-cambiafx', 'Landings/SorteoCambiaFx');
+    }
+
     public function tipoDeCambioHoy(Request $request)
     {
         return $this->renderLanding('tipo-de-cambio-hoy', 'Landings/TipoDeCambioHoy');
@@ -196,7 +201,7 @@ class LandingController extends BasicController
 
     private function renderLanding($url, $view)
     {
-        $landing = TransactionalLanding::where('url', $url)->where('status', true)->first();
+        $landing = TransactionalLanding::with('coupon')->where('url', $url)->where('status', true)->first();
         
         if (!$landing) {
             abort(404);

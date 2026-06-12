@@ -19,6 +19,14 @@ class TransactionalLandingController extends BasicController
         
         \Illuminate\Support\Facades\Log::info('TransactionalLanding Save Request:', $data);
 
+        if ($request->hasFile('hero_image')) {
+            $result = SimpleImageProcessor::processAndStore($request->file('hero_image'), 'transactional_landing', 5);
+            if (!$result['success']) {
+                throw new \Exception("Error en imagen Hero: " . $result['message']);
+            }
+            $data['hero_image'] = $result['filename'];
+        }
+
         if ($request->hasFile('cta_image')) {
             $result = SimpleImageProcessor::processAndStore($request->file('cta_image'), 'transactional_landing', 5);
             if (!$result['success']) {
@@ -80,6 +88,7 @@ class TransactionalLandingController extends BasicController
 
         return [
             'items' => $items,
+            'coupons' => \App\Models\Coupon::where('status', true)->get(),
             'current_lang_id' => $currentLangId,
             'default_lang_id' => $defaultLang->id,
             'PROGRAMER' => env('PROGRAMER')
