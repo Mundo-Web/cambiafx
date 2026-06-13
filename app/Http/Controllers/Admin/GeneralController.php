@@ -135,7 +135,10 @@ class GeneralController extends BasicController
 
             $content .= "Sitemap: " . $baseUrl . "/sitemap.xml\n";
 
-            file_put_contents(public_path('robots.txt'), $content);
+            $result = file_put_contents(public_path('robots.txt'), $content);
+            if ($result === false) {
+                throw new \Exception("No se pudo escribir en el archivo robots.txt. Verifique los permisos.");
+            }
         });
 
         return response($response->toArray(), $response->status);

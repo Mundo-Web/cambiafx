@@ -1,7 +1,57 @@
 User-agent: *
 Allow: /
 
+# OpenAI (ChatGPT)
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: GPTBot
+Allow: /
+
+# Anthropic (Claude)
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+# Google (Gemini / AI Overviews)
+User-agent: Google-Extended
+Allow: /
+
+# Perplexity
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Perplexity-User
+Allow: /
+
+# Microsoft (Copilot / Bing)
+User-agent: bingbot
+Allow: /
+
+# Apple (Apple Intelligence / Siri)
+User-agent: Applebot
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+# Common Crawl (alimenta varios modelos)
+User-agent: CCBot
+Allow: /
+
+# Meta (Llama / AI)
 User-agent: facebookexternalhit
 Allow: /
 
-Sitemap: https://cambiafx.pe/sitemap.xml
+User-agent: meta-externalagent
+Allow: /
+
+Sitemap: http://localhost/sitemap.xml
