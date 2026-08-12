@@ -54,6 +54,7 @@ class TransactionalLanding extends Model
         'terms_subtitle',
         'terms_content',
         'terms_footer',
+        'visible',
         'status',
         'lang_id'
     ];
@@ -65,6 +66,7 @@ class TransactionalLanding extends Model
         'steps' => 'array',
         'company_types' => 'array',
         'benefit_cards' => 'array',
+        'visible' => 'boolean',
         'status' => 'boolean'
     ];
 

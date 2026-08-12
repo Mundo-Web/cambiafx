@@ -362,6 +362,20 @@ const TransactionalLanding = ({
         setStepsData(newData);
     };
 
+    const onVisibleChange = async ({ id, value }) => {
+        const result = await transactionalLandingRest.boolean({
+            id,
+            field: "visible",
+            value,
+        });
+        if (!result) return;
+        setItems(
+            items.map((item) =>
+                item.id === id ? { ...item, visible: value } : item
+            )
+        );
+    };
+
     const onModalSubmit = async (e) => {
         e.preventDefault();
         try {
@@ -544,6 +558,7 @@ const TransactionalLanding = ({
                                     <th>URL</th>
                                     <th>Nombre Interno</th>
                                     <th>Título Hero (H1)</th>
+                                    <th>Visible</th>
                                     <th>Acciones</th>
                                 </tr>
                             </thead>
@@ -555,6 +570,17 @@ const TransactionalLanding = ({
                                         </td>
                                         <td>{item.name}</td>
                                         <td>{item.hero_title}</td>
+                                        <td>
+                                            <SwitchFormGroup
+                                                checked={item.visible == 1 || item.visible === true}
+                                                onChange={() =>
+                                                    onVisibleChange({
+                                                        id: item.id,
+                                                        value: !(item.visible == 1 || item.visible === true),
+                                                    })
+                                                }
+                                            />
+                                        </td>
                                         <td>
                                             <div className="d-flex gap-2">
                                                 <button

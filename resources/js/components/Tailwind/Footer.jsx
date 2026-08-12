@@ -580,13 +580,13 @@ const Footer = ({ terms, footerLinks = [] }) => {
                             </div>
 
                             {/* Columna 3 - Tipo de Cambio (Páginas Transaccionales) */}
-                            {landings && landings.length > 0 && (
+                            {landings && landings.filter(l => l.visible !== false && l.visible !== 0).length > 0 && (
                                 <div className="w-full sm:w-1/3 lg:w-[35%] flex flex-col gap-2 text-sm pb-4 lg:pb-8">
                                     <h3 className="text-lg lg:text-xl font-medium mb-2 lg:mb-4">
                                         Cambia Dólares Online
                                     </h3>
                                     <div className="flex flex-col gap-2">
-                                        {landings.map((landing, index) => (
+                                        {landings.filter(l => l.visible !== false && l.visible !== 0).map((landing, index) => (
                                             <a
                                                 key={index}
                                                 href={`/${landing.url}`}

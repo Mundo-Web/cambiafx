@@ -216,8 +216,9 @@ class GeneralController extends BasicController
         try {
             $langId = app('current_lang_id');
             $data = \App\Models\TransactionalLanding::where('status', true)
+                ->where('visible', true)
                 ->where('lang_id', $langId)
-                ->get(['url', 'name']);
+                ->get(['url', 'name', 'visible']);
             $response->data = $data;
             $response->status = 200;
             $response->message = 'Operacion correcta';
