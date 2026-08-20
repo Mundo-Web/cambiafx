@@ -35,4 +35,57 @@ class SubscriptionController extends BasicController
          );
       }
    }
+
+   public function import(Request $request)
+   {
+      $response = new Response();
+      try {
+         $items = $request->input('items', []);
+         if (empty($items)) {
+            throw new Exception('No se enviaron datos para importar');
+         }
+
+         $imported = 0;
+         $updated = 0;
+
+         foreach ($items as $item) {
+            $email = trim($item['description'] ?? '');
+            if (empty($email) || !filter_var($email, FILTER_VALIDATE_EMAIL)) {
+               continue;
+            }
+
+            $name = trim($item['name'] ?? '');
+            if (empty($name)) {
+               $name = \SoDe\Extend\Text::getEmailProvider($email);
+            }
+
+            $subscription = $this->model::where('description', $email)->first();
+            if ($subscription) {
+               $subscription->update([
+                  'name' => $name,
+                  'status' => true
+               ]);
+               $updated++;
+            } else {
+               $this->model::create([
+                  'name' => $name,
+                  'description' => $email,
+                  'status' => true
+               ]);
+               $imported++;
+            }
+         }
+
+         $response->status = 200;
+         $response->message = "Importación completada: {$imported} nuevos suscriptores agregados, {$updated} actualizados.";
+      } catch (\Throwable $th) {
+         $response->status = 400;
+         $response->message = $th->getMessage();
+      } finally {
+         return response(
+            $response->toArray(),
+            $response->status
+         );
+      }
+   }
 }

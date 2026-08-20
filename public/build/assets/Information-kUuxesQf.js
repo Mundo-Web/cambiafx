@@ -1,0 +1,1 @@
+import"./ImportSubscriptionsModal-BRHcaFA5.js";import"./WebVitalsMonitor-CIEr9-is.js";import{R as t}from"./index-B6D2xodo.js";import"./sweetalert2.all-Dn_IOoc8.js";import"./main-BK7KYfUi.js";import"./index-CF8W1V4f.js";import"./index-Cx_JNDNR.js";import"./___vite-browser-external_commonjs-proxy-CGejAyr8.js";t.setAppElement("#app");

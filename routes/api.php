@@ -371,6 +371,7 @@ Route::middleware('auth')->group(function () {
         Route::delete('/success_stories/{id}', [AdminSuccessStoryController::class, 'delete']);
 
         Route::post('/subscriptions/paginate', [AdminSubscriptionController::class, 'paginate']);
+        Route::post('/subscriptions/import', [AdminSubscriptionController::class, 'import']);
         Route::patch('/subscriptions/status', [AdminSubscriptionController::class, 'status']);
         Route::delete('/subscriptions/{id}', [AdminSubscriptionController::class, 'delete']);
 

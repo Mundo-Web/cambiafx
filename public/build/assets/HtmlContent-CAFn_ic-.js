@@ -1,0 +1,1 @@
+import{j as s}from"./ImportSubscriptionsModal-BRHcaFA5.js";import"./WebVitalsMonitor-CIEr9-is.js";const t=({className:t,html:o,properties:r})=>s.jsx("div",{className:t,dangerouslySetInnerHTML:{__html:o},...r});export{t as H};

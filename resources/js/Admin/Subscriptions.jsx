@@ -7,11 +7,13 @@ import DxButton from '../Components/dx/DxButton';
 import SubscriptionsRest from '@Rest/Admin/SubscriptionsRest';
 import ReactAppend from '../Utils/ReactAppend';
 import Swal from 'sweetalert2';
+import ImportSubscriptionsModal from './components/ImportSubscriptionsModal';
 
 const subscriptionsRest = new SubscriptionsRest()
 
 const Subscriptions = () => {
   const gridRef = useRef()
+  const modalImportRef = useRef()
 
   const onStatusChange = async ({ id, status }) => {
     const result = await subscriptionsRest.status({ id, status })
@@ -37,6 +39,16 @@ const Subscriptions = () => {
   return (<>
     <Table gridRef={gridRef} title='Subscripciones' rest={subscriptionsRest}
       toolBar={(container) => {
+        container.unshift({
+          widget: 'dxButton', location: 'after',
+          options: {
+            icon: 'upload',
+            text: 'Importar',
+            type: 'default',
+            hint: 'Importar suscriptores desde Excel/CSV',
+            onClick: () => $(modalImportRef.current).modal('show')
+          }
+        });
         container.unshift({
           widget: 'dxButton', location: 'after',
           options: {
@@ -110,6 +122,11 @@ const Subscriptions = () => {
           allowExporting: false
         }
       ]} />
+    <ImportSubscriptionsModal
+      modalRef={modalImportRef}
+      rest={subscriptionsRest}
+      onSuccess={() => $(gridRef.current).dxDataGrid('instance').refresh()}
+    />
   </>
   )
 }
