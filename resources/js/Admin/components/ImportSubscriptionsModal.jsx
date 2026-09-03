@@ -11,6 +11,7 @@ const ImportSubscriptionsModal = ({ modalRef, rest, onSuccess }) => {
   const [previewData, setPreviewData] = useState([]);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [errorMsg, setErrorMsg] = useState('');
+  const [importProgress, setImportProgress] = useState({ current: 0, total: 0 });
 
   const resetModal = () => {
     setStep(1);
@@ -22,6 +23,7 @@ const ImportSubscriptionsModal = ({ modalRef, rest, onSuccess }) => {
     setPreviewData([]);
     setIsSubmitting(false);
     setErrorMsg('');
+    setImportProgress({ current: 0, total: 0 });
   };
 
   useEffect(() => {
@@ -134,11 +136,29 @@ const ImportSubscriptionsModal = ({ modalRef, rest, onSuccess }) => {
 
     setIsSubmitting(true);
     setErrorMsg('');
+    setImportProgress({ current: 0, total: validItems.length });
 
-    const res = await rest.import(validItems);
+    const chunkSize = 500;
+    const totalChunks = Math.ceil(validItems.length / chunkSize);
+    let hasError = false;
+
+    for (let i = 0; i < totalChunks; i++) {
+      const chunk = validItems.slice(i * chunkSize, (i + 1) * chunkSize);
+      
+      const res = await rest.import(chunk);
+      
+      if (res) {
+        setImportProgress(prev => ({ ...prev, current: prev.current + chunk.length }));
+      } else {
+        hasError = true;
+        setErrorMsg(`Se produjo un error al importar el lote ${i + 1} de ${totalChunks}. Proceso detenido.`);
+        break;
+      }
+    }
+
     setIsSubmitting(false);
 
-    if (res) {
+    if (!hasError) {
       $(modalRef.current).modal('hide');
       onSuccess?.();
     }
@@ -342,7 +362,7 @@ const ImportSubscriptionsModal = ({ modalRef, rest, onSuccess }) => {
                   {isSubmitting ? (
                     <>
                       <span className='spinner-border spinner-border-sm me-2' role='status' aria-hidden='true'></span>
-                      Importando...
+                      Importando... {importProgress.current} / {importProgress.total}
                     </>
                   ) : (
                     <>
