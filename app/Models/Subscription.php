@@ -42,6 +42,11 @@ class Subscription extends Model
     ];
 
     protected static array $mxCache = [];
+    protected static array $knownValidDomains = [
+        'gmail.com', 'hotmail.com', 'outlook.com', 'yahoo.com', 'icloud.com',
+        'live.com', 'msn.com', 'outlook.es', 'yahoo.es', 'hotmail.es',
+        'cambiafx.pe', 'googlemail.com', 'me.com', 'mac.com'
+    ];
 
     public function getIsEmailValidAttribute()
     {
@@ -60,9 +65,14 @@ class Subscription extends Model
         }
 
         $parts = explode('@', $email);
-        $domain = count($parts) === 2 ? trim(end($parts)) : null;
+        $domain = count($parts) === 2 ? strtolower(trim(end($parts))) : null;
         if (!$domain) {
             return 'Dominio no válido';
+        }
+
+        // Proveedores mundiales reconocidos no necesitan comprobación DNS
+        if (in_array($domain, self::$knownValidDomains, true)) {
+            return null;
         }
 
         if (!array_key_exists($domain, self::$mxCache)) {

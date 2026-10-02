@@ -151,50 +151,40 @@ class SubscriptionController extends BasicController
    {
       $response = new Response();
       try {
-         $hasLastErrorCol = \Illuminate\Support\Facades\Schema::hasColumn('subscriptions', 'last_error');
+         // Consulta ultra-rápida en base de datos (se ejecuta en milisegundos sin congelar Cloudflare)
+         // 1. Correos que fallaron en el envío o fueron detectados con dominio/error
+         $failedSendQuery = Subscription::whereNotNull('last_error');
+         $failedSendCount = $failedSendQuery->count();
 
-         // 1. Obtener dominios únicos de los suscriptores
-         $rawDomains = Subscription::whereNotNull('description')
-            ->where('description', 'LIKE', '%@%')
-            ->selectRaw("SUBSTRING_INDEX(description, '@', -1) as domain")
-            ->distinct()
-            ->pluck('domain');
+         // 2. Correos con sintaxis inválida (sin @, sin punto, espacios o caracteres corruptos)
+         $invalidFormatQuery = Subscription::where(function ($q) {
+            $q->whereNull('description')
+              ->orWhere('description', '')
+              ->orWhereRaw("description NOT LIKE '%@%.%'")
+              ->orWhereRaw("description LIKE '% %'")
+              ->orWhereRaw("description NOT REGEXP '^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$'");
+         })->whereNull('last_error');
 
-         $invalidDomains = [];
-         foreach ($rawDomains as $domain) {
-            $domain = trim($domain);
-            if (empty($domain) || !@checkdnsrr($domain, 'MX')) {
-               $invalidDomains[] = $domain;
-            }
-         }
+         $invalidFormatCount = (clone $invalidFormatQuery)->count();
 
-         // Suscriptores con dominios inexistentes o formato inválido
-         $invalidFormatOrDomainQuery = Subscription::where(function ($q) use ($invalidDomains) {
-            $q->whereRaw("description NOT LIKE '%@%.%'");
-            if (!empty($invalidDomains)) {
-               foreach ($invalidDomains as $invDomain) {
-                  $q->orWhere('description', 'LIKE', '%@' . $invDomain);
-               }
-            }
-         });
-
-         $invalidFormatCount = (clone $invalidFormatOrDomainQuery)->count();
-
-         $failedSendCount = $hasLastErrorCol 
-            ? Subscription::whereNotNull('last_error')
-                ->whereNotIn('id', (clone $invalidFormatOrDomainQuery)->pluck('id'))
-                ->count() 
-            : 0;
-
-         $totalProblematic = $invalidFormatCount + $failedSendCount;
+         $totalProblematic = $failedSendCount + $invalidFormatCount;
          $totalActive = Subscription::where('status', true)->count();
          $totalInactive = Subscription::where('status', false)->count();
 
-         $invalidSamples = (clone $invalidFormatOrDomainQuery)
-            ->limit(15)
-            ->get(['description'])
-            ->pluck('description')
-            ->toArray();
+         // Muestras de correos problemáticos (máximo 15 para visualizar en el modal)
+         $invalidSamples = Subscription::where(function ($q) {
+            $q->whereNotNull('last_error')
+              ->orWhereNull('description')
+              ->orWhere('description', '')
+              ->orWhereRaw("description NOT LIKE '%@%.%'")
+              ->orWhereRaw("description LIKE '% %'")
+              ->orWhereRaw("description NOT REGEXP '^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$'");
+         })
+         ->limit(15)
+         ->pluck('description')
+         ->filter()
+         ->values()
+         ->toArray();
 
          $response->status = 200;
          $response->message = 'Análisis completado';
@@ -219,33 +209,14 @@ class SubscriptionController extends BasicController
       $response = new Response();
       try {
          $action = $request->input('action', 'deactivate'); // 'deactivate' o 'delete'
-         $hasLastErrorCol = \Illuminate\Support\Facades\Schema::hasColumn('subscriptions', 'last_error');
 
-         $rawDomains = Subscription::whereNotNull('description')
-            ->where('description', 'LIKE', '%@%')
-            ->selectRaw("SUBSTRING_INDEX(description, '@', -1) as domain")
-            ->distinct()
-            ->pluck('domain');
-
-         $invalidDomains = [];
-         foreach ($rawDomains as $domain) {
-            $domain = trim($domain);
-            if (empty($domain) || !@checkdnsrr($domain, 'MX')) {
-               $invalidDomains[] = $domain;
-            }
-         }
-
-         $query = Subscription::query();
-         $query->where(function ($q) use ($hasLastErrorCol, $invalidDomains) {
-            $q->whereRaw("description NOT LIKE '%@%.%'");
-            if (!empty($invalidDomains)) {
-               foreach ($invalidDomains as $invDomain) {
-                  $q->orWhere('description', 'LIKE', '%@' . $invDomain);
-               }
-            }
-            if ($hasLastErrorCol) {
-               $q->orWhereNotNull('last_error');
-            }
+         $query = Subscription::where(function ($q) {
+            $q->whereNotNull('last_error')
+              ->orWhereNull('description')
+              ->orWhere('description', '')
+              ->orWhereRaw("description NOT LIKE '%@%.%'")
+              ->orWhereRaw("description LIKE '% %'")
+              ->orWhereRaw("description NOT REGEXP '^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$'");
          });
 
          $count = (clone $query)->count();
@@ -258,15 +229,14 @@ class SubscriptionController extends BasicController
 
          if ($action === 'delete') {
             $query->delete();
-            $msg = "Se eliminaron {$count} suscriptores con envíos fallidos o dominios inexistentes.";
+            $msg = "Se eliminaron {$count} suscriptores con envíos fallidos o formato inválido.";
          } else {
-            $updateData = ['status' => false];
-            if ($hasLastErrorCol) {
-               $updateData['last_error'] = 'Dominio inexistente o error en entrega';
-               $updateData['failed_at'] = \Carbon\Carbon::now();
-            }
-            $query->update($updateData);
-            $msg = "Se desactivaron {$count} suscriptores con envíos fallidos o dominios inexistentes.";
+            $query->update([
+               'status' => false,
+               'last_error' => \Illuminate\Support\Facades\DB::raw("COALESCE(last_error, 'Formato de correo o dominio no válido')"),
+               'failed_at' => \Carbon\Carbon::now(),
+            ]);
+            $msg = "Se desactivaron {$count} suscriptores con envíos fallidos o formato inválido.";
          }
 
          $response->status = 200;

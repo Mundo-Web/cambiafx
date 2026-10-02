@@ -74,20 +74,15 @@ const Subscriptions = () => {
         </div>
       `
       : '';
-    /* <li class="list-group-item d-flex justify-content-between align-items-center px-0">
-                  <span><i class="fa fa-times-circle text-danger me-2"></i>Correos con fallo en último envío:</span>
-                  <span class="badge bg-danger rounded-pill">${stats.failed_send_count}</span>
-                </li> */
     Swal.fire({
       title: 'Depurador de Suscriptores',
       html: `
         <div class="text-start px-2 py-1">
           <p class="mb-2">Se ha detectado lo siguiente en la base de datos:</p>
           <ul class="list-group list-group-flush mb-2 small">
-           
             <li class="list-group-item d-flex justify-content-between align-items-center px-0">
-              <span><i class="fa fa-exclamation-triangle text-warning me-2"></i>Correos con dominios falsos/sin servidor:</span>
-              <span class="badge bg-warning rounded-pill">${stats.invalid_format_count}</span>
+              <span><i class="fa fa-exclamation-triangle text-danger me-2"></i>Correos fallidos o inválidos detectados:</span>
+              <span class="badge bg-danger rounded-pill">${stats.total_problematic}</span>
             </li>
             <li class="list-group-item d-flex justify-content-between align-items-center px-0 text-muted">
               <span>Total suscriptores activos:</span>
