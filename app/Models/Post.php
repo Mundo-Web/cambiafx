@@ -52,4 +52,10 @@ class Post extends Model
     {
         return $this->belongsTo(Lang::class);
     }
+
+    public function newsletterCampaign()
+    {
+        return $this->hasOne(PostNewsletterCampaign::class, 'post_id', 'id')->latest();
+    }
 }
+

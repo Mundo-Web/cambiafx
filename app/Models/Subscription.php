@@ -26,10 +26,53 @@ class Subscription extends Model
     protected $fillable = [
         'name',
         'description',
-        'status'
+        'status',
+        'last_error',
+        'failed_at'
     ];
 
     protected $casts = [
         'status' => 'boolean',
+        'failed_at' => 'datetime'
     ];
+
+    protected $appends = [
+        'is_email_valid',
+        'email_error_message'
+    ];
+
+    protected static array $mxCache = [];
+
+    public function getIsEmailValidAttribute()
+    {
+        return empty($this->email_error_message);
+    }
+
+    public function getEmailErrorMessageAttribute()
+    {
+        if (!empty($this->last_error)) {
+            return $this->last_error;
+        }
+
+        $email = trim($this->description ?? '');
+        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            return 'Formato de correo no válido';
+        }
+
+        $parts = explode('@', $email);
+        $domain = count($parts) === 2 ? trim(end($parts)) : null;
+        if (!$domain) {
+            return 'Dominio no válido';
+        }
+
+        if (!array_key_exists($domain, self::$mxCache)) {
+            self::$mxCache[$domain] = @checkdnsrr($domain, 'MX');
+        }
+
+        if (!self::$mxCache[$domain]) {
+            return 'Dominio falso o sin servidor de correo (MX)';
+        }
+
+        return null;
+    }
 }

@@ -4,12 +4,11 @@ namespace App\Notifications;
 
 use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Notification;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use App\Mail\RawHtmlMail;
 use Illuminate\Support\Facades\Storage;
 
-class BlogPublishedNotification extends Notification implements ShouldQueue
+class BlogPublishedNotification extends Notification
 {
     use Queueable;
 

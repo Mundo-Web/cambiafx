@@ -372,6 +372,8 @@ Route::middleware('auth')->group(function () {
 
         Route::post('/subscriptions/paginate', [AdminSubscriptionController::class, 'paginate']);
         Route::post('/subscriptions/import', [AdminSubscriptionController::class, 'import']);
+        Route::post('/subscriptions/analyze-invalid', [AdminSubscriptionController::class, 'analyzeInvalid']);
+        Route::post('/subscriptions/clean-failed', [AdminSubscriptionController::class, 'cleanFailed']);
         Route::patch('/subscriptions/status', [AdminSubscriptionController::class, 'status']);
         Route::delete('/subscriptions/{id}', [AdminSubscriptionController::class, 'delete']);
 
