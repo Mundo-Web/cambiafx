@@ -74,17 +74,17 @@ const Subscriptions = () => {
         </div>
       `
       : '';
-
+    /* <li class="list-group-item d-flex justify-content-between align-items-center px-0">
+                  <span><i class="fa fa-times-circle text-danger me-2"></i>Correos con fallo en último envío:</span>
+                  <span class="badge bg-danger rounded-pill">${stats.failed_send_count}</span>
+                </li> */
     Swal.fire({
       title: 'Depurador de Suscriptores',
       html: `
         <div class="text-start px-2 py-1">
           <p class="mb-2">Se ha detectado lo siguiente en la base de datos:</p>
           <ul class="list-group list-group-flush mb-2 small">
-            <li class="list-group-item d-flex justify-content-between align-items-center px-0">
-              <span><i class="fa fa-times-circle text-danger me-2"></i>Correos con fallo en último envío:</span>
-              <span class="badge bg-danger rounded-pill">${stats.failed_send_count}</span>
-            </li>
+           
             <li class="list-group-item d-flex justify-content-between align-items-center px-0">
               <span><i class="fa fa-exclamation-triangle text-warning me-2"></i>Correos con dominios falsos/sin servidor:</span>
               <span class="badge bg-warning rounded-pill">${stats.invalid_format_count}</span>
@@ -177,6 +177,18 @@ const Subscriptions = () => {
           caption: 'Envío Email',
           width: '140px',
           alignment: 'center',
+          dataType: 'boolean',
+          trueText: 'Válido',
+          falseText: 'Inválido',
+          allowSorting: false,
+          calculateFilterExpression: (filterValue) => {
+            if (filterValue === true) {
+              return ['last_error', '=', null];
+            } else if (filterValue === false) {
+              return ['last_error', '<>', null];
+            }
+            return null;
+          },
           cellTemplate: (container, { data }) => {
             const isInvalid = data.is_email_valid === false || Boolean(data.last_error);
             if (isInvalid) {

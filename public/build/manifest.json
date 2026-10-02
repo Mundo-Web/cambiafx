@@ -2416,7 +2416,7 @@
     ]
   },
   "resources/js/Admin/Subscriptions.jsx": {
-    "file": "assets/Subscriptions-DPKQ2ya5.js",
+    "file": "assets/Subscriptions-Ck9ybWgR.js",
     "name": "Subscriptions",
     "src": "resources/js/Admin/Subscriptions.jsx",
     "isEntry": true,
@@ -4822,7 +4822,7 @@
     ]
   },
   "resources/js/components/Adminto/Modal.jsx": {
-    "file": "assets/Modal-5zCVTvM1.js",
+    "file": "assets/Modal-Khb2RDPi.js",
     "name": "Modal",
     "src": "resources/js/components/Adminto/Modal.jsx",
     "isEntry": true,
@@ -4920,7 +4920,7 @@
     ]
   },
   "resources/js/components/Adminto/form/QuillFormGroup.jsx": {
-    "file": "assets/QuillFormGroup-Khb2RDPi.js",
+    "file": "assets/QuillFormGroup-5zCVTvM1.js",
     "name": "QuillFormGroup",
     "src": "resources/js/components/Adminto/form/QuillFormGroup.jsx",
     "isEntry": true,
@@ -4930,7 +4930,7 @@
     ]
   },
   "resources/js/components/Adminto/form/SelectAPIFormGroup.jsx": {
-    "file": "assets/SelectAPIFormGroup-B4JDcjc4.js",
+    "file": "assets/SelectAPIFormGroup-DsLLZ3NJ.js",
     "name": "SelectAPIFormGroup",
     "src": "resources/js/components/Adminto/form/SelectAPIFormGroup.jsx",
     "isEntry": true,
@@ -4954,7 +4954,7 @@
     ]
   },
   "resources/js/components/Adminto/form/SelectFormGroup.jsx": {
-    "file": "assets/SelectFormGroup-5zCVTvM1.js",
+    "file": "assets/SelectFormGroup-Khb2RDPi.js",
     "name": "SelectFormGroup",
     "src": "resources/js/components/Adminto/form/SelectFormGroup.jsx",
     "isEntry": true,
@@ -4974,7 +4974,7 @@
     ]
   },
   "resources/js/components/Adminto/form/TextareaFormGroup.jsx": {
-    "file": "assets/TextareaFormGroup-5zCVTvM1.js",
+    "file": "assets/TextareaFormGroup-Khb2RDPi.js",
     "name": "TextareaFormGroup",
     "src": "resources/js/components/Adminto/form/TextareaFormGroup.jsx",
     "isEntry": true,
@@ -5554,7 +5554,7 @@
     ]
   },
   "resources/js/components/Modal.jsx": {
-    "file": "assets/Modal-Khb2RDPi.js",
+    "file": "assets/Modal-5zCVTvM1.js",
     "name": "Modal",
     "src": "resources/js/components/Modal.jsx",
     "isEntry": true,
@@ -6054,14 +6054,13 @@
     ]
   },
   "resources/js/components/Tailwind/CambiaFX/PrimeraOperacionSection.jsx": {
-    "file": "assets/PrimeraOperacionSection-B1JwvWrd.js",
+    "file": "assets/PrimeraOperacionSection-CId7yais.js",
     "name": "PrimeraOperacionSection",
     "src": "resources/js/components/Tailwind/CambiaFX/PrimeraOperacionSection.jsx",
-    "isDynamicEntry": true,
+    "isEntry": true,
     "imports": [
       "resources/js/Admin/components/ImportSubscriptionsModal.jsx",
       "resources/js/components/WebVitalsMonitor.jsx",
-      "_TextWithHighlight-DjGipNpm.js",
       "resources/js/components/Tailwind/CambiaFX/BannerFxEmpresas.jsx",
       "_OptimizedImage--yH0ub55.js",
       "_proxy-zuHGA4Ov.js",
@@ -6076,19 +6075,15 @@
     ]
   },
   "resources/js/components/Tailwind/CambiaFX/StepsSection.jsx": {
-    "file": "assets/StepsSection-DZT8f6Rx.js",
+    "file": "assets/StepsSection-B8DAfXdO.js",
     "name": "StepsSection",
     "src": "resources/js/components/Tailwind/CambiaFX/StepsSection.jsx",
-    "isDynamicEntry": true,
+    "isEntry": true,
     "imports": [
       "resources/js/Admin/components/ImportSubscriptionsModal.jsx",
       "resources/js/components/WebVitalsMonitor.jsx",
-      "_TextWithHighlight-DjGipNpm.js",
       "resources/js/components/Tailwind/CambioGerencia/HomeSeccionBlog.jsx",
-      "_pagination-Bbf-lBVu.js",
-      "resources/js/components/About/Strengths.jsx",
-      "_proxy-zuHGA4Ov.js",
-      "_classes-to-selector-BGUOyi4Y.js"
+      "resources/js/components/About/Strengths.jsx"
     ],
     "css": [
       "assets/swiper-EKmKsbKj.css"
@@ -6770,20 +6765,22 @@
     ]
   },
   "resources/js/components/Test/Fragrance.jsx": {
-    "file": "assets/Fragrance-5zCVTvM1.js",
+    "file": "assets/Fragrance-Bbbmu1Kw.js",
     "name": "Fragrance",
     "src": "resources/js/components/Test/Fragrance.jsx",
-    "isEntry": true,
+    "isDynamicEntry": true,
     "imports": [
       "resources/js/Admin/components/ImportSubscriptionsModal.jsx",
-      "resources/js/components/WebVitalsMonitor.jsx"
+      "_tippy-react.esm-C0M1j_tS.js",
+      "resources/js/components/WebVitalsMonitor.jsx",
+      "_index-CF8W1V4f.js"
     ]
   },
   "resources/js/components/Test/HairGoals.jsx": {
-    "file": "assets/HairGoals-5zCVTvM1.js",
+    "file": "assets/HairGoals-BLzP0lxX.js",
     "name": "HairGoals",
     "src": "resources/js/components/Test/HairGoals.jsx",
-    "isEntry": true,
+    "isDynamicEntry": true,
     "imports": [
       "resources/js/Admin/components/ImportSubscriptionsModal.jsx",
       "resources/js/components/WebVitalsMonitor.jsx"
@@ -6803,20 +6800,20 @@
     ]
   },
   "resources/js/components/Test/Main.jsx": {
-    "file": "assets/Main-BoBgKn3j.js",
+    "file": "assets/Main-5zCVTvM1.js",
     "name": "Main",
     "src": "resources/js/components/Test/Main.jsx",
-    "isDynamicEntry": true,
+    "isEntry": true,
     "imports": [
       "resources/js/Admin/components/ImportSubscriptionsModal.jsx",
       "resources/js/components/WebVitalsMonitor.jsx"
     ]
   },
   "resources/js/components/Test/ScalpType.jsx": {
-    "file": "assets/ScalpType-DRZvdvI1.js",
+    "file": "assets/ScalpType-Cp3dGh80.js",
     "name": "ScalpType",
     "src": "resources/js/components/Test/ScalpType.jsx",
-    "isEntry": true,
+    "isDynamicEntry": true,
     "imports": [
       "resources/js/Admin/components/ImportSubscriptionsModal.jsx",
       "resources/js/components/WebVitalsMonitor.jsx",
@@ -6826,10 +6823,10 @@
     ]
   },
   "resources/js/components/Test/Treatment.jsx": {
-    "file": "assets/Treatment-5zCVTvM1.js",
+    "file": "assets/Treatment-BrfgOH9S.js",
     "name": "Treatment",
     "src": "resources/js/components/Test/Treatment.jsx",
-    "isEntry": true,
+    "isDynamicEntry": true,
     "imports": [
       "resources/js/Admin/components/ImportSubscriptionsModal.jsx",
       "resources/js/components/WebVitalsMonitor.jsx"
@@ -6960,7 +6957,7 @@
     ]
   },
   "resources/js/components/form/QuillFormGroup.jsx": {
-    "file": "assets/QuillFormGroup-5zCVTvM1.js",
+    "file": "assets/QuillFormGroup-Khb2RDPi.js",
     "name": "QuillFormGroup",
     "src": "resources/js/components/form/QuillFormGroup.jsx",
     "isEntry": true,
@@ -6970,7 +6967,7 @@
     ]
   },
   "resources/js/components/form/SelectAPIFormGroup.jsx": {
-    "file": "assets/SelectAPIFormGroup-DsLLZ3NJ.js",
+    "file": "assets/SelectAPIFormGroup-B4JDcjc4.js",
     "name": "SelectAPIFormGroup",
     "src": "resources/js/components/form/SelectAPIFormGroup.jsx",
     "isEntry": true,
@@ -6982,7 +6979,7 @@
     ]
   },
   "resources/js/components/form/SelectFormGroup.jsx": {
-    "file": "assets/SelectFormGroup-Khb2RDPi.js",
+    "file": "assets/SelectFormGroup-5zCVTvM1.js",
     "name": "SelectFormGroup",
     "src": "resources/js/components/form/SelectFormGroup.jsx",
     "isEntry": true,
@@ -6992,7 +6989,7 @@
     ]
   },
   "resources/js/components/form/TextareaFormGroup.jsx": {
-    "file": "assets/TextareaFormGroup-Khb2RDPi.js",
+    "file": "assets/TextareaFormGroup-5zCVTvM1.js",
     "name": "TextareaFormGroup",
     "src": "resources/js/components/form/TextareaFormGroup.jsx",
     "isEntry": true,

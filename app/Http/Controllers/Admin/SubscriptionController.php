@@ -14,6 +14,64 @@ class SubscriptionController extends BasicController
    public $model = Subscription::class;
    public $reactView = 'Admin/Subscriptions';
 
+   public function paginate(Request $request): HttpResponse|ResponseFactory
+   {
+      if ($request->has('filter')) {
+         $filter = $request->filter;
+         if (is_string($filter)) {
+            $decoded = json_decode($filter, true);
+            if (is_array($decoded)) {
+               $filter = $decoded;
+            }
+         }
+         if (is_array($filter)) {
+            $transformed = $this->transformEmailFilter($filter);
+            $request->merge(['filter' => $transformed]);
+         }
+      }
+
+      if ($request->has('sort')) {
+         $sort = $request->sort;
+         if (is_string($sort)) {
+            $decoded = json_decode($sort, true);
+            if (is_array($decoded)) {
+               $sort = $decoded;
+            }
+         }
+         if (is_array($sort)) {
+            foreach ($sort as &$s) {
+               if (isset($s['selector']) && $s['selector'] === 'is_email_valid') {
+                  $s['selector'] = 'last_error';
+               }
+            }
+            $request->merge(['sort' => $sort]);
+         }
+      }
+
+      return parent::paginate($request);
+   }
+
+   private function transformEmailFilter(array $filter): array
+   {
+      if (isset($filter[0]) && is_string($filter[0]) && $filter[0] === 'is_email_valid') {
+         $val = isset($filter[2]) ? filter_var($filter[2], FILTER_VALIDATE_BOOLEAN, FILTER_NULL_ON_FAILURE) : null;
+         if ($val === true) {
+            return ['last_error', '=', null];
+         } elseif ($val === false) {
+            return ['last_error', '<>', null];
+         }
+         return ['id', '<>', null];
+      }
+
+      foreach ($filter as $key => $item) {
+         if (is_array($item)) {
+            $filter[$key] = $this->transformEmailFilter($item);
+         }
+      }
+
+      return $filter;
+   }
+
    public function delete(Request $request, string $id)
    {
       $response = new Response();
