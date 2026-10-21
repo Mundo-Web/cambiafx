@@ -248,12 +248,13 @@ const ExchangeCard = ({
     const getTcRangePEN = (dataRangesTc = [], amount = 0) => {
         const typeOperation = operationType === 'compra' ? 'compra' : 'venta';
 
-        if (!amount) {
+        if (!amount || dataRangesTc.length === 0) {
             return dataRangesTc[0] ?? null;
         }
 
         for (const data of dataRangesTc) {
             const tc = typeOperation === 'compra' ? data.tc_compra || data.buy : data.tc_venta || data.sell;
+            if (!tc || tc === 0) continue;
             const amountUsd = Number((amount / tc).toFixed(2));
 
             // Verificar si está en el rango (usando 'desde'/'hasta' o 'from'/'to')
@@ -263,29 +264,43 @@ const ExchangeCard = ({
             if (amountUsd >= from && amountUsd < to) return data;
         }
 
-        return dataRangesTc[dataRangesTc.length - 1] ?? null;
+        // Si el monto en USD supera el límite del último rango, aplicar el último rango
+        const lastRange = dataRangesTc[dataRangesTc.length - 1];
+        const lastTc = typeOperation === 'compra' ? lastRange.tc_compra || lastRange.buy : lastRange.tc_venta || lastRange.sell;
+        if (lastTc > 0) {
+            const amountUsdLast = Number((amount / lastTc).toFixed(2));
+            if (amountUsdLast >= (lastRange.hasta || lastRange.to || 0)) {
+                return lastRange;
+            }
+        }
+
+        // Si el monto no alcanza el mínimo del primer rango (ej. < 500 USD), no aplica el rango
+        return null;
     };
 
     // Busca el tipo de cambio por rango para montos en Dólares
     const getTcRangeUSD = (dataRangesTc = [], amount = 0) => {
-        let objTC = null;
-
-        if (amount) {
-            for (const obj of dataRangesTc) {
-                const from = obj.desde || obj.from || 0;
-                const to = obj.hasta || obj.to || 0;
-
-                if (from <= amount && amount < to) {
-                    objTC = obj;
-                    break;
-                }
-            }
-            objTC = objTC ?? (dataRangesTc[dataRangesTc.length - 1] ?? null);
-        } else {
-            objTC = dataRangesTc[0] ?? null;
+        if (!amount || dataRangesTc.length === 0) {
+            return dataRangesTc[0] ?? null;
         }
 
-        return objTC;
+        for (const obj of dataRangesTc) {
+            const from = obj.desde || obj.from || 0;
+            const to = obj.hasta || obj.to || 0;
+
+            if (from <= amount && amount < to) {
+                return obj;
+            }
+        }
+
+        // Si el monto supera el límite del último rango, aplicar el último rango
+        const lastRange = dataRangesTc[dataRangesTc.length - 1];
+        if (amount >= (lastRange.hasta || lastRange.to || 0)) {
+            return lastRange;
+        }
+
+        // Si el monto es menor al mínimo del primer rango, no aplica el rango
+        return null;
     };
 
     // Obtiene el tipo de cambio correspondiente según el monto y origen
@@ -353,8 +368,15 @@ const ExchangeCard = ({
         let bestTc = null;
         let bestRange = null;
 
-        // Probar cada rango, quedarnos con el último que coincida
-        for (const range of tcRanges) {
+        // Ordenar rangos de mayor a menor para que los montos mayores califiquen al rango superior
+        const sortedRanges = [...tcRanges].sort((a, b) => {
+            const minA = a.desde ?? a.montoMinimo ?? a.from ?? 0;
+            const minB = b.desde ?? b.montoMinimo ?? b.from ?? 0;
+            return minB - minA;
+        });
+
+        // Probar cada rango de mayor a menor y encontrar el que coincida
+        for (const range of sortedRanges) {
             const tcVenta = range.tc_venta || range.sell || 0;
             if (tcVenta === 0) continue;
 
@@ -365,24 +387,34 @@ const ExchangeCard = ({
             const rangeMinUSD = range.desde || 0;
             const rangeMaxUSD = range.hasta || Infinity;
 
-            if (calculatedUSD >= rangeMinUSD && calculatedUSD <= rangeMaxUSD) {
-                // Este rango coincide, guardarlo (se quedará con el último)
+            if (calculatedUSD >= (rangeMinUSD - 0.005) && calculatedUSD <= (rangeMaxUSD + 0.005)) {
                 bestTc = tcVenta;
                 bestRange = range;
-                // console.log(`🎯 VENTA Soles: ${amountSoles} ÷ ${tcVenta} = $${calculatedUSD.toFixed(2)} (Rango: $${rangeMinUSD}-$${rangeMaxUSD}) ✅`);
-            } else {
-                // console.log(`🎯 VENTA Soles: ${amountSoles} ÷ ${tcVenta} = $${calculatedUSD.toFixed(2)} (Rango: $${rangeMinUSD}-$${rangeMaxUSD}) ❌`);
+                break;
             }
         }
 
-        // Si no encontramos ningún rango que coincida, usar la lógica normal
-        if (bestTc === null) {
-            // console.log(`🎯 VENTA Soles: No se encontró rango coincidente, usando lógica normal`);
-            return getTCFromAmount(amountSoles, 'O');
+        // Si coincide con un rango del cupón o de la lista
+        if (bestTc !== null) {
+            return bestTc;
         }
 
-        // console.log(`🎯 VENTA Soles: Rango final seleccionado - TC: ${bestTc}`);
-        return bestTc;
+        // Si el monto supera el rango máximo disponible, usar la tasa del último rango
+        if (tcRanges.length > 0) {
+            const lastRange = tcRanges[tcRanges.length - 1];
+            const lastTc = lastRange.tc_venta || lastRange.sell || 0;
+            if (lastTc > 0 && (amountSoles / lastTc) >= (lastRange.hasta || 0)) {
+                return lastTc;
+            }
+        }
+
+        // Si el cupón estaba activo pero el monto en Soles no alcanza el mínimo del cupón (ej. < 500 USD),
+        // debe usar la tasa base de Venta sin cupón
+        if (CambiaFXService.tcBase.length > 0 && CambiaFXService.tcBase[0].tc_venta) {
+            return CambiaFXService.tcBase[0].tc_venta;
+        }
+
+        return getTCFromAmount(amountSoles, 'O');
     };
 
     // 🔁 FUNCIÓN PRINCIPAL DE CÁLCULO (según documentación CambiaFX)
@@ -625,42 +657,30 @@ const ExchangeCard = ({
         // Usar debouncedAmount1 para determinar el rango (más estable)
         const debouncedAmount1Value = parseNumberFromFormatted(debouncedAmount1);
         const amount1Value = parseNumberFromFormatted(amount1);
+        const amount2Value = parseNumberFromFormatted(amount2);
 
-        if (debouncedAmount1Value > 0) {
+        if (amountToCheck !== null && parseNumberFromFormatted(amountToCheck) > 0) {
+            amount = parseNumberFromFormatted(amountToCheck);
+            origin = 'O';
+        } else if (debouncedAmount1Value > 0) {
             amount = debouncedAmount1Value;
             origin = 'O';
         } else if (amount1Value > 0) {
             amount = amount1Value;
             origin = 'O';
+        } else if (amount2Value > 0) {
+            amount = amount2Value;
+            origin = 'D';
         } else {
             return { applies: false, reason: 'Sin monto válido' };
         }
 
         // 🔍 DETERMINAR SI EL MONTO ESTÁ EN SOLES (según documentación)
-        // COMPRA = SOLES → USD (usuario quiere comprar dólares)
-        // VENTA = USD → SOLES (usuario quiere vender dólares)
+        // COMPRA: origin 'O' es USD (envía USD), origin 'D' es PEN (recibe Soles)
+        // VENTA: origin 'O' es PEN (envía Soles), origin 'D' es USD (recibe USD)
         const isPenCurrencyValue = isPenCurrency(origin);
-        // console.log(`🔍 checkCouponApplies: monto=${amount}, origin=${origin}, isPen=${isPenCurrencyValue}, operacion=${currentOpType} (${currentOpType === 'compra' ? 'SOLES→USD' : 'USD→SOLES'})`);
 
-        // 🔄 CONVERTIR A USD PARA COMPARAR CON RANGOS (siempre en USD)
-        let amountForComparison = amount;
-
-        if (isPenCurrencyValue) {
-            // Monto en PEN, convertir a USD usando tasas base
-            const tcBase = CambiaFXService.tcBase[0];
-            if (tcBase) {
-                // CORREGIDO: Para COMPRA (SOLES→USD) usar tc_venta para convertir PEN→USD
-                // Para VENTA (USD→SOLES) usar tc_compra para convertir PEN→USD
-                const tc = currentOpType === 'compra' ? tcBase.tc_venta : tcBase.tc_compra;
-                amountForComparison = amount / tc;
-            }
-            // console.log(`🔄 Convirtiendo PEN a USD: ${amount} PEN → ${amountForComparison} USD (tc=${tcBase?.tc_venta || tcBase?.tc_compra})`);
-        } else {
-            // Monto ya está en USD
-            // console.log(`✅ Monto ya en USD: ${amount}`);
-        }
-
-        if (amountForComparison <= 0) {
+        if (amount <= 0 && amount2Value <= 0) {
             return { applies: false, reason: 'Sin monto válido para conversión' };
         }
 
@@ -675,27 +695,46 @@ const ExchangeCard = ({
                 return r && minAmount != null && maxAmount != null;
             });
 
-            // console.log(`🎯 Evaluando ${rangosValidos.length} rangos para ${amountForComparison} USD`);
+            // Ordenar de mayor a menor para que montos que califican a rangos superiores obtengan la mejor tasa
+            const rangosOrdenados = [...rangosValidos].sort((a, b) => {
+                const minA = a.desde ?? a.montoMinimo ?? a.from ?? 0;
+                const minB = b.desde ?? b.montoMinimo ?? b.from ?? 0;
+                return minB - minA; // Descendente
+            });
 
-            // Buscar el rango correcto sin superposición
-            for (let i = 0; i < rangosValidos.length; i++) {
-                const rango = rangosValidos[i];
-                const isLastRange = i === rangosValidos.length - 1;
+            // Tolerancia mínima por precisión de redondeo de centavos
+            const tolerance = 0.005;
 
+            // Buscar el rango correcto de mayor a menor
+            for (let i = 0; i < rangosOrdenados.length; i++) {
+                const rango = rangosOrdenados[i];
                 const minAmount = rango.desde ?? rango.montoMinimo ?? rango.from ?? 0;
                 const maxAmount = rango.hasta ?? rango.montoMaximo ?? rango.to ?? 0;
 
-                // Lógica de rangos sin superposición con tolerancia
-                const tolerance = 0.1;
-                const isInRange = isLastRange
-                    ? (minAmount - tolerance <= amountForComparison && amountForComparison <= maxAmount)  // Último rango incluye límite superior
-                    : (minAmount - tolerance <= amountForComparison && amountForComparison < maxAmount);   // Otros rangos NO incluyen límite superior
+                // Determinar el valor en USD a evaluar contra este rango
+                let usdValue = 0;
+                if (currentOpType === 'venta') {
+                    // En Venta: amount2 es USD
+                    if (amount2Value > 0 && origin === 'D') {
+                        usdValue = amount2Value;
+                    } else if (amount2Value > 0 && Math.abs(amount2Value - (amount / (rango.tcVenta ?? rango.tc_venta ?? 1))) < 0.5) {
+                        usdValue = amount2Value;
+                    } else {
+                        const tcRango = rango.tcVenta ?? rango.tc_venta ?? 0;
+                        usdValue = tcRango > 0 ? amount / tcRango : 0;
+                    }
+                } else {
+                    // En Compra: amount1 es USD
+                    if (origin === 'O') {
+                        usdValue = amount;
+                    } else {
+                        const tcRango = rango.tcCompra ?? rango.tc_compra ?? 0;
+                        usdValue = tcRango > 0 ? amount / tcRango : 0;
+                    }
+                }
 
-                // console.log(`📋 Rango ${i + 1}: ${minAmount}-${maxAmount}, incluye ${amountForComparison}? ${isInRange} (${isLastRange ? 'último' : 'intermedio'})`);
-
-                if (isInRange) {
+                if (usdValue >= (minAmount - tolerance) && usdValue <= (maxAmount + tolerance)) {
                     rangoAplicable = rango;
-                    // console.log(`✅ Rango aplicable encontrado:`, rango);
                     break;
                 }
             }
@@ -708,7 +747,6 @@ const ExchangeCard = ({
                     const max = r.hasta ?? r.montoMaximo ?? r.to;
                     return `$${min}-$${max} USD`;
                 }).join(', ');
-                // console.log(`❌ No se encontró rango aplicable para ${amountForComparison} USD`);
                 return {
                     applies: false,
                     reason: `Rangos válidos: ${rangosDisplay}`
@@ -717,23 +755,39 @@ const ExchangeCard = ({
         }
 
         // Cupón simple (un solo rango)
-        // console.log(`📊 Verificando cupón simple: ${amountForComparison} USD vs ${couponInfo.montoMinimo}-${couponInfo.montoMaximo} USD`);
+        const tolerance = 0.005;
+        let singleUsdValue = amount;
+        if (currentOpType === 'venta') {
+            if (amount2Value > 0 && origin === 'D') {
+                singleUsdValue = amount2Value;
+            } else {
+                const tcSimple = couponInfo.tcVenta || 1;
+                singleUsdValue = amount / tcSimple;
+            }
+        } else {
+            if (origin === 'O') {
+                singleUsdValue = amount;
+            } else {
+                const tcSimple = couponInfo.tcCompra || 1;
+                singleUsdValue = amount / tcSimple;
+            }
+        }
 
-        const tolerance = 0.1;
-
-        if (amountForComparison < (couponInfo.montoMinimo - tolerance)) {
+        if (singleUsdValue < (couponInfo.montoMinimo - tolerance)) {
             return {
                 applies: false,
                 reason: `Monto mínimo requerido: $${couponInfo.montoMinimo} USD`
             };
         }
 
-        if (amountForComparison > couponInfo.montoMaximo) {
+        if (singleUsdValue > (couponInfo.montoMaximo + tolerance)) {
             return {
                 applies: false,
                 reason: `Monto máximo permitido: $${couponInfo.montoMaximo} USD`
             };
         }
+
+        return { applies: true, reason: '' };
 
         // console.log(`✅ Cupón simple aplica`);
         return { applies: true, reason: '' };
@@ -1466,11 +1520,11 @@ const ExchangeCard = ({
                                                                                 // Lógica de rangos sin superposición
                                                                                 const rangosValidos = couponInfo.rangos.filter(r => r && (r.montoMinimo != null || r.desde != null) && (r.montoMaximo != null || r.hasta != null));
                                                                                 const isLastRange = index === rangosValidos.length - 1;
-                                                                                const tolerance = 0.1;
+                                                                                const tolerance = 0.005;
 
                                                                                 // ✅ VERIFICAR SI EL MONTO ESTÁ EN ESTE RANGO ESPECÍFICO
                                                                                 const isCurrentRange = amountForComparison > 0 && (isLastRange
-                                                                                    ? (minAmount - tolerance <= amountForComparison && amountForComparison <= maxAmount)  // Último: incluye límite superior
+                                                                                    ? (minAmount - tolerance <= amountForComparison && amountForComparison <= (maxAmount + tolerance))  // Último: incluye límite superior
                                                                                     : (minAmount - tolerance <= amountForComparison && amountForComparison < maxAmount));  // Otros: NO incluye límite superior
 
                                                                                 // Mostrar rangos en la moneda correspondiente
@@ -1765,11 +1819,11 @@ const ExchangeCard = ({
                                                                                 // Lógica de rangos sin superposición
                                                                                 const rangosValidos = couponInfo.rangos.filter(r => r && (r.montoMinimo != null || r.desde != null) && (r.montoMaximo != null || r.hasta != null));
                                                                                 const isLastRange = index === rangosValidos.length - 1;
-                                                                                const tolerance = 0.1;
+                                                                                const tolerance = 0.005;
 
                                                                                 // ✅ VERIFICAR SI EL MONTO ESTÁ EN ESTE RANGO ESPECÍFICO
                                                                                 const isCurrentRange = amountForComparison > 0 && (isLastRange
-                                                                                    ? (minAmountOriginal - tolerance <= amountForComparison && amountForComparison <= maxAmountOriginal)  // Último: incluye límite superior
+                                                                                    ? (minAmountOriginal - tolerance <= amountForComparison && amountForComparison <= (maxAmountOriginal + tolerance))  // Último: incluye límite superior
                                                                                     : (minAmountOriginal - tolerance <= amountForComparison && amountForComparison < maxAmountOriginal));  // Otros: NO incluye límite superior
 
                                                                                 // console.log(`🔍 SEGUNDO TOOLTIP CORREGIDO - Rango ${index + 1}: min=${minAmountOriginal}, max=${maxAmountOriginal}, amount=${amountForComparison}, isCurrentRange=${isCurrentRange}, isLast=${isLastRange}`);

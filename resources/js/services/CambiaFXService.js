@@ -215,7 +215,14 @@ class CambiaFXService {
 
         if (ranges.length === 0) return 0;
 
-        for (const range of ranges) {
+        // Ordenar rangos de mayor a menor para priorizar rangos superiores
+        const sortedRanges = [...ranges].sort((a, b) => {
+            const minA = a.desde ?? a.montoMinimo ?? a.from ?? 0;
+            const minB = b.desde ?? b.montoMinimo ?? b.from ?? 0;
+            return minB - minA;
+        });
+
+        for (const range of sortedRanges) {
             const tcVenta = range.tc_venta || 0;
             if (tcVenta === 0) continue;
 
@@ -223,13 +230,32 @@ class CambiaFXService {
             const minUSD = range.desde || 0;
             const maxUSD = range.hasta || 999999;
 
-            if (calculatedUSD >= minUSD && calculatedUSD < maxUSD) {
+            if (calculatedUSD >= (minUSD - 0.005) && calculatedUSD <= (maxUSD + 0.005)) {
                 bestTc = tcVenta;
                 break;
             }
         }
 
-        return bestTc || ranges[0].tc_venta;
+        if (bestTc !== null) {
+            return bestTc;
+        }
+
+        // Si el monto supera el rango máximo disponible, usar la tasa del último rango
+        const lastRange = ranges[ranges.length - 1];
+        if (lastRange && lastRange.tc_venta > 0) {
+            const lastUSD = amountSoles / lastRange.tc_venta;
+            if (lastUSD >= (lastRange.hasta || 0)) {
+                return lastRange.tc_venta;
+            }
+        }
+
+        // Si no coincide con ningún rango (ej. monto < 500 USD con cupón activo),
+        // recurrir a la tasa base de Venta
+        if (this.tcBase.length > 0 && this.tcBase[0].tc_venta > 0) {
+            return this.tcBase[0].tc_venta;
+        }
+
+        return ranges[0].tc_venta;
     }
 
     // 🧠 IMPLEMENTACIÓN SEGÚN DOCUMENTACIÓN CAMBIAFX - MÉTODO PRINCIPAL
@@ -281,12 +307,13 @@ class CambiaFXService {
     getTcRangePEN(dataRangesTc = [], amount = 0, isBuy = false) {
         const typeOperation = isBuy ? 'compra' : 'venta';
 
-        if (!amount) {
+        if (!amount || dataRangesTc.length === 0) {
             return dataRangesTc[0] ?? null;
         }
 
         for (const data of dataRangesTc) {
             const tc = typeOperation === 'compra' ? data.tc_compra : data.tc_venta;
+            if (!tc || tc === 0) continue;
             const amountUsd = Number((amount / tc).toFixed(2));
 
             // Usar desde/hasta para evaluar rangos
@@ -296,29 +323,43 @@ class CambiaFXService {
             if (amountUsd >= from && amountUsd < to) return data;
         }
 
-        return dataRangesTc[dataRangesTc.length - 1] ?? null;
+        // Si el monto en USD supera el límite del último rango, aplicar el último rango
+        const lastRange = dataRangesTc[dataRangesTc.length - 1];
+        const lastTc = typeOperation === 'compra' ? lastRange.tc_compra : lastRange.tc_venta;
+        if (lastTc > 0) {
+            const amountUsdLast = Number((amount / lastTc).toFixed(2));
+            if (amountUsdLast >= (lastRange.hasta || lastRange.to || 0)) {
+                return lastRange;
+            }
+        }
+
+        // Si es menor al primer rango (ej. < 500 USD), no aplica rango
+        return null;
     }
 
     // 🔹 Para montos en Dólares: getTcRangeUSD (según documentación CambiaFX)
     getTcRangeUSD(dataRangesTc = [], amount = 0) {
-        let objTC = null;
-
-        if (amount) {
-            for (const obj of dataRangesTc) {
-                const from = obj.desde || obj.from || 0;
-                const to = obj.hasta || obj.to || 0;
-                
-                if (from <= amount && amount < to) {
-                    objTC = obj;
-                    break; // Salir del loop
-                }
-            }
-            objTC = objTC ?? (dataRangesTc[dataRangesTc.length - 1] ?? null);
-        } else {
-            objTC = dataRangesTc[0] ?? null;
+        if (!amount || dataRangesTc.length === 0) {
+            return dataRangesTc[0] ?? null;
         }
 
-        return objTC;
+        for (const obj of dataRangesTc) {
+            const from = obj.desde || obj.from || 0;
+            const to = obj.hasta || obj.to || 0;
+            
+            if (from <= amount && amount < to) {
+                return obj;
+            }
+        }
+
+        // Si el monto supera el límite del último rango, aplicar el último rango
+        const lastRange = dataRangesTc[dataRangesTc.length - 1];
+        if (amount >= (lastRange.hasta || lastRange.to || 0)) {
+            return lastRange;
+        }
+
+        // Si el monto es menor al primer rango, no aplica rango
+        return null;
     }
 
     getCurrentRates() {
