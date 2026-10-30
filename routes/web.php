@@ -261,6 +261,7 @@ Route::middleware(['can:Admin', 'auth'])->prefix('admin')->group(function () {
     Route::get('/core_values', [AdminCoreValueController::class, 'reactView'])->name('Admin/CoreValues.jsx');
     Route::post('/generals/sitemap', [AdminGeneralController::class, 'generateSitemap'])->name('Admin/Generals/Sitemap');
     Route::post('/generals/robot', [AdminGeneralController::class, 'generateRobots'])->name('Admin/Generals/Robot');
+    Route::post('/generals/llms', [AdminGeneralController::class, 'generateLlms'])->name('Admin/Generals/Llms');
     Route::get('/generals', [AdminGeneralController::class, 'reactView'])->name('Admin/Generals.jsx');
     Route::get('/users', [AdminUserController::class, 'reactView'])->name('Admin/Users.jsx');
 
@@ -268,6 +269,9 @@ Route::middleware(['can:Admin', 'auth'])->prefix('admin')->group(function () {
     Route::get('/account', [AdminAccountController::class, 'reactView'])->name('Admin/Account.jsx');
 });
 
+// Rutas estándar para LLMs y Agentes de Inteligencia Artificial (https://llmstxt.org)
+Route::get('/llms.txt', [AdminGeneralController::class, 'serveLlmsTxt'])->name('llms.txt');
+Route::get('/llms-full.txt', [AdminGeneralController::class, 'serveLlmsFullTxt'])->name('llms-full.txt');
 
 Route::get('/mailing/new-formula', fn() => view('mailing.new-formula'));
 

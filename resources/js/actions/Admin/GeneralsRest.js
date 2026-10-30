@@ -71,6 +71,40 @@ class GeneralsRest extends BasicRest {
             return false;
         }
     }
+
+    generateLlms = async () => {
+        try {
+            const { status, result } = await Fetch(`/admin/generals/llms`, {
+                method: "POST",
+                headers: {
+                    "X-Xsrf-Token": decodeURIComponent(Cookies.get("XSRF-TOKEN")),
+                },
+            });
+
+            if (!status)
+                throw new Error(result?.message || "Ocurrió un error inesperado al generar los archivos LLMS");
+
+            if (this.enableNotifications) {
+                Notify.add({
+                    icon: "/assets/img/icon.png",
+                    title: "Correcto",
+                    body: "Archivos /llms.txt y /llms-full.txt generados exitosamente",
+                    type: "success",
+                });
+            }
+            return true;
+        } catch (error) {
+            if (this.enableNotifications) {
+                Notify.add({
+                    icon: "/assets/img/icon.png",
+                    title: "Error",
+                    body: error.message,
+                    type: "danger",
+                });
+            }
+            return false;
+        }
+    }
 }
 
 export default GeneralsRest;

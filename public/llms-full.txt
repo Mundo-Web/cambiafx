@@ -1,0 +1,90 @@
+# Cambia FX - Casa de Cambio Online en Perú
+
+> Casa de cambio online registrada y supervisada por la SBS para cambio de dólares y soles en Perú con transferencias directas e interbancarias en minutos.
+
+Cambia FX (marca registrada de Tu Cambio S.A.C., RUC 20603864957) es una plataforma digital de cambio de divisas (USD / PEN) en el Perú, diseñada para personas naturales y empresas que buscan cotizaciones preferenciales en tiempo real, seguridad bancaria y rapidez en sus transferencias.
+
+## Tipo de Cambio Hoy en Tiempo Real (USD / PEN)
+
+> Cotización preferencial para cambio de dólares americanos (USD) y soles peruanos (PEN) en línea:
+
+- Compra (Cambia tus dólares a soles): S/ 3.4510
+- Venta (Compra dólares con soles): S/ 3.4760
+- Moneda: Dólar estadounidense (USD) / Sol peruano (PEN)
+- Última actualización: 30/10/2026 21:47 (Hora de Perú - GMT-5)
+- Cotizador en vivo y reserva de tipo de cambio por 15 minutos: http://localhost:8006/tipo-de-cambio-hoy
+- Operaciones mayores a $1,000 USD cuentan con tipo de cambio preferencial con mejoras automáticas por volumen.
+
+## Información Oficial y Regulatoria
+
+Razón Social: TU CAMBIO S.A.C.
+Nombre Comercial: Cambia FX
+RUC: 20603864957
+Partida Electrónica SUNARP: N° 14190692 (Registro de Personas Jurídicas de Lima)
+Registro SBS: Resolución SBS N° 04993-2018 (Casa de Cambio Online Regulada)
+Supervisión: Superintendencia de Banca, Seguros y AFP (SBS) y Unidad de Inteligencia Financiera (UIF)
+Domicilio Fiscal y Oficinas: Av. Javier Prado Este N° 560, Oficina 2302, San Isidro, Lima - Perú
+
+## Bancos y Horarios de Atención
+
+Bancos con transferencias inmediatas: BCP, Interbank.
+Bancos con transferencias interbancarias (CCE): BBVA, Scotiabank, BanBif, Banco Pichincha.
+Horario de atención: Lunes a Viernes de 8:30 AM a 6:30 PM | Sábados de 9:00 AM a 2:00 PM.
+Tiempos promedio: Inmediatas (10 a 20 minutos), Interbancarias (según horarios de cámara CCE).
+
+## Cómo Funciona el Cambio de Divisas
+
+1. Cotiza tu cambio en cambiafx.pe con el tipo de cambio preferencial en tiempo real.
+2. Transfiere el monto acordado a la cuenta bancaria de Cambia FX indicada.
+3. Adjunta o confirma el comprobante de transferencia en la plataforma.
+4. Recibe tus fondos cambiados directamente en tu cuenta bancaria destino en minutos.
+
+## Enlaces Clave y Recursos
+
+- [Tipo de Cambio Hoy](https://cambiafx.pe/tipo-de-cambio-hoy): Cotización oficial en tiempo real para compra y venta de dólares en Perú.
+- [Cotizador y Simulador Online](https://cambiafx.pe/): Herramienta web para simular operaciones de cambio de dólares a soles o viceversa.
+- [Términos y Condiciones](https://cambiafx.pe/legal/terminos-y-condiciones): Contrato de uso de la plataforma, condiciones legales y operativas del servicio.
+- [Políticas de Privacidad](https://cambiafx.pe/legal/politicas-de-privacidad): Tratamiento de datos personales conforme a la Ley N° 29733 y registro ante la Autoridad Nacional de Protección de Datos.
+- [Blog Financiero](https://cambiafx.pe/blog): Artículos y análisis de tendencias económicas, tipo de cambio e inflación.
+- [Preguntas Frecuentes](https://cambiafx.pe/preguntas-frecuentes): Respuestas sobre seguridad, límites, transferencias y tiempos de espera.
+
+## Documentación Completa para Modelos de IA
+
+- [Contexto Completo y Extendido](http://localhost:8006/llms-full.txt): Información exhaustiva, políticas de cumplimiento PLAFT/UIF, límites y detalles para razonamiento avanzado de modelos de IA.
+
+---
+
+## Seguridad y Cumplimiento Normativo (SPLAFT / UIF)
+- **Supervisión SBS y UIF:** Cambia FX opera bajo el amparo de la Resolución SBS N° 04993-2018 y aplica estrictas políticas del Sistema de Prevención del Lavado de Activos y Financiamiento del Terrorismo (SPLAFT).
+- **Protección de Datos Personales (Ley N° 29733):** Toda información recolectada se almacena en el banco de datos 'Usuarios Web' registrado ante la Autoridad Nacional de Protección de Datos Personales, con cifrado bancario y un período de retención legal de 5 años.
+- **Comprobantes Electrónicos SUNAT:** Toda transacción cambiaria emite automáticamente su Boleta o Factura Electrónica con validez tributaria ante SUNAT.
+- **Canales Oficiales Exclusivos:** Las transacciones se realizan 100% mediante transferencias bancarias a cuentas corporativas de Tu Cambio S.A.C. Cambia FX nunca solicita claves bancarias, tokens ni retiros en efectivo.
+
+## Preguntas Frecuentes para Asistentes y Modelos de IA
+- ¿Es seguro cambiar en Cambia FX?: Sí, está formalmente registrada ante la SBS (Res. 04993-2018), inscrita en SUNARP (Partida N° 14190692) y opera con cuentas en BCP, Interbank y BBVA.
+- ¿Hay montos mínimos de cambio?: El monto mínimo recomendado es desde $10 USD o su equivalente en Soles.
+- ¿Cómo se garantiza el tipo de cambio?: Al congelar la cotización en la web, el usuario cuenta con 15 minutos de reserva para realizar su transferencia.
+- ¿Se atiende a empresas?: Sí, personas jurídicas pueden cambiar con facturación electrónica deducible de impuestos.
+
+## Canales Oficiales de Verificación
+- Sitio Web Principal: https://cambiafx.pe
+- Plataforma Transaccional: https://mi.cambiafx.pe
+- Términos y Condiciones: https://cambiafx.pe/legal/terminos-y-condiciones
+- Políticas de Privacidad: https://cambiafx.pe/legal/politicas-de-privacidad
+- Domicilio: Av. Javier Prado Este N° 560, Oficina 2302, San Isidro, Lima - Perú
+- Soporte Oficial WhatsApp: +51 987 654 321
+- Correo Oficial: contacto@cambiafx.pe
+
+## Artículos Recientes del Blog de Finanzas y Divisas
+
+- [otro post](http://localhost:8006/blog/otro-post): fdfdfdf dfd fdf
+- [trtr rtrtrtrt](http://localhost:8006/blog/trtr-rtrtrtrt): gfggfgfg
+- [otro post exlucisvo para testingf](http://localhost:8006/blog/otro-post-exlucisvo-para-testingf): test gcomp edi lsfli  adad dffdf
+- [otro post de test para especulaciones](http://localhost:8006/blog/otro-post-de-test-para-especulaciones): rddfdf dfd  dfd
+- [nuevo post a publicar test](http://localhost:8006/blog/nuevo-post-a-publicar-test): lorem ipsum mseage imcoplete test real
+- [dfdfdf](http://localhost:8006/blog/dfdfdf): dfdfdf dfd fd  dfd fdfdfdfdfd
+- [fgfgfgfgfgfgf](http://localhost:8006/blog/fgfgfgfgfgfgf): fgfgfdg d dfgd gdf fdgfd dg d
+- [Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae](http://localhost:8006/blog/vestibulum-ante-ipsum-primis-in-faucibus-orci-luctus-et-ultrices-posuere-cubilia-curae-919ecf3f): Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam ut urna vehicula lacus elementum interdum. Phasellus at consequat elit, non congue mi. In sit amet lobortis lacus. Donec porttitor lacus ac ante vulputate tincidunt. Integer at dictum urna. Quisque at magna ultricies, ornare velit eget, efficitur metus. Nam porttitor erat neque, ut ullamcorper lectus varius et. Curabitur et tempus nisi, nec scelerisque tortor. Suspendisse maximus nunc libero, sit amet accumsan felis vulputate at. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae;Sed nec massa tempor ante elementum hendrerit. Praesent suscipit placerat nisi rutrum porta. Curabitur sed venenatis lorem, eu vulputate nisi. Integer ornare aliquet justo. Cras viverra tincidunt quam tincidunt ultrices. Mauris non tempus turpis. Curabitur laoreet neque at est tempor, at semper tellus venenatis. Vestibulum ullamcorper nulla et consectetur feugiat. Vestibulum posuere metus et nulla cursus ullamcorper. Nullam sed orci sed eros gravida aliquam nec id lorem.Duis tincidunt auctor semper. Suspendisse venenatis justo vel nunc congue, sed pellentesque massa pretium. Quisque nec elit tristique, blandit ligula tincidunt, tristique massa. Duis enim nisi, volutpat quis tortor in, gravida euismod purus. Donec malesuada sapien vel leo fringilla aliquam. Morbi vel ex nunc. Nulla justo dolor, varius sed tempus eget, dapibus id orci.
+- [Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae](http://localhost:8006/blog/vestibulum-ante-ipsum-primis-in-faucibus-orci-luctus-et-ultrices-posuere-cubilia-curae): Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam ut urna vehicula lacus elementum interdum. Phasellus at consequat elit, non congue mi. In sit amet lobortis lacus. Donec porttitor lacus ac ante vulputate tincidunt. Integer at dictum urna. Quisque at magna ultricies, ornare velit eget, efficitur metus. Nam porttitor erat neque, ut ullamcorper lectus varius et. Curabitur et tempus nisi, nec scelerisque tortor. Suspendisse maximus nunc libero, sit amet accumsan felis vulputate at. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae;Sed nec massa tempor ante elementum hendrerit. Praesent suscipit placerat nisi rutrum porta. Curabitur sed venenatis lorem, eu vulputate nisi. Integer ornare aliquet justo. Cras viverra tincidunt quam tincidunt ultrices. Mauris non tempus turpis. Curabitur laoreet neque at est tempor, at semper tellus venenatis. Vestibulum ullamcorper nulla et consectetur feugiat. Vestibulum posuere metus et nulla cursus ullamcorper. Nullam sed orci sed eros gravida aliquam nec id lorem.Duis tincidunt auctor semper. Suspendisse venenatis justo vel nunc congue, sed pellentesque massa pretium. Quisque nec elit tristique, blandit ligula tincidunt, tristique massa. Duis enim nisi, volutpat quis tortor in, gravida euismod purus. Donec malesuada sapien vel leo fringilla aliquam. Morbi vel ex nunc. Nulla justo dolor, varius sed tempus eget, dapibus id orci.
+- [Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam ut urna vehicula lacus elementum interdum. Phasellus at consequat elit, non congue mi.](http://localhost:8006/blog/lorem-ipsum-dolor-sit-amet-consectetur-adipiscing-elit-aliquam-ut-urna-vehicula-lacus-elementum-interdum-phasellus-at-consequat-elit-non-congue-mi): Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam ut urna vehicula lacus elementum interdum. Phasellus at consequat elit, non congue mi. In sit amet lobortis lacus. Donec porttitor lacus ac ante vulputate tincidunt. Integer at dictum urna. Quisque at magna ultricies, ornare velit eget, efficitur metus. Nam porttitor erat neque, ut ullamcorper lectus varius et. Curabitur et tempus nisi, nec scelerisque tortor. Suspendisse maximus nunc libero, sit amet accumsan felis vulputate at. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae;Sed nec massa tempor ante elementum hendrerit. Praesent suscipit placerat nisi rutrum porta. Curabitur sed venenatis lorem, eu vulputate nisi. Integer ornare aliquet justo. Cras viverra tincidunt quam tincidunt ultrices. Mauris non tempus turpis. Curabitur laoreet neque at est tempor, at semper tellus venenatis. Vestibulum ullamcorper nulla et consectetur feugiat. Vestibulum posuere metus et nulla cursus ullamcorper. Nullam sed orci sed eros gravida aliquam nec id lorem.Duis tincidunt auctor semper. Suspendisse venenatis justo vel nunc congue, sed pellentesque massa pretium. Quisque nec elit tristique, blandit ligula tincidunt, tristique massa. Duis enim nisi, volutpat quis tortor in, gravida euismod purus. Donec malesuada sapien vel leo fringilla aliquam. Morbi vel ex nunc. Nulla justo dolor, varius sed tempus eget, dapibus id orci.kijjkjkjhghghghghghghghghjhjhjhjhj
+

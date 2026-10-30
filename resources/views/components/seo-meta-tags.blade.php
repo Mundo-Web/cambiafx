@@ -9,18 +9,24 @@
     $basicMeta = App\Helpers\SeoHelper::getBasicMetaTags($title ?? null, $description ?? null, $keywords ?? null);
     $openGraphTags = App\Helpers\SeoHelper::getOpenGraphTags($ogTitle ?? $title ?? null, $ogDescription ?? $description ?? null, $image ?? null, $url ?? null);
     $twitterCardTags = App\Helpers\SeoHelper::getTwitterCardTags($ogTitle ?? $title ?? null, $ogDescription ?? $description ?? null, $image ?? null);
-    $jsonLD = App\Helpers\SeoHelper::getJsonLD($schemaType ?? 'Organization');
-    $faqSchema = isset($faqs) ? App\Helpers\SeoHelper::getFaqSchema($faqs) : null;
-    $breadcrumbSchema = isset($breadcrumbs) ? App\Helpers\SeoHelper::getBreadcrumbSchema($breadcrumbs) : null;
-    $newsArticleSchema = isset($article) ? App\Helpers\SeoHelper::getNewsArticleSchema($article) : null;
-    $financialServiceSchema = isset($financialService) ? App\Helpers\SeoHelper::getFinancialServiceSchema($financialService) : null;
+
+    // Estandarización de Canonical a sin-www (Requerimiento A2)
+    $canonicalUrl = $url ?? url()->current();
+    $canonicalUrl = str_replace('://www.cambiafx.pe', '://cambiafx.pe', $canonicalUrl);
+
+    // Esquemas JSON-LD (Requerimiento A4 para Google y modelos de IA)
+    $jsonLD = App\Helpers\SeoHelper::getJsonLD(); // Organization + FinancialService unificado en todas las páginas
+    $webSiteSchema = request()->is('/') ? App\Helpers\SeoHelper::getWebSiteSchema() : null; // WebSite con SearchAction en Home
+    $faqSchema = App\Helpers\SeoHelper::getFaqSchema($faqs ?? null); // FAQPage en landings
+    $articleSchema = isset($article) ? App\Helpers\SeoHelper::getNewsArticleSchema($article) : null; // Article en posts
+    $breadcrumbSchema = App\Helpers\SeoHelper::getBreadcrumbSchema($breadcrumbs ?? null); // BreadcrumbList en landings y posts
 @endphp
 
 <!-- SEO Meta Tags -->
 <title>{{ $basicMeta['title'] }}</title>
 <meta name="description" content="{{ $basicMeta['description'] }}" />
 <meta name="keywords" content="{{ $basicMeta['keywords'] }}" />
-<meta name="author" content="{{ $seoData['company_name'] ?? 'CambiaFX' }}" />
+<meta name="author" content="{{ $seoData['company_name'] ?? 'Cambia FX' }}" />
 <meta name="robots" content="index, follow" />
 
 <!-- Open Graph Meta Tags para redes sociales -->
@@ -37,90 +43,41 @@
     @endif
 @endforeach
 
-<!-- Canonical URL -->
-<link rel="canonical" href="{{ $url ?? url()->current() }}" />
+<!-- Canonical URL Consolidado (sin www) -->
+<link rel="canonical" href="{{ $canonicalUrl }}" />
 
-<!-- Schema.org JSON-LD -->
+<!-- 1. Schema.org JSON-LD: Organization + FinancialService (En todas las páginas) -->
 @if(!empty($jsonLD))
 <script type="application/ld+json">
     {!! json_encode($jsonLD, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT) !!}
 </script>
 @endif
 
-<!-- FAQ Schema.org JSON-LD -->
-@if(request()->is('cambio-de-dolar'))
+<!-- 2. Schema.org JSON-LD: WebSite con SearchAction (En Home) -->
+@if(!empty($webSiteSchema))
 <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "¿Cómo cambiar dólares por soles online en Perú?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Regístrate gratis en Cambia FX, cotiza el tipo de cambio del día, transfiere desde tu banco y recibe el abono en minutos."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "¿Cuál es el tipo de cambio de dólar hoy?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "El tipo de cambio se actualiza en tiempo real en esta página y en nuestra app, según el mercado."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "¿Es seguro cambiar dólares online en Cambia FX?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Sí, estamos registrados en la SBS (Resolución 04993-2018) y operamos dentro del sistema financiero peruano."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "¿Cuánto puedo ahorrar al cambiar dólares con Cambia FX frente a un banco?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Por cada US$1,000 puedes ahorrar hasta S/88 frente a los principales bancos del Perú."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "¿Cuánto demora el cambio de dólares?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Una vez recibida tu transferencia, el abono se realiza en minutos dentro del horario de atención."
-      }
-    }
-  ]
-}
+    {!! json_encode($webSiteSchema, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT) !!}
 </script>
-@elseif(!empty($faqSchema))
+@endif
+
+<!-- 3. Schema.org JSON-LD: FAQPage (En Landings SEO) -->
+@if(!empty($faqSchema))
 <script type="application/ld+json">
     {!! json_encode($faqSchema, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT) !!}
 </script>
 @endif
 
-<!-- Breadcrumb Schema.org JSON-LD -->
+<!-- 4. Schema.org JSON-LD: Article (En Posts del Blog) -->
+@if(!empty($articleSchema))
+<script type="application/ld+json">
+    {!! json_encode($articleSchema, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT) !!}
+</script>
+@endif
+
+<!-- 5. Schema.org JSON-LD: BreadcrumbList (En Landings y Posts) -->
 @if(!empty($breadcrumbSchema))
 <script type="application/ld+json">
     {!! json_encode($breadcrumbSchema, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT) !!}
-</script>
-@endif
-
-<!-- NewsArticle Schema.org JSON-LD -->
-@if(!empty($newsArticleSchema))
-<script type="application/ld+json">
-    {!! json_encode($newsArticleSchema, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT) !!}
-</script>
-@endif
-
-<!-- FinancialService Schema.org JSON-LD -->
-@if(!empty($financialServiceSchema))
-<script type="application/ld+json">
-    {!! json_encode($financialServiceSchema, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT) !!}
 </script>
 @endif
 

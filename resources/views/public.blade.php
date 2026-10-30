@@ -16,9 +16,8 @@ $isHome = $component === 'Home.jsx';
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preconnect" href="https://flagcdn.com">
     <link rel="preconnect" href="https://apiluna.cambiafx.pe">
-    <link rel="preconnect" href="https://translate-pa.googleapis.com">
-    <link rel="preload" as="font" type="font/woff2" href="/build/GeneralSans-Semibold.woff2" crossorigin>
-    <link rel="preload" as="font" type="font/woff2" href="/build/GeneralSans-Regular.woff2" crossorigin>
+    <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/general-sans/GeneralSans-Semibold.woff2" crossorigin>
+    <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/general-sans/GeneralSans-Regular.woff2" crossorigin>
 
     <!-- SEO Meta Tags -->
     @include('components.seo-meta-tags', [
@@ -83,8 +82,6 @@ $isHome = $component === 'Home.jsx';
     @vite(['resources/css/app.css', 'resources/js/' . $page['component'] . '.jsx'])
     @inertiaHead
 
-    <link href="/lte/assets/libs/quill/quill.snow.css" rel="stylesheet" type="text/css" media="print" onload="this.media='all'" />
-    <link href="/lte/assets/libs/quill/quill.bubble.css" rel="stylesheet" type="text/css" media="print" onload="this.media='all'" />
     <style>
         .ql-editor blockquote {
             border-left: 4px solid #f8b62c;
@@ -167,18 +164,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </script>
 
     <script>
-        window.loadGoogleTranslate = function() {
-            if (typeof google === 'undefined' || !google.translate) {
-                return;
-            }
-
-            new google.translate.TranslateElement({
-                pageLanguage: 'es',
-                includedLanguages: 'es,en',
-                autoDisplay: false
-            }, 'google_translate_element');
-        };
-
         (function() {
             const schedule = (callback, timeout = 4000) => {
                 if ('requestIdleCallback' in window) {
@@ -188,14 +173,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 }
             };
 
-            schedule(() => {
-                const translateScript = document.createElement('script');
-                translateScript.src = 'https://translate.google.com/translate_a/element.js?cb=loadGoogleTranslate';
-                translateScript.async = true;
-                translateScript.defer = true;
-                document.body.appendChild(translateScript);
-            });
-
+            // Meta Pixel (Diferido a baja prioridad para evitar saturación de hilo principal)
             schedule(() => {
                 if (window.fbq) {
                     window.fbq('track', 'PageView');
@@ -219,10 +197,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                     s.parentNode.insertBefore(t, s);
                 }(window, document, 'script', 'https://connect.facebook.net/en_US/fbevents.js');
 
-                // window.fbq('init', '1098274404490481');
+                window.fbq('init', '1098274404490481');
                 window.fbq('track', 'PageView');
-            }, 1500);
+            }, 2000);
 
+            // Chat de Soporte Tawk.to (Carga diferida)
             schedule(() => {
                 window.Tawk_API = window.Tawk_API || {};
                 window.Tawk_LoadStart = new Date();
@@ -233,7 +212,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 tawkScript.charset = 'UTF-8';
                 tawkScript.setAttribute('crossorigin', '*');
                 document.body.appendChild(tawkScript);
-            }, 2500);
+            }, 3500);
         })();
     </script>
 

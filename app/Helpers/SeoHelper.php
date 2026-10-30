@@ -128,35 +128,116 @@ class SeoHelper
     }
 
     /**
-     * Genera el JSON-LD para Schema.org (Solo Organización por defecto)
+     * Genera el JSON-LD unificado para Organization + FinancialService en todas las páginas
+     * Cumpliendo con el requerimiento del ticket A4 para Google y modelos de IA.
      */
     public static function getJsonLD()
     {
         $seoData = self::getSeoData();
         $logo = $seoData['company_logo'] ?? $seoData['og_image_default'] ?? '/assets/img/icon-192x192.png';
-        
+        $logoUrl = str_starts_with($logo, 'http') ? $logo : url($logo);
+        $baseUrl = rtrim(url('/'), '/');
+
+        // Redes sociales oficiales (misma entidad)
+        $socials = \App\Models\Social::where('visible', true)->pluck('link')->toArray();
+        $defaultSocials = [
+            $seoData['facebook_page'] ?? 'https://www.facebook.com/cambiafx',
+            $seoData['instagram_profile'] ?? 'https://www.instagram.com/cambiafx',
+            $seoData['linkedin_profile'] ?? 'https://www.linkedin.com/company/cambiafx',
+            $seoData['twitter_site'] ?? 'https://twitter.com/cambiafx'
+        ];
+        $sameAs = array_values(array_unique(array_filter(array_merge($socials, $defaultSocials))));
+
         return [
             '@context' => 'https://schema.org',
-            '@type' => 'Organization',
+            '@type' => ['Organization', 'FinancialService'],
+            '@id' => "{$baseUrl}/#organization",
             'name' => $seoData['company_name'] ?? 'Cambia FX',
-            'description' => $seoData['company_description'] ?? $seoData['seo_description'] ?? 'Casa de cambio online con las mejores tasas de cambio',
-            'url' => $seoData['company_url'] ?? url('/'),
-            'logo' => str_starts_with($logo, 'http') ? $logo : url($logo),
+            'legalName' => 'TU CAMBIO S.A.C.',
+            'alternateName' => ['CambiaFX', 'Cambia FX Perú'],
+            'description' => $seoData['company_description'] ?? $seoData['seo_description'] ?? 'Casa de cambio online registrada en la SBS para cambio de dólares y soles en Perú con transferencias directas e interbancarias en minutos.',
+            'url' => $baseUrl,
+            'logo' => $logoUrl,
+            'image' => $logoUrl,
             'telephone' => $seoData['company_phone'] ?? '+51 922 985 423',
-            'email' => $seoData['company_email'] ?? 'hola@cambiafx.pe',
+            'email' => $seoData['company_email'] ?? 'contacto@cambiafx.pe',
+            'taxID' => '20603864957',
+            'vatID' => '20603864957',
+            'currenciesAccepted' => 'USD, PEN',
+            'paymentAccepted' => 'Bank Transfer',
+            'priceRange' => '$$',
+            'serviceType' => 'Currency Exchange',
+            'areaServed' => [
+                '@type' => 'Country',
+                'name' => 'Perú'
+            ],
             'address' => [
                 '@type' => 'PostalAddress',
-                'streetAddress' => $seoData['company_address'] ?? 'Av. Javier Prado Este N.560 Of. 2302',
+                'streetAddress' => $seoData['company_address'] ?? 'Av. Javier Prado Este N° 560, Oficina 2302',
                 'addressLocality' => $seoData['company_locality'] ?? 'San Isidro',
                 'addressRegion' => $seoData['company_region'] ?? 'Lima',
-                'addressCountry' => $seoData['company_country'] ?? 'PE'
+                'postalCode' => '15046',
+                'addressCountry' => 'PE'
             ],
-            'sameAs' => \App\Models\Social::where('visible', true)->pluck('link')->toArray()
+            'geo' => [
+                '@type' => 'GeoCoordinates',
+                'latitude' => -12.097029,
+                'longitude' => -77.037251
+            ],
+            'openingHoursSpecification' => [
+                [
+                    '@type' => 'OpeningHoursSpecification',
+                    'dayOfWeek' => ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+                    'opens' => '08:30',
+                    'closes' => '18:30'
+                ],
+                [
+                    '@type' => 'OpeningHoursSpecification',
+                    'dayOfWeek' => ['Saturday'],
+                    'opens' => '09:00',
+                    'closes' => '14:00'
+                ]
+            ],
+            'hasCredential' => [
+                [
+                    '@type' => 'EducationalOccupationalCredential',
+                    'credentialCategory' => 'Registro Oficial SBS',
+                    'name' => 'Resolución SBS N° 04993-2018 (Casa de Cambio Online Regulada)',
+                    'recognizedBy' => [
+                        '@type' => 'Organization',
+                        'name' => 'Superintendencia de Banca, Seguros y AFP (SBS)'
+                    ]
+                ]
+            ],
+            'sameAs' => $sameAs
         ];
     }
 
     /**
-     * Genera el JSON-LD para NewsArticle
+     * Genera el JSON-LD para WebSite con SearchAction en la Home
+     */
+    public static function getWebSiteSchema()
+    {
+        $baseUrl = rtrim(url('/'), '/');
+        return [
+            '@context' => 'https://schema.org',
+            '@type' => 'WebSite',
+            '@id' => "{$baseUrl}/#website",
+            'name' => 'Cambia FX',
+            'url' => $baseUrl,
+            'potentialAction' => [
+                '@type' => 'SearchAction',
+                'target' => [
+                    '@type' => 'EntryPoint',
+                    'urlTemplate' => "{$baseUrl}/blog?search={search_term_string}"
+                ],
+                'query-input' => 'required name=search_term_string'
+            ]
+        ];
+    }
+
+    /**
+     * Genera el JSON-LD para Article / BlogPosting con autor y fecha
      */
     public static function getNewsArticleSchema($article)
     {
@@ -166,71 +247,87 @@ class SeoHelper
 
         $seoData = self::getSeoData();
         $logo = $seoData['company_logo'] ?? $seoData['og_image_default'] ?? '/assets/img/icon-192x192.png';
+        $baseUrl = rtrim(url('/'), '/');
 
         $name = $article->name ?? $article['name'] ?? '';
+        $slug = $article->slug ?? $article['slug'] ?? '';
         $image = $article->image ?? $article['image'] ?? '';
-        $postDate = $article->post_date ?? $article['post_date'] ?? null;
-        $createdAt = $article->created_at ?? $article['created_at'] ?? null;
-        $updatedAt = $article->updated_at ?? $article['updated_at'] ?? null;
-        $description = $article->description ?? $article['description'] ?? '';
+        $postDate = $article->post_date ?? $article['post_date'] ?? $article->created_at ?? $article['created_at'] ?? now();
+        $updatedAt = $article->updated_at ?? $article['updated_at'] ?? $postDate;
+        $description = $article->summary ?? $article['summary'] ?? $article->description ?? $article['description'] ?? '';
 
-        $authorName = ($article->author ?? $article['author'] ?? null) ?: 'Equipo Cambia FX';
+        $authorName = ($article->author ?? $article['author'] ?? null) ?: 'Equipo de Análisis Financiero Cambia FX';
         $authorType = ($article->author_type ?? $article['author_type'] ?? null) ?: 'Organization';
+
+        // Fechas en formato ISO 8601 exigido por Google
+        $datePublished = is_string($postDate) ? date('c', strtotime($postDate)) : (method_exists($postDate, 'toIso8601String') ? $postDate->toIso8601String() : date('c'));
+        $dateModified = is_string($updatedAt) ? date('c', strtotime($updatedAt)) : (method_exists($updatedAt, 'toIso8601String') ? $updatedAt->toIso8601String() : $datePublished);
+
+        $imageUrl = !empty($image) ? (str_starts_with($image, 'http') ? $image : url("/api/posts/media/{$image}")) : url($logo);
 
         return [
             '@context' => 'https://schema.org',
-            '@type' => 'NewsArticle',
-            'headline' => $name,
-            'image' => [
-                str_starts_with($image, 'http') ? $image : url("/api/posts/media/{$image}")
+            '@type' => 'Article',
+            'mainEntityOfPage' => [
+                '@type' => 'WebPage',
+                '@id' => "{$baseUrl}/blog/{$slug}"
             ],
-            'datePublished' => $postDate ?? $createdAt,
-            'dateModified' => $updatedAt ?? $postDate ?? $createdAt,
+            'headline' => $name,
+            'description' => strip_tags($description),
+            'image' => [
+                $imageUrl
+            ],
+            'datePublished' => $datePublished,
+            'dateModified' => $dateModified,
             'author' => [
-                [
-                    '@type' => $authorType,
-                    'name' => $authorName,
-                    'url' => url('/')
-                ]
+                '@type' => $authorType,
+                'name' => $authorName,
+                'url' => $baseUrl
             ],
             'publisher' => [
                 '@type' => 'Organization',
-                'name' => $seoData['company_name'] ?? 'Cambia FX',
+                'name' => 'Cambia FX',
+                'legalName' => 'TU CAMBIO S.A.C.',
                 'logo' => [
                     '@type' => 'ImageObject',
                     'url' => str_starts_with($logo, 'http') ? $logo : url($logo)
                 ]
-            ],
-            'description' => strip_tags($description)
+            ]
         ];
     }
 
     /**
-     * Genera el JSON-LD para FAQPage
+     * Genera el JSON-LD para FAQPage en landings
      */
     public static function getFaqSchema($faqs = [])
     {
-        if (empty($faqs)) {
-            return null;
+        $questions = [];
+
+        // Si se pasan FAQs en props
+        if (!empty($faqs)) {
+            foreach ($faqs as $faq) {
+                $question = $faq['question'] ?? $faq['name'] ?? $faq->question ?? $faq->name ?? '';
+                $answer = $faq['answer'] ?? $faq['description'] ?? $faq->answer ?? $faq->description ?? '';
+
+                if (empty($question) || empty($answer)) continue;
+
+                $questions[] = [
+                    '@type' => 'Question',
+                    'name' => trim(strip_tags($question)),
+                    'acceptedAnswer' => [
+                        '@type' => 'Answer',
+                        'text' => trim(strip_tags($answer))
+                    ]
+                ];
+            }
         }
 
-        $questions = [];
-        foreach ($faqs as $faq) {
-            // Soporte para estructura de landing transactional (question/answer) 
-            // y estructura de tabla faqs (name/description)
-            $question = $faq['question'] ?? $faq['name'] ?? $faq->question ?? $faq->name ?? '';
-            $answer = $faq['answer'] ?? $faq['description'] ?? $faq->answer ?? $faq->description ?? '';
-
-            if (empty($question) || empty($answer)) continue;
-
-            $questions[] = [
-                '@type' => 'Question',
-                'name' => $question,
-                'acceptedAnswer' => [
-                    '@type' => 'Answer',
-                    'text' => strip_tags($answer)
-                ]
-            ];
+        // Si no hay FAQs en props, buscar si corresponde a una de las landings conocidas
+        if (empty($questions)) {
+            $defaultFaqs = self::getLandingDefaultFaqs(request()->path());
+            if (!empty($defaultFaqs)) {
+                $questions = $defaultFaqs;
+            }
         }
 
         if (empty($questions)) return null;
@@ -243,24 +340,126 @@ class SeoHelper
     }
 
     /**
-     * Genera el JSON-LD para BreadcrumbList
+     * Preguntas frecuentes estándar para las landings SEO
+     */
+    public static function getLandingDefaultFaqs($path = '')
+    {
+        $path = trim($path, '/');
+
+        $faqsPorLanding = [
+            'tipo-de-cambio-hoy' => [
+                ['name' => '¿A cuánto está el tipo de cambio de compra y venta hoy en Perú?', 'text' => 'En Cambia FX el tipo de cambio del dólar se actualiza en tiempo real de lunes a sábado según las fluctuaciones de la cotización interbancaria.'],
+                ['name' => '¿Cómo congelar el tipo de cambio en Cambia FX?', 'text' => 'Al ingresar tu monto en el cotizador y hacer clic en cambiar, tu tipo de cambio queda reservado y congelado por 15 minutos.'],
+                ['name' => '¿Qué bancos tienen transferencias inmediatas?', 'text' => 'Contamos con transferencias inmediatas (10 a 20 minutos) con BCP e Interbank, y transferencias interbancarias CCE con BBVA, Scotiabank, BanBif y Pichincha.']
+            ],
+            'compra-y-venta-de-dolares' => [
+                ['name' => '¿Cómo comprar o vender dólares por internet en Perú?', 'text' => 'Solo debes registrarte en cambiafx.pe, cotizar el monto deseado, transferir desde tu banca móvil a las cuentas de Cambia FX y recibir tus fondos en minutos.'],
+                ['name' => '¿Es seguro comprar dólares online en Cambia FX?', 'text' => 'Sí, operamos formalmente registrados ante la Superintendencia de Banca, Seguros y AFP (SBS) mediante Resolución N° 04993-2018.'],
+                ['name' => '¿Emite comprobante de pago SUNAT?', 'text' => 'Sí, cada operación emite automáticamente Boleta o Factura electrónica con plena validez tributaria.']
+            ],
+            'cambio-de-dolar' => [
+                ['name' => '¿Cómo cambiar dólares por soles online en Perú?', 'text' => 'Regístrate gratis en Cambia FX, cotiza el tipo de cambio del día, transfiere desde tu banco y recibe el abono en minutos.'],
+                ['name' => '¿Cuál es el tipo de cambio de dólar hoy?', 'text' => 'El tipo de cambio se actualiza en tiempo real en nuestra plataforma según el mercado interbancario.'],
+                ['name' => '¿Cuánto puedo ahorrar al cambiar dólares en Cambia FX?', 'text' => 'Por cada US$ 1,000 puedes ahorrar significativamente frente a la tasa promedio de los bancos tradicionales.']
+            ],
+            'soles-a-dolares' => [
+                ['name' => '¿Puedo cambiar soles a dólares desde cualquier banco?', 'text' => 'Sí, aceptamos transferencias desde BCP, Interbank, BBVA, Scotiabank y cualquier entidad del sistema financiero nacional.'],
+                ['name' => '¿Hay comisión por cambiar soles a dólares?', 'text' => 'No cobramos ninguna comisión oculta; el monto que ves en la pantalla cotizada es exactamente lo que recibes en tu cuenta.']
+            ],
+            'casa-de-cambio-digital' => [
+                ['name' => '¿Qué ventajas ofrece una casa de cambio digital frente a una física?', 'text' => 'Mayor seguridad al no transportar dinero en efectivo en la calle, tipo de cambio preferencial más competitivo y atención rápida desde tu celular o computadora.'],
+                ['name' => '¿Cambia FX está supervisada por la SBS?', 'text' => 'Sí, Tu Cambio S.A.C. (Cambia FX) se encuentra debidamente inscrita en el Registro de Casas de Cambio de la SBS bajo Resolución N° 04993-2018.']
+            ]
+        ];
+
+        if (isset($faqsPorLanding[$path])) {
+            $result = [];
+            foreach ($faqsPorLanding[$path] as $item) {
+                $result[] = [
+                    '@type' => 'Question',
+                    'name' => $item['name'],
+                    'acceptedAnswer' => [
+                        '@type' => 'Answer',
+                        'text' => $item['text']
+                    ]
+                ];
+            }
+            return $result;
+        }
+
+        return [];
+    }
+
+    /**
+     * Genera el JSON-LD para BreadcrumbList (con auto-generación si no viene definido)
      */
     public static function getBreadcrumbSchema($items = [])
     {
-        if (empty($items)) {
-            return null;
-        }
-
+        $baseUrl = rtrim(url('/'), '/');
         $itemListElement = [];
-        foreach ($items as $index => $item) {
-            $name = $item['name'] ?? $item->name ?? '';
-            $url = $item['url'] ?? $item->url ?? '';
+
+        if (!empty($items)) {
+            foreach ($items as $index => $item) {
+                $name = $item['name'] ?? $item->name ?? '';
+                $url = $item['url'] ?? $item->url ?? '';
+                $itemListElement[] = [
+                    '@type' => 'ListItem',
+                    'position' => $index + 1,
+                    'name' => $name,
+                    'item' => str_starts_with($url, 'http') ? $url : url($url)
+                ];
+            }
+        } else {
+            // Auto-generación basada en la URL actual
+            $path = trim(request()->path(), '/');
+            if (empty($path)) {
+                return null; // La Home no necesita migas de pan
+            }
+
+            $nombresRutas = [
+                'blog' => 'Blog',
+                'tipo-de-cambio-hoy' => 'Tipo de Cambio Hoy',
+                'compra-y-venta-de-dolares' => 'Compra y Venta de Dólares',
+                'cambio-de-dolar' => 'Cambio de Dólar',
+                'soles-a-dolares' => 'Soles a Dólares',
+                'casa-de-cambio-digital' => 'Casa de Cambio Digital',
+                'sorteo-cambiafx' => 'Sorteo Cambia FX',
+                'nosotros' => 'Nosotros',
+                'contacto' => 'Contacto',
+                'legal/terminos-y-condiciones' => 'Términos y Condiciones',
+                'legal/politicas-de-privacidad' => 'Políticas de Privacidad'
+            ];
+
+            $currentName = $nombresRutas[$path] ?? ucwords(str_replace(['-', '/'], ' ', $path));
+
             $itemListElement[] = [
                 '@type' => 'ListItem',
-                'position' => $index + 1,
-                'name' => $name,
-                'item' => str_starts_with($url, 'http') ? $url : url($url)
+                'position' => 1,
+                'name' => 'Inicio',
+                'item' => $baseUrl
             ];
+
+            if (str_starts_with($path, 'blog/')) {
+                $itemListElement[] = [
+                    '@type' => 'ListItem',
+                    'position' => 2,
+                    'name' => 'Blog',
+                    'item' => "{$baseUrl}/blog"
+                ];
+                $itemListElement[] = [
+                    '@type' => 'ListItem',
+                    'position' => 3,
+                    'name' => $currentName,
+                    'item' => url()->current()
+                ];
+            } else {
+                $itemListElement[] = [
+                    '@type' => 'ListItem',
+                    'position' => 2,
+                    'name' => $currentName,
+                    'item' => url()->current()
+                ];
+            }
         }
 
         return [
@@ -275,34 +474,6 @@ class SeoHelper
      */
     public static function getFinancialServiceSchema($service)
     {
-        if (!$service) {
-            return null;
-        }
-
-        $seoData = self::getSeoData();
-        $logo = $seoData['company_logo'] ?? $seoData['og_image_default'] ?? '/assets/img/icon-192x192.png';
-
-        return [
-            '@context' => 'https://schema.org',
-            '@type' => 'FinancialService',
-            'name' => $service['name'] ?? '',
-            'description' => $service['description'] ?? '',
-            'url' => url()->current(),
-            'logo' => str_starts_with($logo, 'http') ? $logo : url($logo),
-            'telephone' => $seoData['company_phone'] ?? '+51 922 985 423',
-            'address' => [
-                '@type' => 'PostalAddress',
-                'streetAddress' => $seoData['company_address'] ?? '',
-                'addressLocality' => $seoData['company_locality'] ?? '',
-                'addressRegion' => $seoData['company_region'] ?? '',
-                'addressCountry' => $seoData['company_country'] ?? 'PE'
-            ],
-            'serviceType' => 'Currency Exchange',
-            'areaServed' => 'PE',
-            'provider' => [
-                '@type' => 'Organization',
-                'name' => $seoData['company_name'] ?? 'Cambia FX'
-            ]
-        ];
+        return self::getJsonLD();
     }
 }

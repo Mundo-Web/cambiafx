@@ -161,6 +161,33 @@ const Generals = ({ generals }) => {
         emailCoorporativo:
             generals.find((x) => x.correlative == "email_coorporativo")
                 ?.description ?? "",
+
+        // Configuración para LLMS.txt y LLMS-full.txt (Estándar IA)
+        llms_title:
+            generals.find((x) => x.correlative == "llms_title")?.description ??
+            "Cambia FX - Casa de Cambio Online en Perú",
+        llms_summary:
+            generals.find((x) => x.correlative == "llms_summary")?.description ??
+            "Casa de cambio online registrada y supervisada por la SBS para cambio de dólares y soles en Perú con transferencias directas e interbancarias en minutos.",
+        llms_description:
+            generals.find((x) => x.correlative == "llms_description")?.description ??
+            "Cambia FX (marca registrada de Tu Cambio S.A.C., RUC 20603864957) es una plataforma digital de cambio de divisas (USD / PEN) en el Perú, diseñada para personas naturales y empresas que buscan cotizaciones preferenciales en tiempo real, seguridad bancaria y rapidez en sus transferencias.",
+        llms_legal_info:
+            generals.find((x) => x.correlative == "llms_legal_info")?.description ??
+            "Razón Social: TU CAMBIO S.A.C.\nNombre Comercial: Cambia FX\nRUC: 20603864957\nPartida Electrónica SUNARP: N° 14190692 (Registro de Personas Jurídicas de Lima)\nRegistro SBS: Resolución SBS N° 04993-2018 (Casa de Cambio Online Regulada)\nSupervisión: Superintendencia de Banca, Seguros y AFP (SBS) y Unidad de Inteligencia Financiera (UIF)\nDomicilio Fiscal y Oficinas: Av. Javier Prado Este N° 560, Oficina 2302, San Isidro, Lima - Perú",
+        llms_banks_schedules:
+            generals.find((x) => x.correlative == "llms_banks_schedules")?.description ??
+            "Bancos con transferencias inmediatas: BCP, Interbank.\nBancos con transferencias interbancarias (CCE): BBVA, Scotiabank, BanBif, Banco Pichincha.\nHorario de atención: Lunes a Viernes de 8:30 AM a 6:30 PM | Sábados de 9:00 AM a 2:00 PM.\nTiempos promedio: Inmediatas (10 a 20 minutos), Interbancarias (según horarios de cámara CCE).",
+        llms_how_it_works:
+            generals.find((x) => x.correlative == "llms_how_it_works")?.description ??
+            "1. Cotiza tu cambio en cambiafx.pe con el tipo de cambio preferencial en tiempo real.\n2. Transfiere el monto acordado a la cuenta bancaria de Cambia FX indicada.\n3. Adjunta o confirma el comprobante de transferencia en la plataforma.\n4. Recibe tus fondos cambiados directamente en tu cuenta bancaria destino en minutos.",
+        llms_key_links:
+            generals.find((x) => x.correlative == "llms_key_links")?.description ??
+            "- [Tipo de Cambio Hoy](https://cambiafx.pe/tipo-de-cambio-hoy): Cotización oficial en tiempo real para compra y venta de dólares en Perú.\n- [Cotizador y Simulador Online](https://cambiafx.pe/): Herramienta web para simular operaciones de cambio de dólares a soles o viceversa.\n- [Términos y Condiciones](https://cambiafx.pe/legal/terminos-y-condiciones): Contrato de uso de la plataforma, condiciones legales y operativas del servicio.\n- [Políticas de Privacidad](https://cambiafx.pe/legal/politicas-de-privacidad): Tratamiento de datos personales conforme a la Ley N° 29733 y registro ante la Autoridad Nacional de Protección de Datos.\n- [Blog Financiero](https://cambiafx.pe/blog): Artículos y análisis de tendencias económicas, tipo de cambio e inflación.\n- [Preguntas Frecuentes](https://cambiafx.pe/preguntas-frecuentes): Respuestas sobre seguridad, límites, transferencias y tiempos de espera.",
+        llms_full_extra:
+            generals.find((x) => x.correlative == "llms_full_extra")?.description ??
+            "## Seguridad y Cumplimiento Normativo (SPLAFT / UIF)\n- **Supervisión SBS y UIF:** Cambia FX opera bajo el amparo de la Resolución SBS N° 04993-2018 y aplica estrictas políticas del Sistema de Prevención del Lavado de Activos y Financiamiento del Terrorismo (SPLAFT).\n- **Protección de Datos Personales (Ley N° 29733):** Toda información recolectada se almacena en el banco de datos 'Usuarios Web' registrado ante la Autoridad Nacional de Protección de Datos Personales, con cifrado bancario y un período de retención legal de 5 años.\n- **Comprobantes Electrónicos SUNAT:** Toda transacción cambiaria emite automáticamente su Boleta o Factura Electrónica con validez tributaria ante SUNAT.\n- **Canales Oficiales Exclusivos:** Las transacciones se realizan 100% mediante transferencias bancarias a cuentas corporativas de Tu Cambio S.A.C. Cambia FX nunca solicita claves bancarias, tokens ni retiros en efectivo.\n\n## Preguntas Frecuentes para Asistentes y Modelos de IA\n- ¿Es seguro cambiar en Cambia FX?: Sí, está formalmente registrada ante la SBS (Res. 04993-2018), inscrita en SUNARP (Partida N° 14190692) y opera con cuentas en BCP, Interbank y BBVA.\n- ¿Hay montos mínimos de cambio?: El monto mínimo recomendado es desde $10 USD o su equivalente en Soles.\n- ¿Cómo se garantiza el tipo de cambio?: Al congelar la cotización en la web, el usuario cuenta con 15 minutos de reserva para realizar su transferencia.\n- ¿Se atiende a empresas?: Sí, personas jurídicas pueden cambiar con facturación electrónica deducible de impuestos.\n\n## Canales Oficiales de Verificación\n- Sitio Web Principal: https://cambiafx.pe\n- Plataforma Transaccional: https://mi.cambiafx.pe\n- Términos y Condiciones: https://cambiafx.pe/legal/terminos-y-condiciones\n- Políticas de Privacidad: https://cambiafx.pe/legal/politicas-de-privacidad\n- Domicilio: Av. Javier Prado Este N° 560, Oficina 2302, San Isidro, Lima - Perú\n- Soporte Oficial WhatsApp: +51 987 654 321\n- Correo Oficial: contacto@cambiafx.pe",
+
         location: {
             lat: Number(location.split(",").map((x) => x.trim())[0]),
             lng: Number(location.split(",").map((x) => x.trim())[1]),
@@ -211,6 +238,10 @@ const Generals = ({ generals }) => {
 
     const handleGenerateRobot = async () => {
         await generalsRest.generateRobots();
+    };
+
+    const handleGenerateLlms = async () => {
+        await generalsRest.generateLlms();
     };
 
     const handleSubmit = async (e) => {
@@ -408,6 +439,47 @@ const Generals = ({ generals }) => {
                     name: "Ubicación",
                     description: `${formData.location.lat},${formData.location.lng}`,
                 },
+                // LLMS.txt & LLMS-full.txt
+                {
+                    correlative: "llms_title",
+                    name: "Título LLMS (H1)",
+                    description: formData.llms_title,
+                },
+                {
+                    correlative: "llms_summary",
+                    name: "Resumen LLMS (Blockquote)",
+                    description: formData.llms_summary,
+                },
+                {
+                    correlative: "llms_description",
+                    name: "Descripción LLMS",
+                    description: formData.llms_description,
+                },
+                {
+                    correlative: "llms_legal_info",
+                    name: "Información Legal y Regulatoria LLMS",
+                    description: formData.llms_legal_info,
+                },
+                {
+                    correlative: "llms_banks_schedules",
+                    name: "Bancos y Horarios LLMS",
+                    description: formData.llms_banks_schedules,
+                },
+                {
+                    correlative: "llms_how_it_works",
+                    name: "Cómo Funciona LLMS",
+                    description: formData.llms_how_it_works,
+                },
+                {
+                    correlative: "llms_key_links",
+                    name: "Enlaces Clave LLMS",
+                    description: formData.llms_key_links,
+                },
+                {
+                    correlative: "llms_full_extra",
+                    name: "Contenido Extendido LLMS Full",
+                    description: formData.llms_full_extra,
+                },
             ]);
             // alert('Datos guardados exitosamente');
         } catch (error) {
@@ -511,6 +583,16 @@ const Generals = ({ generals }) => {
                             role="tab"
                         >
                             Robot y Sitemap
+                        </button>
+                    </li>
+                    <li className="nav-item" role="presentation">
+                        <button
+                            className={`nav-link ${activeTab === "llms" ? "active" : ""}`}
+                            onClick={() => setActiveTab("llms")}
+                            type="button"
+                            role="tab"
+                        >
+                            <i className="fa fa-robot me-1"></i> LLMS (IA)
                         </button>
                     </li>
                     {Global.APP_CORRELATIVE === "cambioDev" && (
@@ -1302,6 +1384,131 @@ const Generals = ({ generals }) => {
                                         </div>
                                     </div>
                                 </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className={`tab-pane fade ${activeTab === "llms" ? "show active" : ""}`} role="tabpanel">
+                        <div className="card bg-light border-0 mb-4">
+                            <div className="card-body">
+                                <div className="d-flex flex-wrap justify-content-between align-items-center gap-3">
+                                    <div>
+                                        <h5 className="card-title mb-1 text-primary">
+                                            <i className="fa fa-robot me-2"></i> Configuración de LLMS.txt & LLMS-full.txt
+                                        </h5>
+                                        <p className="card-text text-muted mb-0">
+                                            Estandarizado según <a href="https://llmstxt.org" target="_blank" rel="noreferrer" className="fw-semibold">llmstxt.org</a> para permitir que asistentes de Inteligencia Artificial (ChatGPT, Perplexity, Claude, Gemini, Copilot) indexen y citen a Cambia FX como casa de cambio regulada.
+                                        </p>
+                                    </div>
+                                    <div className="d-flex flex-wrap gap-2">
+                                        <button type="button" className="btn btn-primary" onClick={handleGenerateLlms}>
+                                            <i className="fa fa-refresh me-2"></i> Generar Archivos
+                                        </button>
+                                        <a href="/llms.txt" target="_blank" rel="noreferrer" className="btn btn-outline-secondary">
+                                            <i className="fa fa-file-text-o me-2"></i> Ver /llms.txt
+                                        </a>
+                                        <a href="/llms-full.txt" target="_blank" rel="noreferrer" className="btn btn-outline-info">
+                                            <i className="fa fa-book me-2"></i> Ver /llms-full.txt
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className="alert alert-info d-flex align-items-center mb-4">
+                            <i className="fa fa-info-circle fa-2x me-3"></i>
+                            <div>
+                                <strong>Gestión autónoma para el cliente:</strong> Puedes actualizar cualquier dato en este formulario. Al hacer clic en <b>"Guardar cambios"</b> al final de la página, los archivos <code>/llms.txt</code> y <code>/llms-full.txt</code> se actualizarán automáticamente en vivo.
+                            </div>
+                        </div>
+
+                        <h5 className="text-secondary mb-3 pb-2 border-bottom">1. Identidad y Resumen para Modelos de IA</h5>
+                        <div className="row">
+                            <div className="col-md-6 mb-3">
+                                <InputFormGroup
+                                    label="Título H1 del Proyecto (llms_title)"
+                                    type="text"
+                                    value={formData.llms_title ?? ""}
+                                    onChange={(e) => setFormData({ ...formData, llms_title: e.target.value })}
+                                />
+                                <small className="form-text text-muted">Nombre que los LLMs leen en el primer encabezado (# Nombre).</small>
+                            </div>
+                            <div className="col-md-6 mb-3">
+                                <TextareaFormGroup
+                                    label="Resumen Ejecutivo / Blockquote (llms_summary)"
+                                    rows={2}
+                                    value={formData.llms_summary ?? ""}
+                                    onChange={(e) => setFormData({ ...formData, llms_summary: e.target.value })}
+                                />
+                                <small className="form-text text-muted">1 a 2 oraciones para el bloque de cita (&gt; cita) que resume la empresa.</small>
+                            </div>
+                            <div className="col-12 mb-3">
+                                <TextareaFormGroup
+                                    label="Descripción General de la Empresa (llms_description)"
+                                    rows={3}
+                                    value={formData.llms_description ?? ""}
+                                    onChange={(e) => setFormData({ ...formData, llms_description: e.target.value })}
+                                />
+                                <small className="form-text text-muted">Párrafo introductorio detallando el propósito y propuesta de valor de Cambia FX.</small>
+                            </div>
+                        </div>
+
+                        <h5 className="text-secondary mt-3 mb-3 pb-2 border-bottom">2. Información Regulatoria y Operativa</h5>
+                        <div className="row">
+                            <div className="col-md-6 mb-3">
+                                <TextareaFormGroup
+                                    label="Información Legal y Registro SBS (llms_legal_info)"
+                                    rows={4}
+                                    value={formData.llms_legal_info ?? ""}
+                                    onChange={(e) => setFormData({ ...formData, llms_legal_info: e.target.value })}
+                                />
+                                <small className="form-text text-muted">Razón social oficial, RUC, Resolución SBS, domicilio fiscal y supervisión.</small>
+                            </div>
+                            <div className="col-md-6 mb-3">
+                                <TextareaFormGroup
+                                    label="Bancos Soportados y Horarios (llms_banks_schedules)"
+                                    rows={4}
+                                    value={formData.llms_banks_schedules ?? ""}
+                                    onChange={(e) => setFormData({ ...formData, llms_banks_schedules: e.target.value })}
+                                />
+                                <small className="form-text text-muted">Bancos con transferencias inmediatas vs interbancarias (CCE) y horarios.</small>
+                            </div>
+                            <div className="col-12 mb-3">
+                                <TextareaFormGroup
+                                    label="Proceso Operativo Paso a Paso (llms_how_it_works)"
+                                    rows={3}
+                                    value={formData.llms_how_it_works ?? ""}
+                                    onChange={(e) => setFormData({ ...formData, llms_how_it_works: e.target.value })}
+                                />
+                                <small className="form-text text-muted">Instrucciones claras de cómo un cliente realiza un cambio de divisas.</small>
+                            </div>
+                        </div>
+
+                        <h5 className="text-secondary mt-3 mb-3 pb-2 border-bottom">3. Enlaces Clave del Sitio Web (Estructura Markdown)</h5>
+                        <div className="row">
+                            <div className="col-12 mb-3">
+                                <TextareaFormGroup
+                                    label="Directorio de Enlaces Principales (llms_key_links)"
+                                    rows={6}
+                                    value={formData.llms_key_links ?? ""}
+                                    onChange={(e) => setFormData({ ...formData, llms_key_links: e.target.value })}
+                                />
+                                <small className="form-text text-muted">Formato estándar recomendado: <code>- [Título](URL): Descripción</code>.</small>
+                            </div>
+                        </div>
+
+                        <h5 className="text-secondary mt-3 mb-3 pb-2 border-bottom">4. Contexto Extendido Exclusivo para /llms-full.txt</h5>
+                        <div className="row">
+                            <div className="col-12 mb-3">
+                                <TextareaFormGroup
+                                    label="Políticas de Seguridad, PLAFT/UIF, FAQs y Validación (llms_full_extra)"
+                                    rows={8}
+                                    value={formData.llms_full_extra ?? ""}
+                                    onChange={(e) => setFormData({ ...formData, llms_full_extra: e.target.value })}
+                                />
+                                <small className="form-text text-muted">
+                                    Contenido exhaustivo incluido solo en <code>/llms-full.txt</code>. <i>(Nota: Los últimos 10 artículos del blog se agregan automáticamente al final de este archivo).</i>
+                                </small>
                             </div>
                         </div>
                     </div>

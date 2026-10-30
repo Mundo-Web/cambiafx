@@ -1,0 +1,53 @@
+# Cambia FX - Casa de Cambio Online en Perú
+
+> Casa de cambio online registrada y supervisada por la SBS para cambio de dólares y soles en Perú con transferencias directas e interbancarias en minutos.
+
+Cambia FX (marca registrada de Tu Cambio S.A.C., RUC 20603864957) es una plataforma digital de cambio de divisas (USD / PEN) en el Perú, diseñada para personas naturales y empresas que buscan cotizaciones preferenciales en tiempo real, seguridad bancaria y rapidez en sus transferencias.
+
+## Tipo de Cambio Hoy en Tiempo Real (USD / PEN)
+
+> Cotización preferencial para cambio de dólares americanos (USD) y soles peruanos (PEN) en línea:
+
+- Compra (Cambia tus dólares a soles): S/ 3.4510
+- Venta (Compra dólares con soles): S/ 3.4760
+- Moneda: Dólar estadounidense (USD) / Sol peruano (PEN)
+- Última actualización: 30/10/2026 21:47 (Hora de Perú - GMT-5)
+- Cotizador en vivo y reserva de tipo de cambio por 15 minutos: http://localhost:8006/tipo-de-cambio-hoy
+- Operaciones mayores a $1,000 USD cuentan con tipo de cambio preferencial con mejoras automáticas por volumen.
+
+## Información Oficial y Regulatoria
+
+Razón Social: TU CAMBIO S.A.C.
+Nombre Comercial: Cambia FX
+RUC: 20603864957
+Partida Electrónica SUNARP: N° 14190692 (Registro de Personas Jurídicas de Lima)
+Registro SBS: Resolución SBS N° 04993-2018 (Casa de Cambio Online Regulada)
+Supervisión: Superintendencia de Banca, Seguros y AFP (SBS) y Unidad de Inteligencia Financiera (UIF)
+Domicilio Fiscal y Oficinas: Av. Javier Prado Este N° 560, Oficina 2302, San Isidro, Lima - Perú
+
+## Bancos y Horarios de Atención
+
+Bancos con transferencias inmediatas: BCP, Interbank.
+Bancos con transferencias interbancarias (CCE): BBVA, Scotiabank, BanBif, Banco Pichincha.
+Horario de atención: Lunes a Viernes de 8:30 AM a 6:30 PM | Sábados de 9:00 AM a 2:00 PM.
+Tiempos promedio: Inmediatas (10 a 20 minutos), Interbancarias (según horarios de cámara CCE).
+
+## Cómo Funciona el Cambio de Divisas
+
+1. Cotiza tu cambio en cambiafx.pe con el tipo de cambio preferencial en tiempo real.
+2. Transfiere el monto acordado a la cuenta bancaria de Cambia FX indicada.
+3. Adjunta o confirma el comprobante de transferencia en la plataforma.
+4. Recibe tus fondos cambiados directamente en tu cuenta bancaria destino en minutos.
+
+## Enlaces Clave y Recursos
+
+- [Tipo de Cambio Hoy](https://cambiafx.pe/tipo-de-cambio-hoy): Cotización oficial en tiempo real para compra y venta de dólares en Perú.
+- [Cotizador y Simulador Online](https://cambiafx.pe/): Herramienta web para simular operaciones de cambio de dólares a soles o viceversa.
+- [Términos y Condiciones](https://cambiafx.pe/legal/terminos-y-condiciones): Contrato de uso de la plataforma, condiciones legales y operativas del servicio.
+- [Políticas de Privacidad](https://cambiafx.pe/legal/politicas-de-privacidad): Tratamiento de datos personales conforme a la Ley N° 29733 y registro ante la Autoridad Nacional de Protección de Datos.
+- [Blog Financiero](https://cambiafx.pe/blog): Artículos y análisis de tendencias económicas, tipo de cambio e inflación.
+- [Preguntas Frecuentes](https://cambiafx.pe/preguntas-frecuentes): Respuestas sobre seguridad, límites, transferencias y tiempos de espera.
+
+## Documentación Completa para Modelos de IA
+
+- [Contexto Completo y Extendido](http://localhost:8006/llms-full.txt): Información exhaustiva, políticas de cumplimiento PLAFT/UIF, límites y detalles para razonamiento avanzado de modelos de IA.

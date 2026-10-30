@@ -22,15 +22,25 @@ self.addEventListener('activate', event => {
     );
 });
 
-// Serve from Cache
+// Serve from Cache with safe fallback
 self.addEventListener("fetch", event => {
+    if (event.request.method !== 'GET' || !event.request.url.startsWith('http')) {
+        return;
+    }
+
     event.respondWith(
-        caches.match(event.request)
-            .then(response => {
-                return response || fetch(event.request);
-            })
+        fetch(event.request)
             .catch(() => {
-                return caches.match('offline');
+                return caches.match(event.request).then(cachedResponse => {
+                    if (cachedResponse) {
+                        return cachedResponse;
+                    }
+                    return new Response('Contenido no disponible sin conexión', {
+                        status: 503,
+                        statusText: 'Service Unavailable',
+                        headers: new Headers({ 'Content-Type': 'text/plain; charset=utf-8' })
+                    });
+                });
             })
-    )
+    );
 });
