@@ -138,15 +138,49 @@ class SeoHelper
         $logoUrl = str_starts_with($logo, 'http') ? $logo : url($logo);
         $baseUrl = rtrim(url('/'), '/');
 
-        // Redes sociales oficiales (misma entidad)
+        // Redes sociales oficiales (misma entidad) sin duplicados ni mensajería
         $socials = \App\Models\Social::where('visible', true)->pluck('link')->toArray();
         $defaultSocials = [
             $seoData['facebook_page'] ?? 'https://www.facebook.com/cambiafx',
             $seoData['instagram_profile'] ?? 'https://www.instagram.com/cambiafx',
-            $seoData['linkedin_profile'] ?? 'https://www.linkedin.com/company/cambiafx',
+            $seoData['linkedin_profile'] ?? 'https://www.linkedin.com/company/cambia-fx',
             $seoData['twitter_site'] ?? 'https://twitter.com/cambiafx'
         ];
-        $sameAs = array_values(array_unique(array_filter(array_merge($socials, $defaultSocials))));
+
+        $candidateUrls = array_merge($socials, $defaultSocials);
+        $normalizedMap = [];
+
+        foreach ($candidateUrls as $rawUrl) {
+            $url = trim($rawUrl);
+            if (empty($url) || !filter_var($url, FILTER_VALIDATE_URL)) {
+                continue;
+            }
+
+            // Excluir WhatsApp o mensajería (ya incluido en canal telefónico/contacto)
+            if (preg_match('/wa\.me|whatsapp\.com/i', $url)) {
+                continue;
+            }
+
+            $parsed = parse_url($url);
+            $host = strtolower($parsed['host'] ?? '');
+            $path = rtrim(strtolower($parsed['path'] ?? ''), '/');
+
+            // Excluir URLs raíz sin usuario/perfil
+            if (empty($path) || $path === '/') {
+                continue;
+            }
+
+            $cleanHost = preg_replace('/^www\./', '', $host);
+            $cleanPath = preg_replace('/[^a-z0-9@_]/', '', $path);
+            $normalizedKey = $cleanHost . '_' . $cleanPath;
+
+            if (!isset($normalizedMap[$normalizedKey])) {
+                $prefix = in_array($cleanHost, ['twitter.com', 'x.com']) ? 'https://' : 'https://www.';
+                $normalizedMap[$normalizedKey] = $prefix . $cleanHost . rtrim($parsed['path'], '/');
+            }
+        }
+
+        $sameAs = array_values($normalizedMap);
 
         return [
             '@context' => 'https://schema.org',
