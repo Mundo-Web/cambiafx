@@ -16,8 +16,6 @@ $isHome = $component === 'Home.jsx';
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preconnect" href="https://flagcdn.com">
     <link rel="preconnect" href="https://apiluna.cambiafx.pe">
-    <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/general-sans/GeneralSans-Semibold.woff2" crossorigin>
-    <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/general-sans/GeneralSans-Regular.woff2" crossorigin>
 
     <!-- SEO Meta Tags -->
     @include('components.seo-meta-tags', [
@@ -172,34 +170,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                     setTimeout(callback, timeout);
                 }
             };
-
-            // Meta Pixel (Diferido a baja prioridad para evitar saturación de hilo principal)
-            schedule(() => {
-                if (window.fbq) {
-                    window.fbq('track', 'PageView');
-                    return;
-                }
-
-                !function(f, b, e, v, n, t, s) {
-                    if (f.fbq) return;
-                    n = f.fbq = function() {
-                        n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments);
-                    };
-                    if (!f._fbq) f._fbq = n;
-                    n.push = n;
-                    n.loaded = true;
-                    n.version = '2.0';
-                    n.queue = [];
-                    t = b.createElement(e);
-                    t.async = true;
-                    t.src = v;
-                    s = b.getElementsByTagName(e)[0];
-                    s.parentNode.insertBefore(t, s);
-                }(window, document, 'script', 'https://connect.facebook.net/en_US/fbevents.js');
-
-                window.fbq('init', '1098274404490481');
-                window.fbq('track', 'PageView');
-            }, 2000);
 
             // Chat de Soporte Tawk.to (Carga diferida)
             schedule(() => {
