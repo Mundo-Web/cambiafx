@@ -9,6 +9,38 @@ class CambiaFXService {
         this.idParCurrency = 1;
     }
 
+    setInitialRates(realTimeData) {
+        if (!Array.isArray(realTimeData) || realTimeData.length === 0) {
+            return null;
+        }
+
+        const processedData = realTimeData.map(item => ({
+            id: item.idRange || 0,
+            desde: parseFloat(item.tcFrom || 0),
+            hasta: parseFloat(item.tcTo || 999999),
+            tc_compra: parseFloat(item.tcBuy || 0),
+            tc_venta: parseFloat(item.tcSale || 0),
+            coupon: item.coupon,
+            amountMinOperation: parseFloat(item.amountMinOperation || 0),
+            amountMaxOperation: parseFloat(item.amountMaxOperation || 0)
+        }));
+
+        this.tcBase = processedData;
+        this.tcData = [...processedData];
+
+        if (processedData.length > 0) {
+            this.tcBaseOriginal = {
+                tc_compra: processedData[0].tc_compra,
+                tc_venta: processedData[0].tc_venta
+            };
+            return {
+                compra: processedData[0].tc_compra.toFixed(4),
+                venta: processedData[0].tc_venta.toFixed(4)
+            };
+        }
+        return null;
+    }
+
     async getExchangeRates() {
         try {
             const response = await axios.get(`${this.baseURL}/getTcCustomerNoAuth`, {
@@ -34,28 +66,8 @@ class CambiaFXService {
                 throw new Error('No se obtuvieron datos de tipos de cambio');
             }
             
-            const processedData = realTimeData.map(item => ({
-                id: item.idRange || 0,
-                desde: parseFloat(item.tcFrom || 0),
-                hasta: parseFloat(item.tcTo || 999999),
-                tc_compra: parseFloat(item.tcBuy || 0),
-                tc_venta: parseFloat(item.tcSale || 0),
-                coupon: item.coupon,
-                amountMinOperation: parseFloat(item.amountMinOperation || 0),
-                amountMaxOperation: parseFloat(item.amountMaxOperation || 0)
-            }));
-            
-            this.tcBase = processedData;
-            this.tcData = [...processedData];
-            
-            if (processedData.length > 0) {
-                this.tcBaseOriginal = {
-                    tc_compra: processedData[0].tc_compra,
-                    tc_venta: processedData[0].tc_venta
-                };
-            }
-            
-            return processedData;
+            this.setInitialRates(realTimeData);
+            return this.tcData;
             
         } catch (error) {
             const fallbackData = [

@@ -8,7 +8,7 @@ import ExchangeCard from './ExchangeCard';
 const motionCreate = typeof motion.create === 'function' ? motion.create : motion;
 const MotionOptimizedImage = motionCreate(OptimizedImage);
 
-export default function HeroSecction({ data = [], apps = [], indicators = [] }) {
+export default function HeroSecction({ data = [], apps = [], indicators = [], initialRates = null }) {
     const [operationType, setOperationType] = useState('venta'); // 'compra' o 'venta'
     const [amount1, setAmount1] = useState('');
     const [amount2, setAmount2] = useState('');
@@ -296,6 +296,8 @@ export default function HeroSecction({ data = [], apps = [], indicators = [] }) 
                         showCoupons={true}
                         showCredits={true}
                         onOperationStart={handleOperationStart}
+                        initialRates={initialRates}
+                        apps={apps}
                     />
                 </div>
             </div>

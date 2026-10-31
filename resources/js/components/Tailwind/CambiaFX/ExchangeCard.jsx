@@ -13,8 +13,21 @@ const ExchangeCard = ({
     showCoupons = true,
     showCredits = true,
     className = "",
-    onOperationStart = null
+    onOperationStart = null,
+    initialRates = null,
+    apps: propsApps = []
 }) => {
+    // Inicializar tasas reales síncronamente desde props si están disponibles o desde memoria
+    const ratesFromProps = useMemo(() => {
+        if (initialRates && Array.isArray(initialRates) && initialRates.length > 0) {
+            return CambiaFXService.setInitialRates(initialRates) || { compra: '0.0000', venta: '0.0000' };
+        }
+        if (CambiaFXService.tcBase && CambiaFXService.tcBase.length > 0) {
+            return CambiaFXService.getCurrentRates();
+        }
+        return { compra: '0.0000', venta: '0.0000' };
+    }, [initialRates]);
+
     const [operationType, setOperationType] = useState(initialOperationType);
     const [amount1, setAmount1] = useState('1,000'); // Valor por defecto con formato
     const [amount2, setAmount2] = useState('');
@@ -22,15 +35,15 @@ const ExchangeCard = ({
     const [promotionalCode, setPromotionalCode] = useState('');
     const [isValidatingCoupon, setIsValidatingCoupon] = useState(false);
     const [couponTimeout, setCouponTimeout] = useState(null);
-    const [currentRates, setCurrentRates] = useState({ compra: '0.0000', venta: '0.0000' });
+    const [currentRates, setCurrentRates] = useState(ratesFromProps);
     const [showCouponInput, setShowCouponInput] = useState(false);
     const [couponInfo, setCouponInfo] = useState(null); // Info del cupón (rango, TC, etc.)
     const [showCouponModal, setShowCouponModal] = useState(false); // Modal informativo
     const [isConsultingCoupons, setIsConsultingCoupons] = useState(false); // Loading para consulta de cupones
     const [invalidCoupon, setInvalidCoupon] = useState(null); // Información del cupón inválido
     const [debouncedAmount1, setDebouncedAmount1] = useState('1,000'); // Estado debounced para actualizar botones
-    const [baseRates, setBaseRates] = useState({ compra: '0.0000', venta: '0.0000' }); // Tasas base sin cupón
-    const [apps, setApps] = useState([]); // 📱 ESTADO PARA LAS APPS MÓVILES
+    const [baseRates, setBaseRates] = useState(ratesFromProps); // Tasas base sin cupón
+    const [apps, setApps] = useState(propsApps); // 📱 ESTADO PARA LAS APPS MÓVILES DESDE PROPS
 
     // 🔢 FUNCIONES PARA FORMATEAR NÚMEROS CON COMAS
     const formatNumberWithCommas = (num) => {
@@ -85,20 +98,37 @@ const ExchangeCard = ({
     // Cargar tipos de cambio iniciales
     useEffect(() => {
         const init = async () => {
-            await initializeExchangeRates();
+            // Si no vinieron rates por props o están en 0, consultar API
+            if (!initialRates || currentRates.compra === '0.0000') {
+                await initializeExchangeRates();
+            } else {
+                updateCurrentRates();
+            }
             checkUrlCoupon();
 
-            // 📱 CARGAR APPS MÓVILES
-            await fetchApps();
+            // Sincronizar apps si vinieron por props, o cargar vía API como fallback
+            if (propsApps && propsApps.length > 0) {
+                setApps(propsApps);
+            } else {
+                await fetchApps();
+            }
 
-            // Calcular automáticamente con el valor por defecto de 1000
+            // Calcular inmediatamente sin delay artificial
             if (amount1) {
-                setTimeout(() => {
-                    calculateExchange('O', amount1);
-                }, 500); // Pequeño delay para asegurar que todo esté inicializado
+                calculateExchange('O', amount1);
             }
         };
         init();
+
+        // Refresco silencioso en background cada 30 segundos sin bloquear render
+        const intervalId = setInterval(async () => {
+            try {
+                await CambiaFXService.getExchangeRates();
+                updateCurrentRates();
+            } catch (e) {}
+        }, 30000);
+
+        return () => clearInterval(intervalId);
     }, []);
 
     // Actualizar TC cuando cambie el tipo de operación

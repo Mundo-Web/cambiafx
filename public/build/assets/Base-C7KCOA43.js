@@ -1,0 +1,1 @@
+import{j as s}from"./vendor-react-BW-BF5sr.js";import{L as o}from"./Menu-B5AXF8fA.js";const r=({children:r,footerLinks:e,session:n,socials:t,terms:d,showSlogan:i=!0,showFooter:c=!0,gradientStart:a="#c4b8d3",gradientEnd:m="#f1d7c1",menuGradientEnd:h="#dbc8c9"})=>s.jsx(o,{children:s.jsxs("section",{children:[" ",r]})});export{r as B};

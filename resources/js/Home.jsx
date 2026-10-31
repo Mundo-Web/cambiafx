@@ -4,14 +4,15 @@ import Base from "./Components/Tailwind/Base";
 import CreateReactScript from "./Utils/CreateReactScript";
 
 import Header from "./components/Tailwind/Header";
-
-import Footer from "./components/Tailwind/Footer";
 import { CarritoProvider } from "./context/CarritoContext";
 import { motion } from "framer-motion";
 import { useTranslation } from "./hooks/useTranslation";
 import AppStoreBanner from "./components/Apps/AppStoreBanner";
 import HeroSecction from "./components/Tailwind/CambiaFX/HeroSecction";
 import CintilloSection from "./components/Tailwind/CambiaFX/CintilloSection";
+import LazySection from "./components/Common/LazySection";
+
+const Footer = lazy(() => import("./components/Tailwind/Footer"));
 
 const PrimeraOperacionSection = lazy(
     () => import("./components/Tailwind/CambiaFX/PrimeraOperacionSection"),
@@ -68,6 +69,7 @@ const Home = ({
     allServices = [],
     banner_operacion = {},
     banner_slider = [],
+    initialRates = null,
 }) => {
     const { t } = useTranslation();
 
@@ -174,114 +176,115 @@ const Home = ({
                     data={landingInicio}
                     apps={apps}
                     indicators={indicadoresInicio}
+                    initialRates={initialRates}
                 />
             </div>
 
             {/* SLIDER  <SliderInteractive ... /> */}
 
-            {/* SECCIÓN HAZ TU PRIMERA OPERACION - DISEÑO FIEL */}
-            <motion.div
-                className="animate-section"
-                initial={{ opacity: 0, y: 40 }}
-                animate={
-                    sectionsReady ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }
-                }
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.2 }}
-                transition={{ duration: 0.7, delay: 0.1 }}
-            >
-                <Suspense fallback={<SectionFallback minHeight="500px" />}>
-                    <PrimeraOperacionSection banner={banner_operacion} />
-                </Suspense>
-            </motion.div>
-            <motion.div
-                className="animate-section"
-                initial={{ opacity: 0, y: 40 }}
-                animate={
-                    sectionsReady ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }
-                }
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.2 }}
-                transition={{ duration: 0.7, delay: 0.2 }}
-            >
-                <Suspense fallback={<SectionFallback minHeight="600px" />}>
-                    <FuncionSection data={landingPasos} pasos={pasos} />
-                </Suspense>
-            </motion.div>
-            <motion.div
-                className="animate-section"
-                initial={{ opacity: 0, y: 40 }}
-                animate={
-                    sectionsReady ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }
-                }
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.2 }}
-                transition={{ duration: 0.7, delay: 0.3 }}
-            >
-                <Suspense fallback={<SectionFallback minHeight="700px" />}>
-                    <CuponesSection
-                        data={landingCupones}
-                        cupones={cupones}
-                        indicators={indicadoresCupones}
-                    />
-                </Suspense>
-            </motion.div>
-            <motion.div
-                className="animate-section"
-                initial={{ opacity: 0, y: 40 }}
-                animate={
-                    sectionsReady ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }
-                }
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.2 }}
-                transition={{ duration: 0.7, delay: 0.4 }}
-            >
-                <Suspense fallback={<SectionFallback minHeight="550px" />}>
-                    <PilaresSection
-                        data={landingPilares}
-                        core_values={core_values}
-                    />
-                </Suspense>
-            </motion.div>
-            <motion.div
-                className="animate-section"
-                initial={{ opacity: 0, y: 40 }}
-                animate={
-                    sectionsReady ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }
-                }
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.2 }}
-                transition={{ duration: 0.7, delay: 0.5 }}
-            >
-                <Suspense fallback={<SectionFallback minHeight="650px" />}>
-                    <EmpresasSection banner_slider={banner_slider} />
-                </Suspense>
-            </motion.div>
-            <motion.div
-                className="animate-section"
-                initial={{ opacity: 0, y: 40 }}
-                animate={
-                    sectionsReady ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }
-                }
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.2 }}
-                transition={{ duration: 0.7, delay: 0.6 }}
-            >
-                <Suspense fallback={<SectionFallback minHeight="500px" />}>
-                    <BlogSection data={landingBlog} posts={posts} />
-                </Suspense>
-            </motion.div>
+            {/* SECCIÓN HAZ TU PRIMERA OPERACION */}
+            <LazySection minHeight={500}>
+                <motion.div
+                    className="animate-section"
+                    initial={{ opacity: 0, y: 40 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, amount: 0.2 }}
+                    transition={{ duration: 0.7, delay: 0.1 }}
+                >
+                    <Suspense fallback={<SectionFallback minHeight="500px" />}>
+                        <PrimeraOperacionSection banner={banner_operacion} />
+                    </Suspense>
+                </motion.div>
+            </LazySection>
 
-            {/*
-            <CarruselBrands items={brands} data={{ title: "15,000+ empresas, desde pequeñas startups hasta nombres conocidos..." }} />
+            {/* SECCIÓN FUNCION */}
+            <LazySection minHeight={600}>
+                <motion.div
+                    className="animate-section"
+                    initial={{ opacity: 0, y: 40 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, amount: 0.2 }}
+                    transition={{ duration: 0.7, delay: 0.2 }}
+                >
+                    <Suspense fallback={<SectionFallback minHeight="600px" />}>
+                        <FuncionSection data={landingPasos} pasos={pasos} />
+                    </Suspense>
+                </motion.div>
+            </LazySection>
 
-            <HomeSeccionNosotros data={landingNosotros} strengths={strengths} />
-            <HomeSeccionServicios data={landingServicios} allServices={allServices} />
-            <HomeSeccionImpacto data={landingImpacto} indicators={indicators} />
-            <HomeSeccionTestimonios data={landingTestimonios} testimonios={testimonios} />
-            <HomeSeccionBlog data={landingBlog} posts={posts} /> */}
+            {/* SECCIÓN CUPONES */}
+            <LazySection minHeight={700}>
+                <motion.div
+                    className="animate-section"
+                    initial={{ opacity: 0, y: 40 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, amount: 0.2 }}
+                    transition={{ duration: 0.7, delay: 0.3 }}
+                >
+                    <Suspense fallback={<SectionFallback minHeight="700px" />}>
+                        <CuponesSection
+                            data={landingCupones}
+                            cupones={cupones}
+                            indicators={indicadoresCupones}
+                        />
+                    </Suspense>
+                </motion.div>
+            </LazySection>
 
-            <Footer />
+            {/* SECCIÓN PILARES */}
+            <LazySection minHeight={550}>
+                <motion.div
+                    className="animate-section"
+                    initial={{ opacity: 0, y: 40 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, amount: 0.2 }}
+                    transition={{ duration: 0.7, delay: 0.4 }}
+                >
+                    <Suspense fallback={<SectionFallback minHeight="550px" />}>
+                        <PilaresSection
+                            data={landingPilares}
+                            core_values={core_values}
+                        />
+                    </Suspense>
+                </motion.div>
+            </LazySection>
+
+            {/* SECCIÓN EMPRESAS */}
+            <LazySection minHeight={650}>
+                <motion.div
+                    className="animate-section"
+                    initial={{ opacity: 0, y: 40 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, amount: 0.2 }}
+                    transition={{ duration: 0.7, delay: 0.5 }}
+                >
+                    <Suspense fallback={<SectionFallback minHeight="650px" />}>
+                        <EmpresasSection banner_slider={banner_slider} />
+                    </Suspense>
+                </motion.div>
+            </LazySection>
+
+            {/* SECCIÓN BLOG */}
+            <LazySection minHeight={500}>
+                <motion.div
+                    className="animate-section"
+                    initial={{ opacity: 0, y: 40 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, amount: 0.2 }}
+                    transition={{ duration: 0.7, delay: 0.6 }}
+                >
+                    <Suspense fallback={<SectionFallback minHeight="500px" />}>
+                        <BlogSection data={landingBlog} posts={posts} />
+                    </Suspense>
+                </motion.div>
+            </LazySection>
+
+            {/* FOOTER */}
+            <LazySection minHeight={400}>
+                <Suspense fallback={<SectionFallback minHeight="400px" />}>
+                    <Footer />
+                </Suspense>
+            </LazySection>
 
             {/* Sistema de Popups Programables */}
             {shouldRenderPopupManager && (

@@ -27,6 +27,7 @@ use App\Models\Testimony;
 use App\Models\Faq;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Http;
 
 class HomeController extends BasicController
 {
@@ -37,8 +38,23 @@ class HomeController extends BasicController
     {
         $langId = app('current_lang_id');
 
-        // Caché de 30 minutos para reducir el TTFB de 1,600ms a menos de 50ms
-        return Cache::remember("home_view_data_{$langId}", 1800, function () use ($langId) {
+        // Caché de 30 segundos para el tipo de cambio real de apiluna
+        $initialRates = Cache::remember('current_rates_home', 30, function () {
+            try {
+                $response = Http::timeout(2)->get('https://apiluna.cambiafx.pe/api/BackendPizarra/getTcCustomerNoAuth', [
+                    'idParCurrency' => 1
+                ]);
+                if ($response->successful()) {
+                    return $response->json();
+                }
+            } catch (\Throwable $e) {
+                // Silencioso en caso de timeout
+            }
+            return null;
+        });
+
+        // Caché de 30 minutos para reducir el TTFB a menos de 50ms
+        $homeData = Cache::remember("home_view_data_{$langId}", 1800, function () use ($langId) {
             $landing = LandingHome::where('correlative', 'like', 'page_home%')->where('lang_id', $langId)->get();
             /*CAMBIO Y GERENCIA */
             $sliders = Slider::where('status', true)->where('visible', true)->orderBy('created_at', 'DESC')->get();
@@ -120,5 +136,9 @@ class HomeController extends BasicController
                 'faqs' => $faqs
             ];
         });
+
+        return array_merge($homeData, [
+            'initialRates' => $initialRates,
+        ]);
     }
 }
