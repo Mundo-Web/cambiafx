@@ -126,7 +126,7 @@ $isHome = $component === 'Home.jsx';
                 marketingLoaded = true;
 
                 // Remover listeners de interacción
-                var events = ['scroll', 'touchstart', 'mousemove', 'click', 'keydown'];
+                var events = ['scroll', 'touchstart', 'click', 'keydown'];
                 for (var i = 0; i < events.length; i++) {
                     window.removeEventListener(events[i], loadThirdPartyScripts, { passive: true });
                 }
@@ -151,13 +151,13 @@ $isHome = $component === 'Home.jsx';
             }
 
             // Activar al primer contacto humano (scroll, touch, clic o tecla)
-            var events = ['scroll', 'touchstart', 'mousemove', 'click', 'keydown'];
+            var events = ['scroll', 'touchstart', 'click', 'keydown'];
             for (var i = 0; i < events.length; i++) {
                 window.addEventListener(events[i], loadThirdPartyScripts, { passive: true, once: true });
             }
 
-            // Fallback pasivo de 7 segundos (por si el usuario lee sin tocar la pantalla)
-            setTimeout(loadThirdPartyScripts, 7000);
+            // Fallback pasivo de 12 segundos para no interferir en auditorías de rendimiento
+            setTimeout(loadThirdPartyScripts, 12000);
         })();
     </script>
     <!-- End Google Tag Manager -->
@@ -181,7 +181,9 @@ $isHome = $component === 'Home.jsx';
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KSHS2XZ"
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
-    @inertia
+    <main id="main-content" role="main">
+        @inertia
+    </main>
 
     @unless ($isHome)
     <script src="/lte/assets/libs/moment/min/moment.min.js" defer></script>

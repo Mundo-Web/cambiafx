@@ -256,6 +256,7 @@ const WhatsAppButton = React.forwardRef(({
             type={type}
             onClick={handleClick}
             className={combinedClassName}
+            aria-label={rest['aria-label'] || (typeof children === 'string' && children.trim() ? children : 'Contactar por WhatsApp')}
             {...rest}
             {...motionProps}
         >
