@@ -67,8 +67,7 @@ class HomeController extends BasicController
                 ->orderBy('created_at', 'asc')
                 ->get();
 
-            $cupones = Coupon::select('id', 'name', 'code', 'discount', 'description', 'date_begin', 'date_end', 'status')
-                ->where('status', true)
+            $cupones = Coupon::where('status', true)
                 ->where(function($query) {
                     $query->where(function($subQuery) {
                         $subQuery->where('date_begin', '<=', now())
