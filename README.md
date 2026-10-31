@@ -274,10 +274,10 @@ Antes de iniciar la codificación, asegurar tener listos:
 | CSS crítico inline, font-display y optimización de recursos bloqueantes | B1 | ✅ Completado | Dev |
 | Code splitting por ruta, optimización de Framer Motion en Hero y vendor chunks | B2 | ✅ Completado | Dev |
 | Optimizar hilo principal, llamadas API en paralelo y eliminar librerías redundantes | B3 | ✅ Completado | Dev |
-| Conversión WebP, dimensiones explícitas y fijar CLS | B4 | ⏳ Pendiente | Dev |
-| Políticas Cache-Control y depurar preconnects | B5 | ⏳ Pendiente | Dev |
-| Purgar CSS no usado en Tailwind y evitar layout reflow | B6 | ⏳ Pendiente | Dev |
-| Source maps seguros para depuración interna | B7 | ⏳ Pendiente | Dev |
+| Conversión WebP, dimensiones explícitas y fijar CLS | B4 | ✅ Completado | Dev |
+| Políticas Cache-Control y depurar preconnects | B5 | ✅ Completado | Dev |
+| Purgar CSS no usado en Tailwind y evitar layout reflow | B6 | ✅ Completado | Dev |
+| Source maps seguros para depuración interna | B7 | ✅ Completado | Dev |
 | Semántica HTML5 (`<main>`, `<label>`) y `aria-label` | C1 | ⏳ Pendiente | Dev |
 | Ajuste de contraste de colores según WCAG | C2 | ⏳ Pendiente | Dev |
 | Auditoría final en PageSpeed y Search Console | QA | ⏳ Pendiente | Dev |

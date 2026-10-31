@@ -3179,7 +3179,7 @@
     ]
   },
   "resources/js/components/Adminto/DataGrid.jsx": {
-    "file": "assets/DataGrid-CAvHDPjY.js",
+    "file": "assets/DataGrid-BmPtsDqH.js",
     "name": "DataGrid",
     "src": "resources/js/components/Adminto/DataGrid.jsx",
     "isEntry": true,
@@ -3258,7 +3258,7 @@
     ]
   },
   "resources/js/components/Adminto/Table.jsx": {
-    "file": "assets/Table-CAvHDPjY.js",
+    "file": "assets/Table-NspbqrUP.js",
     "name": "Table",
     "src": "resources/js/components/Adminto/Table.jsx",
     "isEntry": true,
@@ -3298,7 +3298,7 @@
     ]
   },
   "resources/js/components/Adminto/form/InputFormGroup.jsx": {
-    "file": "assets/InputFormGroup-BmPtsDqH.js",
+    "file": "assets/InputFormGroup-NspbqrUP.js",
     "name": "InputFormGroup",
     "src": "resources/js/components/Adminto/form/InputFormGroup.jsx",
     "isEntry": true,
@@ -3328,7 +3328,7 @@
     ]
   },
   "resources/js/components/Adminto/form/SelectAPIFormGroup.jsx": {
-    "file": "assets/SelectAPIFormGroup-BmPtsDqH.js",
+    "file": "assets/SelectAPIFormGroup-NspbqrUP.js",
     "name": "SelectAPIFormGroup",
     "src": "resources/js/components/Adminto/form/SelectAPIFormGroup.jsx",
     "isEntry": true,
@@ -3388,7 +3388,7 @@
     ]
   },
   "resources/js/components/Adminto/form/TippyButton.jsx": {
-    "file": "assets/TippyButton-BmPtsDqH.js",
+    "file": "assets/TippyButton-NspbqrUP.js",
     "name": "TippyButton",
     "src": "resources/js/components/Adminto/form/TippyButton.jsx",
     "isEntry": true,
@@ -3513,7 +3513,7 @@
     ]
   },
   "resources/js/components/Blog/Results.jsx": {
-    "file": "assets/Results-BFDD484H.js",
+    "file": "assets/Results-B3WwiRYI.js",
     "name": "Results",
     "src": "resources/js/components/Blog/Results.jsx",
     "isEntry": true,
@@ -3602,7 +3602,7 @@
     ]
   },
   "resources/js/components/Courses/Results.jsx": {
-    "file": "assets/Results-B3WwiRYI.js",
+    "file": "assets/Results-BFDD484H.js",
     "name": "Results",
     "src": "resources/js/components/Courses/Results.jsx",
     "isEntry": true,
@@ -3660,7 +3660,7 @@
     ]
   },
   "resources/js/components/DataGrid.jsx": {
-    "file": "assets/DataGrid-BmPtsDqH.js",
+    "file": "assets/DataGrid-NspbqrUP.js",
     "name": "DataGrid",
     "src": "resources/js/components/DataGrid.jsx",
     "isEntry": true,
@@ -4017,7 +4017,7 @@
     ]
   },
   "resources/js/components/Table.jsx": {
-    "file": "assets/Table-BmPtsDqH.js",
+    "file": "assets/Table-CAvHDPjY.js",
     "name": "Table",
     "src": "resources/js/components/Table.jsx",
     "isEntry": true,
@@ -4085,13 +4085,14 @@
     ]
   },
   "resources/js/components/Tailwind/CambiaFX/BlogSection.jsx": {
-    "file": "assets/BlogSection-Cix5_MxY.js",
+    "file": "assets/BlogSection-_wNwtsqT.js",
     "name": "BlogSection",
     "src": "resources/js/components/Tailwind/CambiaFX/BlogSection.jsx",
-    "isEntry": true,
+    "isDynamicEntry": true,
     "imports": [
       "_vendor-BGJN32hA.js",
       "_OptimizedImage-B_9buPGH.js",
+      "_TextWithHighlight-RQpLtbn8.js",
       "_vendor-swiper-BoIqwfYQ.js",
       "_vendor-framer-motion-DkJoTx_a.js",
       "_vendor-axios-COzaZAiy.js"
@@ -4523,7 +4524,7 @@
     ]
   },
   "resources/js/components/Tailwind/DataGrid.jsx": {
-    "file": "assets/DataGrid-NspbqrUP.js",
+    "file": "assets/DataGrid-CAvHDPjY.js",
     "name": "DataGrid",
     "src": "resources/js/components/Tailwind/DataGrid.jsx",
     "isEntry": true,
@@ -4748,7 +4749,7 @@
     ]
   },
   "resources/js/components/Tailwind/Table.jsx": {
-    "file": "assets/Table-NspbqrUP.js",
+    "file": "assets/Table-BmPtsDqH.js",
     "name": "Table",
     "src": "resources/js/components/Tailwind/Table.jsx",
     "isEntry": true,
@@ -4851,10 +4852,10 @@
     ]
   },
   "resources/js/components/Test/Email.jsx": {
-    "file": "assets/Email-rJa7N0kf.js",
+    "file": "assets/Email-BFDD484H.js",
     "name": "Email",
     "src": "resources/js/components/Test/Email.jsx",
-    "isDynamicEntry": true,
+    "isEntry": true,
     "imports": [
       "_vendor-BGJN32hA.js",
       "resources/js/components/Blog/BlogHeader.jsx",
@@ -4873,10 +4874,10 @@
     ]
   },
   "resources/js/components/Test/HairGoals.jsx": {
-    "file": "assets/HairGoals-Csk8Y4pV.js",
+    "file": "assets/HairGoals-NspbqrUP.js",
     "name": "HairGoals",
     "src": "resources/js/components/Test/HairGoals.jsx",
-    "isDynamicEntry": true,
+    "isEntry": true,
     "imports": [
       "_vendor-BGJN32hA.js",
       "_vendor-axios-COzaZAiy.js"
@@ -4893,10 +4894,10 @@
     ]
   },
   "resources/js/components/Test/Main.jsx": {
-    "file": "assets/Main-NspbqrUP.js",
+    "file": "assets/Main-vqFI4SW-.js",
     "name": "Main",
     "src": "resources/js/components/Test/Main.jsx",
-    "isEntry": true,
+    "isDynamicEntry": true,
     "imports": [
       "_vendor-BGJN32hA.js",
       "_vendor-axios-COzaZAiy.js"
@@ -5029,7 +5030,7 @@
     ]
   },
   "resources/js/components/form/InputFormGroup.jsx": {
-    "file": "assets/InputFormGroup-NspbqrUP.js",
+    "file": "assets/InputFormGroup-BmPtsDqH.js",
     "name": "InputFormGroup",
     "src": "resources/js/components/form/InputFormGroup.jsx",
     "isEntry": true,
@@ -5059,7 +5060,7 @@
     ]
   },
   "resources/js/components/form/SelectAPIFormGroup.jsx": {
-    "file": "assets/SelectAPIFormGroup-NspbqrUP.js",
+    "file": "assets/SelectAPIFormGroup-BmPtsDqH.js",
     "name": "SelectAPIFormGroup",
     "src": "resources/js/components/form/SelectAPIFormGroup.jsx",
     "isEntry": true,
@@ -5089,7 +5090,7 @@
     ]
   },
   "resources/js/components/form/TippyButton.jsx": {
-    "file": "assets/TippyButton-NspbqrUP.js",
+    "file": "assets/TippyButton-BmPtsDqH.js",
     "name": "TippyButton",
     "src": "resources/js/components/form/TippyButton.jsx",
     "isEntry": true,

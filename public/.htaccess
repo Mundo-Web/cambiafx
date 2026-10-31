@@ -13,16 +13,41 @@
         Header always set Referrer-Policy "strict-origin-when-cross-origin"
         
         # Cache-Control headers for static assets
-        <FilesMatch "\.(ico|jpg|jpeg|png|gif|webp|avif|svg|woff|woff2|ttf|eot|otf)$">
+        # 1. Fonts y assets estáticos inmutables
+        <FilesMatch "\.(woff|woff2|ttf|eot|otf)$">
             Header set Cache-Control "public, max-age=31536000, immutable"
         </FilesMatch>
         
+        # 2. Imágenes y multimedia
+        <FilesMatch "\.(ico|jpg|jpeg|png|gif|webp|avif|svg)$">
+            Header set Cache-Control "public, max-age=2592000, stale-while-revalidate=86400"
+        </FilesMatch>
+        
+        # 3. Scripts y estilos (con hash en Vite /build/)
         <FilesMatch "\.(css|js)$">
             Header set Cache-Control "public, max-age=31536000, immutable"
         </FilesMatch>
+
+        # 4. EXCEPCIÓN CRÍTICA: Service Worker NUNCA debe quedar atrapado en caché inmutable
+        <FilesMatch "^(serviceworker|sw)\.js$">
+            Header set Cache-Control "no-cache, no-store, must-revalidate"
+            Header set Pragma "no-cache"
+            Header set Expires "0"
+        </FilesMatch>
+
+        # 5. Manifest y metadatos
+        <Files "manifest.json">
+            Header set Cache-Control "public, max-age=86400"
+        </Files>
+
+        # 6. Archivos de rastreo e IA (robots, sitemap, llms)
+        <FilesMatch "^(robots\.txt|sitemap.*\.xml|llms.*\.txt)$">
+            Header set Cache-Control "public, max-age=86400, must-revalidate"
+        </FilesMatch>
         
+        # 7. Documentos HTML
         <FilesMatch "\.(html|htm)$">
-            Header set Cache-Control "public, max-age=3600, must-revalidate"
+            Header set Cache-Control "public, max-age=0, must-revalidate"
         </FilesMatch>
     </IfModule>
 

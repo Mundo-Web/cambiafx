@@ -80,7 +80,7 @@ export default defineConfig({
         cssMinify: true,
         reportCompressedSize: false,
         chunkSizeWarningLimit: 500,
-        sourcemap: false, // Disable sourcemaps in production for smaller bundles
+        sourcemap: 'hidden', // Hidden sourcemaps para diagnóstico interno sin exponer código a usuarios públicos
         assetsInlineLimit: 4096, // Inline assets smaller than 4kb
     },
     optimizeDeps: {

@@ -74,8 +74,8 @@ class PerformanceHeaders
      */
     private function applyCacheHeaders(Response $response): void
     {
-        // Para HTML dinámico - no cache pero permite revalidación
-        $response->headers->set('Cache-Control', 'no-cache, must-revalidate');
+        // Para HTML dinámico - revalidación inmediata (max-age=0) para reflejar cotizaciones al instante
+        $response->headers->set('Cache-Control', 'public, max-age=0, must-revalidate');
         $response->headers->set('Pragma', 'no-cache');
         $response->headers->set('Expires', '0');
         
@@ -100,29 +100,15 @@ class PerformanceHeaders
      */
     private function applyResourceHints(Response $response): void
     {
-        // Preconnect a dominios críticos
-        $preconnectDomains = [
-            'https://fonts.googleapis.com',
-            'https://fonts.gstatic.com',
-            'https://flagcdn.com',
-            'https://apiluna.cambiafx.pe',
-        ];
-
-        $linkHeaders = [];
-        foreach ($preconnectDomains as $domain) {
-            $linkHeaders[] = "<{$domain}>; rel=preconnect; crossorigin";
-        }
-
-        // DNS Prefetch para dominios de terceros
+        // DNS Prefetch selectivo para servicios externos
         $dnsPrefetchDomains = [
             'https://translate.googleapis.com',
             'https://connect.facebook.net',
             'https://embed.tawk.to',
             'https://cdn.jsdelivr.net',
-            'https://cdnjs.cloudflare.com',
-            'https://unpkg.com',
         ];
 
+        $linkHeaders = [];
         foreach ($dnsPrefetchDomains as $domain) {
             $linkHeaders[] = "<{$domain}>; rel=dns-prefetch";
         }
