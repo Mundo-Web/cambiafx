@@ -336,13 +336,11 @@ const Header = ({
             >
                 {/* CINTILLO INICIO */}
                 <div className="bg-accent relative overflow-hidden text-white text-xs md:text-sm py-2 md:py-3">
-                    <div className="absolute top-0 -left-0 flex justify-end w-full h-full   pointer-events-none">
-                        <img
-                            src={`/assets/cambiafx/cintillo-overlay.png`}
-                            alt="overlay Image"
-                            className="h-full  object-cover "
-                        />
-                    </div>
+                    <div 
+                        className="absolute top-0 left-0 w-full h-full pointer-events-none bg-right bg-cover bg-no-repeat"
+                        style={{ backgroundImage: "url('/assets/cambiafx/cintillo-overlay.png')" }}
+                        aria-hidden="true"
+                    />
                     <div className="px-[5%] mx-auto  flex flex-row items-center justify-center ">
                         <div className="flex items-center justify-center gap-2 relative w-full md:w-auto max-w-full md:max-w-max">
                             <img

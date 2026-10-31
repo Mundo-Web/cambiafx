@@ -1,8 +1,14 @@
-# 📘 Guía Paso a Paso: Despliegue del Cloudflare Worker (Prerender + 301)
+# 📘 Guía Paso a Paso: Despliegue del Cloudflare Worker (100% Gratuito - Sin Prerender.io)
 
 Esta guía explica detalladamente cómo configurar el Worker en Cloudflare para resolver:
-1. **Tarea A1:** Servir HTML completo a bots e IAs (Googlebot, GPTBot, Perplexity, etc.) con caché de 24h.
-2. **Tarea A2:** Redirección automática permanente 301 de `www.cambiafx.pe` hacia `cambiafx.pe`.
+1. **Tarea A2 (Prioritaria):** Redirección automática permanente 301 de `www.cambiafx.pe` hacia `cambiafx.pe` (Canónica SEO).
+2. **Tarea A1 (SEO & IA):** Optimización y entrega directa de metadatos, OpenGraph y JSON-LD desde Laravel con cabeceras Edge.
+
+> **💡 NOTA IMPORTANTE SOBRE PRERENDER:**
+> **No es necesario pagar ni configurar Prerender.io ni ningún servicio externo.**
+> - Laravel ya genera en el HTML inicial (`public.blade.php`) todas las etiquetas `<title>`, `<meta>`, OpenGraph (para WhatsApp/Facebook) y esquemas estructurados Schema.org JSON-LD (`Organization`, `FinancialService`, `FAQPage`, `BreadcrumbList`).
+> - Los bots modernos (Googlebot, Bingbot, LLMs) ejecutan JavaScript o leen los archivos de IA dedicados (`https://cambiafx.pe/llms.txt`).
+> - **Costo:** **$0.00** (Usa el plan gratuito nativo de Cloudflare).
 
 ---
 
@@ -13,7 +19,7 @@ Esta guía explica detalladamente cómo configurar el Worker en Cloudflare para 
 3. Haz clic en el botón azul **"Create application"** (o *"Crear aplicación"*).
 4. Selecciona la pestaña **"Workers"** y haz clic en **"Create Worker"**.
 5. Asígnale un nombre descriptivo, por ejemplo:
-   `cambiafx-prerender-worker`
+   `cambiafx-redirect-worker`
 6. Haz clic en **"Deploy"** (Desplegar).
 
 ---
@@ -28,21 +34,10 @@ Esta guía explica detalladamente cómo configurar el Worker en Cloudflare para 
 
 ---
 
-## 🔑 Paso 3: Configurar Variables de Entorno (Token de Prerender)
+## 🔑 Paso 3: Variables de Entorno (¡NO SE REQUIEREN!)
 
-Para que el worker pueda renderizar el JavaScript en un HTML completo, se utiliza un servicio de prerender (el estándar es **Prerender.io**):
-
-1. Si el cliente tiene cuenta en [Prerender.io](https://prerender.io/) (o crea una gratuita con su correo corporativo):
-   - Ve a su dashboard de Prerender.io y copia el **Token** que aparece en pantalla.
-2. En el dashboard de Cloudflare, ve a la configuración de tu Worker:
-   * **Settings** (Configuración) ➔ **Variables and Secrets** (Variables y Secretos).
-   * Haz clic en **"Add"** (Añadir variable o secreto).
-   * **Nombre:** `PRERENDER_TOKEN`
-   * **Valor:** *(Pega el token de Prerender.io)*
-   * Tipo: Selecciona **Secret** (Encriptado).
-   * Haz clic en **Save and Deploy**.
-
-*(Nota: Si van a usar un Rendertron propio o contenedor propio, pueden añadir la variable `PRERENDER_SERVICE_URL` con la URL de su servidor).*
+✨ **¡Paso omitido por completo!**
+El código actual de [`worker.js`](./worker.js) ya no requiere `PRERENDER_TOKEN` ni ninguna configuración externa de pago. Puedes saltar directamente al **Paso 4**.
 
 ---
 
@@ -55,14 +50,14 @@ Ahora debemos hacer que el Worker intercepte el tráfico de la web:
 3. Haz clic en **"Add route"** (Añadir ruta).
 4. Agrega las siguientes 2 rutas:
 
-   * **Ruta 1 (Dominio principal y subrutas):**
-     * **Route:** `cambiafx.pe/*`
-     * **Worker:** Selecciona `cambiafx-prerender-worker`
+   * **Ruta 1 (Versión www para redirección 301):**
+     * **Route:** `www.cambiafx.pe/*`
+     * **Worker:** Selecciona `cambiafx-redirect-worker`
      * Haz clic en **Save**.
 
-   * **Ruta 2 (Versión www para redirección 301):**
-     * **Route:** `www.cambiafx.pe/*`
-     * **Worker:** Selecciona `cambiafx-prerender-worker`
+   * **Ruta 2 (Dominio principal para cabeceras optimizadas):**
+     * **Route:** `cambiafx.pe/*`
+     * **Worker:** Selecciona `cambiafx-redirect-worker`
      * Haz clic en **Save**.
 
 ---
@@ -79,15 +74,23 @@ curl -I https://www.cambiafx.pe/
   `HTTP/1.1 301 Moved Permanently`  
   `Location: https://cambiafx.pe/`
 
-### 2. Probar como Usuario Normal (debe recibir la SPA rápida sin prerender):
+### 2. Probar como Usuario Normal:
 ```bash
 curl -I https://cambiafx.pe/
 ```
-* **Resultado esperado:** Cabeceras normales del servidor sin `X-Served-By: Cloudflare-Worker-Prerender`.
+* **Resultado esperado:** Cabeceras normales del servidor con `X-Edge-Server: Cloudflare-CambiaFX`.
 
-### 3. Probar como Bot de Google o IA (debe recibir HTML renderizado completo con <h1> y textos):
-```bash
-curl -A "Googlebot" -s -L https://cambiafx.pe/ | grep -i "<h1"
-curl -A "GPTBot" -s -L https://cambiafx.pe/tipo-de-cambio-hoy | grep -i "compra"
-```
-* **Resultado esperado:** Retorna el HTML con contenido real y la cabecera `X-Served-By: Cloudflare-Worker-Prerender`.
+---
+
+## 🚀 Alternativa sin Worker (En 30 segundos vía Redirect Rules)
+
+Si prefieres no usar un Worker para la redirección 301:
+1. En Cloudflare, ve a **cambiafx.pe** ➔ **Rules** (Reglas) ➔ **Redirect Rules**.
+2. Haz clic en **Create rule**.
+3. **Nombre:** Redirección www a non-www
+4. **Condición:** Si `Hostname equals www.cambiafx.pe`
+5. **Tipo de redirección:** Dynamic o Static:
+   * **URL:** `concat("https://cambiafx.pe", http.request.uri.path)`
+   * **Status code:** 301 (Permanent Redirect)
+   * **Preserve query string:** Activado.
+6. Haz clic en **Deploy**.

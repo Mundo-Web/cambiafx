@@ -8,6 +8,7 @@ use App\Observers\SaleCreationObserver;
 use App\Observers\SaleStatusObserver;
 use App\Observers\UserNameObserver;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Vite;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -25,6 +26,14 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        // Hacer que los estilos CSS generados por Vite carguen de forma asíncrona (No bloqueantes del FCP/LCP)
+        Vite::useStyleTagAttributes(function (string $src, string $url, ?array $chunk, ?array $manifest) {
+            return [
+                'media' => 'print',
+                'onload' => "this.media='all'",
+            ];
+        });
+
         // Configure database to disconnect idle connections
         DB::disconnect();
         

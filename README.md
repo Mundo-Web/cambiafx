@@ -30,24 +30,21 @@ Antes de iniciar la codificación, asegurar tener listos:
 ## 🧱 PARTE 1 · Bloque A: Renderizado y Rastreo (Crítico)
 *Meta: Que las 6 landings y los 40 posts sean 100% legibles e indexables para Googlebot, Bingbot, GPTBot, ClaudeBot y Perplexity.*
 
-### 📍 A1. Capa de Prerender para Bots (Cloudflare Worker)
-* **Diagnóstico:** La web es una SPA en Inertia.js. `curl https://cambiafx.pe/` solo retorna un `<div id="app" data-page="..."></div>` vacío; los bots de IA y rastreadores ven una página en blanco.
+### 📍 A1. Optimización Edge y Renderizado para Bots e IAs (Cloudflare Worker - 100% Gratuito)
+* **Diagnóstico & Solución:** La web sirve el HTML inicial desde Laravel con todas las meta etiquetas, OpenGraph, esquemas JSON-LD unificados (`Organization`, `FinancialService`, `FAQPage`, `BreadcrumbList`) y los endpoints de IA `/llms.txt`. No se requiere pagar servicios externos como Prerender.io. El Worker en Cloudflare gestiona la redirección 301 canónica y optimización de cabeceras en el Edge sin costo.
 * **Archivos involucrados:**
-  - `cloudflare-worker/prerender-worker.js` (a crear en la raíz o repo)
-  - `routes/web.php` / Middleware de Laravel (opcional si se usa prerender middleware)
+  - `cloudflare/worker.js` (código del worker)
+  - `cloudflare/GUIA_CLOUDFLARE_WORKER.md` (manual de despliegue paso a paso)
 * **Paso a paso de implementación:**
-  1. Identificar User-Agents rastreadores:
-     `Googlebot`, `bingbot`, `Baiduspider`, `yandex`, `facebookexternalhit`, `Twitterbot`, `rogerbot`, `LinkedInBot`, `embedly`, `quora link preview`, `showyoubot`, `outbrain`, `pinterest`, `slackbot`, `vkShare`, `W3C_Validator`, `GPTBot`, `ClaudeBot`, `PerplexityBot`.
-  2. Implementar Worker en Cloudflare:
-     - Si la petición proviene de un bot en la lista: redirigir internamente al servicio de renderizado (ej. Prerender.io o servicio headless Chromium) con caché edge de 24 horas (`cf-cache-ttl: 86400`).
-     - Si la petición proviene de un usuario regular: pasar la petición intacta hacia el origen Laravel (`mi.cambiafx.pe` / servidor actual).
-  3. Validar que la respuesta para bots contenga:
-     - Etiquetas `<h1>` semánticas, textos y FAQs completas.
-     - En `/tipo-de-cambio-hoy`, la cifra de compra/venta actualizada con fecha/hora.
+  1. Desplegar `cloudflare/worker.js` en Cloudflare Workers (plan gratuito, 0 tokens requeridos).
+  2. Asignar rutas `www.cambiafx.pe/*` y `cambiafx.pe/*`.
+  3. Validar que la respuesta para bots y usuarios contenga:
+     - Etiquetas OpenGraph y JSON-LD estructurado en el HTML inicial.
+     - Redirección 301 permanente automática desde `www` hacia `sin-www`.
 * **Comando de prueba:**
   ```bash
-  curl -A "Googlebot" -s -L https://cambiafx.pe/ | grep -i "<h1"
-  curl -A "GPTBot" -s -L https://cambiafx.pe/tipo-de-cambio-hoy | grep -i "compra"
+  curl -I https://www.cambiafx.pe/
+  curl -A "Googlebot" -s -L https://cambiafx.pe/ | grep -i "application/ld+json"
   ```
 
 ---
