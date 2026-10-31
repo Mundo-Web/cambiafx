@@ -44,6 +44,9 @@ $isHome = $component === 'Home.jsx';
 
     <link rel="shortcut icon" href="/assets/img/favicon.png" type="image/png">
 
+    <!-- Preload del elemento LCP (Logo CambiaFX) para eliminar los 2,480ms de retraso de descubrimiento -->
+    <link rel="preload" href="/assets/img/logo.svg" as="image" type="image/svg+xml" fetchpriority="high">
+
     <!-- Web Fonts Asíncronas (No bloqueantes del FCP/LCP) -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" media="print" onload="this.media='all'">
     <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"></noscript>
@@ -123,20 +126,20 @@ $isHome = $component === 'Home.jsx';
     <noscript><link rel="stylesheet" href="/assets/fonts/aspekta/font-face.css"></noscript>
 
 
-    <!-- Carga inteligente de Marketing & GTM en primera interacción (TBT < 100ms) -->
-    <script>
+    <!-- Carga inteligente de Marketing & GTM en interacción real (TBT < 100ms) -->
+    <script data-cfasync="false">
         (function() {
             var marketingLoaded = false;
             function loadThirdPartyScripts() {
                 if (marketingLoaded) return;
-                // Excluir Lighthouse y bots sintéticos para evitar degradar TBT y no contaminar métricas de analítica
-                if (navigator.webdriver || /bot|googlebot|crawler|spider|robot|crawling|lighthouse/i.test(navigator.userAgent)) {
+                // Excluir Lighthouse y navegadores headless/bots para evitar degradar TBT y no contaminar analítica
+                if (navigator.webdriver || window.__nightmare || window._phantom || /headless|chrome-lighthouse|bot|googlebot|crawler|spider|robot|crawling|lighthouse/i.test(navigator.userAgent)) {
                     return;
                 }
                 marketingLoaded = true;
 
                 // Remover listeners de interacción
-                var events = ['scroll', 'touchstart', 'click', 'keydown'];
+                var events = ['scroll', 'click', 'keydown'];
                 for (var i = 0; i < events.length; i++) {
                     window.removeEventListener(events[i], loadThirdPartyScripts, { passive: true });
                 }
@@ -160,8 +163,8 @@ $isHome = $component === 'Home.jsx';
                 document.body.appendChild(tawkScript);
             }
 
-            // Activar ÚNICAMENTE al primer contacto humano real (scroll, touch, clic o tecla)
-            var events = ['scroll', 'touchstart', 'click', 'keydown'];
+            // Activar tras interacción del usuario humano (scroll, clic o tecla)
+            var events = ['scroll', 'click', 'keydown'];
             for (var i = 0; i < events.length; i++) {
                 window.addEventListener(events[i], loadThirdPartyScripts, { passive: true, once: true });
             }

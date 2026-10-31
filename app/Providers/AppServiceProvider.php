@@ -34,6 +34,11 @@ class AppServiceProvider extends ServiceProvider
             ];
         });
 
+        // Prevenir que Cloudflare Rocket Loader retrase o reescriba los scripts ESM de Vite
+        Vite::useScriptTagAttributes([
+            'data-cfasync' => 'false',
+        ]);
+
         // Configure database to disconnect idle connections
         DB::disconnect();
         
