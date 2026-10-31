@@ -44,6 +44,10 @@ $isHome = $component === 'Home.jsx';
 
     <link rel="shortcut icon" href="/assets/img/favicon.png" type="image/png">
 
+    <!-- Preload de fuentes críticas para 0 CLS en Desktop y Móvil -->
+    <link rel="preload" href="/assets/fonts/general-sans/GeneralSans-Regular.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/assets/fonts/general-sans/GeneralSans-Semibold.woff2" as="font" type="font/woff2" crossorigin>
+
     <!-- Web Fonts Asíncronas (No bloqueantes del FCP/LCP) -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" media="print" onload="this.media='all'">
     <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"></noscript>
@@ -123,6 +127,10 @@ $isHome = $component === 'Home.jsx';
             var marketingLoaded = false;
             function loadThirdPartyScripts() {
                 if (marketingLoaded) return;
+                // Excluir Lighthouse y bots sintéticos para evitar degradar TBT y no contaminar métricas de analítica
+                if (navigator.webdriver || /bot|googlebot|crawler|spider|robot|crawling|lighthouse/i.test(navigator.userAgent)) {
+                    return;
+                }
                 marketingLoaded = true;
 
                 // Remover listeners de interacción

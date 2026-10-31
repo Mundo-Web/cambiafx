@@ -386,29 +386,13 @@ const Header = ({
                             className="flex items-center"
                         >
                             <a href="/">
-                                <motion.img
-                                    whileHover={{
-                                        scale: 1.08,
-                                        y: -2,
-                                        filter: "drop-shadow(0 0 10px rgba(187, 255, 82, 0.4))",
-                                    }}
-                                    whileTap={{ scale: 0.96 }}
-                                    animate={{
-                                        y: [0, -2, 0],
-                                    }}
-                                    transition={{
-                                        y: {
-                                            duration: 4,
-                                            repeat: Infinity,
-                                            ease: "easeInOut",
-                                        },
-                                        scale: { duration: 0.2 },
-                                        filter: { duration: 0.3 },
-                                    }}
+                                <img
                                     src="/assets/img/logo.svg"
                                     alt={Global.APP_NAME}
+                                    width="160"
+                                    height="48"
                                     fetchpriority="high"
-                                    className="object-cover object-top h-12 max-h-12 w-auto sm:h-12 sm:max-h-12 transition-all duration-300"
+                                    className="object-contain object-left h-12 max-h-12 w-auto sm:h-12 sm:max-h-12 transition-transform duration-300 hover:scale-105"
                                 />
                             </a>
                         </motion.div>

@@ -1170,9 +1170,10 @@ const ExchangeCard = ({
                 <div className="min-w-max  text-[10px] lg:text-sm font-medium text-neutral-light flex items-center gap-1">
 
                     <img
-
                         src="/assets/img/logo.svg"
                         alt={Global.APP_NAME}
+                        width="120"
+                        height="40"
                         className="object-cover object-top h-7 max-h-7 w-auto lg:h-10 lg:max-h-10 transition-all duration-300"
                     />
 
@@ -1184,7 +1185,7 @@ const ExchangeCard = ({
                 <button
                     onClick={() => handleOperationTypeChange('compra')}
                     aria-label="Seleccionar operación de compra de dólares"
-                    className={`flex-1 py-3 rounded-xl font-medium transition-all duration-200 relative ${operationType === 'compra'
+                    className={`flex-1 py-3 min-h-[28px] lg:min-h-[24px] flex flex-col justify-center items-center rounded-xl font-medium transition-all duration-200 relative ${operationType === 'compra'
                         ? 'bg-constrast text-white shadow-lg shadow-constrast/25'
                         : 'bg-white text-neutral-dark hover:bg-neutral hover:shadow-md'
                         }`}
@@ -1260,7 +1261,7 @@ const ExchangeCard = ({
                 <button
                     onClick={() => handleOperationTypeChange('venta')}
                     aria-label="Seleccionar operación de venta de dólares"
-                    className={`flex-1 py-3 rounded-xl font-medium transition-all duration-200 relative ${operationType === 'venta'
+                    className={`flex-1 py-3 min-h-[28px] lg:min-h-[24px] flex flex-col justify-center items-center rounded-xl font-medium transition-all duration-200 relative ${operationType === 'venta'
                         ? 'bg-constrast text-white shadow-lg shadow-constrast/25'
                         : 'bg-white text-neutral-dark hover:bg-neutral hover:shadow-md'
                         }`}
@@ -1555,8 +1556,8 @@ const ExchangeCard = ({
 
                                                                                 return (
                                                                                     <div key={index} className={`flex justify-between items-center p-2 rounded-md text-xs ${isCurrentRange
-                                                                                            ? 'bg-constrast/20 border border-constrast/40'
-                                                                                            : 'bg-white/5'
+                                                                                        ? 'bg-constrast/20 border border-constrast/40'
+                                                                                        : 'bg-white/5'
                                                                                         }`}>
                                                                                         <span className="font-medium">
                                                                                             {/* 🔧 MOSTRAR RANGOS SEGÚN QUÉ INPUT ESTÁ SIENDO USADO */}
@@ -1836,8 +1837,8 @@ const ExchangeCard = ({
 
                                                                                 return (
                                                                                     <div key={index} className={`flex justify-between items-center p-2 rounded-md text-xs ${isCurrentRange
-                                                                                            ? 'bg-secondary/20 border border-secondary/40'
-                                                                                            : 'bg-white/5'
+                                                                                        ? 'bg-secondary/20 border border-secondary/40'
+                                                                                        : 'bg-white/5'
                                                                                         }`}>
                                                                                         <span className="font-medium">
                                                                                             ${(minAmountOriginal || 0).toLocaleString()} - ${(maxAmountOriginal || 0).toLocaleString()}
