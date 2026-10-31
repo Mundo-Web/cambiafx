@@ -43,8 +43,6 @@ $isHome = $component === 'Home.jsx';
     <link rel="apple-touch-icon" href="/assets/img/icon.png">
 
     <link rel="shortcut icon" href="/assets/img/favicon.png" type="image/png">
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" media="print" onload="this.media='all'">
-    <noscript><link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet"></noscript>
 
     <!-- Web Fonts Asíncronas (No bloqueantes del FCP/LCP) -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" media="print" onload="this.media='all'">
@@ -117,29 +115,48 @@ $isHome = $component === 'Home.jsx';
     <noscript><link rel="stylesheet" href="/assets/fonts/aspekta/font-face.css"></noscript>
 
 
-    <!-- Google Tag Manager (Carga en segundo plano para liberar el hilo principal y reducir TBT) -->
+    <!-- Carga inteligente de Marketing & GTM en primera interacción (TBT < 100ms) -->
     <script>
-        (function(w,d,s,l,i){
-            w[l]=w[l]||[];
-            w[l].push({'gtm.start': new Date().getTime(), event:'gtm.js'});
-            var loadGTM = function() {
-                if (w.__gtm_loaded) return;
-                w.__gtm_loaded = true;
-                var f = d.getElementsByTagName(s)[0],
-                    j = d.createElement(s),
-                    dl = l != 'dataLayer' ? '&l=' + l : '';
-                j.async = true;
-                j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
-                f.parentNode.insertBefore(j, f);
-            };
-            if ('requestIdleCallback' in window) {
-                window.requestIdleCallback(loadGTM, { timeout: 2500 });
-            } else {
-                window.addEventListener('load', function() {
-                    setTimeout(loadGTM, 1500);
-                });
+        (function() {
+            var marketingLoaded = false;
+            function loadThirdPartyScripts() {
+                if (marketingLoaded) return;
+                marketingLoaded = true;
+
+                // Remover listeners de interacción
+                var events = ['scroll', 'touchstart', 'mousemove', 'click', 'keydown'];
+                for (var i = 0; i < events.length; i++) {
+                    window.removeEventListener(events[i], loadThirdPartyScripts, { passive: true });
+                }
+
+                // 1. Google Tag Manager
+                (function(w,d,s,l,i){
+                    w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});
+                    var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';
+                    j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;
+                    f.parentNode.insertBefore(j,f);
+                })(window,document,'script','dataLayer','GTM-KSHS2XZ');
+
+                // 2. Chat de Soporte Tawk.to
+                window.Tawk_API = window.Tawk_API || {};
+                window.Tawk_LoadStart = new Date();
+                var tawkScript = document.createElement('script');
+                tawkScript.async = true;
+                tawkScript.src = 'https://embed.tawk.to/5c3563c212db2461b16b4a9b/default';
+                tawkScript.charset = 'UTF-8';
+                tawkScript.setAttribute('crossorigin', '*');
+                document.body.appendChild(tawkScript);
             }
-        })(window,document,'script','dataLayer','GTM-KSHS2XZ');
+
+            // Activar al primer contacto humano (scroll, touch, clic o tecla)
+            var events = ['scroll', 'touchstart', 'mousemove', 'click', 'keydown'];
+            for (var i = 0; i < events.length; i++) {
+                window.addEventListener(events[i], loadThirdPartyScripts, { passive: true, once: true });
+            }
+
+            // Fallback pasivo de 7 segundos (por si el usuario lee sin tocar la pantalla)
+            setTimeout(loadThirdPartyScripts, 7000);
+        })();
     </script>
     <!-- End Google Tag Manager -->
 </head>
@@ -164,8 +181,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
     @inertia
 
-    <script src="https://cdn.jsdelivr.net/npm/flowbite@2.4.1/dist/flowbite.min.js" defer></script>
-
     @unless ($isHome)
     <script src="/lte/assets/libs/moment/min/moment.min.js" defer></script>
     <script src="/lte/assets/libs/moment/moment-timezone.js" defer></script>
@@ -178,8 +193,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <script src="/lte/assets/libs/dxdatagrid/js/localization/dx.messages.es.js" defer></script>
     <script src="/lte/assets/libs/dxdatagrid/js/localization/dx.messages.en.js" defer></script>
     @endif
-
-    <script src="/lte/assets/libs/tippy.js/tippy.all.min.js" defer></script>
 
     <script>
         document.addEventListener('click', function(event) {
@@ -195,31 +208,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 }
             }
         });
-    </script>
-
-    <script>
-        (function() {
-            const schedule = (callback, timeout = 4000) => {
-                if ('requestIdleCallback' in window) {
-                    requestIdleCallback(callback, { timeout });
-                } else {
-                    setTimeout(callback, timeout);
-                }
-            };
-
-            // Chat de Soporte Tawk.to (Carga diferida)
-            schedule(() => {
-                window.Tawk_API = window.Tawk_API || {};
-                window.Tawk_LoadStart = new Date();
-
-                const tawkScript = document.createElement('script');
-                tawkScript.async = true;
-                tawkScript.src = 'https://embed.tawk.to/5c3563c212db2461b16b4a9b/default';
-                tawkScript.charset = 'UTF-8';
-                tawkScript.setAttribute('crossorigin', '*');
-                document.body.appendChild(tawkScript);
-            }, 3500);
-        })();
     </script>
 
     <noscript>
