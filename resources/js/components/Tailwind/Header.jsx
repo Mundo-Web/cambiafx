@@ -336,7 +336,7 @@ const Header = ({
             >
                 {/* CINTILLO INICIO */}
                 <div className="bg-accent relative overflow-hidden text-white text-xs md:text-sm py-2 md:py-3">
-                    <div 
+                    <div
                         className="absolute top-0 left-0 w-full h-full pointer-events-none bg-right bg-cover bg-no-repeat"
                         style={{ backgroundImage: "url('/assets/cambiafx/cintillo-overlay.png')" }}
                         aria-hidden="true"
@@ -347,6 +347,7 @@ const Header = ({
                                 src="/assets/cambiafx/cintillo.webp"
                                 alt="Cintillo Icon"
                                 className="w-8 h-8 md:w-12 z-[999] relative md:absolute -bottom-2 md:-bottom-2 left-0 md:-left-10 transform scale-y-[-1] rotate-90"
+                                fetchPriority="high"
                             />
                             <div className="overflow-hidden md:whitespace-nowrap whitespace-normal w-full md:w-auto relative">
                                 {/*agregar overlay que este transparente y finalize en bg-accent */}
