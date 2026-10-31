@@ -271,7 +271,7 @@ Antes de iniciar la codificación, asegurar tener listos:
 | Crear y publicar `/llms.txt` y `/llms-full.txt` (con Tab editable en Admin) | A3 | ✅ Completado | Dev |
 | Estructurar JSON-LD (FinancialService, FAQ, Article) | A4 | ✅ Completado | Dev |
 | Limpiar errores de consola y DevTools Issues | A5 | ✅ Completado | Dev |
-| CSS crítico inline, font-display y preload de fuentes | B1 | ⏳ Pendiente | Dev |
+| CSS crítico inline, font-display y optimización de recursos bloqueantes | B1 | ✅ Completado | Dev |
 | Code splitting por ruta y diferir scripts en GTM | B2 | ⏳ Pendiente | Dev |
 | Optimizar hilo principal y eliminar librerías redundantes | B3 | ⏳ Pendiente | Dev |
 | Conversión WebP, dimensiones explícitas y fijar CLS | B4 | ⏳ Pendiente | Dev |

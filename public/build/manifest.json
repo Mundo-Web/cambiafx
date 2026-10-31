@@ -4870,7 +4870,7 @@
     ]
   },
   "resources/js/components/Adminto/form/CheckboxFormGroup.jsx": {
-    "file": "assets/CheckboxFormGroup-Khb2RDPi.js",
+    "file": "assets/CheckboxFormGroup-5zCVTvM1.js",
     "name": "CheckboxFormGroup",
     "src": "resources/js/components/Adminto/form/CheckboxFormGroup.jsx",
     "isEntry": true,
@@ -4900,7 +4900,7 @@
     ]
   },
   "resources/js/components/Adminto/form/InputFormGroup.jsx": {
-    "file": "assets/InputFormGroup-Khb2RDPi.js",
+    "file": "assets/InputFormGroup-5zCVTvM1.js",
     "name": "InputFormGroup",
     "src": "resources/js/components/Adminto/form/InputFormGroup.jsx",
     "isEntry": true,
@@ -4910,7 +4910,7 @@
     ]
   },
   "resources/js/components/Adminto/form/PasswordFormGroup.jsx": {
-    "file": "assets/PasswordFormGroup-Khb2RDPi.js",
+    "file": "assets/PasswordFormGroup-5zCVTvM1.js",
     "name": "PasswordFormGroup",
     "src": "resources/js/components/Adminto/form/PasswordFormGroup.jsx",
     "isEntry": true,
@@ -4920,7 +4920,7 @@
     ]
   },
   "resources/js/components/Adminto/form/QuillFormGroup.jsx": {
-    "file": "assets/QuillFormGroup-5zCVTvM1.js",
+    "file": "assets/QuillFormGroup-Khb2RDPi.js",
     "name": "QuillFormGroup",
     "src": "resources/js/components/Adminto/form/QuillFormGroup.jsx",
     "isEntry": true,
@@ -4930,7 +4930,7 @@
     ]
   },
   "resources/js/components/Adminto/form/SelectAPIFormGroup.jsx": {
-    "file": "assets/SelectAPIFormGroup-DsLLZ3NJ.js",
+    "file": "assets/SelectAPIFormGroup-B4JDcjc4.js",
     "name": "SelectAPIFormGroup",
     "src": "resources/js/components/Adminto/form/SelectAPIFormGroup.jsx",
     "isEntry": true,
@@ -4954,7 +4954,7 @@
     ]
   },
   "resources/js/components/Adminto/form/SelectFormGroup.jsx": {
-    "file": "assets/SelectFormGroup-Khb2RDPi.js",
+    "file": "assets/SelectFormGroup-5zCVTvM1.js",
     "name": "SelectFormGroup",
     "src": "resources/js/components/Adminto/form/SelectFormGroup.jsx",
     "isEntry": true,
@@ -5705,7 +5705,7 @@
     ]
   },
   "resources/js/components/Table.jsx": {
-    "file": "assets/Table-Khb2RDPi.js",
+    "file": "assets/Table-5zCVTvM1.js",
     "name": "Table",
     "src": "resources/js/components/Table.jsx",
     "isEntry": true,
@@ -5875,23 +5875,34 @@
     ]
   },
   "resources/js/components/Tailwind/CambiaFX/EmpresasSection.jsx": {
-    "file": "assets/EmpresasSection-BwFObas3.js",
+    "file": "assets/EmpresasSection-D7VDzwSS.js",
     "name": "EmpresasSection",
     "src": "resources/js/components/Tailwind/CambiaFX/EmpresasSection.jsx",
-    "isEntry": true,
+    "isDynamicEntry": true,
     "imports": [
       "resources/js/Admin/components/ImportSubscriptionsModal.jsx",
       "resources/js/components/WebVitalsMonitor.jsx",
       "resources/js/components/Tailwind/CambiaFX/BannerFxEmpresas.jsx",
+      "_proxy-zuHGA4Ov.js",
+      "_Header-D1TFKNHm.js",
       "_main-BK7KYfUi.js",
       "____vite-browser-external_commonjs-proxy-CGejAyr8.js",
       "resources/js/components/Blog/Results.jsx",
       "_General-CSnTKUjB.js",
-      "_proxy-zuHGA4Ov.js",
       "_message-circle-CsWle5Ee.js",
       "_createLucideIcon-C1llfSNW.js",
       "_globe-Cx8jzyvQ.js",
-      "_phone-0gBB7l7y.js"
+      "_phone-0gBB7l7y.js",
+      "resources/js/components/Tailwind/DetailProduct/Detail.jsx",
+      "_useTranslation-Bd5DNnb9.js",
+      "resources/js/components/Blog/Filter.jsx",
+      "_axios-COzaZAiy.js",
+      "_CreateReactScript-ZD2u2oZT.js",
+      "_index.esm-5NFqnzAw.js"
+    ],
+    "css": [
+      "assets/swiper-EKmKsbKj.css",
+      "assets/tippy-LriLsbSV.css"
     ]
   },
   "resources/js/components/Tailwind/CambiaFX/ExchangeCard.jsx": {
@@ -6042,13 +6053,14 @@
     ]
   },
   "resources/js/components/Tailwind/CambiaFX/PrimeraOperacionSection.jsx": {
-    "file": "assets/PrimeraOperacionSection-CId7yais.js",
+    "file": "assets/PrimeraOperacionSection-B1JwvWrd.js",
     "name": "PrimeraOperacionSection",
     "src": "resources/js/components/Tailwind/CambiaFX/PrimeraOperacionSection.jsx",
-    "isEntry": true,
+    "isDynamicEntry": true,
     "imports": [
       "resources/js/Admin/components/ImportSubscriptionsModal.jsx",
       "resources/js/components/WebVitalsMonitor.jsx",
+      "_TextWithHighlight-DjGipNpm.js",
       "resources/js/components/Tailwind/CambiaFX/BannerFxEmpresas.jsx",
       "_OptimizedImage--yH0ub55.js",
       "_proxy-zuHGA4Ov.js",
@@ -6063,15 +6075,19 @@
     ]
   },
   "resources/js/components/Tailwind/CambiaFX/StepsSection.jsx": {
-    "file": "assets/StepsSection-B8DAfXdO.js",
+    "file": "assets/StepsSection-DZT8f6Rx.js",
     "name": "StepsSection",
     "src": "resources/js/components/Tailwind/CambiaFX/StepsSection.jsx",
-    "isEntry": true,
+    "isDynamicEntry": true,
     "imports": [
       "resources/js/Admin/components/ImportSubscriptionsModal.jsx",
       "resources/js/components/WebVitalsMonitor.jsx",
+      "_TextWithHighlight-DjGipNpm.js",
       "resources/js/components/Tailwind/CambioGerencia/HomeSeccionBlog.jsx",
-      "resources/js/components/About/Strengths.jsx"
+      "_pagination-Bbf-lBVu.js",
+      "resources/js/components/About/Strengths.jsx",
+      "_proxy-zuHGA4Ov.js",
+      "_classes-to-selector-BGUOyi4Y.js"
     ],
     "css": [
       "assets/swiper-EKmKsbKj.css"
@@ -6621,7 +6637,7 @@
     ]
   },
   "resources/js/components/Tailwind/Table.jsx": {
-    "file": "assets/Table-5zCVTvM1.js",
+    "file": "assets/Table-Khb2RDPi.js",
     "name": "Table",
     "src": "resources/js/components/Tailwind/Table.jsx",
     "isEntry": true,
@@ -6773,10 +6789,10 @@
     ]
   },
   "resources/js/components/Test/HairType.jsx": {
-    "file": "assets/HairType-DRZvdvI1.js",
+    "file": "assets/HairType-DVttno-G.js",
     "name": "HairType",
     "src": "resources/js/components/Test/HairType.jsx",
-    "isEntry": true,
+    "isDynamicEntry": true,
     "imports": [
       "resources/js/Admin/components/ImportSubscriptionsModal.jsx",
       "resources/js/components/WebVitalsMonitor.jsx",
@@ -6913,7 +6929,7 @@
     "isEntry": true
   },
   "resources/js/components/form/CheckboxFormGroup.jsx": {
-    "file": "assets/CheckboxFormGroup-5zCVTvM1.js",
+    "file": "assets/CheckboxFormGroup-Khb2RDPi.js",
     "name": "CheckboxFormGroup",
     "src": "resources/js/components/form/CheckboxFormGroup.jsx",
     "isEntry": true,
@@ -6923,7 +6939,7 @@
     ]
   },
   "resources/js/components/form/InputFormGroup.jsx": {
-    "file": "assets/InputFormGroup-5zCVTvM1.js",
+    "file": "assets/InputFormGroup-Khb2RDPi.js",
     "name": "InputFormGroup",
     "src": "resources/js/components/form/InputFormGroup.jsx",
     "isEntry": true,
@@ -6933,7 +6949,7 @@
     ]
   },
   "resources/js/components/form/PasswordFormGroup.jsx": {
-    "file": "assets/PasswordFormGroup-5zCVTvM1.js",
+    "file": "assets/PasswordFormGroup-Khb2RDPi.js",
     "name": "PasswordFormGroup",
     "src": "resources/js/components/form/PasswordFormGroup.jsx",
     "isEntry": true,
@@ -6943,7 +6959,7 @@
     ]
   },
   "resources/js/components/form/QuillFormGroup.jsx": {
-    "file": "assets/QuillFormGroup-Khb2RDPi.js",
+    "file": "assets/QuillFormGroup-5zCVTvM1.js",
     "name": "QuillFormGroup",
     "src": "resources/js/components/form/QuillFormGroup.jsx",
     "isEntry": true,
@@ -6953,7 +6969,7 @@
     ]
   },
   "resources/js/components/form/SelectAPIFormGroup.jsx": {
-    "file": "assets/SelectAPIFormGroup-B4JDcjc4.js",
+    "file": "assets/SelectAPIFormGroup-DsLLZ3NJ.js",
     "name": "SelectAPIFormGroup",
     "src": "resources/js/components/form/SelectAPIFormGroup.jsx",
     "isEntry": true,
@@ -6965,7 +6981,7 @@
     ]
   },
   "resources/js/components/form/SelectFormGroup.jsx": {
-    "file": "assets/SelectFormGroup-5zCVTvM1.js",
+    "file": "assets/SelectFormGroup-Khb2RDPi.js",
     "name": "SelectFormGroup",
     "src": "resources/js/components/form/SelectFormGroup.jsx",
     "isEntry": true,

@@ -46,31 +46,49 @@ $isHome = $component === 'Home.jsx';
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" media="print" onload="this.media='all'">
     <noscript><link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet"></noscript>
 
-    <link
-        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
-        rel="stylesheet" media="print" onload="this.media='all'">
+    <!-- Web Fonts Asíncronas (No bloqueantes del FCP/LCP) -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"></noscript>
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap"></noscript>
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&display=swap" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&display=swap"></noscript>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
         integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
         crossorigin="anonymous" referrerpolicy="no-referrer" media="print" onload="this.media='all'" />
-
-    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
-
-   
-    <link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-    
-<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap" rel="stylesheet">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"></noscript>
 
 
+    <!-- Critical CSS Above-the-fold para acelerar FCP y prevenir CLS -->
     <style>
-        * {
+        *, ::before, ::after {
             box-sizing: border-box;
+        }
+        html {
+            font-family: 'GeneralSans', 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            -webkit-text-size-adjust: 100%;
+            text-rendering: optimizeLegibility;
+        }
+        body {
+            margin: 0;
+            width: 100%;
+            overflow-x: hidden;
+            background-color: #ffffff;
+            color: #1F1827;
+        }
+        #app {
+            min-height: 100vh;
+        }
+        img, picture, video {
+            max-width: 100%;
+            height: auto;
         }
     </style>
 
-    @if ($component == 'Checkout.jsx')
-    <script type="application/javascript" src="https://checkout.culqi.com/js/v4"></script>
-    @elseif ($component == 'MyAccount.jsx')
+    @if ($component == 'MyAccount.jsx')
     <link href="/lte/assets/libs/dxdatagrid/css/dx.light.compact.css?v=06d3ebc8-645c-4d80-a600-c9652743c425"
         rel="stylesheet" type="text/css" id="dg-default-stylesheet" />
     <link href="/lte/assets/libs/dxdatagrid/css/dx.dark.compact.css?v=06d3ebc8-645c-4d80-a600-c9652743c425"
@@ -138,9 +156,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     @endunless
 
     @if ($component == 'MyAccount.jsx')
-    <script src="/lte/assets/libs/dxdatagrid/js/dx.all.js"></script>
-    <script src="/lte/assets/libs/dxdatagrid/js/localization/dx.messages.es.js"></script>
-    <script src="/lte/assets/libs/dxdatagrid/js/localization/dx.messages.en.js"></script>
+    <script src="/lte/assets/libs/dxdatagrid/js/dx.all.js" defer></script>
+    <script src="/lte/assets/libs/dxdatagrid/js/localization/dx.messages.es.js" defer></script>
+    <script src="/lte/assets/libs/dxdatagrid/js/localization/dx.messages.en.js" defer></script>
     @endif
 
     <script src="/lte/assets/libs/tippy.js/tippy.all.min.js" defer></script>
