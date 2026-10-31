@@ -1,1 +1,0 @@
-import"./vendor-react-DHmcsolk.js";import{O as r}from"./OptimizedImage-Dbl4qsTe.js";import"./vendor-swiper-vsL_Spn9.js";import{m as o}from"./vendor-framer-motion-BFZWlFVI.js";import"./vendor-axios-COzaZAiy.js";import"./vendor-core-CBjePnQG.js";("function"==typeof o.create?o.create:o)(r);

@@ -150,14 +150,11 @@ $isHome = $component === 'Home.jsx';
                 document.body.appendChild(tawkScript);
             }
 
-            // Activar al primer contacto humano (scroll, touch, clic o tecla)
+            // Activar ÚNICAMENTE al primer contacto humano real (scroll, touch, clic o tecla)
             var events = ['scroll', 'touchstart', 'click', 'keydown'];
             for (var i = 0; i < events.length; i++) {
                 window.addEventListener(events[i], loadThirdPartyScripts, { passive: true, once: true });
             }
-
-            // Fallback pasivo de 12 segundos para no interferir en auditorías de rendimiento
-            setTimeout(loadThirdPartyScripts, 12000);
         })();
     </script>
     <!-- End Google Tag Manager -->

@@ -172,9 +172,9 @@ export default function HeroSecction({ data = [], apps = [], indicators = [] }) 
                             loading="eager"
                             fetchPriority="high"
                             decoding="async"
-                            width={600}
+                            width={308}
                             height={400}
-                            className="hidden lg:block w-auto h-[400px] absolute top-4"
+                            className="hidden lg:block w-auto h-[400px] absolute top-4 object-contain"
                             onError={(e) => (e.target.src = "/api/cover/thumbnail/null")}
                         />
                         <div className='lg:w-4/12 relative'>
@@ -204,10 +204,10 @@ export default function HeroSecction({ data = [], apps = [], indicators = [] }) 
                                                 alt={app?.name || 'Descargar app CambiaFX'}
                                                 widths={appCardImageWidths}
                                                 sizes="(max-width: 1280px) 40vw, 220px"
-                                                width={135}
+                                                width={160}
                                                 height={48}
                                                 loading="eager"
-                                                className="h-12 w-auto filter drop-shadow-lg"
+                                                className="h-12 w-auto filter drop-shadow-lg object-contain"
                                                 onError={(e) => (e.target.src = "/api/cover/thumbnail/null")}
                                             />
                                         </a>
@@ -239,9 +239,9 @@ export default function HeroSecction({ data = [], apps = [], indicators = [] }) 
                                                             alt={app?.name || 'Descargar app CambiaFX'}
                                                             widths={appCardImageWidths}
                                                             sizes="(max-width: 768px) 70vw, 280px"
-                                                            width={157}
+                                                            width={186}
                                                             height={56}
-                                                            className="h-14 w-auto"
+                                                            className="h-14 w-auto object-contain"
                                                             onError={(e) => (e.target.src = "/api/cover/thumbnail/null")}
                                                         />
                                                     </div>

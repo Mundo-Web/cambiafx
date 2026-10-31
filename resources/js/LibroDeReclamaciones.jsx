@@ -22,8 +22,6 @@ import Footer from "./components/Tailwind/Footer";
 import Header from "./components/Tailwind/Header";
 import { motion, AnimatePresence } from "framer-motion";
 import { Cookies } from "sode-extend-react";
-import { jsPDF } from "jspdf";
-import autoTable from "jspdf-autotable";
 import HtmlContent from "./Utils/HtmlContent";
 
 const LibroDeReclamaciones = ({ sedes, servicios, terms }) => {
@@ -521,7 +519,10 @@ const LibroDeReclamaciones = ({ sedes, servicios, terms }) => {
         minute: "2-digit",
     });
 
-    const generarPDF = () => {
+    const generarPDF = async () => {
+        const { jsPDF } = await import("jspdf");
+        const autoTableModule = await import("jspdf-autotable");
+        const autoTable = autoTableModule.default || autoTableModule;
         const doc = new jsPDF();
 
         doc.setProperties({

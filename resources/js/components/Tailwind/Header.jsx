@@ -346,7 +346,9 @@ const Header = ({
                             <img
                                 src="/assets/cambiafx/cintillo.webp"
                                 alt="Cintillo Icon"
-                                className="w-8 h-8 md:w-12 z-[999] relative md:absolute -bottom-2 md:-bottom-2 left-0 md:-left-10 transform scale-y-[-1] rotate-90"
+                                width="44"
+                                height="32"
+                                className="h-8 w-auto md:h-12 z-[999] relative md:absolute -bottom-2 md:-bottom-2 left-0 md:-left-10 transform scale-y-[-1] rotate-90 object-contain"
                                 fetchPriority="high"
                             />
                             <div className="overflow-hidden md:whitespace-nowrap whitespace-normal w-full md:w-auto relative">

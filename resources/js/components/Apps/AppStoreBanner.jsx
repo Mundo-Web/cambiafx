@@ -168,10 +168,11 @@ const AppStoreBanner = ({ apps = [] }) => {
                         href={currentApp.link}
                         target="_blank"
                         rel="noopener noreferrer"
+                        aria-label="Descargar aplicación CambiaFX"
                         className="flex items-center gap-2 bg-neutral-dark text-secondary px-2 py-2 rounded-full text-sm font-semibold no-underline transition-all duration-300 ease-out border-none cursor-pointer shadow-sm hover:bg-neutral-dark hover:-translate-y-0.5 hover:shadow-md hover:text-white hover:no-underline active:translate-y-0 sm:px-3.5 sm:py-2 sm:text-xs sm:gap-1"
                     >
                         <Download size={16} />
-                        <span className="hidden">Descargar</span>
+                        <span className="sr-only">Descargar</span>
                     </a>
                     <button 
                         className="bg-neutral-dark/10 border border-neutral-dark/20 text-neutral-dark cursor-pointer p-2 rounded-full flex items-center justify-center transition-all duration-200 ease-out backdrop-blur-sm hover:bg-neutral-dark/20 hover:scale-110"

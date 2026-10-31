@@ -1,1 +1,0 @@
-import{d as r}from"./vendor-react-DHmcsolk.js";import"./BlogHeader-CU4a8GL9.js";import"./Menu-CTgUPSmE.js";import"./vendor-sweetalert-BeWd_4GC.js";import"./vendor-axios-COzaZAiy.js";import"./vendor-core-CBjePnQG.js";import"./vendor-swiper-vsL_Spn9.js";r.setAppElement("#app");

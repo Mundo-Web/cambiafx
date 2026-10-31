@@ -1918,7 +1918,7 @@ const ExchangeCard = ({
             {/* Info Message */}
             <div className="bg-white rounded-xl p-4 text-xs text-neutral-light mt-2">
                 Operaciones mayores a USD 5,000.00. Consigue un tipo de cambio preferencial{' '}
-                <WhatsAppButton><span className="text-constrast underline font-medium">AQUÍ</span> </WhatsAppButton>
+                <WhatsAppButton><span className="text-[#5925dc] underline font-semibold">AQUÍ</span> </WhatsAppButton>
             </div>
 
             {/* Exchange Rate Display */}

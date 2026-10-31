@@ -6,7 +6,6 @@ import HtmlContent from "../../Utils/HtmlContent";
 import GeneralRest from "../../actions/GeneralRest";
 import { Send } from "lucide-react";
 import { useTranslation } from "../../hooks/useTranslation";
-import Swal from "sweetalert2";
 import SubscriptionsRest from "../../actions/SubscriptionsRest";
 import Global from "../../Utils/Global";
 
@@ -160,6 +159,8 @@ const Footer = ({ terms, footerLinks = [] }) => {
         e.preventDefault();
         if (saving) return; // Prevenir múltiples envíos
         
+        const Swal = (await import("sweetalert2")).default;
+        
         // Validar que se hayan aceptado los términos
         if (!termsAccepted) {
             Swal.fire({
@@ -246,9 +247,13 @@ const Footer = ({ terms, footerLinks = [] }) => {
                     <div className="w-full lg:w-4/12 flex flex-col gap-6">
                         <a href="/">
                             <img
-                                className="h-12 lg:h-14"
+                                className="h-12 lg:h-14 w-auto"
                                 src="/assets/img/logo-white.png"
                                 alt="CambiaFX Logo"
+                                width="144"
+                                height="48"
+                                loading="lazy"
+                                decoding="async"
                             />
                         </a>
                         <motion.div 
@@ -306,25 +311,17 @@ const Footer = ({ terms, footerLinks = [] }) => {
                                         rotate: -5
                                     }}
                                 >
-                                    <motion.img 
+                                    <img 
                                         src={`/api/app/media/${app?.image}`} 
                                         alt={app?.name} 
-                                        className="h-8 lg:h-10 rounded-lg shadow-md"
+                                        width="120"
+                                        height="40"
+                                        loading="lazy"
+                                        decoding="async"
+                                        className="h-8 lg:h-10 w-auto rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300"
                                         onError={(e) =>
                                             (e.target.src = "/api/cover/thumbnail/null")
                                         }
-                                        animate={{
-                                            boxShadow: [
-                                                "0 4px 8px rgba(0,0,0,0.1)",
-                                                "0 6px 12px rgba(0,0,0,0.15)",
-                                                "0 4px 8px rgba(0,0,0,0.1)"
-                                            ]
-                                        }}
-                                        transition={{
-                                            duration: 2,
-                                            repeat: Infinity,
-                                            ease: "easeInOut"
-                                        }}
                                     />
                                 </motion.a>
                             ))}
