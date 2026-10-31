@@ -88,6 +88,8 @@ export default defineConfig({
                         if (id.includes('react') || id.includes('scheduler') || id.includes('@inertiajs')) {
                             return 'vendor-react';
                         }
+
+                        return 'vendor-core';
                     }
                 },
             },
