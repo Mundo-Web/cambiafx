@@ -14,8 +14,7 @@ $isHome = $component === 'Home.jsx';
     <meta name="csrf_token" content="{{ csrf_token() }}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preconnect" href="https://flagcdn.com">
-    <link rel="preconnect" href="https://apiluna.cambiafx.pe">
+    <link rel="preconnect" href="https://server-side-tagging-uwlsd62yyq-uc.a.run.app" crossorigin>
 
     <!-- SEO Meta Tags -->
     @include('components.seo-meta-tags', [

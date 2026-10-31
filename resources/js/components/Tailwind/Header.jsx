@@ -346,10 +346,9 @@ const Header = ({
                             <img
                                 src="/assets/cambiafx/cintillo.webp"
                                 alt="Cintillo Icon"
-                                width="44"
-                                height="32"
-                                className="h-8 w-auto md:h-12 z-[999] relative md:absolute -bottom-2 md:-bottom-2 left-0 md:-left-10 transform scale-y-[-1] rotate-90 object-contain"
-                                fetchPriority="high"
+                                width="24"
+                                height="24"
+                                className="w-12 h-12 md:w-12 md:h-12 z-[999] relative md:absolute -bottom-3 md:-bottom-3 left-0 md:-left-10 transform scale-y-[-1] rotate-90 object-contain"
                             />
                             <div className="overflow-hidden md:whitespace-nowrap whitespace-normal w-full md:w-auto relative">
                                 {/*agregar overlay que este transparente y finalize en bg-accent */}

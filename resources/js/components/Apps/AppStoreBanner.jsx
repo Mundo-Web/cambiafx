@@ -149,6 +149,8 @@ const AppStoreBanner = ({ apps = [] }) => {
                     <img 
                         src="/icon-192x192.png" 
                         alt="CambiaFX" 
+                        width="44"
+                        height="44"
                         className="w-11 h-11 rounded-xl object-cover block sm:w-10 sm:h-10"
                     />
                 </div>
