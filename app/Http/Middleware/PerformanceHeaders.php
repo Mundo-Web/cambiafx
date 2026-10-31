@@ -100,12 +100,10 @@ class PerformanceHeaders
      */
     private function applyResourceHints(Response $response): void
     {
-        // DNS Prefetch selectivo para servicios externos
+        // DNS Prefetch solo para servicios indispensables
         $dnsPrefetchDomains = [
-            'https://translate.googleapis.com',
-            'https://connect.facebook.net',
-            'https://embed.tawk.to',
-            'https://cdn.jsdelivr.net',
+            'https://apiluna.cambiafx.pe',
+            'https://flagcdn.com',
         ];
 
         $linkHeaders = [];

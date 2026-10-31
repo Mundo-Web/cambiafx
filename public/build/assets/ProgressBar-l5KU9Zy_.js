@@ -1,1 +1,0 @@
-import{j as l}from"./vendor-BGJN32hA.js";const s=({className:s="max-w-md",width:o,color:a="#F7C2C6"})=>l.jsx("div",{className:`h-2 bg-[#EFEAE5] ${s} rounded-full mx-auto`,children:l.jsx("hr",{className:"h-full rounded-full",style:{backgroundColor:a,width:o,transition:"all .25s"}})});export{s as P};

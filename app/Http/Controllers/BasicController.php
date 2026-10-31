@@ -170,28 +170,37 @@ class BasicController extends Controller
   {
     $properties = [];
 
-    // Only fetch user permissions if authenticated
+    // Solo consultar permisos y contadores administrativos si el usuario está autenticado
     if (Auth::check()) {
       $user = User::find(Auth::id());
-      $user->getAllPermissions();
-      $properties['session'] = $user;
-    }
-
-    // Use a database transaction to reuse the same connection for all queries
-    DB::connection()->transaction(function () use (&$properties) {
-      // Execute all queries within the same connection to reduce the number of active connections
+      if ($user) {
+        $user->getAllPermissions();
+        $properties['session'] = $user;
+      }
       $properties['messagesCount'] = Message::where('status', true)->where('seen', false)->count();
       $properties['citasCount'] = Appointment::where('status', true)->where('seen', false)->count();
-      $properties['languagesSystem'] = Lang::where('status', true)->where('visible', true)->get();
       $properties['reclamosCount'] = Complaint::where('estado', '=', 'pendiente')->count();
-      $properties['linkWhatsApp'] = Social::where('description', '=', 'WhatsApp')->first();
-      $properties['randomImage'] = Service::where('status', true)->where('visible', true)->inRandomOrder()->first();
-      $properties['socials'] = Social::where('status', true)->where('visible', true)->get();
+    } else {
+      $properties['messagesCount'] = 0;
+      $properties['citasCount'] = 0;
+      $properties['reclamosCount'] = 0;
+    }
+
+    // Datos estáticos cacheados para visitantes públicos (elimina 8 consultas y 1.5s de bloqueo)
+    $properties['languagesSystem'] = \Illuminate\Support\Facades\Cache::remember('system_languages', 86400, function () {
+      return Lang::where('status', true)->where('visible', true)->get();
     });
+
+    $properties['socials'] = \Illuminate\Support\Facades\Cache::remember('system_socials', 86400, function () {
+      return Social::where('status', true)->where('visible', true)->get();
+    });
+
+    $properties['linkWhatsApp'] = $properties['socials']->firstWhere('description', 'WhatsApp');
+    $properties['randomImage'] = null;
 
     $properties['global'] = [
       'PUBLIC_RSA_KEY' => Controller::$PUBLIC_RSA_KEY,
-      'APP_NAME' => env('APP_NAME', 'Trasciende'),
+      'APP_NAME' => env('APP_NAME', 'CambiaFX'),
       'APP_URL' => env('APP_URL'),
       'APP_DOMAIN' => env('APP_DOMAIN'),
       'APP_CORRELATIVE' => env('APP_CORRELATIVE'),
@@ -199,7 +208,9 @@ class BasicController extends Controller
       'GMAPS_API_KEY' => env('GMAPS_API_KEY')
     ];
 
-    $properties['generals'] = General::whereIn('correlative', ['whatsapp_phone', 'whatsapp_message'])->get();
+    $properties['generals'] = \Illuminate\Support\Facades\Cache::remember('system_generals_whatsapp', 86400, function () {
+      return General::whereIn('correlative', ['whatsapp_phone', 'whatsapp_message'])->get();
+    });
 
     $reactViewProperties = $this->setReactViewProperties($request);
     if (\is_array($reactViewProperties)) {

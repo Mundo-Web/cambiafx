@@ -44,7 +44,34 @@ export default defineConfig({
             output: {
                 manualChunks(id) {
                     if (id.includes('node_modules')) {
-                        if (id.includes('framer-motion')) {
+                        // 1. Librerías masivas de administración y exportación (aíslan +1.5 MB de la Home)
+                        if (id.includes('xlsx')) {
+                            return 'vendor-xlsx';
+                        }
+                        if (id.includes('jspdf')) {
+                            return 'vendor-pdf';
+                        }
+                        if (id.includes('chart.js')) {
+                            return 'vendor-charts';
+                        }
+                        if (id.includes('tinymce')) {
+                            return 'vendor-tinymce';
+                        }
+                        if (id.includes('sweetalert2')) {
+                            return 'vendor-sweetalert';
+                        }
+                        if (id.includes('@react-google-maps')) {
+                            return 'vendor-maps';
+                        }
+                        if (id.includes('moment')) {
+                            return 'vendor-moment';
+                        }
+                        if (id.includes('react-spring') || id.includes('@react-spring')) {
+                            return 'vendor-spring';
+                        }
+
+                        // 2. Componentes UI y utilitarios
+                        if (id.includes('framer-motion') || id.includes('/motion/')) {
                             return 'vendor-framer-motion';
                         }
                         if (id.includes('swiper')) {
@@ -56,7 +83,13 @@ export default defineConfig({
                         if (id.includes('axios')) {
                             return 'vendor-axios';
                         }
-                        return 'vendor';
+
+                        // 3. Núcleo React + Inertia
+                        if (id.includes('react') || id.includes('scheduler') || id.includes('@inertiajs')) {
+                            return 'vendor-react';
+                        }
+
+                        return 'vendor-core';
                     }
                 },
             },

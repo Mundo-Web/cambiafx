@@ -1354,8 +1354,11 @@ const ExchangeCard = ({
                     </div>
                     <div className="flex items-center bg-secondary bg-opacity-50 rounded-xl px-6 py-3 ml-4">
                         <img
-                            src={operationType === 'compra' ? "https://flagcdn.com/w580/us.png" : "https://flagcdn.com/w580/pe.png"}
+                            src={operationType === 'compra' ? "https://flagcdn.com/w80/us.png" : "https://flagcdn.com/w80/pe.png"}
                             alt={operationType === 'compra' ? "USD Flag" : "PEN Flag"}
+                            width="24"
+                            height="24"
+                            loading="eager"
                             className="w-6 h-6 object-cover rounded-full mr-2"
                         />
                         <span className="text-base font-medium tracking-wide text-neutral-light">
@@ -1395,8 +1398,11 @@ const ExchangeCard = ({
                     </div>
                     <div className="flex items-center bg-secondary bg-opacity-50 rounded-xl px-6 py-3 ml-4">
                         <img
-                            src={operationType === 'compra' ? "https://flagcdn.com/w580/pe.png" : "https://flagcdn.com/w580/us.png"}
+                            src={operationType === 'compra' ? "https://flagcdn.com/w80/pe.png" : "https://flagcdn.com/w80/us.png"}
                             alt={operationType === 'compra' ? "PEN Flag" : "USD Flag"}
+                            width="24"
+                            height="24"
+                            loading="eager"
                             className="w-6 h-6 object-cover rounded-full mr-2"
                         />
                         <span className="text-base font-medium tracking-wide text-neutral-light">
