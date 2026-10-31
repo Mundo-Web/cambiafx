@@ -1,0 +1,1 @@
+import{j as s}from"./vendor-react-DODJaoLu.js";import{L as r}from"./NavBar-CirqYwTE.js";const o=({children:o,footerLinks:e,session:n,socials:t,terms:a,showSlogan:d=!0,showFooter:i=!0,gradientStart:c="#c4b8d3",gradientEnd:m="#f1d7c1",menuGradientEnd:h="#dbc8c9"})=>s.jsx(r,{children:s.jsxs("section",{children:[" ",o]})});export{o as B};
