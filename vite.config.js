@@ -42,7 +42,23 @@ export default defineConfig({
     build: {
         rollupOptions: {
             output: {
-                // Vite manejará los chunks automáticamente con hash para cache busting
+                manualChunks(id) {
+                    if (id.includes('node_modules')) {
+                        if (id.includes('framer-motion')) {
+                            return 'vendor-framer-motion';
+                        }
+                        if (id.includes('swiper')) {
+                            return 'vendor-swiper';
+                        }
+                        if (id.includes('lucide-react') || id.includes('react-icons')) {
+                            return 'vendor-icons';
+                        }
+                        if (id.includes('axios')) {
+                            return 'vendor-axios';
+                        }
+                        return 'vendor';
+                    }
+                },
             },
         },
         minify: 'terser',

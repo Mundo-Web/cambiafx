@@ -272,7 +272,7 @@ Antes de iniciar la codificación, asegurar tener listos:
 | Estructurar JSON-LD (FinancialService, FAQ, Article) | A4 | ✅ Completado | Dev |
 | Limpiar errores de consola y DevTools Issues | A5 | ✅ Completado | Dev |
 | CSS crítico inline, font-display y optimización de recursos bloqueantes | B1 | ✅ Completado | Dev |
-| Code splitting por ruta y diferir scripts en GTM | B2 | ⏳ Pendiente | Dev |
+| Code splitting por ruta, optimización de Framer Motion en Hero y vendor chunks | B2 | ✅ Completado | Dev |
 | Optimizar hilo principal y eliminar librerías redundantes | B3 | ⏳ Pendiente | Dev |
 | Conversión WebP, dimensiones explícitas y fijar CLS | B4 | ⏳ Pendiente | Dev |
 | Políticas Cache-Control y depurar preconnects | B5 | ⏳ Pendiente | Dev |

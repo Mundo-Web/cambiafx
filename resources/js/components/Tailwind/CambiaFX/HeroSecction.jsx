@@ -21,109 +21,94 @@ export default function HeroSecction({ data = [], apps = [], indicators = [] }) 
     const heroImageSrc = heroImageId ? `/api/landing_home/media/${heroImageId}` : '/api/cover/thumbnail/null';
     const appCardImageWidths = [160, 240, 320, 420];
 
-    // Variantes de animación más suaves y elegantes con loop
+    // Variantes optimizadas para renderizado instantáneo (FCP / LCP instantáneo)
     const containerVariants = {
-        hidden: { opacity: 0 },
+        hidden: { opacity: 1 },
         visible: {
             opacity: 1,
             transition: {
-                staggerChildren: 0.15,
-                delayChildren: 0.2,
-                duration: 0.8,
-                ease: "easeOut"
+                duration: 0.2
             }
         }
     };
 
     const itemVariants = {
-        hidden: { opacity: 0, y: 30, scale: 0.95 },
+        hidden: { opacity: 1, y: 0, scale: 1 },
         visible: {
             opacity: 1,
             y: 0,
             scale: 1,
             transition: {
-                duration: 0.8,
-                ease: [0.25, 0.46, 0.45, 0.94] // easing más natural
+                duration: 0.2
             }
         }
     };
 
-    // Variantes para el texto principal con loop
+    // Variantes para el texto principal sin ocultar en opacidad 0
     const textLoopVariants = {
         hidden: {
-            opacity: 0,
-            x: -50,
-            scale: 0.95
+            opacity: 1,
+            x: 0,
+            scale: 1
         },
         visible: {
             opacity: 1,
             x: 0,
             scale: 1,
             transition: {
-                duration: 1.2,
-                ease: "easeOut"
+                duration: 0.3
             }
         },
         exit: {
             opacity: 0,
-            x: 50,
-            scale: 0.95,
             transition: {
-                duration: 0.8,
-                ease: "easeIn"
+                duration: 0.2
             }
         }
     };
 
-    // Variantes para apps con loop en desktop
+    // Variantes para apps
     const appsLoopVariants = {
         hidden: {
-            opacity: 0,
-            y: 30,
-            scale: 0.8
+            opacity: 1,
+            y: 0,
+            scale: 1
         },
         visible: {
             opacity: 1,
             y: 0,
             scale: 1,
             transition: {
-                duration: 0.6,
-                ease: "easeOut"
+                duration: 0.3
             }
         },
         exit: {
             opacity: 0,
-            y: -30,
-            scale: 0.8,
             transition: {
-                duration: 0.5,
-                ease: "easeIn"
+                duration: 0.2
             }
         }
     };
 
     const textVariants = {
-        hidden: { opacity: 0, x: -30 },
+        hidden: { opacity: 1, x: 0 },
         visible: {
             opacity: 1,
             x: 0,
             transition: {
-                duration: 1,
-                ease: "easeOut"
+                duration: 0.3
             }
         }
     };
 
     const imageVariants = {
-        hidden: { opacity: 0, scale: 0.8, y: 50 },
+        hidden: { opacity: 1, scale: 1, y: 0 },
         visible: {
             opacity: 1,
             scale: 1,
             y: 0,
             transition: {
-                duration: 1.2,
-                ease: [0.25, 0.46, 0.45, 0.94],
-                delay: 0.3
+                duration: 0.3
             }
         }
     };
@@ -144,21 +129,12 @@ export default function HeroSecction({ data = [], apps = [], indicators = [] }) 
         window.location.href = 'https://mi.cambiafx.pe/login';
     };
     return (
-        <motion.section
+        <section
             className="bg-primary z-0 py-10 md:py-20 font-title relative overflow-hidden"
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.3 }}
-            variants={containerVariants}
         >
 
             {/* Overlay SVG en el fondo */}
-            <motion.div
-                className="absolute w-full h-full inset-0 -z-10"
-                initial={{ opacity: 0, scale: 1.1 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 2, ease: "easeOut" }}
-            >
+            <div className="absolute w-full h-full inset-0 -z-10">
                 <svg className='w-full h-full object-cover' width="1032" height="696" viewBox="0 0 1032 696" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M962.486 762.894C901.955 871.616 810.878 955.559 705.847 999.2C482.713 1086.8 265.287 1039.12 123.123 872.135C-16.4963 708.189 -39.4199 470.768 66.0483 281.333C103.611 213.865 155.93 153.528 221.813 101.827L223.621 100.484C265.297 70.3687 442.611 -32.9777 547.184 11.146C585.342 27.3298 609.663 60.7518 615.961 105.286L616.35 108.394C618.309 132.8 612.99 156.95 601.083 178.335C581.495 213.518 546.221 236.895 506.839 240.995C413.347 248.045 326.008 306.236 277.537 393.296C253.955 435.653 240.812 482.739 239.779 529.336L239.628 532.144C233.044 616.317 271.902 694.704 346.244 747.119C426.944 803.977 529.509 815.534 614.122 777.153C671.303 753.141 722.176 705.554 755.207 646.226C798.762 567.996 804.421 482.946 770.356 418.796C750.69 382.724 751.112 338.497 771.775 301.383C782.76 281.653 798.908 265.34 818.394 254.139C849.498 236.031 885.012 232.849 917.871 245.541C953.658 259.32 982.403 290.506 995.451 329.581C1053.88 458.806 1041.55 620.57 962.428 762.681L962.486 762.894Z" fill="url(#paint0_linear_92_2288)" fillOpacity="0.6" />
                     <defs>
@@ -168,62 +144,27 @@ export default function HeroSecction({ data = [], apps = [], indicators = [] }) 
                         </linearGradient>
                     </defs>
                 </svg>
-            </motion.div>
+            </div>
 
             {/* Contenido principal */}
             <div className="relative z-10 mx-auto px-[5%] flex flex-col lg:flex-row gap-10 items-center">
                 {/* Izquierda: Texto principal con loop */}
-                <motion.div
-                    className='order-1 lg:order-0 lg:w-7/12'
-                    variants={itemVariants}
-                >
-                    <motion.p
-                        key={`subtitle-${loopKey}`}
-                        className="text-sm font-medium tracking-widest text-constrast mb-2 uppercase"
-                        variants={textLoopVariants}
-                        initial="hidden"
-                        animate="visible"
-                        exit="exit"
-                        whileHover={{
-                            scale: 1.02,
-                            color: '#7c3aed',
-                            transition: { duration: 0.3 }
-                        }}
-                    >
+                <div className='order-1 lg:order-0 lg:w-7/12'>
+                    <p className="text-sm font-medium tracking-widest text-constrast mb-2 uppercase">
                         CASA DE CAMBIO ONLINE
-                    </motion.p>
-                    <motion.h1
-                        key={`title-${loopKey}`}
-                        className="text-4xl md:text-7xl font-title font-semibold text-neutral-dark leading-tight mb-4"
-                        variants={textLoopVariants}
-                        initial="hidden"
-                        animate="visible"
-                        exit="exit"
-                        transition={{ delay: 0.2 }}
-                    >
+                    </p>
+                    <h1 className="text-4xl md:text-7xl font-title font-semibold text-neutral-dark leading-tight mb-4">
                         {/* Texto con colores cambiantes para palabras con asterisco */}
                         <TextWithHighlight
                             text={data?.title}
                             color="bg-constrast"
                         />
-                    </motion.h1>
-                    <motion.p
-                        key={`description-${loopKey}`}
-                        className="text-lg whitespace-pre-line text-neutral-light lg:mb-6 max-w-lg"
-                        variants={textLoopVariants}
-                        initial="hidden"
-                        animate="visible"
-                        exit="exit"
-                        transition={{ delay: 0.4 }}
-                    >
+                    </h1>
+                    <p className="text-lg whitespace-pre-line text-neutral-light lg:mb-6 max-w-lg">
                         {data?.description || ""}
-                    </motion.p>
-                    <motion.div
-                        className='flex flex-col lg:flex-row gap-12 h-[300px] lg:mt-20 relative'
-                        variants={itemVariants}
-                        transition={{ delay: 0.6 }}
-                    >
-                        <MotionOptimizedImage
+                    </p>
+                    <div className='flex flex-col lg:flex-row gap-12 h-[300px] lg:mt-20 relative'>
+                        <OptimizedImage
                             src={heroImageSrc}
                             alt={data?.title || 'Hero CambiaFX'}
                             widths={[360, 480, 640, 768, 960, 1200, 1440]}
@@ -235,102 +176,46 @@ export default function HeroSecction({ data = [], apps = [], indicators = [] }) 
                             height={400}
                             className="hidden lg:block w-auto h-[400px] absolute top-4"
                             onError={(e) => (e.target.src = "/api/cover/thumbnail/null")}
-                            variants={imageVariants}
-                            whileHover={{
-                                scale: 1.02,
-                                y: -5,
-                                boxShadow: "0 20px 40px 0 rgba(31, 38, 135, 0.15)",
-                                transition: { duration: 0.4, ease: "easeOut" }
-                            }}
                         />
                         <div className='lg:w-4/12 relative'>
                             {/* ... */}
                         </div>
-                        <motion.div
-                            className="w-full lg:w-8/12 flex flex-col items-start gap-4 mb-8"
-                            variants={itemVariants}
-                            transition={{ delay: 0.8 }}
-                        >
-                            <motion.div
-                                variants={itemVariants}
-                                transition={{ delay: 0.9 }}
-                            >
-                                <motion.span
-                                    key={`app-title-${loopKey}`}
-                                    className="text-lg font-medium"
-                                    variants={textLoopVariants}
-                                    initial="hidden"
-                                    animate="visible"
-                                    exit="exit"
-                                    transition={{ delay: 0.6 }}
-                                >
+                        <div className="w-full lg:w-8/12 flex flex-col items-start gap-4 mb-8">
+                            <div>
+                                <span className="text-lg font-medium">
                                     ¡Descarga nuestra app!
-                                </motion.span>
+                                </span>
 
-                                {/* Desktop version - Con loop */}
-                                <motion.div
+                                {/* Desktop version */}
+                                <div
                                     key={`apps-desktop-${loopKey}`}
                                     className="hidden lg:flex gap-4 mt-4"
-                                    variants={appsLoopVariants}
-                                    initial="hidden"
-                                    animate="visible"
-                                    exit="exit"
-                                    transition={{ delay: 0.8 }}
                                 >
                                     {apps?.map((app, index) => (
-                                        <motion.a
+                                        <a
                                             href={app?.link}
                                             key={`${app?.name}-${index}-${loopKey}`}
                                             target="_blank"
                                             rel="noopener noreferrer"
-                                            initial={{ opacity: 0, scale: 0.6, y: 30, rotate: -10 }}
-                                            animate={{
-                                                opacity: 1,
-                                                scale: 1,
-                                                y: 0,
-                                                rotate: 0,
-                                                transition: {
-                                                    delay: 1 + index * 0.15,
-                                                    duration: 0.7,
-                                                    type: "spring",
-                                                    stiffness: 150,
-                                                    damping: 12
-                                                }
-                                            }}
-                                            whileHover={{
-                                                scale: 1.12,
-                                                y: -8,
-                                                rotate: 5,
-                                                boxShadow: "0 15px 35px rgba(0,0,0,0.2)",
-                                                transition: { duration: 0.3 }
-                                            }}
-                                            whileTap={{ scale: 0.95, rotate: -2 }}
+                                            className="transition-transform duration-200 hover:scale-105 active:scale-95"
                                         >
-                                            <MotionOptimizedImage
+                                            <OptimizedImage
                                                 src={app?.image ? `/api/app/media/${app.image}` : '/api/cover/thumbnail/null'}
                                                 alt={app?.name || 'Descargar app CambiaFX'}
                                                 widths={appCardImageWidths}
                                                 sizes="(max-width: 1280px) 40vw, 220px"
                                                 width={135}
                                                 height={48}
+                                                loading="eager"
                                                 className="h-12 w-auto filter drop-shadow-lg"
                                                 onError={(e) => (e.target.src = "/api/cover/thumbnail/null")}
-                                                whileHover={{
-                                                    filter: "brightness(1.1) contrast(1.1)",
-                                                    transition: { duration: 0.2 }
-                                                }}
                                             />
-                                        </motion.a>
+                                        </a>
                                     ))}
-                                </motion.div>
+                                </div>
 
                                 {/* Mobile version - Swiper horizontal */}
-                                <motion.div
-                                    className="flex lg:hidden mt-4 w-full"
-                                    initial={{ opacity: 0, y: 20 }}
-                                    animate={{ opacity: 1, y: 0 }}
-                                    transition={{ delay: 1.1, duration: 0.6 }}
-                                >
+                                <div className="flex lg:hidden mt-4 w-full">
                                     <div className="relative w-full">
                                         <div
                                             className="flex gap-4 overflow-x-auto pb-2 px-1 scrollbar-hide"
@@ -341,35 +226,15 @@ export default function HeroSecction({ data = [], apps = [], indicators = [] }) 
                                             }}
                                         >
                                             {apps?.map((app, index) => (
-                                                <motion.a
+                                                <a
                                                     href={app?.link}
                                                     key={index}
                                                     target="_blank"
                                                     rel="noopener noreferrer"
-                                                    className="flex-shrink-0"
-                                                    initial={{ opacity: 0, scale: 0.8, x: 50 }}
-                                                    animate={{ opacity: 1, scale: 1, x: 0 }}
-                                                    transition={{
-                                                        delay: 1.2 + index * 0.1,
-                                                        duration: 0.5,
-                                                        type: "spring",
-                                                        stiffness: 200
-                                                    }}
-                                                    whileHover={{
-                                                        scale: 1.05,
-                                                        y: -2,
-                                                        transition: { duration: 0.2 }
-                                                    }}
-                                                    whileTap={{ scale: 0.96 }}
+                                                    className="flex-shrink-0 transition-transform duration-200 hover:scale-105 active:scale-95"
                                                 >
-                                                    <motion.div
-                                                        className="  transition-shadow duration-300"
-                                                        whileHover={{
-                                                            boxShadow: "0 10px 25px rgba(0,0,0,0.15)",
-                                                            y: -2
-                                                        }}
-                                                    >
-                                                        <MotionOptimizedImage
+                                                    <div className="transition-shadow duration-300">
+                                                        <OptimizedImage
                                                             src={app?.image ? `/api/app/media/${app.image}` : '/api/cover/thumbnail/null'}
                                                             alt={app?.name || 'Descargar app CambiaFX'}
                                                             widths={appCardImageWidths}
@@ -379,96 +244,51 @@ export default function HeroSecction({ data = [], apps = [], indicators = [] }) 
                                                             className="h-14 w-auto"
                                                             onError={(e) => (e.target.src = "/api/cover/thumbnail/null")}
                                                         />
-                                                    </motion.div>
-                                                </motion.a>
+                                                    </div>
+                                                </a>
                                             ))}
                                         </div>
-
-
                                     </div>
-                                </motion.div>
-                            </motion.div>
-                            <motion.div
+                                </div>
+                            </div>
+                            <div
                                 key={`indicators-${loopKey}`}
                                 className="flex gap-10 mt-6"
-                                variants={textLoopVariants}
-                                initial="hidden"
-                                animate="visible"
-                                exit="exit"
-                                transition={{ delay: 1.2 }}
                             >
                                 {
                                     indicators?.map((indicator, index) => (
-                                        <motion.div
+                                        <div
                                             key={`${indicator?.name}-${index}-${loopKey}`}
-                                            className="flex flex-col items-start"
-                                            initial={{ opacity: 0, y: 40, scale: 0.8, rotate: -5 }}
-                                            animate={{
-                                                opacity: 1,
-                                                y: 0,
-                                                scale: 1,
-                                                rotate: 0,
-                                                transition: {
-                                                    delay: 1.4 + index * 0.2,
-                                                    duration: 0.8,
-                                                    type: "spring",
-                                                    stiffness: 120,
-                                                    damping: 15
-                                                }
-                                            }}
-                                            whileHover={{
-                                                scale: 1.08,
-                                                y: -4,
-
-                                                borderRadius: '16px',
-                                                padding: '12px',
-
-                                                transition: { duration: 0.3 }
-                                            }}
+                                            className="flex flex-col items-start transition-transform duration-200 hover:scale-105"
                                         >
-                                            <motion.span
+                                            <span
                                                 className="text-[52px] leading-[3rem] font-semibold text-neutral-dark"
-                                                whileHover={{
-                                                    scale: 1.15,
-                                                    color: '#7E5AFB',
-                                                    textShadow: "0 0 20px rgba(126, 90, 251, 0.3)"
-                                                }}
-                                                transition={{ duration: 0.2 }}
                                             >
                                                 <TextWithHighlight text={indicator?.name} color='bg-constrast' counter />
-                                            </motion.span>
-                                            <motion.span
+                                            </span>
+                                            <span
                                                 className="text-sm font-medium text-neutral-dark"
-                                                initial={{ opacity: 0 }}
-                                                animate={{ opacity: 1 }}
-                                                transition={{ delay: 1.6 + index * 0.15 }}
                                             >
                                                 <TextWithHighlight text={indicator?.description} color='bg-constrast' />
-                                            </motion.span>
-                                        </motion.div>
+                                            </span>
+                                        </div>
                                     ))}
-                            </motion.div>
+                            </div>
                             <div className="min-w-max mt-6 mx-auto lg:mx-0 text-[12px] lg:text-sm font-medium text-neutral-light flex items-center gap-1">
                                 Registrados en la SBS
-                                <svg className='w-4 h-4 lg:w-6 lg:h-6 fill-secondary' width="24" height="24" viewBox="0 0 24 24" fill="#BBFF52"  xmlns="http://www.w3.org/2000/svg">
+                                <svg className='w-4 h-4 lg:w-6 lg:h-6 fill-secondary' width="24" height="24" viewBox="0 0 24 24" fill="#BBFF52" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M16.8825 15L17.5527 18.2099C17.9833 20.2723 18.1986 21.3035 17.7563 21.7923C17.3141 22.281 16.546 21.8606 15.0099 21.0198L12.7364 19.7753C12.3734 19.5766 12.1919 19.4773 12 19.4773C11.8081 19.4773 11.6266 19.5766 11.2636 19.7753L8.99008 21.0198C7.45397 21.8606 6.68592 22.281 6.24365 21.7923C5.80139 21.3035 6.01669 20.2723 6.44731 18.2099L7.11752 15" stroke="#212121" strokeWidth="1.5" strokeLinejoin="round" />
                                     <path d="M4.5 9.5C4.5 13.6421 7.85786 17 12 17C16.1421 17 19.5 13.6421 19.5 9.5C19.5 5.35786 16.1421 2 12 2C7.85786 2 4.5 5.35786 4.5 9.5Z" stroke="#212121" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                                     <path d="M9 10.1667C9 10.1667 9.75 10.1667 10.5 11.5C10.5 11.5 12.8824 8.16667 15 7.5" stroke="#212121" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                                 </svg>
                             </div>
-                        </motion.div>
-                    </motion.div>
+                        </div>
+                    </div>
 
-                </motion.div>
-                {/* Derecha: Card de cambio */}
-                <motion.div
-                    className='flex order-0  lg:order-1 justify-end lg:w-5/12'
-                    variants={itemVariants}
-                    transition={{ delay: 1.8 }}
-                    whileHover={{
-                        scale: 1.02,
-                        transition: { duration: 0.3 }
-                    }}
+                </div>
+                {/* Derecha: Card de cambio - Visible inmediatamente sin delay */}
+                <div
+                    className='flex order-0 lg:order-1 justify-end lg:w-5/12 transition-transform duration-200 hover:scale-[1.01]'
                 >
                     <ExchangeCard
                         title="Comienza tu cambio ahora"
@@ -477,9 +297,9 @@ export default function HeroSecction({ data = [], apps = [], indicators = [] }) 
                         showCredits={true}
                         onOperationStart={handleOperationStart}
                     />
-                </motion.div>
+                </div>
             </div>
-        </motion.section>
+        </section>
     )
 }
 

@@ -1,0 +1,1 @@
+import{r}from"./vendor-ClwMLg5n.js";import{a as o}from"./Menu-CuPP5OQi.js";const n=()=>{const{translations:n,loading:t,error:s}=r.useContext(o);return{t:(r,o="")=>t||s?o:((r,o,n="")=>{var t;const s=o.split(".");if(1===s.length)return r[o]||n;const e=s.slice(0,-1).join("."),i=s.slice(-1)[0];return(null==(t=r[e])?void 0:t[i])||n})(n,r,o),loading:t,error:s}};export{n as u};

@@ -168,23 +168,14 @@ const Home = ({
 
             <CintilloSection />
 
-            {/* SECCIÓN CAMBIO FX */}
-            <motion.div
-                className="animate-section"
-                initial={{ opacity: 0, y: 40 }}
-                animate={
-                    sectionsReady ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }
-                }
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.2 }}
-                transition={{ duration: 0.7 }}
-            >
+            {/* SECCIÓN CAMBIO FX (Above-the-fold renderizado inmediato sin delay para optimizar FCP/LCP) */}
+            <div className="w-full">
                 <HeroSecction
                     data={landingInicio}
                     apps={apps}
                     indicators={indicadoresInicio}
                 />
-            </motion.div>
+            </div>
 
             {/* SLIDER  <SliderInteractive ... /> */}
 
