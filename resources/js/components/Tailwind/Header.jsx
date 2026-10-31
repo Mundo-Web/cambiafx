@@ -335,7 +335,7 @@ const Header = ({
                 className={`w-full max-w-full relative font-paragraph ${backgroundHeight} z-[9999]`}
             >
                 {/* CINTILLO INICIO */}
-                <div className="bg-accent relative overflow-hidden text-white text-xs md:text-sm py-2 md:py-3">
+                <div className="bg-accent relative overflow-hidden text-white text-xs md:text-sm py-2 md:py-3 min-h-[44px] md:min-h-[52px] flex items-center justify-center">
                     <div
                         className="hidden md:block absolute top-0 left-0 w-full h-full pointer-events-none bg-right bg-cover bg-no-repeat"
                         style={{ backgroundImage: "url('/assets/cambiafx/cintillo-overlay.png')" }}

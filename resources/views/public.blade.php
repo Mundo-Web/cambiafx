@@ -44,10 +44,6 @@ $isHome = $component === 'Home.jsx';
 
     <link rel="shortcut icon" href="/assets/img/favicon.png" type="image/png">
 
-    <!-- Preload de fuentes críticas para 0 CLS en Desktop y Móvil -->
-    <link rel="preload" href="/assets/fonts/general-sans/GeneralSans-Regular.woff2" as="font" type="font/woff2" crossorigin>
-    <link rel="preload" href="/assets/fonts/general-sans/GeneralSans-Semibold.woff2" as="font" type="font/woff2" crossorigin>
-
     <!-- Web Fonts Asíncronas (No bloqueantes del FCP/LCP) -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" media="print" onload="this.media='all'">
     <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"></noscript>
@@ -75,6 +71,14 @@ $isHome = $component === 'Home.jsx';
             font-family: 'GeneralSans', 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             -webkit-text-size-adjust: 100%;
             text-rendering: optimizeLegibility;
+        }
+        .bg-accent {
+            min-height: 44px;
+        }
+        @media (min-width: 768px) {
+            .bg-accent {
+                min-height: 52px;
+            }
         }
         body {
             margin: 0;
