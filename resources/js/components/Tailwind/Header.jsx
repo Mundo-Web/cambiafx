@@ -138,7 +138,7 @@ const Header = ({
         const handleScroll = () => {
             setIsScrolled(window.scrollY > 50);
         };
-        window.addEventListener("scroll", handleScroll);
+        window.addEventListener("scroll", handleScroll, { passive: true });
         return () => window.removeEventListener("scroll", handleScroll);
     }, []);
 
@@ -183,20 +183,19 @@ const Header = ({
     useEffect(() => {
         const fetchSocials = async () => {
             try {
-                const data = await generalRest.getSocials();
-                const dataGenerals = await generalRest.getGenerals();
-                const dataServices = await generalRest.getServices();
-                const dataModal = await generalRest.getModal();
+                const [data, dataGenerals, dataServices, dataModal] = await Promise.all([
+                    generalRest.getSocials(),
+                    generalRest.getGenerals(),
+                    generalRest.getServices(),
+                    generalRest.getModal()
+                ]);
 
-                //const languages = await generalRest.getLanguages();
-                setSocials(data);
-                setGenerals(dataGenerals);
-
-                setServicesData(dataServices);
-                setModalData(dataModal);
-                //  setLanguagesSystem(languages);
+                setSocials(data || []);
+                setGenerals(dataGenerals || []);
+                setServicesData(dataServices || []);
+                setModalData(dataModal || []);
             } catch (error) {
-                console.error("Error fetching socials:", error);
+                console.error("Error fetching header data:", error);
             }
         };
 

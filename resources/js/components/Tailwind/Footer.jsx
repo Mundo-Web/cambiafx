@@ -31,46 +31,25 @@ const Footer = ({ terms, footerLinks = [] }) => {
     const [landings, setLandings] = useState([]);
 
     useEffect(() => {
-        const fetchSocials = async () => {
+        const fetchFooterData = async () => {
             try {
-                const data = await generalRest.getSocials();
-                setSocials(data);
+                const [socialsData, generalsData, appsData, landingsData] = await Promise.all([
+                    generalRest.getSocials(),
+                    generalRest.getGenerals(),
+                    generalRest.getApps(),
+                    generalRest.getTransactionalLandings()
+                ]);
+
+                setSocials(socialsData || []);
+                setGenerals(generalsData || []);
+                setApps(appsData || []);
+                setLandings(landingsData || []);
             } catch (error) {
-                console.error("Error fetching socials:", error);
+                console.error("Error fetching footer data:", error);
             }
         };
 
-        const fetchGenerals = async () => {
-            try {
-                const data = await generalRest.getGenerals();
-                setGenerals(data);
-            } catch (error) {
-                console.error("Error fetching generals:", error);
-            }
-        };
-
-        const fetchApps = async () => {
-            try {
-                const data = await generalRest.getApps();
-                setApps(data);
-            } catch (error) {
-                console.error("Error fetching apps:", error);
-            }
-        };
-
-        const fetchLandings = async () => {
-            try {
-                const data = await generalRest.getTransactionalLandings();
-                setLandings(data);
-            } catch (error) {
-                console.error("Error fetching landings:", error);
-            }
-        };
-
-        fetchSocials();
-        fetchGenerals();
-        fetchApps();
-        fetchLandings();
+        fetchFooterData();
     }, []);
 
     // Redes sociales

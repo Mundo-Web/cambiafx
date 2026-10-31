@@ -273,7 +273,7 @@ Antes de iniciar la codificación, asegurar tener listos:
 | Limpiar errores de consola y DevTools Issues | A5 | ✅ Completado | Dev |
 | CSS crítico inline, font-display y optimización de recursos bloqueantes | B1 | ✅ Completado | Dev |
 | Code splitting por ruta, optimización de Framer Motion en Hero y vendor chunks | B2 | ✅ Completado | Dev |
-| Optimizar hilo principal y eliminar librerías redundantes | B3 | ⏳ Pendiente | Dev |
+| Optimizar hilo principal, llamadas API en paralelo y eliminar librerías redundantes | B3 | ✅ Completado | Dev |
 | Conversión WebP, dimensiones explícitas y fijar CLS | B4 | ⏳ Pendiente | Dev |
 | Políticas Cache-Control y depurar preconnects | B5 | ⏳ Pendiente | Dev |
 | Purgar CSS no usado en Tailwind y evitar layout reflow | B6 | ⏳ Pendiente | Dev |

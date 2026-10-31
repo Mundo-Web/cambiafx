@@ -4,7 +4,6 @@ import { motion } from 'framer-motion';
 import ExchangeCard from './ExchangeCard'
 import TextWithHighlight from '../../../Utils/TextWithHighlight';
 import WhatsAppButton from '../../Shared/WhatsAppButton';
-import { data } from 'jquery';
 
 export default function HeroSecctionEmpresa({ landing }) {
     const [loopKey, setLoopKey] = useState(0); // Para reiniciar las animaciones

@@ -117,13 +117,31 @@ $isHome = $component === 'Home.jsx';
     <noscript><link rel="stylesheet" href="/assets/fonts/aspekta/font-face.css"></noscript>
 
 
-    <!-- Google Tag Manager -->
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-KSHS2XZ');</script>
-<!-- End Google Tag Manager -->
+    <!-- Google Tag Manager (Carga en segundo plano para liberar el hilo principal y reducir TBT) -->
+    <script>
+        (function(w,d,s,l,i){
+            w[l]=w[l]||[];
+            w[l].push({'gtm.start': new Date().getTime(), event:'gtm.js'});
+            var loadGTM = function() {
+                if (w.__gtm_loaded) return;
+                w.__gtm_loaded = true;
+                var f = d.getElementsByTagName(s)[0],
+                    j = d.createElement(s),
+                    dl = l != 'dataLayer' ? '&l=' + l : '';
+                j.async = true;
+                j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+                f.parentNode.insertBefore(j, f);
+            };
+            if ('requestIdleCallback' in window) {
+                window.requestIdleCallback(loadGTM, { timeout: 2500 });
+            } else {
+                window.addEventListener('load', function() {
+                    setTimeout(loadGTM, 1500);
+                });
+            }
+        })(window,document,'script','dataLayer','GTM-KSHS2XZ');
+    </script>
+    <!-- End Google Tag Manager -->
 </head>
 
 <style>
