@@ -165,12 +165,11 @@ $isBot = \App\Helpers\BotDetector::isBot();
                 document.body.appendChild(tawkScript);
             }
 
-            // Activar tras interacción del usuario humano real (toque en pantalla, clic o tecla) o diferido a 7s
+            // Activar únicamente tras interacción del usuario humano real (toque en pantalla, clic o tecla)
             var events = ['touchstart', 'pointerdown', 'click', 'keydown'];
             for (var i = 0; i < events.length; i++) {
                 window.addEventListener(events[i], loadThirdPartyScripts, { passive: true, once: true });
             }
-            setTimeout(loadThirdPartyScripts, 7000);
         })();
     </script>
     <!-- End Google Tag Manager -->
