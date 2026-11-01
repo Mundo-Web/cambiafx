@@ -7,11 +7,11 @@ import Header from "./components/Tailwind/Header";
 import { CarritoProvider } from "./context/CarritoContext";
 import { motion } from "framer-motion";
 import { useTranslation } from "./hooks/useTranslation";
-import AppStoreBanner from "./components/Apps/AppStoreBanner";
 import HeroSecction from "./components/Tailwind/CambiaFX/HeroSecction";
 import CintilloSection from "./components/Tailwind/CambiaFX/CintilloSection";
 import LazySection from "./components/Common/LazySection";
 
+const AppStoreBanner = lazy(() => import("./components/Apps/AppStoreBanner"));
 const Footer = lazy(() => import("./components/Tailwind/Footer"));
 
 const PrimeraOperacionSection = lazy(
@@ -163,8 +163,10 @@ const Home = ({
         <div>
             {/* Debug Info <AppDebugInfo apps={apps} />*/}
 
-            {/* App Store Banner - Enlaces a tiendas de aplicaciones */}
-            <AppStoreBanner apps={apps} />
+            {/* App Store Banner - Enlaces a tiendas de aplicaciones (Carga diferida) */}
+            <Suspense fallback={null}>
+                <AppStoreBanner apps={apps} />
+            </Suspense>
 
             <Header showSlogan={showSlogan} />
 

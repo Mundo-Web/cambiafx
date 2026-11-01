@@ -17,25 +17,24 @@ const CintilloSection = () => {
         return activeLink === path;
     };
     const containerVariants = {
-        hidden: { opacity: 0, y: -20 },
+        hidden: { opacity: 1, y: 0 },
         visible: {
             opacity: 1,
             y: 0,
             transition: {
-                duration: 0.6,
+                duration: 0.2,
                 ease: "easeOut",
-                staggerChildren: 0.1
             }
         }
     };
 
     const itemVariants = {
-        hidden: { opacity: 0, x: -20 },
+        hidden: { opacity: 1, x: 0 },
         visible: {
             opacity: 1,
             x: 0,
             transition: {
-                duration: 0.5,
+                duration: 0.2,
                 ease: "easeOut"
             }
         }
@@ -43,7 +42,7 @@ const CintilloSection = () => {
 
     return(
          <motion.div 
-            initial="hidden"
+            initial={false}
             animate="visible"
             variants={containerVariants}
             className="bg-constrast overflow-hidden text-white text-xs md:text-sm py-2 md:py-3 relative"

@@ -16,25 +16,25 @@ import Global from "../../Utils/Global";
 
 const generalRest = new GeneralRest();
 
-// Variantes de animación
+// Variantes de animación optimizadas para pintura instantánea (FCP / LCP < 100ms)
 const containerVariants = {
-    hidden: { opacity: 0 },
+    hidden: { opacity: 1 },
     visible: {
         opacity: 1,
         transition: {
-            staggerChildren: 0.1,
-            delayChildren: 0.2,
+            staggerChildren: 0.05,
+            delayChildren: 0,
         },
     },
 };
 
 const itemVariants = {
-    hidden: { y: -20, opacity: 100 },
+    hidden: { y: 0, opacity: 1 },
     visible: {
         y: 0,
         opacity: 1,
         transition: {
-            duration: 0.4,
+            duration: 0.2,
             ease: "easeOut",
         },
     },
@@ -365,7 +365,7 @@ const Header = ({
                 </div>
                 {/* CINTILLO FIN */}
                 <motion.header
-                    initial="hidden"
+                    initial={false}
                     animate="visible"
                     variants={containerVariants}
                     className={` static lg:w-full top-0 z-[9998] transition-colors duration-300 py-1 ${backgroundType === "none"
