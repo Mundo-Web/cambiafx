@@ -141,9 +141,9 @@ $isBot = \App\Helpers\BotDetector::isBot();
                 marketingLoaded = true;
 
                 // Remover listeners de interacción
-                var events = ['scroll', 'click', 'keydown'];
-                for (var i = 0; i < events.length; i++) {
-                    window.removeEventListener(events[i], loadThirdPartyScripts, { passive: true });
+                var cleanupEvents = ['touchstart', 'pointerdown', 'click', 'keydown'];
+                for (var i = 0; i < cleanupEvents.length; i++) {
+                    window.removeEventListener(cleanupEvents[i], loadThirdPartyScripts, { passive: true });
                 }
 
                 // 1. Google Tag Manager
