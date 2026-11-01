@@ -26,14 +26,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        // Hacer que los estilos CSS generados por Vite carguen de forma asíncrona (No bloqueantes del FCP/LCP)
-        Vite::useStyleTagAttributes(function (string $src, string $url, ?array $chunk, ?array $manifest) {
-            return [
-                'media' => 'print',
-                'onload' => "this.media='all'",
-            ];
-        });
-
         // Prevenir que Cloudflare Rocket Loader retrase o reescriba los scripts ESM de Vite
         Vite::useScriptTagAttributes([
             'data-cfasync' => 'false',

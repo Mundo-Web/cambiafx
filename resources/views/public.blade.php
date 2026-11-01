@@ -1,6 +1,9 @@
 @php
 $component = Route::currentRouteName();
 $isHome = $component === 'Home.jsx';
+$isArticle = $component === 'BlogArticle.jsx';
+$article = $page['props']['article'] ?? null;
+$isBot = \App\Helpers\BotDetector::isBot();
 @endphp
 
 <!DOCTYPE html>
@@ -84,7 +87,7 @@ $isHome = $component === 'Home.jsx';
             margin: 0;
             width: 100%;
             overflow-x: hidden;
-            background-color: #ffffff;
+            background-color: #FAF3E1;
             color: #1F1827;
         }
         #app {
@@ -191,7 +194,21 @@ $isHome = $component === 'Home.jsx';
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
     <main id="main-content" role="main">
-        @inertia
+        @if ($isBot)
+            @if ($isArticle && !empty($article))
+                @include('components.bot.article', ['article' => $article])
+            @elseif ($isHome)
+                @include('components.bot.home', [
+                    'landing' => $page['props']['landing'] ?? null,
+                    'initialRates' => $page['props']['initialRates'] ?? null,
+                    'faqs' => $page['props']['faqs'] ?? null,
+                ])
+            @else
+                @inertia
+            @endif
+        @else
+            @inertia
+        @endif
     </main>
 
     @unless ($isHome)
