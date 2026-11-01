@@ -1,9 +1,14 @@
 import { useState, useEffect } from 'react';
 
 const TextWithHighlight = ({ text = "", split = false, split_coma = false, split_dos_puntos = false, color = "bg-constrast", counter = false }) => {
-    // Función para procesar el texto con resaltados
     const safeText = text || "";
-    const [currentNumber, setCurrentNumber] = useState(0);
+    // Inicializar con el valor real para evitar layout shifts y re-renders masivos en CPU móvil
+    const getInitialNumber = () => {
+        if (!counter) return 0;
+        const numberMatch = safeText.match(/(\d+(?:,\d{3})*(?:\.\d+)?)/);
+        return numberMatch ? parseFloat(numberMatch[0].replace(/,/g, '')) : 0;
+    };
+    const [currentNumber, setCurrentNumber] = useState(getInitialNumber);
 
     // Efecto para animar el contador
     useEffect(() => {
@@ -12,6 +17,7 @@ const TextWithHighlight = ({ text = "", split = false, split_coma = false, split
             const numberMatch = safeText.match(/(\d+(?:,\d{3})*(?:\.\d+)?)/);
             if (numberMatch) {
                 const targetNumber = parseFloat(numberMatch[0].replace(/,/g, ''));
+                if (currentNumber === targetNumber) return;
                 const duration = 2000; // 2 segundos de animación
                 const increment = targetNumber / (duration / 16); // 60 FPS aproximadamente
                 
