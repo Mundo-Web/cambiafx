@@ -22,18 +22,34 @@ class BotDetector
         }
 
         $botPatterns = [
-            // IAs y Rastreadores de LLM
+            // OpenAI & ChatGPT
             'chatgpt-user',
+            'chatgpt',
             'gptbot',
             'oai-searchbot',
+            'openai',
+
+            // Anthropic & Claude (Claude-User para navegación en vivo en chat, Claude-SearchBot, ClaudeBot, Claude-Web)
+            'claude',
             'claudebot',
+            'claude-user',
+            'claude-searchbot',
             'claude-web',
             'anthropic-ai',
+            'anthropic',
+
+            // Perplexity AI
             'perplexitybot',
             'perplexity-user',
-            'cohere-ai',
-            'omgili',
+            'perplexity',
+
+            // DeepSeek, Meta, ByteDance, Cohere, Otros
+            'deepseek',
+            'meta-externalagent',
             'bytespider',
+            'cohere-ai',
+            'cohere',
+            'omgili',
             'diffbot',
 
             // Buscadores principales

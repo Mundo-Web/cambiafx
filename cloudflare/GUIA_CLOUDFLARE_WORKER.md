@@ -78,7 +78,24 @@ curl -I https://www.cambiafx.pe/
 ```bash
 curl -I https://cambiafx.pe/
 ```
-* **Resultado esperado:** Cabeceras normales del servidor con `X-Edge-Server: Cloudflare-CambiaFX`.
+* **Resultado esperado:** Cabeceras normales del servidor con `X-Edge-Server: Cloudflare-CambiaFX-Accelerated`.
+
+### 3. Probar como Claude (Navegación en Vivo / Claude-User):
+```bash
+curl -s -A "Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko; compatible; Claude-User/1.0; +Claude-User@anthropic.com)" https://cambiafx.pe/ | grep "bot-semantic-home"
+```
+* **Resultado esperado:** Entrega inmediata del componente `<article class="bot-semantic-home...">` con cabecera `X-Edge-Server: Cloudflare-CambiaFX-Bot-Pass`.
+
+---
+
+## 🛡️ Configuración Crítica en Cloudflare: "AI Scrapers and Crawlers"
+
+En el panel de Cloudflare (`dash.cloudflare.com`):
+1. Ve a **Security** (Seguridad) ➔ **AI Crawl Control** (o **Bots** / **WAF**).
+2. Si tienes activada la opción *"Block AI scrapers and crawlers"*, Cloudflare devolverá **HTTP 403 Forbidden** a Anthropic (`ClaudeBot` y `Claude-User`) en el borde antes de llegar a tu servidor.
+3. Asegúrate de configurar la política para permitir (`Allow`) a los bots de búsqueda y agentes de usuario (`Search` y `Agent`), o añade una regla WAF personalizada:
+   * **Expresión:** `(http.user_agent contains "Claude") or (http.user_agent contains "ChatGPT")`
+   * **Acción:** `Skip` (Omitir todas las reglas administradas de seguridad / Managed Rules).
 
 ---
 

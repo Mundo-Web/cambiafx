@@ -48,7 +48,28 @@ export default {
     }
 
     // ========================================================================
-    // 3. Aceleración Edge en Cloudflare (Cachea 2 minutos para TTFB < 20ms)
+    // 3. Bots de IA y Crawlers: BYPASS DIRECTO AL ORIGEN
+    //    Los bots (Claude, ChatGPT, Gemini, Perplexity) NUNCA deben recibir
+    //    el HTML SPA de React/Inertia cacheado de un usuario humano.
+    //    Laravel genera el HTML semántico y GEO Quick Answer en tiempo real.
+    // ========================================================================
+    const userAgent = request.headers.get('User-Agent') || '';
+    const isBot = /bot|crawler|spider|googlebot|bingbot|chatgpt|gptbot|claude|anthropic|perplexity|deepseek|oai-searchbot|applebot/i.test(userAgent)
+               || url.searchParams.get('render') === 'bot';
+
+    if (isBot) {
+      const response = await fetch(request);
+      const newHeaders = new Headers(response.headers);
+      newHeaders.set('X-Edge-Server', 'Cloudflare-CambiaFX-Bot-Pass');
+      return new Response(response.body, {
+        status: response.status,
+        statusText: response.statusText,
+        headers: newHeaders
+      });
+    }
+
+    // ========================================================================
+    // 4. Aceleración Edge en Cloudflare para Humanos (Cachea 2 min para TTFB < 20ms)
     // ========================================================================
     const response = await fetch(request, {
       cf: {

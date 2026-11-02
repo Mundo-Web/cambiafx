@@ -103,6 +103,12 @@ class GeneralController extends BasicController
             $content .= "User-agent: ClaudeBot\n";
             $content .= "Allow: /\n\n";
 
+            $content .= "User-agent: Claude-User\n";
+            $content .= "Allow: /\n\n";
+
+            $content .= "User-agent: Claude-SearchBot\n";
+            $content .= "Allow: /\n\n";
+
             $content .= "User-agent: Claude-Web\n";
             $content .= "Allow: /\n\n";
 
