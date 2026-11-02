@@ -186,11 +186,11 @@ const BannerArticle = ({ banner }) => {
             </motion.div>
 
             {/* Teléfono */}
-            <motion.div className="absolute -bottom-10 flex-1 left-1/3 translate-x-1/2 z-50">
+            <motion.div className="absolute -bottom-0 flex-1 left-1/3 translate-x-1/2 z-50">
                 <motion.img
                     src={`/api/banners/media/${banner?.image}`}
                     alt="Teléfono móvil"
-                    className="w-[200px] md:w-[200px] lg:w-[250px] h-full z-10 relative"
+                    className="banner-phone-img w-[200px] md:w-[200px] lg:w-[250px] h-full z-10 relative"
                     onError={(e) =>
                         (e.target.src = "/api/cover/thumbnail/null")
                     }
@@ -535,7 +535,7 @@ const BlogArticle = ({ article, posts, landing, banner, generals }) => {
                                     1,
                                     Math.ceil(
                                         article.description.split(" ").length /
-                                            200,
+                                        200,
                                     ),
                                 )}{" "}
                                 min
@@ -808,8 +808,8 @@ const BlogArticle = ({ article, posts, landing, banner, generals }) => {
                                 text-decoration: none;
                             }
                             
-                            .blog-article-content img,
-                            .blog-article-content-part img {
+                            .blog-article-content-part img,
+                            .blog-article-content img:not(.banner-phone-img) {
                              
                                 height: auto !important;
                                 max-width: 100% !important;
@@ -827,8 +827,8 @@ const BlogArticle = ({ article, posts, landing, banner, generals }) => {
                             
                             /* Para pantallas grandes, centrar la imagen cuando excede el contenedor */
                             @media (min-width: 1280px) {
-                                .blog-article-content img,
-                                .blog-article-content-part img {
+                                .blog-article-content-part img,
+                                .blog-article-content img:not(.banner-phone-img) {
                                    
                                    
                                     margin-left: calc(-40rem + 50%) !important;
@@ -1062,8 +1062,8 @@ const BlogArticle = ({ article, posts, landing, banner, generals }) => {
                                                         href={
                                                             type !== "copy"
                                                                 ? socialShareLinks[
-                                                                      type
-                                                                  ]
+                                                                type
+                                                                ]
                                                                 : undefined
                                                         }
                                                         onClick={
@@ -1080,11 +1080,11 @@ const BlogArticle = ({ article, posts, landing, banner, generals }) => {
                                                         animate={{
                                                             rotate:
                                                                 hoveredShare ===
-                                                                type
+                                                                    type
                                                                     ? [
-                                                                          0, -2,
-                                                                          2, 0,
-                                                                      ]
+                                                                        0, -2,
+                                                                        2, 0,
+                                                                    ]
                                                                     : 0,
                                                         }}
                                                         transition={{
@@ -1095,12 +1095,12 @@ const BlogArticle = ({ article, posts, landing, banner, generals }) => {
                                                             animate={{
                                                                 scale:
                                                                     hoveredShare ===
-                                                                    type
+                                                                        type
                                                                         ? [
-                                                                              1,
-                                                                              1.2,
-                                                                              1,
-                                                                          ]
+                                                                            1,
+                                                                            1.2,
+                                                                            1,
+                                                                        ]
                                                                         : 1,
                                                             }}
                                                             transition={{
