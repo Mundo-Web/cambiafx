@@ -143,6 +143,7 @@ Route::get('/sobre-nosotros', [AboutController::class, 'reactView'])->name('Abou
 Route::get('/contacto', [ContactController::class, 'reactView'])->name('Contacto.jsx');
 Route::get('/offices', [FacilityController::class, 'reactView'])->name('InstalacionesPage.jsx');
 Route::get('/servicios', [ServiceController::class, 'reactView'])->name('ServiciosPage.jsx');
+Route::get('/services', [ServiceController::class, 'reactView'])->name('Services.jsx');
 Route::get('/catalog', [CatalogController::class, 'reactView'])->name('CatalogProducts.jsx');
 Route::get('/instructions', [InstructionController::class, 'reactView'])->name('Instructions.jsx');
 Route::get('/quiz', [CatalogController::class, 'reactView'])->name('Quiz.jsx');

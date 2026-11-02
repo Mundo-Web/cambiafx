@@ -227,6 +227,16 @@ $isBot = \App\Helpers\BotDetector::isBot();
                     @include('components.bot.empresa', $botProps)
                     @break
 
+                @case('ServiciosPage')
+                @case('Services')
+                @case('Servicios')
+                    @include('components.bot.servicios', $botProps)
+                    @break
+
+                @case('DetailService')
+                    @include('components.bot.service-detail', $botProps)
+                    @break
+
                 @case('About')
                 @case('AboutUs')
                     @include('components.bot.about', $botProps)
