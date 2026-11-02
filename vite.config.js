@@ -42,9 +42,13 @@ export default defineConfig({
         dedupe: ['react', 'react-dom', 'scheduler'], // Evitar duplicados de React
     },
     build: {
+        target: 'esnext',
         rollupOptions: {
             output: {
                 manualChunks(id) {
+                    if (id.startsWith('\0') || id.includes('vite/')) {
+                        return;
+                    }
                     if (id.includes('node_modules')) {
                         // 1. Librerías masivas de administración y exportación (aíslan +1.5 MB de la Home)
                         if (id.includes('xlsx')) {
@@ -53,10 +57,10 @@ export default defineConfig({
                         if (id.includes('jspdf')) {
                             return 'vendor-pdf';
                         }
-                        if (id.includes('chart.js')) {
+                        if (id.includes('chart.js') || id.includes('recharts')) {
                             return 'vendor-charts';
                         }
-                        if (id.includes('tinymce')) {
+                        if (id.includes('tinymce') || id.includes('@tinymce')) {
                             return 'vendor-tinymce';
                         }
                         if (id.includes('sweetalert2')) {
@@ -71,27 +75,11 @@ export default defineConfig({
                         if (id.includes('react-spring') || id.includes('@react-spring')) {
                             return 'vendor-spring';
                         }
-
-                        // 2. Componentes UI y utilitarios
-                        if (id.includes('framer-motion') || id.includes('/motion/')) {
-                            return 'vendor-framer-motion';
-                        }
                         if (id.includes('swiper')) {
                             return 'vendor-swiper';
                         }
-                        if (id.includes('lucide-react') || id.includes('react-icons')) {
-                            return 'vendor-icons';
-                        }
-                        if (id.includes('axios')) {
-                            return 'vendor-axios';
-                        }
-
-                        // 3. Núcleo React + Inertia
-                        if (id.includes('react') || id.includes('scheduler') || id.includes('@inertiajs')) {
-                            return 'vendor-react';
-                        }
-
-                        return 'vendor-core';
+                        // Dejar que Vite y Rollup agrupen React, Inertia y dependencias compartidas
+                        // de forma natural sin crear un 'vendor-core' saco de basura ni dependencias circulares.
                     }
                 },
             },
@@ -114,7 +102,7 @@ export default defineConfig({
         cssCodeSplit: true,
         cssMinify: true,
         reportCompressedSize: false,
-        chunkSizeWarningLimit: 500,
+        chunkSizeWarningLimit: 1200,
         sourcemap: 'hidden', // Hidden sourcemaps para diagnóstico interno sin exponer código a usuarios públicos
         assetsInlineLimit: 4096, // Inline assets smaller than 4kb
     },

@@ -1,0 +1,1 @@
+import{r}from"./vendor-maps-CDZc1xhJ.js";import{a as o}from"./DynamicGalleryService-CvuJu9AO.js";const t=()=>{const{translations:t,loading:n,error:s}=r.useContext(o);return{t:(r,o="")=>n||s?o:((r,o,t="")=>{const n=o.split(".");if(1===n.length)return r[o]||t;const s=n.slice(0,-1).join("."),e=n.slice(-1)[0];return r[s]?.[e]||t})(t,r,o),loading:n,error:s}};export{t as u};

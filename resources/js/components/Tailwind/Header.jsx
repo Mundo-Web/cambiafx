@@ -1,18 +1,15 @@
 import { motion, AnimatePresence } from "framer-motion";
-import Tippy from "@tippyjs/react";
-import React, { useState, useEffect, useRef, useContext } from "react";
+import React, { useState, useEffect, useRef, useContext, Suspense, lazy } from "react";
 import { CarritoContext } from "../../context/CarritoContext";
 import GeneralRest from "../../actions/GeneralRest";
-import { TbBrush } from "react-icons/tb";
-import { ArrowRight, Trash2 } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { useTranslation } from "../../hooks/useTranslation";
 import { LanguageContext } from "../../context/LanguageContext";
 import LanguageDropdown from "./Header/LanguageDropdown";
-import MegaMenuPopup from "./Header/MegaMenuPopup";
-import WhatsAppButton, {
-    WhatsAppButtonWithArrow,
-} from "../Shared/WhatsAppButton";
+import WhatsAppButton from "../Shared/WhatsAppButton";
 import Global from "../../Utils/Global";
+
+const MegaMenuPopup = lazy(() => import("./Header/MegaMenuPopup"));
 
 const generalRest = new GeneralRest();
 
@@ -497,17 +494,19 @@ const Header = ({
                                             <AnimatePresence>
                                                 {activeMegaMenu === path && (
                                                     <div className="">
-                                                        <MegaMenuPopup
-                                                            info={modalData}
-                                                            isOpen={
-                                                                activeMegaMenu ===
-                                                                path
-                                                            }
-                                                            onClose={
-                                                                closeMegaMenu
-                                                            }
-                                                            data={servicesData}
-                                                        />
+                                                        <Suspense fallback={null}>
+                                                            <MegaMenuPopup
+                                                                info={modalData}
+                                                                isOpen={
+                                                                    activeMegaMenu ===
+                                                                    path
+                                                                }
+                                                                onClose={
+                                                                    closeMegaMenu
+                                                                }
+                                                                data={servicesData}
+                                                            />
+                                                        </Suspense>
                                                     </div>
                                                 )}
                                             </AnimatePresence>

@@ -1,1 +1,0 @@
-import{j as r}from"./vendor-react-DARurmmb.js";import{L as s}from"./DynamicGalleryService-BdRI_oO9.js";const e=({children:e,footerLinks:o,session:n,socials:i,terms:t,showSlogan:c=!0,showFooter:a=!0,gradientStart:d="#c4b8d3",gradientEnd:l="#f1d7c1",menuGradientEnd:m="#dbc8c9"})=>r.jsx(s,{children:r.jsxs("section",{children:[" ",e]})});export{e as B};

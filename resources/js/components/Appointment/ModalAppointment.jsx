@@ -8,7 +8,6 @@ import {
 } from "lucide-react";
 
 import Swal from "sweetalert2";
-import { data } from "autoprefixer";
 
 const messagesRest = new AppointmentsRest();
 import { X } from "lucide-react";

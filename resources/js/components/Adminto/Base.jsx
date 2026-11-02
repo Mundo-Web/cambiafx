@@ -4,6 +4,7 @@ import Menu from "./Menu";
 import NavBar from "./NavBar";
 import RigthBar from "./RightBar";
 import { LanguageProvider } from "../../context/LanguageContext";
+import "tippy.js/dist/tippy.css";
 
 //import WhatsAppModal from '../modals/WhatsAppModal'
 

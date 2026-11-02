@@ -8,7 +8,6 @@ import {
 } from "lucide-react";
 import MessagesRest from "../../Actions/MessagesRest";
 import Swal from "sweetalert2";
-import { data } from "autoprefixer";
 import { useTranslation } from "../../hooks/useTranslation";
 
 const messagesRest = new MessagesRest();

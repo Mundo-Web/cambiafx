@@ -17,7 +17,6 @@ $isBot = \App\Helpers\BotDetector::isBot();
     <meta name="csrf_token" content="{{ csrf_token() }}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preconnect" href="https://server-side-tagging-uwlsd62yyq-uc.a.run.app" crossorigin>
 
     <!-- SEO Meta Tags -->
     @include('components.seo-meta-tags', [
@@ -52,15 +51,9 @@ $isBot = \App\Helpers\BotDetector::isBot();
     <!-- Preload del elemento LCP (Logo CambiaFX) para eliminar los 2,480ms de retraso de descubrimiento -->
     <link rel="preload" href="/assets/img/logo.svg" as="image" type="image/svg+xml" fetchpriority="high">
 
-    <!-- Web Fonts Asíncronas (No bloqueantes del FCP/LCP) -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" media="print" onload="this.media='all'">
-    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"></noscript>
-
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" media="print" onload="this.media='all'">
-    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap"></noscript>
-
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&display=swap" media="print" onload="this.media='all'">
-    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&display=swap"></noscript>
+    <!-- Web Fonts Asíncronas Consolidadas (1 solo request HTTP/2, No bloqueante) -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=Bebas+Neue&family=Poppins:wght@400;500;600;700&display=swap" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=Bebas+Neue&family=Poppins:wght@400;500;600;700&display=swap"></noscript>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
         integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="

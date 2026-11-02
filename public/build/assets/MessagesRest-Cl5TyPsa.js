@@ -1,1 +1,0 @@
-var e=Object.defineProperty;import{B as s}from"./BasicRest-CwXSP3iZ.js";class r extends s{constructor(){var s;super(...arguments),((s,r,a)=>{r in s?e(s,r,{enumerable:!0,configurable:!0,writable:!0,value:a}):s[r]=a})(this,"symbol"!=typeof(s="path")?s+"":s,"messages")}}export{r as M};
