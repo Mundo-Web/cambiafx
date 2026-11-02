@@ -199,11 +199,9 @@
                     <a href="https://mi.cambiafx.pe/registro" class="px-6 py-2.5 bg-purple-700 text-white font-bold rounded-xl text-sm hover:bg-purple-800 transition-colors">
                         Usar {{ $sName }} Ahora
                     </a>
-                    @if($sSlug)
-                        <a href="{{ url('/servicio/' . $sSlug) }}" class="text-xs font-bold text-purple-700 hover:underline">
-                            Ver detalles técnicos de este servicio →
-                        </a>
-                    @endif
+                    <span class="text-xs text-gray-500 font-medium">
+                        Operación 100% digital y segura
+                    </span>
                 </div>
             </section>
         @endforeach

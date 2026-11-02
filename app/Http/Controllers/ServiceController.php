@@ -11,7 +11,6 @@ use App\Models\Testimony;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Http;
-use Illuminate\Support\Str;
 
 class ServiceController extends BasicController
 {
@@ -22,7 +21,6 @@ class ServiceController extends BasicController
     public function setReactViewProperties(Request $request)
     {
         $langId = app('current_lang_id');
-        $slug = $request->route('slug');
 
         $services = Service::where('status', true)
             ->where('visible', true)
@@ -60,41 +58,6 @@ class ServiceController extends BasicController
             return null;
         });
 
-        // Vista de detalle de servicio individual (/servicio/{slug})
-        if (!empty($slug)) {
-            $currentService = Service::where('status', true)
-                ->where('slug', $slug)
-                ->first();
-
-            if ($currentService) {
-                $this->reactView = 'DetailService';
-                $serviceName = $currentService->name ?: $currentService->title ?: 'Servicio';
-                $cleanTitle = trim(str_replace('*', '', strip_tags($currentService->title ?: $serviceName)));
-
-                return [
-                    'service' => $currentService,
-                    'currentService' => $currentService,
-                    'services' => $services,
-                    'allServices' => $services,
-                    'brands' => $brands,
-                    'testimonios' => $testimonios,
-                    'banner_slider' => $banner_slider,
-                    'faqs' => $faqs,
-                    'initialRates' => $initialRates,
-                    'seoTitle' => $cleanTitle . ' | Servicios Cambia FX Perú',
-                    'seoDescription' => Str::limit(strip_tags($currentService->description ?: 'Conoce los detalles, beneficios y requisitos de ' . $cleanTitle . ' en Cambia FX, casa de cambio digital en Perú.'), 160),
-                    'seoKeywords' => strtolower($cleanTitle) . ', cambia fx, casa de cambio digital peru, servicios financieros peru',
-                    'breadcrumbs' => [
-                        ['name' => 'Inicio', 'url' => '/'],
-                        ['name' => 'Servicios', 'url' => '/servicios'],
-                        ['name' => $cleanTitle, 'url' => '/servicio/' . $slug]
-                    ],
-                ];
-            }
-        }
-
-        // Vista general de servicios (/servicios o /services)
-        $this->reactView = 'ServiciosPage';
         $landing = LandingHome::where('correlative', '=', 'page_home_testimonios')->where('lang_id', $langId)->first();
 
         return [
