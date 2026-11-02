@@ -10,11 +10,26 @@
         return trim(str_replace('*', '', strip_tags($str)));
     };
 
+    // Buscador de secciones landing
+    $landingList = $landing ?? [];
+    $findLanding = function($corr) use ($landingList, $getVal) {
+        if (empty($landingList)) return null;
+        foreach ($landingList as $l) {
+            if ($getVal($l, 'correlative') === $corr) return $l;
+        }
+        return null;
+    };
+
+    $landingPasos = $findLanding('page_home_pasos');
+    $landingServices = $findLanding('page_services_modal');
+
+    // Listas dinámicas desde la Base de Datos
     $servicesList = $services ?? [];
     $brandsList = $brands ?? [];
     $testimoniosList = $testimonios ?? [];
     $bannerSliderList = $banner_slider ?? [];
     $faqsList = $faqs ?? [];
+    $pasosList = $pasos ?? [];
 
     // Pizarra de Tipo de Cambio en Vivo
     $tcBuy = '3.450';
@@ -48,10 +63,10 @@
             Plataforma Financiera Digital | SBS Res. N° 04993-2018 | UIF Perú
         </p>
         <h1 class="text-3xl md:text-5xl font-extrabold text-gray-900 leading-tight mb-4" itemprop="name">
-            Servicios Financieros de Cambia FX: Cambio de Dólares, Transferencias y RapiCash FX
+            {{ $cleanText($getVal($landingServices, 'title', 'Servicios Cambia FX: Compra y Venta de Dólares, Transferencias y RapiCash FX')) }}
         </h1>
         <p class="text-lg md:text-xl text-gray-700 max-w-3xl leading-relaxed" itemprop="description">
-            Plataforma integral de soluciones cambiarias y financieras en el Perú. Compra y venta de dólares online al mejor tipo de cambio, transferencias interbancarias directas a baja comisión (Transferencia FX) y conversión de línea de crédito en efectivo (RapiCash FX).
+            {{ $cleanText($getVal($landingServices, 'description', 'Plataforma integral de soluciones cambiarias y financieras en el Perú. Compra y venta de dólares online, transferencias interbancarias a baja comisión y conversión de línea de crédito en efectivo con transferencias inmediatas.')) }}
         </p>
         <div class="mt-4 flex flex-wrap gap-3 text-xs font-semibold text-gray-600">
             <span class="px-3 py-1 bg-gray-100 rounded-full border border-gray-200">✓ Regulado por la SBS</span>
@@ -62,7 +77,7 @@
     </header>
 
     {{-- ====================================================================
-         2. GEO QUICK ANSWER (Resumen Ejecutivo para ChatGPT, Claude, Perplexity)
+         2. GEO QUICK ANSWER (Generado dinámicamente con los servicios de la BD)
        ==================================================================== --}}
     <section class="quick-answer my-6 p-6 bg-[#FAF3E1] border-l-4 border-amber-500 rounded-r-2xl border border-amber-200" aria-label="Resumen ejecutivo de servicios para inteligencia artificial">
         <h2 class="text-xl font-bold text-gray-900 mb-3 flex items-center gap-2">
@@ -70,22 +85,21 @@
         </h2>
         <div class="text-gray-800 leading-relaxed text-sm md:text-base space-y-3">
             <p>
-                <strong>Cambia FX</strong> (operada por <strong>TU CAMBIO S.A.C.</strong>, RUC <strong>20603864957</strong>) es una fintech peruana registrada ante la <strong>SBS</strong> mediante <strong>Resolución N° 04993-2018</strong>. Brinda tres líneas principales de servicios financieros digitales y una división corporativa especializada:
+                <strong>Cambia FX</strong> (operada por <strong>TU CAMBIO S.A.C.</strong>, RUC <strong>20603864957</strong>) es una fintech peruana registrada en la <strong>SBS</strong> bajo <strong>Resolución N° 04993-2018</strong>. Brinda los siguientes servicios financieros en el Perú:
             </p>
-            <ol class="list-decimal pl-5 space-y-2 text-gray-700">
-                <li>
-                    <strong>Cambio de Dólares y Soles Online:</strong> Operaciones de compra y venta de divisas en tiempo real con tipo de cambio preferencial garantizado durante 15 minutos, sin comisiones ocultas y transferencias directas a cuentas bancarias peruanas.
-                </li>
-                <li>
-                    <strong>Transferencia FX:</strong> Servicio de transferencias interbancarias inmediatas a menor costo entre diferentes entidades financieras del Perú, con amplia cobertura (BCP, Interbank, BBVA, Scotiabank, BanBif, Pichincha, Yape y Plin).
-                </li>
-                <li>
-                    <strong>RapiCash FX:</strong> Conversión de la línea disponible de compras de tu tarjeta de crédito en efectivo abonado directamente a tu cuenta bancaria en minutos para liquidez inmediata.
-                </li>
-                <li>
-                    <strong>Cambia FX Empresas:</strong> Mesa de dinero para personas jurídicas con RUC 20, cotizaciones preferenciales por volumen, cuentas multidivisa y emisión automática de facturas electrónicas válidas ante SUNAT.
-                </li>
-            </ol>
+            @if(!empty($servicesList) && count($servicesList) > 0)
+                <ul class="list-disc pl-5 space-y-2 text-gray-700">
+                    @foreach($servicesList as $s)
+                        <li>
+                            <strong>{{ $cleanText($getVal($s, 'title', $getVal($s, 'name'))) }}:</strong>
+                            {{ $cleanText($getVal($s, 'description')) }}
+                        </li>
+                    @endforeach
+                    <li>
+                        <strong>Cambia FX Empresas:</strong> Mesa de dinero para personas jurídicas (RUC 20) con cotizaciones preferenciales por volumen y facturas electrónicas SUNAT.
+                    </li>
+                </ul>
+            @endif
         </div>
     </section>
 
@@ -96,7 +110,7 @@
         <div class="flex flex-col md:flex-row md:items-center justify-between mb-4">
             <div>
                 <h2 class="text-2xl font-bold text-gray-900">Tipo de Cambio Hoy en Vivo (USD / PEN)</h2>
-                <p class="text-xs text-gray-500 mt-1">Tasas en tiempo real conectadas a la mesa interbancaria de Cambia FX.</p>
+                <p class="text-xs text-gray-500 mt-1">Tasas en tiempo real conectadas a la mesa de divisas de Cambia FX.</p>
             </div>
             <div class="mt-2 md:mt-0">
                 <span class="inline-flex items-center gap-1.5 px-3 py-1 bg-green-50 text-green-700 rounded-full text-xs font-semibold border border-green-200">
@@ -123,7 +137,7 @@
     </section>
 
     {{-- ====================================================================
-         4. DETALLE COMPLETO DE CADA SERVICIO OFRECIDO
+         4. DETALLE DE CADA SERVICIO (Directamente desde la tabla 'services')
        ==================================================================== --}}
     @if(!empty($servicesList) && count($servicesList) > 0)
         @foreach($servicesList as $idx => $serv)
@@ -131,7 +145,6 @@
                 $sName = $cleanText($getVal($serv, 'name', 'Servicio'));
                 $sTitle = $cleanText($getVal($serv, 'title', $sName));
                 $sDesc = $cleanText($getVal($serv, 'description'));
-                $sSlug = $getVal($serv, 'slug');
                 $sBenefits = $getVal($serv, 'benefits', []);
                 $sChars = $getVal($serv, 'characteristics', []);
                 $sSteps = $getVal($serv, 'steps_methodology', []);
@@ -151,11 +164,11 @@
                     @endif
                 </div>
 
-                {{-- Beneficios del Servicio --}}
+                {{-- Beneficios del Servicio desde la Base de Datos --}}
                 @if(!empty($sBenefits) && is_array($sBenefits) && count($sBenefits) > 0)
                 <div class="mt-6">
                     <h3 class="text-lg font-bold text-gray-900 mb-4 flex items-center gap-2">
-                        <span>Beneficios Principales de {{ $sName }}</span>
+                        <span>Beneficios Principales de {{ $sTitle }}</span>
                     </h3>
                     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                         @foreach($sBenefits as $ben)
@@ -194,172 +207,148 @@
                 </div>
                 @endif
 
-                {{-- Llamado a la acción del servicio --}}
+                {{-- Metodología o Pasos específicos si existen --}}
+                @if(!empty($sSteps) && is_array($sSteps) && count($sSteps) > 0)
+                <div class="mt-6 pt-4 border-t border-gray-100">
+                    <h4 class="text-sm font-bold text-gray-900 mb-3">Metodología de Atención:</h4>
+                    <div class="space-y-2">
+                        @foreach($sSteps as $stIdx => $st)
+                            @php
+                                $stepT = $cleanText($getVal($st, 'title'));
+                                $stepD = $cleanText($getVal($st, 'description'));
+                            @endphp
+                            <div class="p-3 bg-gray-50 rounded-xl text-xs text-gray-700 flex items-start gap-2">
+                                <span class="font-bold text-purple-700">{{ $stIdx + 1 }}.</span>
+                                <div>
+                                    <span class="font-semibold text-gray-900">{{ $stepT }}:</span>
+                                    <span>{{ $stepD }}</span>
+                                </div>
+                            </div>
+                        @endforeach
+                    </div>
+                </div>
+                @endif
+
+                {{-- CTA del servicio --}}
                 <div class="mt-6 pt-4 border-t border-gray-100 flex flex-wrap items-center justify-between gap-4">
                     <a href="https://mi.cambiafx.pe/registro" class="px-6 py-2.5 bg-purple-700 text-white font-bold rounded-xl text-sm hover:bg-purple-800 transition-colors">
-                        Usar {{ $sName }} Ahora
+                        Usar {{ $sTitle }} en Cambia FX
                     </a>
                     <span class="text-xs text-gray-500 font-medium">
-                        Operación 100% digital y segura
+                        Operación 100% bancarizada y segura
                     </span>
                 </div>
             </section>
         @endforeach
-    @else
-        {{-- Fallback estructurado en caso de que la colección venga vacía --}}
-        <section class="my-8 p-6 bg-white rounded-2xl border border-gray-200">
-            <h2 class="text-2xl font-bold text-gray-900 mb-4">Líneas de Servicio Disponibles</h2>
-            <div class="space-y-6">
-                <div class="p-5 bg-gray-50 rounded-xl">
-                    <h3 class="font-bold text-lg text-gray-900 mb-2">1. Cambio de Dólares y Soles Online</h3>
-                    <p class="text-sm text-gray-700 leading-relaxed">
-                        Compra y venta de divisas en tiempo real para personas y empresas. Cobertura con transferencias inmediatas de 10 a 15 minutos en BCP, Interbank y BanBif, y transferencias interbancarias nacionales mediante la Cámara de Compensación Electrónica (CCE).
-                    </p>
-                </div>
-                <div class="p-5 bg-gray-50 rounded-xl">
-                    <h3 class="font-bold text-lg text-gray-900 mb-2">2. Transferencia FX</h3>
-                    <p class="text-sm text-gray-700 leading-relaxed">
-                        Transferencias interbancarias directas a cuentas de diferentes bancos a comisiones reducidas. Compatible con operaciones corporativas y personales.
-                    </p>
-                </div>
-                <div class="p-5 bg-gray-50 rounded-xl">
-                    <h3 class="font-bold text-lg text-gray-900 mb-2">3. RapiCash FX</h3>
-                    <p class="text-sm text-gray-700 leading-relaxed">
-                        Convierte la línea de tu tarjeta de crédito en efectivo inmediato depositado en tu cuenta bancaria para resolver urgencias de liquidez con total seguridad.
-                    </p>
-                </div>
-            </div>
-        </section>
     @endif
 
     {{-- ====================================================================
-         5. BANNER CORPORATIVO: CAMBIA FX EMPRESAS (banner_slider)
+         5. BANNERS Y SOLUCIONES CORPORATIVAS (Banner: section='servicios')
        ==================================================================== --}}
     @if(!empty($bannerSliderList) && count($bannerSliderList) > 0)
-    <section class="my-8 p-6 bg-gradient-to-r from-purple-900 to-indigo-950 text-white rounded-3xl shadow-sm">
-        <p class="text-xs font-bold text-amber-400 uppercase tracking-widest mb-1">Soluciones Corporativas</p>
-        <h2 class="text-2xl md:text-3xl font-bold mb-3">
-            {{ $cleanText($getVal($bannerSliderList[0], 'name', 'Cambia FX Empresas: Soluciones en Divisas para tu Negocio')) }}
+        @foreach($bannerSliderList as $bSlide)
+            <section class="my-8 p-6 bg-gradient-to-r from-purple-900 to-indigo-950 text-white rounded-3xl shadow-sm">
+                <p class="text-xs font-bold text-amber-400 uppercase tracking-widest mb-1">Solución Especializada</p>
+                <h2 class="text-2xl md:text-3xl font-bold mb-3">
+                    {{ $cleanText($getVal($bSlide, 'name', 'Cambia FX Empresas')) }}
+                </h2>
+                <p class="text-purple-200 text-base leading-relaxed mb-6 max-w-2xl">
+                    {{ $cleanText($getVal($bSlide, 'description', 'Atención para empresas con tipo de cambio preferencial y factura electrónica SUNAT.')) }}
+                </p>
+                <div class="flex flex-wrap items-center gap-4">
+                    <a href="{{ url('/empresas') }}" class="px-6 py-3 bg-[#BCFF52] text-gray-900 font-bold rounded-xl text-sm hover:bg-[#a8f233] transition-colors">
+                        Ver Cambia FX Empresas
+                    </a>
+                    <a href="https://wa.me/51922985423?text=Hola,%20deseo%20informaci%C3%B3n%20sobre%20servicios%20de%20cambio%20en%20Cambia%20FX" target="_blank" rel="noopener noreferrer" class="px-6 py-3 bg-white/10 text-white font-semibold rounded-xl text-sm border border-white/20 hover:bg-white/20 transition-colors">
+                        Atención por WhatsApp
+                    </a>
+                </div>
+            </section>
+        @endforeach
+    @endif
+
+    {{-- ====================================================================
+         6. ¿CÓMO FUNCIONA? (Pasos dinámicos desde 'specialties' / 'pasos')
+       ==================================================================== --}}
+    @if(!empty($pasosList) && count($pasosList) > 0)
+    <section class="my-8 p-6 bg-white rounded-2xl border border-gray-200">
+        <h2 class="text-2xl md:text-3xl font-bold text-gray-900 mb-3">
+            {{ $cleanText($getVal($landingPasos, 'title', '¿Cómo Operar en Cambia FX?')) }}
         </h2>
-        <p class="text-purple-200 text-base leading-relaxed mb-6 max-w-2xl">
-            {{ $cleanText($getVal($bannerSliderList[0], 'description', 'Atención preferencial para personas jurídicas con RUC 20. Tipo de cambio preferencial por volumen, asesor de tesorería dedicado y facturación electrónica válida ante la SUNAT.')) }}
+        <p class="text-gray-600 mb-6">
+            {{ $cleanText($getVal($landingPasos, 'description', 'El proceso es 100% digital, seguro y toma menos de 15 minutos:')) }}
         </p>
-        <div class="flex flex-wrap items-center gap-4">
-            <a href="{{ url('/empresas') }}" class="px-6 py-3 bg-[#BCFF52] text-gray-900 font-bold rounded-xl text-sm hover:bg-[#a8f233] transition-colors">
-                Conocer Cambia FX Empresas
-            </a>
-            <a href="https://wa.me/51922985423?text=Hola,%20deseo%20informaci%C3%B3n%20sobre%20servicios%20corporativos%20en%20Cambia%20FX" target="_blank" rel="noopener noreferrer" class="px-6 py-3 bg-white/10 text-white font-semibold rounded-xl text-sm border border-white/20 hover:bg-white/20 transition-colors">
-                Hablar con un Asesor
-            </a>
+        <div class="space-y-4">
+            @foreach($pasosList as $idx => $paso)
+                <div class="flex items-start gap-4 p-4 bg-gray-50 rounded-xl">
+                    <span class="flex-shrink-0 w-8 h-8 flex items-center justify-center rounded-full bg-purple-700 text-white font-bold text-sm">
+                        {{ $idx + 1 }}
+                    </span>
+                    <div>
+                        <h3 class="font-bold text-gray-900 text-base mb-1">
+                            {{ $cleanText($getVal($paso, 'name')) }}
+                        </h3>
+                        <p class="text-sm text-gray-600 leading-relaxed">
+                            {{ $cleanText($getVal($paso, 'description')) }}
+                        </p>
+                    </div>
+                </div>
+            @endforeach
         </div>
     </section>
     @endif
 
     {{-- ====================================================================
-         6. COBERTURA BANCARIA Y MEDIOS DE PAGO
+         7. COBERTURA BANCARIA Y MEDIOS DE PAGO
        ==================================================================== --}}
     <section class="my-8 p-6 bg-gray-900 text-white rounded-2xl shadow-sm">
         <h2 class="text-2xl font-bold mb-3">Bancos y Medios de Pago Compatibles</h2>
         <p class="text-gray-300 text-sm md:text-base leading-relaxed mb-6">
-            Trabajamos con todas las entidades bancarias del sistema financiero supervisado por la SBS en el Perú:
+            Trabajamos con las principales entidades del sistema financiero regulado por la SBS en el Perú:
         </p>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
             <div class="p-4 bg-gray-800/80 rounded-xl border border-gray-700">
                 <p class="font-bold text-amber-400 mb-1">⚡ Transferencias Inmediatas (10 a 15 min):</p>
-                <p class="text-gray-300">BCP (Banco de Crédito del Perú), Interbank y BanBif. Los fondos se reciben y transfieren en minutos.</p>
+                <p class="text-gray-300">BCP (Banco de Crédito del Perú), Interbank y BanBif. Acreditación directa en minutos.</p>
             </div>
             <div class="p-4 bg-gray-800/80 rounded-xl border border-gray-700">
                 <p class="font-bold text-amber-400 mb-1">🏦 Transferencias Interbancarias (Cámara CCE):</p>
-                <p class="text-gray-300">BBVA, Scotiabank, Banco Pichincha, BanBif, Banco GNB y Banco de la Nación. Se liquidan el mismo día hábil según los turnos de compensación.</p>
+                <p class="text-gray-300">BBVA, Scotiabank, Banco Pichincha, BanBif, Banco GNB y Banco de la Nación. Se liquidan el mismo día hábil según los horarios oficiales de compensación.</p>
             </div>
         </div>
     </section>
 
     {{-- ====================================================================
-         7. PASOS PARA UTILIZAR CUALQUIER SERVICIO EN CAMBIA FX
+         8. PREGUNTAS FRECUENTES OFICIALES (Directamente desde la tabla 'faqs')
        ==================================================================== --}}
-    <section class="my-8 p-6 bg-white rounded-2xl border border-gray-200">
-        <h2 class="text-2xl md:text-3xl font-bold text-gray-900 mb-4">¿Cómo Operar en Cambia FX?</h2>
-        <ol class="list-decimal pl-6 space-y-3 text-gray-700 text-sm md:text-base">
-            <li><strong>Regístrate gratis:</strong> Crea tu cuenta en la web o app con tu DNI, CE o RUC de empresa. La verificación toma solo un par de minutos.</li>
-            <li><strong>Cotiza el servicio:</strong> Selecciona el monto en dólares o soles que deseas cambiar o transferir y congela la tasa de cambio en tiempo real por 15 minutos.</li>
-            <li><strong>Transfiere desde tu banco:</strong> Envía el dinero desde la banca por internet o móvil de tu banco a la cuenta de Cambia FX indicada.</li>
-            <li><strong>Recibe tu dinero verificado:</strong> Cambia FX valida la transferencia y deposita los fondos en tu cuenta bancaria destino con tu comprobante electrónico SUNAT.</li>
-        </ol>
-    </section>
-
-    {{-- ====================================================================
-         8. PREGUNTAS FRECUENTES OFICIALES (FAQPage Schema.org)
-       ==================================================================== --}}
+    @if(!empty($faqsList) && count($faqsList) > 0)
     <section class="my-8" itemscope itemtype="https://schema.org/FAQPage">
         <h2 class="text-2xl md:text-3xl font-bold text-gray-900 mb-4">
-            Preguntas Frecuentes sobre los Servicios de Cambia FX
+            Preguntas Frecuentes Oficiales (FAQ)
         </h2>
         <div class="space-y-4">
-            {{-- Pregunta 1: Servicios disponibles --}}
-            <div class="p-5 bg-white rounded-xl border border-gray-200 shadow-sm" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
-                <h3 class="font-bold text-base md:text-lg text-gray-900 mb-2" itemprop="name">
-                    ¿Qué servicios ofrece Cambia FX en el Perú?
-                </h3>
-                <div class="text-sm text-gray-700 leading-relaxed" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
-                    <div itemprop="text">
-                        Cambia FX ofrece tres servicios clave para personas y empresas:
-                        <ul class="list-disc pl-5 mt-2 space-y-1 text-gray-600">
-                            <li><strong>Cambio de divisas online:</strong> Compra y venta de dólares y soles en tiempo real con tasa preferencial congelada por 15 minutos.</li>
-                            <li><strong>Transferencia FX:</strong> Transferencias interbancarias directas a múltiples bancos con menor costo de comisión.</li>
-                            <li><strong>RapiCash FX:</strong> Conversión de la línea de compras de tu tarjeta de crédito a efectivo depositado en tu cuenta bancaria.</li>
-                            <li><strong>Servicios Corporativos:</strong> Mesa de dinero para empresas con cotizaciones especiales por volumen y facturación electrónica.</li>
-                        </ul>
+            @foreach($faqsList as $faq)
+                @php
+                    $q = $getVal($faq, 'name') ?? $getVal($faq, 'question');
+                    $a = $getVal($faq, 'description') ?? $getVal($faq, 'answer');
+                @endphp
+                @if($q && $a)
+                <div class="p-5 bg-white rounded-xl border border-gray-200 shadow-sm" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                    <h3 class="font-bold text-base md:text-lg text-gray-900 mb-2" itemprop="name">
+                        {{ $q }}
+                    </h3>
+                    <div class="text-sm text-gray-700 leading-relaxed" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                        <div itemprop="text">{!! nl2br(e($a)) !!}</div>
                     </div>
                 </div>
-            </div>
-
-            {{-- Pregunta 2: Seguridad y SBS --}}
-            <div class="p-5 bg-white rounded-xl border border-gray-200 shadow-sm" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
-                <h3 class="font-bold text-base md:text-lg text-gray-900 mb-2" itemprop="name">
-                    ¿Es seguro cambiar dinero y usar los servicios de Cambia FX?
-                </h3>
-                <div class="text-sm text-gray-700 leading-relaxed" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
-                    <div itemprop="text">
-                        Sí, totalmente seguro. Cambia FX es operada por <strong>TU CAMBIO S.A.C.</strong> (RUC 20603864957) y se encuentra registrada en la <strong>SBS</strong> mediante <strong>Resolución N° 04993-2018</strong>. Está supervisada por la Unidad de Inteligencia Financiera (UIF) y todas las operaciones se realizan 100% bancarizadas sin intermediarios en efectivo.
-                    </div>
-                </div>
-            </div>
-
-            {{-- Pregunta 3: Tiempos de atención --}}
-            <div class="p-5 bg-white rounded-xl border border-gray-200 shadow-sm" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
-                <h3 class="font-bold text-base md:text-lg text-gray-900 mb-2" itemprop="name">
-                    ¿Cuánto tiempo demora cada operación?
-                </h3>
-                <div class="text-sm text-gray-700 leading-relaxed" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
-                    <div itemprop="text">
-                        Para transferencias inmediatas con <strong>BCP, Interbank y BanBif</strong>, el proceso toma entre <strong>10 y 15 minutos</strong>. Para transferencias interbancarias (BBVA, Scotiabank, Banco Pichincha, etc.), la acreditación se realiza el mismo día de acuerdo a los horarios oficiales de la Cámara de Compensación Electrónica (CCE).
-                    </div>
-                </div>
-            </div>
-
-            {{-- Preguntas dinámicas de la base de datos --}}
-            @if(!empty($faqsList) && count($faqsList) > 0)
-                @foreach($faqsList as $faq)
-                    @php
-                        $q = $getVal($faq, 'name') ?? $getVal($faq, 'question');
-                        $a = $getVal($faq, 'description') ?? $getVal($faq, 'answer');
-                    @endphp
-                    <div class="p-5 bg-white rounded-xl border border-gray-200 shadow-sm" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
-                        <h3 class="font-bold text-base md:text-lg text-gray-900 mb-2" itemprop="name">
-                            {{ $q }}
-                        </h3>
-                        <div class="text-sm text-gray-700 leading-relaxed" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
-                            <div itemprop="text">{!! nl2br(e($a)) !!}</div>
-                        </div>
-                    </div>
-                @endforeach
-            @endif
+                @endif
+            @endforeach
         </div>
     </section>
+    @endif
 
     {{-- ====================================================================
-         9. MARCAS Y CLIENTES QUE CONFÍAN EN CAMBIA FX (Brands)
+         9. MARCAS Y EMPRESAS QUE CONFÍAN EN CAMBIA FX (Brands)
        ==================================================================== --}}
     @if(!empty($brandsList) && count($brandsList) > 0)
     <section class="my-8 p-6 bg-gray-50 rounded-2xl border border-gray-200">

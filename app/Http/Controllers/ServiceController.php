@@ -7,6 +7,7 @@ use App\Models\Brand;
 use App\Models\Faq;
 use App\Models\LandingHome;
 use App\Models\Service;
+use App\Models\Specialty;
 use App\Models\Testimony;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
@@ -43,6 +44,13 @@ class ServiceController extends BasicController
             ->where('lang_id', $langId)
             ->get();
 
+        $pasos = Specialty::where('visible', true)
+            ->where('lang_id', $langId)
+            ->orderBy('created_at', 'asc')
+            ->get();
+
+        $landing = LandingHome::where('lang_id', $langId)->get();
+
         // Tipo de cambio en tiempo real (reutiliza caché de 30s)
         $initialRates = Cache::remember('current_rates_home', 30, function () {
             try {
@@ -58,12 +66,11 @@ class ServiceController extends BasicController
             return null;
         });
 
-        $landing = LandingHome::where('correlative', '=', 'page_home_testimonios')->where('lang_id', $langId)->first();
-
         return [
             'landing' => $landing,
             'services' => $services,
             'allServices' => $services,
+            'pasos' => $pasos,
             'brands' => $brands,
             'testimonios' => $testimonios,
             'banner_slider' => $banner_slider,
