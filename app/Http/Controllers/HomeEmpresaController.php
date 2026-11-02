@@ -25,7 +25,10 @@ use App\Models\Staff;
 use App\Models\Strength;
 use App\Models\Supply;
 use App\Models\Testimony;
+use App\Models\Faq;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Http;
 
 class HomeEmpresaController extends BasicController
 {
@@ -80,14 +83,33 @@ class HomeEmpresaController extends BasicController
             ->orderBy('created_at', 'desc')
             ->first();
 
-         $bannerEmpresas = Banner::where('status', true)
+        $bannerEmpresas = Banner::where('status', true)
             ->where('visible', true)
             ->where('section', 'empresa')
             ->where('position', 'cambia_empresas')
             ->orderBy('created_at', 'desc')
             ->first();
 
-       
+        $faqs = Faq::where('status', true)
+            ->where('visible', true)
+            ->whereNull('service_id')
+            ->where('lang_id', $langId)
+            ->get();
+
+        // Tipo de cambio en tiempo real (reutiliza caché de 30s)
+        $initialRates = Cache::remember('current_rates_home', 30, function () {
+            try {
+                $response = Http::timeout(2)->get('https://apiluna.cambiafx.pe/api/BackendPizarra/getTcCustomerNoAuth', [
+                    'idParCurrency' => 1
+                ]);
+                if ($response->successful()) {
+                    return $response->json();
+                }
+            } catch (\Throwable $e) {
+                // Silencioso en caso de timeout
+            }
+            return null;
+        });
 
         return [
             'landing' => $landing,
@@ -98,9 +120,6 @@ class HomeEmpresaController extends BasicController
             'testimonios' => $testimonios,
             'indicators' => $indicators,
             'allServices' => $allServices,
-
-
-
             'apps' => $apps,
             'pasos' => $pasos,
             'cupones' => $cupones,
@@ -108,6 +127,15 @@ class HomeEmpresaController extends BasicController
             'beneficios' => $benefits,
             'banner' => $banner,
             'bannerEmpresas' => $bannerEmpresas,
+            'faqs' => $faqs,
+            'initialRates' => $initialRates,
+            'seoTitle' => 'Cambia FX Empresas | Tipo de Cambio Preferencial y Gestión Corporativa en Perú',
+            'seoDescription' => 'Cambia dólares y soles para tu empresa en Perú. Cotizaciones preferenciales por volumen, transferencias interbancarias inmediatas y factura electrónica SUNAT.',
+            'seoKeywords' => 'cambio de divisas empresas, tipo de cambio corporativo peru, comprar dolares ruc 20, casa de cambio empresas sbs, cambia fx empresas, transferencias interbancarias empresas, facturacion electronica dolares',
+            'breadcrumbs' => [
+                ['name' => 'Inicio', 'url' => '/'],
+                ['name' => 'Empresas', 'url' => '/empresas']
+            ],
         ];
     }
 }

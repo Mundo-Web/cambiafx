@@ -108,7 +108,6 @@ La empresa está interesada en conocer más sobre los servicios de cambio de mon
                         <div className="hidden lg:block w-1/2 relative">
                             <img
                                 src={`/api/landing_home/media/${landing?.image}` || '/assets/cambiafx/blog-1.png'}
-s
                                 alt="Background"
                                 className="w-full h-full object-cover "
                             />
