@@ -48,17 +48,25 @@ export default {
     }
 
     // ========================================================================
-    // 3. Bots de IA y Crawlers: BYPASS DIRECTO AL ORIGEN
-    //    Los bots (Claude, ChatGPT, Gemini, Perplexity) NUNCA deben recibir
-    //    el HTML SPA de React/Inertia cacheado de un usuario humano.
-    //    Laravel genera el HTML semántico y GEO Quick Answer en tiempo real.
+    // 3. Bots de IA, Buscadores y Herramientas SEO: BYPASS DIRECTO AL ORIGEN
+    //    Los bots (Googlebot, Claude, ChatGPT, Perplexity, Ahrefs, Semrush, auditores)
+    //    NUNCA deben recibir el HTML SPA de React/Inertia cacheado de un usuario humano.
+    //    Laravel genera el HTML semántico con Schema.org y GEO Quick Answer en tiempo real.
     // ========================================================================
     const userAgent = request.headers.get('User-Agent') || '';
-    const isBot = /bot|crawler|spider|googlebot|bingbot|chatgpt|gptbot|claude|anthropic|perplexity|deepseek|oai-searchbot|applebot/i.test(userAgent)
-               || url.searchParams.get('render') === 'bot';
+    const isBot = /bot|crawler|spider|scraper|checker|audit|inspection|lighthouse|headless|google|bing|yahoo|baidu|yandex|duckduck|chatgpt|gptbot|claude|anthropic|perplexity|deepseek|oai-searchbot|applebot|bytespider|ahrefs|semrush|screaming/i.test(userAgent)
+               || url.searchParams.get('render') === 'bot'
+               || request.headers.get('X-Is-Bot') === 'true';
 
     if (isBot) {
-      const response = await fetch(request);
+      // Inyectar header al origen para que Laravel active renderizado semántico Blade sin dudas
+      const botHeaders = new Headers(request.headers);
+      botHeaders.set('X-Is-Bot', 'true');
+      const botRequest = new Request(request, {
+        headers: botHeaders
+      });
+
+      const response = await fetch(botRequest);
       const newHeaders = new Headers(response.headers);
       newHeaders.set('X-Edge-Server', 'Cloudflare-CambiaFX-Bot-Pass');
       return new Response(response.body, {

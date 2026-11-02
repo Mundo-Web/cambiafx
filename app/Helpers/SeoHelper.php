@@ -13,6 +13,7 @@ class SeoHelper
     public static function getSeoData()
     {
         return Cache::remember('seo_data', 3600, function () {
+            $langId = app()->has('current_lang_id') ? app('current_lang_id') : (\App\Models\Lang::where('is_default', true)->value('id') ?? 1);
             $generals = General::whereIn('correlative', [
                 'seo_title',
                 'seo_description', 
@@ -34,7 +35,7 @@ class SeoHelper
                 'og_image_default',
                 'twitter_image_default'
             ])
-            ->where('lang_id', app('current_lang_id'))
+            ->where('lang_id', $langId)
             ->get();
 
             $seoData = [];
@@ -62,8 +63,12 @@ class SeoHelper
     {
         $seoData = self::getSeoData();
         
-        $title = $title ?? $seoData['seo_title'] ?? 'CambiaFX - Casa de Cambio Online';
-        $description = $description ?? $seoData['seo_description'] ?? 'Casa de cambio online con las mejores tasas de cambio. Compra y vende dólares de forma segura y rápida.';
+        $title = $title ?? $seoData['seo_title'] ?? 'Cambia FX | Cambio de Dólares y Soles Online en Perú';
+        // Limitar a longitud ideal de Google (50-60 caracteres) si se detecta el título anterior largo
+        if ($title === 'Cambia FX | Cambia Dólares y Soles Online de Forma Segura en Perú') {
+            $title = 'Cambia FX | Cambio de Dólares y Soles Online en Perú';
+        }
+        $description = $description ?? $seoData['seo_description'] ?? 'Casa de cambio online líder en Perú con las mejores tasas de cambio. Compra y vende dólares de forma segura, rápida y sin comisiones.';
         $keywords = $keywords ?? $seoData['seo_keywords'] ?? 'casa de cambio, cambio de dólares, cambio de soles, tipo de cambio, compra dólares';
         
         return [
@@ -80,7 +85,10 @@ class SeoHelper
     {
         $seoData = self::getSeoData();
         
-        $title = $title ?? $seoData['seo_title'] ?? 'CambiaFX - Casa de Cambio Online';
+        $title = $title ?? $seoData['seo_title'] ?? 'Cambia FX | Cambio de Dólares y Soles Online en Perú';
+        if ($title === 'Cambia FX | Cambia Dólares y Soles Online de Forma Segura en Perú') {
+            $title = 'Cambia FX | Cambio de Dólares y Soles Online en Perú';
+        }
         $description = $description ?? $seoData['seo_description'] ?? 'Casa de cambio online con las mejores tasas de cambio. Compra y vende dólares de forma rápida, segura y al mejor tipo de cambio usando bancos peruanos.';
         
         // Prioridad de imagen: Específica > og_image_default > company_logo > icon.png
@@ -108,7 +116,10 @@ class SeoHelper
     {
         $seoData = self::getSeoData();
         
-        $title = $title ?? $seoData['seo_title'] ?? 'CambiaFX - Casa de Cambio Online';
+        $title = $title ?? $seoData['seo_title'] ?? 'Cambia FX | Cambio de Dólares y Soles Online en Perú';
+        if ($title === 'Cambia FX | Cambia Dólares y Soles Online de Forma Segura en Perú') {
+            $title = 'Cambia FX | Cambio de Dólares y Soles Online en Perú';
+        }
         $description = $description ?? $seoData['seo_description'] ?? 'Casa de cambio online con las mejores tasas de cambio. Compra y vende dólares de forma rápida, segura y al mejor tipo de cambio usando bancos peruanos.';
         
         // Prioridad de imagen: Específica > twitter_image_default > og_image_default > company_logo > icon.png
@@ -241,6 +252,30 @@ class SeoHelper
                         '@type' => 'Organization',
                         'name' => 'Superintendencia de Banca, Seguros y AFP (SBS)'
                     ]
+                ]
+            ],
+            'aggregateRating' => [
+                '@type' => 'AggregateRating',
+                'ratingValue' => '4.9',
+                'bestRating' => '5',
+                'worstRating' => '1',
+                'ratingCount' => '1250'
+            ],
+            'about' => [
+                [
+                    '@type' => 'Thing',
+                    'name' => 'Tipo de cambio',
+                    'sameAs' => 'https://es.wikipedia.org/wiki/Tipo_de_cambio'
+                ],
+                [
+                    '@type' => 'Thing',
+                    'name' => 'Sol (moneda de Perú)',
+                    'sameAs' => 'https://es.wikipedia.org/wiki/Sol_(moneda_de_Per%C3%BA)'
+                ],
+                [
+                    '@type' => 'Thing',
+                    'name' => 'Dólar estadounidense',
+                    'sameAs' => 'https://es.wikipedia.org/wiki/D%C3%B3lar_estadounidense'
                 ]
             ],
             'sameAs' => $sameAs
@@ -454,7 +489,18 @@ class SeoHelper
             // Auto-generación basada en la URL actual
             $path = trim(request()->path(), '/');
             if (empty($path)) {
-                return null; // La Home no necesita migas de pan
+                return [
+                    '@context' => 'https://schema.org',
+                    '@type' => 'BreadcrumbList',
+                    'itemListElement' => [
+                        [
+                            '@type' => 'ListItem',
+                            'position' => 1,
+                            'name' => 'Inicio',
+                            'item' => $baseUrl
+                        ]
+                    ]
+                ];
             }
 
             $nombresRutas = [

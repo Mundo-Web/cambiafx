@@ -6,12 +6,17 @@ class BotDetector
 {
     /**
      * Determina si la petición actual proviene de un bot, crawler,
-     * rastreador de IA (ChatGPT, Claude, Perplexity), buscador o curl.
+     * rastreador de IA (ChatGPT, Claude, Perplexity), buscador, auditor SEO o curl.
      */
     public static function isBot(): bool
     {
         // Permitir forzar el render de bot para pruebas técnicas agregando ?render=bot a la URL
         if (request()->has('render') && request()->get('render') === 'bot') {
+            return true;
+        }
+
+        // Header explícito enviado por Cloudflare Worker o proxies reversos
+        if (request()->header('X-Is-Bot') === 'true' || request()->header('X-Edge-Server') === 'Cloudflare-CambiaFX-Bot-Pass') {
             return true;
         }
 
@@ -22,6 +27,19 @@ class BotDetector
         }
 
         $botPatterns = [
+            // Patrones genéricos de crawlers/herramientas (no presentes en navegadores estándar)
+            'bot',
+            'crawler',
+            'spider',
+            'scraper',
+            'checker',
+            'audit',
+            'lighthouse',
+            'headless',
+            'inspection',
+            'slurp',
+            'archiver',
+
             // OpenAI & ChatGPT
             'chatgpt-user',
             'chatgpt',
@@ -29,7 +47,7 @@ class BotDetector
             'oai-searchbot',
             'openai',
 
-            // Anthropic & Claude (Claude-User para navegación en vivo en chat, Claude-SearchBot, ClaudeBot, Claude-Web)
+            // Anthropic & Claude
             'claude',
             'claudebot',
             'claude-user',
@@ -52,11 +70,14 @@ class BotDetector
             'omgili',
             'diffbot',
 
-            // Buscadores principales
+            // Buscadores principales e inspectores de búsqueda
             'googlebot',
             'google-extended',
+            'google-inspectiontool',
             'mediapartners-google',
             'feedfetcher-google',
+            'chrome-lighthouse',
+            'pagespeed',
             'bingbot',
             'msnbot',
             'bingpreview',
@@ -66,6 +87,27 @@ class BotDetector
             'sogou',
             'exabot',
             'applebot',
+
+            // Herramientas de Auditoría SEO y Diagnóstico
+            'ahrefs',
+            'semrush',
+            'screaming frog',
+            'sitebulb',
+            'sitechecker',
+            'seobility',
+            'serpstat',
+            'dotbot',
+            'megaindex',
+            'zoominfobot',
+            'petalbot',
+            'gtmetrix',
+            'pingdom',
+            'uptimerobot',
+            'webpagetest',
+            'woorank',
+            'sistrix',
+            'seokicks',
+            'proximic',
 
             // Redes Sociales y Previews de Enlaces
             'facebookexternalhit',

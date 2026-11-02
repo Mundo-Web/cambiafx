@@ -17,6 +17,9 @@ $isBot = \App\Helpers\BotDetector::isBot();
     <meta name="csrf_token" content="{{ csrf_token() }}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+    <link rel="dns-prefetch" href="https://www.googletagmanager.com">
 
     <!-- SEO Meta Tags -->
     @include('components.seo-meta-tags', [
@@ -190,10 +193,15 @@ $isBot = \App\Helpers\BotDetector::isBot();
 </style>
 
 <body>
+    <!-- Skip link accesible para navegación por teclado (WCAG 2.4.1) -->
+    <a href="#main-content" class="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-50 focus:px-4 focus:py-2 focus:bg-[#7E5AFB] focus:text-white focus:rounded focus:shadow-lg focus:outline-none focus:font-semibold">
+        Saltar al contenido principal
+    </a>
+
     <!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KSHS2XZ"
-height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-<!-- End Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KSHS2XZ"
+    height="0" width="0" style="display:none;visibility:hidden" title="Google Tag Manager"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
     <main id="main-content" role="main">
         @if ($isBot)
             @php

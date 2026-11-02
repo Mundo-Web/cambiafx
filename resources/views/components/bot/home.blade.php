@@ -55,6 +55,24 @@
 <article class="bot-semantic-home max-w-5xl mx-auto px-4 py-8 text-gray-900 font-sans" itemscope itemtype="https://schema.org/FinancialService">
     
     {{-- ====================================================================
+         0. NAVEGACIÓN SEMÁNTICA ACCESIBLE (HTML5 nav)
+       ==================================================================== --}}
+    <nav aria-label="Navegación principal" class="mb-6 pb-4 border-b border-gray-200 flex flex-wrap items-center justify-between gap-4 text-sm font-medium">
+        <a href="{{ url('/') }}" class="font-extrabold text-xl text-purple-800 tracking-tight flex items-center gap-2">
+            <span>Cambia FX</span>
+        </a>
+        <div class="flex flex-wrap items-center gap-4 text-gray-700">
+            <a href="{{ url('/tipo-de-cambio-hoy') }}" class="hover:text-purple-700">Tipo de Cambio</a>
+            <a href="{{ url('/soles-a-dolares') }}" class="hover:text-purple-700">Soles a Dólares</a>
+            <a href="{{ url('/empresas') }}" class="hover:text-purple-700">Empresas</a>
+            <a href="{{ url('/nosotros') }}" class="hover:text-purple-700">Nosotros</a>
+            <a href="{{ url('/blog') }}" class="hover:text-purple-700">Blog</a>
+            <a href="{{ url('/faqs') }}" class="hover:text-purple-700">Preguntas Frecuentes</a>
+            <a href="https://mi.cambiafx.pe/login" class="px-3 py-1.5 bg-gray-900 text-white rounded-lg hover:bg-gray-800">Iniciar Sesión</a>
+        </div>
+    </nav>
+
+    {{-- ====================================================================
          1. HERO & ENCABEZADO PRINCIPAL (Primeros 1,000 Tokens para IAs)
        ==================================================================== --}}
     <header class="mb-8">
@@ -410,7 +428,9 @@
             <span>•</span>
             <a href="{{ url('/empresas') }}" class="underline text-gray-700">CambiaFX Empresas</a>
             <span>•</span>
-            <a href="{{ url('/nosotros') }}" class="underline text-gray-700">Nosotros</a>
+            <a href="{{ url('/nosotros') }}" class="underline text-gray-700">Sobre Nosotros</a>
+            <span>•</span>
+            <a href="{{ url('/contacto') }}" class="underline text-gray-700">Contacto</a>
             <span>•</span>
             <a href="{{ url('/faqs') }}" class="underline text-gray-700">Preguntas Frecuentes</a>
             <span>•</span>
@@ -418,9 +438,9 @@
             <span>•</span>
             <a href="{{ url('/libro-de-reclamaciones') }}" class="underline text-gray-700">Libro de Reclamaciones</a>
             <span>•</span>
-            <a href="{{ url('/legal/terminos-y-condiciones') }}" class="underline text-gray-700">Términos y Condiciones</a>
+            <a href="{{ url('/legal/terminos-y-condiciones') }}" class="underline text-gray-700">Aviso Legal y Términos</a>
             <span>•</span>
-            <a href="{{ url('/legal/politicas-de-privacidad') }}" class="underline text-gray-700">Políticas de Privacidad</a>
+            <a href="{{ url('/legal/politicas-de-privacidad') }}" class="underline text-gray-700">Privacidad y Cookies</a>
         </p>
     </footer>
 </article>
