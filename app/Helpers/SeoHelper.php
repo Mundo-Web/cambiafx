@@ -340,8 +340,15 @@ class SeoHelper
         // Si se pasan FAQs en props
         if (!empty($faqs)) {
             foreach ($faqs as $faq) {
-                $question = $faq['question'] ?? $faq['name'] ?? $faq->question ?? $faq->name ?? '';
-                $answer = $faq['answer'] ?? $faq['description'] ?? $faq->answer ?? $faq->description ?? '';
+                if (is_array($faq)) {
+                    $question = $faq['question'] ?? $faq['name'] ?? '';
+                    $answer = $faq['answer'] ?? $faq['description'] ?? '';
+                } elseif (is_object($faq)) {
+                    $question = $faq->question ?? $faq->name ?? '';
+                    $answer = $faq->answer ?? $faq->description ?? '';
+                } else {
+                    continue;
+                }
 
                 if (empty($question) || empty($answer)) continue;
 

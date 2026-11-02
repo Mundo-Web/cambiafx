@@ -35,6 +35,9 @@ $isBot = \App\Helpers\BotDetector::isBot();
     'article' => $page['props']['article'] ?? null
     ])
 
+    <!-- LLMs Discovery Standard -->
+    <link rel="alternate" type="text/plain" href="{{ url('/llms.txt') }}" title="LLMs Context">
+
     <!-- PWA Configuration -->
     <link rel="manifest" href="/manifest.json">
     <meta name="theme-color" content="#007bff">
@@ -106,8 +109,13 @@ $isBot = \App\Helpers\BotDetector::isBot();
         rel="stylesheet" type="text/css" id="dg-dark-stylesheet" disabled="disabled" />
     @endif
 
-    @vite(['resources/css/app.css', 'resources/js/' . $page['component'] . '.jsx'])
-    @inertiaHead
+    @if ($isBot)
+        {{-- BOTS: Solo cargamos el CSS compilado. CERO scripts de React, CERO sobrecarga para LLMs --}}
+        @vite(['resources/css/app.css'])
+    @else
+        @vite(['resources/css/app.css', 'resources/js/' . $page['component'] . '.jsx'])
+        @inertiaHead
+    @endif
 
     <style>
         .ql-editor blockquote {
@@ -195,70 +203,117 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
     <main id="main-content" role="main">
         @if ($isBot)
-            @if ($isArticle && !empty($article))
-                @include('components.bot.article', ['article' => $article])
-            @elseif ($isHome)
-                @include('components.bot.home', [
-                    'landing' => $page['props']['landing'] ?? null,
-                    'initialRates' => $page['props']['initialRates'] ?? null,
-                    'faqs' => $page['props']['faqs'] ?? null,
-                ])
-            @else
-                @inertia
-            @endif
+            @php
+                $botComp = $page['component'] ?? '';
+                $botProps = $page['props'] ?? [];
+            @endphp
+            @switch($botComp)
+                @case('Home')
+                    @include('components.bot.home', $botProps)
+                    @break
+
+                @case('BlogArticle')
+                    @include('components.bot.article', [
+                        'article' => $botProps['article'] ?? null,
+                    ])
+                    @break
+
+                @case('Blog')
+                    @include('components.bot.blog-index', $botProps)
+                    @break
+
+                @case('HomeEmpresa')
+                    @include('components.bot.empresa', $botProps)
+                    @break
+
+                @case('About')
+                    @include('components.bot.about', $botProps)
+                    @break
+
+                @case('FAQs')
+                    @include('components.bot.faqs', $botProps)
+                    @break
+
+                @case('Contacto')
+                @case('Contact')
+                    @include('components.bot.contacto', $botProps)
+                    @break
+
+                @case('LegalPolicy')
+                @case('Legal')
+                    @include('components.bot.legal', $botProps)
+                    @break
+
+                @default
+                    @if (\Illuminate\Support\Str::startsWith($botComp, 'Landings/'))
+                        @include('components.bot.landing', $botProps)
+                    @elseif ($isHome)
+                        @include('components.bot.home', $botProps)
+                    @elseif ($isArticle && !empty($article))
+                        @include('components.bot.article', ['article' => $article])
+                    @else
+                        @include('components.bot.generic', [
+                            'pageProps' => $botProps,
+                            'seoTitle' => $seoTitle ?? null,
+                            'seoDescription' => $seoDescription ?? null,
+                        ])
+                    @endif
+            @endswitch
         @else
             @inertia
         @endif
     </main>
 
-    @unless ($isHome)
-    <script src="/lte/assets/libs/moment/min/moment.min.js" defer></script>
-    <script src="/lte/assets/libs/moment/moment-timezone.js" defer></script>
-    <script src="/lte/assets/libs/moment/locale/es.js" defer></script>
-    <script src="/lte/assets/libs/quill/quill.min.js" defer></script>
-    @endunless
+    @unless ($isBot)
+        @unless ($isHome)
+        <script src="/lte/assets/libs/moment/min/moment.min.js" defer></script>
+        <script src="/lte/assets/libs/moment/moment-timezone.js" defer></script>
+        <script src="/lte/assets/libs/moment/locale/es.js" defer></script>
+        <script src="/lte/assets/libs/quill/quill.min.js" defer></script>
+        @endunless
 
-    @if ($component == 'MyAccount.jsx')
-    <script src="/lte/assets/libs/dxdatagrid/js/dx.all.js" defer></script>
-    <script src="/lte/assets/libs/dxdatagrid/js/localization/dx.messages.es.js" defer></script>
-    <script src="/lte/assets/libs/dxdatagrid/js/localization/dx.messages.en.js" defer></script>
-    @endif
+        @if ($component == 'MyAccount.jsx')
+        <script src="/lte/assets/libs/dxdatagrid/js/dx.all.js" defer></script>
+        <script src="/lte/assets/libs/dxdatagrid/js/localization/dx.messages.es.js" defer></script>
+        <script src="/lte/assets/libs/dxdatagrid/js/localization/dx.messages.en.js" defer></script>
+        @endif
 
-    <script>
-        document.addEventListener('click', function(event) {
-            const target = event.target;
+        <script>
+            document.addEventListener('click', function(event) {
+                const target = event.target;
 
-            if (target.tagName === 'BUTTON' && target.hasAttribute('href')) {
-                const href = target.getAttribute('href');
+                if (target.tagName === 'BUTTON' && target.hasAttribute('href')) {
+                    const href = target.getAttribute('href');
 
-                if (target.getAttribute('target') === '_blank') {
-                    window.open(href, '_blank');
-                } else {
-                    window.location.href = href;
+                    if (target.getAttribute('target') === '_blank') {
+                        window.open(href, '_blank');
+                    } else {
+                        window.location.href = href;
+                    }
                 }
-            }
-        });
-    </script>
-
-    <noscript>
-        <!--img height="1" width="1" style="display:none"
-            src="https://www.facebook.com/tr?id=1098274404490481&ev=PageView&noscript=1" /-->
-    </noscript>
-
-    <!-- PWA Service Worker Registration -->
-    <script>
-        if ('serviceWorker' in navigator) {
-            window.addEventListener('load', function() {
-                navigator.serviceWorker.register('/serviceworker.js')
-                    .then(function(registration) {
-                        //console.log('PWA: Service Worker registered successfully:', registration.scope);
-                    })
-                    .catch(function(error) {
-                        //console.log('PWA: Service Worker registration failed:', error);
-                    });
             });
-        }
-    </script>
+        </script>
+
+        <noscript>
+            <!--img height="1" width="1" style="display:none"
+                src="https://www.facebook.com/tr?id=1098274404490481&ev=PageView&noscript=1" /-->
+        </noscript>
+
+        <!-- PWA Service Worker Registration -->
+        <script>
+            if ('serviceWorker' in navigator) {
+                window.addEventListener('load', function() {
+                    navigator.serviceWorker.register('/serviceworker.js')
+                        .then(function(registration) {
+                            //console.log('PWA: Service Worker registered successfully:', registration.scope);
+                        })
+                        .catch(function(error) {
+                            //console.log('PWA: Service Worker registration failed:', error);
+                        });
+                });
+            }
+        </script>
+    @endunless
 </body>
 
 </html>
