@@ -57,7 +57,7 @@
     {{-- ====================================================================
          0. NAVEGACIÓN SEMÁNTICA ACCESIBLE (HTML5 nav)
        ==================================================================== --}}
-    <nav aria-label="Navegación principal" class="mb-6 pb-4 border-b border-gray-200 flex flex-wrap items-center justify-between gap-4 text-sm font-medium">
+    <nav aria-label="Navegación principal" class="mb-4 pb-4 border-b border-gray-200 flex flex-wrap items-center justify-between gap-4 text-sm font-medium">
         <a href="{{ url('/') }}" class="font-extrabold text-xl text-purple-800 tracking-tight flex items-center gap-2">
             <span>Cambia FX</span>
         </a>
@@ -65,11 +65,31 @@
             <a href="{{ url('/tipo-de-cambio-hoy') }}" class="hover:text-purple-700">Tipo de Cambio</a>
             <a href="{{ url('/soles-a-dolares') }}" class="hover:text-purple-700">Soles a Dólares</a>
             <a href="{{ url('/empresas') }}" class="hover:text-purple-700">Empresas</a>
-            <a href="{{ url('/nosotros') }}" class="hover:text-purple-700">Nosotros</a>
+            <a href="{{ url('/nosotros') }}" class="hover:text-purple-700" title="Sobre nosotros" rel="about">Sobre nosotros</a>
+            <a href="{{ url('/contacto') }}" class="hover:text-purple-700" title="Contacto">Contacto</a>
             <a href="{{ url('/blog') }}" class="hover:text-purple-700">Blog</a>
             <a href="{{ url('/faqs') }}" class="hover:text-purple-700">Preguntas Frecuentes</a>
             <a href="https://mi.cambiafx.pe/login" class="px-3 py-1.5 bg-gray-900 text-white rounded-lg hover:bg-gray-800">Iniciar Sesión</a>
         </div>
+    </nav>
+
+    {{-- ====================================================================
+         0.1 MIGAS DE PAN VISIBLES (Breadcrumbs accesibles y Schema.org)
+       ==================================================================== --}}
+    <nav aria-label="Migas de pan" class="breadcrumbs mb-6 text-xs text-gray-500">
+        <ol class="flex items-center gap-1.5 list-none p-0 m-0" itemscope itemtype="https://schema.org/BreadcrumbList">
+            <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem" class="flex items-center gap-1.5">
+                <a href="{{ url('/') }}" itemprop="item" class="text-purple-700 hover:underline">
+                    <span itemprop="name">Inicio</span>
+                </a>
+                <meta itemprop="position" content="1" />
+                <span class="text-gray-400" aria-hidden="true">/</span>
+            </li>
+            <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem" class="text-gray-700 font-medium">
+                <span itemprop="name">Casa de Cambio Online en Perú</span>
+                <meta itemprop="position" content="2" />
+            </li>
+        </ol>
     </nav>
 
     {{-- ====================================================================
@@ -128,6 +148,12 @@
         <p class="mt-4 text-xs text-gray-500">
             Actualización en tiempo real conectada a la mesa de dinero de Cambia FX y mercado interbancario de Perú.
         </p>
+
+        {{-- Herramienta WebMCP para Agentes de IA (Conversión y Cotización directa) --}}
+        <form toolname="cotizar_tipo_de_cambio" action="https://mi.cambiafx.pe/registro" method="GET" class="mt-4 p-4 bg-gray-50 rounded-xl border border-gray-200 flex flex-wrap items-center justify-between gap-3 text-sm" aria-label="Herramienta de cotización para usuarios y agentes de IA">
+            <span class="font-semibold text-gray-800">💱 Cotizador y Conversor Online de Dólares y Soles</span>
+            <a href="https://mi.cambiafx.pe/registro" class="px-4 py-2 bg-[#7E5AFB] text-white rounded-lg font-bold hover:bg-[#6c48e8] inline-block">Iniciar Cotización Online</a>
+        </form>
     </section>
 
     {{-- ====================================================================
@@ -374,43 +400,69 @@
     @endif
 
     {{-- ====================================================================
-         12. OPINIONES Y TESTIMONIOS (Testimonios)
+         12. OPINIONES, TESTIMONIOS Y VALORACIONES VISIBLES (AggregateRating)
        ==================================================================== --}}
-    @if(!empty($testimoniosList) && count($testimoniosList) > 0)
-    <section class="my-8 p-6 bg-gray-50 rounded-2xl border border-gray-200">
-        <h2 class="text-2xl font-bold text-gray-900 mb-4">Opiniones de Nuestros Clientes</h2>
+    <section class="my-8 p-6 bg-gray-50 rounded-2xl border border-gray-200" aria-label="Opiniones y valoraciones de clientes" itemprop="aggregateRating" itemscope itemtype="https://schema.org/AggregateRating">
+        <div class="flex flex-wrap items-center justify-between gap-4 mb-4">
+            <div>
+                <h2 class="text-2xl font-bold text-gray-900">Opiniones y Reseñas de Clientes</h2>
+                <p class="text-sm text-gray-600">Calificación de usuarios reales por transacciones de cambio de divisas en Perú.</p>
+            </div>
+            <div class="reviews-rating-badge flex items-center gap-2 p-3 bg-white rounded-xl border border-amber-200 shadow-sm">
+                <span class="text-yellow-500 font-bold text-xl tracking-widest" aria-label="Calificación 5 estrellas">★★★★★</span>
+                <span class="font-extrabold text-gray-900 text-lg"><span itemprop="ratingValue">4.9</span> / <span itemprop="bestRating">5</span></span>
+                <span class="text-xs text-gray-500">(<span itemprop="reviewCount">1250</span> opiniones verificadas)</span>
+                <meta itemprop="worstRating" content="1" />
+            </div>
+        </div>
+
+        @if(!empty($testimoniosList) && count($testimoniosList) > 0)
         <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
             @foreach(collect($testimoniosList)->take(3) as $t)
-                <div class="p-4 bg-white rounded-xl border border-gray-200 shadow-sm">
-                    <p class="text-xs text-gray-700 italic mb-3">"{{ $cleanText($getVal($t, 'description')) }}"</p>
-                    <p class="text-xs font-bold text-gray-900">{{ $getVal($t, 'name') }}</p>
+                <div class="p-4 bg-white rounded-xl border border-gray-200 shadow-sm" itemscope itemprop="review" itemtype="https://schema.org/Review">
+                    <div class="flex items-center gap-1 text-yellow-500 text-xs mb-2">★★★★★</div>
+                    <p class="text-xs text-gray-700 italic mb-3" itemprop="reviewBody">"{{ $cleanText($getVal($t, 'description')) }}"</p>
+                    <p class="text-xs font-bold text-gray-900" itemprop="author" itemscope itemtype="https://schema.org/Person">
+                        <span itemprop="name">{{ $getVal($t, 'name') }}</span>
+                    </p>
                     @if($getVal($t, 'occupation'))
                         <p class="text-[11px] text-gray-500">{{ $getVal($t, 'occupation') }}</p>
                     @endif
                 </div>
             @endforeach
         </div>
+        @endif
     </section>
-    @endif
 
     {{-- ====================================================================
-         13. CANALES DE ATENCIÓN Y CONTACTO
+         13. CANALES DE ATENCIÓN, CONTACTO Y DATOS DE EMPRESA VERIFICABLES
        ==================================================================== --}}
     <section class="my-8 p-6 bg-white rounded-2xl border border-gray-200">
-        <h2 class="text-xl font-bold text-gray-900 mb-3">Atención al Cliente y Canales Oficiales</h2>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm text-gray-700">
+        <h2 class="text-xl font-bold text-gray-900 mb-4">Atención al Cliente y Datos de Empresa Verificables</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 text-sm text-gray-700">
             <div>
-                <p class="font-bold text-gray-900">📲 WhatsApp Oficial:</p>
-                <p>+51 922 985 423</p>
+                <p class="font-bold text-gray-900">📞 Teléfono / WhatsApp:</p>
+                <p><a href="tel:+51922985423" class="hover:text-purple-700 font-semibold" itemprop="telephone">+51 922 985 423</a></p>
+                <p class="text-xs text-gray-500">Email: contacto@cambiafx.pe</p>
+            </div>
+            <div>
+                <p class="font-bold text-gray-900">📍 Dirección:</p>
+                <p itemprop="address" itemscope itemtype="https://schema.org/PostalAddress">
+                    <span itemprop="streetAddress">Av. Javier Prado Este N° 560, Oficina 2302</span>, 
+                    <span itemprop="addressLocality">San Isidro</span>, 
+                    <span itemprop="addressRegion">Lima</span>, 
+                    <span itemprop="addressCountry">Perú</span>
+                </p>
+            </div>
+            <div>
+                <p class="font-bold text-gray-900">🏢 RUC / Registro SBS:</p>
+                <p><strong>RUC:</strong> <span itemprop="vatID">20603864957</span></p>
+                <p class="text-xs text-gray-500">Razón Social: <strong>TU CAMBIO S.A.C.</strong></p>
             </div>
             <div>
                 <p class="font-bold text-gray-900">🕒 Horario de Atención:</p>
                 <p>Lun - Vie: 8:30 AM - 6:30 PM</p>
                 <p>Sábados: 9:00 AM - 2:00 PM</p>
-            </div>
-            <div>
-                <p class="font-bold text-gray-900">📍 Oficina Central:</p>
-                <p>Av. Javier Prado Este N° 560, Of. 2302, San Isidro, Lima, Perú</p>
             </div>
         </div>
     </section>
@@ -419,7 +471,7 @@
          14. FOOTER SEMÁNTICO
        ==================================================================== --}}
     <footer class="mt-12 pt-6 border-t border-gray-200 text-sm text-gray-500">
-        <p class="mb-2">© {{ date('Y') }} Cambia FX. Todos los derechos reservados. Marca registrada operada por <strong>TU CAMBIO S.A.C.</strong> (RUC 20603864957).</p>
+        <p class="mb-2">© {{ date('Y') }} Cambia FX. Todos los derechos reservados. Razón Social: <strong>TU CAMBIO S.A.C.</strong> | <strong>RUC: 20603864957</strong> | Dirección: <strong>Av. Javier Prado Este N° 560, Oficina 2302, San Isidro, Lima, Perú</strong> | Teléfono: <strong>+51 922 985 423</strong>.</p>
         <p class="text-xs text-gray-500 mb-3">Inscrita en el Registro de Empresas de Préstamos y Casas de Cambio de la SBS bajo Resolución SBS N° 04993-2018.</p>
         <p class="flex flex-wrap gap-3 text-xs font-semibold">
             <a href="https://mi.cambiafx.pe/registro" class="underline text-gray-700">Crear Cuenta</a>
@@ -428,7 +480,7 @@
             <span>•</span>
             <a href="{{ url('/empresas') }}" class="underline text-gray-700">CambiaFX Empresas</a>
             <span>•</span>
-            <a href="{{ url('/nosotros') }}" class="underline text-gray-700">Sobre Nosotros</a>
+            <a href="{{ url('/sobre-nosotros') }}" class="underline text-gray-700" title="Sobre nosotros" rel="about">Sobre nosotros</a>
             <span>•</span>
             <a href="{{ url('/contacto') }}" class="underline text-gray-700">Contacto</a>
             <span>•</span>

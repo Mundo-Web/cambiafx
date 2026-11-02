@@ -228,6 +228,7 @@ $isBot = \App\Helpers\BotDetector::isBot();
                     @break
 
                 @case('About')
+                @case('AboutUs')
                     @include('components.bot.about', $botProps)
                     @break
 
