@@ -53,26 +53,18 @@ class BasicController extends Controller
   }
 
   /**
-   * Limpia la caché de las vistas públicas y datos del sistema.
+   * Limpia toda la caché pública y vistas del sistema.
    * Se ejecuta automáticamente tras crear, editar, eliminar o cambiar estado de cualquier modelo.
    */
   public static function clearPublicCache(): void
   {
     try {
-      \Illuminate\Support\Facades\Cache::forget('home_view_data_1');
-      \Illuminate\Support\Facades\Cache::forget('home_view_data_2');
-      \Illuminate\Support\Facades\Cache::forget('home_view_data_3');
-      \Illuminate\Support\Facades\Cache::forget('system_generals_whatsapp');
-      \Illuminate\Support\Facades\Cache::forget('system_socials');
-      \Illuminate\Support\Facades\Cache::forget('seo_data');
-      if (app()->bound('current_lang_id')) {
-        \Illuminate\Support\Facades\Cache::forget('home_view_data_' . app('current_lang_id'));
-      }
+      // 1. Vaciar toda la caché de Laravel (elimina todas las claves de home, langs, cupones, etc.)
+      \Illuminate\Support\Facades\Cache::flush();
+
+      // 2. Limpiar vistas compiladas si Artisan está disponible
       try {
-        $langIds = \App\Models\Lang::pluck('id');
-        foreach ($langIds as $lId) {
-          \Illuminate\Support\Facades\Cache::forget("home_view_data_{$lId}");
-        }
+        \Illuminate\Support\Facades\Artisan::call('view:clear');
       } catch (\Throwable $e) {}
     } catch (\Throwable $th) {
       // Ignorar silenciosamente si hay error al limpiar caché
