@@ -617,9 +617,14 @@ class BasicController extends Controller
         throw new Exception('No se ha encontrado ningún registro para eliminar');
       }
 
-      $deleted = $this->softDeletion
-        ? $record->update(['status' => false])
-        : $record->delete();
+      try {
+        $deleted = $this->softDeletion
+          ? $record->update(['status' => false])
+          : $record->delete();
+      } catch (\Illuminate\Database\QueryException $qe) {
+        // Si no se puede hacer hard delete por restricción de clave foránea (ej. cupón en ventas), desactivar vía soft delete
+        $deleted = $record->update(['status' => false]);
+      }
 
       if (!$deleted) throw new Exception('No se ha podido eliminar el registro');
 

@@ -81,45 +81,9 @@ class HomeController extends BasicController
                 ->where('lang_id', $langId)
                 ->orderBy('created_at', 'asc')
                 ->get();
-            $cupones = Coupon::where('status', true)
-                ->where(function($query) {
-                    $query->where(function($subQuery) {
-                        // Cupones con fechas válidas
-                        $subQuery->where('date_begin', '<=', now())
-                                 ->where('date_end', '>=', now());
-                    })->orWhere(function($subQuery) {
-                        // Cupones sin fechas (siempre vigentes)
-                        $subQuery->whereNull('date_begin')
-                                 ->whereNull('date_end');
-                    })->orWhere(function($subQuery) {
-                        // Cupones solo con fecha de inicio
-                        $subQuery->where('date_begin', '<=', now())
-                                 ->whereNull('date_end');
-                    })->orWhere(function($subQuery) {
-                        // Cupones solo con fecha de fin
-                        $subQuery->whereNull('date_begin')
-                                 ->where('date_end', '>=', now());
-                    });
-                })
-                ->orderBy('created_at', 'desc')
-                ->get();
 
             $core_values = CoreValue::where('status', true)
                 ->where('lang_id', $langId)
-                ->get();
-
-            $banner_operacion = Banner::where('status', true)
-                ->where('visible', true)
-                ->where('section', 'home')
-                ->where('position', 'primera_operacion')
-                ->orderBy('created_at', 'desc')
-                ->first();
-
-            $banner_slider = Banner::where('status', true)
-                ->where('visible', true)
-                ->where('section', 'home')
-                ->where('position', 'cambia_empresas')
-                ->orderBy('order', 'asc')
                 ->get();
 
             $faqs = Faq::where('status', true)
@@ -139,15 +103,55 @@ class HomeController extends BasicController
                 'allServices' => $allServices,
                 'apps' => $apps,
                 'pasos' => $pasos,
-                'cupones' => $cupones,
                 'core_values' => $core_values,
-                'banner_operacion' => $banner_operacion,
-                'banner_slider' => $banner_slider,
                 'faqs' => $faqs
             ];
         });
 
+        // Elementos dinámicos en TIEMPO REAL (cupones y banners comerciales)
+        // Se consultan directamente a la BD (<1ms) para que creaciones, ediciones y eliminaciones
+        // se reflejen de inmediato en la web pública sin demora ni dependencia de caché.
+        $cupones = Coupon::where('status', true)
+            ->where(function($query) {
+                $query->where(function($subQuery) {
+                    // Cupones con fechas válidas
+                    $subQuery->where('date_begin', '<=', now())
+                             ->where('date_end', '>=', now());
+                })->orWhere(function($subQuery) {
+                    // Cupones sin fechas (siempre vigentes)
+                    $subQuery->whereNull('date_begin')
+                             ->whereNull('date_end');
+                })->orWhere(function($subQuery) {
+                    // Cupones solo con fecha de inicio
+                    $subQuery->where('date_begin', '<=', now())
+                             ->whereNull('date_end');
+                })->orWhere(function($subQuery) {
+                    // Cupones solo con fecha de fin
+                    $subQuery->whereNull('date_begin')
+                             ->where('date_end', '>=', now());
+                });
+            })
+            ->orderBy('created_at', 'desc')
+            ->get();
+
+        $banner_operacion = Banner::where('status', true)
+            ->where('visible', true)
+            ->where('section', 'home')
+            ->where('position', 'primera_operacion')
+            ->orderBy('created_at', 'desc')
+            ->first();
+
+        $banner_slider = Banner::where('status', true)
+            ->where('visible', true)
+            ->where('section', 'home')
+            ->where('position', 'cambia_empresas')
+            ->orderBy('order', 'asc')
+            ->get();
+
         return array_merge($homeData, [
+            'cupones' => $cupones,
+            'banner_operacion' => $banner_operacion,
+            'banner_slider' => $banner_slider,
             'initialRates' => $initialRates,
         ]);
     }
