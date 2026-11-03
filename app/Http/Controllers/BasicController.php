@@ -612,13 +612,16 @@ class BasicController extends Controller
       // Start a transaction to ensure all database operations use the same connection
       DB::connection()->beginTransaction();
 
-      $deleted = $this->softDeletion
-        ? $this->model::where('id', $id)
-        ->update(['status' => false])
-        : $this->model::where('id', $id)
-        ->delete();
+      $record = $this->model::find($id);
+      if (!$record) {
+        throw new Exception('No se ha encontrado ningún registro para eliminar');
+      }
 
-      if (!$deleted) throw new Exception('No se ha eliminado ningun registro');
+      $deleted = $this->softDeletion
+        ? $record->update(['status' => false])
+        : $record->delete();
+
+      if (!$deleted) throw new Exception('No se ha podido eliminar el registro');
 
       $response->status = 200;
       $response->message = 'Operacion correcta';
