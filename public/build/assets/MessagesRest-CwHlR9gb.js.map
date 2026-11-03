@@ -1,0 +1,1 @@
+{"version":3,"file":"MessagesRest-CwHlR9gb.js","sources":["../../../resources/js/actions/MessagesRest.js"],"sourcesContent":["import BasicRest from \"./BasicRest\";\n\nclass MessagesRest extends BasicRest {\n  path = 'messages'\n}\n\nexport default MessagesRest"],"names":["MessagesRest","BasicRest","path"],"mappings":"4CAEA,MAAMA,UAAqBC,EACzBC,KAAO"}

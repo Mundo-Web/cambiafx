@@ -1,0 +1,1 @@
+import{j as s}from"./FileViewer-vq8yHxlq.js";import"./vendor-swiper-BsdpLRbo.js";const l=({className:l="max-w-md",width:o,color:r="#F7C2C6"})=>s.jsx("div",{className:`h-2 bg-[#EFEAE5] ${l} rounded-full mx-auto`,children:s.jsx("hr",{className:"h-full rounded-full",style:{backgroundColor:r,width:o,transition:"all .25s"}})});export{l as P};

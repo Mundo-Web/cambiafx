@@ -1,1 +1,0 @@
-import{j as s}from"./vendor-maps-CDZc1xhJ.js";const l=({className:l="max-w-md",width:a,color:o="#F7C2C6"})=>s.jsx("div",{className:`h-2 bg-[#EFEAE5] ${l} rounded-full mx-auto`,children:s.jsx("hr",{className:"h-full rounded-full",style:{backgroundColor:o,width:a,transition:"all .25s"}})});export{l as P};

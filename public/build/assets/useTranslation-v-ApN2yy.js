@@ -1,0 +1,1 @@
+import{r}from"./vendor-swiper-BsdpLRbo.js";import{a as o}from"./DynamicGalleryService-BQnjrkUO.js";const t=()=>{const{translations:t,loading:e,error:n}=r.useContext(o);return{t:(r,o="")=>e||n?o:((r,o,t="")=>{const e=o.split(".");if(1===e.length)return r[o]||t;const n=e.slice(0,-1).join("."),s=e.slice(-1)[0];return r[n]?.[s]||t})(t,r,o),loading:e,error:n}};export{t as u};

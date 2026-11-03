@@ -1,1 +1,0 @@
-import{j as s}from"./vendor-maps-CDZc1xhJ.js";import{L as r}from"./DynamicGalleryService-CvuJu9AO.js";const e=({children:e,footerLinks:o,session:n,socials:i,terms:t,showSlogan:a=!0,showFooter:c=!0,gradientStart:d="#c4b8d3",gradientEnd:m="#f1d7c1",menuGradientEnd:l="#dbc8c9"})=>s.jsx(r,{children:s.jsxs("section",{children:[" ",e]})});export{e as B};

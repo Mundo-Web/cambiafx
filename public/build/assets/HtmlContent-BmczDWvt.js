@@ -1,0 +1,1 @@
+import{j as e}from"./FileViewer-vq8yHxlq.js";import"./vendor-swiper-BsdpLRbo.js";const s=({className:s,html:r,properties:o})=>e.jsx("div",{className:s,dangerouslySetInnerHTML:{__html:r},...o});export{s as H};
