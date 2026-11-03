@@ -50,12 +50,9 @@ export default defineConfig({
                         return;
                     }
                     if (id.includes('node_modules')) {
-                        // 1. Librerías masivas de administración y exportación (aíslan +1.5 MB de la Home)
+                        // Aislar únicamente bibliotecas hoja pesadas e independientes
                         if (id.includes('xlsx')) {
                             return 'vendor-xlsx';
-                        }
-                        if (id.includes('jspdf')) {
-                            return 'vendor-pdf';
                         }
                         if (id.includes('chart.js') || id.includes('recharts')) {
                             return 'vendor-charts';
@@ -63,23 +60,11 @@ export default defineConfig({
                         if (id.includes('tinymce') || id.includes('@tinymce')) {
                             return 'vendor-tinymce';
                         }
-                        if (id.includes('sweetalert2')) {
-                            return 'vendor-sweetalert';
-                        }
-                        if (id.includes('@react-google-maps')) {
-                            return 'vendor-maps';
-                        }
-                        if (id.includes('moment')) {
-                            return 'vendor-moment';
-                        }
-                        if (id.includes('react-spring') || id.includes('@react-spring')) {
-                            return 'vendor-spring';
-                        }
                         if (id.includes('swiper')) {
                             return 'vendor-swiper';
                         }
-                        // Dejar que Vite y Rollup agrupen React, Inertia y dependencias compartidas
-                        // de forma natural sin crear un 'vendor-core' saco de basura ni dependencias circulares.
+                        // Dejar que Rollup agrupe React, ReactDOM, Inertia y runtime
+                        // de forma natural sin atrapar helpers ni crear dependencias circulares.
                     }
                 },
             },

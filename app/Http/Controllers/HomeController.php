@@ -38,8 +38,8 @@ class HomeController extends BasicController
     {
         $langId = app('current_lang_id');
 
-        // Caché de 30 segundos para el tipo de cambio real de apiluna
-        $initialRates = Cache::remember('current_rates_home', 30, function () {
+        // Caché de 3 minutos para el tipo de cambio real de apiluna (elimina bloqueo de TTFB)
+        $initialRates = Cache::remember('current_rates_home', 180, function () {
             try {
                 $response = Http::timeout(2)->get('https://apiluna.cambiafx.pe/api/BackendPizarra/getTcCustomerNoAuth', [
                     'idParCurrency' => 1
@@ -60,7 +60,16 @@ class HomeController extends BasicController
             $sliders = Slider::where('status', true)->where('visible', true)->orderBy('created_at', 'DESC')->get();
             $brands = Brand::where('status', true)->where('visible', true)->orderBy('created_at', 'DESC')->get();
             $strengths = Strength::where('status', true)->where('visible', true)->where('lang_id', $langId)->get();
-            $posts = Post::where('status', true)->orderBy('created_at', 'desc')->with('category')->where('lang_id', $langId)->limit(10)->get();
+            
+            // Optimización de payload: excluir el campo HTML pesado 'description' de los posts en la home
+            $posts = Post::select('id', 'name', 'slug', 'image', 'summary', 'category_id', 'created_at')
+                ->where('status', true)
+                ->orderBy('created_at', 'desc')
+                ->with(['category:id,name,slug'])
+                ->where('lang_id', $langId)
+                ->limit(6)
+                ->get();
+
             $testimonios = Testimony::where('status', true)->where('lang_id', $langId)->get();
             $indicators = Indicator::where('status', true)->where('lang_id', $langId)->get();
 

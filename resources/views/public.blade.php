@@ -15,11 +15,13 @@ $isBot = \App\Helpers\BotDetector::isBot();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="csrf_token" content="{{ csrf_token() }}">
+    @unless ($isBot)
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
     <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
     <link rel="dns-prefetch" href="https://www.googletagmanager.com">
+    @endunless
 
     <!-- SEO Meta Tags -->
     @include('components.seo-meta-tags', [
@@ -51,6 +53,7 @@ $isBot = \App\Helpers\BotDetector::isBot();
 
     <link rel="shortcut icon" href="/assets/img/favicon.png" type="image/png">
 
+    @unless ($isBot)
     <!-- Preload del elemento LCP (Logo CambiaFX) para eliminar los 2,480ms de retraso de descubrimiento -->
     <link rel="preload" href="/assets/img/logo.svg" as="image" type="image/svg+xml" fetchpriority="high">
 
@@ -62,6 +65,7 @@ $isBot = \App\Helpers\BotDetector::isBot();
         integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
         crossorigin="anonymous" referrerpolicy="no-referrer" media="print" onload="this.media='all'" />
     <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"></noscript>
+    @endunless
 
 
     <!-- Critical CSS Above-the-fold para acelerar FCP y prevenir CLS -->
@@ -128,9 +132,9 @@ $isBot = \App\Helpers\BotDetector::isBot();
         }
     </style>
 
+    @unless ($isBot)
     <link rel="stylesheet" href="/assets/fonts/aspekta/font-face.css" media="print" onload="this.media='all'" />
     <noscript><link rel="stylesheet" href="/assets/fonts/aspekta/font-face.css"></noscript>
-
 
     <!-- Carga inteligente de Marketing & GTM en interacción real (TBT < 100ms) -->
     <script data-cfasync="false">
@@ -177,6 +181,7 @@ $isBot = \App\Helpers\BotDetector::isBot();
         })();
     </script>
     <!-- End Google Tag Manager -->
+    @endunless
 </head>
 
 <style>
