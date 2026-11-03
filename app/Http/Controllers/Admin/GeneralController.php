@@ -59,8 +59,11 @@ class GeneralController extends BasicController
                     'description' => $record['description']
                 ]);
             }
-            // Limpiar caché SEO para reflejar cambios inmediatamente
+            // Limpiar caché SEO y vistas públicas para reflejar cambios inmediatamente
             \Illuminate\Support\Facades\Cache::forget('seo_data');
+            \Illuminate\Support\Facades\Cache::forget('system_generals_whatsapp');
+            \Illuminate\Support\Facades\Cache::forget('system_socials');
+            \App\Http\Controllers\BasicController::clearPublicCache();
 
             // Actualizar o crear automáticamente archivos llms.txt y llms-full.txt
             try {
@@ -70,6 +73,27 @@ class GeneralController extends BasicController
                 \Illuminate\Support\Facades\Log::warning("Error al auto-generar llms.txt: " . $th->getMessage());
             }
         });
+        return response($response->toArray(), $response->status);
+    }
+
+    public function clearCache(Request $request): HttpResponse|ResponseFactory
+    {
+        $response = Response::simpleTryCatch(function () {
+            // 1. Limpiar caché en memoria / archivos de Laravel
+            \Illuminate\Support\Facades\Cache::flush();
+
+            // 2. Limpiar caché de vistas y configuración compilada
+            try {
+                \Illuminate\Support\Facades\Artisan::call('cache:clear');
+                \Illuminate\Support\Facades\Artisan::call('view:clear');
+            } catch (\Throwable $th) {}
+
+            // 3. Forzar regeneración de llms.txt con datos actualizados
+            try {
+                $this->createLlmsFiles();
+            } catch (\Throwable $th) {}
+        });
+
         return response($response->toArray(), $response->status);
     }
 

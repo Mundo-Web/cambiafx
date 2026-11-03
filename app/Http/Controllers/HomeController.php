@@ -53,8 +53,8 @@ class HomeController extends BasicController
             return null;
         });
 
-        // Caché de 30 minutos para reducir el TTFB a menos de 50ms
-        $homeData = Cache::remember("home_view_data_{$langId}", 1800, function () use ($langId) {
+        // Micro-caché de 60 segundos (en vez de 30 minutos) para absorber ráfagas concurrentes sin bloquear cambios del cliente
+        $homeData = Cache::remember("home_view_data_{$langId}", 60, function () use ($langId) {
             $landing = LandingHome::where('correlative', 'like', 'page_home%')->where('lang_id', $langId)->get();
             /*CAMBIO Y GERENCIA */
             $sliders = Slider::where('status', true)->where('visible', true)->orderBy('created_at', 'DESC')->get();

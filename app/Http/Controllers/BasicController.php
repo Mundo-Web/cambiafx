@@ -52,6 +52,27 @@ class BasicController extends Controller
     // Constructor simplificado
   }
 
+  /**
+   * Limpia la caché de las vistas públicas y datos del sistema.
+   * Se ejecuta automáticamente tras crear, editar, eliminar o cambiar estado de cualquier modelo.
+   */
+  public static function clearPublicCache(): void
+  {
+    try {
+      \Illuminate\Support\Facades\Cache::forget('home_view_data_1');
+      \Illuminate\Support\Facades\Cache::forget('home_view_data_2');
+      \Illuminate\Support\Facades\Cache::forget('home_view_data_3');
+      \Illuminate\Support\Facades\Cache::forget('system_generals_whatsapp');
+      \Illuminate\Support\Facades\Cache::forget('system_socials');
+      \Illuminate\Support\Facades\Cache::forget('seo_data');
+      if (app()->bound('current_lang_id')) {
+        \Illuminate\Support\Facades\Cache::forget('home_view_data_' . app('current_lang_id'));
+      }
+    } catch (\Throwable $th) {
+      // Ignorar silenciosamente si hay error al limpiar caché
+    }
+  }
+
   public function get(Request $request, string $id)
   {
     $response = Response::simpleTryCatch(function () use ($id) {
@@ -438,6 +459,8 @@ class BasicController extends Controller
 
       // Commit the transaction on success
       DB::connection()->commit();
+
+      self::clearPublicCache();
     } catch (\Throwable $th) {
       $response->status = 400;
       $response->message = $th->getMessage();
@@ -472,6 +495,8 @@ class BasicController extends Controller
 
       // Commit the transaction on success
       DB::connection()->commit();
+
+      self::clearPublicCache();
     } catch (\Throwable $th) {
       $response->status = 400;
       $response->message = $th->getMessage();
@@ -558,6 +583,8 @@ class BasicController extends Controller
 
       // Commit the transaction on success
       DB::connection()->commit();
+
+      self::clearPublicCache();
     } catch (\Throwable $th) {
       // 🔧 DEBUG: Log de errores
       Log::error('❌ BOOLEAN METHOD ERROR:', [
@@ -600,6 +627,8 @@ class BasicController extends Controller
 
       // Commit the transaction on success
       DB::connection()->commit();
+
+      self::clearPublicCache();
     } catch (\Throwable $th) {
       $response->status = 400;
       $response->message = $th->getMessage();

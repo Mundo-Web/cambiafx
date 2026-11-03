@@ -264,6 +264,7 @@ Route::middleware(['can:Admin', 'auth'])->prefix('admin')->group(function () {
     Route::post('/generals/sitemap', [AdminGeneralController::class, 'generateSitemap'])->name('Admin/Generals/Sitemap');
     Route::post('/generals/robot', [AdminGeneralController::class, 'generateRobots'])->name('Admin/Generals/Robot');
     Route::post('/generals/llms', [AdminGeneralController::class, 'generateLlms'])->name('Admin/Generals/Llms');
+    Route::post('/generals/clear-cache', [AdminGeneralController::class, 'clearCache'])->name('Admin/Generals/ClearCache');
     Route::get('/generals', [AdminGeneralController::class, 'reactView'])->name('Admin/Generals.jsx');
     Route::get('/users', [AdminUserController::class, 'reactView'])->name('Admin/Users.jsx');
 

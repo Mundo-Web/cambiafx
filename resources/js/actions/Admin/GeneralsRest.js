@@ -105,6 +105,40 @@ class GeneralsRest extends BasicRest {
             return false;
         }
     }
+
+    clearCache = async () => {
+        try {
+            const { status, result } = await Fetch(`/admin/generals/clear-cache`, {
+                method: "POST",
+                headers: {
+                    "X-Xsrf-Token": decodeURIComponent(Cookies.get("XSRF-TOKEN")),
+                },
+            });
+
+            if (!status)
+                throw new Error(result?.message || "Ocurrió un error inesperado al vaciar la caché");
+
+            if (this.enableNotifications) {
+                Notify.add({
+                    icon: "/assets/img/icon.png",
+                    title: "¡Caché Limpiada!",
+                    body: "La caché de la web se ha vaciado correctamente. Todos los cambios (cupones, imágenes, banners y textos) ya son visibles.",
+                    type: "success",
+                });
+            }
+            return true;
+        } catch (error) {
+            if (this.enableNotifications) {
+                Notify.add({
+                    icon: "/assets/img/icon.png",
+                    title: "Error",
+                    body: error.message,
+                    type: "danger",
+                });
+            }
+            return false;
+        }
+    }
 }
 
 export default GeneralsRest;

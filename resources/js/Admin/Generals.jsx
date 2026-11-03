@@ -244,6 +244,17 @@ const Generals = ({ generals }) => {
         await generalsRest.generateLlms();
     };
 
+    const [isClearingCache, setIsClearingCache] = useState(false);
+
+    const handleClearCache = async () => {
+        setIsClearingCache(true);
+        try {
+            await generalsRest.clearCache();
+        } finally {
+            setIsClearingCache(false);
+        }
+    };
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
@@ -1385,6 +1396,33 @@ const Generals = ({ generals }) => {
                                     </div>
                                 </div>
                             </div>
+                            <div className="col-12 mt-4">
+                                <div className="card border-warning h-100 shadow-sm">
+                                    <div className="card-body">
+                                        <div className="d-flex flex-wrap justify-content-between align-items-center gap-3">
+                                            <div>
+                                                <h5 className="card-title text-warning mb-1">
+                                                    <i className="fa fa-bolt me-2"></i> Limpiar Caché del Sitio Web
+                                                </h5>
+                                                <p className="card-text text-muted mb-0">
+                                                    Si has agregado nuevos cupones, modificado banners, cambiado imágenes o editado textos y no se reflejan de inmediato en la web pública, vacía la caché para forzar la actualización instantánea.
+                                                </p>
+                                            </div>
+                                            <div>
+                                                <button
+                                                    type="button"
+                                                    className="btn btn-warning text-dark fw-bold px-4 py-2"
+                                                    onClick={handleClearCache}
+                                                    disabled={isClearingCache}
+                                                >
+                                                    <i className={`fa ${isClearingCache ? "fa-spinner fa-spin" : "fa-trash"} me-2`}></i>
+                                                    {isClearingCache ? "Limpiando..." : "Vaciar Caché Ahora"}
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
@@ -1587,9 +1625,21 @@ const Generals = ({ generals }) => {
 
                 </div>
 
-                <button aria-label="guardar" type="submit" className="btn btn-primary mt-3">
-                    Guardar
-                </button>
+                <div className="d-flex flex-wrap gap-2 mt-4 pt-2 border-top">
+                    <button aria-label="guardar" type="submit" className="btn btn-primary px-4">
+                        <i className="fa fa-save me-1"></i> Guardar Cambios
+                    </button>
+                    <button
+                        type="button"
+                        className="btn btn-warning text-dark fw-bold px-4"
+                        onClick={handleClearCache}
+                        disabled={isClearingCache}
+                        title="Vacia la caché de la web para ver cambios inmediatamente"
+                    >
+                        <i className={`fa ${isClearingCache ? "fa-spinner fa-spin" : "fa-bolt"} me-1`}></i>
+                        {isClearingCache ? "Limpiando..." : "Limpiar Caché Web"}
+                    </button>
+                </div>
             </form>
         </div>
     );
