@@ -265,6 +265,14 @@ Route::middleware(['can:Admin', 'auth'])->prefix('admin')->group(function () {
     Route::post('/generals/robot', [AdminGeneralController::class, 'generateRobots'])->name('Admin/Generals/Robot');
     Route::post('/generals/llms', [AdminGeneralController::class, 'generateLlms'])->name('Admin/Generals/Llms');
     Route::post('/generals/clear-cache', [AdminGeneralController::class, 'clearCache'])->name('Admin/Generals/ClearCache');
+    Route::get('/limpiar-cache', function () {
+        \Illuminate\Support\Facades\Cache::flush();
+        try {
+            \Illuminate\Support\Facades\Artisan::call('cache:clear');
+            \Illuminate\Support\Facades\Artisan::call('view:clear');
+        } catch (\Throwable $th) {}
+        return response('<div style="font-family:sans-serif;text-align:center;padding:50px;"><h2>&#9989; &#161;Cach&eacute; del sistema y vistas limpiada con &eacute;xito!</h2><p>Todos los cambios (cupones, im&aacute;genes, banners y textos) ya est&aacute;n actualizados en la web.</p><a href="/admin/generals" style="display:inline-block;margin-top:20px;padding:10px 20px;background:#6039F5;color:#fff;text-decoration:none;border-radius:8px;">Volver al Panel</a></div>', 200, ['Content-Type' => 'text/html; charset=UTF-8']);
+    })->name('Admin/ClearCacheDirect');
     Route::get('/generals', [AdminGeneralController::class, 'reactView'])->name('Admin/Generals.jsx');
     Route::get('/users', [AdminUserController::class, 'reactView'])->name('Admin/Users.jsx');
 
