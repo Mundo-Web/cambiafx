@@ -6,10 +6,11 @@ use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Validation\Rule;
+use App\Traits\ClearsPublicCache;
 
 class General extends Model
 {
-    use HasFactory, HasUuids;
+    use HasFactory, HasUuids, ClearsPublicCache;
 
     public $incrementing = false;
     protected $keyType = 'string';

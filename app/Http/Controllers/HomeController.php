@@ -36,10 +36,10 @@ class HomeController extends BasicController
 
     public function setReactViewProperties(Request $request)
     {
-        $langId = app('current_lang_id');
+        $langId = app()->bound('current_lang_id') ? app('current_lang_id') : (\App\Models\Lang::where('is_default', true)->value('id') ?? 1);
 
-        // Caché de 3 minutos para el tipo de cambio real de apiluna (elimina bloqueo de TTFB)
-        $initialRates = Cache::remember('current_rates_home', 180, function () {
+        // Micro-caché de 30 segundos solo para la API externa de tipos de cambio de apiluna
+        $initialRates = Cache::remember('current_rates_home', 30, function () {
             try {
                 $response = Http::timeout(2)->get('https://apiluna.cambiafx.pe/api/BackendPizarra/getTcCustomerNoAuth', [
                     'idParCurrency' => 1
@@ -53,85 +53,52 @@ class HomeController extends BasicController
             return null;
         });
 
-        // Caché de 30 minutos (1800s) para máximo rendimiento y reducción de TTFB/TBT.
-        // Se invalida automáticamente con Cache::flush() cada vez que se guarda o elimina en el CMS o se usa "Limpiar Caché Web".
-        $homeData = Cache::remember("home_view_data_{$langId}", 1800, function () use ($langId) {
-            $landing = LandingHome::where('correlative', 'like', 'page_home%')->where('lang_id', $langId)->get();
-            /*CAMBIO Y GERENCIA */
-            $sliders = Slider::where('status', true)->where('visible', true)->orderBy('created_at', 'DESC')->get();
-            $brands = Brand::where('status', true)->where('visible', true)->orderBy('created_at', 'DESC')->get();
-            $strengths = Strength::where('status', true)->where('visible', true)->where('lang_id', $langId)->get();
-            
-            // Optimización de payload: excluir el campo HTML pesado 'description' de los posts en la home
-            $posts = Post::select('id', 'name', 'slug', 'image', 'summary', 'category_id', 'created_at')
-                ->where('status', true)
-                ->orderBy('created_at', 'desc')
-                ->with(['category:id,name,slug'])
-                ->where('lang_id', $langId)
-                ->limit(6)
-                ->get();
+        // CONSULTA 100% EN TIEMPO REAL DIRECTO A LA BASE DE DATOS (0ms de retraso al crear, editar o eliminar)
+        $landing = LandingHome::where('correlative', 'like', 'page_home%')->where('lang_id', $langId)->get();
+        /*CAMBIO Y GERENCIA */
+        $sliders = Slider::where('status', true)->where('visible', true)->orderBy('created_at', 'DESC')->get();
+        $brands = Brand::where('status', true)->where('visible', true)->orderBy('created_at', 'DESC')->get();
+        $strengths = Strength::where('status', true)->where('visible', true)->where('lang_id', $langId)->get();
+        
+        // Optimización de payload: excluir el campo HTML pesado 'description' de los posts en la home
+        $posts = Post::select('id', 'name', 'slug', 'image', 'summary', 'category_id', 'created_at')
+            ->where('status', true)
+            ->orderBy('created_at', 'desc')
+            ->with(['category:id,name,slug'])
+            ->where('lang_id', $langId)
+            ->limit(6)
+            ->get();
 
-            $testimonios = Testimony::where('status', true)->where('lang_id', $langId)->get();
-            $indicators = Indicator::where('status', true)->where('lang_id', $langId)->get();
+        $testimonios = Testimony::where('status', true)->where('lang_id', $langId)->get();
+        $indicators = Indicator::where('status', true)->where('lang_id', $langId)->get();
+        $allServices = Service::where('status', true)->where('lang_id', $langId)->get();
+        $apps = App::where('visible', true)->get();
+        $pasos = Specialty::where('visible', true)
+            ->where('lang_id', $langId)
+            ->orderBy('created_at', 'asc')
+            ->get();
 
-            $allServices = Service::where('status', true)->where('lang_id', $langId)->get();
-
-            $apps = App::where('visible', true)->get();
-            $pasos = Specialty::where('visible', true)
-                ->where('lang_id', $langId)
-                ->orderBy('created_at', 'asc')
-                ->get();
-
-            $core_values = CoreValue::where('status', true)
-                ->where('lang_id', $langId)
-                ->get();
-
-            $faqs = Faq::where('status', true)
-                ->where('visible', true)
-                ->whereNull('service_id')
-                ->where('lang_id', $langId)
-                ->get();
-
-            return [
-                'landing' => $landing,
-                'sliders' => $sliders,
-                'brands' => $brands,
-                'strengths' => $strengths,
-                'posts' => $posts,
-                'testimonios' => $testimonios,
-                'indicators' => $indicators,
-                'allServices' => $allServices,
-                'apps' => $apps,
-                'pasos' => $pasos,
-                'core_values' => $core_values,
-                'faqs' => $faqs
-            ];
-        });
-
-        // Elementos dinámicos en TIEMPO REAL (cupones y banners comerciales)
-        // Se consultan directamente a la BD (<1ms) para que creaciones, ediciones y eliminaciones
-        // se reflejen de inmediato en la web pública sin demora ni dependencia de caché.
         $cupones = Coupon::where('status', true)
             ->where(function($query) {
                 $query->where(function($subQuery) {
-                    // Cupones con fechas válidas
                     $subQuery->where('date_begin', '<=', now())
                              ->where('date_end', '>=', now());
                 })->orWhere(function($subQuery) {
-                    // Cupones sin fechas (siempre vigentes)
                     $subQuery->whereNull('date_begin')
                              ->whereNull('date_end');
                 })->orWhere(function($subQuery) {
-                    // Cupones solo con fecha de inicio
                     $subQuery->where('date_begin', '<=', now())
                              ->whereNull('date_end');
                 })->orWhere(function($subQuery) {
-                    // Cupones solo con fecha de fin
                     $subQuery->whereNull('date_begin')
                              ->where('date_end', '>=', now());
                 });
             })
             ->orderBy('created_at', 'desc')
+            ->get();
+
+        $core_values = CoreValue::where('status', true)
+            ->where('lang_id', $langId)
             ->get();
 
         $banner_operacion = Banner::where('status', true)
@@ -148,11 +115,29 @@ class HomeController extends BasicController
             ->orderBy('order', 'asc')
             ->get();
 
-        return array_merge($homeData, [
+        $faqs = Faq::where('status', true)
+            ->where('visible', true)
+            ->whereNull('service_id')
+            ->where('lang_id', $langId)
+            ->get();
+
+        return [
+            'landing' => $landing,
+            'sliders' => $sliders,
+            'brands' => $brands,
+            'strengths' => $strengths,
+            'posts' => $posts,
+            'testimonios' => $testimonios,
+            'indicators' => $indicators,
+            'allServices' => $allServices,
+            'apps' => $apps,
+            'pasos' => $pasos,
             'cupones' => $cupones,
+            'core_values' => $core_values,
             'banner_operacion' => $banner_operacion,
             'banner_slider' => $banner_slider,
+            'faqs' => $faqs,
             'initialRates' => $initialRates,
-        ]);
+        ];
     }
 }

@@ -59,12 +59,28 @@ class BasicController extends Controller
   public static function clearPublicCache(): void
   {
     try {
-      // 1. Vaciar toda la caché de Laravel (elimina todas las claves de home, langs, cupones, etc.)
+      // 1. Vaciar toda la caché de Laravel
       \Illuminate\Support\Facades\Cache::flush();
 
-      // 2. Limpiar vistas compiladas si Artisan está disponible
+      // 2. Olvidar explícitamente todas las claves globales
+      \Illuminate\Support\Facades\Cache::forget('system_languages');
+      \Illuminate\Support\Facades\Cache::forget('system_socials');
+      \Illuminate\Support\Facades\Cache::forget('system_generals_whatsapp');
+      \Illuminate\Support\Facades\Cache::forget('current_rates_home');
+      \Illuminate\Support\Facades\Cache::forget('seo_data');
+
+      // 3. Limpiar físicamente el directorio de archivos de caché en disco (evita bloqueos de permisos)
+      try {
+        $cacheDir = storage_path('framework/cache/data');
+        if (\Illuminate\Support\Facades\File::isDirectory($cacheDir)) {
+          \Illuminate\Support\Facades\File::cleanDirectory($cacheDir);
+        }
+      } catch (\Throwable $e) {}
+
+      // 4. Limpiar vistas y optimizaciones compiladas si Artisan está disponible
       try {
         \Illuminate\Support\Facades\Artisan::call('view:clear');
+        \Illuminate\Support\Facades\Artisan::call('cache:clear');
       } catch (\Throwable $e) {}
     } catch (\Throwable $th) {
       // Ignorar silenciosamente si hay error al limpiar caché

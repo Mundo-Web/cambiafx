@@ -80,6 +80,7 @@ class PerformanceHeaders
         $response->headers->set('Cache-Control', 'no-cache, no-store, must-revalidate, max-age=0');
         $response->headers->set('Cloudflare-CDN-Cache-Control', 'no-store');
         $response->headers->set('CDN-Cache-Control', 'no-store');
+        $response->headers->set('X-LiteSpeed-Cache-Control', 'no-cache');
         $response->headers->set('Pragma', 'no-cache');
         $response->headers->set('Expires', '0');
     }

@@ -2,6 +2,11 @@ RewriteEngine on
 RewriteCond %{REQUEST_URI} !^public
 RewriteRule ^(.*)$ public/$1 [L]
 
+# Desactivar almacenamiento en caché de LiteSpeed a nivel de servidor web para páginas dinámicas
+<IfModule LiteSpeed>
+    CacheLookup off
+</IfModule>
+
 # php -- BEGIN cPanel-generated handler, do not edit
 # Set the â€œea-php81â€ package as the default â€œPHPâ€ programming language.
 <IfModule mime_module>

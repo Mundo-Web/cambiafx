@@ -51,7 +51,13 @@
             Header set Cache-Control "no-cache, no-store, must-revalidate, max-age=0"
             Header set Cloudflare-CDN-Cache-Control "no-store"
             Header set CDN-Cache-Control "no-store"
+            Header set X-LiteSpeed-Cache-Control "no-cache"
         </FilesMatch>
+    </IfModule>
+
+    # Desactivar almacenamiento en caché de LiteSpeed a nivel de servidor web para páginas dinámicas
+    <IfModule LiteSpeed>
+        CacheLookup off
     </IfModule>
 
     # Enable Gzip compression
