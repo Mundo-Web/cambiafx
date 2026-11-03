@@ -74,16 +74,14 @@ class PerformanceHeaders
      */
     private function applyCacheHeaders(Response $response): void
     {
-        // Para HTML dinámico - revalidación inmediata (max-age=0) para reflejar cotizaciones al instante
-        $response->headers->set('Cache-Control', 'public, max-age=0, must-revalidate');
+        // Para HTML dinámico y páginas web:
+        // Evitar que Cloudflare (Edge Cache) y el navegador retengan el HTML en caché (lo que causaba retrasos de ~5 min al eliminar cupones/banners)
+        // para que cualquier cambio (crear, editar o eliminar en el admin) se refleje de inmediato.
+        $response->headers->set('Cache-Control', 'no-cache, no-store, must-revalidate, max-age=0');
+        $response->headers->set('Cloudflare-CDN-Cache-Control', 'no-store');
+        $response->headers->set('CDN-Cache-Control', 'no-store');
         $response->headers->set('Pragma', 'no-cache');
         $response->headers->set('Expires', '0');
-        
-        // ETag para validación condicional
-        if (config('app.env') === 'production') {
-            $etag = md5($response->getContent());
-            $response->headers->set('ETag', '"' . $etag . '"');
-        }
     }
 
     /**
