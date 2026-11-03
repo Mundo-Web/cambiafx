@@ -68,6 +68,12 @@ class BasicController extends Controller
       if (app()->bound('current_lang_id')) {
         \Illuminate\Support\Facades\Cache::forget('home_view_data_' . app('current_lang_id'));
       }
+      try {
+        $langIds = \App\Models\Lang::pluck('id');
+        foreach ($langIds as $lId) {
+          \Illuminate\Support\Facades\Cache::forget("home_view_data_{$lId}");
+        }
+      } catch (\Throwable $e) {}
     } catch (\Throwable $th) {
       // Ignorar silenciosamente si hay error al limpiar caché
     }
