@@ -52,11 +52,17 @@ export default {
     //    Los bots (Googlebot, Claude, ChatGPT, Perplexity, Ahrefs, Semrush, auditores)
     //    NUNCA deben recibir el HTML SPA de React/Inertia cacheado de un usuario humano.
     //    Laravel genera el HTML semántico con Schema.org y GEO Quick Answer en tiempo real.
+    //    NOTA: Lighthouse y Google PageSpeed se excluyen para que evalúen la experiencia
+    //    real de usuario (React/Inertia SPA).
     // ========================================================================
     const userAgent = request.headers.get('User-Agent') || '';
-    const isBot = /bot|crawler|spider|scraper|checker|audit|inspection|lighthouse|headless|google|bing|yahoo|baidu|yandex|duckduck|chatgpt|gptbot|claude|anthropic|perplexity|deepseek|oai-searchbot|applebot|bytespider|ahrefs|semrush|screaming/i.test(userAgent)
-               || url.searchParams.get('render') === 'bot'
-               || request.headers.get('X-Is-Bot') === 'true';
+    const isLighthouseOrPageSpeed = /lighthouse|pagespeed|page\s*speed/i.test(userAgent);
+
+    const isBot = !isLighthouseOrPageSpeed && (
+      /bot|crawler|spider|scraper|checker|audit|inspection|headless|google|bing|yahoo|baidu|yandex|duckduck|chatgpt|gptbot|claude|anthropic|perplexity|deepseek|oai-searchbot|applebot|bytespider|ahrefs|semrush|screaming/i.test(userAgent)
+      || url.searchParams.get('render') === 'bot'
+      || request.headers.get('X-Is-Bot') === 'true'
+    );
 
     if (isBot) {
       // Inyectar header al origen para que Laravel active renderizado semántico Blade sin dudas

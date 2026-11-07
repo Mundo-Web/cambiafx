@@ -15,12 +15,17 @@ class BotDetector
             return true;
         }
 
+        $userAgent = request()->header('User-Agent', '');
+
+        // Excluir expresamente Lighthouse y Google PageSpeed para que auditen la experiencia de usuario real (React SPA / Inertia)
+        if (!empty($userAgent) && preg_match('/lighthouse|pagespeed|page\s*speed/i', $userAgent)) {
+            return false;
+        }
+
         // Header explícito enviado por Cloudflare Worker o proxies reversos
         if (request()->header('X-Is-Bot') === 'true' || request()->header('X-Edge-Server') === 'Cloudflare-CambiaFX-Bot-Pass') {
             return true;
         }
-
-        $userAgent = request()->header('User-Agent', '');
 
         if (empty($userAgent)) {
             return true;
@@ -34,7 +39,6 @@ class BotDetector
             'scraper',
             'checker',
             'audit',
-            'lighthouse',
             'headless',
             'inspection',
             'slurp',
@@ -76,8 +80,6 @@ class BotDetector
             'google-inspectiontool',
             'mediapartners-google',
             'feedfetcher-google',
-            'chrome-lighthouse',
-            'pagespeed',
             'bingbot',
             'msnbot',
             'bingpreview',
