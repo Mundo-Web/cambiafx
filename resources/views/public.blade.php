@@ -69,7 +69,7 @@ $isBot = \App\Helpers\BotDetector::isBot();
             box-sizing: border-box;
         }
         html {
-            font-family: 'GeneralSans', 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             -webkit-text-size-adjust: 100%;
             text-rendering: optimizeLegibility;
         }

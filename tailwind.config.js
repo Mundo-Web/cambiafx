@@ -24,9 +24,8 @@ export default {
                 'slide-down': 'slide-down 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
             },
             fontFamily: {
-                title: ["GeneralSans", "sans-serif"],
+                title: ["Poppins", "sans-serif"],
                 paragraph: ["Quicksand", "sans-serif"],
-
             },
             colors: {
                 //azul: "#224483",

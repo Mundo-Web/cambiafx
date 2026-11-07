@@ -13,46 +13,6 @@
 
 
 
-/* General Sans Font Faces - Optimizado para Performance y Zero CLS */
-@font-face {
-  font-family: "GeneralSans";
-  src: url("../../public/assets/fonts/general-sans/GeneralSans-Light.woff2") format("woff2");
-  font-weight: 300;
-  font-style: normal;
-  font-display: optional;
-}
-
-@font-face {
-  font-family: "GeneralSans";
-  src: url("../../public/assets/fonts/general-sans/GeneralSans-Regular.woff2") format("woff2");
-  font-weight: 400;
-  font-style: normal;
-  font-display: optional;
-}
-
-@font-face {
-  font-family: "GeneralSans";
-  src: url("../../public/assets/fonts/general-sans/GeneralSans-Medium.woff2") format("woff2");
-  font-weight: 500;
-  font-style: normal;
-  font-display: optional;
-}
-
-@font-face {
-  font-family: "GeneralSans";
-  src: url("../../public/assets/fonts/general-sans/GeneralSans-Semibold.woff2") format("woff2");
-  font-weight: 600;
-  font-style: normal;
-  font-display: optional;
-}
-
-@font-face {
-  font-family: "GeneralSans";
-  src: url("../../public/assets/fonts/general-sans/GeneralSans-Bold.woff2") format("woff2");
-  font-weight: 700;
-  font-style: normal;
-  font-display: optional;
-}
 
 /* ===================================
    PERFORMANCE & ACCESSIBILITY STYLES

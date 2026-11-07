@@ -596,7 +596,7 @@ const Header = ({
                                             stroke="currentColor"
                                             strokeWidth="2"
                                         />
-                                    </motion.svg>
+                                    </svg>
                                 </span>
                                 <motion.div
                                     className="absolute inset-0 bg-gradient-to-r from-secondary/90 to-primary/90 opacity-0 group-hover:opacity-100"
@@ -1102,7 +1102,7 @@ const Header = ({
                                                         stroke="currentColor"
                                                         strokeWidth="2"
                                                     />
-                                                </motion.svg>
+                                                </svg>
                                             </span>
                                             <motion.div
                                                 className="absolute inset-0 bg-gradient-to-r from-secondary/90 to-primary/90 opacity-0 group-hover:opacity-100"
