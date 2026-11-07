@@ -1,3 +1,7 @@
+AddDefaultCharset UTF-8
+AddCharset UTF-8 .txt .html .css .js .json .xml
+AddType "text/plain; charset=UTF-8" .txt
+
 RewriteEngine on
 RewriteCond %{REQUEST_URI} !^public
 RewriteRule ^(.*)$ public/$1 [L]
@@ -29,6 +33,10 @@ RewriteRule ^(.*)$ public/$1 [L]
 </IfModule>
 
 <IfModule mod_headers.c>
+    <FilesMatch "\.txt$">
+        Header set Content-Type "text/plain; charset=UTF-8"
+        Header set Cache-Control "public, max-age=86400, must-revalidate"
+    </FilesMatch>
     <FilesMatch "\.(jpg|jpeg|png|webp|avif|gif|svg|ico)$">
         Header set Cache-Control "public, max-age=2592000, stale-while-revalidate=86400"
     </FilesMatch>

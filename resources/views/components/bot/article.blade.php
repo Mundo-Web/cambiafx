@@ -68,8 +68,8 @@
     </section>
 
     <!-- Información adicional del editor / Casa de cambio -->
-    <footer class="mt-12 pt-6 border-t border-gray-200 text-sm text-gray-600">
-        <p><strong>Publicado por:</strong> Cambia FX (TU CAMBIO S.A.C., Registro SBS Res. 04993-2018)</p>
+    <footer class="mt-12 pt-6 border-t border-gray-300 text-sm text-gray-800">
+        <p><strong class="text-gray-900">Publicado por:</strong> Cambia FX (TU CAMBIO S.A.C., Registro SBS Res. 04993-2018)</p>
         <p>Casa de cambio digital en Perú con las mejores tasas para compra y venta de dólares online.</p>
         <p><a href="{{ url('/') }}" class="text-[#3E2F4D] underline font-semibold">Ir a CambiaFX.pe para cambiar dólares online</a></p>
     </footer>

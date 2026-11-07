@@ -45,7 +45,7 @@
         @endif
     </section>
 
-    <footer class="mt-12 pt-6 border-t border-gray-200 text-sm text-gray-500">
-        <p>© {{ date('Y') }} Cambia FX. Todos los derechos reservados. RUC: 20603864957.</p>
+    <footer class="mt-12 pt-6 border-t border-gray-300 text-sm text-gray-800">
+        <p>© {{ date('Y') }} Cambia FX. Todos los derechos reservados. RUC: <strong class="text-gray-900">20603864957</strong>.</p>
     </footer>
 </article>

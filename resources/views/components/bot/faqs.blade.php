@@ -52,7 +52,7 @@
     </div>
     @endif
 
-    <footer class="mt-12 pt-6 border-t border-gray-200 text-sm text-gray-500">
-        <p>© {{ date('Y') }} Cambia FX. TU CAMBIO S.A.C. (RUC 20603864957). Res. SBS N° 04993-2018.</p>
+    <footer class="mt-12 pt-6 border-t border-gray-300 text-sm text-gray-800">
+        <p>© {{ date('Y') }} Cambia FX. <strong class="text-gray-900">TU CAMBIO S.A.C.</strong> (RUC <strong class="text-gray-900">20603864957</strong>). Res. SBS N° 04993-2018.</p>
     </footer>
 </article>

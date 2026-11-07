@@ -502,31 +502,31 @@
     {{-- ====================================================================
          14. FOOTER CORPORATIVO Y CUMPLIMIENTO SBS
        ==================================================================== --}}
-    <footer class="mt-12 pt-6 border-t border-gray-200 text-sm text-gray-500">
-        <p class="mb-2">
-            © {{ date('Y') }} Cambia FX Empresas. Marca operada legalmente por <strong>TU CAMBIO S.A.C.</strong> con RUC <strong>20603864957</strong>.
+    <footer class="mt-12 pt-6 border-t border-gray-300 text-sm text-gray-800">
+        <p class="mb-2 text-gray-800">
+            © {{ date('Y') }} Cambia FX Empresas. Marca operada legalmente por <strong class="text-gray-900">TU CAMBIO S.A.C.</strong> con RUC <strong class="text-gray-900">20603864957</strong>.
         </p>
-        <p class="text-xs text-gray-500 mb-3">
-            Inscrita en el Registro de Empresas y Personas que efectúan Operaciones Financieras y de Cambio de Moneda de la Superintendencia de Banca, Seguros y AFP (SBS) mediante <strong>Resolución SBS N° 04993-2018</strong>. Supervisada en prevención de lavado de activos por la UIF Perú.
+        <p class="text-xs text-gray-700 mb-3">
+            Inscrita en el Registro de Empresas y Personas que efectúan Operaciones Financieras y de Cambio de Moneda de la Superintendencia de Banca, Seguros y AFP (SBS) mediante <strong class="text-gray-900">Resolución SBS N° 04993-2018</strong>. Supervisada en prevención de lavado de activos por la UIF Perú.
         </p>
-        <p class="flex flex-wrap gap-3 text-xs font-semibold text-gray-700">
-            <a href="https://mi.cambiafx.pe/registro" class="underline">Crear Cuenta Empresa</a>
-            <span>•</span>
-            <a href="https://mi.cambiafx.pe/login" class="underline">Iniciar Sesión</a>
-            <span>•</span>
-            <a href="{{ url('/') }}" class="underline">CambiaFX Personas</a>
-            <span>•</span>
-            <a href="{{ url('/nosotros') }}" class="underline">Nosotros</a>
-            <span>•</span>
-            <a href="{{ url('/faqs') }}" class="underline">Preguntas Frecuentes</a>
-            <span>•</span>
-            <a href="{{ url('/blog') }}" class="underline">Blog Financiero</a>
-            <span>•</span>
-            <a href="{{ url('/libro-de-reclamaciones') }}" class="underline">Libro de Reclamaciones</a>
-            <span>•</span>
-            <a href="{{ url('/legal/terminos-y-condiciones') }}" class="underline">Términos y Condiciones</a>
-            <span>•</span>
-            <a href="{{ url('/legal/politicas-de-privacidad') }}" class="underline">Políticas de Privacidad</a>
+        <p class="flex flex-wrap gap-3 text-xs font-semibold text-gray-900">
+            <a href="https://mi.cambiafx.pe/registro" class="underline text-gray-900 hover:text-purple-800">Crear Cuenta Empresa</a>
+            <span class="text-gray-600">•</span>
+            <a href="https://mi.cambiafx.pe/login" class="underline text-gray-900 hover:text-purple-800">Iniciar Sesión</a>
+            <span class="text-gray-600">•</span>
+            <a href="{{ url('/') }}" class="underline text-gray-900 hover:text-purple-800">CambiaFX Personas</a>
+            <span class="text-gray-600">•</span>
+            <a href="{{ url('/nosotros') }}" class="underline text-gray-900 hover:text-purple-800">Nosotros</a>
+            <span class="text-gray-600">•</span>
+            <a href="{{ url('/faqs') }}" class="underline text-gray-900 hover:text-purple-800">Preguntas Frecuentes</a>
+            <span class="text-gray-600">•</span>
+            <a href="{{ url('/blog') }}" class="underline text-gray-900 hover:text-purple-800">Blog Financiero</a>
+            <span class="text-gray-600">•</span>
+            <a href="{{ url('/libro-de-reclamaciones') }}" class="underline text-gray-900 hover:text-purple-800">Libro de Reclamaciones</a>
+            <span class="text-gray-600">•</span>
+            <a href="{{ url('/legal/terminos-y-condiciones') }}" class="underline text-gray-900 hover:text-purple-800">Términos y Condiciones</a>
+            <span class="text-gray-600">•</span>
+            <a href="{{ url('/legal/politicas-de-privacidad') }}" class="underline text-gray-900 hover:text-purple-800">Políticas de Privacidad</a>
         </p>
     </footer>
 

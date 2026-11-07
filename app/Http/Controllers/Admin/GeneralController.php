@@ -257,7 +257,12 @@ class GeneralController extends BasicController
             $venta = '3.4760';
         }
 
-        $urlHoy = url('/tipo-de-cambio-hoy');
+        $baseUrl = config('app.url');
+        if (empty($baseUrl) || str_contains($baseUrl, 'localhost')) {
+            $baseUrl = 'https://cambiafx.pe';
+        }
+        $baseUrl = rtrim($baseUrl, '/');
+        $urlHoy = "{$baseUrl}/tipo-de-cambio-hoy";
 
         $section = "## Tipo de Cambio Hoy en Tiempo Real (USD / PEN)\n\n";
         $section .= "> Cotización preferencial para cambio de dólares americanos (USD) y soles peruanos (PEN) en línea:\n\n";
@@ -273,7 +278,11 @@ class GeneralController extends BasicController
 
     public function buildLlmsTxtContent(): string
     {
-        $baseUrl = rtrim(url('/'), '/');
+        $baseUrl = config('app.url');
+        if (empty($baseUrl) || str_contains($baseUrl, 'localhost')) {
+            $baseUrl = 'https://cambiafx.pe';
+        }
+        $baseUrl = rtrim($baseUrl, '/');
 
         $title = $this->getGeneralValue('llms_title', 'Cambia FX - Casa de Cambio Online en Perú');
         $summary = $this->getGeneralValue('llms_summary', 'Casa de cambio online registrada y supervisada por la SBS para cambio de dólares y soles en Perú con transferencias directas e interbancarias en minutos.');
@@ -327,7 +336,11 @@ class GeneralController extends BasicController
 
     public function buildLlmsFullTxtContent(): string
     {
-        $baseUrl = rtrim(url('/'), '/');
+        $baseUrl = config('app.url');
+        if (empty($baseUrl) || str_contains($baseUrl, 'localhost')) {
+            $baseUrl = 'https://cambiafx.pe';
+        }
+        $baseUrl = rtrim($baseUrl, '/');
         $content = $this->buildLlmsTxtContent();
 
         $defaultFullExtra = "## Seguridad y Cumplimiento Normativo (SPLAFT / UIF)\n"

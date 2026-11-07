@@ -143,7 +143,7 @@
     @endif
 
     {{-- Footer con CTA --}}
-    <footer class="mt-12 pt-6 border-t border-gray-200 text-sm text-gray-500">
+    <footer class="mt-12 pt-6 border-t border-gray-300 text-sm text-gray-800">
         <div class="p-6 bg-gray-900 text-white rounded-2xl text-center mb-6">
             <h3 class="text-xl font-bold mb-2">¿Listo para cambiar tus dólares o soles?</h3>
             <p class="text-sm text-gray-300 mb-4">Cotiza tu cambio en tiempo real y recibe tus fondos de forma segura en tu cuenta bancaria.</p>
@@ -151,6 +151,6 @@
                 Crear Cuenta Gratis
             </a>
         </div>
-        <p>© {{ date('Y') }} Cambia FX. Regulada por la SBS (Res. N° 04993-2018). RUC: 20603864957.</p>
+        <p>© {{ date('Y') }} Cambia FX. Regulada por la SBS (Res. N° 04993-2018). RUC: <strong class="text-gray-900">20603864957</strong>.</p>
     </footer>
 </article>

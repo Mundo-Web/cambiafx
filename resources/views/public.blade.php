@@ -15,12 +15,14 @@ $isBot = \App\Helpers\BotDetector::isBot();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="csrf_token" content="{{ csrf_token() }}">
+    <!-- Preconnect & DNS-Prefetch indispensables para analítica y rendimiento -->
+    <link rel="preconnect" href="https://www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googletagmanager.com">
     @unless ($isBot)
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
     <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
-    <link rel="dns-prefetch" href="https://www.googletagmanager.com">
     @endunless
 
     <!-- SEO Meta Tags -->
@@ -199,7 +201,7 @@ $isBot = \App\Helpers\BotDetector::isBot();
 
 <body>
     <!-- Skip link accesible para navegación por teclado (WCAG 2.4.1) -->
-    <a href="#main-content" class="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-50 focus:px-4 focus:py-2 focus:bg-[#7E5AFB] focus:text-white focus:rounded focus:shadow-lg focus:outline-none focus:font-semibold">
+    <a href="#main-content" class="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-50 focus:px-4 focus:py-2 focus:bg-[#5022C8] focus:text-white focus:rounded focus:shadow-lg focus:outline-none focus:font-semibold">
         Saltar al contenido principal
     </a>
 

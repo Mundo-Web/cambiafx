@@ -91,7 +91,7 @@
 
 /* Focus visible mejorado - Accesibilidad */
 *:focus-visible {
-  outline: 2px solid #7E5AFB;
+  outline: 2px solid #5022C8;
   outline-offset: 2px;
   border-radius: 4px;
   transition: outline-offset 0.2s ease;

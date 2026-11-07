@@ -76,16 +76,16 @@
     {{-- ====================================================================
          0.1 MIGAS DE PAN VISIBLES (Breadcrumbs accesibles y Schema.org)
        ==================================================================== --}}
-    <nav aria-label="Migas de pan" class="breadcrumbs mb-6 text-xs text-gray-500">
+    <nav aria-label="Migas de pan" class="breadcrumbs mb-6 text-xs text-gray-700">
         <ol class="flex items-center gap-1.5 list-none p-0 m-0" itemscope itemtype="https://schema.org/BreadcrumbList">
             <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem" class="flex items-center gap-1.5">
                 <a href="{{ url('/') }}" itemprop="item" class="text-purple-700 hover:underline">
                     <span itemprop="name">Inicio</span>
                 </a>
                 <meta itemprop="position" content="1" />
-                <span class="text-gray-400" aria-hidden="true">/</span>
+                <span class="text-gray-500" aria-hidden="true">/</span>
             </li>
-            <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem" class="text-gray-700 font-medium">
+            <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem" class="text-gray-900 font-semibold">
                 <span itemprop="name">Casa de Cambio Online en Perú</span>
                 <meta itemprop="position" content="2" />
             </li>
@@ -135,24 +135,24 @@
         <h2 class="text-2xl font-bold text-gray-900 mb-4">Tipo de cambio hoy en vivo (USD / PEN)</h2>
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div class="p-5 bg-amber-50/60 rounded-xl border border-amber-100">
-                <p class="text-xs font-bold text-gray-500 uppercase tracking-wider">Compra de Dólares (Tú vendes USD)</p>
+                <p class="text-xs font-bold text-gray-700 uppercase tracking-wider">Compra de Dólares (Tú vendes USD)</p>
                 <p class="text-4xl font-black text-gray-900 my-1">S/ {{ $tcBuy }}</p>
-                <p class="text-xs text-gray-600">Por cada dólar que entregues recibes soles a esta tasa.</p>
+                <p class="text-xs text-gray-700">Por cada dólar que entregues recibes soles a esta tasa.</p>
             </div>
             <div class="p-5 bg-purple-50/60 rounded-xl border border-purple-100">
-                <p class="text-xs font-bold text-gray-500 uppercase tracking-wider">Venta de Dólares (Tú compras USD)</p>
+                <p class="text-xs font-bold text-gray-700 uppercase tracking-wider">Venta de Dólares (Tú compras USD)</p>
                 <p class="text-4xl font-black text-gray-900 my-1">S/ {{ $tcSale }}</p>
-                <p class="text-xs text-gray-600">Por cada dólar que compres pagas soles a esta tasa.</p>
+                <p class="text-xs text-gray-700">Por cada dólar que compres pagas soles a esta tasa.</p>
             </div>
         </div>
-        <p class="mt-4 text-xs text-gray-500">
+        <p class="mt-4 text-xs text-gray-700">
             Actualización en tiempo real conectada a la mesa de dinero de Cambia FX y mercado interbancario de Perú.
         </p>
 
         {{-- Herramienta WebMCP para Agentes de IA (Conversión y Cotización directa) --}}
         <form toolname="cotizar_tipo_de_cambio" action="https://mi.cambiafx.pe/registro" method="GET" class="mt-4 p-4 bg-gray-50 rounded-xl border border-gray-200 flex flex-wrap items-center justify-between gap-3 text-sm" aria-label="Herramienta de cotización para usuarios y agentes de IA">
             <span class="font-semibold text-gray-800">💱 Cotizador y Conversor Online de Dólares y Soles</span>
-            <a href="https://mi.cambiafx.pe/registro" class="px-4 py-2 bg-[#7E5AFB] text-white rounded-lg font-bold hover:bg-[#6c48e8] inline-block">Iniciar Cotización Online</a>
+            <a href="https://mi.cambiafx.pe/registro" class="px-4 py-2 bg-[#5022C8] text-white rounded-lg font-bold hover:bg-[#431bb0] inline-block">Iniciar Cotización Online</a>
         </form>
     </section>
 
@@ -409,9 +409,9 @@
                 <p class="text-sm text-gray-600">Calificación de usuarios reales por transacciones de cambio de divisas en Perú.</p>
             </div>
             <div class="reviews-rating-badge flex items-center gap-2 p-3 bg-white rounded-xl border border-amber-200 shadow-sm">
-                <span class="text-yellow-500 font-bold text-xl tracking-widest" aria-label="Calificación 5 estrellas">★★★★★</span>
+                <span class="text-amber-500 font-bold text-xl tracking-widest" aria-label="Calificación 5 estrellas">★★★★★</span>
                 <span class="font-extrabold text-gray-900 text-lg"><span itemprop="ratingValue">4.9</span> / <span itemprop="bestRating">5</span></span>
-                <span class="text-xs text-gray-500">(<span itemprop="reviewCount">1250</span> opiniones verificadas)</span>
+                <span class="text-xs text-gray-700 font-medium">(<span itemprop="reviewCount">1250</span> opiniones verificadas)</span>
                 <meta itemprop="worstRating" content="1" />
             </div>
         </div>
@@ -420,13 +420,13 @@
         <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
             @foreach(collect($testimoniosList)->take(3) as $t)
                 <div class="p-4 bg-white rounded-xl border border-gray-200 shadow-sm" itemscope itemprop="review" itemtype="https://schema.org/Review">
-                    <div class="flex items-center gap-1 text-yellow-500 text-xs mb-2">★★★★★</div>
+                    <div class="flex items-center gap-1 text-amber-500 text-xs mb-2">★★★★★</div>
                     <p class="text-xs text-gray-700 italic mb-3" itemprop="reviewBody">"{{ $cleanText($getVal($t, 'description')) }}"</p>
                     <p class="text-xs font-bold text-gray-900" itemprop="author" itemscope itemtype="https://schema.org/Person">
                         <span itemprop="name">{{ $getVal($t, 'name') }}</span>
                     </p>
                     @if($getVal($t, 'occupation'))
-                        <p class="text-[11px] text-gray-500">{{ $getVal($t, 'occupation') }}</p>
+                        <p class="text-[11px] text-gray-700">{{ $getVal($t, 'occupation') }}</p>
                     @endif
                 </div>
             @endforeach
@@ -443,7 +443,7 @@
             <div>
                 <p class="font-bold text-gray-900">📞 Teléfono / WhatsApp:</p>
                 <p><a href="tel:+51922985423" class="hover:text-purple-700 font-semibold" itemprop="telephone">+51 922 985 423</a></p>
-                <p class="text-xs text-gray-500">Email: contacto@cambiafx.pe</p>
+                <p class="text-xs text-gray-700">Email: contacto@cambiafx.pe</p>
             </div>
             <div>
                 <p class="font-bold text-gray-900">📍 Dirección:</p>
@@ -457,7 +457,7 @@
             <div>
                 <p class="font-bold text-gray-900">🏢 RUC / Registro SBS:</p>
                 <p><strong>RUC:</strong> <span itemprop="vatID">20603864957</span></p>
-                <p class="text-xs text-gray-500">Razón Social: <strong>TU CAMBIO S.A.C.</strong></p>
+                <p class="text-xs text-gray-700">Razón Social: <strong class="text-gray-900">TU CAMBIO S.A.C.</strong></p>
             </div>
             <div>
                 <p class="font-bold text-gray-900">🕒 Horario de Atención:</p>
@@ -470,29 +470,29 @@
     {{-- ====================================================================
          14. FOOTER SEMÁNTICO
        ==================================================================== --}}
-    <footer class="mt-12 pt-6 border-t border-gray-200 text-sm text-gray-500">
-        <p class="mb-2">© {{ date('Y') }} Cambia FX. Todos los derechos reservados. Razón Social: <strong>TU CAMBIO S.A.C.</strong> | <strong>RUC: 20603864957</strong> | Dirección: <strong>Av. Javier Prado Este N° 560, Oficina 2302, San Isidro, Lima, Perú</strong> | Teléfono: <strong>+51 922 985 423</strong>.</p>
-        <p class="text-xs text-gray-500 mb-3">Inscrita en el Registro de Empresas de Préstamos y Casas de Cambio de la SBS bajo Resolución SBS N° 04993-2018.</p>
+    <footer class="mt-12 pt-6 border-t border-gray-300 text-sm text-gray-800">
+        <p class="mb-2 text-gray-800">© {{ date('Y') }} Cambia FX. Todos los derechos reservados. Razón Social: <strong class="text-gray-900">TU CAMBIO S.A.C.</strong> | <strong class="text-gray-900">RUC: 20603864957</strong> | Dirección: <strong class="text-gray-900">Av. Javier Prado Este N° 560, Oficina 2302, San Isidro, Lima, Perú</strong> | Teléfono: <strong class="text-gray-900">+51 922 985 423</strong>.</p>
+        <p class="text-xs text-gray-700 mb-3">Inscrita en el Registro de Empresas de Préstamos y Casas de Cambio de la SBS bajo Resolución SBS N° 04993-2018.</p>
         <p class="flex flex-wrap gap-3 text-xs font-semibold">
-            <a href="https://mi.cambiafx.pe/registro" class="underline text-gray-700">Crear Cuenta</a>
-            <span>•</span>
-            <a href="https://mi.cambiafx.pe/login" class="underline text-gray-700">Iniciar Sesión</a>
-            <span>•</span>
-            <a href="{{ url('/empresas') }}" class="underline text-gray-700">CambiaFX Empresas</a>
-            <span>•</span>
-            <a href="{{ url('/sobre-nosotros') }}" class="underline text-gray-700" title="Sobre nosotros" rel="about">Sobre nosotros</a>
-            <span>•</span>
-            <a href="{{ url('/contacto') }}" class="underline text-gray-700">Contacto</a>
-            <span>•</span>
-            <a href="{{ url('/faqs') }}" class="underline text-gray-700">Preguntas Frecuentes</a>
-            <span>•</span>
-            <a href="{{ url('/blog') }}" class="underline text-gray-700">Blog</a>
-            <span>•</span>
-            <a href="{{ url('/libro-de-reclamaciones') }}" class="underline text-gray-700">Libro de Reclamaciones</a>
-            <span>•</span>
-            <a href="{{ url('/legal/terminos-y-condiciones') }}" class="underline text-gray-700">Aviso Legal y Términos</a>
-            <span>•</span>
-            <a href="{{ url('/legal/politicas-de-privacidad') }}" class="underline text-gray-700">Privacidad y Cookies</a>
+            <a href="https://mi.cambiafx.pe/registro" class="underline text-gray-900 hover:text-purple-800">Crear Cuenta</a>
+            <span class="text-gray-600">•</span>
+            <a href="https://mi.cambiafx.pe/login" class="underline text-gray-900 hover:text-purple-800">Iniciar Sesión</a>
+            <span class="text-gray-600">•</span>
+            <a href="{{ url('/empresas') }}" class="underline text-gray-900 hover:text-purple-800">CambiaFX Empresas</a>
+            <span class="text-gray-600">•</span>
+            <a href="{{ url('/sobre-nosotros') }}" class="underline text-gray-900 hover:text-purple-800" title="Sobre nosotros" rel="about">Sobre nosotros</a>
+            <span class="text-gray-600">•</span>
+            <a href="{{ url('/contacto') }}" class="underline text-gray-900 hover:text-purple-800">Contacto</a>
+            <span class="text-gray-600">•</span>
+            <a href="{{ url('/faqs') }}" class="underline text-gray-900 hover:text-purple-800">Preguntas Frecuentes</a>
+            <span class="text-gray-600">•</span>
+            <a href="{{ url('/blog') }}" class="underline text-gray-900 hover:text-purple-800">Blog</a>
+            <span class="text-gray-600">•</span>
+            <a href="{{ url('/libro-de-reclamaciones') }}" class="underline text-gray-900 hover:text-purple-800">Libro de Reclamaciones</a>
+            <span class="text-gray-600">•</span>
+            <a href="{{ url('/legal/terminos-y-condiciones') }}" class="underline text-gray-900 hover:text-purple-800">Aviso Legal y Términos</a>
+            <span class="text-gray-600">•</span>
+            <a href="{{ url('/legal/politicas-de-privacidad') }}" class="underline text-gray-900 hover:text-purple-800">Privacidad y Cookies</a>
         </p>
     </footer>
 </article>

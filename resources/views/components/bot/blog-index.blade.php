@@ -78,7 +78,7 @@
     @endif
 
     {{-- Footer --}}
-    <footer class="mt-12 pt-6 border-t border-gray-200 text-sm text-gray-500">
+    <footer class="mt-12 pt-6 border-t border-gray-300 text-sm text-gray-800">
         <p>© {{ date('Y') }} Cambia FX. Blog financiero oficial. Todos los derechos reservados.</p>
     </footer>
 </article>

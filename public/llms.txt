@@ -8,11 +8,11 @@ Cambia FX (marca registrada de Tu Cambio S.A.C., RUC 20603864957) es una platafo
 
 > Cotización preferencial para cambio de dólares americanos (USD) y soles peruanos (PEN) en línea:
 
-- Compra (Cambia tus dólares a soles): S/ 3.4510
-- Venta (Compra dólares con soles): S/ 3.4760
+- Compra (Cambia tus dólares a soles): S/ 3.4130
+- Venta (Compra dólares con soles): S/ 3.4360
 - Moneda: Dólar estadounidense (USD) / Sol peruano (PEN)
-- Última actualización: 30/10/2026 21:47 (Hora de Perú - GMT-5)
-- Cotizador en vivo y reserva de tipo de cambio por 15 minutos: http://localhost:8006/tipo-de-cambio-hoy
+- Última actualización: 07/11/2026 19:04 (Hora de Perú - GMT-5)
+- Cotizador en vivo y reserva de tipo de cambio por 15 minutos: https://cambiafx.pe/tipo-de-cambio-hoy
 - Operaciones mayores a $1,000 USD cuentan con tipo de cambio preferencial con mejoras automáticas por volumen.
 
 ## Información Oficial y Regulatoria
@@ -50,4 +50,4 @@ Tiempos promedio: Inmediatas (10 a 20 minutos), Interbancarias (según horarios 
 
 ## Documentación Completa para Modelos de IA
 
-- [Contexto Completo y Extendido](http://localhost:8006/llms-full.txt): Información exhaustiva, políticas de cumplimiento PLAFT/UIF, límites y detalles para razonamiento avanzado de modelos de IA.
+- [Contexto Completo y Extendido](https://cambiafx.pe/llms-full.txt): Información exhaustiva, políticas de cumplimiento PLAFT/UIF, límites y detalles para razonamiento avanzado de modelos de IA.

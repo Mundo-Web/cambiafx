@@ -3,6 +3,10 @@
         Options -MultiViews -Indexes
     </IfModule>
 
+    AddDefaultCharset UTF-8
+    AddCharset UTF-8 .txt .html .css .js .json .xml
+    AddType "text/plain; charset=UTF-8" .txt
+
     <IfModule mod_headers.c>
         Header set Access-Control-Allow-Origin "*"
         
@@ -12,6 +16,11 @@
         Header always set X-Content-Type-Options "nosniff"
         Header always set X-XSS-Protection "1; mode=block"
         Header always set Referrer-Policy "strict-origin-when-cross-origin"
+
+        # Archivos de texto plano con codificación UTF-8 explícita (llms.txt, robots.txt)
+        <FilesMatch "\.txt$">
+            Header set Content-Type "text/plain; charset=UTF-8"
+        </FilesMatch>
         
         # Cache-Control headers for static assets
         # 1. Fonts y assets estáticos inmutables
@@ -48,7 +57,7 @@
         
         # 7. Documentos HTML y páginas dinámicas
         <FilesMatch "\.(html|htm|php)$">
-            Header set Cache-Control "no-cache, no-store, must-revalidate, max-age=0"
+            Header set Cache-Control "no-cache, must-revalidate, max-age=0"
             Header set Cloudflare-CDN-Cache-Control "no-store"
             Header set CDN-Cache-Control "no-store"
             Header set X-LiteSpeed-Cache-Control "no-cache"
