@@ -140,14 +140,18 @@ class SeoHelper
 
     /**
      * Genera el JSON-LD unificado para Organization + FinancialService en todas las páginas
-     * Cumpliendo con el requerimiento del ticket A4 para Google y modelos de IA.
+     * Cumpliendo con el estándar de Google Search Central para Rich Results.
      */
     public static function getJsonLD()
     {
         $seoData = self::getSeoData();
         $logo = $seoData['company_logo'] ?? $seoData['og_image_default'] ?? '/assets/img/icon-192x192.png';
         $logoUrl = str_starts_with($logo, 'http') ? $logo : url($logo);
-        $baseUrl = rtrim(url('/'), '/');
+        $baseUrl = config('app.url');
+        if (empty($baseUrl) || str_contains($baseUrl, 'localhost')) {
+            $baseUrl = 'https://cambiafx.pe';
+        }
+        $baseUrl = rtrim($baseUrl, '/');
 
         // Redes sociales oficiales (misma entidad) sin duplicados ni mensajería
         $socials = \App\Models\Social::where('visible', true)->pluck('link')->toArray();
@@ -195,7 +199,7 @@ class SeoHelper
 
         return [
             '@context' => 'https://schema.org',
-            '@type' => ['Organization', 'FinancialService'],
+            '@type' => ['FinancialService', 'Organization'],
             '@id' => "{$baseUrl}/#organization",
             'name' => $seoData['company_name'] ?? 'Cambia FX',
             'legalName' => 'TU CAMBIO S.A.C.',
@@ -211,7 +215,6 @@ class SeoHelper
             'currenciesAccepted' => 'USD, PEN',
             'paymentAccepted' => 'Bank Transfer',
             'priceRange' => '$$',
-            'serviceType' => 'Currency Exchange',
             'areaServed' => [
                 '@type' => 'Country',
                 'name' => 'Perú'
@@ -243,40 +246,11 @@ class SeoHelper
                     'closes' => '14:00'
                 ]
             ],
-            'hasCredential' => [
-                [
-                    '@type' => 'EducationalOccupationalCredential',
-                    'credentialCategory' => 'Registro Oficial SBS',
-                    'name' => 'Resolución SBS N° 04993-2018 (Casa de Cambio Online Regulada)',
-                    'recognizedBy' => [
-                        '@type' => 'Organization',
-                        'name' => 'Superintendencia de Banca, Seguros y AFP (SBS)'
-                    ]
-                ]
-            ],
-            'aggregateRating' => [
-                '@type' => 'AggregateRating',
-                'ratingValue' => '4.9',
-                'bestRating' => '5',
-                'worstRating' => '1',
-                'ratingCount' => '1250'
-            ],
-            'about' => [
-                [
-                    '@type' => 'Thing',
-                    'name' => 'Tipo de cambio',
-                    'sameAs' => 'https://es.wikipedia.org/wiki/Tipo_de_cambio'
-                ],
-                [
-                    '@type' => 'Thing',
-                    'name' => 'Sol (moneda de Perú)',
-                    'sameAs' => 'https://es.wikipedia.org/wiki/Sol_(moneda_de_Per%C3%BA)'
-                ],
-                [
-                    '@type' => 'Thing',
-                    'name' => 'Dólar estadounidense',
-                    'sameAs' => 'https://es.wikipedia.org/wiki/D%C3%B3lar_estadounidense'
-                ]
+            'knowsAbout' => [
+                'Tipo de cambio en Perú',
+                'Cambio de dólares a soles',
+                'Compra y venta de divisas',
+                'Mercado interbancario'
             ],
             'sameAs' => $sameAs
         ];
@@ -287,7 +261,12 @@ class SeoHelper
      */
     public static function getWebSiteSchema()
     {
-        $baseUrl = rtrim(url('/'), '/');
+        $baseUrl = config('app.url');
+        if (empty($baseUrl) || str_contains($baseUrl, 'localhost')) {
+            $baseUrl = 'https://cambiafx.pe';
+        }
+        $baseUrl = rtrim($baseUrl, '/');
+
         return [
             '@context' => 'https://schema.org',
             '@type' => 'WebSite',
@@ -316,7 +295,11 @@ class SeoHelper
 
         $seoData = self::getSeoData();
         $logo = $seoData['company_logo'] ?? $seoData['og_image_default'] ?? '/assets/img/icon-192x192.png';
-        $baseUrl = rtrim(url('/'), '/');
+        $baseUrl = config('app.url');
+        if (empty($baseUrl) || str_contains($baseUrl, 'localhost')) {
+            $baseUrl = 'https://cambiafx.pe';
+        }
+        $baseUrl = rtrim($baseUrl, '/');
 
         $name = $article->name ?? $article['name'] ?? '';
         $slug = $article->slug ?? $article['slug'] ?? '';
@@ -385,14 +368,22 @@ class SeoHelper
                     continue;
                 }
 
-                if (empty($question) || empty($answer)) continue;
+                $cleanQuestion = trim(strip_tags((string)$question));
+                $cleanAnswer = trim(strip_tags((string)$answer));
+                if (empty($cleanAnswer) && !empty(trim((string)$answer))) {
+                    $cleanAnswer = trim(str_replace(['<', '>'], '', (string)$answer));
+                }
+
+                if (empty($cleanQuestion) || empty($cleanAnswer)) {
+                    continue;
+                }
 
                 $questions[] = [
                     '@type' => 'Question',
-                    'name' => trim(strip_tags($question)),
+                    'name' => $cleanQuestion,
                     'acceptedAnswer' => [
                         '@type' => 'Answer',
-                        'text' => trim(strip_tags($answer))
+                        'text' => $cleanAnswer
                     ]
                 ];
             }
@@ -471,18 +462,23 @@ class SeoHelper
      */
     public static function getBreadcrumbSchema($items = [])
     {
-        $baseUrl = rtrim(url('/'), '/');
+        $baseUrl = config('app.url');
+        if (empty($baseUrl) || str_contains($baseUrl, 'localhost')) {
+            $baseUrl = 'https://cambiafx.pe';
+        }
+        $baseUrl = rtrim($baseUrl, '/');
         $itemListElement = [];
 
         if (!empty($items)) {
             foreach ($items as $index => $item) {
                 $name = $item['name'] ?? $item->name ?? '';
                 $url = $item['url'] ?? $item->url ?? '';
+                $itemUrl = str_starts_with($url, 'http') ? $url : "{$baseUrl}/" . ltrim($url, '/');
                 $itemListElement[] = [
                     '@type' => 'ListItem',
                     'position' => $index + 1,
                     'name' => $name,
-                    'item' => str_starts_with($url, 'http') ? $url : url($url)
+                    'item' => $itemUrl
                 ];
             }
         } else {
@@ -521,6 +517,7 @@ class SeoHelper
             ];
 
             $currentName = $nombresRutas[$path] ?? ucwords(str_replace(['-', '/'], ' ', $path));
+            $currentUrl = "{$baseUrl}/{$path}";
 
             $itemListElement[] = [
                 '@type' => 'ListItem',
@@ -540,14 +537,14 @@ class SeoHelper
                     '@type' => 'ListItem',
                     'position' => 3,
                     'name' => $currentName,
-                    'item' => url()->current()
+                    'item' => $currentUrl
                 ];
             } else {
                 $itemListElement[] = [
                     '@type' => 'ListItem',
                     'position' => 2,
                     'name' => $currentName,
-                    'item' => url()->current()
+                    'item' => $currentUrl
                 ];
             }
         }
