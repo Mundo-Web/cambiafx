@@ -14,6 +14,9 @@ class Kernel extends ConsoleKernel
     {
         // Procesar lotes pendientes de boletines respetando límites
         $schedule->command('newsletter:process-pending')->everyMinute()->withoutOverlapping();
+
+        // Actualizar archivos llms.txt y llms-full.txt automáticamente todos los días a medianoche
+        $schedule->command('llms:generate')->dailyAt('00:00');
     }
 
     /**
