@@ -55,12 +55,9 @@
             Header set Cache-Control "public, max-age=86400, must-revalidate"
         </FilesMatch>
         
-        # 7. Documentos HTML y páginas dinámicas
-        <FilesMatch "\.(html|htm|php)$">
+        # 7. Documentos HTML estáticos y fallback para scripts PHP (Laravel PerformanceHeaders gestiona las cabeceras dinámicas)
+        <FilesMatch "\.(html|htm)$">
             Header set Cache-Control "no-cache, must-revalidate, max-age=0"
-            Header set Cloudflare-CDN-Cache-Control "no-store"
-            Header set CDN-Cache-Control "no-store"
-            Header set X-LiteSpeed-Cache-Control "no-cache"
         </FilesMatch>
     </IfModule>
 

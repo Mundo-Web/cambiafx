@@ -305,21 +305,3 @@ export default function HeroSecction({ data = [], apps = [], indicators = [], in
     )
 }
 
-// Agregar estilos CSS para el swiper móvil
-const styles = `
-    .scrollbar-hide {
-        -ms-overflow-style: none;
-        scrollbar-width: none;
-    }
-    .scrollbar-hide::-webkit-scrollbar {
-        display: none;
-    }
-`;
-
-// Inyectar estilos
-if (typeof document !== 'undefined') {
-    const styleSheet = document.createElement("style");
-    styleSheet.innerText = styles;
-    document.head.appendChild(styleSheet);
-}
-

@@ -464,30 +464,9 @@ const Header = ({
                                             >
                                                 {text}
                                                 {isActive(path) && (
-                                                    <motion.span
-                                                        layoutId="activeDot"
-                                                        initial={{ scale: 0 }}
-                                                        animate={{
-                                                            scale: [1, 1.1, 1],
-                                                            boxShadow: [
-                                                                "0 0 0 0 rgba(187, 255, 82, 0.7)",
-                                                                "0 0 0 8px rgba(187, 255, 82, 0.2)",
-                                                                "0 0 0 0 rgba(187, 255, 82, 0)",
-                                                            ],
-                                                        }}
-                                                        transition={{
-                                                            scale: {
-                                                                duration: 1,
-                                                                repeat: Infinity,
-                                                                ease: "easeInOut",
-                                                            },
-                                                            boxShadow: {
-                                                                duration: 2,
-                                                                repeat: Infinity,
-                                                                ease: "easeInOut",
-                                                            },
-                                                        }}
-                                                        className="absolute left-3 top-[40%] -translate-x-1/2 -translate-y-1/2 h-2 w-2 bg-secondary rounded-full"
+                                                    <span
+                                                        className="absolute left-3 top-[40%] -translate-x-1/2 -translate-y-1/2 h-2 w-2 bg-secondary rounded-full animate-dot-pulse"
+                                                        aria-hidden="true"
                                                     />
                                                 )}
                                             </motion.a>
@@ -591,23 +570,13 @@ const Header = ({
                             >
                                 <span className="relative z-10 flex items-center gap-2">
                                     iniciar operación
-                                    <motion.svg
+                                    <svg
                                         width="16"
                                         height="16"
                                         viewBox="0 0 24 24"
                                         fill="none"
                                         xmlns="http://www.w3.org/2000/svg"
-                                        className="w-4 h-4"
-                                        animate={{
-                                            rotate: [0, 360],
-                                        }}
-                                        transition={{
-                                            rotate: {
-                                                duration: 8,
-                                                repeat: Infinity,
-                                                ease: "linear",
-                                            },
-                                        }}
+                                        className="w-4 h-4 animate-spin-slow"
                                     >
                                         <path
                                             d="M12 2V6M12 18V22M4.93 4.93L7.76 7.76M16.24 16.24L19.07 19.07M2 12H6M18 12H22M4.93 19.07L7.76 16.24M16.24 7.76L19.07 4.93"
@@ -1107,23 +1076,13 @@ const Header = ({
                                         >
                                             <span className="relative z-10 flex items-center gap-2">
                                                 iniciar operación
-                                                <motion.svg
+                                                <svg
                                                     width="16"
                                                     height="16"
                                                     viewBox="0 0 24 24"
                                                     fill="none"
                                                     xmlns="http://www.w3.org/2000/svg"
-                                                    className="w-4 h-4"
-                                                    animate={{
-                                                        rotate: [0, 360],
-                                                    }}
-                                                    transition={{
-                                                        rotate: {
-                                                            duration: 8,
-                                                            repeat: Infinity,
-                                                            ease: "linear",
-                                                        },
-                                                    }}
+                                                    className="w-4 h-4 animate-spin-slow"
                                                 >
                                                     <path
                                                         d="M12 2V6M12 18V22M4.93 4.93L7.76 7.76M16.24 16.24L19.07 19.07M2 12H6M18 12H22M4.93 19.07L7.76 16.24M16.24 7.76L19.07 4.93"
@@ -1207,14 +1166,10 @@ const Header = ({
                                     className="bg-[#9C79D4] py-2 text-[13.95px] md:text-[16.95px] lg:text-[26.95px] mt-4 mb-8 text-center rounded-[14px] lg:rounded-[20px] text-white"
                                 >
                                     ¡Tienes envío gratis en lima!{" "}
-                                    <motion.img
-                                        animate={{ rotate: [0, 15, 0] }}
-                                        transition={{
-                                            repeat: Infinity,
-                                            duration: 2,
-                                        }}
+                                    <img
                                         src="/assets/img/emojis/motor-scooter.png"
-                                        className="h-[16.88px] lg:h-[26.88px] inline-flex ml-2"
+                                        alt=""
+                                        className="h-[16.88px] lg:h-[26.88px] inline-flex ml-2 animate-scooter-tilt"
                                     />{" "}
                                 </motion.div>
 

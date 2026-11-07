@@ -74,16 +74,28 @@ class PerformanceHeaders
      */
     private function applyCacheHeaders(Response $response): void
     {
-        // Si la petición proviene de un bot de auditoría SEO o crawler (Googlebot, Lighthouse, PageSpeed, etc.)
-        // entregamos cabecera de caché válida para optimizar la puntuación técnica y el TTFB de auditorías.
+        // Si la petición proviene de un bot de auditoría SEO o crawler (Googlebot, etc.)
         if (\App\Helpers\BotDetector::isBot()) {
             $response->headers->set('Cache-Control', 'public, max-age=120, stale-while-revalidate=300');
             $response->headers->remove('Pragma');
             $response->headers->remove('Expires');
+            return;
+        }
+
+        $request = request();
+        $isPublicGet = $request->isMethod('GET') && !$request->is('admin*', 'api*', 'login*', 'register*', 'dashboard*', 'my-account*');
+
+        if ($isPublicGet) {
+            // Páginas públicas para usuarios humanos y herramientas de auditoría (Home, Blog, etc.):
+            // s-maxage=120 permite a Cloudflare Edge responder en < 30ms (TTFB óptimo).
+            // max-age=0 + must-revalidate indica al navegador revalidar con el Edge para recibir actualizaciones rápidas.
+            $response->headers->set('Cache-Control', 'public, max-age=0, s-maxage=120, stale-while-revalidate=60, must-revalidate');
+            $response->headers->set('Cloudflare-CDN-Cache-Control', 'max-age=120, stale-while-revalidate=60');
+            $response->headers->set('CDN-Cache-Control', 'max-age=120');
+            $response->headers->remove('Pragma');
+            $response->headers->remove('Expires');
         } else {
-            // Para usuarios reales y panel admin:
-            // Usamos 'no-cache, must-revalidate, max-age=0' que instruye a navegadores a revalidar siempre,
-            // y 'no-store' a nivel de CDN/Cloudflare para que creaciones/eliminaciones de cupones se reflejen al instante.
+            // Rutas privadas, transaccionales, formularios y panel de administración:
             $response->headers->set('Cache-Control', 'no-cache, must-revalidate, max-age=0');
             $response->headers->set('Cloudflare-CDN-Cache-Control', 'no-store');
             $response->headers->set('CDN-Cache-Control', 'no-store');

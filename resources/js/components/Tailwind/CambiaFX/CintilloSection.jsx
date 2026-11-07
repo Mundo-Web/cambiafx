@@ -47,20 +47,9 @@ const CintilloSection = () => {
             variants={containerVariants}
             className="bg-constrast overflow-hidden text-white text-xs md:text-sm py-2 md:py-3 relative"
         >
-            {/* Gradiente animado de fondo */}
-            <motion.div
-                className="absolute inset-0 bg-gradient-to-r from-constrast via-accent/20 to-constrast opacity-50"
-                animate={{
-                    backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"]
-                }}
-                transition={{
-                    duration: 8,
-                    repeat: Infinity,
-                    ease: "linear"
-                }}
-                style={{
-                    backgroundSize: "200% 100%"
-                }}
+            {/* Gradiente animado de fondo (Acelerado por GPU en CSS nativo sin sobrecargar CPU de JavaScript) */}
+            <div
+                className="absolute inset-0 bg-gradient-to-r from-constrast via-accent/20 to-constrast opacity-50 animate-cintillo-gradient pointer-events-none"
             />
 
             <div className="px-[5%] mx-auto flex flex-row items-center justify-start font-paragraph relative z-10">

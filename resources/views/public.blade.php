@@ -21,8 +21,6 @@ $isBot = \App\Helpers\BotDetector::isBot();
     @unless ($isBot)
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
-    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
     @endunless
 
     <!-- SEO Meta Tags -->
@@ -59,14 +57,9 @@ $isBot = \App\Helpers\BotDetector::isBot();
     <!-- Preload del elemento LCP (Logo CambiaFX) para eliminar los 2,480ms de retraso de descubrimiento -->
     <link rel="preload" href="/assets/img/logo.svg" as="image" type="image/svg+xml" fetchpriority="high">
 
-    <!-- Web Fonts Asíncronas Consolidadas (1 solo request HTTP/2, No bloqueante) -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=Bebas+Neue&family=Poppins:wght@400;500;600;700&display=swap" media="print" onload="this.media='all'">
-    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=Bebas+Neue&family=Poppins:wght@400;500;600;700&display=swap"></noscript>
-
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
-        integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" media="print" onload="this.media='all'" />
-    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"></noscript>
+    <!-- Web Fonts Asíncronas (Poppins optimizada con display=swap, sin familias no utilizadas) -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"></noscript>
     @endunless
 
 
@@ -135,9 +128,6 @@ $isBot = \App\Helpers\BotDetector::isBot();
     </style>
 
     @unless ($isBot)
-    <link rel="stylesheet" href="/assets/fonts/aspekta/font-face.css" media="print" onload="this.media='all'" />
-    <noscript><link rel="stylesheet" href="/assets/fonts/aspekta/font-face.css"></noscript>
-
     <!-- Carga inteligente de Marketing & GTM en interacción real (TBT < 100ms) -->
     <script data-cfasync="false">
         (function() {
